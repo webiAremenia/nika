@@ -1,0 +1,13 @@
+<div class="image-block h-100" appHoverRotate [bgColor]="block.bg" [ngStyle]="{'background-color' : block.bg}" >
+
+        <div class="opacity" routerLink="/"><div class="opacity-header">{{block.content.hoverTitle}}</div></div>
+
+        <div class="content h-100">
+            <div class="image-wrapper text-center h-100">
+                <img src="../../../../assets/images/{{block.content.img}}" alt="a">
+                <div class="rotate-header">{{block.content.hoverTitle}}</div>
+            </div>
+        </div>
+
+</div>
+

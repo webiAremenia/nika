@@ -1,0 +1,120 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.h-20 {
+  height: 20%;
+}
+
+.h-80 {
+  height: 80%;
+}
+
+.custom-page {
+  height: calc(100vh - 100px);
+  overflow: auto;
+  border: 1px solid black;
+}
+
+.custom-container {
+  padding: 50px;
+}
+
+
+.bg-size-small {
+  width: 20%;
+  height: calc(20vw - 20px);
+  //border: 1px solid black;
+}
+
+.bg-size-middle {
+  width: 40%;
+  height: calc(40vw - 40px);
+  //border: 1px solid black;
+}
+
+.bg-size-large {
+  width: 60%;
+  height: calc(40vw - 40px);
+  //border: 1px solid black;
+}
+
+
+.parent-large {
+  .bg-size-small {
+    width: 33.333%;
+    height: calc(20vw - 20px);
+    //border: 1px solid black;
+  }
+
+  .bg-size-middle {
+    width: 66.666%;
+    height: calc(40vw - 40px);
+    //border: 1px solid black;
+  }
+
+  .bg-size-large {
+    width: 100%;
+    height: calc(40vw - 40px);
+    //border: 1px solid black;
+  }
+}
+
+
+.parent-middle {
+  .bg-size-small {
+    width: 50%;
+    height: calc(20vw - 20px);
+    //border: 1px solid black;
+  }
+
+  .bg-size-middle {
+    width: 100%;
+    height: calc(40vw - 40px);
+    //border: 1px solid black;
+  }
+
+}
+
+.parent-small {
+  .bg-size-small {
+    width: 100%;
+    height: calc(20vw - 20px);
+    //border: 1px solid black;
+  }
+}
+
+
+.bg-color-red {
+  background: red;
+}
+
+.bg-color-yellow {
+  background: yellow;
+}
+
+.bg-color-brown {
+  background: brown;
+}
+
+.bg-color-green {
+  background: green;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+.contact {
+  .mat-grid-tile .mat-figure {
+    justify-content: unset !important;
+  }
+  .mat-form-field {
+    width: 90%;
+  }
+}
