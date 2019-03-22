@@ -46,12 +46,17 @@ app.use('/uploads', express.static(__dirname + '_uploads'));
 app.use('/admin', adminRoutes);
 
 
+
+//----------- Connect to Angular Admin
+
+app.use('/admin-panel', express.static(__dirname + '/../../admin/dist/admin'));
+app.use('/admin-panel/*', express.static(__dirname + '/../../admin/dist/admin'));
+
 //----------- Connect to Angular client
 
 
-
-app.use('/', express.static(__dirname + '/../../front/dist/front'));
-app.use('/*', express.static(__dirname + '/../../front/dist/front'));
+app.use('/', express.static(__dirname + '/../../client/dist/front'));
+app.use('/*', express.static(__dirname + '/../../client/dist/front'));
 
 //--------------------------------------
 

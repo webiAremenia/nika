@@ -1,23 +1,24 @@
 <div class="home-page bg-light">
 
-  <owl-carousel-o [options]="customOptions">
+    <owl-carousel-o [options]="options">
 
-    <ng-template *ngFor="let items of sliderItems, let i = index" class="h-100" carouselSlide>
-      <div class="my-slider-item" style="background-image: url('../../../../assets/images/banner.PNG')">
-        <div class="item-content">
-          <div class="row">
-            <div class="item-text col-10">
-              <div class="item-title">Electriclmp {{ i }}</div>
-              <div class="item-description">Lorem ipsum dolor sit amet, consectetur adipisicing.</div>
+        <ng-template *ngFor="let item of slides, let i = index" class="h-100" carouselSlide>
+            <div class="my-slider-item"
+                 [ngStyle]="{'background-image': 'url(' + item.url + ')'}">
+                <div class="item-content">
+                    <div class="row">
+                        <div class="item-text col-10">
+                            <div class="item-title">{{item.title}}</div>
+                            <div class="item-description">{{ item.description }}</div>
+                        </div>
+                        <div class="items-counter col-2">
+                            <span class="float-right">{{i}}/{{slides.length}}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="items-counter col-2">
-              <span class="float-right">{{i}}/{{sliderItems.length}}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </ng-template>
+        </ng-template>
 
 
-  </owl-carousel-o>
+    </owl-carousel-o>
 </div>

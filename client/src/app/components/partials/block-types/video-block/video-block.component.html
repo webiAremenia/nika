@@ -1,13 +1,14 @@
 <div class="video-block h-100"
      (mouseenter)="toggleAutoplay()"
      (mouseleave)="toggleAutoplay()"
-     (click)="videoPlay()">
+
+>
   <video #videoElement
          class="h-100 w-100"
          [loop]="true"
-         [volume]=".1"
+         [volume]=".8"
          [autoplay]="play"
-         [muted]="muted">
+         [muted]=false>
     <source src="../../../../assets/video/{{block.content.video}}" type="video/mp4"/>
   </video>
 

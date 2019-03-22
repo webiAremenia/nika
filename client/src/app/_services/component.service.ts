@@ -68,14 +68,14 @@ export class ComponentService {
             size: 'small',
             bg: '#ffffff',
             category: this.category[1],
-            content: {video: 'movie.mp4', title: 'some text'}
+            content: {video: 'video.mp4', title: 'some text'}
         },
         {size: 'small', bg: this.componentBg[2], category: this.category[4], content: 'girl.PNG'},
         {
             size: 'small',
             bg: '#ffffff',
             category: this.category[1],
-            content: {video: 'movie.mp4', title: 'some biger text'}
+            content: {video: 'video.mp4', title: 'some biger text'}
         },
         {size: 'small', bg: '#5ED6BF', category: 'image', content: {img: 'textimg.PNG', hoverTitle: 'do good'}},
         {

@@ -19,7 +19,7 @@ export class HoverRotateDirective {
   }
 
   opacity() {
-    console.log( this.el.nativeElement.children[1].children[0].classList.toggle('show-rotate'));
+    console.log( this.el.nativeElement.children[1].children[0].children[0].classList.toggle('show-rotate'));
     // this.el.nativeElement.children[0].classList.toggle('show-opacity');
   }
 

@@ -1,45 +1,31 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {SliderService} from "../../../_services/slider.service";
+
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
-  sliderItems = [1,2,3,4,5];
+    options: any;
+    slides: any;
 
-  constructor() {
-  }
+    constructor(private  slider: SliderService) {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.getParams();
+    }
 
-  customOptions: any = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: false,
-    dots: false,
-    navSpeed: 200,
-    autoplay: true,
-    autoplayTimeout: 3000,
-    autoplaySpeed: 1000,
-    // navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 1
-      },
-      740: {
-        items: 1
-      },
-      940: {
-        items: 1
-      }
-    },
-    nav: false
-  }
+    getParams() {
+        this.options = this.slider.sliderOptions();
+        this.slides = this.slider.getImages();
+    }
+
+    ngOnDestroy(): void {
+        this.options = null;
+        this.slides = null;
+    }
 }
