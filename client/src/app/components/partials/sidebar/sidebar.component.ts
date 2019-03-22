@@ -13,7 +13,7 @@ export class SidebarComponent implements OnInit {
 
   constructor(location: Location, router: Router) {
     router.events.subscribe((val) => {
-      console.log(location.path())
+      // console.log(location.path())
     });
   }
   ngOnInit(): void {
