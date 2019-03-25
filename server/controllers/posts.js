@@ -13,6 +13,7 @@ module.exports = {
             }
     },
     addPost: async (req,res) => {
+        console.log(req.body);
             let post = {
               title: req.body.title,
               description: req.body.description,
@@ -42,7 +43,7 @@ module.exports = {
         if (req.file) {
             fs.unlinkSync(`./_uploads/posts/${oldPost.image}`);
         }
-        post.updated = new Date().toLocaleDateString();
+        post.updated = new Date();
         try {
             await Post.findByIdAndUpdate(
                 {_id: candidate},

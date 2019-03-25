@@ -2,6 +2,6 @@ module.exports = {
     port: 3000,
     protocol: 'http',
     host: 'localhost',
-    mongoUrl: 'mongodb://admin:admin123456@ds159185.mlab.com:59185/task',
+    mongoUrl: 'mongodb://localhost:27017/nika',
     jwt_key: 'erik'
 };

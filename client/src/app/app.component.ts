@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 
 
@@ -10,19 +10,21 @@ import {Location} from '@angular/common';
 })
 export class AppComponent {
     title = 'nika';
-
+    slider = false;
+    contact = false;
     route: string;
 
     constructor(location: Location, router: Router) {
         router.events.subscribe((val) => {
-            if (location.path() != '') {
-                this.route = location.path();
-                // console.log(this.route)
-            } else this.route = ''
+            if (location.path() === '') {
+                this.slider = true;
+                this.contact = false;
+            } else if (location.path() === '/contact') {
+                this.slider = false;
+                this.contact = true;
+            }
         });
-    }
-
-    ngOnInit() {
 
     }
+
 }
