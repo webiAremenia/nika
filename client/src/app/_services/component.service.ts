@@ -89,8 +89,17 @@ export class ComponentService {
                 description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias animi atque consequatur deleniti est expedita impedit ipsum itaque laboriosam molestiae neque, nihil nisi perferendis porro quibusdam ratione repellendus reprehenderit rerum soluta suscipit vel voluptatem. A commodi iure libero magnam!'
             }
         },
-        {size: 'middle', bg: '#FF52B5', category:'image', content: {img: 'middle.PNG', hoverTitle: 'Cloud'}},
-        {size: 'small', bg: '#000', category: 'link', content: {title: 'Lorem ipsum dolor sit amet, consectetur adipisicing ?',  link: 'contact us', url: 'https://www.facebook.com/' }},
+        {size: 'middle', bg: '#FF52B5', category: 'image', content: {img: 'middle.PNG', hoverTitle: 'Cloud'}},
+        {
+            size: 'small',
+            bg: '#000',
+            category: 'link',
+            content: {
+                title: 'Lorem ipsum dolor sit amet, consectetur adipisicing ?',
+                link: 'contact us',
+                url: 'https://www.facebook.com/'
+            }
+        },
     ];
 
     group = [
@@ -101,7 +110,6 @@ export class ComponentService {
         {type: 'middle', data: [this.blocks[3]],},
         {type: 'large', data: [this.blocks[9]]},
         {type: 'middle', data: [this.blocks[4], this.blocks[2], this.blocks[7], this.blocks[0]]},
-        {type: 'small', data: [this.blocks[11]]}
     ];
 
     constructor() {
@@ -114,11 +122,14 @@ export class ComponentService {
     getPost(id) {
         return this.posts.find((element) => {
             return element.id == id;
-        })
+        });
     }
 
     getBlocks() {
         return this.blocks;
     }
 
+    getFooter() {
+       return {type: 'small', data: this.blocks[11]};
+    }
 }

@@ -24,11 +24,11 @@ const PostSchema = new Schema({
     },
     created: {
         type: Date,
-        default: new Date().toLocaleDateString(),
+        default: new Date(),
     },
     updated: {
         type: Date,
-        default: new Date().toLocaleDateString()
+        default: new Date()
     }
 });
 
