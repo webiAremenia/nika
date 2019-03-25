@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const path = require('path');
-
+const fs = require('fs');
 mongoose.connect(config.mongoUrl, {useNewUrlParser: true, useCreateIndex: true})
     .then(_=> {console.log('MongoDB has connected ...')})
     .catch(err => {console.log('Error MongoDB not connected ...')});
@@ -17,6 +17,15 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(require('cors')());
 
 app.use(morgan('dev'));
+
+if (!fs.existsSync('./_uploads')){
+    fs.mkdirSync('./_uploads');
+}
+if (!fs.existsSync('./_uploads/posts')){
+    fs.mkdirSync('./_uploads/posts');
+}
+
+
 
 app.use('/_uploads', express.static('_uploads'));
 
@@ -38,6 +47,9 @@ app.get('/', function(req,res) {
  res.sendFile(path.join(__dirname + '/../client/dist/front/index.html'));
 });
 app.get('/admin-panel', function(req,res) {
+ res.sendFile(path.join(__dirname + '/../admin/dist/Project/index.html'));
+});
+app.get('/admin-panel/*', function(req,res) {
  res.sendFile(path.join(__dirname + '/../admin/dist/Project/index.html'));
 });
 

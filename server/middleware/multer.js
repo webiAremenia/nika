@@ -1,6 +1,7 @@
 const multer = require('multer');
 const fs = require('fs');
 
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         if(req.originalUrl.split('/')[2] === 'post' && req.method === 'POST'){
@@ -19,10 +20,20 @@ const storage = multer.diskStorage({
     }
 });
 
+var fileFilter = (req, file, cb) => {
+    // reject a file
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/svg') {
+        cb(null, true);
+    } else {
+        cb(null, false);
+    }
+};
+
+
 
 const upload = multer({
-    storage: storage,
-    limits: 1024 * 1024 * 5
+    fileFilter: fileFilter,
+    storage: storage
 });
 
 module.exports = upload;

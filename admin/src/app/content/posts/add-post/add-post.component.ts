@@ -36,6 +36,7 @@ export class AddPostComponent implements OnInit {
 
 
   beforeUpload = (file: UploadFile): boolean => {
+    this.fileList = [];
     this.fileList = this.fileList.concat(file);
     return false;
   };

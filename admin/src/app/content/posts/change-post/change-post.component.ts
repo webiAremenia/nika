@@ -37,6 +37,7 @@ export class ChangePostComponent implements OnInit {
 
 
   beforeUpload = (file: UploadFile): boolean => {
+    this.fileList = [];
     this.fileList = this.fileList.concat(file);
     this.previewImage = file.url || file.thumbUrl;
     return false;
