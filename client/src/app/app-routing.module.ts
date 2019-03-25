@@ -14,7 +14,7 @@ const routes: Routes = [
     {path: '', component: AllBlocksComponent, pathMatch: 'full'},
     {path: 'home', component: AllBlocksComponent},
     {path: 'contact', component: AllBlocksComponent},
-    {path: 'about', component: AboutDescComponent},
+    {path: 'about', component: AboutComponent},
     {path: 'work', component: WorkComponent},
     {path: 'all-stories', component: StoriesComponent},
     {path: 'stories/:id', component: StoriesComponent, children: child},
