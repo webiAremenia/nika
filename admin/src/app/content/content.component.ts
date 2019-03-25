@@ -30,4 +30,8 @@ posts;
   changeTrigger(): void {
     this.triggerTemplate = this.customTrigger;
   }
+  logOut() {
+    localStorage.clear();
+    window.location.href = window.location.origin;
+  }
 }

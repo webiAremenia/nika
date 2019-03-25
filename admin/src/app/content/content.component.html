@@ -1,6 +1,10 @@
 <nz-layout #page>
   <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="triggerTemplate">
     <div class="logo">
+      <i style="font-weight: bold;font-size: 20px;color: white; text-align: center;padding: 10px;margin-left: 15px;">N</i>
+      <i style="font-weight: bold;font-size: 20px;color: white; text-align: center;padding: 10px;">I</i>
+      <i style="font-weight: bold;font-size: 20px;color: white; text-align: center;padding: 10px;">K</i>
+      <i style="font-weight: bold;font-size: 20px;color: white; text-align: center;padding: 10px;">A</i>
     </div>
     <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
       <li nz-menu-item routerLink="/content/posts"><span><i nz-icon type="picture"></i><span class="nav-text">Post</span></span></li>
@@ -13,7 +17,7 @@
   <nz-layout>
     <nz-header style="background: #fff; padding:0;">
       <i class="trigger" nz-icon [type]="isCollapsed?'menu-unfold':'menu-fold'" (click)="isCollapsed=!isCollapsed"></i>
-      <button style="float: right;background-color: #00152A;display: inline-block;margin: 10px;" class="btn btn-dark mt-1">LogOut</button>
+      <button style="float: right;background-color: #00152A;display: inline-block;margin: 10px;" class="btn btn-dark mt-1" (click)="logOut()">LogOut</button>
     </nz-header>
     <nz-content style="margin:0 16px;">
       <nz-breadcrumb style="margin:16px 0;">
