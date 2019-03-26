@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PostsService} from "../../../shared/services/posts.service";
 import {Router} from "@angular/router";
+import {NzModalService} from "ng-zorro-antd";
 
 @Component({
   selector: 'app-posts-list',
@@ -14,15 +15,15 @@ export class PostsListComponent implements OnInit {
   searchValue;
   selectedValue = 'title';
   url = window.location.origin + '/_uploads/posts/';
+  // url = 'http://localhost:3000' + '/_uploads/posts/';
   isVisibleMiddle = false;
-  constructor(private service: PostsService, private router: Router) {
+  constructor(private service: PostsService, private router: Router, private modalService: NzModalService) {
   }
 
   ngOnInit() {
     this.service.getPosts().subscribe((data) => {
       this.posts = data;
       this.items = data;
-      console.log(data);
     })
   }
 
@@ -67,5 +68,15 @@ export class PostsListComponent implements OnInit {
   handleCancelMiddle(): void {
     this.isVisibleMiddle = false;
   }
-
+  showDeleteConfirm(data): void {
+    this.modalService.confirm({
+      nzTitle: 'Are you sure delete this post?',
+      nzContent: '<b style="color: red;">Some descriptions</b>',
+      nzOkText: 'Yes',
+      nzOkType: 'danger',
+      nzOnOk: () => this.delete(data),
+      nzCancelText: 'No',
+      nzOnCancel: () => console.log('Cancel')
+    });
+  }
 }
