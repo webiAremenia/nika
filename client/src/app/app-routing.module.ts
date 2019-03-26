@@ -8,6 +8,7 @@ import {StoriesComponent} from './components/pages/stories/stories.component';
 import {CareersComponent} from './components/pages/careers/careers.component';
 import {AboutDescComponent} from './components/pages/about/about-desc/about-desc.component';
 import {AllBlocksComponent} from './components/partials/all-blocks/all-blocks.component';
+import {WorkDetailComponent} from "./components/pages/work/work-detail/work-detail.component";
 
 const child: Routes = [];
 const routes: Routes = [
@@ -15,9 +16,10 @@ const routes: Routes = [
     {path: 'home', component: AllBlocksComponent},
     {path: 'contact', component: AllBlocksComponent},
     {path: 'about', component: AboutComponent},
-    {path: 'work', component: WorkComponent},
+    {path: 'works', component: WorkComponent},
+    {path: 'work/:id', component: WorkDetailComponent},
     {path: 'all-stories', component: StoriesComponent},
-    {path: 'stories/:id', component: StoriesComponent, children: child},
+    {path: 'stories', component: StoriesComponent, children: child},
     {path: 'careers', component: CareersComponent},
 
 ];

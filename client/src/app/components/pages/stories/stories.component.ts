@@ -18,16 +18,18 @@ export class StoriesComponent implements OnInit {
     id: number;
     private routeSubscription: Subscription;
 
-    constructor(@Inject(DOCUMENT) private document: Document, private route: ActivatedRoute, private servic: ComponentService) {
+    constructor(
+        // @Inject(DOCUMENT) private document: Document, private route: ActivatedRoute, private servic: ComponentService
+    ) {
 
     }
 
     ngOnInit() {
-        this.routeSubscription = this.route.params.subscribe(params => {
-            this.id = params['id'];
-            this.blog = this.servic.getPost(this.id);
-            window.scrollTo(0, 0);
-        });
+        // this.routeSubscription = this.route.params.subscribe(params => {
+        //     this.id = params['id'];
+        //     this.blog = this.servic.getPost(this.id);
+        //     window.scrollTo(0, 0);
+        // });
     }
 
 }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {WorkService} from "../../../_services/work.service";
+import {WorkService} from '../../../_services/work.service';
 
 @Component({
     selector: 'app-work',
@@ -19,5 +19,7 @@ export class WorkComponent implements OnInit {
 
     getAllWorks() {
         this.works = this.workService.getWorks();
+        console.log(this.works);
     }
 }
+

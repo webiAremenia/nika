@@ -36,6 +36,9 @@ import { VacancyComponent } from './components/pages/vacancy/vacancy.component';
 import { VacancyDescComponent } from './components/pages/vacancy/vacancy-desc/vacancy-desc.component';
 import { Hover3dRotateDirective } from './_directives/hover-3d-rotate.directive';
 import { FooterComponent } from './components/partials/footer/footer.component';
+import { WorcDescComponent } from './components/pages/work/work-desc/worc-desc.component';
+import { StoriesDescComponent } from './components/pages/stories/stories-desc/stories-desc.component';
+import { WorkDetailComponent } from './components/pages/work/work-detail/work-detail.component';
 
 
 @NgModule({
@@ -63,6 +66,9 @@ import { FooterComponent } from './components/partials/footer/footer.component';
         VacancyDescComponent,
         Hover3dRotateDirective,
         FooterComponent,
+        WorcDescComponent,
+        StoriesDescComponent,
+        WorkDetailComponent,
     ],
     imports: [
         BrowserAnimationsModule,

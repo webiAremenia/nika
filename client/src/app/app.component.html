@@ -4,21 +4,26 @@
             <app-sidebar></app-sidebar>
         </div>
         <div class="col-9 p-0">
-            <div *ngIf="slider">
+            <div *ngIf="path == ''">
                 <app-home></app-home>
             </div>
-            <div *ngIf="contact">
+            <div *ngIf="path == '/contact'">
                 <app-contact></app-contact>
+            </div>
+            <div *ngIf="path == '/works'">
+                <app-worc-desc></app-worc-desc>
+            </div>
+            <div *ngIf="path == '/stories'">
+                <app-stories-desc></app-stories-desc>
             </div>
         </div>
     </div>
 </div>
 
 
-
-    <router-outlet></router-outlet>
-
+<router-outlet></router-outlet>
 
 
-<app-footer></app-footer>
-
+<div class="custom-container pt-0">
+    <app-footer></app-footer>
+</div>

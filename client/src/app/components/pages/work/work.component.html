@@ -1,7 +1,21 @@
-<div class="custom-container custom-page">
-  <h1 style="text-align: center;padding: 50px">
-    Work
-  </h1>
+<!--<div class="custom-container pt-0">-->
+<!--<div class="row wrapper">-->
+<!--<div *ngFor="let work of works" class="col-4">-->
+<!--<div class="img w-100"><img class="w-100" src="../../../assets/images/{{work.img}}" alt="a"></div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 
+<div class="custom-container pt-0">
 
+    <div class="row">
+
+        <div *ngFor="let work of works" class="col-3">
+            <div class="img-wrapper img">
+                <a [routerLink]="['/work', work.id]"><img src="../../../../assets/images/{{work.img}}" alt="image"></a>
+            </div>
+            <div class="block-title">{{work.title}}</div>
+        </div>
+
+    </div>
 </div>

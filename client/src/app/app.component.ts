@@ -13,16 +13,23 @@ export class AppComponent {
     slider = false;
     contact = false;
     route: string;
+    path;
 
     constructor(location: Location, router: Router) {
         router.events.subscribe((val) => {
-            if (location.path() === '') {
-                this.slider = true;
-                this.contact = false;
-            } else if (location.path() === '/contact') {
-                this.slider = false;
-                this.contact = true;
-            }
+            this.path = location.path();
+            console.log(this.path);
+            // if (location.path() === '') {
+            //     this.slider = true;
+            //     this.contact = false;
+            //     this.path = location.path();
+            //     console.log(this.path);
+            // } else if (location.path() === '/contact') {
+            //     this.slider = false;
+            //     this.contact = true;
+            //     this.path = location.path();
+            //     console.log(this.path);
+            // }
         });
 
     }
