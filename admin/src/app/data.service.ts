@@ -5,7 +5,8 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class DataService {
-url = window.location.origin;
+// url = window.location.origin;
+url = 'http://localhost:3000';
 user;
   constructor(private http: HttpClient) { }
 

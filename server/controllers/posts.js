@@ -15,7 +15,6 @@ module.exports = {
             }
     },
     addPost: async (req,res) => {
-        console.log(req.body);
             let post = {
               title: req.body.title,
               description: req.body.description,
@@ -68,7 +67,6 @@ module.exports = {
     deletePost: async (req,res) => {
             let post = req.query.id;
             let candidate = await Post.findOne({_id: post});
-            console.log(post);
             try {
                 await Post.remove({_id: post});
                 fs.unlinkSync(`./_uploads/posts/${candidate.image}`);

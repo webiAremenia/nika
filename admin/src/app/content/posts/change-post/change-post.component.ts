@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PostsService} from "../../../shared/services/posts.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators, FormControl} from "@angular/forms";
 import {NzMessageService, UploadFile} from "ng-zorro-antd";
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {Router} from "@angular/router";
@@ -18,18 +18,19 @@ export class ChangePostComponent implements OnInit {
   fileList: UploadFile[] = [];
   post;
   url = window.location.origin + '/_uploads/posts/';
+  // url = 'http://localhost:3000' + '/_uploads/posts/';
   previewImage;
   constructor(private fb: FormBuilder, private msg: NzMessageService, private service: PostsService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.post = this.service.candidatePost;
-    this.validateForm = this.fb.group({
-      title : [ this.post.title, [Validators.required ] ],
-      description : [ this.post.description, [ Validators.required ] ],
-      content : [ this.post.content, [ Validators.required ] ],
-      alt : [ this.post.alt, [ Validators.required ] ],
-      image: [this.post.image]
+    this.validateForm = new FormGroup({
+      title : new FormControl ( this.post.title ,  [Validators.required]),
+      description :  new FormControl ( this.post.description,[ Validators.required]),
+      content :  new FormControl (  this.post.content, [ Validators.required]),
+      alt :  new FormControl (  this.post.alt),
+      image: new FormControl(this.post.image)
     });
     this.previewImage = this.url + this.post.image;
   }
@@ -44,7 +45,6 @@ export class ChangePostComponent implements OnInit {
   };
 
   handleUpload(): void {
-    console.log('eeee');
     const formData = new FormData();
     // tslint:disable-next-line:no-any
     if (this.fileList.length > 0) {
@@ -86,4 +86,5 @@ export class ChangePostComponent implements OnInit {
       }
     }
   }
+
 }

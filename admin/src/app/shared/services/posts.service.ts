@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class PostsService {
   url = window.location.origin + '/api';
+  // url = 'http://localhost:3000' + '/api';
   candidatePost;
 
   constructor(private http: HttpClient) { }
