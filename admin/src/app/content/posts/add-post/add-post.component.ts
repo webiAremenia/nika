@@ -25,10 +25,10 @@ export class AddPostComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      title : [ null, [Validators.required ] ],
-      description : [ null, [ Validators.required ] ],
-      content : [ null, [ Validators.required ] ],
-      alt : [ null, [ Validators.required ] ],
+      title : [ '', [Validators.required ] ],
+      description : [ '', [ Validators.required ] ],
+      content : [ '', [ Validators.required ] ],
+      alt : [ '', [ Validators.required ] ],
       image: [null]
     });
   }
