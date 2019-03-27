@@ -1,11 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Subscription} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
-import {Post} from "../../../_models/post";
-import {ComponentService} from "../../../_services/component.service";
-
-import {Inject} from "@angular/core";
-import {DOCUMENT} from '@angular/platform-browser';
+import {Story} from '../../../_models/story';
+import {StoriesService} from '../../../_services/stories.service';
 
 @Component({
     selector: 'app-stories',
@@ -14,20 +9,18 @@ import {DOCUMENT} from '@angular/platform-browser';
 })
 export class StoriesComponent implements OnInit {
 
-    blog: Post;
-    id: number;
-    private routeSubscription: Subscription;
+    stories: Story[];
 
-    constructor(@Inject(DOCUMENT) private document: Document, private route: ActivatedRoute, private servic: ComponentService) {
-
+    constructor(private service: StoriesService) {
     }
 
     ngOnInit() {
-        this.routeSubscription = this.route.params.subscribe(params => {
-            this.id = params['id'];
-            this.blog = this.servic.getPost(this.id);
-            window.scrollTo(0, 0);
-        });
+        this.getAllStories();
+    }
+
+    getAllStories() {
+        this.stories = this.service.getStories();
+        console.log(this.stories);
     }
 
 }
