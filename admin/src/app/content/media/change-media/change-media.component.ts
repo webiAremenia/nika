@@ -14,13 +14,13 @@ export class ChangeMediaComponent implements OnInit {
   uploading = false;
   fileList: UploadFile[] = [];
   media;
-  url = window.location.origin + '/_uploads/medias/';
-  // url = 'http://localhost:3000' + '/_uploads/medias/';
+  url;
   previewImage;
   constructor(private fb: FormBuilder, private msg: NzMessageService, private service: MediaService, private router: Router) {
   }
 
   ngOnInit(): void {
+    this.url = this.service.url + '/uploads/medias/';
     this.media = this.service.candidateMedia;
     this.validateForm = new FormGroup({
       type :  new FormControl (  this.media.type, [ Validators.required]),

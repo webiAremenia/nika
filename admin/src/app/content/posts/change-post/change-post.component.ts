@@ -17,13 +17,13 @@ export class ChangePostComponent implements OnInit {
   uploading = false;
   fileList: UploadFile[] = [];
   post;
-  url = window.location.origin + '/_uploads/posts/';
-  // url = 'http://localhost:3000' + '/_uploads/posts/';
+  url;
   previewImage;
   constructor(private fb: FormBuilder, private msg: NzMessageService, private service: PostsService, private router: Router) {
   }
 
   ngOnInit(): void {
+    this.url = this.service.url + '/uploads/posts/';
     this.post = this.service.candidatePost;
     this.validateForm = new FormGroup({
       title : new FormControl ( this.post.title ,  [Validators.required]),

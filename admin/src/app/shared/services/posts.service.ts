@@ -1,25 +1,31 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {AppGlobals} from "../../app.globals";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostsService {
-  url = window.location.origin + '/api';
-  // url = 'http://localhost:3000' + '/api';
+  url;
+  urlApi;
   candidatePost;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private config: AppGlobals) {
+    // this.url = config.protocol + '://' + config.hostname + ':' + config.port;
+    // this.urlApi = config.protocol + '://' + config.hostname + ':' + config.port + '/api';
+    this.url = config.url;
+    this.urlApi = config.url + '/api';
+  }
   getPosts() {
-   return this.http.get(this.url + '/post')
+   return this.http.get(this.urlApi + '/post')
   }
   postPost(post) {
-    return this.http.post(this.url + '/post', post)
+    return this.http.post(this.urlApi + '/post', post)
   };
   putPosts(id, post) {
-    return this.http.put(this.url + `/post?id=` + id, post);
+    return this.http.put(this.urlApi + `/post?id=` + id, post);
   };
   deletePosts(post) {
-    return this.http.delete(this.url + `/post?id=${post._id}`);
+    return this.http.delete(this.urlApi + `/post?id=${post._id}`);
   }
 }
