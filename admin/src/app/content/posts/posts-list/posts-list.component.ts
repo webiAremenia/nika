@@ -14,13 +14,13 @@ export class PostsListComponent implements OnInit {
   tables: string[] = ['title', 'description'];
   searchValue;
   selectedValue = 'title';
-  url = window.location.origin + '/_uploads/posts/';
-  // url = 'http://localhost:3000' + '/_uploads/posts/';
+  url;
   isVisibleMiddle = false;
   constructor(private service: PostsService, private router: Router, private modalService: NzModalService) {
   }
 
   ngOnInit() {
+    this.url = this.service.url + '/uploads/posts/';
     this.service.getPosts().subscribe((data) => {
       this.posts = data;
       this.items = data;

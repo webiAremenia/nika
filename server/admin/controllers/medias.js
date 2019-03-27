@@ -46,7 +46,7 @@ module.exports = {
             image: req.file ? req.file.filename : req.body.image
         };
         if (req.file) {
-            fs.unlinkSync(`./_uploads/medias/${oldMedia.image}`);
+            fs.unlinkSync(`./admin/_uploads/medias/${oldMedia.image}`);
         }
         media.updated = new Date();
         try {
@@ -64,7 +64,7 @@ module.exports = {
         let candidate = await Media.findOne({_id: media});
         try {
             await Media.remove({_id: media});
-            fs.unlinkSync(`./_uploads/medias/${candidate.image}`);
+            fs.unlinkSync(`./admin/_uploads/medias/${candidate.image}`);
             res.status(201).json({
                 msg: 'Media has removed successfully'
             })

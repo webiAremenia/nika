@@ -1,25 +1,31 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {AppGlobals} from "../../app.globals";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MediaService {
-  url = window.location.origin + '/api';
-  // url = 'http://localhost:3000' + '/api';
+  url;
+  urlApi;
   candidateMedia;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, config: AppGlobals) {
+    // this.url = config.protocol + '://' + config.hostname + ':' + config.port;
+    // this.urlApi = config.protocol + '://' + config.hostname + ':' + config.port + '/api';
+    this.url = config.url;
+    this.urlApi = config.url + '/api';
+  }
   getMedias() {
-    return this.http.get(this.url + '/media')
+    return this.http.get(this.urlApi + '/media')
   }
   postMedia(media) {
-    return this.http.post(this.url + '/media', media)
+    return this.http.post(this.urlApi + '/media', media)
   };
   putMedia(id, media) {
-    return this.http.put(this.url + `/media?id=` + id, media);
+    return this.http.put(this.urlApi + `/media?id=` + id, media);
   };
   deleteMedia(media) {
-    return this.http.delete(this.url + `/media?id=${media._id}`);
+    return this.http.delete(this.urlApi + `/media?id=${media._id}`);
   }
 }

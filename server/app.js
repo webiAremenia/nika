@@ -1,5 +1,5 @@
 
-const config = require('./config/configs');
+const config = require('./admin/config/configs');
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -20,26 +20,26 @@ app.use(require('cors')());
 
 app.use(morgan('dev'));
 
-if (!fs.existsSync('./_uploads')) {
-    fs.mkdirSync('./_uploads');
+if (!fs.existsSync('./admin/_uploads')) {
+    fs.mkdirSync('./admin/_uploads');
 }
-if (!fs.existsSync('./_uploads/posts')) {
-    fs.mkdirSync('./_uploads/posts');
+if (!fs.existsSync('./admin/_uploads/posts')) {
+    fs.mkdirSync('./admin/_uploads/posts');
 }
-if (!fs.existsSync('./_uploads/sliders')) {
-    fs.mkdirSync('./_uploads/sliders');
+if (!fs.existsSync('./admin/_uploads/sliders')) {
+    fs.mkdirSync('./admin/_uploads/sliders');
 }
-if (!fs.existsSync('./_uploads/medias')) {
-    fs.mkdirSync('./_uploads/medias');
+if (!fs.existsSync('./admin/_uploads/medias')) {
+    fs.mkdirSync('./admin/_uploads/medias');
 }
 
 
-app.use('/_uploads', express.static('_uploads'));
+app.use('/uploads', express.static('admin/_uploads'));
 
-const auth = require('./routes/auth'),
-    posts = require('./routes/posts'),
-    sliders = require('./routes/sliders'),
-    medias = require('./routes/medias');
+const auth = require('./admin/routes/auth'),
+    posts = require('./admin/routes/posts'),
+    sliders = require('./admin/routes/sliders'),
+    medias = require('./admin/routes/medias');
 
 
 app.use('/api/auth', auth);
@@ -55,10 +55,10 @@ app.use(express.static(__dirname + '/../client/dist/front'));
 app.use(express.static(__dirname + '/../admin/dist/Project'));
 
 app.get('/admin-panel', function(req,res) {
- res.sendFile(path.join(__dirname + '/../admin/dist/Project/index.html'));
+    res.sendFile(path.join(__dirname + '/../admin/dist/Project/index.html'));
 });
 app.get('/admin-panel/*', function(req,res) {
- res.sendFile(path.join(__dirname + '/../admin/dist/Project/index.html'));
+    res.sendFile(path.join(__dirname + '/../admin/dist/Project/index.html'));
 });
 app.get('/', function(req,res) {
     res.sendFile(path.join(__dirname + '/../client/dist/front/index.html'));

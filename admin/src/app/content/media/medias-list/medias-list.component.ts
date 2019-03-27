@@ -14,13 +14,12 @@ export class MediasListComponent implements OnInit {
   tables: string[] = ['title', 'description'];
   searchValue;
   selectedValue = 'title';
-  url = window.location.origin + '/_uploads/media/';
-  // url = 'http://localhost:3000' + '/_uploads/medias/';
+  url;
   isVisibleMiddle = false;
   constructor(private service: MediaService, private router: Router,  private modalService: NzModalService) { }
 
   ngOnInit() {
-
+    this.url = this.service.url + '/uploads/medias/';
     this.service.getMedias().subscribe((data) => {
       this.medias = data;
       this.items = data;
