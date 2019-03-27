@@ -14,7 +14,7 @@ export class PostsService {
     // this.url = config.protocol + '://' + config.hostname + ':' + config.port;
     // this.urlApi = config.protocol + '://' + config.hostname + ':' + config.port + '/api';
     this.url = config.url;
-    this.urlApi = config.url + '/api';
+    this.urlApi = config.url + '/admin';
   }
   getPosts() {
    return this.http.get(this.urlApi + '/post')

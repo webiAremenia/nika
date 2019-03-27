@@ -20,32 +20,13 @@ app.use(require('cors')());
 
 app.use(morgan('dev'));
 
-if (!fs.existsSync('./admin/_uploads')) {
-    fs.mkdirSync('./admin/_uploads');
-}
-if (!fs.existsSync('./admin/_uploads/posts')) {
-    fs.mkdirSync('./admin/_uploads/posts');
-}
-if (!fs.existsSync('./admin/_uploads/sliders')) {
-    fs.mkdirSync('./admin/_uploads/sliders');
-}
-if (!fs.existsSync('./admin/_uploads/medias')) {
-    fs.mkdirSync('./admin/_uploads/medias');
-}
 
 
 app.use('/uploads', express.static('admin/_uploads'));
 
-const auth = require('./admin/routes/auth'),
-    posts = require('./admin/routes/posts'),
-    sliders = require('./admin/routes/sliders'),
-    medias = require('./admin/routes/medias');
+const admin = require('./admin/routes/admin');
 
-
-app.use('/api/auth', auth);
-app.use('/api/post', posts);
-app.use('/api/slider', sliders);
-app.use('/api/media', medias);
+app.use('/admin', admin);
 
 // app.use('/admin-panel', express.static(__dirname + '/../admin/dist/Project'));
 

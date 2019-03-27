@@ -22,6 +22,6 @@ user;
     }
   }
   login(data) {
-    return this.http.post(this.url + '/api/auth/login', data);
+    return this.http.post(this.url + '/admin/auth/login', data);
   }
 }
