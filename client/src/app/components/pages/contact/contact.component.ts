@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ContactService} from "../../../_services/contact.service";
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ContactService} from '../../../_services/contact.service';
 
 @Component({
     selector: 'app-contact',
@@ -18,13 +18,20 @@ export class ContactComponent implements OnInit {
             date: new FormControl(''),
             eventName: new FormControl('', [Validators.required, Validators.minLength(5)]),
             text: new FormControl('')
-        })
+        });
     }
 
     ngOnInit() {
     }
 
     submit() {
-       this.contactService.sendMail(this.form);
+        if (this.contactService.sendMail(this.form)) {
+            this.form.reset();
+            for (const key in this.form.controls) {
+                if (this.form.controls.hasOwnProperty(key)) {
+                    this.form.controls[key].setErrors(null);
+                }
+            }
+        }
     }
 }

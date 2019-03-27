@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {Story} from '../_models/story';
 
 @Injectable({
   providedIn: 'root'
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class StoriesService {
 
   constructor() { }
-  stories: any[] = [
+  stories: Story[] = [
     {
       id: 1,
       img: '../../../../assets/images/w1.jpg',
@@ -82,13 +83,13 @@ export class StoriesService {
   ];
 
 
-  getWorks(): any[] {
+  getStories(): Story[] {
     return this.stories;
   }
 
-  getById(id) {
+  getById(id): Story {
     return this.stories.find((element) => {
-      return element.id === id;
+        return String(element.id) === String(id);
     });
   }
 }

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, RouterEvent} from '@angular/router';
 import {Location} from '@angular/common';
 
 
@@ -17,19 +17,15 @@ export class AppComponent {
 
     constructor(location: Location, router: Router) {
         router.events.subscribe((val) => {
-            this.path = location.path();
-            console.log(this.path);
-            // if (location.path() === '') {
-            //     this.slider = true;
-            //     this.contact = false;
-            //     this.path = location.path();
-            //     console.log(this.path);
-            // } else if (location.path() === '/contact') {
-            //     this.slider = false;
-            //     this.contact = true;
-            //     this.path = location.path();
-            //     console.log(this.path);
-            // }
+            if (val instanceof RouterEvent) {
+                if (val.url.indexOf('/work/') >= 0) {
+                    this.path = '/works';
+                } else if (val.url.indexOf('/story/') >= 0) {
+                    this.path = '/stories';
+                } else {
+                    this.path = location.path();
+                }
+            }
         });
 
     }

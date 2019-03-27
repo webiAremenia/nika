@@ -7,8 +7,8 @@ import {HomeComponent} from './components/pages/home/home.component';
 import {ContactComponent} from './components/pages/contact/contact.component';
 import {AboutComponent} from './components/pages/about/about.component';
 import {SidebarComponent} from './components/partials/sidebar/sidebar.component';
-import {CarouselModule} from "ngx-owl-carousel-o";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {CarouselModule} from 'ngx-owl-carousel-o';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {WorkComponent} from './components/pages/work/work.component';
 import {StoriesComponent} from './components/pages/stories/stories.component';
 import {CareersComponent} from './components/pages/careers/careers.component';
@@ -22,7 +22,7 @@ import {AllStoriesComponent} from './components/pages/all-stories/all-stories.co
 import {LinkBlockComponent} from './components/partials/block-types/link-block/link-block.component';
 import {HoverOpacityDirective} from './_directives/hover-opacity.directive';
 import {HoverRotateDirective} from './_directives/hover-rotate.directive';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
     MatDatepickerModule,
     MatFormFieldModule,
@@ -30,15 +30,16 @@ import {
     MatButtonModule,
     MatInputModule,
     MatNativeDateModule
-} from "@angular/material";
+} from '@angular/material';
 import { AboutDescComponent } from './components/pages/about/about-desc/about-desc.component';
 import { VacancyComponent } from './components/pages/vacancy/vacancy.component';
 import { VacancyDescComponent } from './components/pages/vacancy/vacancy-desc/vacancy-desc.component';
 import { Hover3dRotateDirective } from './_directives/hover-3d-rotate.directive';
 import { FooterComponent } from './components/partials/footer/footer.component';
-import { WorcDescComponent } from './components/pages/work/work-desc/worc-desc.component';
+import { WorkDescComponent } from './components/pages/work/work-desc/work-desc.component';
 import { StoriesDescComponent } from './components/pages/stories/stories-desc/stories-desc.component';
 import { WorkDetailComponent } from './components/pages/work/work-detail/work-detail.component';
+import { StoryDetailComponent } from './components/pages/stories/story-detail/story-detail.component';
 
 
 @NgModule({
@@ -66,9 +67,10 @@ import { WorkDetailComponent } from './components/pages/work/work-detail/work-de
         VacancyDescComponent,
         Hover3dRotateDirective,
         FooterComponent,
-        WorcDescComponent,
+        WorkDescComponent,
         StoriesDescComponent,
         WorkDetailComponent,
+        StoryDetailComponent,
     ],
     imports: [
         BrowserAnimationsModule,

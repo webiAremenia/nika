@@ -1,8 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Subscription} from "rxjs";
-import {WorkService} from "../../../../_services/work.service";
-import {ActivatedRoute} from "@angular/router";
-import {DOCUMENT} from "@angular/platform-browser";
+import {Subscription} from 'rxjs';
+import {WorkService} from '../../../../_services/work.service';
+import {ActivatedRoute} from '@angular/router';
+import {DOCUMENT} from '@angular/platform-browser';
+import {Work} from '../../../../_models/work';
 
 @Component({
     selector: 'app-work-detail',
@@ -12,7 +13,8 @@ import {DOCUMENT} from "@angular/platform-browser";
 export class WorkDetailComponent implements OnInit {
 
     id: number;
-    work;
+    work: Work;
+    imgPath = '../../../../assets/images/';
     private routeSubscription: Subscription;
 
     constructor(
@@ -23,7 +25,7 @@ export class WorkDetailComponent implements OnInit {
 
     ngOnInit() {
         this.routeSubscription = this.route.params.subscribe(params => {
-            this.id = params['id'];
+            this.id = params.id;
             this.work = this.service.getById(this.id);
             console.log(this.work);
         });

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {WorkService} from '../../../_services/work.service';
+import {Work} from "../../../_models/work";
 
 @Component({
     selector: 'app-work',
@@ -8,7 +9,7 @@ import {WorkService} from '../../../_services/work.service';
 })
 export class WorkComponent implements OnInit {
 
-    works: any[];
+    works: Work[];
 
     constructor(private workService: WorkService) {
     }

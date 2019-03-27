@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
+import {Work} from '../_models/work';
 
 @Injectable({
     providedIn: 'root'
 })
 export class WorkService {
 
-    works: any[] = [
+    works: Work[] = [
         {
             id: 1,
             img: '../../../../assets/images/w1.jpg',
@@ -83,13 +84,13 @@ export class WorkService {
     constructor() {
     }
 
-    getWorks(): any[] {
+    getWorks(): Work[] {
         return this.works;
     }
 
     getById(id) {
         return this.works.find((element) => {
-            return element.id == id;
+            return String(element.id) === String(id);
         });
     }
 }

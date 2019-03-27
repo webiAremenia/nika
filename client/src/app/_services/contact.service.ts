@@ -8,7 +8,8 @@ export class ContactService {
     constructor() {
     }
 
-    sendMail(mail) {
+    sendMail(mail): boolean {
         console.log(mail.value);
+        return true;
     }
 }
