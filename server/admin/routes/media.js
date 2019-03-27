@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/medias');
+const controller = require('../controllers/media');
 const jwtCompare = require('../middleware/jwtCompare');
 const uploadImg = require('../middleware/multer');
 

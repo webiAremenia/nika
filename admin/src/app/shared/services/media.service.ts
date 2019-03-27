@@ -14,7 +14,7 @@ export class MediaService {
     // this.url = config.protocol + '://' + config.hostname + ':' + config.port;
     // this.urlApi = config.protocol + '://' + config.hostname + ':' + config.port + '/api';
     this.url = config.url;
-    this.urlApi = config.url + '/api';
+    this.urlApi = config.url + '/admin';
   }
   getMedias() {
     return this.http.get(this.urlApi + '/media')

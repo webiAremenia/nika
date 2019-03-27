@@ -29,7 +29,7 @@ export class PostsListComponent implements OnInit {
 
   edit(post) {
     this.service.candidatePost = post;
-    this.router.navigate(['content','changePost'])
+    this.router.navigate(['changePost'])
   }
 
   delete(post) {
@@ -41,7 +41,7 @@ export class PostsListComponent implements OnInit {
   }
 
   addPost() {
-    this.router.navigate(['content','addPost'])
+    this.router.navigate(['addPost'])
   }
 
   filter(val) {
