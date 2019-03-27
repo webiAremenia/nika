@@ -13,14 +13,14 @@ import {ChangeMediaComponent} from "./media/change-media/change-media.component"
 import {AddMediaComponent} from "./media/add-media/add-media.component";
 
 const routes: Routes = [
-  {path: 'content', component: ContentComponent, children: [
-      {path: 'posts', component: PostsListComponent},
+  {path: '', component: ContentComponent, children: [
+      {path: 'post', component: PostsListComponent},
       {path: 'changePost', component: ChangePostComponent},
       {path: 'addPost', component: AddPostComponent},
-      {path: 'sliders', component: SlidersListComponent},
+      {path: 'slider', component: SlidersListComponent},
       {path: 'changeSlider', component: ChangeSliderComponent},
       {path: 'addSlider', component: AddSliderComponent},
-      {path: 'medias', component: MediasListComponent},
+      {path: 'media', component: MediasListComponent},
       {path: 'changeMedia', component: ChangeMediaComponent},
       {path: 'addMedia', component: AddMediaComponent},
       {path: 'block', component: TestUserDataComponent},
@@ -28,7 +28,7 @@ const routes: Routes = [
       {path: 'portfolio', component: TestUserDataComponent},
       {path: '**', redirectTo: 'posts', pathMatch: 'full'}
     ]},
-  {path: '**', redirectTo: '/content', pathMatch: 'full'}
+  {path: '**', redirectTo: '/', pathMatch: 'full'}
 ];
 
 @NgModule({

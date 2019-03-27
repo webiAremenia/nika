@@ -50,7 +50,7 @@ export class AddMediaComponent implements OnInit {
           this.uploading = false;
           this.fileList = [];
           this.msg.success('upload successfully.');
-          this.router.navigate(['content', 'medias'])
+          this.router.navigate(['media'])
         },
         () => {
           this.uploading = false;

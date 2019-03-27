@@ -4,6 +4,19 @@ const fs = require('fs');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
+        if (!fs.existsSync(__dirname + '/../_uploads')) {
+            fs.mkdirSync(__dirname + '/../_uploads');
+        }
+        if (!fs.existsSync(__dirname + '/../_uploads/posts')) {
+            fs.mkdirSync(__dirname + '/../_uploads/posts');
+        }
+        if (!fs.existsSync(__dirname + '/../_uploads/media')) {
+            fs.mkdirSync(__dirname + '/../_uploads/media');
+        }
+        if (!fs.existsSync(__dirname + '/../_uploads/slider')) {
+            fs.mkdirSync(__dirname + '/../_uploads/sliders');
+        }
+
         if(req.originalUrl.split('/')[2] === 'post' && req.method === 'POST'){
             cb(null, './admin/_uploads/posts')
         }
@@ -46,3 +59,7 @@ const upload = multer({
 });
 
 module.exports = upload;
+
+
+
+

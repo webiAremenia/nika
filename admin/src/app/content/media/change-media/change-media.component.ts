@@ -59,7 +59,7 @@ export class ChangeMediaComponent implements OnInit {
           this.uploading = false;
           this.fileList = [];
           this.msg.success('upload successfully.');
-          this.router.navigate(['content', 'medias'])
+          this.router.navigate(['media'])
         },
         () => {
           this.uploading = false;

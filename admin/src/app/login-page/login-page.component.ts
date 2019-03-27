@@ -22,7 +22,7 @@ export class LoginPageComponent implements OnInit {
         localStorage.setItem('token', data.token);
         let txt = JSON.stringify(data.user);
         localStorage.setItem('user', txt);
-        this.router.navigate(['content', 'posts'])
+        this.router.navigate(['post'])
       },
       (err) => {
         console.log(err);

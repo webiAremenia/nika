@@ -66,7 +66,7 @@ export class ChangePostComponent implements OnInit {
           this.uploading = false;
           this.fileList = [];
           this.msg.success('upload successfully.');
-          this.router.navigate(['content', 'posts'])
+          this.router.navigate(['post'])
         },
         () => {
           this.uploading = false;

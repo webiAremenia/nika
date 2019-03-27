@@ -5,9 +5,8 @@ import {LoginPageComponent} from './login-page/login-page.component';
 import {AuthGuard} from './auth.guard';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/content' , pathMatch: 'full'},
   {path: 'login', component: LoginPageComponent},
-  {path: 'content', canActivate: [AuthGuard], component: ContentComponent},
+  {path: '', canActivate: [AuthGuard], component: ContentComponent},
 ];
 
 @NgModule({
