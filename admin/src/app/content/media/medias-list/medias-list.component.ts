@@ -28,7 +28,7 @@ export class MediasListComponent implements OnInit {
 
   edit(media) {
     this.service.candidateMedia = media;
-    this.router.navigate(['content','changeMedia'])
+    this.router.navigate(['changeMedia'])
   }
 
   delete(media) {
@@ -40,7 +40,7 @@ export class MediasListComponent implements OnInit {
   }
 
   addMedia() {
-    this.router.navigate(['content','addMedia'])
+    this.router.navigate(['addMedia'])
   }
 
   showDeleteConfirm(data): void {

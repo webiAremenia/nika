@@ -4,9 +4,9 @@ const controller = require('../controllers/auth');
 
 
 const auth = require('./auth'),
-    posts = require('./posts'),
-    sliders = require('./sliders'),
-    medias = require('./medias');
+    posts = require('./post'),
+    sliders = require('./slider'),
+    medias = require('./media');
 
 router.use('/post', posts);
 router.use('/slider', sliders);

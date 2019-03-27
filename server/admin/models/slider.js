@@ -14,10 +14,11 @@ const SliderSchema = new Schema({
         type: String,
         required: true
     },
-    img: [{
-        type: String,
+    img: {
+        type: Schema.Types.ObjectId,
+        ref: 'Media' ,
         required: true
-    }]
+    }
 });
 
-module.exports = mongoose.model('sliders', SliderSchema);
+module.exports = mongoose.model('Slider', SliderSchema);
