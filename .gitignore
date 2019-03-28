@@ -39,7 +39,7 @@ build/Release
 jspm_packages/
 node_modules/
 assets/images/
-
+dist/
 *.idea
 .idea
 
