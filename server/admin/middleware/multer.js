@@ -4,18 +4,18 @@ const fs = require('fs');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        if (!fs.existsSync(__dirname + '/../_uploads')) {
-            fs.mkdirSync(__dirname + '/../_uploads');
-        }
-        if (!fs.existsSync(__dirname + '/../_uploads/posts')) {
-            fs.mkdirSync(__dirname + '/../_uploads/posts');
-        }
+        // if (!fs.existsSync(__dirname + '/../_uploads')) {
+        //     fs.mkdirSync(__dirname + '/../_uploads');
+        // }
+        // if (!fs.existsSync(__dirname + '/../_uploads/posts')) {
+        //     fs.mkdirSync(__dirname + '/../_uploads/posts');
+        // }
         if (!fs.existsSync(__dirname + '/../_uploads/media')) {
             fs.mkdirSync(__dirname + '/../_uploads/media');
         }
-        if (!fs.existsSync(__dirname + '/../_uploads/slider')) {
-            fs.mkdirSync(__dirname + '/../_uploads/sliders');
-        }
+        // if (!fs.existsSync(__dirname + '/../_uploads/slider')) {
+        //     fs.mkdirSync(__dirname + '/../_uploads/sliders');
+        // }
 
         if(req.originalUrl.split('/')[2] === 'post' && req.method === 'POST'){
             cb(null, './admin/_uploads/posts')
@@ -27,10 +27,10 @@ const storage = multer.diskStorage({
         //     cb(null, './_uploads/sliders')
         // }
         if (req.method === 'POST' && req.originalUrl.split('/')[2] === 'media') {
-            cb(null, './admin/_uploads/medias')
+            cb(null, './admin/_uploads/media')
         }
         if (req.method === 'PUT' &&  req.originalUrl.split('/')[2].split('?')[0] === 'media') {
-            cb(null, './admin/_uploads/medias')
+            cb(null, './admin/_uploads/media')
         }
     },
     filename: function (req, file, cb) {

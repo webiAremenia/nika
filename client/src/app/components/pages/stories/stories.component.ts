@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Story} from '../../../_models/story';
 import {StoriesService} from '../../../_services/stories.service';
+import {Post} from '../../../_models/post';
+import {AppGlobals} from '../../../app.globals';
 
 @Component({
     selector: 'app-stories',
@@ -9,9 +10,12 @@ import {StoriesService} from '../../../_services/stories.service';
 })
 export class StoriesComponent implements OnInit {
 
-    stories: Story[];
+    stories: Post[];
+    done = false;
+    imageUrl;
 
-    constructor(private service: StoriesService) {
+    constructor(private service: StoriesService, config: AppGlobals) {
+        this.imageUrl = config.imageUrl + '/posts/';
     }
 
     ngOnInit() {
@@ -19,8 +23,18 @@ export class StoriesComponent implements OnInit {
     }
 
     getAllStories() {
-        this.stories = this.service.getStories();
-        console.log(this.stories);
+        if (this.service.stories) {
+            this.stories = this.service.stories;
+            this.done = true;
+        } else {
+            this.service.getAll().subscribe(
+                data => {
+                    this.stories = data;
+                    this.done = true;
+                },
+                err => console.log(err)
+            );
+        }
     }
 
 }
