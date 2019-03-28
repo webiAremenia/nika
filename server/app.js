@@ -25,8 +25,10 @@ app.use(morgan('dev'));
 app.use('/uploads', express.static('admin/_uploads'));
 
 const admin = require('./admin/routes/admin');
+const api = require('./api/routes/api');
 
 app.use('/admin', admin);
+app.use('/api', api);
 
 // app.use('/admin-panel', express.static(__dirname + '/../admin/dist/Project'));
 
@@ -65,4 +67,4 @@ app.use((err, req, res, next) => {
 
 module.exports = app;
 
-//83636867
+
