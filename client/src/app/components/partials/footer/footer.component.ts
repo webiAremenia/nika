@@ -19,6 +19,5 @@ export class FooterComponent implements OnInit {
 
     getFooterBlock() {
         this.footer = this.componentService.getFooter();
-        console.log(this.footer);
     }
 }

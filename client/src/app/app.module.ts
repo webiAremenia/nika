@@ -40,6 +40,7 @@ import { WorkDescComponent } from './components/pages/work/work-desc/work-desc.c
 import { StoriesDescComponent } from './components/pages/stories/stories-desc/stories-desc.component';
 import { WorkDetailComponent } from './components/pages/work/work-detail/work-detail.component';
 import { StoryDetailComponent } from './components/pages/stories/story-detail/story-detail.component';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { StoryDetailComponent } from './components/pages/stories/story-detail/st
         StoryDetailComponent,
     ],
     imports: [
+        HttpClientModule,
         BrowserAnimationsModule,
         BrowserModule,
         AppRoutingModule,

@@ -14,6 +14,7 @@ export class ComponentService {
             description: ' Lorem ipsum dolor sit amet, consectetur adipisicing elit dignissimos dolore ducimus eum, excepturi explicabo nostrum obcaecati omnis quod',
             content: 'b1 content',
             image: '',
+            alt: '',
             createdAt: '2019-05-06',
             updatedAt: '2019-05-06'
 
@@ -24,6 +25,7 @@ export class ComponentService {
             description: ' Lorem ipsum dolor sit amet, consectetur adipisicing elit dignissimos dolore ducimus eum, excepturi explicabo nostrum obcaecati omnis quod',
             content: 'b2 content',
             image: '',
+            alt: '',
             createdAt: '2019-05-06',
             updatedAt: '2019-05-06'
         },
@@ -33,6 +35,7 @@ export class ComponentService {
             description: ' Lorem ipsum dolor sit amet, consectetur adipisicing elit dignissimos dolore ducimus eum, excepturi explicabo nostrum obcaecati omnis quod',
             content: 'b3 content',
             image: '',
+            alt: '',
             createdAt: '2019-05-06',
             updatedAt: '2019-05-06'
         },
@@ -42,6 +45,7 @@ export class ComponentService {
             description: ' Lorem ipsum dolor sit amet, consectetur adipisicing elit dignissimos dolore ducimus eum, excepturi explicabo nostrum obcaecati omnis quod',
             content: 'b3 content',
             image: '',
+            alt: '',
             createdAt: '2019-05-06',
             updatedAt: '2019-05-06'
         }

@@ -1,8 +1,8 @@
-<div class="custom-container pt-0">
+<div class="custom-container pt-0" *ngIf="done">
   <div class="row">
     <div class="col-4">
       <div class="img-wrapper img">
-        <img class="" [src]="(imgPath + story.img)" alt="image">
+        <img class="" [src]="(imgPath + story.image)" alt="image">
       </div>
     </div>
 
@@ -13,9 +13,7 @@
       <div class="detail-description">
         {{story.description}}
       </div>
-      <!--<div class="content-for-form">-->
-
-      <!--</div>-->
+      <div [innerHTML]="story.content"></div>
     </div>
 
   </div>

@@ -16,7 +16,7 @@ const SliderSchema = new Schema({
     },
     img: {
         type: Schema.Types.ObjectId,
-        ref: 'Media' ,
+        ref: 'Media',
         required: true
     }
 });

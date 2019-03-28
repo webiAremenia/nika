@@ -1,11 +1,11 @@
 
 <div class="custom-container pt-0">
 
-    <div class="row">
+    <div class="row" *ngIf="done">
 
         <div *ngFor="let story of stories" class="col-3">
             <div class="img-wrapper img">
-                <a [routerLink]="['/story', story.id]"><img src="../../../../assets/images/{{story.img}}" alt="image"></a>
+                <a [routerLink]="['/story', story.id]"><img [src]="(imageUrl + story.image)" alt="image"></a>
             </div>
             <div class="block-title">{{story.title}}</div>
         </div>
