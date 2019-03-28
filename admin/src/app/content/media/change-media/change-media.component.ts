@@ -20,6 +20,9 @@ export class ChangeMediaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!this.service.candidateMedia) {
+      this.router.navigate(['media'])
+    }
     this.url = this.service.url + '/uploads/medias/';
     this.media = this.service.candidateMedia;
     this.validateForm = new FormGroup({

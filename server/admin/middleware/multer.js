@@ -10,11 +10,11 @@ const storage = multer.diskStorage({
         if (!fs.existsSync(__dirname + '/../_uploads/posts')) {
             fs.mkdirSync(__dirname + '/../_uploads/posts');
         }
-        if (!fs.existsSync(__dirname + '/../_uploads/media')) {
-            fs.mkdirSync(__dirname + '/../_uploads/media');
+        if (!fs.existsSync(__dirname + '/../_uploads/medias')) {
+            fs.mkdirSync(__dirname + '/../_uploads/medias');
         }
         if (!fs.existsSync(__dirname + '/../_uploads/slider')) {
-            fs.mkdirSync(__dirname + '/../_uploads/sliders');
+            fs.mkdirSync(__dirname + '/../_uploads/slider');
         }
 
         if(req.originalUrl.split('/')[2] === 'post' && req.method === 'POST'){

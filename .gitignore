@@ -1,5 +1,5 @@
 _uploads
-config.js
+configs.js
 # Logs
 logs
 *.log

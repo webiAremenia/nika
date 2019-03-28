@@ -6,7 +6,7 @@ const sharp = require('sharp');
 
 module.exports = {
     getSliders: async (req,res) => {
-        let sliders = await Slider.find().populate('img');
+        let sliders = await Slider.find({}).populate('img');
         if (sliders) {
             res.status(201).json(sliders);
         } else {
@@ -31,10 +31,33 @@ module.exports = {
             errors.invalidData(res, errors);
         }
     },
-    changeSlider: (req,res) => {
-        res.end()
+    changeSlider: async (req,res) => {
+       let candidate = req.query.id + '';
+        let slider = {
+            title: req.body.title,
+            description: req.body.description,
+            url: req.body.url,
+            img: req.body.img
+        };
+        try {
+            await Slider.findByIdAndUpdate(
+                {_id: candidate},
+                {$set: slider},
+                {new: true});
+            res.status(201).json(slider)
+        } catch (e) {
+            errors.invalidData(res, errors);
+        }
     },
-    deleteSlider: (req,res) => {
-        res.end()
+    deleteSlider: async (req,res) => {
+        let slider = req.query.id + '';
+        try {
+            await Slider.remove({_id: slider});
+            res.status(201).json({
+                msg: 'Slider has removed successfully'
+            })
+        } catch (e) {
+            errors.invalidData(res, errors);
+        }
     }
 };
