@@ -1,4 +1,5 @@
 const Slider = require('../models/slider');
+const Media = require('../models/media');
 const errors = require('../_help/error_handler');
 const jwtCompare = require('../middleware/jwtCompare');
 const fs = require('fs');
@@ -19,7 +20,7 @@ module.exports = {
           title: req.body.title,
           description: req.body.description,
           url: req.body.url,
-          img: req.body.media
+          img: req.body.img
         };
         console.log(slider);
         try {
@@ -58,6 +59,14 @@ module.exports = {
             })
         } catch (e) {
             errors.invalidData(res, errors);
+        }
+    },
+    getMedia: async (req,res) => {
+        let media = await Media.find({type: 'slider'});
+        if (media) {
+            res.status(201).json(media);
+        } else {
+            errors.notFound(res, errors)
         }
     }
 };
