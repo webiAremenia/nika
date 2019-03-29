@@ -19,7 +19,7 @@ export class MediasListComponent implements OnInit {
   constructor(private service: MediaService, private router: Router,  private modalService: NzModalService) { }
 
   ngOnInit() {
-    this.url = this.service.url + '/uploads/media/';
+    this.url = this.service.url + '/uploads/medias/';
     this.service.getMedias().subscribe((data) => {
       this.medias = data;
       this.items = data;
