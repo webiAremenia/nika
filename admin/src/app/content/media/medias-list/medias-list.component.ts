@@ -11,11 +11,7 @@ import {NzModalService} from "ng-zorro-antd";
 export class MediasListComponent implements OnInit {
   medias: any = [];
   items;
-  tables: string[] = ['title', 'description'];
-  searchValue;
-  selectedValue = 'title';
   url;
-  isVisibleMiddle = false;
   constructor(private service: MediaService, private router: Router,  private modalService: NzModalService) { }
 
   ngOnInit() {
