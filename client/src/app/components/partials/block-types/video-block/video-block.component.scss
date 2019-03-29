@@ -1,8 +1,11 @@
 .video-block{
   position: relative;
 }
+.bg-black{
+  background: #000;
+}
 .video-block video{
-  object-fit: fill;
+  object-fit: scale-down;
 }
 
 .round-border{
