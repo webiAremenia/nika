@@ -42,7 +42,11 @@ module.exports = {
         };
         if (req.files) {
             req.files.forEach(item => {
-                portfolio.imgs += ',' + item.filename;
+                if (portfolio.imgs.length > 0) {
+                    portfolio.imgs += ',' + item.filename;
+                } else {
+                    portfolio.imgs += item.filename;
+                }
             });
         }
         portfolio.imgs = portfolio.imgs.split(',');

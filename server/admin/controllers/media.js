@@ -60,14 +60,18 @@ module.exports = {
     deleteMedia: async (req,res) => {
         let media = req.query.id + '';
         let candidate = await Media.findOne({_id: media});
-        try {
-            await Media.remove({_id: media});
-            fs.unlinkSync(`./admin/_uploads/medias/${candidate.image}`);
-            res.status(201).json({
-                msg: 'Media has removed successfully'
-            })
-        } catch (e) {
-            errors.invalidData(res, errors);
+        if (candidate) {
+            try {
+                await Media.remove({_id: media});
+                fs.unlinkSync(`./admin/_uploads/medias/${candidate.image}`);
+                res.status(201).json({
+                    msg: 'Media has removed successfully'
+                })
+            } catch (e) {
+                errors.invalidData(res, errors);
+            }
+        } else {
+            errors.notFound(res, errors)
         }
     }
 };
