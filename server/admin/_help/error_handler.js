@@ -18,5 +18,10 @@ module.exports = {
         res.status(409).json({
             msg: "Server error User not added ..."
         })
+    },
+    conflictError: (res, err) => {
+        res.status(409).json({
+            msg: "Conflict error"
+        })
     }
 };

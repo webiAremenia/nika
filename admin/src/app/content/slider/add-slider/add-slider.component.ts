@@ -66,9 +66,11 @@ export class AddSliderComponent implements OnInit {
     this.isVisible = false;
   }
   chooseImage(image) {
+    console.log(image);
     this.validateForm.get('img').setValue(image._id);
     this.img = image.image;
     this.imgFlag = true;
     this.isVisible = false;
+    console.log(this.validateForm)
   }
 }
