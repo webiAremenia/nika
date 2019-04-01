@@ -10,6 +10,7 @@ import {ContactService} from '../../../_services/contact.service';
 export class ContactComponent implements OnInit {
 
     form: FormGroup;
+    done = true;
 
     constructor(private contactService: ContactService) {
         this.form = new FormGroup({
@@ -25,11 +26,11 @@ export class ContactComponent implements OnInit {
     }
 
     submit() {
-        console.log(this.form.value.date);
-        this.form.value.date.toLocaleDateString();
+        this.done = false;
         this.contactService.sendMail(this.form).toPromise()
             .then(d => {
                 if (d.success) {
+                    this.done = true;
                     this.form.reset();
                     for (const key in this.form.controls) {
                         if (this.form.controls.hasOwnProperty(key)) {

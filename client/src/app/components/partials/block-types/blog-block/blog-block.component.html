@@ -6,12 +6,12 @@
 
     <owl-carousel-o [options]="customOptions">
       <ng-template *ngFor="let item of block.content, let i = index" class="h-100" carouselSlide>
-        <a [routerLink]="['stories', item.id]">
+        <!--<a [routerLink]="['stories', item.id]">-->
         <div class="blog-title">{{item.title}}</div>
         <div class="blog-description">
           <p>{{item.description}}</p>
         </div>
-        </a>
+        <!--</a>-->
       </ng-template>
     </owl-carousel-o>
 
@@ -19,12 +19,12 @@
 
 
   <div class="content" *ngIf="block.content.length == 1">
-    <a [routerLink]="['stories', block.content[0].id]">
+    <!--<a [routerLink]="['stories', block.content[0].id]">-->
         <div class="blog-title">{{block.content[0].title}}</div>
         <div class="blog-description">
           <p>{{block.content[0].description}}</p>
         </div>
-    </a>
+    <!--</a>-->
   </div>
 
 </div>

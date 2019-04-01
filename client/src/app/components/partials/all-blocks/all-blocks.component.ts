@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ComponentService} from "../../../_services/component.service";
-import {Block} from "../../../_models/block";
+import {ComponentService} from '../../../_services/component.service';
+import {Block} from '../../../_models/block';
 
 @Component({
   selector: 'app-all-blocks',

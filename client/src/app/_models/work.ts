@@ -1,6 +1,7 @@
 export  interface Work {
     id: number;
-    img: string;
+    images: string;
     title: string;
     description: string;
+    link: string;
 }
