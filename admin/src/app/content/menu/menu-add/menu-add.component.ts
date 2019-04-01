@@ -58,9 +58,9 @@ export class MenuAddComponent implements OnInit {
     }
   }
   change(item) {
-    let id = this.allItems.filter(item => item.title === item)[0]._id;
+    let id = this.allItems.filter(item => item.title === item);
     console.log(id);
-    this.validateForm.get('typeId').setValue(id)
+    // this.validateForm.get('typeId').setValue(id)
   }
 
 }
