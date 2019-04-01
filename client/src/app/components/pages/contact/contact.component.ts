@@ -25,13 +25,20 @@ export class ContactComponent implements OnInit {
     }
 
     submit() {
-        if (this.contactService.sendMail(this.form)) {
-            this.form.reset();
-            for (const key in this.form.controls) {
-                if (this.form.controls.hasOwnProperty(key)) {
-                    this.form.controls[key].setErrors(null);
+        console.log(this.form.value.date);
+        this.form.value.date.toLocaleDateString();
+        this.contactService.sendMail(this.form).toPromise()
+            .then(d => {
+                if (d.success) {
+                    this.form.reset();
+                    for (const key in this.form.controls) {
+                        if (this.form.controls.hasOwnProperty(key)) {
+                            this.form.controls[key].setErrors(null);
+                        }
+                    }
                 }
-            }
-        }
+            })
+            .catch(e => console.log(e));
     }
 }
+
