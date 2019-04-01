@@ -18,6 +18,10 @@ import { SliderPreviewComponent } from './slider/slider-preview/slider-preview.c
 import { ChangeMediaComponent } from './media/change-media/change-media.component';
 import { AddMediaComponent } from './media/add-media/add-media.component';
 import { MediasListComponent } from './media/medias-list/medias-list.component';
+import { PortfolioListComponent } from './portfolio/portfolio-list/portfolio-list.component';
+import { PortfolioPreviewComponent } from './portfolio/portfolio-preview/portfolio-preview.component';
+import { AddPortfolioComponent } from './portfolio/add-portfolio/add-portfolio.component';
+import { ChangePortfolioComponent } from './portfolio/change-portfolio/change-portfolio.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,11 @@ import { MediasListComponent } from './media/medias-list/medias-list.component';
     SliderPreviewComponent,
     ChangeMediaComponent,
     AddMediaComponent,
-    MediasListComponent
+    MediasListComponent,
+    PortfolioListComponent,
+    PortfolioPreviewComponent,
+    AddPortfolioComponent,
+    ChangePortfolioComponent
   ],
   imports: [
     CommonModule,

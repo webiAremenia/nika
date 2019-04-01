@@ -1,6 +1,5 @@
 const Media = require('../models/media');
 const errors = require('../_help/error_handler');
-const jwtCompare = require('../middleware/jwtCompare');
 const fs = require('fs');
 const sharp = require('sharp');
 module.exports = {
@@ -13,7 +12,6 @@ module.exports = {
         }
     },
     addMedia: async (req,res) => {
-        console.log(req.file);
         let media = {
             type: req.body.type,
             alt: req.body.alt,
@@ -60,7 +58,7 @@ module.exports = {
         }
     },
     deleteMedia: async (req,res) => {
-        let media = req.query.id;
+        let media = req.query.id + '';
         let candidate = await Media.findOne({_id: media});
         try {
             await Media.remove({_id: media});
