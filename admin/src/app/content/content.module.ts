@@ -22,6 +22,11 @@ import { PortfolioListComponent } from './portfolio/portfolio-list/portfolio-lis
 import { PortfolioPreviewComponent } from './portfolio/portfolio-preview/portfolio-preview.component';
 import { AddPortfolioComponent } from './portfolio/add-portfolio/add-portfolio.component';
 import { ChangePortfolioComponent } from './portfolio/change-portfolio/change-portfolio.component';
+import { SettingsListComponent } from './settings/settings-list/settings-list.component';
+import { MenuListComponent } from './menu/menu-list/menu-list.component';
+import { MenuChangeComponent } from './menu/menu-change/menu-change.component';
+import { MenuAddComponent } from './menu/menu-add/menu-add.component';
+import {SortablejsModule} from "angular-sortablejs";
 
 @NgModule({
   declarations: [
@@ -41,7 +46,11 @@ import { ChangePortfolioComponent } from './portfolio/change-portfolio/change-po
     PortfolioListComponent,
     PortfolioPreviewComponent,
     AddPortfolioComponent,
-    ChangePortfolioComponent
+    ChangePortfolioComponent,
+    SettingsListComponent,
+    MenuListComponent,
+    MenuChangeComponent,
+    MenuAddComponent,
   ],
   imports: [
     CommonModule,
@@ -50,7 +59,8 @@ import { ChangePortfolioComponent } from './portfolio/change-portfolio/change-po
     ReactiveFormsModule,
     NgZorroAntdModule,
     BrowserAnimationsModule,
-    CKEditorModule
+    CKEditorModule,
+    SortablejsModule
   ]
 })
 export class ContentModule { }

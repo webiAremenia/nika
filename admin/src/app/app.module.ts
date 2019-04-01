@@ -13,6 +13,7 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import {ContentModule} from './content/content.module';
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
+import {SortablejsModule} from "angular-sortablejs";
 
 registerLocaleData(en);
 
@@ -30,7 +31,8 @@ registerLocaleData(en);
     ReactiveFormsModule,
     NgZorroAntdModule,
     BrowserAnimationsModule,
-    CKEditorModule
+    CKEditorModule,
+    SortablejsModule.forRoot({ animation: 150 }),
   ],
   providers: [
     {

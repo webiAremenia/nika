@@ -73,6 +73,7 @@ export class ChangePortfolioComponent implements OnInit {
           this.uploading = false;
           this.fileList = [];
           this.msg.success('upload successfully.');
+          console.log(this.portfolio.imgs)
           this.router.navigate(['portfolio'])
         },
         () => {
@@ -84,9 +85,9 @@ export class ChangePortfolioComponent implements OnInit {
   deleteImage(image) {
     this.deletedimages.push(image);
     this.portfolio.imgs = this.portfolio.imgs.filter(item => item !== image);
+    console.log(this.portfolio.imgs)
   }
-  showModal(images): void {
-    this.images = images;
+  showModal(): void {
     this.isVisible = true;
   }
 
