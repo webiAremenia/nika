@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {WorkService} from '../../../_services/work.service';
-import {Work} from "../../../_models/work";
+import {Work} from '../../../_models/work';
+import {AppGlobals} from '../../../app.globals';
 
 @Component({
     selector: 'app-work',
@@ -10,8 +11,11 @@ import {Work} from "../../../_models/work";
 export class WorkComponent implements OnInit {
 
     works: Work[];
+    done = false;
+    imageUrl;
 
-    constructor(private workService: WorkService) {
+    constructor(private service: WorkService, config: AppGlobals) {
+        this.imageUrl = config.imageUrl + '/portfolio/';
     }
 
     ngOnInit() {
@@ -19,8 +23,19 @@ export class WorkComponent implements OnInit {
     }
 
     getAllWorks() {
-        this.works = this.workService.getWorks();
-        console.log(this.works);
+        if (this.service.works) {
+            console.log(44);
+            this.works = this.service.works;
+            this.done = true;
+        } else {
+            this.service.getWorks().subscribe(
+                data => {
+                    this.works = data;
+                    this.done = true;
+                },
+                err => console.log(err)
+            );
+        }
     }
 }
 

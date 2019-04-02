@@ -12,7 +12,7 @@
 
         <div *ngFor="let work of works" class="col-3">
             <div class="img-wrapper img">
-                <a [routerLink]="['/work', work.id]"><img src="../../../../assets/images/{{work.img}}" alt="image"></a>
+                <a [routerLink]="['/work', work.id]"><img [src]="imageUrl+ work.images[0]" alt="image"></a>
             </div>
             <div class="block-title">{{work.title}}</div>
         </div>

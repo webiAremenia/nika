@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Router, RouterEvent} from '@angular/router';
 import {Location} from '@angular/common';
+import {ComponentService} from './_services/component.service';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class AppComponent {
     route: string;
     path;
 
-    constructor(location: Location, router: Router) {
+    constructor(location: Location, router: Router, componentService: ComponentService ) {
+        componentService.getBlocks();
         router.events.subscribe((val) => {
             if (val instanceof RouterEvent) {
                 if (val.url.indexOf('/work/') >= 0) {

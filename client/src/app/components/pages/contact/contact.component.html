@@ -59,7 +59,12 @@
 
 
                 <div class="button-row text-right">
-                    <button mat-raised-button type="submit" [disabled]="form.invalid">SUBMIT</button>
+                    <button mat-raised-button type="submit" [disabled]="form.invalid">SUBMIT
+                        <div *ngIf="!done" class="spinner-border" role="status" style="position: absolute;right: 20px;">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </button>
+
                 </div>
 
             </form>
