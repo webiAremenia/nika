@@ -15,22 +15,24 @@ module.exports = {
             }
     },
     addPost: async (req,res) => {
+        let candidate = await Post.findOne({title: req.body.title});
+        if (!candidate) {
             let post = {
-              title: req.body.title,
-              description: req.body.description,
-              content: req.body.content,
-              alt: req.body.alt,
-              image: req.file.filename
+                title: req.body.title,
+                description: req.body.description,
+                content: req.body.content,
+                alt: req.body.alt,
+                image: req.file.filename
             };
-        sharp(req.file.path)
-            .resize({
-                width: 400,
-                height: 400
-            })
-            .sharpen()
-            .toBuffer()
-            .then(data => fs.writeFileSync(req.file.path, data))
-            .catch(e => console.log(e));
+            sharp(req.file.path)
+                .resize({
+                    width: 400,
+                    height: 400
+                })
+                .sharpen()
+                .toBuffer()
+                .then(data => fs.writeFileSync(req.file.path, data))
+                .catch(e => console.log(e));
             try {
                 await new Post(post).save();
                 res.status(201).json({
@@ -39,6 +41,10 @@ module.exports = {
             } catch (e) {
                 errors.invalidData(res, errors);
             }
+        } else {
+            fs.unlinkSync(`./admin/_uploads/posts/${req.file.filename}`);
+            errors.conflictError(res, errors)
+        }
     },
     changePost: async (req,res) => {
         let candidate = req.query.id + '';
@@ -77,4 +83,9 @@ module.exports = {
                 errors.invalidData(res, errors);
             }
     },
+    ckEditorAddImage: async (req,res) => {
+        res.status(201).json({
+            filename: req.file.filename
+        })
+    }
 };

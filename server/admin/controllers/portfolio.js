@@ -14,22 +14,30 @@ module.exports = {
         }
     },
     addPortfolio: async (req,res) => {
-        let portfolio = {
-            title: req.body.title,
-            description: req.body.description,
-            link: req.body.link,
-            imgs: []
-        };
-        req.files.forEach(item => {
-            portfolio.imgs.push(item.filename)
-        });
-        try {
-            await new Portfolio(portfolio).save();
-            res.status(201).json({
-                msg: 'Portfolio added successfully ...'
-            })
-        } catch (e) {
-            errors.invalidData(res, errors);
+        let candidate = await Portfolio.findOne({title: req.body.title});
+        if (!candidate) {
+            let portfolio = {
+                title: req.body.title,
+                description: req.body.description,
+                link: req.body.link,
+                imgs: []
+            };
+            req.files.forEach(item => {
+                portfolio.imgs.push(item.filename)
+            });
+            try {
+                await new Portfolio(portfolio).save();
+                res.status(201).json({
+                    msg: 'Portfolio added successfully ...'
+                })
+            } catch (e) {
+                errors.invalidData(res, errors);
+            }
+        } else {
+                req.files.forEach(item => {
+                    fs.unlinkSync(`./admin/_uploads/portfolio/${item.filename}`);
+                });
+            errors.conflictError(res, errors)
         }
     },
     changePortfolio: async (req,res) => {
