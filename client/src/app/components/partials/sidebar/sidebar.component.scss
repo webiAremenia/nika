@@ -46,6 +46,9 @@
   @media (max-width: 1600px) {
     font-size: 13px;
   }
+  @media (max-width: 1400px) {
+    font-size: 12px;
+  }
 }
 
 .logo-wrapper img {
@@ -87,4 +90,36 @@
   .hamburger-line-2 {
     display: none;
   }
+}
+.links-content{
+  max-height: 200px;
+  overflow: auto;
+  @media (max-width: 1400px) {
+    max-height: 100px;
+  }
+}
+
+
+//==================================================================================
+//===============================  scroll styles  ==================================
+//==================================================================================
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

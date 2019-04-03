@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {AboutComponent} from './components/pages/about/about.component';
 import {WorkComponent} from './components/pages/work/work.component';
 import {StoriesComponent} from './components/pages/stories/stories.component';
 import {CareersComponent} from './components/pages/careers/careers.component';
@@ -13,7 +12,7 @@ const routes: Routes = [
     {path: '', component: AllBlocksComponent, pathMatch: 'full'},
     {path: 'home', component: AllBlocksComponent},
     {path: 'contact', component: AllBlocksComponent},
-    {path: 'about', component: AboutComponent},
+    {path: 'about', component: AllBlocksComponent},
     {path: 'works', component: WorkComponent},
     {path: 'work/:id', component: WorkDetailComponent},
     {path: 'all-stories', component: StoriesComponent},
