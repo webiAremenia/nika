@@ -17,9 +17,13 @@
 <tbody>
 <tr *ngFor="let data of settings;let i = index">
 <td>{{data.key}}</td>
-<td><input [id]="'input' + i" value="{{data.value}}" nz-input placeholder="small size" nzSize="small" /></td>
-<td class="float-right">
-<i nz-icon type="edit" theme="outline" class="_btn_edit" (click)="edit(data.key, 'input' + i)"></i>
+<td>
+  <p [id]="'p' + i">{{data.value}}</p>
+  <input [id]="'input' + i"  type="hidden" [(ngModel)]="input" nz-input placeholder="small size" nzSize="small" style="width: 60%" />
+  <button [id]="'button' + i" class="btn btn-warning ml-2" style="display: none" (click)="change(data.key, input, 'input' + i, 'button' + i,'p' + i)">Change</button>
+</td>
+<td >
+<i nz-icon type="edit" theme="outline" class="_btn_edit" (click)="edit(data.key, data.value,'input' + i, 'p' + i, 'button' + i)"></i>
 <nz-divider nzType="vertical"></nz-divider>
 <i nz-icon type="delete" theme="outline" class="_btn_delete" (click)="showDeleteConfirm(data.key)"></i>
 </td>

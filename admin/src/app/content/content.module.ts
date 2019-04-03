@@ -8,7 +8,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ContentComponent} from "./content.component";
 import { PostsListComponent } from './posts/posts-list/posts-list.component';
 import { ChangePostComponent } from './posts/change-post/change-post.component';
-import { AddPostComponent } from './posts/add-post/add-post.component';
+import {AddPostComponent} from './posts/add-post/add-post.component';
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import { PostPreviewComponent } from './posts/post-preview/post-preview.component';
 import { SlidersListComponent } from './slider/sliders-list/sliders-list.component';

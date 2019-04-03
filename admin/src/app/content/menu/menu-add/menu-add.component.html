@@ -26,8 +26,8 @@
           </nz-form-item>
           <nz-form-item>
           <nz-form-label [nzSm]="6" [nzXs]="24" >TypeId</nz-form-label>
-          <nz-select tagName="input" [(ngModel)]="selectedValueTypeId" (ngModelChange)="change(selectedValueTypeId)" formControlName="typeId" style="max-width: 210px;">
-            <nz-option *ngFor="let item of allItems" nzLabel="{{item.title}}" nzValue="{{item.title}}"></nz-option>
+          <nz-select tagName="input" [(ngModel)]="selectedValueTypeId" formControlName="typeId" style="max-width: 210px;">
+            <nz-option *ngFor="let item of allItems" nzLabel="{{item.title}}" nzValue="{{item._id}}"></nz-option>
           </nz-select>
           </nz-form-item>
         </nz-form-item>

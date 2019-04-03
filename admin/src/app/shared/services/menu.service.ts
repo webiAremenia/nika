@@ -20,11 +20,11 @@ export class MenuService {
   addMenu(menu){
     return this.http.post(this.urlApi + '/menu', menu);
   }
-  changeMenu(menu){
-    return this.http.put(this.urlApi + `/menu?id=${menu._id}`, menu);
+  changeMenu(menu, id){
+    return this.http.put(this.urlApi + `/menu?id=${id}`, menu);
   }
   deleteMenu(menu){
-    return this.http.get(this.urlApi + `/menu?id=${menu._id}`);
+    return this.http.delete(this.urlApi + `/menu?id=${menu._id}`);
   }
   sortMenus(menus) {
     return this.http.put(this.urlApi + '/menu/sort', menus);
