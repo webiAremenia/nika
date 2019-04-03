@@ -21,6 +21,7 @@ export class MenuAddComponent implements OnInit {
   selectedValueTypeId = '';
   typeData = ['portfolio', 'post'];
   allItems = [];
+  candidate;
   constructor(private postService: PostsService,private portfolioService: PortfolioService,private fb: FormBuilder, private msg: NzMessageService, private service: MenuService, private router: Router) {
   }
 
@@ -35,7 +36,7 @@ export class MenuAddComponent implements OnInit {
 
 
   handleUpload(): void {
-    // tslint:disable-next-line:no-any
+    this.validateForm.get('typeId').setValue(this.selectedValueTypeId);
     this.uploading = true;
     this.service.addMenu(this.validateForm.value)
       .subscribe(
@@ -57,10 +58,4 @@ export class MenuAddComponent implements OnInit {
       case 'portfolio': this.portfolioService.getPortfolio().subscribe((data: []) => this.allItems = data);break;
     }
   }
-  change(item) {
-    let id = this.allItems.filter(item => item.title === item);
-    console.log(id);
-    // this.validateForm.get('typeId').setValue(id)
-  }
-
 }

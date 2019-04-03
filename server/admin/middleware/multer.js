@@ -10,6 +10,9 @@ const storage = multer.diskStorage({
         if (!fs.existsSync(__dirname + '/../_uploads/posts')) {
             fs.mkdirSync(__dirname + '/../_uploads/posts');
         }
+        if (!fs.existsSync(__dirname + '/../_uploads/posts/ckeditor')) {
+            fs.mkdirSync(__dirname + '/../_uploads/posts/ckeditor');
+        }
         if (!fs.existsSync(__dirname + '/../_uploads/medias')) {
             fs.mkdirSync(__dirname + '/../_uploads/medias');
         }
@@ -22,6 +25,9 @@ const storage = multer.diskStorage({
 
         if(req.originalUrl.split('/')[2] === 'post' && req.method === 'POST'){
             cb(null, './admin/_uploads/posts')
+        }
+        if(req.originalUrl.split('/')[3] === 'ckeditor' && req.method === 'POST'){
+            cb(null, './admin/_uploads/posts/ckeditor')
         }
         if (req.method === 'PUT' && req.originalUrl.split('/')[2].split('?')[0] === 'post') {
             cb(null, './admin/_uploads/posts')
@@ -38,6 +44,7 @@ const storage = multer.diskStorage({
         if (req.method === 'PUT' &&  req.originalUrl.split('/')[2].split('?')[0] === 'portfolio') {
             cb(null, './admin/_uploads/portfolio')
         }
+
     },
     filename: function (req, file, cb) {
         if (req.method === 'POST') {

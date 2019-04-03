@@ -27,5 +27,8 @@ export class PostsService {
   };
   deletePosts(post) {
     return this.http.delete(this.urlApi + `/post?id=${post._id}`);
+  };
+  ckeditorSaveImage(image) {
+    return this.http.post(this.urlApi + '/post/ckeditor', image)
   }
 }
