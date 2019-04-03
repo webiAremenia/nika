@@ -31,7 +31,6 @@ import {
     MatInputModule,
     MatNativeDateModule
 } from '@angular/material';
-import { AboutDescComponent } from './components/pages/about/about-desc/about-desc.component';
 import { VacancyComponent } from './components/pages/vacancy/vacancy.component';
 import { VacancyDescComponent } from './components/pages/vacancy/vacancy-desc/vacancy-desc.component';
 import { Hover3dRotateDirective } from './_directives/hover-3d-rotate.directive';
@@ -63,7 +62,6 @@ import {HttpClientModule} from '@angular/common/http';
         LinkBlockComponent,
         HoverOpacityDirective,
         HoverRotateDirective,
-        AboutDescComponent,
         VacancyComponent,
         VacancyDescComponent,
         Hover3dRotateDirective,

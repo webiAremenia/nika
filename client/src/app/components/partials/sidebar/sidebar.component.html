@@ -16,11 +16,8 @@
 
     <div class="bottom-part h-80">
       <div id="menu-content" class="side-bar-about h-75">
-        <div class="toggle-content font-weight-bolder">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium dolorum eos
-          esse et excepturi ipsam iusto
-          natus quibusdam, quo, rerum sit tempore voluptates!
-        </div>
-        <div class="toggle-content font-weight-bolder" style="display:none;">
+        <div class="toggle-content font-weight-bolder toggle-content-text">{{menuText}}</div>
+        <div class="toggle-content font-weight-bolder links-content" style="display:none;">
           <div class="menu-items"><a [routerLink]="[{ outlets: { primary: ['about'] }}]">{{ 'about' | uppercase}}</a></div>
           <div class="menu-items"><a routerLink="/works">{{'work' | uppercase}}</a></div>
           <div class="menu-items"><a routerLink="/stories">{{'stories' | uppercase}}</a></div>
