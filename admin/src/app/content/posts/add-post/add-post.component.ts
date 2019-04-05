@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import {NzMessageService, UploadFile} from "ng-zorro-antd";
 import {Router} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
 
 class UploadAdapter {
   loader;  // your adapter communicates to CKEditor through this
@@ -51,16 +52,11 @@ export class AddPostComponent implements OnInit {
     extraPlugins: [this.TheUploadAdapterPlugin]
   };
 
-  TheUploadAdapterPlugin(editor) {
-    console.log('TheUploadAdapterPlugin called');
-    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-      return new UploadAdapter(loader, this.service.url + '/uploads/posts/ckeditor/');
-    };
-  }
 
 
 
-  constructor(private fb: FormBuilder, private msg: NzMessageService, private service: PostsService, private router: Router) {
+
+  constructor(private http: HttpClient, private fb: FormBuilder, private msg: NzMessageService, private service: PostsService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -73,7 +69,29 @@ export class AddPostComponent implements OnInit {
     });
   }
 
-
+  TheUploadAdapterPlugin(editor) {
+    console.log('TheUploadAdapterPlugin called');
+    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+      // return new UploadAdapter(loader, this.service.url + '/uploads/posts/ckeditor/');
+      return {
+        loader: loader,
+        url: 'http://localhost:3000' + '/uploads/posts/ckeditor/',
+        upload: () => {
+          return new Promise((resolve, reject) => {
+            console.log('the file we got was', loader.file);
+            let form = new FormData();
+            form.append('image', loader.file);
+            this.service.ckeditorSaveImage(form).subscribe((data: any) => {
+              resolve({default: 'http://localhost:3000' + '/uploads/posts/ckeditor/' + data.filename});
+            });
+          });
+        },
+        abort:() => {
+          console.log('UploadAdapter abort');
+        }
+      }
+    };
+  }
   beforeUpload = (file: UploadFile): boolean => {
     this.fileList = [];
     this.fileList = this.fileList.concat(file);

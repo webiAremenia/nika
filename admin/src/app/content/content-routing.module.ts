@@ -18,6 +18,9 @@ import {SettingsListComponent} from "./settings/settings-list/settings-list.comp
 import {MenuListComponent} from "./menu/menu-list/menu-list.component";
 import {MenuAddComponent} from "./menu/menu-add/menu-add.component";
 import {MenuChangeComponent} from "./menu/menu-change/menu-change.component";
+import {VacancyListComponent} from "./vacancy/vacancy-list/vacancy-list.component";
+import {AddVacancyComponent} from "./vacancy/add-vacancy/add-vacancy.component";
+import {ChangeVacancyComponent} from "./vacancy/change-vacancy/change-vacancy.component";
 
 const routes: Routes = [
   {path: '', component: ContentComponent, children: [
@@ -36,6 +39,9 @@ const routes: Routes = [
       {path: 'menu', component: MenuListComponent},
       {path: 'addMenu', component: MenuAddComponent},
       {path: 'changeMenu', component: MenuChangeComponent},
+      {path: 'vacancy', component: VacancyListComponent},
+      {path: 'addVacancy', component: AddVacancyComponent},
+      {path: 'changeVacancy', component: ChangeVacancyComponent},
       {path: 'block', component: TestUserDataComponent},
       {path: 'settings', component: SettingsListComponent},
       {path: '**', redirectTo: 'posts', pathMatch: 'full'}

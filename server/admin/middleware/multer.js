@@ -4,6 +4,10 @@ const fs = require('fs');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
+
+        console.log('####################');
+        console.log(req.body);
+        console.log('####################');
         if (!fs.existsSync(__dirname + '/../_uploads')) {
             fs.mkdirSync(__dirname + '/../_uploads');
         }
@@ -16,11 +20,17 @@ const storage = multer.diskStorage({
         if (!fs.existsSync(__dirname + '/../_uploads/medias')) {
             fs.mkdirSync(__dirname + '/../_uploads/medias');
         }
+        if (!fs.existsSync(__dirname + '/../_uploads/vacancy')) {
+            fs.mkdirSync(__dirname + '/../_uploads/vacancy');
+        }
         if (!fs.existsSync(__dirname + '/../_uploads/slider')) {
             fs.mkdirSync(__dirname + '/../_uploads/slider');
         }
         if (!fs.existsSync(__dirname + '/../_uploads/portfolio')) {
             fs.mkdirSync(__dirname + '/../_uploads/portfolio');
+        }
+        if (!fs.existsSync(__dirname + '/../_uploads/block')) {
+            fs.mkdirSync(__dirname + '/../_uploads/block');
         }
 
         if(req.originalUrl.split('/')[2] === 'post' && req.method === 'POST'){
@@ -38,11 +48,23 @@ const storage = multer.diskStorage({
         if (req.method === 'PUT' &&  req.originalUrl.split('/')[2].split('?')[0] === 'media') {
             cb(null, './admin/_uploads/medias')
         }
+        if (req.method === 'POST' && req.originalUrl.split('/')[2] === 'vacancy') {
+            cb(null, './admin/_uploads/vacancy')
+        }
+        if (req.method === 'PUT' &&  req.originalUrl.split('/')[2].split('?')[0] === 'vacancy') {
+            cb(null, './admin/_uploads/vacancy')
+        }
         if (req.method === 'POST' && req.originalUrl.split('/')[2] === 'portfolio') {
             cb(null, './admin/_uploads/portfolio')
         }
         if (req.method === 'PUT' &&  req.originalUrl.split('/')[2].split('?')[0] === 'portfolio') {
             cb(null, './admin/_uploads/portfolio')
+        }
+        if (req.method === 'POST' && req.originalUrl.split('/')[2] === 'block') {
+            cb(null, './admin/_uploads/block')
+        }
+        if (req.method === 'PUT' &&  req.originalUrl.split('/')[2].split('?')[0] === 'block') {
+            cb(null, './admin/_uploads/block')
         }
 
     },
@@ -60,7 +82,7 @@ var fileFilter = (req, file, cb) => {
     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/svg') {
         cb(null, true);
     } else {
-        cb(null, false);
+        cb(null, true); // false error depq
     }
 };
 
