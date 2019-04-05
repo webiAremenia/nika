@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {Router, RouterEvent} from '@angular/router';
 import {Location} from '@angular/common';
 import {ComponentService} from './_services/component.service';
@@ -15,6 +15,10 @@ export class AppComponent {
     contact = false;
     route: string;
     path;
+
+    @HostListener('scroll') scrolling(){
+        console.log('scrolling');
+    }
 
     constructor(location: Location, router: Router, componentService: ComponentService ) {
         componentService.getBlocks();

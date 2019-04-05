@@ -114,7 +114,57 @@ body {
   .mat-grid-tile .mat-figure {
     justify-content: unset !important;
   }
+
   .mat-form-field {
     width: 90%;
   }
+}
+
+.menu-animation {
+  height: auto !important;
+  position: fixed;
+  top: 50px;
+  width: calc((100vw - 116px) / 12 * 3);
+  z-index: 10000;
+}
+
+.restore {
+  height: calc((100vw - 116px) / 12 * 3) !important;
+}
+
+.footer-wrapper {
+  width: calc((100vw - 116px) / 12 * 3) !important;
+  height: calc((100vw - 116px) / 12 * 3) !important;
+}
+.hidden-footer{
+  position: fixed;
+  top: 50%;
+  z-index: 10000;
+  display: none;
+}
+.top50{
+  top: 50% !important;
+}
+//==================================================================================
+//===============================  scroll styles  ==================================
+//==================================================================================
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
