@@ -27,6 +27,9 @@ import { MenuListComponent } from './menu/menu-list/menu-list.component';
 import { MenuChangeComponent } from './menu/menu-change/menu-change.component';
 import { MenuAddComponent } from './menu/menu-add/menu-add.component';
 import {SortablejsModule} from "angular-sortablejs";
+import { VacancyListComponent } from './vacancy/vacancy-list/vacancy-list.component';
+import { AddVacancyComponent } from './vacancy/add-vacancy/add-vacancy.component';
+import { ChangeVacancyComponent } from './vacancy/change-vacancy/change-vacancy.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,9 @@ import {SortablejsModule} from "angular-sortablejs";
     MenuListComponent,
     MenuChangeComponent,
     MenuAddComponent,
+    VacancyListComponent,
+    AddVacancyComponent,
+    ChangeVacancyComponent,
   ],
   imports: [
     CommonModule,

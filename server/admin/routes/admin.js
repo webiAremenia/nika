@@ -8,9 +8,13 @@ const auth = require('./auth'),
     portfolio = require('./portfolio'),
     settings = require('./settings'),
     menu = require('./menu'),
+    vacancy = require('./vacancy'),
+    block = require('./block'),
     medias = require('./media');
 
 router.use('/post', posts);
+router.use('/vacancy', vacancy);
+router.use('/block', block);
 router.use('/slider', sliders);
 router.use('/media', medias);
 router.use('/auth', auth);
