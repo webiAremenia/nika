@@ -8,11 +8,17 @@ const BlockSchema = new Schema({
     type: {
         type: 'String'
     },
-    block: {
-        post: [{
-            type: Schema.Types.ObjectId,
+    project: {
+        post: {
+            type: [Schema.Types.ObjectId],
+            ref: 'Portfolio'
+        }
+    },
+    blog: {
+        post: {
+            type: [Schema.Types.ObjectId],
             ref: 'Post'
-        }]
+        }
     },
     video: {
         url: {
@@ -34,10 +40,36 @@ const BlockSchema = new Schema({
         },
         url: {
             type: 'String'
+        },
+        load: {
+            type: String
+        },
+    },
+    gif: {
+        gif: {
+            type: 'String'
+        },
+        size: {
+            type: 'String'
+        },
+        bgcolor: {
+            type: 'String'
+        },
+        hovertext: {
+            type: 'String'
+        },
+        music: {
+            type: 'String'
+        },
+        load: {
+            type: String
+        },
+        url: {
+            type: String
         }
     },
     imagetext: {
-        subTitle: {
+        subtitle: {
             type: 'String'
         },
         title: {

@@ -30,6 +30,10 @@ import {SortablejsModule} from "angular-sortablejs";
 import { VacancyListComponent } from './vacancy/vacancy-list/vacancy-list.component';
 import { AddVacancyComponent } from './vacancy/add-vacancy/add-vacancy.component';
 import { ChangeVacancyComponent } from './vacancy/change-vacancy/change-vacancy.component';
+import { BlockListComponent } from './block/block-list/block-list.component';
+import { AddBlockComponent } from './block/add-block/add-block.component';
+import { ChangeBlockComponent } from './block/change-block/change-block.component';
+import { BlockPreviewComponent } from './block/block-preview/block-preview.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +61,10 @@ import { ChangeVacancyComponent } from './vacancy/change-vacancy/change-vacancy.
     VacancyListComponent,
     AddVacancyComponent,
     ChangeVacancyComponent,
+    BlockListComponent,
+    AddBlockComponent,
+    ChangeBlockComponent,
+    BlockPreviewComponent,
   ],
   imports: [
     CommonModule,
