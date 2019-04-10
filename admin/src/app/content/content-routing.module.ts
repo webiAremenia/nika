@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {ContentComponent} from "./content.component";
-import {TestUserDataComponent} from "./test-user-data/test-user-data.component";
 import {PostsListComponent} from "./posts/posts-list/posts-list.component";
 import {ChangePostComponent} from "./posts/change-post/change-post.component";
 import {AddPostComponent} from "./posts/add-post/add-post.component";
@@ -21,6 +20,10 @@ import {MenuChangeComponent} from "./menu/menu-change/menu-change.component";
 import {VacancyListComponent} from "./vacancy/vacancy-list/vacancy-list.component";
 import {AddVacancyComponent} from "./vacancy/add-vacancy/add-vacancy.component";
 import {ChangeVacancyComponent} from "./vacancy/change-vacancy/change-vacancy.component";
+import {BlockListComponent} from "./block/block-list/block-list.component";
+import {AddBlockComponent} from "./block/add-block/add-block.component";
+import {ChangeBlockComponent} from "./block/change-block/change-block.component";
+import {BlockPreviewComponent} from "./block/block-preview/block-preview.component";
 
 const routes: Routes = [
   {path: '', component: ContentComponent, children: [
@@ -42,7 +45,10 @@ const routes: Routes = [
       {path: 'vacancy', component: VacancyListComponent},
       {path: 'addVacancy', component: AddVacancyComponent},
       {path: 'changeVacancy', component: ChangeVacancyComponent},
-      {path: 'block', component: TestUserDataComponent},
+      {path: 'block', component: BlockListComponent},
+      {path: 'blockPreview', component: BlockPreviewComponent},
+      {path: 'addBlock', component: AddBlockComponent},
+      {path: 'changeBlock', component: ChangeBlockComponent},
       {path: 'settings', component: SettingsListComponent},
       {path: '**', redirectTo: 'posts', pathMatch: 'full'}
     ]},
