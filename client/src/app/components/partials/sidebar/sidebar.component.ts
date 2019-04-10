@@ -25,9 +25,11 @@ export class SidebarComponent implements OnInit {
 
     getMenuText() {
         this.menuService.getMenuText().subscribe(date => {
-            this.menuText = date;
+            this.menuText = date || 'You  can creat this content in admin panel Settings/key = menu-text';
         });
     }
 
 }
+
+
 
