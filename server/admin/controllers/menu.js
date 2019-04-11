@@ -25,11 +25,11 @@ module.exports = {
 
         let menu = {
             title: req.body.title,
-            url: req.body.url,
             type: req.body.type,
-            typeId: req.body.typeId,
             order: order
         };
+        req.body.type !== 'url' ? menu.typeId = req.body.typeId : menu.url = req.body.url;
+        console.log(menu);
         try {
             await new Menu(menu).save();
             res.status(201).json({

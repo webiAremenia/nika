@@ -11,12 +11,10 @@ const MenuSchema = new Schema({
         required: true
     },
     url: {
-        type: String,
-        required: true
+        type: String
     },
     typeId: {
-        type: String,
-        required: true
+        type: String
     },
     order: {
         type: Number,

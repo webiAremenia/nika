@@ -8,6 +8,7 @@ const storage = multer.diskStorage({
         console.log('####################');
         console.log(req.body);
         console.log('####################');
+
         if (!fs.existsSync(__dirname + '/../_uploads')) {
             fs.mkdirSync(__dirname + '/../_uploads');
         }

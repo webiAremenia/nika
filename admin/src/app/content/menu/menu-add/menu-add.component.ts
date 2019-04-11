@@ -29,7 +29,7 @@ export class MenuAddComponent implements OnInit {
     this.validateForm = new FormGroup({
       type : new FormControl( '', [Validators.required ] ),
       title : new FormControl('', [Validators.required ] ),
-      url : new FormControl('', [Validators.required ] ),
+      url : new FormControl(''),
       typeId : new FormControl('', [Validators.required ] ),
     })
   }
@@ -55,6 +55,7 @@ export class MenuAddComponent implements OnInit {
   foo(item) {
     switch (item) {
       case 'post': this.postService.getPosts().subscribe((data: []) => this.allItems = data);break;
+      case 'url': this.validateForm.get('typeId').setValue('ss');break;
       case 'portfolio': this.portfolioService.getPortfolio().subscribe((data: []) => this.allItems = data);break;
     }
   }
