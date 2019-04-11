@@ -12,16 +12,13 @@ import {Router} from "@angular/router";
   styleUrls: ['./change-block.component.css']
 })
 export class ChangeBlockComponent implements OnInit {
-
+  tagValue = [];
   validateForm: FormGroup;
   uploading = false;
   fileList: UploadFile[] = [];
-  fileListMusic: UploadFile[] = [];
   selectedSize = '';
   selectedType = '';
-  selectedBlockPost = '';
-  selectedValueType = '';
-  selectedValueTypeId = '';
+  selectedBlockPost = [];
   selectedImageSize = '';
   typeData = ['portfolio', 'post'];
   allItems = [];
@@ -43,12 +40,12 @@ export class ChangeBlockComponent implements OnInit {
       this.selectedImageSize = this.candidate[type].size;
     } else if(type === 'blog') {
       this.postService.getPosts().subscribe((data: []) => {
-        this.selectedBlockPost = this.candidate.blog.post[0];
+        this.tagValue = this.candidate.blog.post;
         this.allItems = data;
       })
     } else if(type === 'project'){
       this.portfolioService.getPortfolio().subscribe((data: []) => {
-        this.selectedBlockPost = this.candidate.project.post[0];
+        this.selectedBlockPost = this.candidate.project.post;
         this.allItems = data;
       })
     }
@@ -80,12 +77,12 @@ export class ChangeBlockComponent implements OnInit {
       case 'blog': {
         form.append('type',this.validateForm.get('type').value);
         form.append('size',this.validateForm.get('size').value);
-        form.append('post',this.selectedBlockPost);
+        form.append('post',JSON.stringify(this.tagValue));
       }break;
       case 'project': {
         form.append('type', this.validateForm.get('type').value);
         form.append('size', this.validateForm.get('size').value);
-        form.append('portfolio',this.selectedBlockPost);
+        form.append('portfolio',JSON.stringify(this.selectedBlockPost));
       }break;
       case 'video': {
         form = new FormData();

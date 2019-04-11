@@ -35,8 +35,8 @@
             <div *ngSwitchCase="'blog'">
 
               <nz-form-item>
-                <nz-form-label [nzSm]="6" [nzXs]="24" >Type</nz-form-label>
-                <nz-select tagName="input" [(ngModel)]="selectedBlockPost" formControlName="blog" style="max-width: 210px;">
+                <nz-form-label [nzSm]="6" [nzXs]="24" >Stories</nz-form-label>
+                <nz-select tagName="input" [(ngModel)]="tagValue" nzMode="tags" formControlName="blog" style="max-width: 210px;">
                   <nz-option *ngFor="let item of allItems" nzLabel="{{item.title}}" nzValue="{{item._id}}"></nz-option>
                 </nz-select>
               </nz-form-item>
@@ -45,9 +45,10 @@
 
             <div *ngSwitchCase="'project'">
 
+
               <nz-form-item>
-                <nz-form-label [nzSm]="6" [nzXs]="24" >Portfolio</nz-form-label>
-                <nz-select tagName="input" [(ngModel)]="selectedBlockPost" formControlName="portfolio" style="max-width: 210px;">
+                <nz-form-label [nzSm]="6" [nzXs]="24" >Stories</nz-form-label>
+                <nz-select tagName="input" [(ngModel)]="selectedBlockPost" nzMode="tags" formControlName="portfolio" style="max-width: 210px;">
                   <nz-option *ngFor="let item of allItems" nzLabel="{{item.title}}" nzValue="{{item._id}}"></nz-option>
                 </nz-select>
               </nz-form-item>

@@ -1,3 +1,6 @@
+
+
+
 <form [formGroup]="validateForm" >
   <div class="container">
     <div class="row">
@@ -15,9 +18,10 @@
             </nz-select>
           </nz-form-item>
 
+
           <nz-form-item>
             <nz-form-label [nzSm]="6" [nzXs]="24" >Type</nz-form-label>
-            <nz-select tagName="input" [(ngModel)]="selectedType" (ngModelChange)="foo(selectedType)" formControlName="type" style="max-width: 210px;">
+            <nz-select tagName="input" [(ngModel)]="selectedType" (ngModelChange)="foo(selectedType, 'type')" formControlName="type" style="max-width: 210px;">
               <nz-option nzLabel="Stories" nzValue="blog"></nz-option>
               <nz-option nzLabel="Video" nzValue="video"></nz-option>
               <nz-option nzLabel="Gif" nzValue="gif"></nz-option>
@@ -33,8 +37,8 @@
             <div *ngSwitchCase="'blog'">
 
               <nz-form-item>
-                <nz-form-label [nzSm]="6" [nzXs]="24" >Type</nz-form-label>
-                <nz-select tagName="input" [(ngModel)]="selectedBlockPost" formControlName="blog" style="max-width: 210px;">
+                <nz-form-label [nzSm]="6" [nzXs]="24" >Stories</nz-form-label>
+                <nz-select tagName="input" [(ngModel)]="tagValue" nzMode="tags" formControlName="blog" style="max-width: 210px;">
                   <nz-option *ngFor="let item of allItems" nzLabel="{{item.title}}" nzValue="{{item._id}}"></nz-option>
                 </nz-select>
               </nz-form-item>
@@ -43,9 +47,10 @@
 
             <div *ngSwitchCase="'project'">
 
+
               <nz-form-item>
-                <nz-form-label [nzSm]="6" [nzXs]="24" >Portfolio</nz-form-label>
-                <nz-select tagName="input" [(ngModel)]="selectedBlockPost" formControlName="portfolio" style="max-width: 210px;">
+                <nz-form-label [nzSm]="6" [nzXs]="24" >Stories</nz-form-label>
+                <nz-select tagName="input" [(ngModel)]="selectedBlockPost" nzMode="tags" formControlName="portfolio" style="max-width: 210px;">
                   <nz-option *ngFor="let item of allItems" nzLabel="{{item.title}}" nzValue="{{item._id}}"></nz-option>
                 </nz-select>
               </nz-form-item>

@@ -21,7 +21,7 @@ module.exports = {
                         size: req.body.size,
                         type: req.body.type,
                         blog: {
-                            post:[req.body.post]
+                            post: JSON.parse(req.body.post)
                         }
                     };
                     try {
@@ -38,7 +38,7 @@ module.exports = {
                         size: req.body.size,
                         type: req.body.type,
                         project: {
-                            post:[req.body.portfolio]
+                            post: JSON.parse(req.body.portfolio)
                         }
                     };
                     try {
@@ -157,7 +157,7 @@ module.exports = {
                         size: req.body.size,
                         type: req.body.type,
                         blog: {
-                            post: [req.body.post]
+                            post: JSON.parse(req.body.post)
                         }
                     };
                     console.log(block);
@@ -177,7 +177,7 @@ module.exports = {
                         size: req.body.size,
                         type: req.body.type,
                         project: {
-                            post: [req.body.portfolio]
+                            post: JSON.parse(req.body.portfolio)
                         }
                     };
                     try{
