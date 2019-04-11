@@ -29,7 +29,7 @@ $(document).ready(function () {
                 // faded = false;
             }
             setTimeout(() => {
-                let footerTop = $('.side-bar-header').prop('scrollHeight') + 50;//menu-title
+                let footerTop = $('.side-bar-header').prop('scrollHeight') ;//menu-title
                 footer.css({top: footerTop});
             }, 35)
 
@@ -66,9 +66,9 @@ $(document).ready(function () {
 
     $(function () {
         $(window).scroll(function (e) {
-            let footerTop = $('.side-bar-header').prop('scrollHeight') + 50;
+            let footerTop = $('.side-bar-header').prop('scrollHeight') ;
             // console.log($(window).scrollTop());
-            if ($(window).scrollTop() > 2) {
+            if ($(window).scrollTop() > 52) {
                 $('.menu-animation').removeClass('restore');
                 $('.side-bar-logo').fadeOut(0);
                 $('.bottom-part').fadeOut(20);

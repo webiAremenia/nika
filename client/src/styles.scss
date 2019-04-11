@@ -123,9 +123,11 @@ body {
 .menu-animation {
   height: auto !important;
   position: fixed;
-  top: 50px;
+  top: 0;
   width: calc((100vw - 116px) / 12 * 3);
   z-index: 10000;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .restore {
@@ -151,8 +153,8 @@ body {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
-}
+   width: 10px;
+ }
 
 /* Track */
 ::-webkit-scrollbar-track {
