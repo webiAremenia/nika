@@ -6,6 +6,10 @@ $(document).ready(function () {
     let menuLinks = $('#menu-content .links-content');
     let footer = $('.hidden-footer');
 
+    $('.hamburger-logo').animate({
+        maxWidth: '50%'
+    });
+
     $('#toggle-icon').on({
         click: function () {
             $(this).toggleClass('rotate', '');
@@ -24,12 +28,23 @@ $(document).ready(function () {
                 menuText.fadeOut(0);
                 menuLinks.fadeIn(0);
                 $('.bottom-part').fadeToggle(20);
+
+                if (menuToggled) {
+                    $('.side-bar-header').css({
+                        background: '#F7F7F7'
+                    });
+                } else {
+                    $('.side-bar-header').css({
+                        background: 'unset'
+                    });
+                }
+
                 faded = !faded;
             } else if (faded) {
                 // faded = false;
             }
             setTimeout(() => {
-                let footerTop = $('.side-bar-header').prop('scrollHeight') ;//menu-title
+                let footerTop = $('.side-bar-header').prop('scrollHeight');//menu-title
                 footer.css({top: footerTop});
             }, 35)
 
@@ -52,6 +67,7 @@ $(document).ready(function () {
         click: function () {
             menuText.fadeIn(0);
             menuLinks.fadeOut(0);
+
             faded = !faded;
 
             if (menuToggled) {
@@ -66,16 +82,18 @@ $(document).ready(function () {
 
     $(function () {
         $(window).scroll(function (e) {
-            let footerTop = $('.side-bar-header').prop('scrollHeight') ;
+            let footerTop = $('.side-bar-header').prop('scrollHeight');
             // console.log($(window).scrollTop());
             if ($(window).scrollTop() > 52) {
                 $('.menu-animation').removeClass('restore');
-                $('.side-bar-logo').fadeOut(0);
+                // $('.side-bar-logo').fadeOut(0);
                 $('.bottom-part').fadeOut(20);
                 $('.side-bar-header').addClass('menu-animation');
 
                 $('#toggle-icon').removeClass('rotate');
                 menuToggled = false;
+
+
 
             } else {
 
@@ -98,6 +116,34 @@ $(document).ready(function () {
                 footer.fadeOut(500);
                 footOpend = false;
             }
+
+
+            if ($(window).scrollTop() > $(window).height()) {
+
+                $('.menu-title').fadeOut(0);
+
+
+                $('.hamburger-logo').css({
+                    maxWidth: '15%'
+                });
+
+                $('.side-bar-header').css({
+                    background: 'unset'
+                })
+
+
+            } else {
+                $('.menu-title').fadeIn(0);
+
+                $('.hamburger-logo').animate({
+                    maxWidth: '50%'
+                },0);
+                $('.side-bar-header').css({
+                    background: '#F7F7F7'
+                })
+            }
+
+
 
 
         });

@@ -12,74 +12,123 @@
 .custom-page {
   height: calc(100vh - 100px);
   overflow: auto;
-  //border: 1px solid black;
 }
 
 .custom-container {
   padding: 50px;
+  @media (max-width: 450px) {
+    padding: 10px;
+  }
 }
 
 
 .bg-size-small {
   width: 20%;
   height: calc(20vw - 20px);
-  //border: 1px solid black;
+  @media (max-width: 450px) {
+    width: 100%;
+    height: calc(100vw - 20px);
+  }
 }
 
 .bg-size-middle {
   width: 40%;
   height: calc(40vw - 40px);
   //border: 1px solid black;
+  @media (max-width: 450px) {
+    width: 100%;
+    height: calc(100vw - 20px);
+  }
 }
 
 .bg-size-large {
   width: 60%;
   height: calc(40vw - 40px);
   //border: 1px solid black;
+  @media (max-width: 450px) {
+    width: 100%;
+    height: calc(100vw - 20px);
+  }
 }
 
 
 .parent-large {
+  @media (max-width: 450px) {
+    width: 100%;
+    height: auto !important;
+  }
   .bg-size-small {
     width: 33.33335%;
     height: calc(20vw - 20px);
     //border: 1px solid black;
+    @media (max-width: 450px) {
+      width: 100%;
+      height: calc(100vw - 20px);
+    }
   }
 
   .bg-size-middle {
     width: 66.6668%;
     height: calc(40vw - 40px);
     //border: 1px solid black;
+    @media (max-width: 450px) {
+      width: 100%;
+      height: calc(100vw - 20px);
+    }
   }
 
   .bg-size-large {
     width: 100%;
     height: calc(40vw - 40px);
     //border: 1px solid black;
+    @media (max-width: 450px) {
+      width: 100%;
+      height: calc(100vw - 20px);
+    }
   }
 }
 
 
 .parent-middle {
+  @media (max-width: 650px) {
+    width: 100%;
+    height: auto !important;
+  }
   .bg-size-small {
     width: 50%;
     height: calc(20vw - 20px);
     //border: 1px solid black;
+    @media (max-width: 450px) {
+      width: 100%;
+      height: calc(100vw - 20px);
+    }
   }
 
   .bg-size-middle {
     width: 100%;
     height: calc(40vw - 40px);
     //border: 1px solid black;
+    @media (max-width: 450px) {
+      width: 100%;
+      height: calc(100vw - 20px);
+    }
   }
 
 }
 
 .parent-small {
+  @media (max-width: 450px) {
+    width: 100%;
+    height: auto !important;
+  }
   .bg-size-small {
     width: 100%;
     height: calc(20vw - 20px);
     //border: 1px solid black;
+    @media (max-width: 450px) {
+      width: 100%;
+      height: calc(100vw - 20px);
+    }
   }
 }
 
@@ -124,7 +173,7 @@ body {
   height: auto !important;
   position: fixed;
   top: 0;
-  width: calc((100vw - 116px) / 12 * 3);
+  width: calc((100vw - 116px) / 12 * 3 + 2px);
   z-index: 10000;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
@@ -137,6 +186,10 @@ body {
 .footer-wrapper {
   width: calc((100vw - 116px) / 12 * 3) !important;
   height: calc((100vw - 116px) / 12 * 3) !important;
+  @media (max-width: 650px) {
+    width: 100% !important;
+    height: calc(100vw - 20px) !important;
+  }
 }
 .hidden-footer{
   position: fixed;
