@@ -14,24 +14,27 @@ import {BlockService} from "../../../shared/services/block.service";
 })
 export class AddBlockComponent implements OnInit {
 
+  tagValue = [];
+
+
   validateForm: FormGroup;
   uploading = false;
   fileList: UploadFile[] = [];
-  fileListMusic: UploadFile[] = [];
   selectedSize = '';
   selectedType = '';
-  selectedBlockPost = '';
-  selectedValueType = '';
-  selectedValueTypeId = '';
+  selectedBlockPost = [];
   selectedImageSize = '';
   typeData = ['portfolio', 'post'];
   allItems = [];
   candidate;
+  click = 0;
 
   constructor(private postService: PostsService,private portfolioService: PortfolioService, private fb: FormBuilder, private msg: NzMessageService, private service: BlockService, private router: Router) {
   }
 
   ngOnInit(): void {
+
+
     this.validateForm = new FormGroup({
       blog: new FormControl(' ', [Validators.required]),
       url: new FormControl(' ', [Validators.required]),
@@ -53,19 +56,19 @@ export class AddBlockComponent implements OnInit {
     let form = new FormData();
     switch (this.selectedType) {
       case 'blog': {
-          form.append('type',this.validateForm.get('type').value);
-          form.append('size',this.validateForm.get('size').value);
-          form.append('post',this.validateForm.get('blog').value);
+        form.append('type', this.selectedType);
+        form.append('size', this.selectedSize);
+          form.append('post',JSON.stringify(this.validateForm.get('blog').value));
       }break;
       case 'project': {
-          form.append('type',this.validateForm.get('type').value);
-          form.append('size',this.validateForm.get('size').value);
-          form.append('portfolio',this.validateForm.get('portfolio').value);
+        form.append('type', this.selectedType);
+        form.append('size', this.selectedSize);
+          form.append('portfolio',JSON.stringify(this.validateForm.get('portfolio').value));
       }break;
       case 'video': {
         form = new FormData();
-        form.append('type', this.validateForm.get('type').value);
-        form.append('size', this.validateForm.get('size').value);
+        form.append('type', this.selectedType);
+        form.append('size', this.selectedSize);
         if (this.fileList.length > 0) {
           this.fileList.forEach((file: any) => {
             form.append('image', file);
@@ -83,8 +86,8 @@ export class AddBlockComponent implements OnInit {
          form.append('hovertext', this.validateForm.get('hovertext').value);
          form.append('url', this.validateForm.get('url').value);
          form.append('imagesize', this.validateForm.get('imagesize').value);
-         form.append('type', this.validateForm.get('type').value);
-         form.append('size', this.validateForm.get('size').value);
+        form.append('type', this.selectedType);
+        form.append('size', this.selectedSize);
       }break;
       case 'gif': {
         this.fileList.forEach((file: any) => {
@@ -95,8 +98,8 @@ export class AddBlockComponent implements OnInit {
         form.append('hovertext', this.validateForm.get('hovertext').value);
         form.append('url', this.validateForm.get('url').value);
         form.append('imagesize', this.validateForm.get('imagesize').value);
-        form.append('type', this.validateForm.get('type').value);
-        form.append('size', this.validateForm.get('size').value);
+        form.append('type', this.selectedType);
+        form.append('size', this.selectedSize);
         console.log('$$$$$$$$$$$$$$$$$$$$$$$$');
         console.log(form);
         console.log(this.validateForm.get('load').value);
@@ -110,10 +113,11 @@ export class AddBlockComponent implements OnInit {
         form.append('title', this.validateForm.get('title').value);
         form.append('description', this.validateForm.get('description').value);
         form.append('url', this.validateForm.get('url').value);
-        form.append('type', this.validateForm.get('type').value);
-        form.append('size', this.validateForm.get('size').value);
+        form.append('type', this.selectedType);
+        form.append('size', this.selectedSize);
       }break;
     }
+    console.log(this.validateForm.value);
       this.service.postBlock(form)
         .subscribe(
           () => {
@@ -130,7 +134,7 @@ export class AddBlockComponent implements OnInit {
     }
 
   foo(item) {
-    this.validate(item);
+      this.validate(item);
     switch (item) {
       case 'blog':
         this.postService.getPosts().subscribe((data: []) => this.allItems = data);
@@ -171,10 +175,8 @@ export class AddBlockComponent implements OnInit {
         this.validateForm.get('portfolio').setValue('ss');
         this.validateForm.get('description').setValue('ss');
         this.validateForm.get('image').setValue('ss');
-        this.validateForm.get('size').setValue(this.selectedSize);
-        this.validateForm.get('type').setValue(this.selectedType);
       }break;
-      case 'portfolio': {
+      case 'project': {
         this.validateForm.get('blog').setValue('ss');
         this.validateForm.get('url').setValue('ss');
         this.validateForm.get('load').setValue('ss');
@@ -186,8 +188,6 @@ export class AddBlockComponent implements OnInit {
         this.validateForm.get('portfolio').setValue('');
         this.validateForm.get('description').setValue('ss');
         this.validateForm.get('image').setValue('ss');
-        this.validateForm.get('size').setValue(this.selectedSize);
-        this.validateForm.get('type').setValue(this.selectedType);
       }break;
       case 'video': {
         this.validateForm.get('blog').setValue('ss');
@@ -200,8 +200,6 @@ export class AddBlockComponent implements OnInit {
         this.validateForm.get('title').setValue('ss');
         this.validateForm.get('portfolio').setValue('ss');
         this.validateForm.get('description').setValue('ss');
-        this.validateForm.get('size').setValue(this.selectedSize);
-        this.validateForm.get('type').setValue(this.selectedType);
       }break;
       case 'image': {
         this.validateForm.get('blog').setValue('ss');
@@ -214,8 +212,6 @@ export class AddBlockComponent implements OnInit {
         this.validateForm.get('title').setValue('ss');
         this.validateForm.get('portfolio').setValue('ss');
         this.validateForm.get('description').setValue('ss');
-        this.validateForm.get('size').setValue(this.selectedSize);
-        this.validateForm.get('type').setValue(this.selectedType);
       }break;
       case 'gif': {
         this.validateForm.get('blog').setValue('ss');
@@ -228,8 +224,6 @@ export class AddBlockComponent implements OnInit {
         this.validateForm.get('title').setValue('ss');
         this.validateForm.get('portfolio').setValue('ss');
         this.validateForm.get('description').setValue('ss');
-        this.validateForm.get('size').setValue(this.selectedSize);
-        this.validateForm.get('type').setValue(this.selectedType);
       }break;
       case 'imagetext': {
         this.validateForm.get('blog').setValue('ss');
@@ -242,10 +236,7 @@ export class AddBlockComponent implements OnInit {
         this.validateForm.get('title').setValue('');
         this.validateForm.get('portfolio').setValue('ss');
         this.validateForm.get('description').setValue('');
-        this.validateForm.get('size').setValue(this.selectedSize);
-        this.validateForm.get('type').setValue(this.selectedType);
       }break;
     }
-    console.log(this.validateForm.value)
   }
 }
