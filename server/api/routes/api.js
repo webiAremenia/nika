@@ -9,6 +9,7 @@ const posts = require('./post'),
     portfolio = require('./portfolio');
     menu = require('./menu');
     settings = require('./settings');
+    group = require('./group');
 
 router.use('/post', posts);
 router.use('/slider', sliders);
@@ -17,5 +18,6 @@ router.use('/contact', contact);
 router.use('/portfolio', portfolio);
 router.use('/menu', menu);
 router.use('/settings', settings);
+router.use('/group', group);
 
 module.exports = router;

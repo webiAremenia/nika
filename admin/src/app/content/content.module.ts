@@ -34,6 +34,7 @@ import { BlockListComponent } from './block/block-list/block-list.component';
 import { AddBlockComponent } from './block/add-block/add-block.component';
 import { ChangeBlockComponent } from './block/change-block/change-block.component';
 import { BlockPreviewComponent } from './block/block-preview/block-preview.component';
+import { AddGroupComponent } from './group/add-group/add-group.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { BlockPreviewComponent } from './block/block-preview/block-preview.compo
     AddBlockComponent,
     ChangeBlockComponent,
     BlockPreviewComponent,
+    AddGroupComponent,
   ],
   imports: [
     CommonModule,

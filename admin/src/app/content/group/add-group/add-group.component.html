@@ -1,0 +1,68 @@
+<div class="group-container">
+
+    <div class="row">
+
+        <div class="col-9">
+
+            <div *ngIf="done" class="group-wrapper">
+
+
+                <div *ngFor="let gr of group, let i = index" class="line line-{{i}}">
+
+                    <div class="large" id="large-{{i}}"
+                         [ngClass]="gr.position == 'left'  ? 'left' : 'right'"
+                    >
+                        <div class="edit-button" (click)="editBlock(gr.id, 'large')">
+                            edit
+                        </div>
+                    </div>
+
+                    <div class="middle" id="middle-{{i}}"
+                         [ngClass]="gr.position == 'left'  ? 'right' : 'left'"
+                    >
+                        <div class="edit-button" (click)="editBlock(gr.id, 'middleBlock')">
+                            edit
+                        </div>
+                    </div>
+
+                    <div class="replace-blocks"
+                         [ngClass]="gr.position == 'left'  ? 'in-left' : 'in-right'"
+                         (click)="replace(i, gr.id, gr.position)">
+                        <div class="icons">
+                            <img class="left-arrow" src="../../../../assets/icons/prev.png">
+                            <img class="right-arrow" src="../../../../assets/icons/next.svg">
+                        </div>
+                    </div>
+                    <div class="delete-line"
+                         [ngClass]="gr.position == 'left'  ? 'in-left' : 'in-right'"
+                         (click)="deleteLine(i, gr.id)">
+                        <div class="delete-line-icon">
+                            <img class="delete-icon" src="../../../../assets/icons/delete.svg">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="add-line-wrapper">
+                <div class="btn-add" (click)="addLine()">Add new line</div>
+            </div>
+
+        </div>
+
+        <div class="col-3 bg-light">
+            <div class="block-list">
+                <ul>
+                    <li>block</li>
+                    <li>block</li>
+                    <li>block</li>
+                    <li>block</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</div>

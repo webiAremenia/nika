@@ -1,5 +1,5 @@
 const Settings = require('../models/settings');
-const errors = require('../_help/error_handler');
+const errors = require('../_help/errorHandler');
 
 module.exports = {
     getSettings: async (req,res) => {

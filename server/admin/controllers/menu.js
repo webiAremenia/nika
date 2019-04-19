@@ -1,5 +1,5 @@
 const Menu = require('../models/menu');
-const errors = require('../_help/error_handler');
+const errors = require('../_help/errorHandler');
 const waterfall = require('async-waterfall');
 
 module.exports = {

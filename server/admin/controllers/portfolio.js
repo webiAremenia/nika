@@ -1,5 +1,5 @@
 const Portfolio = require('../models/portfolio');
-const errors = require('../_help/error_handler');
+const errors = require('../_help/errorHandler');
 const fs = require('fs');
 const sharp = require('sharp');
 
