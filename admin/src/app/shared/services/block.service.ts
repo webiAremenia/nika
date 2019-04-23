@@ -20,7 +20,7 @@ export class BlockService {
     }
 
     postBlock(block) {
-        console.log('eeee');
+        // console.log(block);
         return this.http.post(this.urlApi + '/block', block);
     }
 

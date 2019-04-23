@@ -7,6 +7,13 @@
                 <nz-form-item>
 
                     <nz-form-item>
+                        <nz-form-label [nzSm]="6" [nzXs]="24">Block Title</nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24" >
+                            <input nz-input formControlName="blockTitle" [(ngModel)]="selectedBlockTitle">
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
                         <nz-form-label [nzSm]="6" [nzXs]="24">Size</nz-form-label>
                         <nz-select tagName="input" [(ngModel)]="selectedSize" formControlName="size"
                                    style="max-width: 210px;">
@@ -89,12 +96,7 @@
                                         <nz-option nzLabel="Content" nzValue="content"></nz-option>
                                     </nz-select>
                                 </nz-form-item>
-                                <nz-form-item>
-                                    <nz-form-label [nzSm]="6" [nzXs]="24">Load</nz-form-label>
-                                    <nz-form-control [nzSm]="14" [nzXs]="24">
-                                        <input nz-input formControlName="load">
-                                    </nz-form-control>
-                                </nz-form-item>
+
                                 <nz-form-item>
                                     <nz-form-label [nzSm]="6" [nzXs]="24">BgColor</nz-form-label>
                                     <nz-form-control [nzSm]="14" [nzXs]="24">
@@ -135,12 +137,7 @@
                                         <nz-option nzLabel="Content" nzValue="content"></nz-option>
                                     </nz-select>
                                 </nz-form-item>
-                                <nz-form-item>
-                                    <nz-form-label [nzSm]="6" [nzXs]="24">Load</nz-form-label>
-                                    <nz-form-control [nzSm]="14" [nzXs]="24">
-                                        <input nz-input formControlName="load">
-                                    </nz-form-control>
-                                </nz-form-item>
+
                                 <nz-form-item>
                                     <nz-form-label [nzSm]="6" [nzXs]="24">BgColor</nz-form-label>
                                     <nz-form-control [nzSm]="14" [nzXs]="24">
