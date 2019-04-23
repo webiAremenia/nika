@@ -4,7 +4,7 @@ const fs = require('fs');
 const sharp = require('sharp');
 
 module.exports = {
-    getBlock: async (req,res) => {
+    getBlock: async (req, res) => {
         try {
             let block = await Block.find({});
             res.status(201).json(block)
@@ -12,12 +12,13 @@ module.exports = {
             errors.notFound(res, errors);
         }
     },
-    addBlock: async (req,res) => {
-        console.log(req.body);
+    addBlock: async (req, res) => {
+        // console.log(req.body);
         if (req.body.type) {
             switch (req.body.type) {
                 case 'blog': {
                     let block = {
+                        blockTitle: req.body.blockTitle,
                         size: req.body.size,
                         type: req.body.type,
                         blog: {
@@ -32,9 +33,11 @@ module.exports = {
                     } catch (e) {
                         errors.invalidData(res, errors);
                     }
-                }break;
+                }
+                    break;
                 case 'project': {
                     let portfolio = {
+                        blockTitle: req.body.blockTitle,
                         size: req.body.size,
                         type: req.body.type,
                         project: {
@@ -49,61 +52,66 @@ module.exports = {
                     } catch (e) {
                         errors.invalidData(res, errors);
                     }
-                }break;
+                }
+                    break;
                 case 'video': {
-                            let block = {
-                                size: req.body.size,
-                                type: req.body.type,
-                                video: {
-                                    url: req.files ? req.files[0].filename : req.body.url
-                                }
-                            };
-                            try {
-                                await new Block(block).save();
-                                res.status(201).json({
-                                    msg: "Block has created successfully"
-                                })
-                            } catch (e) {
-                                if(req.files) {
-                                    fs.unlinkSync(`./admin/_uploads/block/${req.files[0].filename}`);
-                                }
-                                errors.invalidData(res, errors);
-                    }
-                }break;
-                case 'image': {
-                        let block = {
-                            size: req.body.size,
-                            type: req.body.type,
-                            image: {
-                                url: req.body.url,
-                                img: req.files[0].filename,
-                                size: req.body.imagesize,
-                                load: req.body.load,
-                                hovertext: req.body.hovertext,
-                                bgcolor: req.body.bgcolor
-                            }
-                        };
-                        try {
-                            await new Block(block).save();
-                            res.status(201).json({
-                                msg: "Block has created successfully"
-                            })
-                        } catch (e) {
-                            fs.unlinkSync(`./admin/_uploads/block/${req.files[0].filename}`);
-                            errors.invalidData(res, errors);
-                        }
-                }break;
-                case 'gif': {
-                    console.log(req.body)
                     let block = {
+                        blockTitle: req.body.blockTitle,
+                        size: req.body.size,
+                        type: req.body.type,
+                        video: {
+                            url: req.files ? req.files[0].filename : req.body.url
+                        }
+                    };
+                    try {
+                        await new Block(block).save();
+                        res.status(201).json({
+                            msg: "Block has created successfully"
+                        })
+                    } catch (e) {
+                        if (req.files) {
+                            fs.unlinkSync(`./admin/_uploads/block/${req.files[0].filename}`);
+                        }
+                        errors.invalidData(res, errors);
+                    }
+                }
+                    break;
+                case 'image': {
+                    let block = {
+                        blockTitle: req.body.blockTitle,
+                        size: req.body.size,
+                        type: req.body.type,
+                        image: {
+                            url: req.body.url,
+                            img: req.files[0].filename,
+                            size: req.body.imagesize,
+                            load: req.body.load,
+                            hovertext: req.body.hovertext,
+                            bgcolor: req.body.bgcolor
+                        }
+                    };
+                    try {
+                        await new Block(block).save();
+                        res.status(201).json({
+                            msg: "Block has created successfully"
+                        })
+                    } catch (e) {
+                        fs.unlinkSync(`./admin/_uploads/block/${req.files[0].filename}`);
+                        errors.invalidData(res, errors);
+                    }
+                }
+                    break;
+                case 'gif': {
+                    let block = {
+                        blockTitle: req.body.blockTitle,
                         size: req.body.size,
                         type: req.body.type,
                         gif: {
                             url: req.body.url,
                             gif: req.files
-                            .filter(item => item.filename.split('.')[item.filename.split('.').length - 1] === 'gif')[0].filename,
+                                .filter(item => item.filename.split('.')[item.filename.split('.').length - 1] === 'gif')[0].filename,
                             music: req.files
-                            .filter(item => item.filename.split('.')[item.filename.split('.').length - 1] !== 'gif')[0].filename,
+                                .filter(item => item.filename.split('.')[item.filename.split('.').length - 1] !== 'gif')[0].filename,
                             size: req.body.imagesize,
                             hovertext: req.body.hovertext,
                             load: req.body.load,
@@ -119,41 +127,45 @@ module.exports = {
                         fs.unlinkSync(`./admin/_uploads/block/${req.files[0].filename}`);
                         errors.invalidData(res, errors);
                     }
-                }break;
+                }
+                    break;
                 case 'imagetext': {
-                        let block = {
-                            size: req.body.size,
-                            type: req.body.type,
-                            imagetext: {
-                                url: req.body.url,
-                                img: req.files[0].filename,
-                                subtitle: req.body.subtitle,
-                                description: req.body.description,
-                                title: req.body.title
-                            }
-                        };
-                        try {
-                            await new Block(block).save();
-                            res.status(201).json({
-                                msg: "Block has created successfully"
-                            })
-                        } catch (e) {
-                            fs.unlinkSync(`./admin/_uploads/block/${req.files[0].filename}`);
-                            errors.invalidData(res, errors);
+                    let block = {
+                        blockTitle: req.body.blockTitle,
+                        size: req.body.size,
+                        type: req.body.type,
+                        imagetext: {
+                            url: req.body.url,
+                            img: req.files[0].filename,
+                            subtitle: req.body.subtitle,
+                            description: req.body.description,
+                            title: req.body.title
                         }
-                }break;
+                    };
+                    try {
+                        await new Block(block).save();
+                        res.status(201).json({
+                            msg: "Block has created successfully"
+                        })
+                    } catch (e) {
+                        fs.unlinkSync(`./admin/_uploads/block/${req.files[0].filename}`);
+                        errors.invalidData(res, errors);
+                    }
+                }
+                    break;
             }
         } else {
-            errors.invalidData(res,errors);
+            errors.invalidData(res, errors);
         }
     },
-    changeBlock: async (req,res) => {
+    changeBlock: async (req, res) => {
         let blockId = req.query.id + '';
         let candidate = await Block.findOne({_id: blockId});
         if (candidate) {
             switch (candidate.type) {
                 case 'blog': {
                     let block = {
+                        blockTitle: req.body.blockTitle,
                         size: req.body.size,
                         type: req.body.type,
                         blog: {
@@ -162,7 +174,7 @@ module.exports = {
                     };
                     console.log(block);
                     console.log(candidate);
-                    try{
+                    try {
                         await Block.findByIdAndUpdate(
                             {_id: blockId},
                             {$set: block},
@@ -171,16 +183,18 @@ module.exports = {
                     } catch (e) {
                         errors.conflictError(res, errors)
                     }
-                }break;
+                }
+                    break;
                 case 'project': {
                     let block = {
+                        blockTitle: req.body.blockTitle,
                         size: req.body.size,
                         type: req.body.type,
                         project: {
                             post: JSON.parse(req.body.portfolio)
                         }
                     };
-                    try{
+                    try {
                         await Block.findByIdAndUpdate(
                             {_id: blockId},
                             {$set: block},
@@ -189,60 +203,66 @@ module.exports = {
                     } catch (e) {
                         errors.conflictError(res, errors)
                     }
-                }break;
+                }
+                    break;
                 case 'video': {
-                            let block = {
-                                size: req.body.size,
-                                type: req.body.type,
-                                video: {
-                                    url: req.files.length > 0 ? req.files[0].filename : req.body.url
-                                }
-                            };
-                            try{
-                                await Block.findByIdAndUpdate(
-                                    {_id: candidate._id},
-                                    {$set: block},
-                                    {new: true});
-                                if(req.files[0]) {
-                                    fs.unlinkSync(`./admin/_uploads/block/${candidate.video.url}`);
-                                }
-                                res.status(201).json(block)
-                            } catch (e) {
-                                errors.conflictError(res, errors)
-                            }
-                }break;
-                case 'image': {
-                            let block = {
-                                size: req.body.size,
-                                type: req.body.type,
-                                image: {
-                                    img: req.files.length > 0 ? req.files[0].filename : req.body.img,
-                                    size: req.body.imagesize,
-                                    bgcolor: req.body.bgcolor,
-                                    load: req.body.load,
-                                    hovertext: req.body.hovertext,
-                                    url: req.body.url
-                                }
-                            };
-                            try{
-                                await Block.findByIdAndUpdate(
-                                    {_id: candidate._id},
-                                    {$set: block},
-                                    {new: true});
-                                if(req.files.length > 0) {
-                                    fs.unlinkSync(`./admin/_uploads/block/${candidate.image.img}`);
-                                }
-                                res.status(201).json(block)
-                            } catch (e) {
-                                errors.conflictError(res, errors)
+                    let block = {
+                        blockTitle: req.body.blockTitle,
+                        size: req.body.size,
+                        type: req.body.type,
+                        video: {
+                            url: req.files.length > 0 ? req.files[0].filename : req.body.url
+                        }
+                    };
+                    try {
+                        await Block.findByIdAndUpdate(
+                            {_id: candidate._id},
+                            {$set: block},
+                            {new: true});
+                        if (req.files[0]) {
+                            fs.unlinkSync(`./admin/_uploads/block/${candidate.video.url}`);
+                        }
+                        res.status(201).json(block)
+                    } catch (e) {
+                        errors.conflictError(res, errors)
                     }
-                }break;
+                }
+                    break;
+                case 'image': {
+                    let block = {
+                        blockTitle: req.body.blockTitle,
+                        size: req.body.size,
+                        type: req.body.type,
+                        image: {
+                            img: req.files.length > 0 ? req.files[0].filename : req.body.img,
+                            size: req.body.imagesize,
+                            bgcolor: req.body.bgcolor,
+                            load: req.body.load,
+                            hovertext: req.body.hovertext,
+                            url: req.body.url
+                        }
+                    };
+                    try {
+                        await Block.findByIdAndUpdate(
+                            {_id: candidate._id},
+                            {$set: block},
+                            {new: true});
+                        if (req.files.length > 0) {
+                            fs.unlinkSync(`./admin/_uploads/block/${candidate.image.img}`);
+                        }
+                        res.status(201).json(block)
+                    } catch (e) {
+                        errors.conflictError(res, errors)
+                    }
+                }
+                    break;
                 case 'gif': {
                     console.log('#########################');
                     console.log(req.body);
                     console.log('#########################');
 
                     let block = {
+                        blockTitle: req.body.blockTitle,
                         size: req.body.size,
                         type: req.body.type,
                         gif: {
@@ -254,19 +274,19 @@ module.exports = {
                         }
                     };
 
-                    if(req.files && req.files.filter(item => item.filename.split('.')[item.filename.split('.').length - 1] === 'gif').length > 0) {
+                    if (req.files && req.files.filter(item => item.filename.split('.')[item.filename.split('.').length - 1] === 'gif').length > 0) {
                         fs.unlinkSync(`./admin/_uploads/block/${candidate.gif.gif}`);
                         block.gif = req.files.filter(item => item.filename.split('.')[item.filename.split('.').length - 1] === 'gif')[0].filename
                     } else {
                         block.gif.gif = req.body.gif
                     }
-                    if(req.files && req.files.filter(item => item.filename.split('.')[item.filename.split('.').length - 1] !== 'gif').length > 0) {
+                    if (req.files && req.files.filter(item => item.filename.split('.')[item.filename.split('.').length - 1] !== 'gif').length > 0) {
                         fs.unlinkSync(`./admin/_uploads/block/${candidate.gif.music}`);
                         block.music = req.files.filter(item => item.filename.split('.')[item.filename.split('.').length - 1] !== 'gif')[0].filename
                     } else {
                         block.gif.music = req.body.music
                     }
-                    try{
+                    try {
                         await Block.findByIdAndUpdate(
                             {_id: candidate._id},
                             {$set: block},
@@ -275,39 +295,42 @@ module.exports = {
                     } catch (e) {
                         errors.conflictError(res, errors)
                     }
-                }break;
+                }
+                    break;
                 case 'imagetext': {
 
-                            let block = {
-                                size: req.body.size,
-                                type: req.body.type,
-                                imagetext: {
-                                    url: req.body.url,
-                                    img: req.files.length > 0 ? req.files[0].filename : req.body.img,
-                                    subtitle: req.body.subtitle,
-                                    description: req.body.description,
-                                    title: req.body.title
-                                }
-                            };
-                            try{
-                                await Block.findByIdAndUpdate(
-                                    {_id: candidate._id},
-                                    {$set: block},
-                                    {new: true});
-                                if(req.files.length > 0) {
-                                    fs.unlinkSync(`./admin/_uploads/block/${candidate.imagetext.img}`);
-                                }
-                                res.status(201).json(block)
-                            } catch (e) {
-                                errors.conflictError(res, errors)
+                    let block = {
+                        blockTitle: req.body.blockTitle,
+                        size: req.body.size,
+                        type: req.body.type,
+                        imagetext: {
+                            url: req.body.url,
+                            img: req.files.length > 0 ? req.files[0].filename : req.body.img,
+                            subtitle: req.body.subtitle,
+                            description: req.body.description,
+                            title: req.body.title
+                        }
+                    };
+                    try {
+                        await Block.findByIdAndUpdate(
+                            {_id: candidate._id},
+                            {$set: block},
+                            {new: true});
+                        if (req.files.length > 0) {
+                            fs.unlinkSync(`./admin/_uploads/block/${candidate.imagetext.img}`);
+                        }
+                        res.status(201).json(block)
+                    } catch (e) {
+                        errors.conflictError(res, errors)
                     }
-                }break;
+                }
+                    break;
             }
-        }  else {
+        } else {
             errors.notFound(res, errors)
         }
     },
-    deleteBlock: async (req,res) => {
+    deleteBlock: async (req, res) => {
         let block = req.query.id + '';
         let candidate = await Block.findOne({_id: block});
         if (candidate) {
@@ -320,18 +343,22 @@ module.exports = {
                         if (candidate.video.url.indexOf('http') < 0) {
                             fs.unlinkSync(`./admin/_uploads/block/${candidate.video.url}`);
                         }
-                    }break;
+                    }
+                        break;
                     case 'image': {
                         fs.unlinkSync(`./admin/_uploads/block/${candidate.image.img}`);
-                    }break;
+                    }
+                        break;
                     case 'gif': {
                         console.log(candidate);
                         fs.unlinkSync(`./admin/_uploads/block/${candidate.gif.gif}`);
                         fs.unlinkSync(`./admin/_uploads/block/${candidate.gif.music}`);
-                    }break;
+                    }
+                        break;
                     case 'imagetext': {
                         fs.unlinkSync(`./admin/_uploads/block/${candidate.imagetext.img}`);
-                    }break;
+                    }
+                        break;
                 }
                 res.status(201).json({
                     msg: 'Block has removed successfully'

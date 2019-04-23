@@ -31,15 +31,18 @@
   background: aquamarine;
   width: 100px;
   text-align: center;
-  cursor: pointer; ;
+  cursor: pointer;;
 }
-
+.content p{
+  color: #ffffff;
+  font-weight: 600;
+}
 .in-left {
-  left: 66.6%;
+  left: 60%;
 }
 
 .in-right {
-  left: 33.3%;
+  left: 40%;
 }
 
 .line {
@@ -57,12 +60,12 @@
 
 .large {
   top: 0;
-  width: 66.6%;
+  width: 60%;
 }
 
 .middle {
   top: 0;
-  width: 33.3%;
+  width: 40%;
 }
 
 .right {
@@ -71,6 +74,10 @@
 
 .left {
   left: 0;
+}
+.my-blocks{
+  cursor: pointer;
+  list-style: none;
 }
 
 .icons {
@@ -105,4 +112,53 @@
     border: 2px solid;
     border-radius: 10px;
   }
+}
+
+.middle-block-wrapper {
+  .small-block {
+    height: 50%;
+    width: 50%;
+    border: 1px solid black;
+    background: violet;
+    float: left;
+  }
+  .middle-block {
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
+    background: greenyellow;
+    float: left;
+  }
+}
+
+
+.large-block-wrapper {
+  .small-block {
+    height: 50%;
+    width: 33.33%;
+    border: 1px solid black;
+    background: violet;
+    float: left;
+  }
+  .middle-block {
+    height: 100%;
+    width: 66.6%;
+    border: 1px solid black;
+    background: greenyellow;
+    float: left;
+  }
+  .large-block {
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
+    background: fuchsia;
+    float: left;
+  }
+}
+
+.block-list{
+  width: 20vw;
+  position: fixed;
+  right: 0;
+  top: 200px;
 }

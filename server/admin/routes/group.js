@@ -11,6 +11,8 @@ router.post('/', controller.addLine);
 router.put('/:id', controller.updatePosition);
 router.delete('/:id', controller.deleteLine);
 
+router.put('/blocks/:id', controller.addBlocks);
+
 
 
 module.exports = router;

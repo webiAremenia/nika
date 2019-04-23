@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {GroupService} from '../../../shared/services/group.service';
+import {BlockService} from '../../../shared/services/block.service';
 
 @Component({
     selector: 'app-add-group',
@@ -10,13 +11,24 @@ export class AddGroupComponent implements OnInit {
 
     group;
     done = false;
+    blocks;
+    canBe = [];
+    current;
+    currentSize;
 
-    constructor(private service: GroupService) {
+
+    constructor(
+        private service: GroupService,
+        private blockService: BlockService
+    ) {
     }
 
     ngOnInit() {
         this.getGroup();
-        // console.log(this.group);
+        this.blockService.getBlock().subscribe((data: []) => {
+            this.blocks = data;
+            // console.log(this.blocks);
+        });
     }
 
     getGroup() {
@@ -24,7 +36,7 @@ export class AddGroupComponent implements OnInit {
             data => {
                 this.group = data;
                 this.done = true;
-                // console.log(data);
+                console.log(data);
             },
             err => console.log(err)
         );
@@ -47,7 +59,7 @@ export class AddGroupComponent implements OnInit {
             document.getElementById('middle-' + index).classList.replace('right', 'left');
             this.group[index].position = 'right';
             this.service.updatePosition(id, 'right').subscribe(
-                d => console.log(d),
+                d => '',
                 e => console.log(e)
             );
         } else {
@@ -55,7 +67,7 @@ export class AddGroupComponent implements OnInit {
             document.getElementById('middle-' + index).classList.replace('left', 'right');
             this.group[index].position = 'left';
             this.service.updatePosition(id, 'left').subscribe(
-                d => console.log(d),
+                d => '',
                 e => console.log(e)
             );
         }
@@ -75,7 +87,63 @@ export class AddGroupComponent implements OnInit {
     }
 
     editBlock(id, size) {
-        console.log(id, size);
+        this.current = this.group.filter(el => el.id === id)[0];
+        if (size === 'middle') {
+            this.currentSize = 'middle';
+            if (this.current.middleBlock.count === 0) {
+                this.canBe = this.blocks.filter(el => el.size === 'middle' || el.size === 'small');
+            } else if (this.current.middleBlock.count > 0 && this.current.middleBlock.count < 4) {
+                this.canBe = this.blocks.filter(el => el.size === 'small');
+            } else {
+                this.canBe = [];
+            }
+        } else {
+            this.currentSize = 'large';
+            if (this.current.largeBlock.count === 0) {
+                this.canBe = this.blocks;
+            } else if (this.current.largeBlock.count > 0 && this.current.largeBlock.count < 6) {
+                this.canBe = this.blocks.filter(el => el.size === 'small');
+            } else {
+                this.canBe = [];
+            }
+        }
+    }
+
+    pushToGroup( i, s, name) {
+        if (this.currentSize === 'large') {
+            this.current.largeBlock.blocks.push({size: s, block: i, blockTitle: name});
+            if (s === 'large') {
+                this.current.largeBlock.count += 6;
+            }
+            if (s === 'middle') {
+                this.current.largeBlock.count += 4;
+            }
+            if (s === 'small') {
+                this.current.largeBlock.count += 1;
+            }
+        }
+        if (this.currentSize === 'middle') {
+            this.current.middleBlock.blocks.push({size: s, block: i, blockTitle: name});
+            if (s === 'middle') {
+                this.current.middleBlock.count += 4;
+            }
+            if (s === 'small') {
+                this.current.middleBlock.count += 1;
+            }
+        }
+        this.service.addBlocks(this.current).subscribe(
+            d => {
+                if (d) {
+                    this.getGroup();
+                    setTimeout(() => {
+                        this.editBlock(this.current.id, this.currentSize);
+                    }, 500);
+                }
+            },
+            e => console.log(e)
+        );
+
+        // console.log(this.current.id, this.currentSize);
     }
 
 }

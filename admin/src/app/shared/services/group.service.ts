@@ -7,11 +7,6 @@ import {AppGlobals} from '../../app.globals';
 })
 export class GroupService {
 
-    // group = [
-    //     {line: [{size: 'large', position: 'right'}, {size: 'middle', position: 'left'}], blocks: []},
-    //     {line: [{size: 'large', position: 'left'}, {size: 'middle', position: 'right'}], blocks: []},
-    //     {line: [{size: 'large', position: 'right'}, {size: 'middle', position: 'left'}], blocks: []},
-    // ];
     url;
 
     constructor(private  http: HttpClient, globals: AppGlobals) {
@@ -21,8 +16,8 @@ export class GroupService {
     addLine() {
         const body = {
             position: 'right',
-            middleBlock: [],
-            largeBlock: []
+            middleBlock: {count: 0, blocks: []},
+            largeBlock: {count: 0, blocks: []}
         };
         return this.http.post(this.url, body);
     }
@@ -40,5 +35,9 @@ export class GroupService {
 
     deleteLine(id) {
         return this.http.delete(this.url + '/' + id);
+    }
+
+    addBlocks(currant) {
+        return this.http.put(this.url + '/blocks/' + currant.id, currant);
     }
 }
