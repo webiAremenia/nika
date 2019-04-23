@@ -20,11 +20,11 @@ export class BlockListComponent implements OnInit {
     });
   }
   add(){
-    this.router.navigate(['addBlock']);
+    this.router.navigate(['block/addBlock']);
   };
   edit(block){
     this.service.candidateBlock = block;
-    this.router.navigate(['changeBlock'])
+    this.router.navigate(['block/changeBlock'])
   };
   remove(block){
     this.service.deleteBlock(block).subscribe((data) => {

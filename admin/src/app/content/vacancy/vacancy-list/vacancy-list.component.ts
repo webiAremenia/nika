@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
-import {NzModalService} from "ng-zorro-antd";
-import {VacancyService} from "../../../shared/services/vacancy.service";
+import {Router} from '@angular/router';
+import {NzModalService} from 'ng-zorro-antd';
+import {VacancyService} from '../../../shared/services/vacancy.service';
 
 @Component({
   selector: 'app-vacancy-list',
@@ -10,27 +10,27 @@ import {VacancyService} from "../../../shared/services/vacancy.service";
 })
 export class VacancyListComponent implements OnInit {
 
-  vacancy:any[] = [];
+  vacancy: any[] = [];
   url;
   constructor(private service: VacancyService, private modalService: NzModalService, private router: Router) { }
 
   ngOnInit() {
     this.url = this.service.url + '/uploads/vacancy/';
-    this.service.getVacancy().subscribe((data:any[]) => {
+    this.service.getVacancy().subscribe((data: any[]) => {
       this.vacancy = data;
-    })
+    });
   }
 
   edit(vacancy) {
     this.service.candidateVacancy = vacancy;
-    this.router.navigate(['changeVacancy'])
+    this.router.navigate(['vacancy/changeVacancy']);
   }
 
   delete(vacancy) {
     this.service.candidateVacancy = vacancy;
     this.service.deleteVacancy(vacancy).subscribe((data) => {
       this.vacancy = this.vacancy.filter(items => items._id !== vacancy._id);
-    })
+    });
   }
   showDeleteConfirm(vacancy): void {
     this.modalService.confirm({
@@ -44,7 +44,7 @@ export class VacancyListComponent implements OnInit {
     });
   }
   addVacancy() {
-    this.router.navigate(['addVacancy'])
+    this.router.navigate(['vacancy/addVacancy']);
   }
 
 }

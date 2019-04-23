@@ -38,11 +38,11 @@ orders = [];
     });
   }
   add(){
-    this.router.navigate(['addMenu']);
+    this.router.navigate(['menu/addMenu']);
   };
   edit(menu){
     this.service.candidateMenu = menu;
-    this.router.navigate(['changeMenu'])
+    this.router.navigate(['menu/changeMenu']);
   };
   remove(menu){
     this.service.deleteMenu(menu).subscribe((data) => {

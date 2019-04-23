@@ -22,7 +22,7 @@ url;
 
   edit(slider) {
     this.service.candidateSlider = slider;
-    this.router.navigate(['changeSlider'])
+    this.router.navigate(['slider/changeSlider'])
   }
 
   delete(slider) {
@@ -43,7 +43,7 @@ url;
     });
   }
   addSlider() {
-    this.router.navigate(['addSlider'])
+    this.router.navigate(['slider/addSlider'])
   }
 
 }
