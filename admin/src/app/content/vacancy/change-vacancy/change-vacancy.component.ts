@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {NzMessageService, UploadFile} from "ng-zorro-antd";
-import {Router} from "@angular/router";
-import {VacancyService} from "../../../shared/services/vacancy.service";
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {NzMessageService, UploadFile} from 'ng-zorro-antd';
+import {Router} from '@angular/router';
+import {VacancyService} from '../../../shared/services/vacancy.service';
 
 @Component({
   selector: 'app-change-vacancy',
@@ -22,7 +22,7 @@ export class ChangeVacancyComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.service.candidateVacancy) {
-      this.router.navigate(['vacancy'])
+      this.router.navigate(['vacancy']);
     }
     this.url = this.service.url + '/uploads/vacancy/';
     this.vacancy = this.service.candidateVacancy;
@@ -43,7 +43,7 @@ export class ChangeVacancyComponent implements OnInit {
     this.fileList = this.fileList.concat(file);
     this.previewImage = file.url || file.thumbUrl;
     return false;
-  };
+  }
 
   handleUpload(): void {
     const formData = new FormData();
@@ -67,7 +67,7 @@ export class ChangeVacancyComponent implements OnInit {
           this.uploading = false;
           this.fileList = [];
           this.msg.success('upload successfully.');
-          this.router.navigate(['vacancy'])
+          this.router.navigate(['vacancy']);
         },
         (err) => {
           this.uploading = false;
@@ -77,13 +77,13 @@ export class ChangeVacancyComponent implements OnInit {
   }
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
-      let reader = new FileReader();
+      const reader = new FileReader();
       this.fileList[0] = event.target.files[0];
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
         this.previewImage = event.target['result'];
-      }
+      };
     }
   }
 

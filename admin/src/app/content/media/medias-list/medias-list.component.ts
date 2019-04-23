@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {MediaService} from "../../../shared/services/media.service";
-import {Router} from "@angular/router";
-import {NzModalService} from "ng-zorro-antd";
+import {MediaService} from '../../../shared/services/media.service';
+import {Router} from '@angular/router';
+import {NzModalService} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-medias-list',
@@ -19,12 +19,12 @@ export class MediasListComponent implements OnInit {
     this.service.getMedias().subscribe((data) => {
       this.medias = data;
       this.items = data;
-    })
+    });
   }
 
   edit(media) {
     this.service.candidateMedia = media;
-    this.router.navigate(['changeMedia'])
+    this.router.navigate(['media/changeMedia']);
   }
 
   delete(media) {
@@ -32,11 +32,11 @@ export class MediasListComponent implements OnInit {
     this.service.deleteMedia(media).subscribe((data) => {
       this.items = this.items.filter(items => items._id !== media._id);
       this.medias = this.medias.filter(items => items._id !== media._id);
-    })
+    });
   }
 
   addMedia() {
-    this.router.navigate(['addMedia'])
+    this.router.navigate(['media/addMedia']);
   }
 
   showDeleteConfirm(data): void {

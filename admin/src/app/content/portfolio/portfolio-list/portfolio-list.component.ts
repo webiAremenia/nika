@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {MediaService} from "../../../shared/services/media.service";
-import {Router} from "@angular/router";
-import {NzModalService} from "ng-zorro-antd";
-import {PortfolioService} from "../../../shared/services/portfolio.service";
+import {MediaService} from '../../../shared/services/media.service';
+import {Router} from '@angular/router';
+import {NzModalService} from 'ng-zorro-antd';
+import {PortfolioService} from '../../../shared/services/portfolio.service';
 
 @Component({
   selector: 'app-portfolio-list',
@@ -21,23 +21,23 @@ export class PortfolioListComponent implements OnInit {
     this.url = this.service.url + '/uploads/portfolio/';
     this.service.getPortfolio().subscribe((data) => {
       this.portfolios = data;
-    })
+    });
   }
 
   edit(portfolio) {
     this.service.candidatePortfolio = portfolio;
-    this.router.navigate(['changePortfolio'])
+    this.router.navigate(['portfolio/changePortfolio']);
   }
 
   delete(portfolio) {
     this.service.candidatePortfolio = portfolio;
     this.service.deletePortfolio(portfolio).subscribe((data) => {
       this.portfolios = this.portfolios.filter(items => items._id !== portfolio._id);
-    })
+    });
   }
 
   addPortfolio() {
-    this.router.navigate(['addPortfolio'])
+    this.router.navigate(['portfolio/addPortfolio']);
   }
 
   showDeleteConfirm(data): void {
