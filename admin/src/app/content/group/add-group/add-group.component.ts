@@ -109,9 +109,9 @@ export class AddGroupComponent implements OnInit {
         }
     }
 
-    pushToGroup( i, s, name) {
+    pushToGroup( i, s, n) {
         if (this.currentSize === 'large') {
-            this.current.largeBlock.blocks.push({size: s, block: i, blockTitle: name});
+            this.current.largeBlock.blocks.push({size: s, block: i, name: n});
             if (s === 'large') {
                 this.current.largeBlock.count += 6;
             }
@@ -123,7 +123,7 @@ export class AddGroupComponent implements OnInit {
             }
         }
         if (this.currentSize === 'middle') {
-            this.current.middleBlock.blocks.push({size: s, block: i, blockTitle: name});
+            this.current.middleBlock.blocks.push({size: s, block: i, name: n});
             if (s === 'middle') {
                 this.current.middleBlock.count += 4;
             }

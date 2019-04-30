@@ -15,7 +15,7 @@
                         <div class="large-block-wrapper h-100 w-100">
                             <div *ngFor="let ell of gr.largeBlock.blocks" class="{{ell.size}}-block">
                                 <div class="content text-center">
-                                    <p>{{ell.blockTitle}}</p>
+                                    <p>{{ell.name}}</p>
                                     <p>{{ell.size}}</p>
                                 </div>
                             </div>
@@ -33,7 +33,7 @@
                         <div class="middle-block-wrapper h-100 w-100">
                             <div *ngFor="let ell of gr.middleBlock.blocks" class="{{ell.size}}-block">
                                 <div class="content text-center">
-                                    <p>{{ell.blockTitle}}</p>
+                                    <p>{{ell.name}}</p>
                                     <p>{{ell.size}}</p>
                                 </div>
                             </div>
@@ -74,9 +74,9 @@
         <div class="block-list">
             <ul *ngIf="canBe.length > 0">
                 <li class="my-blocks"
-                    (click)="pushToGroup(block._id, block.size, block.blockTitle)"
+                    (click)="pushToGroup(block._id, block.size, block.name)"
                     *ngFor="let block of canBe">
-                    {{block.blockTitle}} <b> {{block.size}} </b>  {{block.type}}
+                    {{block.name}} <b> {{block.size}} </b>  {{block.type}}
                 </li>
             </ul>
         </div>

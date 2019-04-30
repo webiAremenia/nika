@@ -78,7 +78,7 @@ const storage = multer.diskStorage({
     }
 });
 
-var fileFilter = (req, file, cb) => {
+const fileFilter = (req, file, cb) => {
     // reject a file
     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/svg') {
         cb(null, true);
@@ -90,7 +90,7 @@ var fileFilter = (req, file, cb) => {
 
 
 const upload = multer({
-    fileFilter: fileFilter,
+    // fileFilter: fileFilter,
     storage: storage
 });
 

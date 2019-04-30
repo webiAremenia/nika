@@ -10,7 +10,7 @@ export class GroupService {
     url;
 
     constructor(private  http: HttpClient, globals: AppGlobals) {
-        this.url = globals.url + '/admin/group';
+        this.url = globals.url + '/admin/group';console.log(this.url);
     }
 
     addLine() {

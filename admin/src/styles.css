@@ -6,3 +6,7 @@
 .ant-layout-sider-children{
   height: 100vh;
 }
+.color-picker{
+  top: 50px !important;
+  left: -215px !important;
+}

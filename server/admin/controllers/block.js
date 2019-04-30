@@ -13,154 +13,37 @@ module.exports = {
         }
     },
     addBlock: async (req, res) => {
-        // console.log(req.body);
-        if (req.body.type) {
-            switch (req.body.type) {
-                case 'blog': {
-                    let block = {
-                        blockTitle: req.body.blockTitle,
-                        size: req.body.size,
-                        type: req.body.type,
-                        blog: {
-                            post: JSON.parse(req.body.post)
-                        }
-                    };
-                    try {
-                        await new Block(block).save();
-                        res.status(201).json({
-                            msg: "Block has created successfully"
-                        })
-                    } catch (e) {
-                        errors.invalidData(res, errors);
-                    }
-                }
-                    break;
-                case 'project': {
-                    let portfolio = {
-                        blockTitle: req.body.blockTitle,
-                        size: req.body.size,
-                        type: req.body.type,
-                        project: {
-                            post: JSON.parse(req.body.portfolio)
-                        }
-                    };
-                    try {
-                        await new Block(portfolio).save();
-                        res.status(201).json({
-                            msg: "Project has created successfully"
-                        })
-                    } catch (e) {
-                        errors.invalidData(res, errors);
-                    }
-                }
-                    break;
-                case 'video': {
-                    let block = {
-                        blockTitle: req.body.blockTitle,
-                        size: req.body.size,
-                        type: req.body.type,
-                        video: {
-                            url: req.files ? req.files[0].filename : req.body.url
-                        }
-                    };
-                    try {
-                        await new Block(block).save();
-                        res.status(201).json({
-                            msg: "Block has created successfully"
-                        })
-                    } catch (e) {
-                        if (req.files) {
-                            fs.unlinkSync(`./admin/_uploads/block/${req.files[0].filename}`);
-                        }
-                        errors.invalidData(res, errors);
-                    }
-                }
-                    break;
-                case 'image': {
-                    let block = {
-                        blockTitle: req.body.blockTitle,
-                        size: req.body.size,
-                        type: req.body.type,
-                        image: {
-                            url: req.body.url,
-                            img: req.files[0].filename,
-                            size: req.body.imagesize,
-                            load: req.body.load,
-                            hovertext: req.body.hovertext,
-                            bgcolor: req.body.bgcolor
-                        }
-                    };
-                    try {
-                        await new Block(block).save();
-                        res.status(201).json({
-                            msg: "Block has created successfully"
-                        })
-                    } catch (e) {
-                        fs.unlinkSync(`./admin/_uploads/block/${req.files[0].filename}`);
-                        errors.invalidData(res, errors);
-                    }
-                }
-                    break;
-                case 'gif': {
-                    let block = {
-                        blockTitle: req.body.blockTitle,
-                        size: req.body.size,
-                        type: req.body.type,
-                        gif: {
-                            url: req.body.url,
-                            gif: req.files
-                                .filter(item => item.filename.split('.')[item.filename.split('.').length - 1] === 'gif')[0].filename,
-                            music: req.files
-                                .filter(item => item.filename.split('.')[item.filename.split('.').length - 1] !== 'gif')[0].filename,
-                            size: req.body.imagesize,
-                            hovertext: req.body.hovertext,
-                            load: req.body.load,
-                            bgcolor: req.body.bgcolor
-                        }
-                    };
-                    try {
-                        await new Block(block).save();
-                        res.status(201).json({
-                            msg: "Block has created successfully"
-                        })
-                    } catch (e) {
-                        fs.unlinkSync(`./admin/_uploads/block/${req.files[0].filename}`);
-                        errors.invalidData(res, errors);
-                    }
-                }
-                    break;
-                case 'imagetext': {
-                    let block = {
-                        blockTitle: req.body.blockTitle,
-                        size: req.body.size,
-                        type: req.body.type,
-                        imagetext: {
-                            url: req.body.url,
-                            img: req.files[0].filename,
-                            subtitle: req.body.subtitle,
-                            description: req.body.description,
-                            title: req.body.title
-                        }
-                    };
-                    try {
-                        await new Block(block).save();
-                        res.status(201).json({
-                            msg: "Block has created successfully"
-                        })
-                    } catch (e) {
-                        fs.unlinkSync(`./admin/_uploads/block/${req.files[0].filename}`);
-                        errors.invalidData(res, errors);
-                    }
-                }
-                    break;
-            }
-        } else {
-            errors.invalidData(res, errors);
+        const data = JSON.parse(req.body.data);
+        try {
+            const block = {
+                name: data.name,
+                size: data.size,
+                type: data.type,
+                portfolio: data.portfolio,
+                stories: data.stories && data.stories.length > 0 ? data.stories: null,
+                video: data.video,
+                content: data.content ? {
+                    image: req.file.filename,
+                    animation: data.content.animation,
+                    animationText: data.content.animationText,
+                    bgColor: data.content.bgColor,
+                    bgSize: data.content.bgSize,
+                    url: data.content.url
+                }:null
+            };
+            new Block(block).save();
+            res.status(201).json({
+                success: true
+            })
+        } catch (e) {
+            console.log(e);
+            res.status(500).json({err: e.message})
         }
+
+
     },
     changeBlock: async (req, res) => {
-        let blockId = req.query.id + '';
-        let candidate = await Block.findOne({_id: blockId});
+        let candidate = await Block.findOne({_id: req.params.id});
         if (candidate) {
             switch (candidate.type) {
                 case 'blog': {

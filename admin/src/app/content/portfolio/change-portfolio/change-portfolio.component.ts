@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {SliderService} from "../../../shared/services/slider.service";
-import {NzMessageService, UploadFile} from "ng-zorro-antd";
-import {Router} from "@angular/router";
-import {PortfolioService} from "../../../shared/services/portfolio.service";
-import {MediaService} from "../../../shared/services/media.service";
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {SliderService} from '../../../shared/services/slider.service';
+import {NzMessageService, UploadFile} from 'ng-zorro-antd';
+import {Router} from '@angular/router';
+import {PortfolioService} from '../../../shared/services/portfolio.service';
+import {MediaService} from '../../../shared/services/media.service';
 
 @Component({
   selector: 'app-change-portfolio',
@@ -27,15 +27,15 @@ export class ChangePortfolioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    setTimeout(_=>{
-      if(!this.service.candidatePortfolio) {
+    setTimeout(_ => {
+      if (!this.service.candidatePortfolio) {
         this.router.navigate(['/portfolio']);
         console.clear();
       }
-    },500);
-      this.url = this.service.url + '/uploads/portfolio/';
-      this.portfolio = this.service.candidatePortfolio;
-      this.validateForm = new FormGroup({
+    }, 500);
+    this.url = this.service.url + '/uploads/portfolio/';
+    this.portfolio = this.service.candidatePortfolio;
+    this.validateForm = new FormGroup({
         title: new FormControl(this.portfolio.title, [Validators.required]),
         description: new FormControl(this.portfolio.description, [Validators.required]),
         link: new FormControl(this.portfolio.link, [Validators.required]),
@@ -63,7 +63,7 @@ export class ChangePortfolioComponent implements OnInit {
     formData.append('imgs', this.portfolio.imgs);
     formData.append('deletedimages', this.validateForm.get('deletedimages').value);
     this.uploading = true;
-    let data = {
+    const data = {
       deletedimages: this.deletedimages,
       portfolio: formData
     };
@@ -73,8 +73,8 @@ export class ChangePortfolioComponent implements OnInit {
           this.uploading = false;
           this.fileList = [];
           this.msg.success('upload successfully.');
-          console.log(this.portfolio.imgs)
-          this.router.navigate(['portfolio'])
+          console.log(this.portfolio.imgs);
+          this.router.navigate(['portfolio']);
         },
         () => {
           this.uploading = false;
@@ -85,7 +85,7 @@ export class ChangePortfolioComponent implements OnInit {
   deleteImage(image) {
     this.deletedimages.push(image);
     this.portfolio.imgs = this.portfolio.imgs.filter(item => item !== image);
-    console.log(this.portfolio.imgs)
+    console.log(this.portfolio.imgs);
   }
   showModal(): void {
     this.isVisible = true;

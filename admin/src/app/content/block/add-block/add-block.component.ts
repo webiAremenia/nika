@@ -12,243 +12,149 @@ import {BlockService} from '../../../shared/services/block.service';
     styleUrls: ['./add-block.component.css']
 })
 export class AddBlockComponent implements OnInit {
-
-    tagValue = [];
-
-
-    validateForm: FormGroup;
-    uploading = false;
-    fileList: UploadFile[] = [];
-    selectedSize = '';
-    selectedType = '';
-    selectedBlockTitle = '';
-    selectedBlockPost = [];
-    selectedImageSize = '';
-    typeData = ['portfolio', 'post'];
-    allItems = [];
-    candidate;
-    click = 0;
+    color = '#000';
+    blockTypes;
+    blockForm;
+    stories;
+    portfolios;
+    selectedType;
+    submitted = false;
+    dropdownSettings;
+    dropdownList;
+    imageForm;
+    formData;
+    obj;
 
     constructor(
-        private postService: PostsService,
+        private router: Router,
+        private fb: FormBuilder,
+        private storyService: PostsService,
         private portfolioService: PortfolioService,
-        private fb: FormBuilder, private msg: NzMessageService,
-        private service: BlockService, private router: Router
+        private blockService: BlockService,
     ) {
+        this.formData = new FormData();
     }
 
     ngOnInit(): void {
+        this.buildForm();
+        this.getProjects();
+        this.getStoriesSettings();
+    }
 
+    addControlByType(event) {
+        this.imageForm = this.fb.group({
+            image: [null],
+            bgColor: [null],
+            bgSize: [null],
+            animation: [null],
+            animationText: [null],
+            url: [null],
+            mp3: [null],
+        });
 
-        this.validateForm = new FormGroup({
-            blockTitle: new FormControl(' ', [Validators.required]),
-            blog: new FormControl(' ', [Validators.required]),
-            url: new FormControl(' ', [Validators.required]),
-            image: new FormControl(' ', [Validators.required]),
-            size: new FormControl(' ', [Validators.required]),
-            type: new FormControl(' ', [Validators.required]),
-            imagesize: new FormControl(' ', [Validators.required]),
-            bgcolor: new FormControl(' ', [Validators.required]),
-            hovertext: new FormControl(' ', [Validators.required]),
-            subtitle: new FormControl(' ', [Validators.required]),
-            title: new FormControl(' ', [Validators.required]),
-            portfolio: new FormControl(' ', [Validators.required]),
-            description: new FormControl(' ', [Validators.required]),
+        this.selectedType = this.blockForm.value.type;
+        if (this.selectedType === 'Stories') {
+            this.blockForm.removeControl('portfolio');
+            this.blockForm.removeControl('video');
+            this.blockForm.removeControl('content');
+            this.blockForm.addControl('stories', new FormControl(null, Validators.required));
+        }
+        if (this.selectedType === 'Portfolio') {
+            this.blockForm.removeControl('stories');
+            this.blockForm.removeControl('video');
+            this.blockForm.removeControl('content');
+            this.blockForm.addControl('portfolio', new FormControl(null, Validators.required));
+        }
+        if (this.selectedType === 'Video') {
+            this.blockForm.removeControl('stories');
+            this.blockForm.removeControl('portfolio');
+            this.blockForm.removeControl('content');
+            this.blockForm.addControl('video', new FormControl(null, Validators.required));
+        }
+        if (this.selectedType === 'Image') {
+            this.blockForm.removeControl('stories');
+            this.blockForm.removeControl('portfolio');
+            this.blockForm.removeControl('video');
+            this.blockForm.addControl('content', this.imageForm);
+        }
+    }
+
+    getStoriesSettings() {
+        this.dropdownSettings = {
+            singleSelection: false,
+            idField: 'id',
+            textField: 'title',
+            selectAllText: 'Select All',
+        };
+
+        this.storyService.getPosts().subscribe(
+            d => {
+                this.stories = d;
+                this.dropdownList = this.stories.map(el => {
+                    return {
+                        title: el.title,
+                        id: el._id
+                    };
+                });
+            },
+            e => console.log(e)
+        );
+    }
+
+    getProjects() {
+        this.portfolioService.getPortfolio().subscribe(
+            d => this.portfolios = d,
+            e => console.log(e)
+        );
+    }
+
+    buildForm() {
+        this.blockTypes = ['', 'Portfolio', 'Stories', 'Video', 'Image'];
+        this.blockForm = this.fb.group({
+            name: [null, [Validators.required]],
+            size: [null, [Validators.required]],
+            type: [null, [Validators.required]],
         });
     }
 
-    handleUpload(): void {
-        let form = new FormData();
-        switch (this.selectedType) {
-            case 'blog': {
-                form.append('type', this.selectedType);
-                form.append('size', this.selectedSize);
-                form.append('blockTitle', this.selectedBlockTitle);
-                form.append('post', JSON.stringify(this.validateForm.get('blog').value));
-            }
-                         break;
-            case 'project': {
-                form.append('type', this.selectedType);
-                form.append('size', this.selectedSize);
-                form.append('blockTitle', this.selectedBlockTitle);
-                form.append('portfolio', JSON.stringify(this.validateForm.get('portfolio').value));
-            }
-                            break;
-            case 'video': {
-                form = new FormData();
-                form.append('type', this.selectedType);
-                form.append('size', this.selectedSize);
-                form.append('blockTitle', this.selectedBlockTitle);
-                if (this.fileList.length > 0) {
-                    this.fileList.forEach((file: any) => {
-                        form.append('image', file);
-                    });
-                } else {
-                    form.append('url', this.validateForm.get('url').value);
-                }
-            }
-                          break;
-            case 'image': {
-                this.fileList.forEach((file: any) => {
-                    form.append('image', file);
-                });
-                form.append('bgcolor', this.validateForm.get('bgcolor').value);
-                form.append('hovertext', this.validateForm.get('hovertext').value);
-                form.append('url', this.validateForm.get('url').value);
-                form.append('imagesize', this.validateForm.get('imagesize').value);
-                form.append('type', this.selectedType);
-                form.append('size', this.selectedSize);
-                form.append('blockTitle', this.selectedBlockTitle);
-            }
-                          break;
-            case 'gif': {
-                this.fileList.forEach((file: any) => {
-                    form.append('image', file);
-                });
-                form.append('bgcolor', this.validateForm.get('bgcolor').value);
-                form.append('hovertext', this.validateForm.get('hovertext').value);
-                form.append('url', this.validateForm.get('url').value);
-                form.append('imagesize', this.validateForm.get('imagesize').value);
-                form.append('type', this.selectedType);
-                form.append('size', this.selectedSize);
-                form.append('blockTitle', this.selectedBlockTitle);
-            }
-                        break;
-            case 'imagetext': {
-                this.fileList.forEach((file: any) => {
-                    form.append('image', file);
-                });
-                form.append('subtitle', this.validateForm.get('subtitle').value);
-                form.append('title', this.validateForm.get('title').value);
-                form.append('description', this.validateForm.get('description').value);
-                form.append('url', this.validateForm.get('url').value);
-                form.append('type', this.selectedType);
-                form.append('size', this.selectedSize);
-                form.append('blockTitle', this.selectedBlockTitle);
-            }
-                              break;
+    saveBlock() {
+        console.log(this.blockForm.value);
+        if (this.selectedType === 'Image') {
+            this.imageForm.get('bgColor').setValue(this.color);
+            this.formData.append('image', this.imageForm.get('image').value);
         }
-        this.service.postBlock(form)
-            .subscribe(
-                () => {
-                    this.uploading = false;
-                    this.fileList = [];
-                    this.msg.success('upload successfully.');
-                    this.router.navigate(['block']);
-                },
-                () => {
-                    this.uploading = false;
-                    this.msg.error('upload failed.');
+
+        this.formData.append('data', JSON.stringify(this.blockForm.value));
+
+        this.blockService.postBlock(this.formData).subscribe(
+            d => {
+                if (d) {
+                    this.blockForm.reset();
+                    this.router.navigate(['/block']);
                 }
-            );
+            },
+            e => console.log(e)
+        );
+        this.blockForm.reset();
     }
 
-    foo(item) {
-        this.validate(item);
-        switch (item) {
-            case 'blog':
-                this.postService.getPosts().subscribe((data: []) => this.allItems = data);
-                break;
-            case 'project':
-                this.portfolioService.getPortfolio().subscribe((data: []) => this.allItems = data);
-                break;
+    onFileSelect(event, selector) {
+        if (event.target.files.length > 0) {
+            // const file = event.target.files[0];
+            if (this.selectedType === 'Image') {
+                const img = event.target.files[0];
+                if (selector === 'image') {
+                    console.log(444);
+                    this.imageForm.get('image').setValue(img);
+                } else if (selector === 'mp3') {
+                    const mp3 = event.target.files[0];
+                    console.log(5555);
+                    this.imageForm.get('mp3').setValue(mp3);
+                }
+            }
+            console.log(event.target.files);
         }
     }
 
-    onSelectFile(event) {
-        if (event.target.files && event.target.files[0]) {
-            const reader = new FileReader();
-            this.fileList[this.fileList.length] = event.target.files[0];
-            reader.readAsDataURL(event.target.files[0]); // read file as data url
-            switch (this.selectedType) {
-                case 'video': {
-                    this.validateForm.get('url').setValue(event.target.files[0].name);
-                }
-                              break;
-            }
-            document.getElementById('#bb').style.backgroundColor = 'limegreen';
-            reader.onload = (event) => {
-                // console.log(this.validateForm.value);
-            };
-        }
-    }
-
-    validate(type) {
-        switch (type) {
-            case 'blog': {
-                this.validateForm.get('blog').setValue('');
-                this.validateForm.get('url').setValue('ss');
-                this.validateForm.get('imagesize').setValue('ss');
-                this.validateForm.get('bgcolor').setValue('ss');
-                this.validateForm.get('hovertext').setValue('ss');
-                this.validateForm.get('subtitle').setValue('ss');
-                this.validateForm.get('title').setValue('ss');
-                this.validateForm.get('portfolio').setValue('ss');
-                this.validateForm.get('description').setValue('ss');
-                this.validateForm.get('image').setValue('ss');
-            }
-                         break;
-            case 'project': {
-                this.validateForm.get('blog').setValue('ss');
-                this.validateForm.get('url').setValue('ss');
-                this.validateForm.get('imagesize').setValue('ss');
-                this.validateForm.get('bgcolor').setValue('ss');
-                this.validateForm.get('hovertext').setValue('ss');
-                this.validateForm.get('subtitle').setValue('ss');
-                this.validateForm.get('title').setValue('ss');
-                this.validateForm.get('portfolio').setValue('');
-                this.validateForm.get('description').setValue('ss');
-                this.validateForm.get('image').setValue('ss');
-            }
-                            break;
-            case 'video': {
-                this.validateForm.get('blog').setValue('ss');
-                this.validateForm.get('url').setValue('');
-                this.validateForm.get('imagesize').setValue('ss');
-                this.validateForm.get('bgcolor').setValue('ss');
-                this.validateForm.get('hovertext').setValue('ss');
-                this.validateForm.get('subtitle').setValue('ss');
-                this.validateForm.get('title').setValue('ss');
-                this.validateForm.get('portfolio').setValue('ss');
-                this.validateForm.get('description').setValue('ss');
-            }
-                          break;
-            case 'image': {
-                this.validateForm.get('blog').setValue('ss');
-                this.validateForm.get('url').setValue('');
-                this.validateForm.get('imagesize').setValue('');
-                this.validateForm.get('bgcolor').setValue('');
-                this.validateForm.get('hovertext').setValue('');
-                this.validateForm.get('subtitle').setValue('ss');
-                this.validateForm.get('title').setValue('ss');
-                this.validateForm.get('portfolio').setValue('ss');
-                this.validateForm.get('description').setValue('ss');
-            }
-                          break;
-            case 'gif': {
-                this.validateForm.get('blog').setValue('ss');
-                this.validateForm.get('url').setValue('');
-                this.validateForm.get('imagesize').setValue('');
-                this.validateForm.get('bgcolor').setValue('');
-                this.validateForm.get('hovertext').setValue('');
-                this.validateForm.get('subtitle').setValue('ss');
-                this.validateForm.get('title').setValue('ss');
-                this.validateForm.get('portfolio').setValue('ss');
-                this.validateForm.get('description').setValue('ss');
-            }
-                        break;
-            case 'imagetext': {
-                this.validateForm.get('blog').setValue('ss');
-                this.validateForm.get('url').setValue('');
-                this.validateForm.get('imagesize').setValue('ss');
-                this.validateForm.get('bgcolor').setValue('ss');
-                this.validateForm.get('hovertext').setValue('ss');
-                this.validateForm.get('subtitle').setValue('');
-                this.validateForm.get('title').setValue('');
-                this.validateForm.get('portfolio').setValue('ss');
-                this.validateForm.get('description').setValue('');
-            }
-                              break;
-        }
-    }
 }
+// if(this.file.name.match(/\.(avi|mp3|mp4|mpeg|ogg)$/i))

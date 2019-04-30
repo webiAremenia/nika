@@ -8,7 +8,7 @@ const Group = new Schema({
         blocks: [{
             size: String,
             block: {type: mongoose.Schema.ObjectId, ref: 'Block'},
-            blockTitle: String
+            name: String
         }]
     },
     largeBlock: {
@@ -16,7 +16,7 @@ const Group = new Schema({
         blocks: [{
             size: String,
             block: {type: mongoose.Schema.ObjectId, ref: 'Block'},
-            blockTitle: String
+            name: String
         }]
     },
 });
