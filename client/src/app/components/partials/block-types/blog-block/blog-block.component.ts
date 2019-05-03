@@ -8,15 +8,6 @@ import {Component, Input, OnInit} from '@angular/core';
 export class BlogBlockComponent implements OnInit {
 
     @Input() block;
-
-
-    constructor() {
-
-    }
-
-    ngOnInit() {
-    }
-
     customOptions: any = {
         loop: true,
         mouseDrag: true,
@@ -44,5 +35,14 @@ export class BlogBlockComponent implements OnInit {
             }
         },
         nav: false
+    };
+
+
+    constructor() {
+
+    }
+
+    ngOnInit() {
+        // console.log(this.block);
     }
 }

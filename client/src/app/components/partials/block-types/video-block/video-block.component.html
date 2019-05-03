@@ -9,7 +9,7 @@
          [volume]=".8"
          [autoplay]="play"
          [muted]=false>
-    <source src="../../../../assets/video/{{block.content.video}}" type="video/mp4"/>
+    <source [src]="videoUrl + block.video" type="video/mp4"/>
   </video>
 
   <div #videoLogo class="on-content w-100">
@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="col-6">
-        {{block.content.title | uppercase}}
+        <!--{{block.content.title | uppercase}}-->
       </div>
     </div>
   </div>

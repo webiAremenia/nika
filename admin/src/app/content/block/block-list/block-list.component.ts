@@ -10,11 +10,13 @@ import {BlockService} from '../../../shared/services/block.service';
 })
 export class BlockListComponent implements OnInit {
 
-  blocks = [];
+  blocks ;
+  done = false;
   constructor(private service: BlockService, private router: Router, private modalService: NzModalService) { }
 
   ngOnInit() {
     this.service.getBlock().subscribe((data) => {
+      this.done = true;
       this.blocks = data;
     });
   }

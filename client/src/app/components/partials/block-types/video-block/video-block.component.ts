@@ -1,4 +1,5 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {AppGlobals} from '../../../../app.globals';
 
 @Component({
     selector: 'app-video-block',
@@ -12,8 +13,10 @@ export class VideoBlockComponent implements OnInit {
     @ViewChild(`videoLogo`) videoLogo: ElementRef;
     play = false;
     muted = true;
+    videoUrl;
 
-    constructor() {
+    constructor(config: AppGlobals) {
+        this.videoUrl = config.imageUrl + '/block/';
     }
 
     ngOnInit() {

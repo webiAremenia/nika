@@ -1,4 +1,4 @@
-<nz-table #middleTable nzSize="middle" [nzData]="blocks" [nzPageSize]="8">
+<nz-table *ngIf="done" #middleTable nzSize="middle" [nzData]="blocks" [nzPageSize]="8">
   <thead>
   <tr>
     <th>Size</th>

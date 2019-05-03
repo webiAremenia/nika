@@ -19,6 +19,10 @@ export class FooterService {
         this.imageUrl = config.imageUrl;
     }
 
+    getPortfolioById(id) {
+        console.log(id);
+        return this.http.get(this.url + 'portfolio/' + id);
+    }
     getGroups(): Observable<Group[]> {
         return this.http.get<any[]>(`${this.url}group`)
             .pipe(map(data => {
@@ -30,7 +34,6 @@ export class FooterService {
                             largeBlock: group.largeBlock,
                         };
                     });
-                    console.log(this.groups);
                     return this.groups;
                 }),
                 catchError(err => {

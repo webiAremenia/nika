@@ -14,6 +14,7 @@ export class ImageBlockComponent implements OnInit {
 
 
   ngOnInit() {
+    // console.log(this.block);
   }
 
 }

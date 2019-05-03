@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ComponentService} from '../../../_services/component.service';
 import {Block} from '../../../_models/block';
 import {FooterService} from '../../../_services/footer.service';
+import {Group} from '../../../_models/group';
 
 @Component({
   selector: 'app-all-blocks',
@@ -12,6 +13,8 @@ export class AllBlocksComponent implements OnInit {
 
   blocks: Block[];
   groups;
+  ggg: Group[];
+  ggDone = false;
   constructor(
       private componentService: ComponentService,
       private footerService: FooterService
@@ -28,9 +31,13 @@ export class AllBlocksComponent implements OnInit {
   }
   getGroups() {
     this.groups = this.componentService.getGroup();
-    // console.log(this.groups)
+
     this.footerService.getGroups().subscribe(
-        d => console.log(d),
+        d => {
+          this.ggg = d;
+          this.ggDone = true;
+          console.log(this.ggg[0].largeBlock);
+        },
         e => console.log(e)
     );
   }

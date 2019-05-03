@@ -14,8 +14,8 @@ module.exports = {
     },
     getOne: async (req, res) => {
         try {
-            let posts = await Portfolio.find({_id: req.params.id});
-            res.status(201).json(posts[0])
+            let posts = await Portfolio.findOne({_id: req.params.id});
+            res.status(200).json(posts)
         } catch (e) {
             errors.notFound(res, errors);
         }

@@ -13,6 +13,14 @@ module.exports = {
             errors.notFound(res, errors);
         }
     },
+    getPortfolioById: async (req,res) => {
+        try {
+            let portfolio = await Portfolio.findOne({_id: req.params.id});
+            res.status(201).json(portfolio)
+        } catch (e) {
+            errors.notFound(res, errors);
+        }
+    },
     addPortfolio: async (req,res) => {
         let candidate = await Portfolio.findOne({title: req.body.title});
         if (!candidate) {

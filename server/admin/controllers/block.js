@@ -27,7 +27,7 @@ module.exports = {
                 video : null,
                 content: data.content ? {
                     image: req.files[0].filename,
-                    mp3: req.files[1].filename,
+                    mp3: req.files[1] ? req.files[1].filename: null,
                     animation: data.content.animation,
                     animationText: data.content.animationText,
                     bgColor: data.content.bgColor,
@@ -36,7 +36,7 @@ module.exports = {
                 } : null
             };
             if(req.files.length > 0){
-                if(req.files[0].fieldname == 'video'){
+                if(req.files[0].fieldname === 'video'){
                     block.video = req.files[0].filename;
                 }
             }
@@ -56,19 +56,19 @@ module.exports = {
         let data = JSON.parse(req.body.data);
         let block;
         try {
-            console.log(1)
+            // console.log(1)
 
             if (data.portfolio || data.stories) {
-                console.log(2)
+                // console.log(2)
 
                 await Block.findByIdAndUpdate({_id: req.params.id}, data);
                 res.status(201).json({
-                    succuess: true
+                    success: true
                 })
             } else {
                 if (data.video) {
-                    console.log(3)
-                    console.log(req.files);
+                    // console.log(3)
+                    // console.log(req.files);
                     if (req.files.length > 0) {
                         fs.unlinkSync(`./admin/_uploads/block/${candidate.video}`);
                         block = {
@@ -76,7 +76,7 @@ module.exports = {
                         };
                         await Block.findByIdAndUpdate({_id: req.params.id}, block);
                         res.status(201).json({
-                            succuess: true
+                            success: true
                         });
                     } else {
                         res.status(201).json({
@@ -85,7 +85,7 @@ module.exports = {
                     }
 
                 } else if (data.content) {
-                    console.log(4)
+                    // console.log(4)
                     block = {
                         content: {
                             animation: data.content.animation,
@@ -96,10 +96,10 @@ module.exports = {
                         }
                     };
                     if (req.files.length > 0) {
-                        console.log('++++')
+                        // console.log('++++');
 
                         req.files.forEach(f => {
-                            if (f.fieldname == 'image') {
+                            if (f.fieldname === 'image') {
                                 block.content.image = f.filename;
                                 if (!block.content.mp3) {
                                     block.content.mp3 = candidate.content.mp3
@@ -108,11 +108,12 @@ module.exports = {
                                     console.log('123456789')
                                     fs.unlinkSync(`./admin/_uploads/block/${candidate.content.image}`);
                                 }
-                                console.log('++++');
+                                // console.log('++++');
 
-                            } else if (f.fieldname == 'mp3') {
+                            }
+                            if (f.fieldname === 'mp3') {
                                 block.content.mp3 = f.filename;
-                                console.log('----');
+                                // console.log('----');
                                 if (!block.content.image) {
                                     block.content.image = candidate.content.image
                                 }
@@ -122,10 +123,10 @@ module.exports = {
                             }
                         });
                     }
-                    console.log(block)
+                    // console.log(block)
                     await Block.findByIdAndUpdate({_id: req.params.id}, block);
                     res.status(201).json({
-                        succuess: true
+                        success: true
                     });
                 }
             }
@@ -135,7 +136,7 @@ module.exports = {
 
     },
     deleteBlock: async (req, res) => {
-        console.log(req.params.id)
+        // console.log(req.params.id)
         let candidate = await Block.findOne({_id: req.params.id});
         if (candidate) {
             console.log(candidate);

@@ -1,0 +1,94 @@
+
+
+
+.in-left {
+  left: 60%;
+}
+
+.in-right {
+  left: 40%;
+}
+
+.line {
+  height: calc(40vw - 40px);
+  position: relative;
+}
+
+.large, .middle {
+  position: absolute;
+  //border: 1px solid black;
+  height: calc((100vw - 100px) * 9 * .33 / 12);
+}
+
+.large {
+  top: 0;
+  width: 60%;
+}
+
+.middle {
+  top: 0;
+  width: 40%;
+}
+
+.right {
+  right: 0;
+}
+
+.left {
+  left: 0;
+}
+.my-blocks{
+  cursor: pointer;
+  list-style: none;
+}
+
+
+
+.middle-block-wrapper {
+  .small-block {
+    height: 50%;
+    width: 50%;
+    //border: 1px solid black;
+    background: violet;
+    float: left;
+  }
+  .middle-block {
+    height: 100%;
+    width: 100%;
+    //border: 1px solid black;
+    background: greenyellow;
+    float: left;
+  }
+}
+
+
+.large-block-wrapper {
+  .small-block {
+    height: 50%;
+    width: 33.33%;
+    //border: 1px solid black;
+    background: violet;
+    float: left;
+  }
+  .middle-block {
+    height: 100%;
+    width: 66.67%;
+    //border: 1px solid black;
+    background: greenyellow;
+    float: left;
+  }
+  .large-block {
+    height: 100%;
+    width: 100%;
+    //border: 1px solid black;
+    background: fuchsia;
+    float: left;
+  }
+}
+
+.block-list{
+  width: 20vw;
+  position: fixed;
+  right: 0;
+  top: 200px;
+}

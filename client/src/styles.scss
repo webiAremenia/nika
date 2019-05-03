@@ -32,6 +32,10 @@
 }
 
 .bg-size-middle {
+
+  position: absolute;
+  //border: 1px solid black;
+
   width: 40%;
   height: calc(40vw - 40px);
   //border: 1px solid black;
@@ -42,6 +46,10 @@
 }
 
 .bg-size-large {
+
+  position: absolute;
+  //border: 1px solid black;
+
   width: 60%;
   height: calc(40vw - 40px);
   //border: 1px solid black;
@@ -50,15 +58,34 @@
     height: calc(100vw - 20px);
   }
 }
+.parent-large-3 {
 
-
-.parent-large {
+  .bg-size-small {
+    width: 100%;
+    height: calc(20vw - 20px);
+    //border: 1px solid black;
+    @media (max-width: 450px) {
+      width: 100%;
+      height: calc(100vw - 20px);
+    }
+  }
+  .bg-size-middle {
+    width: 66.67%;
+    height: calc(40vw - 40px);
+    //border: 1px solid black;
+    @media (max-width: 450px) {
+      width: 100%;
+      height: calc(100vw - 20px);
+    }
+  }
+}
+.parent-large-6 {
   @media (max-width: 450px) {
     width: 100%;
     height: auto !important;
   }
   .bg-size-small {
-    width: 33.33335%;
+    width: 33.33333%;
     height: calc(20vw - 20px);
     //border: 1px solid black;
     @media (max-width: 450px) {
@@ -68,7 +95,7 @@
   }
 
   .bg-size-middle {
-    width: 66.6668%;
+    width: 66.66666%;
     height: calc(40vw - 40px);
     //border: 1px solid black;
     @media (max-width: 450px) {
