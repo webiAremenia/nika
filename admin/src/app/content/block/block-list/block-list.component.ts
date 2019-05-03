@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {MenuService} from "../../../shared/services/menu.service";
-import {Router} from "@angular/router";
-import {NzModalService} from "ng-zorro-antd";
-import {BlockService} from "../../../shared/services/block.service";
+import {Router} from '@angular/router';
+import {NzModalService} from 'ng-zorro-antd';
+import {BlockService} from '../../../shared/services/block.service';
 
 @Component({
   selector: 'app-block-list',
@@ -15,22 +14,23 @@ export class BlockListComponent implements OnInit {
   constructor(private service: BlockService, private router: Router, private modalService: NzModalService) { }
 
   ngOnInit() {
-    this.service.getBlock().subscribe((data: []) => {
+    this.service.getBlock().subscribe((data) => {
       this.blocks = data;
     });
   }
-  add(){
+  add() {
     this.router.navigate(['block/addBlock']);
-  };
-  edit(block){
+  }
+  edit(block) {
     this.service.candidateBlock = block;
-    this.router.navigate(['block/changeBlock'])
-  };
-  remove(block){
-    this.service.deleteBlock(block).subscribe((data) => {
-      this.blocks = this.blocks.filter(item => item._id !== block._id)
-    })
-  };
+    this.router.navigate(['block/changeBlock']);
+  }
+  remove(block) {
+      console.log(block);
+      this.service.deleteBlock(block._id).subscribe(() => {
+      this.blocks = this.blocks.filter(item => item._id !== block._id);
+    });
+  }
   showDeleteConfirm(data): void {
     this.modalService.confirm({
       nzTitle: 'Are you sure delete this menu ?',

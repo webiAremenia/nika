@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {NzMessageService, UploadFile} from 'ng-zorro-antd';
 import {PostsService} from '../../../shared/services/posts.service';
 import {PortfolioService} from '../../../shared/services/portfolio.service';
 import {Router} from '@angular/router';
@@ -18,7 +17,6 @@ export class AddBlockComponent implements OnInit {
     stories;
     portfolios;
     selectedType;
-    submitted = false;
     dropdownSettings;
     dropdownList;
     imageForm;
@@ -118,14 +116,22 @@ export class AddBlockComponent implements OnInit {
     }
 
     saveBlock() {
-        console.log(this.blockForm.value);
+        let _stories = [];
         if (this.selectedType === 'Image') {
             this.imageForm.get('bgColor').setValue(this.color);
             this.formData.append('image', this.imageForm.get('image').value);
+            this.formData.append('mp3', this.imageForm.get('mp3').value);
+        } else if (this.selectedType === 'Video') {
+            this.formData.append('video', this.blockForm.get('video').value);
+        } else if (this.selectedType === 'Stories') {
+            _stories = this.blockForm.get('stories').value.map(s => {
+                return s.id;
+            });
+            this.blockForm.get('stories').setValue(_stories);
+            // console.log('s ', this.blockForm.get('stories').value)
         }
-
         this.formData.append('data', JSON.stringify(this.blockForm.value));
-
+        console.log(this.blockForm.value);
         this.blockService.postBlock(this.formData).subscribe(
             d => {
                 if (d) {
@@ -151,10 +157,15 @@ export class AddBlockComponent implements OnInit {
                     console.log(5555);
                     this.imageForm.get('mp3').setValue(mp3);
                 }
+            } else if (this.selectedType === 'Video') {
+                const video = event.target.files[0];
+                this.blockForm.get('video').setValue(video);
             }
-            console.log(event.target.files);
+
+            console.log('Files ', event.target.files);
         }
     }
 
 }
+
 // if(this.file.name.match(/\.(avi|mp3|mp4|mpeg|ogg)$/i))

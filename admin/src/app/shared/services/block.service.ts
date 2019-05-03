@@ -25,10 +25,10 @@ export class BlockService {
     }
 
     putBlock(id, block) {
-        return this.http.put(this.urlApi + `/block?id=` + id, block);
+        return this.http.put(this.urlApi + `/block/${id}`, block);
     }
 
-    deleteBlock(block) {
-        return this.http.delete(this.urlApi + `/block?id=${block._id}`);
+    deleteBlock(id) {
+        return this.http.delete(this.urlApi + `/block/${id}`);
     }
 }

@@ -5,9 +5,10 @@ const fs = require('fs');
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
 
-        console.log('####################');
-        console.log(req.body);
-        console.log('####################');
+        // console.log('####################');
+        // console.log(req.body);
+        // console.log('####################');
+        // console.log(file.fieldname);
 
         if (!fs.existsSync(__dirname + '/../_uploads')) {
             fs.mkdirSync(__dirname + '/../_uploads');
@@ -80,11 +81,11 @@ const storage = multer.diskStorage({
 
 const fileFilter = (req, file, cb) => {
     // reject a file
-    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/svg') {
-        cb(null, true);
-    } else {
-        cb(null, true); // false error depq
-    }
+    // if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/svg') {
+    //     cb(null, true);
+    // } else {
+    //     cb(null, true); // false error depq
+    // }
 };
 
 

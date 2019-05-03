@@ -50,7 +50,7 @@
         <div *ngIf="selectedType == 'Video'" class="col-md-12">
             <label for="video" class="my-label"> Video file:
                 </label>
-            <input type="file" id="video" class="my-input" formControlName="video">
+            <input type="file" id="video" class="my-input" (change)="onFileSelect($event, 'video')">
         </div>
 
         <div *ngIf="selectedType == 'Image'" class="col-md-12" formArrayName="content">
