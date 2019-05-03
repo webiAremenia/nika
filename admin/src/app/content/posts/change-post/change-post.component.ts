@@ -24,7 +24,7 @@ export class ChangePostComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.service.candidatePost) {
-      this.router.navigate(['post'])
+      this.router.navigate(['post']);
     }
     this.url = this.service.url + '/uploads/posts/';
     this.post = this.service.candidatePost;
