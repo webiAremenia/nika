@@ -12,18 +12,14 @@ export class FooterService {
 
     url;
     imageUrl;
-    groups;
+    groups: Group[];
 
     constructor(private http: HttpClient, config: AppGlobals) {
         this.url = `${config.url}/api/`;
         this.imageUrl = config.imageUrl;
     }
 
-    getPortfolioById(id) {
-        console.log(id);
-        return this.http.get(this.url + 'portfolio/' + id);
-    }
-    getGroups(): Observable<Group[]> {
+    getGroups(): Observable<boolean> {
         return this.http.get<any[]>(`${this.url}group`)
             .pipe(map(data => {
                     this.groups = data.map(group => {
@@ -34,11 +30,19 @@ export class FooterService {
                             largeBlock: group.largeBlock,
                         };
                     });
-                    return this.groups;
+                    return true;
                 }),
                 catchError(err => {
                     console.log(err);
                     return throwError(err);
                 }));
+    }
+
+    getPortfolioById(id) {
+        return this.http.get(this.url + 'portfolio/' + id);
+    }
+
+    getStories(arr) {
+        return this.http.get(this.url + 'post/get-many/' + JSON.stringify(arr));
     }
 }

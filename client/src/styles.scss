@@ -12,153 +12,19 @@
 .custom-page {
   height: calc(100vh - 100px);
   overflow: auto;
+  @media (max-width: 768px) {
+    height: auto;
+  }
 }
 
 .custom-container {
   padding: 50px;
-  @media (max-width: 450px) {
-    padding: 10px;
+  @media (max-width: 500px) {
+    //padding-left: 10px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
   }
 }
-
-
-.bg-size-small {
-  width: 20%;
-  height: calc(20vw - 20px);
-  @media (max-width: 450px) {
-    width: 100%;
-    height: calc(100vw - 20px);
-  }
-}
-
-.bg-size-middle {
-
-  position: absolute;
-  //border: 1px solid black;
-
-  width: 40%;
-  height: calc(40vw - 40px);
-  //border: 1px solid black;
-  @media (max-width: 450px) {
-    width: 100%;
-    height: calc(100vw - 20px);
-  }
-}
-
-.bg-size-large {
-
-  position: absolute;
-  //border: 1px solid black;
-
-  width: 60%;
-  height: calc(40vw - 40px);
-  //border: 1px solid black;
-  @media (max-width: 450px) {
-    width: 100%;
-    height: calc(100vw - 20px);
-  }
-}
-.parent-large-3 {
-
-  .bg-size-small {
-    width: 100%;
-    height: calc(20vw - 20px);
-    //border: 1px solid black;
-    @media (max-width: 450px) {
-      width: 100%;
-      height: calc(100vw - 20px);
-    }
-  }
-  .bg-size-middle {
-    width: 66.67%;
-    height: calc(40vw - 40px);
-    //border: 1px solid black;
-    @media (max-width: 450px) {
-      width: 100%;
-      height: calc(100vw - 20px);
-    }
-  }
-}
-.parent-large-6 {
-  @media (max-width: 450px) {
-    width: 100%;
-    height: auto !important;
-  }
-  .bg-size-small {
-    width: 33.33333%;
-    height: calc(20vw - 20px);
-    //border: 1px solid black;
-    @media (max-width: 450px) {
-      width: 100%;
-      height: calc(100vw - 20px);
-    }
-  }
-
-  .bg-size-middle {
-    width: 66.66666%;
-    height: calc(40vw - 40px);
-    //border: 1px solid black;
-    @media (max-width: 450px) {
-      width: 100%;
-      height: calc(100vw - 20px);
-    }
-  }
-
-  .bg-size-large {
-    width: 100%;
-    height: calc(40vw - 40px);
-    //border: 1px solid black;
-    @media (max-width: 450px) {
-      width: 100%;
-      height: calc(100vw - 20px);
-    }
-  }
-}
-
-
-.parent-middle {
-  @media (max-width: 650px) {
-    width: 100%;
-    height: auto !important;
-  }
-  .bg-size-small {
-    width: 50%;
-    height: calc(20vw - 20px);
-    //border: 1px solid black;
-    @media (max-width: 450px) {
-      width: 100%;
-      height: calc(100vw - 20px);
-    }
-  }
-
-  .bg-size-middle {
-    width: 100%;
-    height: calc(40vw - 40px);
-    //border: 1px solid black;
-    @media (max-width: 450px) {
-      width: 100%;
-      height: calc(100vw - 20px);
-    }
-  }
-
-}
-
-.parent-small {
-  @media (max-width: 450px) {
-    width: 100%;
-    height: auto !important;
-  }
-  .bg-size-small {
-    width: 100%;
-    height: calc(20vw - 20px);
-    //border: 1px solid black;
-    @media (max-width: 450px) {
-      width: 100%;
-      height: calc(100vw - 20px);
-    }
-  }
-}
-
 
 .bg-color-red {
   background: red;
@@ -218,35 +84,41 @@ body {
     height: calc(100vw - 20px) !important;
   }
 }
-.hidden-footer{
+
+.hidden-footer {
   position: fixed;
   top: 50%;
   z-index: 10000;
   display: none;
 }
-.top50{
+
+.top50 {
   top: 50% !important;
 }
+
 //==================================================================================
 //===============================  scroll styles  ==================================
 //==================================================================================
 
 /* width */
-::-webkit-scrollbar {
-   width: 10px;
- }
+@media (min-width: 750px) {
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 }

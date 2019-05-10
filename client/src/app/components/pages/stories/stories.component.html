@@ -1,10 +1,9 @@
 <div class="custom-container pt-0">
 
     <div class="row" *ngIf="done">
-        <div class="col-3"></div>
 
-        <div class="col-9 row">
-            <div *ngFor="let story of stories" class="col-4">
+        <div class="col-12 row">
+            <div *ngFor="let story of stories" class="col-12 col-md-3">
                 <div class="img-wrapper img">
                     <a [routerLink]="['/story', story.id]"><img [src]="(imageUrl + story.image)" alt="image"></a>
                 </div>

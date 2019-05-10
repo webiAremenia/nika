@@ -18,6 +18,7 @@ const routes: Routes = [
     {path: 'stories', component: StoriesComponent},
     {path: 'story/:id', component: StoryDetailComponent},
     {path: 'careers', component: AllBlocksComponent},
+    {path: '**', redirectTo: ''},
 
 ];
 

@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {WorkService} from '../../../../_services/work.service';
 import {ActivatedRoute} from '@angular/router';
@@ -13,7 +13,7 @@ import {AppGlobals} from "../../../../app.globals";
     templateUrl: './work-detail.component.html',
     styleUrls: ['./work-detail.component.scss']
 })
-export class WorkDetailComponent implements OnInit {
+export class WorkDetailComponent implements OnInit, OnDestroy {
     id: number;
     work: Work;
     imgPath;
@@ -25,7 +25,7 @@ export class WorkDetailComponent implements OnInit {
         private service: WorkService,
         config: AppGlobals
     ) {
-        if ( service.work ) {
+        if (service.work) {
             this.done = true;
         }
         this.imgPath = config.imageUrl + '/portfolio/';
@@ -35,18 +35,18 @@ export class WorkDetailComponent implements OnInit {
     ngOnInit() {
         this.routeSubscription = this.route.params.subscribe(params => {
             this.id = params.id;
-            if (this.done) {
-                this.work = this.service.findOne(this.id);
-            } else {
-                this.service.getOne(this.id).subscribe(
-                    data => {
-                        this.work = data;
-                        this.done = true;
-                    },
-                    err => console.log(err)
-                );
-            }
+
+            this.service.getOne(this.id).subscribe(
+                data => {
+                    this.work = data;
+                    this.done = true;
+                },
+                err => console.log(err)
+            );
         });
     }
 
+    ngOnDestroy(): void {
+        this.done = false;
+    }
 }

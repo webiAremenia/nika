@@ -11,6 +11,7 @@ import {BlockService} from '../../../shared/services/block.service';
     styleUrls: ['./add-block.component.css']
 })
 export class AddBlockComponent implements OnInit {
+    animationTypes = ['rotate-bg', 'rotate-content', 'hover'];
     color = '#000';
     blockTypes;
     blockForm;

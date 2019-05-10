@@ -6,11 +6,12 @@ import {AppGlobals} from '../../../../app.globals';
 @Component({
     selector: 'app-portfolio-block',
     templateUrl: './portfolio-block.component.html',
-    styleUrls: ['./portfolio-block.component.sass']
+    styleUrls: ['./portfolio-block.component.scss']
 })
 export class PortfolioBlockComponent implements OnInit {
 
     @Input() block;
+    @Input() size;
     portfolio;
     imageUrl;
     done = false;
@@ -23,17 +24,17 @@ export class PortfolioBlockComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(this.block);
-        this.getPortfel();
+        // console.log(this.block);
+        this.getPortfolio();
     }
 
-    getPortfel() {
+    getPortfolio() {
         this.footerService.getPortfolioById(this.block.portfolio)
             .subscribe(
                 d => {
                     this.done = true;
                     this.portfolio = d;
-                    console.log(d);
+                    // console.log(d);
                 },
                 e => console.log(e)
             );

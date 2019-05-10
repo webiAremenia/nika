@@ -1,7 +1,8 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {Router, RouterEvent} from '@angular/router';
 import {Location} from '@angular/common';
 import {ComponentService} from './_services/component.service';
+import {FooterService} from './_services/footer.service';
 
 
 @Component({
@@ -9,18 +10,24 @@ import {ComponentService} from './_services/component.service';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     title = 'nika';
     slider = false;
     contact = false;
     route: string;
     path;
+    done = false;
 
-    @HostListener('scroll') scrolling(){
+    @HostListener('scroll') scrolling() {
         console.log('scrolling');
     }
 
-    constructor(location: Location, router: Router, componentService: ComponentService ) {
+    constructor(
+        location: Location,
+        router: Router,
+        componentService: ComponentService,
+        private footerService: FooterService
+    ) {
         componentService.getBlocks();
         router.events.subscribe((val) => {
             if (val instanceof RouterEvent) {
@@ -34,5 +41,11 @@ export class AppComponent {
             }
         });
 
+    }
+
+    ngOnInit() {
+        this.footerService.getGroups().subscribe(
+            d => this.done = d
+        );
     }
 }

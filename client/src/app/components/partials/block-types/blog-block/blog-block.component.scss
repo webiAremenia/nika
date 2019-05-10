@@ -1,10 +1,13 @@
-a{
+a {
   text-decoration: none;
   color: #000;
 }
-.blog-block{
+
+.blog-block {
   position: relative;
+  background: #ffffff;
 }
+
 .blog-logo {
   position: absolute;
   top: 0;
@@ -19,6 +22,7 @@ a{
 }
 
 .content {
+
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -28,19 +32,101 @@ a{
   }
 }
 
-.blog-title {
-  font-size: 35px;
-  font-weight: bold;
-  padding-top: 10px;
-  @media (max-width: 1600px) {
-    font-size: 25px;
-    padding-top: 0px;
+.small-content {
+  .blog-title {
+    font-size: 35px;
+    font-weight: bold;
+    padding-top: 10px;
+    @media (max-width: 1600px) {
+      font-size: 23px;
+      padding-top: 0;
+    }
+  }
+
+  .blog-description {
+    @media (max-width: 1600px) {
+      font-size: 13px;
+      line-height: 1.2;
+    }
+  }
+
+}
+
+
+.middle-content {
+  .image-wrapper {
+    width: 25%;
+  }
+
+  .blog-title {
+    font-size: 35px;
+    font-weight: bold;
+    padding-top: 10px;
+    @media (max-width: 1600px) {
+      font-size: 23px;
+      padding-top: 0;
+    }
+  }
+
+  .blog-description {
+    font-size: 18px;
+    @media (max-width: 1600px) {
+      font-size: 13px;
+      line-height: 1.2;
+    }
   }
 }
 
-.blog-description {
-  @media (max-width: 1600px) {
-    font-size: 13px;
-    line-height: 1.2;
+.large-content {
+  .image-wrapper {
+    width: 100%;
+  }
+
+  .image-wrapper img {
+    width: 100%;
+  }
+
+  .blog-title {
+    font-size: 45px;
+    font-weight: bold;
+    padding-top: 10px;
+    @media (max-width: 1600px) {
+      font-size: 23px;
+      padding-top: 0;
+    }
+  }
+
+  .blog-description {
+    font-size: 18px;
+    @media (max-width: 1600px) {
+      font-size: 13px;
+      line-height: 1.2;
+    }
   }
 }
+
+.mobile-wrapper {
+  width: 50%;
+  height: calc(50vw - 25px);
+  @media (max-width: 500px) {
+    padding: 0;
+    width: 100%;
+    height: calc(100vw);
+  }
+
+  .mobile-content {
+    height: 100%;
+    border: 1px solid #1b1e21;
+    position: relative;
+
+
+    .content {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 35px;
+    }
+  }
+}
+
+

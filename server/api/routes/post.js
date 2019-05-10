@@ -5,5 +5,6 @@ const controller = require('../controllers/posts');
 
 router.get('/', controller.getPosts);
 router.get('/:id', controller.getPost);
+router.get('/get-many/:arr', controller.getMany);
 
 module.exports = router;

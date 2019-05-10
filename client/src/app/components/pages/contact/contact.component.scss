@@ -1,5 +1,8 @@
 .custom-page{
   padding: 100px 100px 0 100px;
+  @media (max-width: 768px) {
+    padding: 100px 0 20px 0;
+  }
 }
 .contact-title{
   font-weight: bold;

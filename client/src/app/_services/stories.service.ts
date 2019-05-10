@@ -40,7 +40,6 @@ export class StoriesService {
                 }));
     }
 
-
     getPost(id): Observable<Post> {
         return this.http.get<any>(`${this.url}/api/post/${id}`).pipe(map(post => {
             this.story = {

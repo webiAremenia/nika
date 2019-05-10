@@ -71,14 +71,28 @@
 
         </div>
 
-        <div class="block-list">
-            <ul *ngIf="canBe.length > 0">
-                <li class="my-blocks"
-                    (click)="pushToGroup(block._id, block.size, block.name)"
+        <div class="block-list" *ngIf="canBe.length > 0">
+            <h4>Choose Blocks for footer lines</h4>
+            <table border="1">
+                <tr>
+                    <th>Block Name</th>
+                    <th>Block Size</th>
+                    <th>Block Type</th>
+                </tr>
+                <tr (click)="pushToGroup(block._id, block.size, block.name)"
                     *ngFor="let block of canBe">
-                    {{block.name}} <b> {{block.size}} </b>  {{block.type}}
-                </li>
-            </ul>
+                    <td>{{block.name}}</td><td style="color: #2f54eb;"><b>{{block.size}}</b></td><td>{{block.type}}</td>
+                </tr>
+            </table>
+
+
+<!--            <ul *ngIf="canBe.length > 0">-->
+<!--                <li class="my-blocks"-->
+<!--                    (click)="pushToGroup(block._id, block.size, block.name)"-->
+<!--                    *ngFor="let block of canBe">-->
+<!--                    {{block.name}} <b> {{block.size}} </b>  {{block.type}}-->
+<!--                </li>-->
+<!--            </ul>-->
         </div>
 
     </div>

@@ -1,20 +1,41 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {FooterService} from '../../../../_services/footer.service';
+import {AppGlobals} from '../../../../app.globals';
 
 @Component({
-  selector: 'app-image-block',
-  templateUrl: './image-block.component.html',
-  styleUrls: ['./image-block.component.scss']
+    selector: 'app-image-block',
+    templateUrl: './image-block.component.html',
+    styleUrls: ['./image-block.component.scss']
 })
 export class ImageBlockComponent implements OnInit {
 
-  @Input() block;
-  hover = false;
+    @Input() block;
+    @Input() size;
+    @ViewChild(`audioElement`) audioElement: ElementRef;
+    hover = false;
+    imageUrl;
+    play = false;
 
-  constructor() { }
+    constructor(
+        private footerService: FooterService,
+        config: AppGlobals
+    ) {
+        this.imageUrl = config.imageUrl + '/block/';
+        this.play = true;
+    }
 
 
-  ngOnInit() {
-    // console.log(this.block);
-  }
+    ngOnInit() {
+        setTimeout(() => {
+            this.play = false;
+        }, 100);
+    }
+
+    toggleAutoplay() {
+        this.play = !this.play;
+        if (this.audioElement) {
+            this.play ? this.audioElement.nativeElement.play() : this.audioElement.nativeElement.pause();
+        }
+    }
 
 }

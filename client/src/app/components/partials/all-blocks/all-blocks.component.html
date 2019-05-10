@@ -1,48 +1,43 @@
 <div class="all-blocks custom-container pt-0 pb-0">
-
-    <div *ngIf="ggDone" class="group-wrapper">
-
+    <div class="group-wrapper">
         <div *ngFor="let gr of ggg, let i = index" class="line line-{{i}}">
-
-            <div class="bg-size-large parent-large-{{gr.largeBlock.blocks.length}}" id="large-{{i}}"
+            <div class="d-none d-md-block
+             bg-size-large parent-large-{{gr.largeBlock.blocks.length}}" id="large-{{i}}"
                  [ngClass]="gr.position == 'left'  ? 'left' : 'right'">
 
                 <div class="large-block-wrapper h-100 w-100 ">
                     <div *ngFor="let ell of gr.largeBlock.blocks" class="{{ell.size}}-block">
 
-                        <div *ngIf="ell.block.type == 'Stories'">
-                            <div class="block-wrapper mt-0 float-left bg-size-{{ell.size}}">
-                                <app-blog-block [block]="ell.block"></app-blog-block>
+                        <div *ngIf="ell.block.type == 'Stories'" class="">
+                            <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}">
+                                <app-blog-block [block]="ell.block" [size]="ell.size"></app-blog-block>
                             </div>
                         </div>
                         <div *ngIf="ell.block.type == 'Portfolio'">
-                            <div class="block-wrapper mt-0 float-left bg-size-{{ell.size}}">
-                                <app-portfolio-block [block]="ell.block"></app-portfolio-block>
+                            <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}">
+                                <app-portfolio-block [block]="ell.block" [size]="ell.size"></app-portfolio-block>
                             </div>
                         </div>
 
                         <div *ngIf="ell.block.type == 'Video'">
-                            <div class="block-wrapper mt-0 float-left bg-size-{{ell.size}}">
+                            <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}">
                                 <app-video-block [block]="ell.block"></app-video-block>
                             </div>
                         </div>
 
                         <div *ngIf="ell.block.type == 'Image'">
-                            <div class="block-wrapper mt-0 float-left bg-size-{{ell.size}}">
-                                <app-image-block [block]="ell.block"></app-image-block>
+                            <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}">
+                                <app-image-block [block]="ell.block" [size]="ell.size"></app-image-block>
                             </div>
                         </div>
 
-                        <!--<div class="content text-center">-->
-                            <!--<p>{{ell.name}}</p>-->
-                            <!--<p>{{ell.size}}</p>-->
-                        <!--</div>-->
                     </div>
                 </div>
 
             </div>
 
-            <div class="bg-size-middle parent-middle" id="middle-{{i}}"
+            <div class="d-none d-md-block
+             bg-size-middle parent-middle" id="middle-{{i}}"
                  [ngClass]="gr.position == 'left'  ? 'right' : 'left'">
 
 
@@ -50,96 +45,74 @@
                     <div *ngFor="let ell of gr.middleBlock.blocks" class="{{ell.size}}-block">
 
                         <div *ngIf="ell.block.type == 'Stories'">
-                            <div class="block-wrapper mt-0 float-left bg-size-{{ell.size}}">
-                                <app-blog-block [block]="ell.block"></app-blog-block>
+                            <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}">
+                                <app-blog-block [block]="ell.block" [size]="ell.size"></app-blog-block>
                             </div>
                         </div>
 
                         <div *ngIf="ell.block.type == 'Portfolio'">
-                            <div class="block-wrapper mt-0 float-left bg-size-{{ell.size}}">
-                                <app-portfolio-block [block]="ell.block"></app-portfolio-block>
+                            <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}">
+                                <app-portfolio-block [block]="ell.block" [size]="ell.size"></app-portfolio-block>
                             </div>
                         </div>
 
                         <div *ngIf="ell.block.type == 'Video'">
-                            <div class="block-wrapper mt-0 float-left bg-size-{{ell.size}}">
+                            <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}">
                                 <app-video-block [block]="ell.block"></app-video-block>
                             </div>
                         </div>
 
                         <div *ngIf="ell.block.type == 'Image'">
-                            <div class="block-wrapper mt-0 float-left bg-size-{{ell.size}}">
-                                <app-image-block [block]="ell.block"></app-image-block>
+                            <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}">
+                                <app-image-block [block]="ell.block" [size]="ell.size"></app-image-block>
                             </div>
                         </div>
-                        <!--<div class="content text-center">-->
-                            <!--<p>{{ell.name}}</p>-->
-                            <!--<p>{{ell.size}}</p>-->
-                        <!--</div>-->
                     </div>
                 </div>
             </div>
 
+            <div class="mobile-wrapper d-block d-md-none">
+
+                <div *ngFor="let ell of gr.largeBlock.blocks">
+                    <div *ngIf="ell.block.type == 'Stories'">
+                        <app-blog-block [block]="ell.block"></app-blog-block>
+                    </div>
+
+                    <div *ngIf="ell.block.type == 'Portfolio'">
+
+                        <app-portfolio-block [block]="ell.block"></app-portfolio-block>
+
+                    </div>
+
+                    <div *ngIf="ell.block.type == 'Video'">
+                        <app-video-block [block]="ell.block"></app-video-block>
+                    </div>
+
+                    <div *ngIf="ell.block.type == 'Image'">
+                        <app-image-block [block]="ell.block"></app-image-block>
+                    </div>
+                </div>
+
+                <div *ngFor="let ell of gr.middleBlock.blocks">
+                    <div *ngIf="ell.block.type == 'Stories'">
+                        <app-blog-block [block]="ell.block"></app-blog-block>
+                    </div>
+
+                    <div *ngIf="ell.block.type == 'Portfolio'">
+
+                        <app-portfolio-block [block]="ell.block"></app-portfolio-block>
+
+                    </div>
+
+                    <div *ngIf="ell.block.type == 'Video'">
+                        <app-video-block [block]="ell.block"></app-video-block>
+                    </div>
+
+                    <div *ngIf="ell.block.type == 'Image'">
+                        <app-image-block [block]="ell.block"></app-image-block>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </div>
-
-
-
-
-
-
-    <!--<div *ngFor="let group of groups">-->
-        <!--<div class="parent-{{group.type}} block-wrapper mt-0 float-left bg-size-{{group.type}}">-->
-            <!--<div *ngFor="let block of group.data">-->
-                <!--<div *ngIf="block.category == 'blog'">-->
-                    <!--<div class="block-wrapper mt-0 float-left bg-size-{{block.size}}"-->
-                         <!--[ngStyle]="{'background-color' : block.bg}">-->
-                        <!--<app-blog-block [block]="block"></app-blog-block>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div *ngIf="block.category == 'image'">-->
-                    <!--<div class="block-wrapper mt-0 float-left bg-size-{{block.size}}">-->
-
-                        <!--<app-image-block [block]="block"></app-image-block>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div *ngIf="block.category == 'bg-image'">-->
-                    <!--<div class="block-wrapper mt-0 float-left bg-size-{{block.size}}">-->
-                        <!--<app-bg-image-block [block]="block"></app-bg-image-block>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div *ngIf="block.category == 'image-text'">-->
-                    <!--<div class="block-wrapper mt-0 float-left bg-size-{{block.size}}"-->
-                         <!--[ngStyle]="{'background-color' : block.bg}">-->
-                        <!--<app-text-image-block [block]="block"></app-text-image-block>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div *ngIf="block.category == 'video'">-->
-                    <!--<div class="block-wrapper mt-0 float-left bg-size-{{block.size}}"-->
-                         <!--[ngStyle]="{'background-color' : block.bg}">-->
-                        <!--<app-video-block [block]="block"></app-video-block>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-
-
-                <!--<div *ngIf="block.category == 'link'">-->
-                    <!--<div class="block-wrapper mt-0 float-left bg-size-{{block.size}}"-->
-                         <!--[ngStyle]="{'background-color' : block.bg}">-->
-                        <!--<app-link-block [block]="block"></app-link-block>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-
-
-
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
 </div>

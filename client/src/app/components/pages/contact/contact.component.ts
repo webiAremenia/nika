@@ -11,11 +11,12 @@ export class ContactComponent implements OnInit {
 
     form: FormGroup;
     done = true;
+    pattern = /[a-z0-9!#$%&'*+=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g;
 
     constructor(private contactService: ContactService) {
         this.form = new FormGroup({
             fullName: new FormControl('', Validators.required),
-            email: new FormControl('', [Validators.email, Validators.required]),
+            email: new FormControl('', [Validators.email, Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]),
             date: new FormControl(''),
             eventName: new FormControl('', [Validators.required, Validators.minLength(5)]),
             text: new FormControl('')
