@@ -1,0 +1,100 @@
+<div class="group-container">
+    <div class="row">
+        <div class="col-9">
+            <div *ngIf="done" class="group-wrapper">
+
+                <div *ngFor="let gr of group, let i = index" class="line line-{{i}}">
+
+                    <div class="large" id="large-{{i}}"
+                         [ngClass]="gr.position == 'left'  ? 'left' : 'right'"
+                    >
+                        <div *ngIf="gr.largeBlock.count < 6" class="edit-button" (click)="editBlock(gr.id, 'large')">
+                            edit
+                        </div>
+
+                        <div class="large-block-wrapper h-100 w-100">
+                            <div *ngFor="let ell of gr.largeBlock.blocks" class="{{ell.size}}-block">
+                                <div class="content text-center">
+                                    <p>{{ell.name}}</p>
+                                    <p>{{ell.size}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="middle" id="middle-{{i}}"
+                         [ngClass]="gr.position == 'left'  ? 'right' : 'left'"
+                    >
+                        <div *ngIf="gr.middleBlock.count < 4" class="edit-button" (click)="editBlock(gr.id, 'middle')">
+                            edit
+                        </div>
+
+                        <div class="middle-block-wrapper h-100 w-100">
+                            <div *ngFor="let ell of gr.middleBlock.blocks" class="{{ell.size}}-block">
+                                <div class="content text-center">
+                                    <p>{{ell.name}}</p>
+                                    <p>{{ell.size}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="replace-blocks"
+                         [ngClass]="gr.position == 'left'  ? 'in-left' : 'in-right'"
+                         (click)="replace(i, gr.id, gr.position)">
+                        <div class="icons">
+                            <img class="left-arrow" src="../../../../assets/icons/prev.png">
+                            <img class="right-arrow" src="../../../../assets/icons/next.svg">
+                        </div>
+                    </div>
+                    <div class="delete-line"
+                         [ngClass]="gr.position == 'left'  ? 'in-left' : 'in-right'"
+                         (click)="deleteLine(i, gr.id)">
+                        <div class="delete-line-icon">
+                            <img class="delete-icon" src="../../../../assets/icons/delete.svg">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="add-line-wrapper">
+                <div class="btn-add" (click)="addLine()">Add new line</div>
+            </div>
+
+        </div>
+
+        <div class="col-3 bg-light">
+
+        </div>
+
+        <div class="block-list" *ngIf="canBe.length > 0">
+            <h4>Choose Blocks for footer lines</h4>
+            <table border="1">
+                <tr>
+                    <th>Block Name</th>
+                    <th>Block Size</th>
+                    <th>Block Type</th>
+                </tr>
+                <tr (click)="pushToGroup(block._id, block.size, block.name)"
+                    *ngFor="let block of canBe">
+                    <td>{{block.name}}</td><td style="color: #2f54eb;"><b>{{block.size}}</b></td><td>{{block.type}}</td>
+                </tr>
+            </table>
+
+
+<!--            <ul *ngIf="canBe.length > 0">-->
+<!--                <li class="my-blocks"-->
+<!--                    (click)="pushToGroup(block._id, block.size, block.name)"-->
+<!--                    *ngFor="let block of canBe">-->
+<!--                    {{block.name}} <b> {{block.size}} </b>  {{block.type}}-->
+<!--                </li>-->
+<!--            </ul>-->
+        </div>
+
+    </div>
+
+</div>

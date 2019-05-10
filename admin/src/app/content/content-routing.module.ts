@@ -1,39 +1,29 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {ContentComponent} from "./content.component";
-import {TestUserDataComponent} from "./test-user-data/test-user-data.component";
-import {PostsListComponent} from "./posts/posts-list/posts-list.component";
-import {ChangePostComponent} from "./posts/change-post/change-post.component";
-import {AddPostComponent} from "./posts/add-post/add-post.component";
-import {SlidersListComponent} from "./slider/sliders-list/sliders-list.component";
-import {ChangeSliderComponent} from "./slider/change-slider/change-slider.component";
-import {AddSliderComponent} from "./slider/add-slider/add-slider.component";
-import {MediasListComponent} from "./media/medias-list/medias-list.component";
-import {ChangeMediaComponent} from "./media/change-media/change-media.component";
-import {AddMediaComponent} from "./media/add-media/add-media.component";
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {ContentComponent} from './content.component';
 
 const routes: Routes = [
-  {path: '', component: ContentComponent, children: [
-      {path: 'post', component: PostsListComponent},
-      {path: 'changePost', component: ChangePostComponent},
-      {path: 'addPost', component: AddPostComponent},
-      {path: 'slider', component: SlidersListComponent},
-      {path: 'changeSlider', component: ChangeSliderComponent},
-      {path: 'addSlider', component: AddSliderComponent},
-      {path: 'media', component: MediasListComponent},
-      {path: 'changeMedia', component: ChangeMediaComponent},
-      {path: 'addMedia', component: AddMediaComponent},
-      {path: 'block', component: TestUserDataComponent},
-      {path: 'menu', component: TestUserDataComponent},
-      {path: 'portfolio', component: TestUserDataComponent},
-      {path: '**', redirectTo: 'posts', pathMatch: 'full'}
-    ]},
-  {path: '**', redirectTo: '/', pathMatch: 'full'}
+    {
+        path: '', component: ContentComponent, children: [
+            {path: 'vacancy', loadChildren: './vacancy/vacancy.module#VacancyModule'},
+            {path: 'slider', loadChildren: './slider/slider.module#SliderModule'},
+            {path: 'settings', loadChildren: './settings/setting.module#SettingModule'},
+            {path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule'},
+            {path: 'menu', loadChildren: './menu/menu.module#MenuModule'},
+            {path: 'media', loadChildren: './media/media.module#MediaModule'},
+            {path: 'group', loadChildren: './group/group.module#GroupModule'},
+            {path: 'block', loadChildren: './block/block.module#BlockModule'},
+            {path: 'post', loadChildren: './posts/post.module#PostModule'},
+            {path: '**', redirectTo: 'posts', pathMatch: 'full'}
+        ]
+    },
+    {path: '**', redirectTo: '/', pathMatch: 'full'}
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
 
-export class ContentRoutingModule { }
+export class ContentRoutingModule {
+}

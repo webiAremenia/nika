@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Block} from "../_models/block";
-import {Post} from "../_models/post";
-import {element} from "protractor";
+import {Block} from '../_models/block';
+import {Post} from '../_models/post';
 
 @Injectable({
     providedIn: 'root'
@@ -64,28 +63,28 @@ export class ComponentService {
     componentBg = ['#ffffff', 'red', 'yellow', 'green', 'brown'];
     blocks: Block[] = [
         {size: 'small', bg: '#B12B2B', category: 'image', content: {img: 'pryanik.PNG', hoverTitle: 'some Title'}},
-        {size: 'small', bg: '#ffffff', category: this.category[0], content: this.blogContent},
+        {size: 'small', bg: '#ffffff', category: 'blog', content: this.blogContent},
         {size: 'small', bg: '#FF52B5', category: 'image', content: {img: 'cloud.PNG', hoverTitle: 'click me'}},
-        {size: 'middle', bg: 'red', category: this.category[4], content: 'middle.PNG'},
-        {size: 'small', bg: '#ffffff', category: this.category[0], content: this.blogContent2},
+        {size: 'middle', bg: 'red', category: 'bg-image', content: 'middle.PNG'},
+        {size: 'small', bg: '#ffffff', category: 'blog', content: this.blogContent2},
         {
             size: 'small',
-            bg: '#ffffff',
-            category: this.category[1],
+            bg: '#000',
+            category: 'video',
             content: {video: 'video.mp4', title: 'some text'}
         },
-        {size: 'small', bg: this.componentBg[2], category: this.category[4], content: 'girl.PNG'},
+        {size: 'small', bg: 'yellow', category: 'bg-image', content: 'girl.PNG'},
         {
             size: 'small',
-            bg: '#ffffff',
-            category: this.category[1],
+            bg: '#000',
+            category: 'video',
             content: {video: 'video.mp4', title: 'some biger text'}
         },
         {size: 'small', bg: '#5ED6BF', category: 'image', content: {img: 'textimg.PNG', hoverTitle: 'do good'}},
         {
             size: 'large',
             bg: '#C32C5E',
-            category: this.category[3],
+            category: 'image-text',
             content: {
                 img: 'curious.PNG',
                 title: 'good curious',
@@ -111,7 +110,7 @@ export class ComponentService {
             type: 'large',
             data: [this.blocks[0], this.blocks[1], this.blocks[2], this.blocks[6], this.blocks[5], this.blocks[8]]
         },
-        {type: 'middle', data: [this.blocks[3]],},
+        {type: 'middle', data: [this.blocks[3]]},
         {type: 'large', data: [this.blocks[9]]},
         {type: 'middle', data: [this.blocks[4], this.blocks[2], this.blocks[7], this.blocks[0]]},
     ];

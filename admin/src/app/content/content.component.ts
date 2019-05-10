@@ -1,6 +1,6 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {DataService} from "../data.service";
-import {Router} from "@angular/router";
+import {DataService} from '../data.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-content',
@@ -8,13 +8,15 @@ import {Router} from "@angular/router";
   styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit {
-user;
-isCollapsed = false;
-posts;
   @ViewChild('page') layot;
+  @ViewChild('trigger') customTrigger: TemplateRef<void>;
+  user;
+  isCollapsed = false;
+  posts;
+
   constructor(private data: DataService, private router: Router) {
-    if(!localStorage.getItem('user')) {
-      this.router.navigate(['/'])
+    if (!localStorage.getItem('user')) {
+      this.router.navigate(['/']);
     }
   }
 
@@ -24,12 +26,15 @@ posts;
   }
 
   triggerTemplate: TemplateRef<void> | null = null;
-  @ViewChild('trigger') customTrigger: TemplateRef<void>;
 
-  /** custom trigger can be TemplateRef **/
+  /**
+   * custom trigger can be TemplateRef
+   */
+
   changeTrigger(): void {
     this.triggerTemplate = this.customTrigger;
   }
+
   logOut() {
     localStorage.clear();
     window.location.href = window.location.origin;

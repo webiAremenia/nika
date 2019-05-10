@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {FooterService} from '../../../../_services/footer.service';
+import {AppGlobals} from '../../../../app.globals';
 
 @Component({
     selector: 'app-blog-block',
@@ -8,15 +10,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class BlogBlockComponent implements OnInit {
 
     @Input() block;
-
-
-    constructor() {
-
-    }
-
-    ngOnInit() {
-    }
-
+    @Input() size;
     customOptions: any = {
         loop: true,
         mouseDrag: true,
@@ -44,5 +38,28 @@ export class BlogBlockComponent implements OnInit {
             }
         },
         nav: false
+    };
+    stories;
+    done;
+    imageUrl;
+    test = 15;
+
+
+    constructor(private  service: FooterService, config: AppGlobals) {
+        this.imageUrl = config.imageUrl + '/posts/';
+    }
+
+    ngOnInit() {
+        this.getStories();
+    }
+
+    getStories() {
+        this.service.getStories(this.block.stories).subscribe(
+            d => {
+                this.stories = d;
+                this.done = true;
+            },
+            e => console.log(e)
+        );
     }
 }

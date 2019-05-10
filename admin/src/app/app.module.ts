@@ -12,7 +12,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import {ContentModule} from './content/content.module';
-import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
+import {SortablejsModule} from 'angular-sortablejs';
+import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 
 registerLocaleData(en);
 
@@ -30,7 +32,9 @@ registerLocaleData(en);
     ReactiveFormsModule,
     NgZorroAntdModule,
     BrowserAnimationsModule,
-    CKEditorModule
+    CKEditorModule,
+    SortablejsModule.forRoot({ animation: 150 }),
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     {

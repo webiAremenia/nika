@@ -1,0 +1,99 @@
+<div class="row" [formGroup]="blockForm">
+
+    <div class="col-md-6 row">
+        <div class="col-md-12">
+            <label for="name" class="my-label"> Name:
+                <span *ngIf="blockForm.controls['name'].touched && blockForm.controls['name'].invalid" class="error-text">Please Input Name</span> </label>
+            <input id="name" class="my-input" type="text" formControlName="name">
+
+        </div>
+
+        <div class="col-md-12">
+            <label for="size" class="my-label"> Size:
+                <span *ngIf="blockForm.controls['size'].touched && blockForm.controls['size'].invalid" class="error-text">Please select Size</span> </label>
+            <select id="size" class="my-input" formControlName="size">
+                <option>small</option>
+                <option>middle</option>
+                <option>large</option>
+            </select>
+        </div>
+
+        <div class="col-md-12">
+            <label for="type" class="my-label"> Type:
+                <span *ngIf="blockForm.controls['type'].touched && blockForm.controls['type'].invalid" class="error-text">Please select Type</span> </label>
+            <select id="type" class="my-input" formControlName="type" (change)="addControlByType($event)">
+                <option *ngFor="let type of blockTypes">{{type}}</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="col-md-6">  <!--section with inputs by types-->
+        <div *ngIf="selectedType == 'Stories'" class="col-md-12">
+            <label for="stories" class="my-label"> Stories:
+                <span *ngIf="blockForm.controls['stories'].touched && blockForm.controls['stories'].invalid" class="error-text">Please select Story</span> </label>
+            <ng-multiselect-dropdown id="stories" class="my-input" formControlName="stories"
+                                     [settings]="dropdownSettings"
+                                     [data]="dropdownList">
+            </ng-multiselect-dropdown>
+        </div>
+
+        <div *ngIf="selectedType == 'Portfolio'" class="col-md-12">
+            <label for="portfolio" class="my-label"> Projects:
+                <span *ngIf="blockForm.controls['portfolio'].touched && blockForm.controls['portfolio'].invalid" class="error-text">Please select Project</span> </label>
+            <select id="portfolio" class="my-input" formControlName="portfolio">
+                <option></option>
+                <option *ngFor="let project of portfolios" [value]="project._id">{{project.title}} </option>
+            </select>
+        </div>
+
+        <div *ngIf="selectedType == 'Video'" class="col-md-12">
+            <label for="video" class="my-label"> Video file:
+                </label>
+            <input type="file" id="video" class="my-input" (change)="onFileSelect($event, 'video')">
+        </div>
+
+        <div *ngIf="selectedType == 'Image'" class="col-md-12" formArrayName="content">
+            <label for="image" class="my-label"> Image / Gif file:
+                <span *ngIf="imageForm.controls['image'].touched && imageForm.controls['image'].invalid" class="error-text">Please choose Image or Gif</span>
+            </label>
+            <input type="file" id="image" class="my-input" (change)="onFileSelect($event, 'image')">
+
+            <label for="bg-color" class="my-label"> Image Background:
+                <span *ngIf="imageForm.controls['bgColor'].touched && imageForm.controls['bgColor'].invalid" class="error-text">Please select Color </span>
+            </label>
+            <input [(colorPicker)]="color" [style.background]="color"
+                    type="text" id="bg-color" class="my-input" formControlName="bgColor">
+
+            <label for="bg-size" class="my-label"> Image Size:
+                <span *ngIf="imageForm.controls['bgSize'].touched && imageForm.controls['bgSize'].invalid" class="error-text">Please select Size </span>
+            </label>
+            <select  id="bg-size" class="my-input" formControlName="bgSize">
+                <option>full</option>
+                <option>center</option>
+            </select>
+
+            <label for="animation" class="my-label"> Hover Animation:</label>
+            <select id="animation" class="my-input" formControlName="animation">
+                <option>rotate-bg</option>
+                <option>rotate-content</option>
+                <option>hover</option>
+            </select>
+
+            <label for="animation-text" class="my-label"> Hover Text:</label>
+            <input type="text" id="animation-text" class="my-input" formControlName="animationText">
+
+            <label for="url" class="my-label"> Url:</label>
+            <input type="text" id="url" class="my-input" formControlName="url">
+
+            <label for="mp3" class="my-label"> Mp3 file: </label>
+            <input type="file" id="mp3" class="my-input" (change)="onFileSelect($event, 'mp3')">
+        </div>
+
+    </div>
+
+    <div class="col-md-12 button-wrapper">
+        <button type="submit" (click)="saveBlock()" [disabled]="!blockForm.valid">Submit</button>
+    </div>
+</div>
+

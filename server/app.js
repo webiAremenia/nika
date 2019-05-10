@@ -1,4 +1,3 @@
-
 const config = require('./admin/config/configs');
 const express = require('express');
 const app = express();
@@ -7,19 +6,23 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const path = require('path');
 const fs = require('fs');
-
+const User = require('./admin/models/user');
 
 mongoose.connect(config.mongoUrl, {useNewUrlParser: true, useCreateIndex: true})
-    .then(_=> {console.log('MongoDB has connected ...')})
-    .catch(err => {console.log('Error MongoDB not connected ...')});
+    .then(_ => {
+        console.log('MongoDB has connected ...')
+    })
+    .catch(err => {
+        console.log('Error MongoDB not connected ...')
+    });
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({extended: true}));
+
 
 app.use(require('cors')());
 
 app.use(morgan('dev'));
-
 
 
 app.use('/uploads', express.static('admin/_uploads'));
@@ -37,17 +40,17 @@ app.use('/api', api);
 app.use(express.static(__dirname + '/../client/dist/front'));
 app.use(express.static(__dirname + '/../admin/dist/Project'));
 
-app.get('/admin-panel', function(req,res) {
+app.get('/admin-panel', function (req, res) {
     res.sendFile(path.join(__dirname + '/../admin/dist/Project/index.html'));
 });
-app.get('/admin-panel/*', function(req,res) {
+app.get('/admin-panel/*', function (req, res) {
     res.sendFile(path.join(__dirname + '/../admin/dist/Project/index.html'));
 });
-app.get('/', function(req,res) {
+app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/../client/dist/front/index.html'));
 });
 
-app.get('/*', function(req,res) {
+app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname + '/../client/dist/front/index.html'));
 });
 //--------------------------------------

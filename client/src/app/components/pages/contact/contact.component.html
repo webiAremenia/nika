@@ -1,6 +1,6 @@
 <div class="contact custom-page">
     <div class="row p-0">
-        <div class="contact-title-wrapper col-4">
+        <div class="contact-title-wrapper col-12 col-md-4">
             <p class="contact-title">Feeling good about working with us?</p>
             <p class="contact-description">Please provide a brief description of your bussines and well do our best to
                 get back to you in a timely
@@ -8,7 +8,7 @@
             </p>
 
         </div>
-        <div class="col-10">
+        <div class="col-12 col-md-10">
             <form [formGroup]="form" (ngSubmit)="submit()" class="">
 
                 <mat-grid-list cols="2" rowHeight="100px">
@@ -59,7 +59,12 @@
 
 
                 <div class="button-row text-right">
-                    <button mat-raised-button type="submit" [disabled]="form.invalid">SUBMIT</button>
+                    <button mat-raised-button type="submit" [disabled]="form.invalid">SUBMIT
+                        <div *ngIf="!done" class="spinner-border" role="status" style="position: absolute;right: 20px;">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </button>
+
                 </div>
 
             </form>
@@ -69,7 +74,7 @@
 
 
 <!--<form [formGroup]="myForm" novalidate (ngSubmit)="submit()">-->
-<!--<div class="form-group col-6">-->
+<!--<div class="form-group.js col-6">-->
 
 <!--<input class="form-control" name="name" formControlName="userName" />-->
 <!--<label>Name</label>-->
@@ -78,7 +83,7 @@
 <!--No name specified-->
 <!--</div>-->
 <!--</div>-->
-<!--<div class="form-group col-6">-->
+<!--<div class="form-group.js col-6">-->
 
 <!--<input class="form-control" name="email" formControlName="userEmail" />-->
 <!--<label>Email</label>-->
@@ -87,13 +92,13 @@
 <!--Incorrect email-->
 <!--</div>-->
 <!--</div>-->
-<!--<div class="form-group col-6">-->
+<!--<div class="form-group.js col-6">-->
 
 <!--<input class="form-control" formControlName="data" />-->
 <!--<label *ngIf="myForm.controls['data'].invalid && myForm.controls['data'].touched">Data</label>-->
 <!--<label ></label>-->
 <!--</div>-->
-<!--<div class="form-group col-6">-->
+<!--<div class="form-group.js col-6">-->
 
 <!--<input class="form-control" name="name" formControlName="eventName" />-->
 <!--<label>Event name</label>-->
@@ -102,11 +107,11 @@
 <!--No event name specified-->
 <!--</div>-->
 <!--</div>-->
-<!--<div class="form-group">-->
+<!--<div class="form-group.js">-->
 <!--<label>Event name</label>-->
 <!--<textarea name="text" id="" cols="100" rows="5"></textarea>-->
 <!--</div>-->
-<!--<div class="form-group">-->
+<!--<div class="form-group.js">-->
 
 <!--<button class="btn btn-dark" [disabled]="myForm.invalid">-->
 <!--Submit-->

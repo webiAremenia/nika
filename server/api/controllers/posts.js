@@ -17,5 +17,14 @@ module.exports = {
         } catch (e) {
             errors.notFound(res, errors);
         }
+    },
+    getMany: async (req, res) => {
+        try {
+            arr = JSON.parse(req.params.arr);
+            let posts = await Post.find({_id: arr}).select('_id title description content image');
+            res.status(201).json(posts)
+        } catch (e) {
+            errors.notFound(res, errors);
+        }
     }
 };

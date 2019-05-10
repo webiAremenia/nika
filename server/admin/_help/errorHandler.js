@@ -1,7 +1,7 @@
 module.exports = {
     notFound: (res, err) => {
         res.status(404).json({
-            msg: 'Nor Found ...'
+            msg: 'Not Found ...'
         })
     },
     invalidData: (res, err) => {
@@ -17,6 +17,11 @@ module.exports = {
     userSaveError: (res, err) => {
         res.status(409).json({
             msg: "Server error User not added ..."
+        })
+    },
+    conflictError: (res, err) => {
+        res.status(409).json({
+            msg: "Conflict error"
         })
     }
 };

@@ -31,16 +31,16 @@ import {
     MatInputModule,
     MatNativeDateModule
 } from '@angular/material';
-import { AboutDescComponent } from './components/pages/about/about-desc/about-desc.component';
-import { VacancyComponent } from './components/pages/vacancy/vacancy.component';
-import { VacancyDescComponent } from './components/pages/vacancy/vacancy-desc/vacancy-desc.component';
-import { Hover3dRotateDirective } from './_directives/hover-3d-rotate.directive';
-import { FooterComponent } from './components/partials/footer/footer.component';
-import { WorkDescComponent } from './components/pages/work/work-desc/work-desc.component';
-import { StoriesDescComponent } from './components/pages/stories/stories-desc/stories-desc.component';
-import { WorkDetailComponent } from './components/pages/work/work-detail/work-detail.component';
-import { StoryDetailComponent } from './components/pages/stories/story-detail/story-detail.component';
+import {VacancyComponent} from './components/pages/vacancy/vacancy.component';
+import {VacancyDescComponent} from './components/pages/vacancy/vacancy-desc/vacancy-desc.component';
+import {Hover3dRotateDirective} from './_directives/hover-3d-rotate.directive';
+import {FooterComponent} from './components/partials/footer/footer.component';
+import {WorkDescComponent} from './components/pages/work/work-desc/work-desc.component';
+import {StoriesDescComponent} from './components/pages/stories/stories-desc/stories-desc.component';
+import {WorkDetailComponent} from './components/pages/work/work-detail/work-detail.component';
+import {StoryDetailComponent} from './components/pages/stories/story-detail/story-detail.component';
 import {HttpClientModule} from '@angular/common/http';
+import {PortfolioBlockComponent} from './components/partials/block-types/portfolio-block/portfolio-block.component';
 
 
 @NgModule({
@@ -63,7 +63,6 @@ import {HttpClientModule} from '@angular/common/http';
         LinkBlockComponent,
         HoverOpacityDirective,
         HoverRotateDirective,
-        AboutDescComponent,
         VacancyComponent,
         VacancyDescComponent,
         Hover3dRotateDirective,
@@ -72,6 +71,7 @@ import {HttpClientModule} from '@angular/common/http';
         StoriesDescComponent,
         WorkDetailComponent,
         StoryDetailComponent,
+        PortfolioBlockComponent,
     ],
     imports: [
         HttpClientModule,

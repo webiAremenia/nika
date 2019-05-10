@@ -1,13 +1,32 @@
 .content {
   padding: 20px;
-  .title{
+
+  .title {
     width: 80%;
     font-size: 2em;
     color: #ffffff;
-}
-  .link a{
+    @media (max-width: 1400px) {
+      font-size: 1.5em;
+    }
+    @media (max-width: 1200px) {
+      font-size: 1.2em;
+    }
+  }
+
+  .link a {
     font-size: 25px;
     //text-decoration: none;
     color: white;
+  }
 }
+.footer-wrapper{
+  @media (max-width: 767px) {
+    padding: 0;
+    width: 50% !important;
+    height: calc(50vw - 25px) !important;
+  }
+  @media (max-width: 500px) {
+    width: 100% !important;
+    height: calc(100vw) !important;
+  }
 }

@@ -2,38 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ContentRoutingModule} from './content-routing.module';
 import { TestUserDataComponent } from './test-user-data/test-user-data.component';
-import {NgZorroAntdModule} from "ng-zorro-antd";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {ContentComponent} from "./content.component";
-import { PostsListComponent } from './posts/posts-list/posts-list.component';
-import { ChangePostComponent } from './posts/change-post/change-post.component';
-import { AddPostComponent } from './posts/add-post/add-post.component';
-import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
-import { PostPreviewComponent } from './posts/post-preview/post-preview.component';
-import { SlidersListComponent } from './slider/sliders-list/sliders-list.component';
-import { AddSliderComponent } from './slider/add-slider/add-slider.component';
-import { ChangeSliderComponent } from './slider/change-slider/change-slider.component';
-import { SliderPreviewComponent } from './slider/slider-preview/slider-preview.component';
-import { ChangeMediaComponent } from './media/change-media/change-media.component';
-import { AddMediaComponent } from './media/add-media/add-media.component';
-import { MediasListComponent } from './media/medias-list/medias-list.component';
+import {NgZorroAntdModule} from 'ng-zorro-antd';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ContentComponent} from './content.component';
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
+import {SortablejsModule} from 'angular-sortablejs';
 
 @NgModule({
   declarations: [
     TestUserDataComponent,
     ContentComponent,
-    PostsListComponent,
-    ChangePostComponent,
-    AddPostComponent,
-    PostPreviewComponent,
-    SlidersListComponent,
-    AddSliderComponent,
-    ChangeSliderComponent,
-    SliderPreviewComponent,
-    ChangeMediaComponent,
-    AddMediaComponent,
-    MediasListComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +21,8 @@ import { MediasListComponent } from './media/medias-list/medias-list.component';
     ReactiveFormsModule,
     NgZorroAntdModule,
     BrowserAnimationsModule,
-    CKEditorModule
+    CKEditorModule,
+    SortablejsModule
   ]
 })
 export class ContentModule { }

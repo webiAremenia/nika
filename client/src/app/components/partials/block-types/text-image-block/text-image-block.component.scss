@@ -15,10 +15,13 @@
   top: 50%;
   transform: translateY(-50%);
 }
-.image-wrapper img{
-  width: 100%;
-  padding: 20px;
+.image-wrapper-content{
+  text-align: center;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+}
+.image-wrapper img{
+  width: 100%;
+  padding: 20px;
 }

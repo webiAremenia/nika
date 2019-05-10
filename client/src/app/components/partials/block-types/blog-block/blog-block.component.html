@@ -1,32 +1,93 @@
-<div class="blog-block">
-  <div class="blog-logo">
-    BLOG
-  </div>
-  <div class="content" *ngIf="block.content.length > 1">
+<div class="d-none d-md-block blog-block h-100">
+    <div class="blog-logo">
+        BLOG
+    </div>
+    <div class="content small-content" *ngIf="done && size === 'small'">
 
-    <owl-carousel-o [options]="customOptions">
-      <ng-template *ngFor="let item of block.content, let i = index" class="h-100" carouselSlide>
-        <a [routerLink]="['stories', item.id]">
-        <div class="blog-title">{{item.title}}</div>
-        <div class="blog-description">
-          <p>{{item.description}}</p>
-        </div>
-        </a>
-      </ng-template>
-    </owl-carousel-o>
+        <owl-carousel-o [options]="customOptions">
+            <ng-template *ngFor="let story of stories, let i = index" class="h-100" carouselSlide>
+                <!--<a [routerLink]="['stories', item.id]">-->
+                <div class="blog-title" [routerLink]="['/story', story._id]">
+                    {{(story.title.length > 21) ? (story.title | slice:0:18) + '...' : (story.title)}}
+                </div>
+                <div class="blog-description">
+                    <p>{{(story.description.length > 50) ? (story.description | slice:test:50) + '...' : story.description}}</p>
+                </div>
+                <!--</a>-->
+            </ng-template>
+        </owl-carousel-o>
 
-  </div>
+    </div>
 
 
-  <div class="content" *ngIf="block.content.length == 1">
-    <a [routerLink]="['stories', block.content[0].id]">
-        <div class="blog-title">{{block.content[0].title}}</div>
-        <div class="blog-description">
-          <p>{{block.content[0].description}}</p>
-        </div>
-    </a>
-  </div>
+    <div class="content middle-content" *ngIf="done && size === 'middle'">
+
+        <owl-carousel-o [options]="customOptions">
+            <ng-template *ngFor="let story of stories, let i = index" class="h-100" carouselSlide>
+                <!--<a [routerLink]="['stories', item.id]">-->
+                <div class="blog-title" [routerLink]="['/story', story._id]">
+                    {{(story.title)}}
+                </div>
+
+                <div class="image-wrapper">
+                    <img [src]="imageUrl + story.image" alt="">
+                </div>
+
+                <div class="blog-description">
+                    <p>{{ story.description}}</p>
+                </div>
+
+                <!--</a>-->
+            </ng-template>
+        </owl-carousel-o>
+
+    </div>
+
+    <div class="content large-content" *ngIf="done && size === 'large'">
+
+
+        <owl-carousel-o [options]="customOptions">
+            <ng-template *ngFor="let story of stories, let i = index" class="h-100" carouselSlide>
+                <div class="row p-2">
+                    <div class="col-8">
+                        <div class="blog-title" [routerLink]="['/story', story._id]">
+                            {{(story.title)}}
+                        </div>
+
+                        <div class="blog-description">
+                            <p>{{ story.description}}</p>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="image-wrapper">
+                            <img [src]="imageUrl + story.image" alt="">
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </owl-carousel-o>
+    </div>
 
 </div>
-
-
+<div class="mobile-wrapper d-block d-md-none" *ngIf="done">
+    <div class="mobile-content">
+        <div class="blog-logo">
+            BLOG
+        </div>
+        <div class="content">
+            <owl-carousel-o [options]="customOptions">
+                <ng-template *ngFor="let story of stories, let i = index" class="h-100" carouselSlide>
+                    <!--<a [routerLink]="['stories', item.id]">-->
+                    <div class="blog-title" [routerLink]="['/story', story._id]">
+                        {{(story.title.length > 21) ? (story.title | slice:0:18) + '...' : (story.title)}}
+                    </div>
+                    <div class="blog-description">
+                        <p>{{(story.description.length > 100) ? (story.description | slice:0:100) + '...' : story.description}}</p>
+                    </div>
+                    <!--</a>-->
+                </ng-template>
+            </owl-carousel-o>
+        </div>
+    </div>
+</div>

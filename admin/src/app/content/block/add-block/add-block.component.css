@@ -1,0 +1,12 @@
+.my-input, .my-label{
+  width: 100%;
+}
+.button-wrapper{
+  padding-top: 20px;
+}
+
+.my-label span{
+  font-size: 12px;
+  font-style: italic;
+  color: red;
+}

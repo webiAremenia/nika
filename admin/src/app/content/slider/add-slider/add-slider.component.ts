@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {SliderService} from "../../../shared/services/slider.service";
-import {NzMessageService} from "ng-zorro-antd";
-import {MediaService} from "../../../shared/services/media.service";
-import {Router} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {SliderService} from '../../../shared/services/slider.service';
+import {NzMessageService} from 'ng-zorro-antd';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-slider',
@@ -21,7 +20,8 @@ export class AddSliderComponent implements OnInit {
   imgFlag = false;
   img = '';
 
-  constructor(private service: SliderService, private msg: NzMessageService, private router: Router) { }
+  constructor(private service: SliderService, private msg: NzMessageService, private router: Router) {
+  }
 
   ngOnInit() {
     this.url = this.service.url + '/uploads/medias/';
@@ -29,12 +29,13 @@ export class AddSliderComponent implements OnInit {
       this.images = data;
     });
     this.validateForm = new FormGroup({
-      title : new FormControl( '', [Validators.required ] ),
-      url: new FormControl( '', [Validators.required ] ),
-      description : new FormControl('', [Validators.required ] ),
-      img : new FormControl('', [Validators.required ])
-    })
+      title: new FormControl('', [Validators.required]),
+      url: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
+      img: new FormControl('', [Validators.required])
+    });
   }
+
   handleUpload(): void {
     this.uploading = true;
     this.service.postSlider(this.validateForm.value)
@@ -50,6 +51,7 @@ export class AddSliderComponent implements OnInit {
         }
       );
   }
+
   showModal(): void {
     this.isVisible = true;
   }
@@ -65,10 +67,13 @@ export class AddSliderComponent implements OnInit {
   handleCancel(): void {
     this.isVisible = false;
   }
+
   chooseImage(image) {
+    console.log(image);
     this.validateForm.get('img').setValue(image._id);
     this.img = image.image;
     this.imgFlag = true;
     this.isVisible = false;
+    console.log(this.validateForm)
   }
 }

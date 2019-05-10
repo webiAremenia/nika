@@ -1,5 +1,5 @@
 const User = require('../models/user');
-const errors = require('../_help/error_handler');
+const errors = require('../_help/errorHandler');
 const jwt = require('jsonwebtoken');
 const config = require('../config/configs');
 const jwtCompare = require('../middleware/jwtCompare');

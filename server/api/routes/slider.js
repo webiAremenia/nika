@@ -4,5 +4,6 @@ const controller = require('../controllers/slider');
 
 
 router.get('/', controller.getSliders);
+router.get('/speed', controller.getSliderSpeed);
 
 module.exports = router;

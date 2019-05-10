@@ -1,18 +1,104 @@
-<div class="image-block h-100" [bgColor] ="block.bg" appHover3dRotate>
-
-    <div class="for-dRotate h-100"   [ngStyle]="{'background-color' : block.bg}" >
-
-        <div class="opacity" routerLink="/"><div class="opacity-header">{{block.content.hoverTitle}}</div></div>
-
-        <div class="content h-100">
-            <div class="image-wrapper text-center h-100">
-                <div class="h-100 rotate-block">
-                    <div class="img"><img src="../../../../assets/images/{{block.content.img}}" alt="a"></div>
-                    <p class="rotate-header">{{block.content.hoverTitle}}</p>
+<div *ngIf="size == 'small'" class="d-none d-md-block image-block image-block-small h-100
+animation-{{block.content.animation ? block.content.animation: 'no'}}"
+     (mouseenter)="toggleAutoplay()"
+     (mouseleave)="toggleAutoplay()"
+>
+    <div class="bhbh h-100 w-100 hide-rotate" [ngStyle]="{'background-color' : block.content.bgColor}">
+        <a href="{{block.content.url ? block.content.url: '#'}}" target="_blank">
+            <div class="content h-100 img-bg-{{block.content.bgSize}}">
+                <div class="image-wrapper text-center h-100">
+                    <div class="h-100 rotate-block">
+                        <div class="img"><img [src]="imageUrl + block.content.image" alt="a"></div>
+                        <p class="rotate-header">{{block.content.animationText}}</p>
+                    </div>
                 </div>
+            </div>
+        </a>
+    </div>
+    <div class="opacity">
+        <div class="opacity-header">
+            <a href="{{block.content.url ? block.content.url: '#'}}" target="_blank">{{block.content.animationText}}</a>
+        </div>
+    </div>
+    <div *ngIf="block.content.mp3" class="audio">
+        <audio #audioElement
+               [volume]=".8"
+               [autoplay]="play">
+            <source [src]="imageUrl + block.content.mp3" type="video/mp4"/>
+        </audio>
+    </div>
+</div>
+
+<div *ngIf="size == 'middle'" class="d-none d-md-block image-block image-block-middle h-100
+animation-{{block.content.animation ? block.content.animation: 'no'}}">
+    <div class="bhbh h-100 w-100 hide-rotate" [ngStyle]="{'background-color' : block.content.bgColor}">
+        <a href="{{block.content.url ? block.content.url: '#'}}" target="_blank">
+            <div class=" content h-100 img-bg-{{block.content.bgSize}}">
+                <div class="image-wrapper text-center h-100">
+                    <div class="h-100 rotate-block">
+                        <div class="img"><img [src]="imageUrl + block.content.image" alt="a"></div>
+                        <p class="rotate-header">{{block.content.animationText}}</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="opacity">
+        <div class="opacity-header">
+            <a href="{{block.content.url ? block.content.url: '#'}}" target="_blank">{{block.content.animationText}}</a>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="size == 'large'" class="d-none d-md-block image-block image-block-large h-100
+animation-{{block.content.animation ? block.content.animation: 'no'}}"
+     [ngStyle]="{'background-color' : block.content.bgColor}">
+
+    <div *ngIf="block.content.bgSize == 'full'" class="content h-100 img-bg-{{block.content.bgSize}}">
+        <div class="image-wrapper  h-100">
+            <div class="h-100 rotate-block">
+                <div class="img"><img [src]="imageUrl + block.content.image" alt="a"></div>
+                <p class="rotate-header">{{block.content.animationText}}</p>
+            </div>
+            <div class="full-text-content">
+                <p class="animation-text">{{block.content.animationText}}</p>
+                <a *ngIf="block.content.url" href="{{block.content.url}}" target="_blank">see more ...</a>
             </div>
         </div>
 
     </div>
+
+    <div *ngIf="block.content.bgSize == 'center'" class="content h-100 img-bg-{{block.content.bgSize}}"
+         style="padding: 50px;">
+
+        <div class="row my-content">
+            <div class="col-8">
+                <div class="text-content">
+                    <p class="animation-text">{{block.content.animationText}}</p>
+                    <a *ngIf="block.content.url" href="{{block.content.url}}" target="_blank">see more ...</a>
+                </div>
+            </div>
+            <div class="col-4 image-wrapper h-100">
+                <div class="h-100 rotate-block">
+                    <div class="img"><img [src]="imageUrl + block.content.image" alt="a"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
+<div class="d-block d-md-none image-block-mobile image-block
+animation-{{block.content.animation ? block.content.animation: 'no'}}">
+    <a href="{{block.content.url ? block.content.url: ''}}" target="_blank">
+        <div class="content h-100 img-bg-{{block.content.bgSize}}"
+             [ngStyle]="{'background-color' : block.content.bgColor}">
+            <div class="image-wrapper text-center h-100">
+                <div class="h-100 rotate-block">
+                    <div class="img"><img [src]="imageUrl + block.content.image" alt="a"></div>
+                    <p class="rotate-header">{{block.content.animationText}}</p>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>

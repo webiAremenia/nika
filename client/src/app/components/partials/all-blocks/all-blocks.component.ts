@@ -1,31 +1,40 @@
 import {Component, OnInit} from '@angular/core';
-import {ComponentService} from "../../../_services/component.service";
-import {Block} from "../../../_models/block";
+import {ComponentService} from '../../../_services/component.service';
+import {Block} from '../../../_models/block';
+import {FooterService} from '../../../_services/footer.service';
+import {Group} from '../../../_models/group';
 
 @Component({
-  selector: 'app-all-blocks',
-  templateUrl: './all-blocks.component.html',
-  styleUrls: ['./all-blocks.component.scss']
+    selector: 'app-all-blocks',
+    templateUrl: './all-blocks.component.html',
+    styleUrls: ['./all-blocks.component.scss']
 })
 export class AllBlocksComponent implements OnInit {
 
-  blocks: Block[];
-  groups;
-  constructor(private componentService: ComponentService) {
-  }
+    blocks: Block[];
+    groups;
+    ggg: Group[];
+    ggDone = false;
 
-  ngOnInit() {
-    this.getBlocks();
-    this.getGroups();
-  }
+    constructor(
+        private componentService: ComponentService,
+        private footerService: FooterService
+    ) {
+    }
 
-  getBlocks() {
-    this.blocks = this.componentService.getBlocks();
-  }
-  getGroups() {
-    this.groups = this.componentService.getGroup();
-    // console.log(this.groups)
-  }
+    ngOnInit() {
+        this.getBlocks();
+        this.getGroups();
+    }
+
+    getBlocks() {
+        this.blocks = this.componentService.getBlocks();
+    }
+
+    getGroups() {
+        // this.groups = this.componentService.getGroup();
+        this.ggg = this.footerService.groups;
+    }
 
 
 }
