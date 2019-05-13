@@ -5,8 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const path = require('path');
-const fs = require('fs');
-const User = require('./admin/models/user');
+const winston = require('./config/winston');
 
 mongoose.connect(config.mongoUrl, {useNewUrlParser: true, useCreateIndex: true})
     .then(_ => {
@@ -22,8 +21,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(require('cors')());
 
-app.use(morgan('dev'));
-
+// app.use(morgan('dev'));
+// app.use(morgan('combined'));
+app.use(morgan('combined', { stream: winston.stream }));
 
 app.use('/uploads', express.static('admin/_uploads'));
 
@@ -62,9 +62,23 @@ app.use((req, res, next) => {
     res.status(err.status).json({error: err.message})
 });
 app.use((err, req, res, next) => {
-    console.error(err.message);
-    if (!err.statusCode) err.statusCode = 500;
-    res.status(err.statusCode).json({error: err.message});
+
+    // console.error(err.message);
+    // if (!err.statusCode) err.statusCode = 500;
+    // res.status(err.statusCode).json({error: err.message});
+    // set locals, only providing error in development
+
+
+    res.locals.message = err.message;
+    res.locals.error =  err;
+    // res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+    // add this line to include winston logging
+    winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 
