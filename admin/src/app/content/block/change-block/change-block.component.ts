@@ -13,16 +13,20 @@ import {Router} from '@angular/router';
 })
 export class ChangeBlockComponent implements OnInit {
     color = '#000';
+    storiesBgColor = '#ffffff';
+    portfoliosBgColor = '#ffffff';
     block;
     blockTypes;
     blockForm;
     stories;
     portfolios;
     selectedType;
+    selectedItems = [];
     submitted = false;
     dropdownSettings;
     dropdownList;
     imageForm;
+    portfolioForm;
     formData;
     obj;
     previewImage;
@@ -47,20 +51,36 @@ export class ChangeBlockComponent implements OnInit {
     ngOnInit(): void {
         this.url = this.blockService.url + '/uploads/block/';
         this.block = this.blockService.candidateBlock;
-        console.log('block', this.block);
+        console.log('block', this.block.stories);
+        if (this.block.stories) {
+            this.selectedItems = this.block.stories.map(s => {
+                return {
+                    id: s._id,
+                    title: s.title
+                }
+            });
+        }
         this.selectedType = this.block.type;
         this._type = this.block.type;
         this.buildForm();
         this.getProjects();
         this.getStoriesSettings();
         if (this.selectedType === 'Stories') {
+
+            this.storiesBgColor = this.block.bgColor;
+
             this.blockForm = this.fb.group({
-                stories: ['', Validators.required]
+                stories: ['', Validators.required],
+                bgColor: [this.block.bgColor, Validators.required]
             });
         } else if (this.selectedType === 'Portfolio') {
+            console.log('portfolio ', this.block);
+            this.portfoliosBgColor = this.block.bgColor;
             this.blockForm = this.fb.group({
-                portfolio: [this.block.portfolio, Validators.required]
+                portfolio: [this.block.portfolio, Validators.required],
+                bgColor: [this.block.bgColor]
             });
+            // this.blockForm.addControl('portfolio', this.getPortfolioForm());
         } else if (this.selectedType === 'Video') {
             this.blockForm = this.fb.group({
                 video: [this.block.video, Validators.required]
@@ -71,18 +91,18 @@ export class ChangeBlockComponent implements OnInit {
     }
 
     getImageForm() {
-            this.color = this.block.content.bgColor;
-            this.previewImage = this.url + this.block.content.image;
-            this.imageForm = this.fb.group({
-                image: [this.block.content.image],
-                bgColor: [this.block.content.bgColor],
-                bgSize: [this.block.content.bgSize],
-                animation: [this.block.content.animation],
-                animationText: [this.block.content.animationText],
-                url: [this.block.content.url],
-                mp3: [this.block.content.mp3],
-            });
-            return this.imageForm;
+        this.color = this.block.content.bgColor;
+        this.previewImage = this.url + this.block.content.image;
+        this.imageForm = this.fb.group({
+            image: [this.block.content.image],
+            bgColor: [this.block.content.bgColor],
+            bgSize: [this.block.content.bgSize],
+            animation: [this.block.content.animation],
+            animationText: [this.block.content.animationText],
+            url: [this.block.content.url],
+            mp3: [this.block.content.mp3],
+        });
+        return this.imageForm;
     }
 
     getStoriesSettings() {
@@ -132,6 +152,10 @@ export class ChangeBlockComponent implements OnInit {
                 return s.id;
             });
             this.blockForm.get('stories').setValue(_stories);
+            this.blockForm.get('bgColor').setValue(this.storiesBgColor);
+
+        } else if (this.selectedType === 'Portfolio') {
+            this.blockForm.get('bgColor').setValue(this.portfoliosBgColor);
         }
 
         this.formData.append('data', JSON.stringify(this.blockForm.value));

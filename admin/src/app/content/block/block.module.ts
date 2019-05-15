@@ -24,7 +24,7 @@ import {ColorPickerModule} from 'ngx-color-picker';
         NgMultiSelectDropDownModule.forRoot(),
         CommonModule,
         FormsModule,
-        ReactiveFormsModule,
+        ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
         BlockRoutingModule,
         NgZorroAntdModule,
     ],

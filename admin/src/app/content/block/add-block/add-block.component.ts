@@ -11,8 +11,11 @@ import {BlockService} from '../../../shared/services/block.service';
     styleUrls: ['./add-block.component.css']
 })
 export class AddBlockComponent implements OnInit {
+
     animationTypes = ['rotate-bg', 'rotate-content', 'hover'];
     color = '#000';
+    storiesBgColor = '#ffffff'
+    portfoliosBgColor = '#ffffff'
     blockTypes;
     blockForm;
     stories;
@@ -21,6 +24,8 @@ export class AddBlockComponent implements OnInit {
     dropdownSettings;
     dropdownList;
     imageForm;
+    portfolioForm;
+    storiesForm;
     formData;
     obj;
 
@@ -44,11 +49,21 @@ export class AddBlockComponent implements OnInit {
         this.imageForm = this.fb.group({
             image: [null],
             bgColor: [null],
-            bgSize: [null],
+            bgSize: ['full'],
             animation: [null],
             animationText: [null],
             url: [null],
             mp3: [null],
+        });
+
+        this.portfolioForm = this.fb.group({
+            project : [],
+            bgColor : [null]
+        });
+
+        this.storiesForm = this.fb.group({
+            settings : [],
+            bgColor : [null]
         });
 
         this.selectedType = this.blockForm.value.type;
@@ -56,13 +71,15 @@ export class AddBlockComponent implements OnInit {
             this.blockForm.removeControl('portfolio');
             this.blockForm.removeControl('video');
             this.blockForm.removeControl('content');
-            this.blockForm.addControl('stories', new FormControl(null, Validators.required));
+            // this.blockForm.addControl('stories', new FormControl(null, Validators.required));
+            this.blockForm.addControl('stories', this.storiesForm);
         }
         if (this.selectedType === 'Portfolio') {
             this.blockForm.removeControl('stories');
             this.blockForm.removeControl('video');
             this.blockForm.removeControl('content');
-            this.blockForm.addControl('portfolio', new FormControl(null, Validators.required));
+            // this.blockForm.addControl('portfolio', new FormControl(null, Validators.required));
+            this.blockForm.addControl('portfolio', this.portfolioForm);
         }
         if (this.selectedType === 'Video') {
             this.blockForm.removeControl('stories');
@@ -125,11 +142,15 @@ export class AddBlockComponent implements OnInit {
         } else if (this.selectedType === 'Video') {
             this.formData.append('video', this.blockForm.get('video').value);
         } else if (this.selectedType === 'Stories') {
-            _stories = this.blockForm.get('stories').value.map(s => {
+            _stories = this.storiesForm.get('settings').value.map(s => {
                 return s.id;
             });
-            this.blockForm.get('stories').setValue(_stories);
+            this.storiesForm.get('settings').setValue(_stories);
+            this.storiesForm.get('bgColor').setValue(this.storiesBgColor);
+
             // console.log('s ', this.blockForm.get('stories').value)
+        }else if (this.selectedType === 'Portfolio') {
+            this.portfolioForm.get('bgColor').setValue(this.portfoliosBgColor);
         }
         this.formData.append('data', JSON.stringify(this.blockForm.value));
         console.log(this.blockForm.value);
