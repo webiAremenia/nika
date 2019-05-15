@@ -55,12 +55,13 @@
 .video-block-mobile {
   position: relative;
   padding: 0 ;
-  width: 50%;
-  height: calc(50vw - 25px);
-
+  width: 100%;
+  height: calc(33vw - 25px);
+  @media (max-width: 768px) {
+    height: calc(50vw - 25px);
+  }
   @media (max-width: 500px) {
     padding: 0;
-    width: 100%;
     height: calc(100vw );
   }
 

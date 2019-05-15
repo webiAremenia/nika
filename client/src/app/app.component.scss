@@ -1,17 +1,23 @@
-.mt-50{
+.mt-50 {
   margin-top: 50px;
   @media (max-width: 768px) {
     margin-top: 0;
   }
 }
-.custom-container{
+
+.custom-container {
   padding: 50px;
 }
-.side-bar{
+
+.side-bar {
   height: calc(100vh - 100px);
   @media (max-width: 768px) {
     height: auto;
   }
+  @media (max-width: 992px) and (min-width: 767px) {
+    height: calc(80vh - 100px);
+  }
+
 }
 
 

@@ -1,4 +1,4 @@
-<div *ngIf="size == 'small'" class="d-none d-md-block image-block image-block-small h-100
+<div *ngIf="size == 'small'" class="d-none d-lg-block image-block image-block-small h-100
 animation-{{block.content.animation ? block.content.animation: 'no'}}"
      (mouseenter)="toggleAutoplay()"
      (mouseleave)="toggleAutoplay()"
@@ -29,7 +29,7 @@ animation-{{block.content.animation ? block.content.animation: 'no'}}"
     </div>
 </div>
 
-<div *ngIf="size == 'middle'" class="d-none d-md-block image-block image-block-middle h-100
+<div *ngIf="size == 'middle'" class="d-none d-lg-block image-block image-block-middle h-100
 animation-{{block.content.animation ? block.content.animation: 'no'}}">
     <div class="bhbh h-100 w-100 hide-rotate" [ngStyle]="{'background-color' : block.content.bgColor}">
         <a href="{{block.content.url ? block.content.url: '#'}}" target="_blank">
@@ -50,7 +50,7 @@ animation-{{block.content.animation ? block.content.animation: 'no'}}">
     </div>
 </div>
 
-<div *ngIf="size == 'large'" class="d-none d-md-block image-block image-block-large h-100
+<div *ngIf="size == 'large'" class="d-none d-lg-block image-block image-block-large h-100
 animation-{{block.content.animation ? block.content.animation: 'no'}}"
      [ngStyle]="{'background-color' : block.content.bgColor}">
 
@@ -88,7 +88,7 @@ animation-{{block.content.animation ? block.content.animation: 'no'}}"
 
 </div>
 
-<div class="d-block d-md-none image-block-mobile image-block
+<div class="d-block d-lg-none image-block-mobile image-block
 animation-{{block.content.animation ? block.content.animation: 'no'}}">
     <a href="{{block.content.url ? block.content.url: ''}}" target="_blank">
         <div class="content h-100 img-bg-{{block.content.bgSize}}"

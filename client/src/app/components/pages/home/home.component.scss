@@ -10,6 +10,9 @@
   background-size: cover;
   height: calc(100vh - 100px);
   padding: 50px;
+  @media (max-width: 992px) and (min-width: 767px) {
+    height: calc(80vh - 100px);
+  }
 }
 .item-content{
   position: relative;

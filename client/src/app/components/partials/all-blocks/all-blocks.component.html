@@ -1,7 +1,7 @@
 <div class="all-blocks custom-container pt-0 pb-0">
     <div class="group-wrapper">
         <div *ngFor="let gr of ggg, let i = index" class="line line-{{i}}">
-            <div class="d-none d-md-block
+            <div class="d-none d-lg-block
              bg-size-large parent-large-{{gr.largeBlock.blocks.length}}" id="large-{{i}}"
                  [ngClass]="gr.position == 'left'  ? 'left' : 'right'">
 
@@ -9,12 +9,14 @@
                     <div *ngFor="let ell of gr.largeBlock.blocks" class="{{ell.size}}-block">
 
                         <div *ngIf="ell.block.type == 'Stories'" class="">
-                            <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}" [ngStyle]="{'background-color':ell.block.bgColor}">
+                            <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}"
+                                 [ngStyle]="{'background-color':ell.block.bgColor}">
                                 <app-blog-block [block]="ell.block" [size]="ell.size"></app-blog-block>
                             </div>
                         </div>
                         <div *ngIf="ell.block.type == 'Portfolio'">
-                            <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}" [ngStyle]="{'background-color':ell.block.bgColor}">
+                            <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}"
+                                 [ngStyle]="{'background-color':ell.block.bgColor}">
                                 <app-portfolio-block [block]="ell.block" [size]="ell.size"></app-portfolio-block>
                             </div>
                         </div>
@@ -36,7 +38,7 @@
 
             </div>
 
-            <div class="d-none d-md-block
+            <div class="d-none d-lg-block
              bg-size-middle parent-middle" id="middle-{{i}}"
                  [ngClass]="gr.position == 'left'  ? 'right' : 'left'">
 
@@ -45,13 +47,15 @@
                     <div *ngFor="let ell of gr.middleBlock.blocks" class="{{ell.size}}-block">
 
                         <div *ngIf="ell.block.type == 'Stories'">
-                            <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}" [ngStyle]="{'background-color':ell.block.bgColor}">
+                            <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}"
+                                 [ngStyle]="{'background-color':ell.block.bgColor}">
                                 <app-blog-block [block]="ell.block" [size]="ell.size"></app-blog-block>
                             </div>
                         </div>
 
                         <div *ngIf="ell.block.type == 'Portfolio'">
-                            <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}" [ngStyle]="{'background-color':ell.block.bgColor}">
+                            <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}"
+                                 [ngStyle]="{'background-color':ell.block.bgColor}">
                                 <app-portfolio-block [block]="ell.block" [size]="ell.size"></app-portfolio-block>
                             </div>
                         </div>
@@ -71,48 +75,50 @@
                 </div>
             </div>
 
-            <div class="mobile-wrapper d-block d-md-none">
 
-                <div *ngFor="let ell of gr.largeBlock.blocks">
-                    <div *ngIf="ell.block.type == 'Stories'" [ngStyle]="{'background-color':ell.block.bgColor}">
+
+
+            <div class="mobile-wrapper d-block d-lg-none">
+
+                <div *ngFor="let ell of gr.largeBlock.blocks" class="w-100">
+                    <div *ngIf="ell.block.type == 'Stories'" class="mobile-custom">
                         <app-blog-block [block]="ell.block"></app-blog-block>
                     </div>
 
-                    <div *ngIf="ell.block.type == 'Portfolio'" [ngStyle]="{'background-color':ell.block.bgColor}">
-
+                    <div *ngIf="ell.block.type == 'Portfolio'" class="mobile-custom">
                         <app-portfolio-block [block]="ell.block"></app-portfolio-block>
-
                     </div>
 
-                    <div *ngIf="ell.block.type == 'Video'">
+                    <div *ngIf="ell.block.type == 'Video'" class="mobile-custom">
                         <app-video-block [block]="ell.block"></app-video-block>
                     </div>
 
-                    <div *ngIf="ell.block.type == 'Image'">
+                    <div *ngIf="ell.block.type == 'Image'" class="mobile-custom">
                         <app-image-block [block]="ell.block"></app-image-block>
                     </div>
                 </div>
 
                 <div *ngFor="let ell of gr.middleBlock.blocks">
-                    <div *ngIf="ell.block.type == 'Stories'" [ngStyle]="{'background-color':ell.block.bgColor}">
+                    <div *ngIf="ell.block.type == 'Stories'" class="mobile-custom">
                         <app-blog-block [block]="ell.block"></app-blog-block>
                     </div>
 
-                    <div *ngIf="ell.block.type == 'Portfolio'" [ngStyle]="{'background-color':ell.block.bgColor}">
-
+                    <div *ngIf="ell.block.type == 'Portfolio'" class="mobile-custom">
                         <app-portfolio-block [block]="ell.block"></app-portfolio-block>
-
                     </div>
 
-                    <div *ngIf="ell.block.type == 'Video'">
+                    <div *ngIf="ell.block.type == 'Video'" class="mobile-custom">
                         <app-video-block [block]="ell.block"></app-video-block>
                     </div>
 
-                    <div *ngIf="ell.block.type == 'Image'">
+                    <div *ngIf="ell.block.type == 'Image'" class="mobile-custom">
                         <app-image-block [block]="ell.block"></app-image-block>
                     </div>
                 </div>
             </div>
+
+
+
         </div>
     </div>
 </div>

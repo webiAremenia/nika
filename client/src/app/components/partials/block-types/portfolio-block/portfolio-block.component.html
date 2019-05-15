@@ -1,4 +1,4 @@
-<div class="d-none d-md-block portfolio-wrapper-small w-100 h-100" *ngIf="done && size === 'small'"
+<div class="d-none d-lg-block portfolio-wrapper-small w-100 h-100" *ngIf="done && size === 'small'"
      [routerLink]="['/work', portfolio._id]">
 
     <div class="image-wrapper w-100 h-100">
@@ -10,7 +10,7 @@
     <!--    <a [href]="portfolio.link">{{portfolio.link}}</a>-->
 </div>
 
-<div class="d-none d-md-block portfolio-wrapper-middle h-100 w-100" *ngIf="done && size === 'middle'">
+<div class="d-none d-lg-block portfolio-wrapper-middle h-100 w-100" *ngIf="done && size === 'middle'">
     <div class="image-wrapper w-100 h-100" [routerLink]="['/work', portfolio._id]">
         <img class="h-100 w-100" [src]="imageUrl + portfolio.imgs[0]" alt="">
     </div>
@@ -22,7 +22,7 @@
     </div>
 </div>
 
-<div class="d-none d-md-block portfolio-wrapper-large h-100" *ngIf="done && size === 'large'">
+<div class="d-none d-lg-block portfolio-wrapper-large h-100" *ngIf="done && size === 'large'">
 
     <div class="row vertical-center">
         <div class="content-wrapper col-8 col-xl-6">
@@ -40,7 +40,7 @@
 
 <!--============================ mobile ==================================-->
 
-<div class="d-block d-md-none portfolio-wrapper-mobile" *ngIf="done"
+<div class="d-block d-lg-none portfolio-wrapper-mobile" *ngIf="done" [ngStyle]="{'background-color': block.bgColor}"
      [routerLink]="['/work', portfolio._id]">
 
     <div class="image-wrapper w-100 h-100">

@@ -45,4 +45,17 @@ export class FooterService {
     getStories(arr) {
         return this.http.get(this.url + 'post/get-many/' + JSON.stringify(arr));
     }
+
+    getFooter() {
+        return {type: 'small', data: {
+                size: 'small',
+                bg: '#000',
+                category: 'link',
+                content: {
+                    title: 'Lorem ipsum dolor sit amet, consectetur adipisicing ?',
+                    link: 'contact us',
+                    url: 'https://www.facebook.com/'
+                }
+            }};
+    }
 }

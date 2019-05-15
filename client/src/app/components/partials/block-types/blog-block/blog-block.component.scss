@@ -27,7 +27,8 @@ a {
   top: 50%;
   transform: translateY(-50%);
   padding: 35px;
-  @media (max-width: 1600px) {
+  @media (max-width: 1400px) {
+    top: 60%;
     padding: 0 10px;
   }
 }
@@ -106,11 +107,13 @@ a {
 }
 
 .mobile-wrapper {
-  width: 50%;
-  height: calc(50vw - 25px);
+  width: 100%;
+  height: calc(33vw - 25px);
+  @media (max-width: 768px) {
+    height: calc(50vw - 25px);
+  }
   @media (max-width: 500px) {
     padding: 0;
-    width: 100%;
     height: calc(100vw);
   }
 
@@ -125,6 +128,9 @@ a {
       top: 50%;
       transform: translateY(-50%);
       padding: 35px;
+    }
+    .blog-description {
+      font-size: 11px;
     }
   }
 }

@@ -12,6 +12,7 @@ export class PortfolioBlockComponent implements OnInit {
 
     @Input() block;
     @Input() size;
+    @Input() bgColor;
     portfolio;
     imageUrl;
     done = false;
@@ -32,7 +33,6 @@ export class PortfolioBlockComponent implements OnInit {
         this.footerService.getPortfolioById(this.block.portfolio)
             .subscribe(
                 d => {
-                    console.log('dddd ', d)
                     this.done = true;
                     this.portfolio = d;
                     // console.log(d);
