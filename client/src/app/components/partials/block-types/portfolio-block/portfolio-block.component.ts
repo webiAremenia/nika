@@ -32,6 +32,7 @@ export class PortfolioBlockComponent implements OnInit {
         this.footerService.getPortfolioById(this.block.portfolio)
             .subscribe(
                 d => {
+                    console.log('dddd ', d)
                     this.done = true;
                     this.portfolio = d;
                     // console.log(d);

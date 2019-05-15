@@ -19,22 +19,38 @@
     </div>
 
     <div class="col-md-6">  <!--section with inputs by types-->
-        <div *ngIf="selectedType == 'Stories'" class="col-md-12">
+        <div *ngIf="selectedType == 'Stories'" class="col-md-12" >
             <label for="stories" class="my-label"> Stories:
                 <span *ngIf="blockForm.controls['stories'].touched && blockForm.controls['stories'].invalid" class="error-text">Please select Story</span>
             </label>
             <ng-multiselect-dropdown id="stories" class="my-input" formControlName="stories"
                                      [settings]="dropdownSettings"
-                                     [data]="dropdownList">
+                                     [data]="dropdownList"
+                                     [(ngModel)]="selectedItems">
             </ng-multiselect-dropdown>
+
+            <label for="bg-color" class="my-label"> Image Background:
+                <!--<span *ngIf="imageForm.controls['bgColor'].touched && imageForm.controls['bgColor'].invalid" class="error-text">Please select Color </span>-->
+            </label>
+            <input [(colorPicker)]="storiesBgColor" [style.background]="storiesBgColor"
+                   type="text" id="bg-color" class="my-input" formControlName="bgColor">
+
         </div>
 
         <div *ngIf="selectedType == 'Portfolio'" class="col-md-12">
             <label for="portfolio" class="my-label"> Projects:
-                <span *ngIf="blockForm.controls['portfolio'].touched && blockForm.controls['portfolio'].invalid" class="error-text">Please select Project</span> </label>
+                <!--<span *ngIf="blockForm.controls['project'].touched && blockForm.controls['project'].invalid" class="error-text">Please select Project</span>-->
+            </label>
             <select id="portfolio" class="my-input" formControlName="portfolio">
                 <option *ngFor="let project of portfolios" [value]="project._id">{{project.title}} </option>
             </select>
+
+            <label for="bg-color" class="my-label"> Image Background:
+                <!--<span *ngIf="imageForm.controls['bgColor'].touched && imageForm.controls['bgColor'].invalid" class="error-text">Please select Color </span>-->
+            </label>
+            <input [(colorPicker)]="portfoliosBgColor" [style.background]="portfoliosBgColor"
+                   type="text" id="bg-color" class="my-input" formControlName="bgColor">
+
         </div>
 
         <div *ngIf="selectedType == 'Video'" class="col-md-12">
