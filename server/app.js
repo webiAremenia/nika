@@ -15,9 +15,8 @@ mongoose.connect(config.mongoUrl, {useNewUrlParser: true, useCreateIndex: true})
         console.log('Error MongoDB not connected ...')
     });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 app.use(require('cors')());
 

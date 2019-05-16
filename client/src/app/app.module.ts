@@ -41,6 +41,7 @@ import {WorkDetailComponent} from './components/pages/work/work-detail/work-deta
 import {StoryDetailComponent} from './components/pages/stories/story-detail/story-detail.component';
 import {HttpClientModule} from '@angular/common/http';
 import {PortfolioBlockComponent} from './components/partials/block-types/portfolio-block/portfolio-block.component';
+import {NgxTweetModule} from 'ngx-tweet';
 
 
 @NgModule({
@@ -86,7 +87,8 @@ import {PortfolioBlockComponent} from './components/partials/block-types/portfol
         MatGridListModule,
         MatDatepickerModule,
         MatNativeDateModule,
-        MatButtonModule
+        MatButtonModule,
+        NgxTweetModule
     ],
     providers: [],
     bootstrap: [AppComponent]

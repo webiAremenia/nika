@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {PostsService} from '../../../shared/services/posts.service';
 import {PortfolioService} from '../../../shared/services/portfolio.service';
 import {Router} from '@angular/router';
@@ -14,8 +14,8 @@ export class AddBlockComponent implements OnInit {
 
     animationTypes = ['rotate-bg', 'rotate-content', 'hover'];
     color = '#000';
-    storiesBgColor = '#ffffff'
-    portfoliosBgColor = '#ffffff'
+    storiesBgColor = '#ffffff';
+    portfoliosBgColor = '#ffffff';
     blockTypes;
     blockForm;
     stories;
@@ -57,13 +57,13 @@ export class AddBlockComponent implements OnInit {
         });
 
         this.portfolioForm = this.fb.group({
-            project : [],
-            bgColor : [null]
+            project: [],
+            bgColor: [null]
         });
 
         this.storiesForm = this.fb.group({
-            settings : [],
-            bgColor : [null]
+            settings: [],
+            bgColor: [null]
         });
 
         this.selectedType = this.blockForm.value.type;
@@ -134,7 +134,7 @@ export class AddBlockComponent implements OnInit {
     }
 
     saveBlock() {
-        let _stories = [];
+        let localStories = [];
         if (this.selectedType === 'Image') {
             this.imageForm.get('bgColor').setValue(this.color);
             this.formData.append('image', this.imageForm.get('image').value);
@@ -142,21 +142,22 @@ export class AddBlockComponent implements OnInit {
         } else if (this.selectedType === 'Video') {
             this.formData.append('video', this.blockForm.get('video').value);
         } else if (this.selectedType === 'Stories') {
-            _stories = this.storiesForm.get('settings').value.map(s => {
+            localStories = this.storiesForm.get('settings').value.map(s => {
                 return s.id;
             });
-            this.storiesForm.get('settings').setValue(_stories);
+            this.storiesForm.get('settings').setValue(localStories);
             this.storiesForm.get('bgColor').setValue(this.storiesBgColor);
 
             // console.log('s ', this.blockForm.get('stories').value)
-        }else if (this.selectedType === 'Portfolio') {
+        } else if (this.selectedType === 'Portfolio') {
             this.portfolioForm.get('bgColor').setValue(this.portfoliosBgColor);
         }
         this.formData.append('data', JSON.stringify(this.blockForm.value));
-        console.log(this.blockForm.value);
+        // console.log(this.blockForm.value);
         this.blockService.postBlock(this.formData).subscribe(
             d => {
                 if (d) {
+                    console.log(d);
                     this.blockForm.reset();
                     this.router.navigate(['/block']);
                 }
@@ -172,11 +173,11 @@ export class AddBlockComponent implements OnInit {
             if (this.selectedType === 'Image') {
                 const img = event.target.files[0];
                 if (selector === 'image') {
-                    console.log(444);
+                    // console.log(444);
                     this.imageForm.get('image').setValue(img);
                 } else if (selector === 'mp3') {
                     const mp3 = event.target.files[0];
-                    console.log(5555);
+                    // console.log(5555);
                     this.imageForm.get('mp3').setValue(mp3);
                 }
             } else if (this.selectedType === 'Video') {
