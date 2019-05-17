@@ -7,10 +7,9 @@ const bcrypt = require('bcrypt');
 
 module.exports = {
     login: async (req, res) => {
-        console.log('passsssssssssssss', req.body.password);
         let candidate = await User.findOne({username: req.body.username});
         if (candidate) {
-            console.log('candidate ', candidate);
+            // console.log('candidate ', candidate);
             await bcrypt.compare(req.body.password, candidate.password, (err, result) => {
                 if (err) {
                     return res.status(401).json({

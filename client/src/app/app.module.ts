@@ -42,6 +42,7 @@ import {StoryDetailComponent} from './components/pages/stories/story-detail/stor
 import {HttpClientModule} from '@angular/common/http';
 import {PortfolioBlockComponent} from './components/partials/block-types/portfolio-block/portfolio-block.component';
 import {NgxTweetModule} from 'ngx-tweet';
+import { TwitterBlockComponent } from './components/partials/block-types/twitter-block/twitter-block.component';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import {NgxTweetModule} from 'ngx-tweet';
         WorkDetailComponent,
         StoryDetailComponent,
         PortfolioBlockComponent,
+        TwitterBlockComponent,
     ],
     imports: [
         HttpClientModule,
