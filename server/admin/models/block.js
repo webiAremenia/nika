@@ -9,7 +9,10 @@ const BlockSchema = new Schema({
     stories: [{type: Schema.Types.ObjectId, ref: 'Post'}],
     video: {type: String},
     content: {type: Object},
-    bgColor : {type : String}
+    bgColor : {type : String},
+    twitter : {type : String},
+    videoText : {type : String},
+    gif : {type : Object}
 });
 
 module.exports = mongoose.model('Block', BlockSchema);

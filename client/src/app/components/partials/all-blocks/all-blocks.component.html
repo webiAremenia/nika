@@ -21,6 +21,13 @@
                             </div>
                         </div>
 
+                        <div *ngIf="ell.block.type == 'Twitter'">
+                            <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}">
+                                <app-twitter-block [block]="ell.block" [size]="ell.size" ></app-twitter-block>
+                            </div>
+                        </div>
+
+
                         <div *ngIf="ell.block.type == 'Video'">
                             <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}">
                                 <app-video-block [block]="ell.block"></app-video-block>
@@ -60,6 +67,13 @@
                             </div>
                         </div>
 
+                        <div *ngIf="ell.block.type == 'Twitter'">
+                            <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}">
+                                <app-twitter-block [block]="ell.block" [size]="ell.size"></app-twitter-block>
+                            </div>
+                        </div>
+
+
                         <div *ngIf="ell.block.type == 'Video'">
                             <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}">
                                 <app-video-block [block]="ell.block"></app-video-block>
@@ -76,8 +90,6 @@
             </div>
 
 
-
-
             <div class="mobile-wrapper d-block d-lg-none">
 
                 <div *ngFor="let ell of gr.largeBlock.blocks" class="w-100">
@@ -87,6 +99,10 @@
 
                     <div *ngIf="ell.block.type == 'Portfolio'" class="mobile-custom">
                         <app-portfolio-block [block]="ell.block"></app-portfolio-block>
+                    </div>
+
+                    <div *ngIf="ell.block.type == 'Twitter'" class="mobile-custom">
+                        <app-twitter-block [block]="ell.block"></app-twitter-block>
                     </div>
 
                     <div *ngIf="ell.block.type == 'Video'" class="mobile-custom">
@@ -107,6 +123,10 @@
                         <app-portfolio-block [block]="ell.block"></app-portfolio-block>
                     </div>
 
+                    <div *ngIf="ell.block.type == 'Twitter'" class="mobile-custom">
+                        <app-twitter-block [block]="ell.block"></app-twitter-block>
+                    </div>
+
                     <div *ngIf="ell.block.type == 'Video'" class="mobile-custom">
                         <app-video-block [block]="ell.block"></app-video-block>
                     </div>
@@ -116,8 +136,6 @@
                     </div>
                 </div>
             </div>
-
-
 
         </div>
     </div>

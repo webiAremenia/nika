@@ -11,10 +11,8 @@
         <div class="col-md-12">
             <label for="size" class="my-label"> Size:
                 <span *ngIf="blockForm.controls['size'].touched && blockForm.controls['size'].invalid" class="error-text">Please select Size</span> </label>
-            <select id="size" class="my-input" formControlName="size">
-                <option>small</option>
-                <option>middle</option>
-                <option>large</option>
+            <select id="size" class="my-input" formControlName="size" (change)="foo($event)">
+                <option value="{{size}}" *ngFor="let size of sizeTypes">{{size}}</option>
             </select>
         </div>
 
@@ -61,10 +59,38 @@
                    type="text" id="bg-color" class="my-input" formControlName="bgColor">
         </div>
 
-        <div *ngIf="selectedType == 'Video'" class="col-md-12">
+        <div *ngIf="selectedType == 'Video'" class="col-md-12" formArrayName="video">
             <label for="video" class="my-label"> Video file:
                 </label>
-            <input type="file" id="video" class="my-input" (change)="onFileSelect($event, 'video')">
+            <input type="file"  id="video" class="my-input" (change)="onFileSelect($event, 'video')">
+
+            <label for="videoText" class="my-label">Video Text:
+            </label>
+            <input type="text" id="videoText" class="my-input" formControlName="videoText">
+
+        </div>
+
+        <div *ngIf="selectedType == 'Twitter'" class="col-md-12">
+            <label for="twitter" class="my-label"> Twitter link:
+            </label>
+            <input type="text" id="twitter" class="my-input" formControlName="twitter">
+        </div>
+
+        <div *ngIf="selectedType == 'GIF'" class="col-md-12" formArrayName="gif">
+            <label for="gif" class="my-label"> Image / Gif file:
+                <span *ngIf="gifForm.controls['gif'].touched && gifForm.controls['gif'].invalid" class="error-text">Please choose Gif or Gif</span>
+            </label>
+            <input type="file" id="gif" class="my-input" (change)="onFileSelect($event, 'gif')">
+
+            <label for="mp3" class="my-label"> Mp3 file: </label>
+            <input type="file" id="mp3" class="my-input" (change)="onFileSelect($event, 'mp3')">
+
+            <label for="bg-color" class="my-label"> Gif Background:
+                <!--<span *ngIf="imageForm.controls['bgColor'].touched && imageForm.controls['bgColor'].invalid" class="error-text">Please select Color </span>-->
+            </label>
+            <input [(colorPicker)]="gifBgColor" [style.background]="gifBgColor"
+                   type="text" id="bg-color" class="my-input" formControlName="bgColor">
+
         </div>
 
         <div *ngIf="selectedType == 'Image'" class="col-md-12" formArrayName="content">
@@ -100,8 +126,6 @@
             <label for="url" class="my-label"> Url:</label>
             <input type="text" id="url" class="my-input" formControlName="url">
 
-            <label for="mp3" class="my-label"> Mp3 file: </label>
-            <input type="file" id="mp3" class="my-input" (change)="onFileSelect($event, 'mp3')">
         </div>
 
     </div>

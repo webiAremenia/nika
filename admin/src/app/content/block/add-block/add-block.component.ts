@@ -16,7 +16,9 @@ export class AddBlockComponent implements OnInit {
     color = '#000';
     storiesBgColor = '#ffffff';
     portfoliosBgColor = '#ffffff';
+    gifBgColor = '#000';
     blockTypes;
+    sizeTypes;
     blockForm;
     stories;
     portfolios;
@@ -26,6 +28,8 @@ export class AddBlockComponent implements OnInit {
     imageForm;
     portfolioForm;
     storiesForm;
+    videoForm;
+    gifForm;
     formData;
     obj;
 
@@ -45,15 +49,33 @@ export class AddBlockComponent implements OnInit {
         this.getStoriesSettings();
     }
 
+    foo(e) {
+        if (e.target.value === 'large') {
+            this.blockTypes = ['', 'Portfolio', 'Stories', 'Video', 'Image', 'GIF'];
+        } else {
+            this.blockTypes = ['', 'Portfolio', 'Stories', 'Video', 'Image', 'Twitter', 'GIF'];
+        }
+    }
+
+
     addControlByType(event) {
+        if (event.target.value === 'Twitter') {
+            this.sizeTypes = ['small', 'middle'];
+        } else {
+            this.sizeTypes = ['small', 'middle', 'large'];
+        }
         this.imageForm = this.fb.group({
-            image: [null],
+            image: [null, Validators.required],
             bgColor: [null],
             bgSize: ['full'],
             animation: [null],
             animationText: [null],
             url: [null],
+        });
+        this.gifForm = this.fb.group({
+            gif: [null, Validators.required],
             mp3: [null],
+            bgColor: [null],
         });
 
         this.portfolioForm = this.fb.group({
@@ -66,11 +88,19 @@ export class AddBlockComponent implements OnInit {
             bgColor: [null]
         });
 
+        this.videoForm = this.fb.group({
+            videoText: [null, ],
+            videoFile: [null, Validators.required],
+        });
+
+
         this.selectedType = this.blockForm.value.type;
         if (this.selectedType === 'Stories') {
             this.blockForm.removeControl('portfolio');
             this.blockForm.removeControl('video');
             this.blockForm.removeControl('content');
+            this.blockForm.removeControl('twitter');
+            this.blockForm.removeControl('gif');
             // this.blockForm.addControl('stories', new FormControl(null, Validators.required));
             this.blockForm.addControl('stories', this.storiesForm);
         }
@@ -78,6 +108,9 @@ export class AddBlockComponent implements OnInit {
             this.blockForm.removeControl('stories');
             this.blockForm.removeControl('video');
             this.blockForm.removeControl('content');
+            this.blockForm.removeControl('twitter');
+            this.blockForm.removeControl('gif');
+
             // this.blockForm.addControl('portfolio', new FormControl(null, Validators.required));
             this.blockForm.addControl('portfolio', this.portfolioForm);
         }
@@ -85,13 +118,36 @@ export class AddBlockComponent implements OnInit {
             this.blockForm.removeControl('stories');
             this.blockForm.removeControl('portfolio');
             this.blockForm.removeControl('content');
-            this.blockForm.addControl('video', new FormControl(null, Validators.required));
+            this.blockForm.removeControl('twitter');
+            this.blockForm.removeControl('gif');
+
+            // this.blockForm.addControl('video', new FormControl(null, Validators.required));
+            this.blockForm.addControl('video', this.videoForm);
         }
         if (this.selectedType === 'Image') {
             this.blockForm.removeControl('stories');
             this.blockForm.removeControl('portfolio');
             this.blockForm.removeControl('video');
+            this.blockForm.removeControl('twitter');
+            this.blockForm.removeControl('gif');
+
             this.blockForm.addControl('content', this.imageForm);
+        }
+        if (this.selectedType === 'Twitter') {
+            this.blockForm.removeControl('stories');
+            this.blockForm.removeControl('portfolio');
+            this.blockForm.removeControl('video');
+            this.blockForm.removeControl('content');
+            this.blockForm.removeControl('gif');
+
+            this.blockForm.addControl('twitter', new FormControl(null, Validators.required));
+        }
+        if (this.selectedType === 'GIF') {
+            this.blockForm.removeControl('stories');
+            this.blockForm.removeControl('portfolio');
+            this.blockForm.removeControl('video');
+            this.blockForm.removeControl('content');
+            this.blockForm.addControl('gif', this.gifForm);
         }
     }
 
@@ -125,7 +181,8 @@ export class AddBlockComponent implements OnInit {
     }
 
     buildForm() {
-        this.blockTypes = ['', 'Portfolio', 'Stories', 'Video', 'Image'];
+        this.blockTypes = ['', 'Portfolio', 'Stories', 'Video', 'Image', 'Twitter', 'GIF'];
+        this.sizeTypes = ['small', 'middle', 'large'];
         this.blockForm = this.fb.group({
             name: [null, [Validators.required]],
             size: [null, [Validators.required]],
@@ -138,22 +195,33 @@ export class AddBlockComponent implements OnInit {
         if (this.selectedType === 'Image') {
             this.imageForm.get('bgColor').setValue(this.color);
             this.formData.append('image', this.imageForm.get('image').value);
-            this.formData.append('mp3', this.imageForm.get('mp3').value);
+        } else if (this.selectedType === 'GIF') {
+            this.gifForm.get('bgColor').setValue(this.gifBgColor);
+            this.formData.append('gif', this.gifForm.get('gif').value);
+            this.formData.append('mp3', this.gifForm.get('mp3').value);
+
         } else if (this.selectedType === 'Video') {
-            this.formData.append('video', this.blockForm.get('video').value);
+            this.formData.append('video', this.videoForm.get('videoFile').value);
         } else if (this.selectedType === 'Stories') {
-            localStories = this.storiesForm.get('settings').value.map(s => {
-                return s.id;
-            });
+            if (this.storiesForm.get('settings').value) {
+                localStories = this.storiesForm.get('settings').value.map(s => {
+                    return s.id;
+                });
+            }
+
             this.storiesForm.get('settings').setValue(localStories);
             this.storiesForm.get('bgColor').setValue(this.storiesBgColor);
 
             // console.log('s ', this.blockForm.get('stories').value)
         } else if (this.selectedType === 'Portfolio') {
             this.portfolioForm.get('bgColor').setValue(this.portfoliosBgColor);
+        } else if (this.selectedType === 'Twitter') {
+            if (this.blockForm.get('twitter').value.split('/')[5]) {
+                this.blockForm.get('twitter').setValue(this.blockForm.get('twitter').value.split('/')[5]);
+            }
         }
+        console.log(this.blockForm.value);
         this.formData.append('data', JSON.stringify(this.blockForm.value));
-        // console.log(this.blockForm.value);
         this.blockService.postBlock(this.formData).subscribe(
             d => {
                 if (d) {
@@ -175,14 +243,20 @@ export class AddBlockComponent implements OnInit {
                 if (selector === 'image') {
                     // console.log(444);
                     this.imageForm.get('image').setValue(img);
-                } else if (selector === 'mp3') {
-                    const mp3 = event.target.files[0];
-                    // console.log(5555);
-                    this.imageForm.get('mp3').setValue(mp3);
                 }
             } else if (this.selectedType === 'Video') {
                 const video = event.target.files[0];
-                this.blockForm.get('video').setValue(video);
+                this.videoForm.get('videoFile').setValue(video);
+            } else if (this.selectedType === 'GIF') {
+                const gif = event.target.files[0];
+                if (selector === 'gif') {
+                    // console.log(444);
+                    this.gifForm.get('gif').setValue(gif);
+                } else if (selector === 'mp3') {
+                    const mp3 = event.target.files[0];
+                    // console.log(5555);
+                    this.gifForm.get('mp3').setValue(mp3);
+                }
             }
 
             console.log('Files ', event.target.files);

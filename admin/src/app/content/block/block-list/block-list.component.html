@@ -1,6 +1,7 @@
-<nz-table *ngIf="done" #middleTable nzSize="middle" [nzData]="blocks" [nzPageSize]="8">
+<nz-table *ngIf="done" #middleTable nzSize="middle" [nzData]="blocks" [nzPageSize]="15">
   <thead>
   <tr>
+    <th>Name</th>
     <th>Size</th>
     <th>Type</th>
     <th><button style="text-align: center;padding-bottom: 10px; margin: 0 5px 0 5px;" class="btn btn-success float-right" (click)="add()"><i nz-icon type="folder-add" theme="outline"></i></button></th>
@@ -8,6 +9,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let data of middleTable.data">
+    <td>{{ data.name }}</td>
     <td>{{ data.size }}</td>
     <td>{{ data.type }}</td>
     <td>
