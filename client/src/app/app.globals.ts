@@ -6,9 +6,9 @@ import { Injectable } from '@angular/core';
 export class AppGlobals {
   port = '3000';
   protocol = 'http';
-  // hostname = 'localhost';
-  hostname = 'nika.webi.am';
-  url = this.protocol + '://' + this.hostname ;
+  hostname = 'localhost';
+  // hostname = 'nika.webi.am';
+  url = this.protocol + '://' + this.hostname + ':'+ this.port;
   imageUrl = this.protocol + '://' + this.hostname +  '/uploads';
   constructor() {}
 }
