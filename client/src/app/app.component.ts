@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
         componentService: ComponentService,
         private footerService: FooterService
     ) {
-        componentService.getBlocks();
+        // componentService.getBlocks();
         router.events.subscribe((val) => {
             if (val instanceof RouterEvent) {
                 if (val.url.indexOf('/work/') >= 0) {

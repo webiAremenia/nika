@@ -13,7 +13,6 @@
 
 .side-bar-header {
   background: #F7F7F7;
-
 }
 .bottom-part{
   height: 80%;
@@ -31,22 +30,31 @@
     font-size: 20px;
     line-height: 1.2;
   }
+  @media (max-width: 992px) and (min-width: 767px) {
+    font-size: 14px;
+  }
+}
+.menu-title h1 {
+  font-size: 50px;
+  @media (max-width: 992px) and (min-width: 767px) {
+    font-size: 37px;
+  }
 }
 
 .side-bar-header {
   height: 100%;
   padding: 30px;
-  @media (max-width: 768px) {
-    padding: 0 !important;
-  }
   @media (max-width: 1600px) {
     padding: 15px;
   }
+  @media (max-width: 992px) and (min-width: 767px) {
+    padding: 5px;
+  }
+  @media (max-width: 768px) {
+    padding: 0 !important;
+  }
 }
 
-.menu-title h1 {
-  font-size: 50px;
-}
 
 .side-bar-about {
   font-size: larger;
@@ -58,12 +66,19 @@
   @media (max-width: 1400px) {
     font-size: 12px;
   }
+  @media (max-width: 992px) and (min-width: 767px) {
+    padding-right: 0;
+    font-size: 10px;
+  }
 }
 
 .logo-wrapper img {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+  @media (max-width: 992px) and (min-width: 767px) {
+    width: 80%;
+  }
 }
 
 .side-bar-meet-link p {
@@ -77,6 +92,11 @@
   width: 40px;
   border: 3px solid black;
   margin-top: 8px;
+  @media (max-width: 992px) and (min-width: 767px) {
+    width: 25px;
+    border: 2px solid black;
+    margin-top: 4px;
+  }
 }
 
 .hamburger-logo-toggle-img {
@@ -99,14 +119,24 @@
   .hamburger-line-2 {
     display: none;
   }
-}
-.links-content{
-  max-height: 200px;
-  overflow: auto;
-  @media (max-width: 1400px) {
-    max-height: 100px;
+  @media (max-width: 992px) and (min-width: 767px) {
+    .hamburger-line-1 {
+      transition: 200ms;
+      transform: rotate(45deg);
+      top: 8px;
+    }
+
+    .hamburger-line-3 {
+      transition: 200ms;
+      transform: rotate(-45deg);
+    }
+
+    .hamburger-line-2 {
+      display: none;
+    }
   }
 }
+
 //=============== mobile content ========================
 
 .mobile-header{
@@ -158,3 +188,16 @@
   }
 }
 
+.menu-animation {
+  height: auto !important;
+  position: fixed;
+  top: 0;
+  width: calc((100vw - 116px) / 12 * 3 + 2px);
+  z-index: 10000;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.restore {
+  height: calc((100vw - 116px) / 12 * 3) !important;
+}

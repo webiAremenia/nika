@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
     validateForm: FormGroup;
-    flagmsg = false;
+    flagMsg = false;
     msg = '';
 
     submitForm(): void {
@@ -27,8 +27,8 @@ export class LoginPageComponent implements OnInit {
             },
             (err) => {
                 console.log(err);
-                this.msg = err.error['msg'];
-                this.flagmsg = true;
+                this.msg = err.error.msg;
+                this.flagMsg = true;
             }
         );
     }

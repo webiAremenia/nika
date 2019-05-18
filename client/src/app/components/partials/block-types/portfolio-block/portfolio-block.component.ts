@@ -12,6 +12,7 @@ export class PortfolioBlockComponent implements OnInit {
 
     @Input() block;
     @Input() size;
+    @Input() bgColor;
     portfolio;
     imageUrl;
     done = false;

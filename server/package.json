@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "app-root-path": "^2.2.1",
     "async-waterfall": "^0.1.5",
+    "bcrypt": "^3.0.6",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
@@ -21,6 +23,8 @@
     "multer-sharp": "^0.5.2",
     "nodemailer": "^6.0.0",
     "nodemon": "^1.18.10",
-    "sharp": "^0.22.0"
+    "sharp": "^0.22.0",
+    "winston": "^3.2.1",
+    "winston-mongodb": "^5.0.0"
   }
 }

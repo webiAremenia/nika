@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AppGlobals {
-  port = '3000';
-  protocol = 'http';
-  // hostname = 'localhost'+ ':' + this.port;
-  hostname = 'nika.webi.am';
-  url = this.protocol + '://' + this.hostname ;
-  constructor() {}
+    port = '3000';
+    protocol = 'http';
+    hostname = 'localhost' + ':' + this.port;
+    // hostname = 'nika.webi.am';
+    url = this.protocol + '://' + this.hostname;
+
+    constructor() {
+    }
 }

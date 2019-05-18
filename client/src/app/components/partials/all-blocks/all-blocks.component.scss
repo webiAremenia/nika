@@ -10,12 +10,10 @@
 .line {
   height: calc(40vw - 40px);
   position: relative;
-  @media (max-width: 767px) {
+  @media (max-width: 992px) {
     height: auto;
   }
 }
-
-
 
 .right {
   right: 0;
@@ -251,5 +249,16 @@
       width: 100%;
       height: calc(100vw - 20px);
     }
+  }
+}
+.mobile-custom{
+  float: left;
+  width: 33.33%;
+  @media (max-width: 768px) {
+    width: 50%;
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
   }
 }

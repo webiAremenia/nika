@@ -12,28 +12,19 @@ import {Group} from '../../../_models/group';
 export class AllBlocksComponent implements OnInit {
 
     blocks: Block[];
-    groups;
     ggg: Group[];
-    ggDone = false;
 
     constructor(
         private componentService: ComponentService,
         private footerService: FooterService
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
-        this.getBlocks();
         this.getGroups();
     }
-
-    getBlocks() {
-        this.blocks = this.componentService.getBlocks();
-    }
-
     getGroups() {
-        // this.groups = this.componentService.getGroup();
         this.ggg = this.footerService.groups;
+        console.log('--- ', this.ggg)
     }
 
 

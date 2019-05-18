@@ -13,16 +13,22 @@ import {Router} from '@angular/router';
 })
 export class ChangeBlockComponent implements OnInit {
     color = '#000';
+    gifBgColor = '#000';
+    storiesBgColor = '#ffffff';
+    portfoliosBgColor = '#ffffff';
     block;
     blockTypes;
     blockForm;
     stories;
     portfolios;
     selectedType;
+    selectedItems = [];
     submitted = false;
     dropdownSettings;
     dropdownList;
     imageForm;
+    gifForm;
+    portfolioForm;
     formData;
     obj;
     previewImage;
@@ -47,42 +53,73 @@ export class ChangeBlockComponent implements OnInit {
     ngOnInit(): void {
         this.url = this.blockService.url + '/uploads/block/';
         this.block = this.blockService.candidateBlock;
-        console.log('block', this.block);
+        console.log(this.block);
+        if (this.block.stories) {
+            this.selectedItems = this.block.stories.map(s => {
+                return {
+                    id: s._id,
+                    title: s.title
+                };
+            });
+        }
         this.selectedType = this.block.type;
         this._type = this.block.type;
         this.buildForm();
         this.getProjects();
         this.getStoriesSettings();
         if (this.selectedType === 'Stories') {
+            this.storiesBgColor = this.block.bgColor;
             this.blockForm = this.fb.group({
-                stories: ['', Validators.required]
+                stories: ['', Validators.required],
+                bgColor: [this.block.bgColor, Validators.required]
             });
         } else if (this.selectedType === 'Portfolio') {
+            console.log('portfolio ', this.block);
+            this.portfoliosBgColor = this.block.bgColor;
             this.blockForm = this.fb.group({
-                portfolio: [this.block.portfolio, Validators.required]
+                portfolio: [this.block.portfolio, Validators.required],
+                bgColor: [this.block.bgColor]
             });
+            // this.blockForm.addControl('portfolio', this.getPortfolioForm());
         } else if (this.selectedType === 'Video') {
             this.blockForm = this.fb.group({
-                video: [this.block.video, Validators.required]
+                video: [this.block.video, Validators.required],
+                videoText: [this.block.videoText, Validators.required]
             });
         } else if (this.selectedType === 'Image') {
             this.blockForm.addControl('content', this.getImageForm());
+        } else if (this.selectedType === 'Twitter') {
+            this.blockForm = this.fb.group({
+                twitter: [this.block.twitter, Validators.required]
+            });
+        } else if (this.selectedType === 'GIF') {
+            this.blockForm.addControl('gif', this.getGifForm());
         }
     }
 
     getImageForm() {
-            this.color = this.block.content.bgColor;
-            this.previewImage = this.url + this.block.content.image;
-            this.imageForm = this.fb.group({
-                image: [this.block.content.image],
-                bgColor: [this.block.content.bgColor],
-                bgSize: [this.block.content.bgSize],
-                animation: [this.block.content.animation],
-                animationText: [this.block.content.animationText],
-                url: [this.block.content.url],
-                mp3: [this.block.content.mp3],
-            });
-            return this.imageForm;
+        this.color = this.block.content.bgColor;
+        this.previewImage = this.url + this.block.content.image;
+        this.imageForm = this.fb.group({
+            image: [this.block.content.image],
+            bgColor: [this.block.content.bgColor],
+            bgSize: [this.block.content.bgSize],
+            animation: [this.block.content.animation],
+            animationText: [this.block.content.animationText],
+            url: [this.block.content.url],
+        });
+        return this.imageForm;
+    }
+
+    getGifForm() {
+        this.gifBgColor = this.block.gif.bgColor;
+        this.gifForm = this.fb.group({
+            gif: [this.block.gif.gif],
+            mp3: [this.block.gif.mp3],
+            bgColor: [this.block.gif.bgColor]
+        });
+
+        return this.gifForm;
     }
 
     getStoriesSettings() {
@@ -115,7 +152,7 @@ export class ChangeBlockComponent implements OnInit {
     }
 
     buildForm() {
-        this.blockTypes = ['Portfolio', 'Stories', 'Video', 'Image'];
+        this.blockTypes = ['Portfolio', 'Stories', 'Video', 'Image', 'Twitter', 'GIF'];
         this.blockForm = this.fb.group({});
     }
 
@@ -124,7 +161,10 @@ export class ChangeBlockComponent implements OnInit {
         if (this.selectedType === 'Image') {
             this.imageForm.get('bgColor').setValue(this.color);
             this.formData.append('image', this.imageForm.get('image').value);
-            this.formData.append('mp3', this.imageForm.get('mp3').value);
+        } else if (this.selectedType === 'GIF') {
+            this.gifForm.get('bgColor').setValue(this.gifBgColor);
+            this.formData.append('gif', this.gifForm.get('gif').value);
+            this.formData.append('mp3', this.gifForm.get('mp3').value);
         } else if (this.selectedType === 'Video') {
             this.formData.append('video', this.blockForm.get('video').value);
         } else if (this.selectedType === 'Stories') {
@@ -132,6 +172,14 @@ export class ChangeBlockComponent implements OnInit {
                 return s.id;
             });
             this.blockForm.get('stories').setValue(_stories);
+            this.blockForm.get('bgColor').setValue(this.storiesBgColor);
+
+        } else if (this.selectedType === 'Portfolio') {
+            this.blockForm.get('bgColor').setValue(this.portfoliosBgColor);
+        } else if (this.selectedType === 'Twitter') {
+            if (this.blockForm.get('twitter').value.split('/')[5]) {
+                this.blockForm.get('twitter').setValue(this.blockForm.get('twitter').value.split('/')[5]);
+            }
         }
 
         this.formData.append('data', JSON.stringify(this.blockForm.value));
@@ -158,14 +206,20 @@ export class ChangeBlockComponent implements OnInit {
                 if (selector === 'image') {
                     console.log(444);
                     this.imageForm.get('image').setValue(img);
-                } else if (selector === 'mp3') {
-                    const mp3 = event.target.files[0];
-                    console.log(5555);
-                    this.imageForm.get('mp3').setValue(mp3);
                 }
             } else if (this.selectedType === 'Video') {
                 const video = event.target.files[0];
                 this.blockForm.get('video').setValue(video);
+            } else if (this.selectedType === 'GIF') {
+                const gif = event.target.files[0];
+                if (selector === 'gif') {
+                    // console.log(444);
+                    this.gifForm.get('gif').setValue(gif);
+                } else if (selector === 'mp3') {
+                    const mp3 = event.target.files[0];
+                    // console.log(5555);
+                    this.gifForm.get('mp3').setValue(mp3);
+                }
             }
 
             console.log('Files ', event.target.files);

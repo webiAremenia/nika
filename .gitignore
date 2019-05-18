@@ -1,5 +1,6 @@
-_uploads
-config/
+_uploads/
+
+logs/
 # Logs
 logs
 *.log
