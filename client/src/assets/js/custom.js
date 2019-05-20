@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    $('.EmbeddedTweet ').css({maxWidth: 'unset'});
     let menuToggled = false;
     let faded = false;
 

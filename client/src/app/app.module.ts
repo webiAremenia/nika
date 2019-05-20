@@ -16,10 +16,8 @@ import {ImageBlockComponent} from './components/partials/block-types/image-block
 import {AllBlocksComponent} from './components/partials/all-blocks/all-blocks.component';
 import {BlogBlockComponent} from './components/partials/block-types/blog-block/blog-block.component';
 import {BgImageBlockComponent} from './components/partials/block-types/bg-image-block/bg-image-block.component';
-import {TextImageBlockComponent} from './components/partials/block-types/text-image-block/text-image-block.component';
 import {VideoBlockComponent} from './components/partials/block-types/video-block/video-block.component';
 import {AllStoriesComponent} from './components/pages/all-stories/all-stories.component';
-import {LinkBlockComponent} from './components/partials/block-types/link-block/link-block.component';
 import {HoverOpacityDirective} from './_directives/hover-opacity.directive';
 import {HoverRotateDirective} from './_directives/hover-rotate.directive';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -43,6 +41,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {PortfolioBlockComponent} from './components/partials/block-types/portfolio-block/portfolio-block.component';
 import {NgxTweetModule} from 'ngx-tweet';
 import { TwitterBlockComponent } from './components/partials/block-types/twitter-block/twitter-block.component';
+import { GifBlockComponent } from './components/partials/block-types/gif-block/gif-block.component';
 
 
 @NgModule({
@@ -59,10 +58,8 @@ import { TwitterBlockComponent } from './components/partials/block-types/twitter
         AllBlocksComponent,
         BlogBlockComponent,
         BgImageBlockComponent,
-        TextImageBlockComponent,
         VideoBlockComponent,
         AllStoriesComponent,
-        LinkBlockComponent,
         HoverOpacityDirective,
         HoverRotateDirective,
         VacancyComponent,
@@ -75,6 +72,7 @@ import { TwitterBlockComponent } from './components/partials/block-types/twitter
         StoryDetailComponent,
         PortfolioBlockComponent,
         TwitterBlockComponent,
+        GifBlockComponent,
     ],
     imports: [
         HttpClientModule,

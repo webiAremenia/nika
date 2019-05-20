@@ -19,8 +19,8 @@
                     <i class="fa fa-play" aria-hidden="true"></i>
                 </div>
             </div>
-            <div class="col-6">
-                <!--{{block.content.title | uppercase}}-->
+            <div *ngIf="block.videoText" class="col-6">
+                {{block.videoText  | uppercase}}
             </div>
         </div>
     </div>
@@ -46,8 +46,8 @@
                         <i class="fa fa-play" aria-hidden="true"></i>
                     </div>
                 </div>
-                <div class="col-6">
-                    <!--{{block.content.title | uppercase}}-->
+                <div *ngIf="block.videoText" class="col-6">
+                    {{block.videoText | uppercase}}
                 </div>
             </div>
         </div>

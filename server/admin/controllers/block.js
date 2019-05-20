@@ -1,7 +1,9 @@
 const Block = require('../models/block');
 const errors = require('../_help/errorHandler');
 const fs = require('fs');
-const sharp = require('sharp');
+// const sharp = require('sharp');
+// let imgConvert = require('image-convert');
+const gifFrames = require('gif-frames');
 
 module.exports = {
     getBlock: async (req, res) => {
@@ -13,13 +15,8 @@ module.exports = {
         }
     },
     addBlock: async (req, res) => {
-        // console.log(req.body);
         const data = JSON.parse(req.body.data);
-        // console.log(JSON.parse(req.body.data))
         try {
-            // console.log('++++++++++ ', data);
-            // console.log('----------', req.files)
-            // console.log(data.stories.settings)
             const block = {
                 name: data.name,
                 size: data.size,
@@ -31,7 +28,8 @@ module.exports = {
                 stories: data.stories && data.stories.settings.length > 0 ? data.stories.settings : null,
                 video: null,
                 gif: data.gif ? {
-                    gif: req.files[0]? req.files[0].filename : null,
+                    gif: req.files[0] ? req.files[0].filename : null,
+                    image: '',
                     mp3: req.files[1] ? req.files[1].filename : null,
                     bgColor: data.gif.bgColor,
 
@@ -49,16 +47,38 @@ module.exports = {
                 // console.log('------ ', req.files);
                 if (req.files[0].fieldname === 'video') {
                     block.video = req.files[0].filename;
-                    block.videoText = data.video.videoText
+                    block.videoText = data.video.videoText;
                     console.log('-------')
                 }
             }
             if (data.portfolio) {
-                console.log(data.portfolio.bgColor)
                 block.bgColor = data.portfolio.bgColor
             } else if (data.stories) {
-                console.log(data.stories.bgColor)
                 block.bgColor = data.stories.bgColor
+            }
+
+
+            if (data.type === 'GIF') {
+                await gifFrames(
+                    {
+                        url: 'http://localhost:3000/uploads/block/' + req.files[0].filename,
+                        frames: '0',
+                        outputType: 'png',
+                        cumulative: true
+                    },
+                    function (err, frameData) {
+                        if (err) {
+                            throw err;
+                        }
+                        frameData.forEach(function (frame) {
+                            frame.getImage().pipe(fs.createWriteStream(
+                                './admin/_uploads/block/' + req.files[0].filename.split('.')[0] + '.png'
+                            ));
+                            block.gif.image = req.files[0].filename.split('.')[0] + '.png';
+                            console.log(1);
+                        });
+                    }
+                );
             }
 
             new Block(block).save();
@@ -76,9 +96,7 @@ module.exports = {
         let candidate = await Block.findOne({_id: req.params.id});
         let data = JSON.parse(req.body.data);
         let block;
-        // console.log(data);
         try {
-            // console.log(1)
 
             if (data.portfolio || data.stories || data.twitter) {
                 // console.log(2)
@@ -93,10 +111,9 @@ module.exports = {
                     if (req.files.length > 0 || data.videoText) {
                         console.log('aaa')
                         if (req.files.length > 0) {
-                            if(candidate.video){
+                            if (candidate.video) {
                                 fs.unlinkSync(`./admin/_uploads/block/${candidate.video}`);
                             }
-                            console.log('**************************** ', data)
                             block = {
                                 video: req.files[0].filename,
                                 videoText: data.videoText
@@ -120,7 +137,6 @@ module.exports = {
                     }
 
                 } else if (data.content) {
-                    // console.log(4)
                     block = {
                         content: {
                             animation: data.content.animation,
@@ -128,40 +144,13 @@ module.exports = {
                             bgColor: data.content.bgColor,
                             bgSize: data.content.bgSize,
                             url: data.content.url,
-                            image : candidate.content.image
+                            image: candidate.content.image
                         }
                     };
                     if (req.files.length > 0) {
-                        console.log('++++');
-                        // console.log(req.files)
                         fs.unlinkSync(`./admin/_uploads/block/${candidate.content.image}`);
                         block.content.image = req.files[0].filename
 
-
-                        // req.files.forEach(f => {
-                        //     if (f.fieldname === 'image') {
-                        //         block.content.image = f.filename;
-                        //         if (!block.content.mp3) {
-                        //             block.content.mp3 = candidate.content.mp3
-                        //         }
-                        //         if (candidate.content.image) {
-                        //             console.log('123456789')
-                        //             fs.unlinkSync(`./admin/_uploads/block/${candidate.content.image}`);
-                        //         }
-                        //         // console.log('++++');
-                        //
-                        //     }
-                        //     if (f.fieldname === 'mp3') {
-                        //         block.content.mp3 = f.filename;
-                        //         // console.log('----');
-                        //         if (!block.content.image) {
-                        //             block.content.image = candidate.content.image
-                        //         }
-                        //         if (candidate.content.mp3) {
-                        //             fs.unlinkSync(`./admin/_uploads/block/${candidate.content.mp3}`);
-                        //         }
-                        //     }
-                        // });
                     }
                     // console.log(block)
                     await Block.findByIdAndUpdate({_id: req.params.id}, block);
@@ -169,16 +158,14 @@ module.exports = {
                         success: true
                     });
                 } else if (data.gif) {
-                    // console.log(4)
                     block = {
                         gif: {
                             bgColor: data.gif.bgColor,
-                            gif : candidate.gif.gif,
-                            mp3 : candidate.gif.mp3,
+                            gif: candidate.gif.gif,
+                            mp3: candidate.gif.mp3,
                         }
                     };
                     if (req.files.length > 0) {
-                        console.log('++++');
 
                         req.files.forEach(f => {
                             if (f.fieldname === 'gif') {
@@ -187,13 +174,31 @@ module.exports = {
                                     block.gif.mp3 = candidate.gif.mp3
                                 }
                                 if (candidate.gif.gif) {
-                                    console.log('123456789')
                                     fs.unlinkSync(`./admin/_uploads/block/${candidate.gif.gif}`);
+                                    fs.unlinkSync(`./admin/_uploads/block/${candidate.gif.image}`);
                                 }
+                                gifFrames(
+                                    {
+                                        url: 'http://localhost:3000/uploads/block/' + f.filename,
+                                        frames: '0',
+                                        outputType: 'png',
+                                        cumulative: true
+                                    },
+                                    function (err, frameData) {
+                                        if (err) {
+                                            throw err;
+                                        }
+                                        frameData.forEach(function (frame) {
+                                            frame.getImage().pipe(fs.createWriteStream(
+                                                './admin/_uploads/block/' + f.filename.split('.')[0] + '.png'
+                                            ));
+                                            block.gif.image = f.filename.split('.')[0] + '.png';
+                                        });
+                                    }
+                                );
                             }
                             if (f.fieldname === 'mp3') {
                                 block.gif.mp3 = f.filename;
-                                // console.log('----');
                                 if (!block.gif.gif) {
                                     block.gif.gif = candidate.gif.gif
                                 }
@@ -231,6 +236,7 @@ module.exports = {
                 } else if (candidate.gif) {
                     if (candidate.gif.gif) {
                         fs.unlinkSync(`./admin/_uploads/block/${candidate.gif.gif}`);
+                        fs.unlinkSync(`./admin/_uploads/block/${candidate.gif.image}`);
                     }
                     if (candidate.gif.mp3) {
                         fs.unlinkSync(`./admin/_uploads/block/${candidate.gif.mp3}`);

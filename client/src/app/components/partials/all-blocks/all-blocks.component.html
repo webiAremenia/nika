@@ -40,6 +40,12 @@
                             </div>
                         </div>
 
+                        <div *ngIf="ell.block.type == 'GIF'">
+                            <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}">
+                                <app-gif-block [block]="ell.block" [size]="ell.size"></app-gif-block>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -85,6 +91,12 @@
                                 <app-image-block [block]="ell.block" [size]="ell.size"></app-image-block>
                             </div>
                         </div>
+
+                        <div *ngIf="ell.block.type == 'GIF'">
+                            <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}">
+                                <app-gif-block [block]="ell.block" [size]="ell.size"></app-gif-block>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -112,6 +124,11 @@
                     <div *ngIf="ell.block.type == 'Image'" class="mobile-custom">
                         <app-image-block [block]="ell.block"></app-image-block>
                     </div>
+
+                    <div *ngIf="ell.block.type == 'GIF'" class="mobile-custom">
+                        <app-gif-block [block]="ell.block"></app-gif-block>
+                    </div>
+
                 </div>
 
                 <div *ngFor="let ell of gr.middleBlock.blocks">
@@ -133,6 +150,10 @@
 
                     <div *ngIf="ell.block.type == 'Image'" class="mobile-custom">
                         <app-image-block [block]="ell.block"></app-image-block>
+                    </div>
+
+                    <div *ngIf="ell.block.type == 'GIF'" class="mobile-custom">
+                        <app-gif-block [block]="ell.block"></app-gif-block>
                     </div>
                 </div>
             </div>
