@@ -11,6 +11,7 @@
 
 .side-bar {
   height: calc(100vh - 100px);
+  z-index: 1000;
   @media (max-width: 768px) {
     height: auto;
   }

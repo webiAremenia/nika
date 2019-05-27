@@ -1,4 +1,6 @@
-<div class="home-page bg-light" *ngIf="done">
+
+<div class="rightContentWrapper">
+<div class="home-page bg-light col-md-9 offset-md-3 col-12 col-sm-12" *ngIf="done">
     <owl-carousel-o [options]="options">
         <ng-template *ngFor="let item of slides, let i = index" class="h-100" carouselSlide>
             <div class="my-slider-item" routerLink="/{{item.url}}"
@@ -18,4 +20,9 @@
             </div>
         </ng-template>
     </owl-carousel-o>
+</div>
+
+</div>
+<div class="pt-5" *ngIf="done">
+ <app-all-blocks></app-all-blocks>
 </div>

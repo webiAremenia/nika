@@ -1,40 +1,15 @@
 <div *ngIf="done">
     <div class="custom-container pb-0">
         <div class="row p-0 m-0">
-            <div class="side-bar col-12 col-md-3 p-0">
+            <div class="side-bar col-12 col-md-3 position-absolute">
                 <app-sidebar></app-sidebar>
-            </div>
-            <div class="side-bar col-12 col-md-9 p-0">
-                <div *ngIf="path == ''">
-                    <app-home></app-home>
-                </div>
-                <div *ngIf="path == '/contact'">
-                    <app-contact></app-contact>
-                </div>
-                <div *ngIf="path == '/about'">
-                    <app-about></app-about>
-                </div>
-                <div *ngIf="path == '/works'">
-                    <app-work-desc></app-work-desc>
-                </div>
-                <div *ngIf="path == '/stories'">
-                    <app-stories-desc></app-stories-desc>
-                </div>
-                <div *ngIf="path == '/careers'">
-                    <app-careers></app-careers>
-                </div>
-
             </div>
         </div>
     </div>
-
-
-    <div class="mt-50">
+    <div>
         <router-outlet></router-outlet>
     </div>
 
     <div class="clearfix"></div>
-
-
-    <app-footer></app-footer>
-</div>
+        <app-footer></app-footer>
+    </div>
