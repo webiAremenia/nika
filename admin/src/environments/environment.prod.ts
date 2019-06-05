@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  eryUrl: 'http://nika.webi.am'
 };

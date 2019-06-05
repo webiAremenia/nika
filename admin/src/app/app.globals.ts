@@ -1,14 +1,11 @@
 import {Injectable} from '@angular/core';
+import {environment} from '../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AppGlobals {
-    port = '3000';
-    protocol = 'http';
-    hostname = 'localhost' + ':' + this.port;
-    // hostname = 'nika.webi.am';
-    url = this.protocol + '://' + this.hostname;
+    url = environment.queryUrl;
 
     constructor() {
     }

@@ -9,7 +9,9 @@ const bcrypt = require('bcrypt');
 module.exports = {
     login: async (req, res) => {
         let candidate = await User.findOne({username: req.body.username});
+        console.log(1);
         if (candidate) {
+            console.log(2);
             // console.log('candidate ', candidate);
             await bcrypt.compare(req.body.password, candidate.password, (err, result) => {
                 if (err) {
@@ -33,6 +35,7 @@ module.exports = {
             })
 
         } else {
+            console.log(3);
             errors.notFound(res, errors);
         }
     },

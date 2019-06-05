@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {PostsService} from "../../../shared/services/posts.service";
-import {FormBuilder, FormGroup, Validators, FormControl} from "@angular/forms";
-import {NzMessageService, UploadFile} from "ng-zorro-antd";
+import {PostsService} from '../../../shared/services/posts.service';
+import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import {NzMessageService, UploadFile} from 'ng-zorro-antd';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-change-post',
@@ -30,7 +30,7 @@ export class ChangePostComponent implements OnInit {
     this.post = this.service.candidatePost;
     this.validateForm = new FormGroup({
       title : new FormControl ( this.post.title ,  [Validators.required]),
-      description :  new FormControl ( this.post.description,[ Validators.required]),
+      description :  new FormControl ( this.post.description, [ Validators.required]),
       content :  new FormControl (  this.post.content, [ Validators.required]),
       alt :  new FormControl (  this.post.alt),
       image: new FormControl(this.post.image)
@@ -45,7 +45,7 @@ export class ChangePostComponent implements OnInit {
     this.fileList = this.fileList.concat(file);
     this.previewImage = file.url || file.thumbUrl;
     return false;
-  };
+  }
 
   handleUpload(): void {
     const formData = new FormData();
@@ -69,7 +69,7 @@ export class ChangePostComponent implements OnInit {
           this.uploading = false;
           this.fileList = [];
           this.msg.success('upload successfully.');
-          this.router.navigate(['post'])
+          this.router.navigate(['post']);
         },
         () => {
           this.uploading = false;
@@ -79,14 +79,14 @@ export class ChangePostComponent implements OnInit {
   }
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
-      let reader = new FileReader();
+      const reader = new FileReader();
       this.fileList[0] = event.target.files[0];
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.previewImage = event.target['result'];
-        console.log(event.target)
-      }
+      reader.onload = (e) => {
+        this.previewImage = e.target;
+        console.log(event.target);
+      };
     }
   }
 

@@ -1,5 +1,5 @@
 <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
-  <nz-alert *ngIf="flagmsg" nzType="error" nzMessage="{{msg}}"></nz-alert>
+  <nz-alert *ngIf="flagMsg" nzType="error" nzMessage="{{msg}}"></nz-alert>
   <nz-form-item>
     <nz-form-control>
       <nz-input-group [nzPrefix]="prefixUser">

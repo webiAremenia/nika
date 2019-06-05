@@ -38,10 +38,11 @@
     </div>
     <div class="col-12 offset-2">
       <div class="row">
-        <div class="col-11 offset-1">
+        <div class="col-11 ">
           <nz-form-item>
-            <nz-form-control [nzSm]="14" [nzXs]="24">
+            <nz-form-control [nzSm]="18" [nzXs]="24">
               <ckeditor [editor]="Editor"  [config]="ckconfig" tagName="input" formControlName="content"></ckeditor>
+<!--              <ckeditor [editor]="Editor" [config]="ckconfig" [(ngModel)]="doc.text" name="editcontent"></ckeditor>-->
             </nz-form-control>
           </nz-form-item>
         </div>

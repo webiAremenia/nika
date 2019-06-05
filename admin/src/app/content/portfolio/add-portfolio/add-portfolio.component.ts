@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {NzMessageService, UploadFile} from "ng-zorro-antd";
-import {PostsService} from "../../../shared/services/posts.service";
-import {Router} from "@angular/router";
-import {PortfolioService} from "../../../shared/services/portfolio.service";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {NzMessageService, UploadFile} from 'ng-zorro-antd';
+import {Router} from '@angular/router';
+import {PortfolioService} from '../../../shared/services/portfolio.service';
 
 @Component({
   selector: 'app-add-portfolio',
@@ -34,7 +33,7 @@ export class AddPortfolioComponent implements OnInit {
     this.flag = false;
     this.fileList = this.fileList.concat(file);
     return false;
-  };
+  }
 
   handleUpload(): void {
     const formData = new FormData();
@@ -52,7 +51,7 @@ export class AddPortfolioComponent implements OnInit {
           this.uploading = false;
           this.fileList = [];
           this.msg.success('upload successfully.');
-          this.router.navigate(['portfolio'])
+          this.router.navigate(['portfolio']);
         },
         () => {
           this.uploading = false;

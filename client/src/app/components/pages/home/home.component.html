@@ -1,28 +1,27 @@
-
-<div class="rightContentWrapper">
-<div class="home-page bg-light col-md-9 offset-md-3 col-12 col-sm-12" *ngIf="done">
-    <owl-carousel-o [options]="options">
-        <ng-template *ngFor="let item of slides, let i = index" class="h-100" carouselSlide>
-            <div class="my-slider-item" routerLink="/{{item.url}}"
-                 [ngStyle]="{'background-image': 'url(' + imageUrl + item.image + ')'}">
-                <!--<span role="img" aria-label="{{item.alt}}"> </span>-->
-                <div class="item-content">
-                    <div class="row">
-                        <div class="item-text col-10">
-                            <div class="item-title">{{item.title}}</div>
-                            <div class="item-description">{{ item.description }}</div>
-                        </div>
-                        <div class="items-counter col-2">
-                            <span class="float-right">{{i + 1}}/{{slides.length}}</span>
+<div class="rightContentWrapper" *ngIf="done">
+    <div class="home-page bg-light col-12 col-sm-12 col-md-9 offset-md-3 pr-0">
+        <owl-carousel-o [options]="options">
+            <ng-template *ngFor="let item of slides, let i = index" class="h-100" carouselSlide>
+                <div class="my-slider-item"
+                     [ngStyle]="{'background-image': 'url(' + imageUrl + item.image + ')'}">
+                    <!--<span role="img" aria-label="{{item.alt}}"> </span>-->
+                    <div class="item-content">
+                        <div class="row">
+                            <div class="item-text col-10">
+                                <div class="item-title" routerLink="/{{item.url}}">{{item.title}}</div>
+                                <div class="item-description">{{ item.description }}</div>
+                            </div>
+                            <div class="items-counter col-2">
+                                <span class="float-right">{{i + 1}}/{{slides.length}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </ng-template>
-    </owl-carousel-o>
-</div>
+            </ng-template>
+        </owl-carousel-o>
+    </div>
 
 </div>
 <div class="pt-5" *ngIf="done">
- <app-all-blocks></app-all-blocks>
+    <app-all-blocks></app-all-blocks>
 </div>
