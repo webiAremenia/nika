@@ -5,37 +5,15 @@ const fs = require('fs');
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
 
-        // console.log('####################');
-        // console.log(req.originalUrl.split('/')[2]);
-        // console.log('####################');
-        // console.log(file);
-
-        // if (!fs.existsSync(__dirname + '/../../../_uploads')) {
-        //     fs.mkdirSync(__dirname + '/../../../_uploads');
-        // }
-        // if (!fs.existsSync(__dirname + `/../../../_uploads/${path}`)) {
-        //     fs.mkdirSync(__dirname + `/../../../_uploads/${path}`);
-        // }
-        //
-        // cb(null, __dirname + `/../../../_uploads/${path}`);
-
-        // if (!fs.existsSync(__dirname + `/../../../_uploads/${path}`)) {
-        //     fs.mkdirSync(__dirname + `/../../../_uploads/${path}`);
-        // }
-
         if (!fs.existsSync(__dirname + '/../../../_uploads')) {
             fs.mkdirSync(__dirname + '/../../../_uploads');
         }
-
         if (!fs.existsSync(__dirname + '/../../../_uploads/posts')) {
             fs.mkdirSync(__dirname + '/../../../_uploads/posts');
         }
-
-
-
-        // if (!fs.existsSync(__dirname + '/../../../_uploads/posts/ckeditor')) {
-        //     fs.mkdirSync(__dirname + '/../../../_uploads/posts/ckeditor');
-        // }
+        if (!fs.existsSync(__dirname + '/../../../_uploads/posts/ckeditor')) {
+            fs.mkdirSync(__dirname + '/../../../_uploads/posts/ckeditor');
+        }
         if (!fs.existsSync(__dirname + '/../../../_uploads/medias')) {
             fs.mkdirSync(__dirname + '/../../../_uploads/medias');
         }
@@ -51,7 +29,6 @@ const storage = multer.diskStorage({
         if (!fs.existsSync(__dirname + '/../../../_uploads/block')) {
             fs.mkdirSync(__dirname + '/../../../_uploads/block');
         }
-
 
 
         if(req.originalUrl.split('/')[2] === 'post' && req.method === 'POST'){
