@@ -72,7 +72,7 @@ module.exports = {
                         }
                         frameData.forEach(function (frame) {
                             frame.getImage().pipe(fs.createWriteStream(
-                                './admin/_uploads/block/' + req.files[0].filename.split('.')[0] + '.png'
+                                __dirname + '/../../../_uploads/block/' + req.files[0].filename.split('.')[0] + '.png'
                             ));
                             block.gif.image = req.files[0].filename.split('.')[0] + '.png';
                             console.log(1);
@@ -112,7 +112,7 @@ module.exports = {
                         console.log('aaa')
                         if (req.files.length > 0) {
                             if (candidate.video) {
-                                fs.unlinkSync(`./admin/_uploads/block/${candidate.video}`);
+                                fs.unlinkSync( __dirname + `/../../../_uploads/block/${candidate.video}`);
                             }
                             block = {
                                 video: req.files[0].filename,
@@ -148,7 +148,7 @@ module.exports = {
                         }
                     };
                     if (req.files.length > 0) {
-                        fs.unlinkSync(`./admin/_uploads/block/${candidate.content.image}`);
+                        fs.unlinkSync( __dirname + `/../../../_uploads/block/${candidate.content.image}`);
                         block.content.image = req.files[0].filename
 
                     }
@@ -174,8 +174,8 @@ module.exports = {
                                     block.gif.mp3 = candidate.gif.mp3
                                 }
                                 if (candidate.gif.gif) {
-                                    fs.unlinkSync(`./admin/_uploads/block/${candidate.gif.gif}`);
-                                    fs.unlinkSync(`./admin/_uploads/block/${candidate.gif.image}`);
+                                    fs.unlinkSync( __dirname + `/../../../_uploads/block/${candidate.gif.gif}`);
+                                    fs.unlinkSync( __dirname + `/../../../_uploads/block/${candidate.gif.image}`);
                                 }
                                 gifFrames(
                                     {
@@ -190,7 +190,7 @@ module.exports = {
                                         }
                                         frameData.forEach(function (frame) {
                                             frame.getImage().pipe(fs.createWriteStream(
-                                                './admin/_uploads/block/' + f.filename.split('.')[0] + '.png'
+                                                __dirname + '/../../../_uploads/block/' + f.filename.split('.')[0] + '.png'
                                             ));
                                             block.gif.image = f.filename.split('.')[0] + '.png';
                                         });
@@ -203,7 +203,7 @@ module.exports = {
                                     block.gif.gif = candidate.gif.gif
                                 }
                                 if (candidate.gif.mp3) {
-                                    fs.unlinkSync(`./admin/_uploads/block/${candidate.gif.mp3}`);
+                                    fs.unlinkSync( __dirname + `/../../../_uploads/block/${candidate.gif.mp3}`);
                                 }
                             }
                         });
@@ -228,18 +228,18 @@ module.exports = {
             try {
                 if (candidate.video) {
                     console.log(candidate)
-                    fs.unlinkSync(`./admin/_uploads/block/${candidate.video}`);
+                    fs.unlinkSync( __dirname + `/../../../_uploads/block/${candidate.video}`);
                 } else if (candidate.content) {
                     if (candidate.content.image) {
-                        fs.unlinkSync(`./admin/_uploads/block/${candidate.content.image}`);
+                        fs.unlinkSync( __dirname + `/../../../_uploads/block/${candidate.content.image}`);
                     }
                 } else if (candidate.gif) {
                     if (candidate.gif.gif) {
-                        fs.unlinkSync(`./admin/_uploads/block/${candidate.gif.gif}`);
-                        fs.unlinkSync(`./admin/_uploads/block/${candidate.gif.image}`);
+                        fs.unlinkSync( __dirname + `/../../../_uploads/block/${candidate.gif.gif}`);
+                        fs.unlinkSync( __dirname + `/../../../_uploads/block/${candidate.gif.image}`);
                     }
                     if (candidate.gif.mp3) {
-                        fs.unlinkSync(`./admin/_uploads/block/${candidate.gif.mp3}`);
+                        fs.unlinkSync( __dirname + `/../../../_uploads/block/${candidate.gif.mp3}`);
                     }
                 }
                 await Block.deleteOne({_id: req.params.id});

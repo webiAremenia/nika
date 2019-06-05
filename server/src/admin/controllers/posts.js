@@ -42,7 +42,7 @@ module.exports = {
                 errors.invalidData(res, errors);
             }
         } else {
-            fs.unlinkSync(`./admin/_uploads/posts/${req.file.filename}`);
+            fs.unlinkSync(__dirname + `/../../../_uploads/posts/${req.file.filename}`);
             errors.conflictError(res, errors)
         }
     },
@@ -57,7 +57,7 @@ module.exports = {
             image: req.file ? req.file.filename : req.body.image
         };
         if (req.file) {
-            fs.unlinkSync(`./admin/_uploads/posts/${oldPost.image}`);
+            fs.unlinkSync(__dirname + `/../../../_uploads/posts/${oldPost.image}`);
         }
         post.updated = new Date();
         try {
@@ -75,7 +75,7 @@ module.exports = {
             let candidate = await Post.findOne({_id: post});
             try {
                 await Post.remove({_id: post});
-                fs.unlinkSync(`./admin/_uploads/posts/${candidate.image}`);
+                fs.unlinkSync(__dirname + `/../../../_uploads/posts/${candidate.image}`);
                 res.status(201).json({
                     msg: 'Post has removed successfully'
                 })

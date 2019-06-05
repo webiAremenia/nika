@@ -4,11 +4,11 @@ const router = express.Router();
 
 const posts = require('./post'),
     sliders = require('./slider'),
-    medias = require('./media');
-    contact = require('./contact');
-    portfolio = require('./portfolio');
-    menu = require('./menu');
-    settings = require('./settings');
+    medias = require('./media'),
+    contact = require('./contact'),
+    portfolio = require('./portfolio'),
+    menu = require('./menu'),
+    settings = require('./settings'),
     group = require('./group');
 
 router.use('/post', posts);

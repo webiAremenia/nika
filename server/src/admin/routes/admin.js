@@ -10,7 +10,7 @@ const auth = require('./auth'),
     menu = require('./menu'),
     vacancy = require('./vacancy'),
     block = require('./block'),
-    medias = require('./media');
+    medias = require('./media'),
     group = require('./group');
 
 router.use('/post', posts);

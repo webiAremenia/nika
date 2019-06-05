@@ -1,7 +1,8 @@
 const User = require('../models/user');
 const errors = require('../_help/errorHandler');
 const jwt = require('jsonwebtoken');
-const config = require('../config/configs');
+// const config = require('../config/configs');
+import '../../../config/config';
 const jwtCompare = require('../middleware/jwtCompare');
 const bcrypt = require('bcrypt');
 
@@ -25,7 +26,7 @@ module.exports = {
                         email: candidate.email,
                         role: candidate.role
                     };
-                    let data = jwt.sign(user, config.jwt_key);
+                    let data = jwt.sign(user, global.gConfig.jwt_key);
                     res.status(201).json({
                         token: data,
                         user: user

@@ -1,19 +1,24 @@
-const config = require('./admin/config/configs');
+import '../config/config.js';
+
+// const config = require('../admin/config/configs');
 const express = require('express');
-const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const path = require('path');
-const winston = require('./config/winston');
+const winston = require('../config/winston');
 
-mongoose.connect(config.mongoUrl, {useNewUrlParser: true, useCreateIndex: true})
+const app = express();
+
+
+const mongoDB = global.gConfig.database;
+mongoose.connect(mongoDB, {useNewUrlParser: true, useCreateIndex: true})
     .then(_ => {
         console.log('MongoDB has connected ...')
     })
     .catch(err => {
         console.log('Error MongoDB not connected ...')
     });
+
 
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
@@ -24,7 +29,7 @@ app.use(require('cors')());
 // app.use(morgan('combined'));
 app.use(morgan('combined', {stream: winston.stream}));
 
-app.use('/uploads', express.static('admin/_uploads'));
+app.use('/uploads', express.static(__dirname + '/../_uploads'));
 
 const admin = require('./admin/routes/admin');
 const api = require('./api/routes/api');

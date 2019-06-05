@@ -50,7 +50,7 @@ module.exports = {
         };
         vacancy.updated = new Date();
         if (req.file) {
-            fs.unlinkSync(`./admin/_uploads/vacancy/${oldVacancy.image}`);
+            fs.unlinkSync(__dirname + `/../../../_uploads/vacancy/${oldVacancy.image}`);
         }
         vacancy.updated = new Date();
         try {
@@ -69,7 +69,7 @@ module.exports = {
         if (candidate) {
             try {
                 await Vacancy.remove({_id: vacancy});
-                fs.unlinkSync(`./admin/_uploads/vacancy/${candidate.image}`);
+                fs.unlinkSync(__dirname + `/../../../_uploads/vacancy/${candidate.image}`);
                 res.status(201).json({
                     msg: 'Vacancy has removed successfully'
                 })
