@@ -4,8 +4,8 @@ const fs = require('fs');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-
-        // console.log('####################');
+        console.log('####################');
+        console.log(req.originalUrl);
         // console.log(req.body);
         // console.log('####################');
         // console.log(file);
@@ -34,6 +34,10 @@ const storage = multer.diskStorage({
         if (!fs.existsSync(__dirname + '/../_uploads/block')) {
             fs.mkdirSync(__dirname + '/../_uploads/block');
         }
+        console.log('----- ', req.originalUrl.split('/')[3])
+        console.log('+++++ ', req.originalUrl.split('/')[2])
+
+
 
         if(req.originalUrl.split('/')[2] === 'post' && req.method === 'POST'){
             cb(null, './admin/_uploads/posts')
@@ -71,10 +75,15 @@ const storage = multer.diskStorage({
 
     },
     filename: function (req, file, cb) {
-        if (req.method === 'POST') {
-            cb(null, new Date().getTime().toString() + file.originalname)
-        } else if (req.method === 'PUT') {
-            cb(null, new Date().getTime().toString() + file.originalname)
+
+        if(req.originalUrl.split('/')[3] !== 'ckeditor' && req.method === 'POST') {
+            if (req.method === 'POST') {
+                cb(null, new Date().getTime().toString() + file.originalname)
+            } else if (req.method === 'PUT') {
+                cb(null, new Date().getTime().toString() + file.originalname)
+            }
+        } else {
+            cb(null, file.originalname)
         }
     }
 });

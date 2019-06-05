@@ -24,7 +24,6 @@ export class AllBlocksComponent implements OnInit {
     }
     getGroups() {
         this.ggg = this.footerService.groups;
-        console.log('--- ', this.ggg);
     }
 
 

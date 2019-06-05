@@ -4,6 +4,8 @@
 
 >
     <video #videoElement
+           onmouseenter="this.play()"
+           onmouseout="this.pause()"
            class="h-100 w-100"
            [loop]="true"
            [volume]=".8"
@@ -27,10 +29,11 @@
 </div>
 
 <div class="d-block d-lg-none video-block-mobile"
-     (click)="toggleAutoplay()"
 >
     <div class="content bg-black h-100">
         <video #videoElementMob
+               onmouseenter="this.play()"
+               onmouseout="this.pause()"
                class="h-100 w-100"
                [loop]="true"
                [volume]=".8"

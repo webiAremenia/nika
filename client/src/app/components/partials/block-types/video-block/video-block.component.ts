@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {AppGlobals} from '../../../../app.globals';
 
 @Component({
@@ -6,7 +6,7 @@ import {AppGlobals} from '../../../../app.globals';
     templateUrl: './video-block.component.html',
     styleUrls: ['./video-block.component.scss']
 })
-export class VideoBlockComponent implements OnInit {
+export class VideoBlockComponent implements OnInit{
 
     @Input() block;
     @ViewChild(`videoElement`) videoElement: ElementRef;
@@ -20,21 +20,19 @@ export class VideoBlockComponent implements OnInit {
 
     constructor(config: AppGlobals) {
         this.videoUrl = config.imageUrl + '/block/';
-        this.play = true;
+        // this.play = true;
     }
 
     ngOnInit() {
-        setTimeout(() => {
-            this.play = false;
-        }, 100);
+
     }
 
     toggleAutoplay() {
         this.muted = !this.muted;
         this.play = !this.play;
-        this.play ? this.videoElement.nativeElement.play() : this.videoElement.nativeElement.pause();
+        // this.play ? this.videoElement.nativeElement.play().then() : this.videoElement.nativeElement.pause();
         this.play ? this.videoLogo.nativeElement.style.display = 'none' : this.videoLogo.nativeElement.style.display = 'block';
-        this.play ? this.videoElementMob.nativeElement.play() : this.videoElementMob.nativeElement.pause();
+        // this.play ? this.videoElementMob.nativeElement.play() : this.videoElementMob.nativeElement.pause();
         this.play ? this.videoLogoMob.nativeElement.style.display = 'none' : this.videoLogoMob.nativeElement.style.display = 'block';
     }
 

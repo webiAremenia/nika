@@ -22,7 +22,7 @@ app.use(require('cors')());
 
 // app.use(morgan('dev'));
 // app.use(morgan('combined'));
-app.use(morgan('combined', { stream: winston.stream }));
+app.use(morgan('combined', {stream: winston.stream}));
 
 app.use('/uploads', express.static('admin/_uploads'));
 
@@ -32,26 +32,15 @@ const api = require('./api/routes/api');
 app.use('/admin', admin);
 app.use('/api', api);
 
-// app.use('/admin-panel', express.static(__dirname + '/../admin/dist/Project'));
-
 //----------- Connect to Angular client
 
-app.use(express.static(__dirname + '/../client/dist/front'));
-app.use(express.static(__dirname + '/../admin/dist/Project'));
+app.use('/admin-panel', express.static(__dirname + '/../admin/dist/Project'));
+app.use('/admin-panel/*', express.static(__dirname + '/../admin/dist/Project'));
 
-app.get('/admin-panel', function (req, res) {
-    res.sendFile(path.join(__dirname + '/../admin/dist/Project/index.html'));
-});
-app.get('/admin-panel/*', function (req, res) {
-    res.sendFile(path.join(__dirname + '/../admin/dist/Project/index.html'));
-});
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname + '/../client/dist/front/index.html'));
-});
+app.use('/', express.static(__dirname + '/../client/dist/front'));
+app.use('/*', express.static(__dirname + '/../client/dist/front'));
 
-app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname + '/../client/dist/front/index.html'));
-});
+
 //--------------------------------------
 
 
@@ -69,7 +58,7 @@ app.use((err, req, res, next) => {
 
 
     res.locals.message = err.message;
-    res.locals.error =  err;
+    res.locals.error = err;
     // res.locals.error = req.app.get('env') === 'development' ? err : {};
 
     // add this line to include winston logging

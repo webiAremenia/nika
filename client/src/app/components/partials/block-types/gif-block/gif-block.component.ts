@@ -22,16 +22,10 @@ export class GifBlockComponent implements OnInit {
       config: AppGlobals
   ) {
     this.imageUrl = config.imageUrl + '/block/';
-    this.play = true;
   }
 
 
   ngOnInit() {
-
-    console.log(this.block);
-    setTimeout(() => {
-      this.play = false;
-    }, 100);
   }
 
   toggleAutoplay() {

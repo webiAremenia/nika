@@ -5,7 +5,7 @@ const winston = require('winston');
 // define the custom settings for each transport (file, console)
 const options = {
     file: {
-        level: 'info',
+        level: 'error',
         filename: `${appRoot}/logs/app.log`,
         handleExceptions: true,
         json: true,
@@ -24,7 +24,7 @@ const options = {
         colorize: true,
     },
     console: {
-        level: 'debug',
+        level: 'error',
         handleExceptions: true,
         json: false,
         colorize: true,

@@ -13,10 +13,12 @@ export class LoginPageComponent implements OnInit {
     flagMsg = false;
     msg = '';
 
-    submitForm(): void {
+    submitForm() {
         for (const i in this.validateForm.controls) {
-            this.validateForm.controls[i].markAsDirty();
-            this.validateForm.controls[i].updateValueAndValidity();
+            if (this.validateForm.hasOwnProperty(i)) {
+                this.validateForm.controls[i].markAsDirty();
+                this.validateForm.controls[i].updateValueAndValidity();
+            }
         }
         this.data.login(this.validateForm.value).subscribe(
             (data: any) => {
