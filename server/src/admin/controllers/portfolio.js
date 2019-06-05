@@ -43,7 +43,7 @@ module.exports = {
             }
         } else {
                 req.files.forEach(item => {
-                    fs.unlinkSync(`./admin/_uploads/portfolio/${item.filename}`);
+                    fs.unlinkSync(__dirname + `/../../../_uploads/portfolio/${item.filename}`);
                 });
             errors.conflictError(res, errors)
         }
@@ -70,7 +70,7 @@ module.exports = {
             let deletedimages = req.body.deletedimages.split(',');
             if (deletedimages.length > 0) {
                 deletedimages.forEach(item => {
-                    fs.unlinkSync(`./admin/_uploads/portfolio/${item}`);
+                    fs.unlinkSync(__dirname + `/../../../_uploads/portfolio/${item}`);
                 });
             }
         }
@@ -90,7 +90,7 @@ module.exports = {
         try {
             await Portfolio.remove({_id: portfolio});
             candidate.imgs.forEach(item => {
-                fs.unlinkSync(`./admin/_uploads/portfolio/${item}`);
+                fs.unlinkSync(__dirname + `/../../../_uploads/portfolio/${item}`);
             });
             res.status(201).json({
                 msg: 'Portfolio has removed successfully'
