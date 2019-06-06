@@ -5,7 +5,7 @@ const sharp = require('sharp');
 
 
 module.exports = {
-    getPortfolio: async (req,res) => {
+    getPortfolio: async (req, res) => {
         try {
             let portfolio = await Portfolio.find({});
             res.status(201).json(portfolio)
@@ -13,7 +13,7 @@ module.exports = {
             errors.notFound(res, errors);
         }
     },
-    getPortfolioById: async (req,res) => {
+    getPortfolioById: async (req, res) => {
         try {
             let portfolio = await Portfolio.findOne({_id: req.params.id});
             res.status(201).json(portfolio)
@@ -21,14 +21,16 @@ module.exports = {
             errors.notFound(res, errors);
         }
     },
-    addPortfolio: async (req,res) => {
+    addPortfolio: async (req, res) => {
+        console.log(req.body)
         let candidate = await Portfolio.findOne({title: req.body.title});
         if (!candidate) {
             let portfolio = {
                 title: req.body.title,
                 description: req.body.description,
                 link: req.body.link,
-                imgs: []
+                imgs: [],
+                content : req.body.content
             };
             req.files.forEach(item => {
                 portfolio.imgs.push(item.filename)
@@ -42,19 +44,20 @@ module.exports = {
                 errors.invalidData(res, errors);
             }
         } else {
-                req.files.forEach(item => {
-                    fs.unlinkSync(__dirname + `/../../../_uploads/portfolio/${item.filename}`);
-                });
+            req.files.forEach(item => {
+                fs.unlinkSync(__dirname + `/../../../_uploads/portfolio/${item.filename}`);
+            });
             errors.conflictError(res, errors)
         }
     },
-    changePortfolio: async (req,res) => {
+    changePortfolio: async (req, res) => {
         let candidate = req.query.id + '';
         let portfolio = {
             title: req.body.title,
             description: req.body.description,
             link: req.body.link,
-            imgs: req.body.imgs
+            imgs: req.body.imgs,
+            content : req.body.content
         };
         if (req.files) {
             req.files.forEach(item => {
@@ -84,7 +87,7 @@ module.exports = {
             errors.invalidData(res, errors);
         }
     },
-    deletePortfolio: async (req,res) => {
+    deletePortfolio: async (req, res) => {
         let portfolio = req.query.id + '';
         let candidate = await Portfolio.findOne({_id: portfolio});
         try {
@@ -98,5 +101,21 @@ module.exports = {
         } catch (e) {
             errors.invalidData(res, errors);
         }
+    },
+
+    ckEditorAddImage: async (req, res) => {
+        console.log('eeeeeeeeeeeeeee' + req.file.filename)
+        // res.status(201).json({
+        //     filename: req.file.filename
+        // })
+    },
+
+    ckEditorDeleteImage: async (req, res) => {
+        let name = req.query.name;
+        fs.unlinkSync(__dirname + `/../../../_uploads/portfolio/ckeditor/${name}`);
+        res.status(201).json({
+            msg: 'CkImage has been removed'
+        })
     }
+
 };

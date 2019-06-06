@@ -35,4 +35,13 @@ export class PortfolioService {
     deletePortfolio(portfolio) {
         return this.http.delete(this.urlApi + `/portfolio?id=${portfolio._id}`);
     }
+
+    ckEditorSaveImage(form) {
+        return this.http.post(this.urlApi + '/portfolio/ckeditor', form);
+    }
+
+    ckEditorDeleteImage(image) {
+        return this.http.delete(this.urlApi + `/portfolio/ckeditor?name=${image}`);
+
+    }
 }

@@ -35,5 +35,10 @@ export class PostsService {
         return this.http.post(this.urlApi + '/post/ckeditor', form);
     }
 
+    ckEditorDeleteImage(image) {
+        return this.http.delete(this.urlApi + `/post/ckeditor?name=${image}`);
+
+    }
+
 
 }

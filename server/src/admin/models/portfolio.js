@@ -14,6 +14,10 @@ const PortfolioSchema = new Schema({
         type: String,
         required: true
     },
+    content: {
+        type: String,
+        required: true
+    },
     link: {
         type: String,
         required: true

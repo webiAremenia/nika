@@ -8,6 +8,7 @@ import {AddPortfolioComponent} from './add-portfolio/add-portfolio.component';
 import {ChangePortfolioComponent} from './change-portfolio/change-portfolio.component';
 import {PortfolioListComponent} from './portfolio-list/portfolio-list.component';
 import {PortfolioPreviewComponent} from './portfolio-preview/portfolio-preview.component';
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 
 
 
@@ -23,7 +24,8 @@ import {PortfolioPreviewComponent} from './portfolio-preview/portfolio-preview.c
         FormsModule,
         ReactiveFormsModule,
         NgZorroAntdModule,
-        PortfolioRoutingModule
+        PortfolioRoutingModule,
+        CKEditorModule,
     ],
 })
 export class PortfolioModule { }

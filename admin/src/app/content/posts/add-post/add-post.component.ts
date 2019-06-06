@@ -15,6 +15,7 @@ class UploadAdapter {
     loader;  // your adapter communicates to CKEditor through this
     url;
     service;
+    imageName;
 
     // http: HttpClient;
 
@@ -31,12 +32,13 @@ class UploadAdapter {
             this.loader.file.then(f => {
                 const form = new FormData();
                 form.append('image', f);
+                this.imageName = f.name;
                 this.service.ckEditorSaveImage(form).subscribe(d => {
-                    console.log(d);
-                },
+                        console.log(d);
+                        resolve({default: this.url + f.name});
+                    },
                     e => console.log(e)
                 );
-                resolve({default: this.url + f.name});
             });
             // resolve({ default: this.url });
         });
@@ -44,7 +46,12 @@ class UploadAdapter {
 
     // Aborts the upload process.
     abort() {
-        console.log('UploadAdapter abort');
+        console.log('Abort')
+        // this.service.ckEditorDeleteImage(this.imageName).subscribe(d => {
+        //         console.log(d);
+        //     },
+        //     e => console.log(e)
+        // );
     }
 
 }
@@ -81,21 +88,25 @@ export class AddPostComponent implements OnInit {
             image: [null]
         });
     }
+
     theUploadAdapterPlugin = (editor) => {
         editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
             return new UploadAdapter(loader, this.service);
         };
     }
+
     public initEditor() {
         this.ckconfig = {
             extraPlugins: [this.theUploadAdapterPlugin]
         };
     }
+
     beforeUpload = (file: UploadFile): boolean => {
         this.fileList = [];
         this.fileList = this.fileList.concat(file);
         return false;
     }
+
     handleUpload(): void {
         const formData = new FormData();
         // tslint:disable-next-line:no-any
