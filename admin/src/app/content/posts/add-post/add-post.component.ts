@@ -32,11 +32,11 @@ class UploadAdapter {
                 const form = new FormData();
                 form.append('image', f);
                 this.service.ckEditorSaveImage(form).subscribe(d => {
-                    console.log(d);
-                },
+                        console.log(d);
+                        resolve({default: this.url + f.name});
+                    },
                     e => console.log(e)
                 );
-                resolve({default: this.url + f.name});
             });
             // resolve({ default: this.url });
         });
@@ -81,21 +81,25 @@ export class AddPostComponent implements OnInit {
             image: [null]
         });
     }
+
     theUploadAdapterPlugin = (editor) => {
         editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
             return new UploadAdapter(loader, this.service);
         };
     }
+
     public initEditor() {
         this.ckconfig = {
             extraPlugins: [this.theUploadAdapterPlugin]
         };
     }
+
     beforeUpload = (file: UploadFile): boolean => {
         this.fileList = [];
         this.fileList = this.fileList.concat(file);
         return false;
     }
+
     handleUpload(): void {
         const formData = new FormData();
         // tslint:disable-next-line:no-any

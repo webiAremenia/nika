@@ -67,10 +67,14 @@ const storage = multer.diskStorage({
 
     },
     filename: function (req, file, cb) {
-        if (req.method === 'POST') {
-            cb(null, new Date().getTime().toString() + file.originalname)
-        } else if (req.method === 'PUT') {
-            cb(null, new Date().getTime().toString() + file.originalname)
+        if(req.originalUrl.split('/')[3] !== 'ckeditor') {
+            if (req.method === 'POST') {
+                cb(null, new Date().getTime().toString() + file.originalname)
+            } else if (req.method === 'PUT') {
+                cb(null, new Date().getTime().toString() + file.originalname)
+            }
+        } else {
+            cb(null, file.originalname)
         }
     }
 });
