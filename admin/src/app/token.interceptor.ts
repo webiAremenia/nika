@@ -20,6 +20,7 @@ export class TokenInterceptor implements HttpInterceptor {
             });
             return next.handle(clone);
         }
+
         return next.handle(request);
     }
 }
