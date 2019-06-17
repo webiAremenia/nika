@@ -42,11 +42,11 @@ class UploadAdapter {
     // Aborts the upload process.
     abort() {
         console.log('Abort')
-        // this.service.ckEditorDeleteImage(this.imageName).subscribe(d => {
-        //         console.log(d);
-        //     },
-        //     e => console.log(e)
-        // );
+        this.service.ckEditorDeleteImage(this.imageName).subscribe(d => {
+                console.log(d);
+            },
+            e => console.log(e)
+        );
     }
 
 }
