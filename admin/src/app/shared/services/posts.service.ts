@@ -31,11 +31,11 @@ export class PostsService {
         return this.http.delete(this.urlApi + `/post?id=${post._id}`);
     }
 
-    ckEditorSaveImage(form) {
-        return this.http.post(this.urlApi + '/post/ckeditor', form);
+    ckEditorSavePostImage(form) {
+        return this.http.post(this.urlApi + '/post/ckeditor' , form);
     }
 
-    ckEditorDeleteImage(image) {
+    ckEditorDeletePostImage(image) {
         return this.http.delete(this.urlApi + `/post/ckeditor?name=${image}`);
 
     }

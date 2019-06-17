@@ -1,7 +1,7 @@
 const Portfolio = require('../models/portfolio');
 const errors = require('../_help/errorHandler');
 const fs = require('fs');
-const sharp = require('sharp');
+const rimraf = require("rimraf");
 
 
 module.exports = {
@@ -30,7 +30,8 @@ module.exports = {
                 description: req.body.description,
                 link: req.body.link,
                 imgs: [],
-                content : req.body.content
+                content: req.body.content,
+                random: req.body.random
             };
             req.files.forEach(item => {
                 portfolio.imgs.push(item.filename)
@@ -45,7 +46,7 @@ module.exports = {
             }
         } else {
             req.files.forEach(item => {
-                fs.unlinkSync(__dirname + `/../../../_uploads/portfolio/${item.filename}`);
+                fs.unlinkSync(__dirname + `/../../_uploads/portfolio/${item.filename}`);
             });
             errors.conflictError(res, errors)
         }
@@ -57,7 +58,7 @@ module.exports = {
             description: req.body.description,
             link: req.body.link,
             imgs: req.body.imgs,
-            content : req.body.content
+            content: req.body.content
         };
         if (req.files) {
             req.files.forEach(item => {
@@ -73,7 +74,7 @@ module.exports = {
             let deletedimages = req.body.deletedimages.split(',');
             if (deletedimages.length > 0) {
                 deletedimages.forEach(item => {
-                    fs.unlinkSync(__dirname + `/../../../_uploads/portfolio/${item}`);
+                    fs.unlinkSync(__dirname + `/../../_uploads/portfolio/${item}`);
                 });
             }
         }
@@ -93,14 +94,19 @@ module.exports = {
         try {
             await Portfolio.remove({_id: portfolio});
             candidate.imgs.forEach(item => {
-                fs.unlinkSync(__dirname + `/../../../_uploads/portfolio/${item}`);
+                fs.unlinkSync(__dirname + `/../../_uploads/portfolio/${item}`);
             });
+            rimraf.sync(__dirname + `/../../_uploads/portfolio/ckeditor/${candidate.random}`);
             res.status(201).json({
                 msg: 'Portfolio has removed successfully'
             })
         } catch (e) {
             errors.invalidData(res, errors);
         }
+    },
+
+    deleteNoEmptyDir: async (req, res) => {
+        rimraf.sync(__dirname + `/../../_uploads/portfolio/ckeditor/${req.params.dir}`);
     },
 
     ckEditorAddImage: async (req, res) => {
@@ -110,9 +116,9 @@ module.exports = {
         // })
     },
 
-    ckEditorDeleteImage: async (req, res) => {
+    ckEditorDeleteImage: (req, res) => {
         let name = req.query.name;
-        fs.unlinkSync(__dirname + `/../../../_uploads/portfolio/ckeditor/${name}`);
+        fs.unlinkSync(__dirname + `/../../_uploads/portfolio/ckeditor/${name}`);
         res.status(201).json({
             msg: 'CkImage has been removed'
         })

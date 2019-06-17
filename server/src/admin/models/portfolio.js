@@ -21,7 +21,8 @@ const PortfolioSchema = new Schema({
     link: {
         type: String,
         required: true
-    }
+    },
+    random: String
 });
 
 module.exports = mongoose.model('Portfolio', PortfolioSchema);
