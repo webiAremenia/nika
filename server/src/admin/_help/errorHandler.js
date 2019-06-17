@@ -5,7 +5,7 @@ module.exports = {
         })
     },
     invalidData: (res, err) => {
-        res.status(401).json({
+        res.status(500).json({
             msg: 'Invalid data ...'
         })
     },

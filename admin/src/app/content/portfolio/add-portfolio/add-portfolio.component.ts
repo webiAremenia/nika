@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NzMessageService, UploadFile} from 'ng-zorro-antd';
 import {Router} from '@angular/router';
@@ -6,18 +6,20 @@ import {PortfolioService} from '../../../shared/services/portfolio.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
-class UploadAdapter {
+class PortfolioUploadAdapter {
     loader;  // your adapter communicates to CKEditor through this
     url;
     service;
     imageName;
+    dir;
+    random;
 
-    // http: HttpClient;
-
-    constructor(loader, service) {
+    constructor(loader, service, dir, random) {
+        this.random = random;
+        this.dir = dir;
         this.service = service;
         this.loader = loader;
-        this.url = 'http://localhost:3000/uploads/portfolio/ckeditor/';
+        this.url = 'http://localhost:3000/uploads/portfolio/ckeditor/' + this.dir + '/';
     }
 
     upload() {
@@ -26,11 +28,13 @@ class UploadAdapter {
 
             this.loader.file.then(f => {
                 const form = new FormData();
+                form.append('random', this.random);
+                form.append('dirName', this.dir);
                 form.append('image', f);
-                this.imageName = f.name;
-                this.service.ckEditorSaveImage(form).subscribe(d => {
+                this.imageName = this.random + f.name;
+                this.service.ckEditorSavePortfolioImage(form).subscribe(d => {
                         console.log(d);
-                        resolve({default: this.url + f.name});
+                        resolve({default: this.url + this.random + f.name});
                     },
                     e => console.log(e)
                 );
@@ -41,8 +45,8 @@ class UploadAdapter {
 
     // Aborts the upload process.
     abort() {
-        console.log('Abort')
-        this.service.ckEditorDeleteImage(this.imageName).subscribe(d => {
+        console.log('Abort');
+        this.service.ckEditorDeletePortfolioImage(this.dir + '/' + this.imageName).subscribe(d => {
                 console.log(d);
             },
             e => console.log(e)
@@ -57,15 +61,22 @@ class UploadAdapter {
     templateUrl: './add-portfolio.component.html',
     styleUrls: ['./add-portfolio.component.css']
 })
-export class AddPortfolioComponent implements OnInit {
+export class AddPortfolioComponent implements OnInit, OnDestroy {
     public ckconfig: any;
     public Editor = ClassicEditor;
     validateForm: FormGroup;
     uploading = false;
     fileList: UploadFile[] = [];
     flag = true;
+    randomString;
+    dirName;
 
-    constructor(private fb: FormBuilder, private msg: NzMessageService, private service: PortfolioService, private router: Router) {
+    constructor(
+        private fb: FormBuilder,
+        private msg: NzMessageService,
+        private service: PortfolioService,
+        private router: Router
+    ) {
         this.initEditor();
     }
 
@@ -77,11 +88,13 @@ export class AddPortfolioComponent implements OnInit {
             content: ['', [Validators.required]],
             image: [null]
         });
+        this.randomString = this.generateRandomString(10);
+        this.dirName =  this.randomString;
     }
 
     theUploadAdapterPlugin = (editor) => {
         editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-            return new UploadAdapter(loader, this.service);
+            return new PortfolioUploadAdapter(loader, this.service, this.dirName, this.randomString += 's');
         };
     }
 
@@ -108,6 +121,7 @@ export class AddPortfolioComponent implements OnInit {
         formData.append('description', this.validateForm.get('description').value);
         formData.append('link', this.validateForm.get('link').value);
         formData.append('content', this.validateForm.get('content').value);
+        formData.append('random', this.dirName);
         this.uploading = true;
         this.service.postPortfolio(formData)
             .subscribe(
@@ -124,5 +138,17 @@ export class AddPortfolioComponent implements OnInit {
             );
     }
 
+    generateRandomString(stringLength) {
+        let randomString = '';
+        let randomAscii;
+        for (let i = 0; i < stringLength; i++) {
+            randomAscii = Math.floor((Math.random() * 25) + 97);
+            randomString += String.fromCharCode(randomAscii);
+        }
+        return randomString;
+    }
 
+    ngOnDestroy(): void {
+        this.service.ckDeleteDir(this.dirName).subscribe();
+    }
 }

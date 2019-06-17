@@ -12,6 +12,7 @@ router.post('/ckeditor',uploadImg.single('image'), controller.ckEditorAddImage);
 router.post('/',uploadImg.array('images') ,controller.addPortfolio);
 router.put('/',uploadImg.array('images'), controller.changePortfolio);
 router.delete('/ckeditor',controller.ckEditorDeleteImage);
+router.delete('/ck/:dir', controller.deleteNoEmptyDir);
 router.delete('/', controller.deletePortfolio);
 
 module.exports = router;

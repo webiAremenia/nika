@@ -1,25 +1,20 @@
 import {Component, OnInit} from '@angular/core';
-import {PostsService} from '../../../shared/services/posts.service';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import {
-    FormBuilder,
-    FormGroup,
-    Validators
-} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NzMessageService, UploadFile} from 'ng-zorro-antd';
 import {Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
-import {logger} from 'codelyzer/util/logger';
+import {PostsService} from '../../../shared/services/posts.service';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 
 class UploadAdapter {
     loader;  // your adapter communicates to CKEditor through this
     url;
     service;
     imageName;
+    random;
 
-    // http: HttpClient;
-
-    constructor(loader, service) {
+    constructor(loader, service, random) {
+        this.random = random;
         this.service = service;
         this.loader = loader;
         this.url = 'http://localhost:3000/uploads/posts/ckeditor/';
@@ -31,11 +26,12 @@ class UploadAdapter {
 
             this.loader.file.then(f => {
                 const form = new FormData();
+                form.append('random', this.random);
                 form.append('image', f);
-                this.imageName = f.name;
-                this.service.ckEditorSaveImage(form).subscribe(d => {
+                this.imageName =  this.random + f.name;
+                this.service.ckEditorSavePostImage(form).subscribe(d => {
                         console.log(d);
-                        resolve({default: this.url + f.name});
+                        resolve({default: this.url + this.random + f.name});
                     },
                     e => console.log(e)
                 );
@@ -46,12 +42,13 @@ class UploadAdapter {
 
     // Aborts the upload process.
     abort() {
-        console.log('Abort')
-        // this.service.ckEditorDeleteImage(this.imageName).subscribe(d => {
-        //         console.log(d);
-        //     },
-        //     e => console.log(e)
-        // );
+        console.log('Abort');
+        this.service.ckEditorDeletePostImage(this.imageName).subscribe(d => {
+                console.log('22222');
+                console.log(d);
+            },
+            e => console.log(e)
+        );
     }
 
 }
@@ -63,14 +60,14 @@ class UploadAdapter {
 })
 
 export class AddPostComponent implements OnInit {
+    public ckconfig: any;
     public Editor = ClassicEditor;
     validateForm: FormGroup;
     uploading = false;
-    public ckconfig: any;
     fileList: UploadFile[] = [];
+    randomString;
 
     constructor(
-        private http: HttpClient,
         private fb: FormBuilder,
         private msg: NzMessageService,
         private service: PostsService,
@@ -79,7 +76,7 @@ export class AddPostComponent implements OnInit {
         this.initEditor();
     }
 
-    ngOnInit(): void {
+    ngOnInit() {
         this.validateForm = this.fb.group({
             title: ['', [Validators.required]],
             description: ['', [Validators.required]],
@@ -87,11 +84,13 @@ export class AddPostComponent implements OnInit {
             alt: ['', [Validators.required]],
             image: [null]
         });
+
+        this.randomString = this.generateRandomString(10);
     }
 
     theUploadAdapterPlugin = (editor) => {
         editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-            return new UploadAdapter(loader, this.service);
+            return new UploadAdapter(loader, this.service, this.randomString);
         };
     }
 
@@ -131,6 +130,16 @@ export class AddPostComponent implements OnInit {
                     this.msg.error('upload failed.');
                 }
             );
+    }
+
+    generateRandomString(stringLength) {
+        let randomString = '';
+        let randomAscii;
+        for (let i = 0; i < stringLength; i++) {
+            randomAscii = Math.floor((Math.random() * 25) + 97);
+            randomString += String.fromCharCode(randomAscii);
+        }
+        return randomString;
     }
 
 }
