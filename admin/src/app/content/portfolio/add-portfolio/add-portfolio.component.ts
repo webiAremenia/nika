@@ -70,6 +70,7 @@ export class AddPortfolioComponent implements OnInit, OnDestroy {
     flag = true;
     randomString;
     dirName;
+    saved = false;
 
     constructor(
         private fb: FormBuilder,
@@ -89,7 +90,7 @@ export class AddPortfolioComponent implements OnInit, OnDestroy {
             image: [null]
         });
         this.randomString = this.generateRandomString(10);
-        this.dirName =  this.randomString;
+        this.dirName = this.randomString;
     }
 
     theUploadAdapterPlugin = (editor) => {
@@ -129,6 +130,7 @@ export class AddPortfolioComponent implements OnInit, OnDestroy {
                     this.uploading = false;
                     this.fileList = [];
                     this.msg.success('upload successfully.');
+                    this.saved = true;
                     this.router.navigate(['portfolio']);
                 },
                 () => {
@@ -149,6 +151,8 @@ export class AddPortfolioComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.service.ckDeleteDir(this.dirName).subscribe();
+        if (!this.saved) {
+            this.service.ckDeleteDir(this.dirName).subscribe();
+        }
     }
 }
