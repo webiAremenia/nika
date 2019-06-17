@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {NzMessageService, UploadFile} from 'ng-zorro-antd';
 import {Router} from '@angular/router';
-import {PortfolioService} from '../../../shared/services/portfolio.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {PagesService} from '../../../shared/services/pages.service';
+import {NzMessageService} from 'ng-zorro-antd';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
@@ -17,7 +17,7 @@ class UploadAdapter {
     constructor(loader, service) {
         this.service = service;
         this.loader = loader;
-        this.url = 'http://localhost:3000/uploads/portfolio/ckeditor/';
+        this.url = 'http://localhost:3000/uploads/pages/ckeditor/';
     }
 
     upload() {
@@ -41,7 +41,7 @@ class UploadAdapter {
 
     // Aborts the upload process.
     abort() {
-        console.log('Abort')
+        console.log(222222)
         this.service.ckEditorDeleteImage(this.imageName).subscribe(d => {
                 console.log(d);
             },
@@ -53,29 +53,25 @@ class UploadAdapter {
 
 
 @Component({
-    selector: 'app-add-portfolio',
-    templateUrl: './add-portfolio.component.html',
-    styleUrls: ['./add-portfolio.component.css']
+    selector: 'app-page-add',
+    templateUrl: './page-add.component.html',
+    styleUrls: ['./page-add.component.css']
 })
-export class AddPortfolioComponent implements OnInit {
+export class PageAddComponent implements OnInit {
     public ckconfig: any;
-    public Editor = ClassicEditor;
     validateForm: FormGroup;
+    public Editor = ClassicEditor;
     uploading = false;
-    fileList: UploadFile[] = [];
-    flag = true;
 
-    constructor(private fb: FormBuilder, private msg: NzMessageService, private service: PortfolioService, private router: Router) {
+    constructor(private router: Router, private fb: FormBuilder, private msg: NzMessageService, private service: PagesService) {
         this.initEditor();
+
     }
 
-    ngOnInit(): void {
+    ngOnInit() {
         this.validateForm = this.fb.group({
-            title: ['', [Validators.required]],
-            description: ['', [Validators.required]],
-            link: ['', [Validators.required]],
-            content: ['', [Validators.required]],
-            image: [null]
+            key: ['', Validators.required],
+            content: ['', Validators.required]
         });
     }
 
@@ -91,31 +87,13 @@ export class AddPortfolioComponent implements OnInit {
         };
     }
 
-
-    beforeUpload = (file: UploadFile): boolean => {
-        this.flag = false;
-        this.fileList = this.fileList.concat(file);
-        return false;
-    }
-
     handleUpload(): void {
-        const formData = new FormData();
-        // tslint:disable-next-line:no-any
-        this.fileList.forEach((file: any) => {
-            formData.append('images', file);
-        });
-        formData.append('title', this.validateForm.get('title').value);
-        formData.append('description', this.validateForm.get('description').value);
-        formData.append('link', this.validateForm.get('link').value);
-        formData.append('content', this.validateForm.get('content').value);
-        this.uploading = true;
-        this.service.postPortfolio(formData)
+        this.service.postPage(this.validateForm.value)
             .subscribe(
                 () => {
                     this.uploading = false;
-                    this.fileList = [];
                     this.msg.success('upload successfully.');
-                    this.router.navigate(['portfolio']);
+                    this.router.navigate(['page']);
                 },
                 () => {
                     this.uploading = false;
@@ -123,6 +101,5 @@ export class AddPortfolioComponent implements OnInit {
                 }
             );
     }
-
 
 }

@@ -9,12 +9,12 @@ import {
 import {NzMessageService, UploadFile} from 'ng-zorro-antd';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {logger} from 'codelyzer/util/logger';
 
 class UploadAdapter {
     loader;  // your adapter communicates to CKEditor through this
     url;
     service;
+    imageName;
 
     // http: HttpClient;
 
@@ -31,6 +31,7 @@ class UploadAdapter {
             this.loader.file.then(f => {
                 const form = new FormData();
                 form.append('image', f);
+                this.imageName = f.name;
                 this.service.ckEditorSaveImage(form).subscribe(d => {
                         console.log(d);
                         resolve({default: this.url + f.name});
@@ -44,7 +45,12 @@ class UploadAdapter {
 
     // Aborts the upload process.
     abort() {
-        console.log('UploadAdapter abort');
+        console.log('Abort');
+        this.service.ckEditorDeleteImage(this.imageName).subscribe(d => {
+                console.log(d);
+            },
+            e => console.log(e)
+        );
     }
 
 }

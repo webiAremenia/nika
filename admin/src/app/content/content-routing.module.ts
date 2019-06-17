@@ -14,6 +14,7 @@ const routes: Routes = [
             {path: 'group', loadChildren: './group/group.module#GroupModule'},
             {path: 'block', loadChildren: './block/block.module#BlockModule'},
             {path: 'post', loadChildren: './posts/post.module#PostModule'},
+            {path: 'page', loadChildren: './pages/page.module#PageModule'},
             {path: '**', redirectTo: 'posts', pathMatch: 'full'}
         ]
     },

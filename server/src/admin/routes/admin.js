@@ -4,6 +4,7 @@ const router = express.Router();
 
 const auth = require('./auth'),
     posts = require('./post'),
+    pages = require('./page'),
     sliders = require('./slider'),
     portfolio = require('./portfolio'),
     settings = require('./settings'),
@@ -14,6 +15,7 @@ const auth = require('./auth'),
     group = require('./group');
 
 router.use('/post', posts);
+router.use('/page', pages);
 router.use('/vacancy', vacancy);
 router.use('/block', block);
 router.use('/slider', sliders);

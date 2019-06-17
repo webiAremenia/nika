@@ -15,6 +15,9 @@ module.exports = {
             }
     },
     addPost: async (req,res) => {
+        console.log('body ', req.body)
+        console.log('+++++++++++ ', req.files)
+        console.log('----------- ', req.file)
         let candidate = await Post.findOne({title: req.body.title});
         if (!candidate) {
             let post = {
@@ -84,9 +87,20 @@ module.exports = {
             }
     },
     ckEditorAddImage: async (req,res) => {
-        console.log('eeeeeeeeeeeeeee' + req.file.filename)
-        // res.status(201).json({
-        //     filename: req.file.filename
-        // })
+        // console.log('eeeeeeeeeeeeeee' + req.body)
+        // console.log('aaaaaaaaaaaaaaa' + req.file)
+        res.status(201).json({
+            // filename: req.file.filename
+            msg : 'Ok'
+        })
+    },
+
+    ckEditorDeleteImage: async (req, res) => {
+        console.log(1111111)
+        let name = req.query.name;
+        fs.unlinkSync(__dirname + `/../../../_uploads/posts/ckeditor/${name}`);
+        res.status(201).json({
+            msg: 'CkImage has been removed'
+        })
     }
 };

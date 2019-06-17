@@ -14,6 +14,7 @@ export class DataService {
         this.url = config.url;
     }
 
+
     getToken(): string {
         if (localStorage.getItem('token')) {
             return localStorage.getItem('token');
