@@ -1,15 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {PageService} from '../../../_services/page.service';
+import {Page} from '../../../_models/page';
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+    selector: 'app-about',
+    templateUrl: './about.component.html',
+    styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
+    pages: Page[];
+    done = false;
+    page: Page;
+    constructor(private service: PageService) {
+    }
 
-  constructor() { }
+    ngOnInit() {
+        this.getAll();
+    }
 
-  ngOnInit() {
-  }
+    getAll() {
+        if (this.service.pages) {
+            this.pages = this.service.pages;
+            this.page = this.pages.find(p => {
+                return p.key === 'page_about_us';
+            });
+            this.done = true;
+        } else {
+            this.service.getAll().subscribe(
+                data => {
+                    console.log(data)
+                    this.pages = data;
+                    this.page = this.pages.find(p => {
+                        return p.key === 'page_about_us';
+                    });
+                    this.done = true;
+                },
+                err => console.log(err)
+            );
+        }
+    }
 
 }

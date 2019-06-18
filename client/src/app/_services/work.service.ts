@@ -27,7 +27,8 @@ export class WorkService {
                             images: work.imgs,
                             title: work.title,
                             description: work.description,
-                            link: work.link
+                            link: work.link,
+                            content: work.content
                         };
                     });
                     return this.works;
@@ -51,7 +52,8 @@ export class WorkService {
                     title: work.title,
                     description: work.description,
                     images: work.imgs,
-                    link: work.link
+                    link: work.link,
+                    content: work.content
                 };
                 return this.work;
             }));
