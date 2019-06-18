@@ -9,7 +9,8 @@ const PageSchema = new Schema({
     content: {
         type: String,
         required: true
-    }
+    },
+    random : String
 });
 
 module.exports = mongoose.model('Page', PageSchema);

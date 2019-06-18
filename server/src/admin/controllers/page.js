@@ -2,6 +2,7 @@ const Page = require('../models/page');
 const errors = require('../_help/errorHandler');
 const fs = require('fs');
 const sharp = require('sharp');
+const rimraf = require("rimraf");
 
 
 module.exports = {
@@ -24,9 +25,11 @@ module.exports = {
     addPage: async (req, res) => {
         let candidate = await Page.findOne({key: req.body.key});
         if (!candidate) {
+            console.log(req.body)
             let page = {
                 key: req.body.key,
                 content: req.body.content,
+                random: req.body.random
             };
 
             try {
@@ -53,14 +56,6 @@ module.exports = {
             content: req.body.content
 
         };
-        // if (req.body.deletedimages) {
-        //     let deletedimages = req.body.deletedimages.split(',');
-        //     if (deletedimages.length > 0) {
-        //         deletedimages.forEach(item => {
-        //             fs.unlinkSync(__dirname + `/../../../_uploads/portfolio/${item}`);
-        //         });
-        //     }
-        // }
         try {
             await Page.findByIdAndUpdate(
                 {_id: candidate},
@@ -71,10 +66,16 @@ module.exports = {
             errors.invalidData(res, errors);
         }
     },
+
+    deleteNoEmptyDir: async (req, res) => {
+        rimraf.sync(__dirname + `/../../_uploads/pages/ckeditor/${req.params.dir}`);
+    },
     deletePage: async (req, res) => {
         let page = req.query.id + '';
+        let candidate = await Page.findOne({_id: page});
         try {
             await Page.remove({_id: page});
+            rimraf.sync(__dirname + `/../../_uploads/pages/ckeditor/${candidate.random}`);
             res.status(201).json({
                 msg: 'Page has removed successfully'
             })

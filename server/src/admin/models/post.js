@@ -29,7 +29,8 @@ const PostSchema = new Schema({
     updated: {
         type: Date,
         default: new Date()
-    }
+    },
+    random: String
 });
 
 module.exports = mongoose.model('Post', PostSchema);

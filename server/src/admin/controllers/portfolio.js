@@ -110,10 +110,10 @@ module.exports = {
     },
 
     ckEditorAddImage: async (req, res) => {
-        console.log('eeeeeeeeeeeeeee' + req.file.filename)
-        // res.status(201).json({
-        //     filename: req.file.filename
-        // })
+        // console.log('eeeeeeeeeeeeeee' + req.file.filename)
+        res.status(201).json({
+            filename: req.file.filename
+        })
     },
 
     ckEditorDeleteImage: (req, res) => {

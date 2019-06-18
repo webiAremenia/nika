@@ -3,6 +3,7 @@ const errors = require('../_help/errorHandler');
 const jwtCompare = require('../middleware/jwtCompare');
 const fs = require('fs');
 const sharp = require('sharp');
+const rimraf = require("rimraf");
 
 
 module.exports = {
@@ -22,7 +23,8 @@ module.exports = {
                 description: req.body.description,
                 content: req.body.content,
                 alt: req.body.alt,
-                image: req.file.filename
+                image: req.file.filename,
+                random: req.body.random
             };
             sharp(req.file.path)
                 .resize({
@@ -76,6 +78,7 @@ module.exports = {
             try {
                 await Post.remove({_id: post});
                 fs.unlinkSync(__dirname + `/../../_uploads/posts/${candidate.image}`);
+                rimraf.sync(__dirname + `/../../_uploads/posts/ckeditor/${candidate.random}`);
                 res.status(201).json({
                     msg: 'Post has removed successfully'
                 })
@@ -83,6 +86,10 @@ module.exports = {
                 errors.invalidData(res, errors);
             }
     },
+    deleteNoEmptyDir: async (req, res) => {
+        rimraf.sync(__dirname + `/../../_uploads/posts/ckeditor/${req.params.dir}`);
+    },
+
     ckEditorAddImage: async (req,res) => {
         res.status(201).json({
             // filename: req.file.filename

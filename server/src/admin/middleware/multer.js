@@ -8,18 +8,21 @@ const storage = multer.diskStorage({
         if (!fs.existsSync(__dirname + '/../../_uploads')) {
             fs.mkdirSync(__dirname + '/../../_uploads');
         }
+        if (!fs.existsSync(__dirname + '/../../_uploads/portfolio')) {
+            fs.mkdirSync(__dirname + '/../../_uploads/portfolio');
+        }
         if (!fs.existsSync(__dirname + '/../../_uploads/posts')) {
             fs.mkdirSync(__dirname + '/../../_uploads/posts');
-        }
-        if (!fs.existsSync(__dirname + '/../../_uploads/posts/ckeditor')) {
-            fs.mkdirSync(__dirname + '/../../_uploads/posts/ckeditor');
         }
         if (!fs.existsSync(__dirname + '/../../_uploads/pages')) {
             fs.mkdirSync(__dirname + '/../../_uploads/pages');
         }
-        if (!fs.existsSync(__dirname + '/../../_uploads/pages/ckeditor')) {
-            fs.mkdirSync(__dirname + '/../../_uploads/pages/ckeditor');
-        }
+        // if (!fs.existsSync(__dirname + '/../../_uploads/posts/ckeditor')) {
+        //     fs.mkdirSync(__dirname + '/../../_uploads/posts/ckeditor');
+        // }
+        // if (!fs.existsSync(__dirname + '/../../_uploads/pages/ckeditor')) {
+        //     fs.mkdirSync(__dirname + '/../../_uploads/pages/ckeditor');
+        // }
         if (!fs.existsSync(__dirname + '/../../_uploads/medias')) {
             fs.mkdirSync(__dirname + '/../../_uploads/medias');
         }
@@ -29,12 +32,16 @@ const storage = multer.diskStorage({
         if (!fs.existsSync(__dirname + '/../../_uploads/slider')) {
             fs.mkdirSync(__dirname + '/../../_uploads/slider');
         }
-        if (!fs.existsSync(__dirname + '/../../_uploads/portfolio')) {
-            fs.mkdirSync(__dirname + '/../../_uploads/portfolio');
-        }
+
 
         if (!fs.existsSync(__dirname + '/../../_uploads/portfolio/ckeditor')) {
             fs.mkdirSync(__dirname + '/../../_uploads/portfolio/ckeditor');
+        }
+        if (!fs.existsSync(__dirname + '/../../_uploads/posts/ckeditor')) {
+            fs.mkdirSync(__dirname + '/../../_uploads/posts/ckeditor');
+        }
+        if (!fs.existsSync(__dirname + '/../../_uploads/pages/ckeditor')) {
+            fs.mkdirSync(__dirname + '/../../_uploads/pages/ckeditor');
         }
 
         if (!fs.existsSync(__dirname + '/../../_uploads/block')) {
@@ -42,22 +49,20 @@ const storage = multer.diskStorage({
         }
 
 
-        if (req.originalUrl.split('/')[2] === 'post' && req.method === 'POST') {
-            if (req.originalUrl.split('/')[3] === 'ckeditor' && req.method === 'POST') {
-                cb(null, __dirname + '/../../_uploads/posts/ckeditor')
-            } else {
-                cb(null, __dirname + '/../../_uploads/posts')
-            }
-        }
-        if (req.originalUrl.split('/')[2] === 'page' && req.method === 'POST') {
-            if (req.originalUrl.split('/')[3] === 'ckeditor' && req.method === 'POST') {
-                cb(null, __dirname + '/../../_uploads/pages/ckeditor')
-            }
-        }
+        // if (req.originalUrl.split('/')[2] === 'post' && req.method === 'POST') {
+        //     if (req.originalUrl.split('/')[3] === 'ckeditor' && req.method === 'POST') {
+        //         cb(null, __dirname + '/../../_uploads/posts/ckeditor')
+        //     } else {
+        //         cb(null, __dirname + '/../../_uploads/posts')
+        //     }
+        // }
+        // if (req.originalUrl.split('/')[2] === 'page' && req.method === 'POST') {
+        //     if (req.originalUrl.split('/')[3] === 'ckeditor' && req.method === 'POST') {
+        //         cb(null, __dirname + '/../../_uploads/pages/ckeditor')
+        //     }
+        // }
 
-        if (req.method === 'PUT' && req.originalUrl.split('/')[2].split('?')[0] === 'post') {
-            cb(null, __dirname + '/../../_uploads/posts')
-        }
+
         if (req.method === 'POST' && req.originalUrl.split('/')[2] === 'media') {
             cb(null, __dirname + '/../../_uploads/medias')
         }
@@ -90,12 +95,44 @@ const storage = multer.diskStorage({
             }
         }
 
+        if (req.method === 'POST' && req.originalUrl.split('/')[2] === 'post') {
+            if (req.originalUrl.split('/')[3] === 'ckeditor' && req.method === 'POST') {
+
+
+                if (!fs.existsSync(__dirname + '/../../_uploads/posts/ckeditor/' + req.body.dirName)) {
+                    fs.mkdirSync(__dirname + '/../../_uploads/posts/ckeditor/' + req.body.dirName);
+                }
+
+
+                cb(null, __dirname + '/../../_uploads/posts/ckeditor/' + req.body.dirName)
+            } else {
+                cb(null, __dirname + '/../../_uploads/posts')
+            }
+        }
+
+        if (req.method === 'POST' && req.originalUrl.split('/')[2] === 'page') {
+            if (req.originalUrl.split('/')[3] === 'ckeditor' && req.method === 'POST') {
+
+
+                if (!fs.existsSync(__dirname + '/../../_uploads/pages/ckeditor/' + req.body.dirName)) {
+                    fs.mkdirSync(__dirname + '/../../_uploads/pages/ckeditor/' + req.body.dirName);
+                }
+
+
+                cb(null, __dirname + '/../../_uploads/pages/ckeditor/' + req.body.dirName)
+            } else {
+                cb(null, __dirname + '/../../_uploads/pages')
+            }
+        }
 
 
 
 
 
 
+        if (req.method === 'PUT' && req.originalUrl.split('/')[2].split('?')[0] === 'post') {
+            cb(null, __dirname + '/../../_uploads/posts')
+        }
         if (req.method === 'PUT' && req.originalUrl.split('/')[2].split('?')[0] === 'portfolio') {
             cb(null, __dirname + '/../../_uploads/portfolio')
         }

@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NzMessageService, UploadFile} from 'ng-zorro-antd';
 import {Router} from '@angular/router';
 import {PostsService} from '../../../shared/services/posts.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import {AppGlobals} from "../../../app.globals";
 
 
 class UploadAdapter {
@@ -12,23 +13,26 @@ class UploadAdapter {
     service;
     imageName;
     random;
+    dir;
 
-    constructor(loader, service, random) {
+    constructor(loader, service, dir, random, url) {
         this.random = random;
         this.service = service;
         this.loader = loader;
-        this.url = 'http://localhost:3000/uploads/posts/ckeditor/';
+        this.dir = dir;
+        this.url = url + '/uploads/posts/ckeditor/' + this.dir + '/';
     }
 
     upload() {
         return new Promise((resolve, reject) => {
-            console.log('UploadAdapter upload called', this.loader, this.url);
+            // console.log('UploadAdapter upload called', this.loader, this.url);
 
             this.loader.file.then(f => {
                 const form = new FormData();
                 form.append('random', this.random);
+                form.append('dirName', this.dir);
                 form.append('image', f);
-                this.imageName =  this.random + f.name;
+                this.imageName = this.random + f.name;
                 this.service.ckEditorSavePostImage(form).subscribe(d => {
                         console.log(d);
                         resolve({default: this.url + this.random + f.name});
@@ -43,12 +47,12 @@ class UploadAdapter {
     // Aborts the upload process.
     abort() {
         console.log('Abort');
-        this.service.ckEditorDeletePostImage(this.imageName).subscribe(d => {
-                console.log('22222');
-                console.log(d);
-            },
-            e => console.log(e)
-        );
+        // this.service.ckEditorDeletePostImage(this.dir + '/' + this.imageName).subscribe(d => {
+        //         console.log('22222');
+        //         console.log(d);
+        //     },
+        //     e => console.log(e)
+        // );
     }
 
 }
@@ -59,20 +63,25 @@ class UploadAdapter {
     styleUrls: ['./add-post.component.css']
 })
 
-export class AddPostComponent implements OnInit {
+export class AddPostComponent implements OnInit, OnDestroy{
     public ckconfig: any;
     public Editor = ClassicEditor;
     validateForm: FormGroup;
     uploading = false;
     fileList: UploadFile[] = [];
     randomString;
+    dirName;
+    url;
+    saved = false;
 
     constructor(
         private fb: FormBuilder,
         private msg: NzMessageService,
         private service: PostsService,
-        private router: Router
+        private router: Router,
+        private globals: AppGlobals
     ) {
+        this.url = this.globals.url;
         this.initEditor();
     }
 
@@ -86,11 +95,13 @@ export class AddPostComponent implements OnInit {
         });
 
         this.randomString = this.generateRandomString(10);
+        this.dirName = this.randomString;
     }
 
     theUploadAdapterPlugin = (editor) => {
+        console.log(11111111111111111111)
         editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-            return new UploadAdapter(loader, this.service, this.randomString);
+            return new UploadAdapter(loader, this.service, this.dirName, this.randomString += 's', this.url);
         };
     }
 
@@ -116,12 +127,14 @@ export class AddPostComponent implements OnInit {
         formData.append('description', this.validateForm.get('description').value);
         formData.append('content', this.validateForm.get('content').value);
         formData.append('alt', this.validateForm.get('alt').value);
+        formData.append('random', this.dirName);
         this.uploading = true;
         this.service.postPost(formData)
             .subscribe(
                 () => {
                     this.uploading = false;
                     this.fileList = [];
+                    this.saved = true;
                     this.msg.success('upload successfully.');
                     this.router.navigate(['post']);
                 },
@@ -140,6 +153,12 @@ export class AddPostComponent implements OnInit {
             randomString += String.fromCharCode(randomAscii);
         }
         return randomString;
+    }
+
+    ngOnDestroy(): void {
+        if (!this.saved) {
+            this.service.ckDeleteDir(this.dirName).subscribe();
+        }
     }
 
 }
