@@ -40,7 +40,10 @@
       <div class="col-12 ">
             <nz-form-item>
               <nz-form-control >
-                <ckeditor [editor]="Editor" tagName="input" formControlName="content"></ckeditor>
+
+                  <ckeditor [editor]="Editor" [config]="ckconfig" tagName="input"
+                            formControlName="content"></ckeditor>
+
               </nz-form-control>
             </nz-form-item>
       </div>

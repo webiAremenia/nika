@@ -4,6 +4,7 @@ import {NzMessageService, UploadFile} from 'ng-zorro-antd';
 import {Router} from '@angular/router';
 import {PortfolioService} from '../../../shared/services/portfolio.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import {AppGlobals} from "../../../app.globals";
 
 
 class PortfolioUploadAdapter {
@@ -14,17 +15,17 @@ class PortfolioUploadAdapter {
     dir;
     random;
 
-    constructor(loader, service, dir, random) {
+    constructor(loader, service, dir, random, url) {
         this.random = random;
         this.dir = dir;
         this.service = service;
         this.loader = loader;
-        this.url = 'http://localhost:3000/uploads/portfolio/ckeditor/' + this.dir + '/';
+        this.url = url + '/uploads/portfolio/ckeditor/' + this.dir + '/';
     }
 
     upload() {
         return new Promise((resolve, reject) => {
-            console.log('UploadAdapter upload called', this.loader, this.url);
+            // console.log('UploadAdapter upload called', this.loader, this.url);
 
             this.loader.file.then(f => {
                 const form = new FormData();
@@ -47,6 +48,7 @@ class PortfolioUploadAdapter {
     abort() {
         console.log('Abort');
         this.service.ckEditorDeletePortfolioImage(this.dir + '/' + this.imageName).subscribe(d => {
+                console.log('22222');
                 console.log(d);
             },
             e => console.log(e)
@@ -71,13 +73,16 @@ export class AddPortfolioComponent implements OnInit, OnDestroy {
     randomString;
     dirName;
     saved = false;
-
+    editorData;
+    url;
     constructor(
         private fb: FormBuilder,
         private msg: NzMessageService,
         private service: PortfolioService,
-        private router: Router
+        private router: Router,
+        private globals : AppGlobals
     ) {
+        this.url = this.globals.url;
         this.initEditor();
     }
 
@@ -95,7 +100,7 @@ export class AddPortfolioComponent implements OnInit, OnDestroy {
 
     theUploadAdapterPlugin = (editor) => {
         editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-            return new PortfolioUploadAdapter(loader, this.service, this.dirName, this.randomString += 's');
+            return new PortfolioUploadAdapter(loader, this.service, this.dirName, this.randomString += 's', this.url);
         };
     }
 

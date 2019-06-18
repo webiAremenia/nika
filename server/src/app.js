@@ -27,7 +27,7 @@ app.use(require('cors')());
 
 app.use(morgan('combined', {stream: winston.stream}));
 
-app.use('/uploads', express.static(__dirname +'/_uploads'));
+app.use('/uploads', express.static(__dirname +'/../_uploads'));
 
 const admin = require('./admin/routes/admin');
 const api = require('./api/routes/api');

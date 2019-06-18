@@ -87,7 +87,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-4 mt-2" *ngFor="let image of portfolio.imgs">
-                <img class="img-thumbnail" [src]="url + image" alt="">
+                <img class="img-thumbnail" [src]="url + '/uploads/portfolio/' + image" alt="">
                 <button class="btn btn-danger" style="width: 100%;" (click)="deleteImage(image)">DELETE</button>
             </div>
         </div>

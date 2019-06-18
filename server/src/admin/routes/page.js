@@ -16,6 +16,7 @@ router.post('/ckeditor',uploadImg.single('image'), controller.ckEditorAddImage);
 router.put('/',uploadImg.single('image'), controller.changePage);
 
 router.delete('/ckeditor',controller.ckEditorDeleteImage);
+router.delete('/ck/:dir', controller.deleteNoEmptyDir);
 
 router.delete('/', controller.deletePage);
 

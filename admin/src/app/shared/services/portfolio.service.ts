@@ -37,6 +37,7 @@ export class PortfolioService {
     }
 
     ckEditorSavePortfolioImage(form) {
+        console.log(1111111)
         return this.http.post(this.urlApi + '/portfolio/ckeditor/', form);
     }
 

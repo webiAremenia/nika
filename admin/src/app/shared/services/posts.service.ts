@@ -37,7 +37,10 @@ export class PostsService {
 
     ckEditorDeletePostImage(image) {
         return this.http.delete(this.urlApi + `/post/ckeditor?name=${image}`);
+    }
 
+    ckDeleteDir(dir) {
+        return this.http.delete(this.urlApi + `/post/ck/${dir}`);
     }
 
 

@@ -46,7 +46,7 @@ module.exports = {
             }
         } else {
             req.files.forEach(item => {
-                fs.unlinkSync(__dirname + `/../../_uploads/portfolio/${item.filename}`);
+                fs.unlinkSync(__dirname + `/../../../_uploads/portfolio/${item.filename}`);
             });
             errors.conflictError(res, errors)
         }
@@ -94,9 +94,9 @@ module.exports = {
         try {
             await Portfolio.remove({_id: portfolio});
             candidate.imgs.forEach(item => {
-                fs.unlinkSync(__dirname + `/../../_uploads/portfolio/${item}`);
+                fs.unlinkSync(__dirname + `/../../../_uploads/portfolio/${item}`);
             });
-            rimraf.sync(__dirname + `/../../_uploads/portfolio/ckeditor/${candidate.random}`);
+            rimraf.sync(__dirname + `/../../../_uploads/portfolio/ckeditor/${candidate.random}`);
             res.status(201).json({
                 msg: 'Portfolio has removed successfully'
             })
@@ -106,19 +106,19 @@ module.exports = {
     },
 
     deleteNoEmptyDir: async (req, res) => {
-        rimraf.sync(__dirname + `/../../_uploads/portfolio/ckeditor/${req.params.dir}`);
+        rimraf.sync(__dirname + `/../../../_uploads/portfolio/ckeditor/${req.params.dir}`);
     },
 
     ckEditorAddImage: async (req, res) => {
-        console.log('eeeeeeeeeeeeeee' + req.file.filename)
-        // res.status(201).json({
-        //     filename: req.file.filename
-        // })
+        // console.log('eeeeeeeeeeeeeee' + req.file.filename)
+        res.status(201).json({
+            filename: req.file.filename
+        })
     },
 
     ckEditorDeleteImage: (req, res) => {
         let name = req.query.name;
-        fs.unlinkSync(__dirname + `/../../_uploads/portfolio/ckeditor/${name}`);
+        fs.unlinkSync(__dirname + `/../../../_uploads/portfolio/ckeditor/${name}`);
         res.status(201).json({
             msg: 'CkImage has been removed'
         })

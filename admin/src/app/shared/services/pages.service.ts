@@ -42,6 +42,8 @@ export class PagesService {
 
     ckEditorDeleteImage(image) {
         return this.http.delete(this.urlApi + `/page/ckeditor?name=${image}`);
-
+    }
+    ckDeleteDir(dir) {
+        return this.http.delete(this.urlApi + `/page/ck/${dir}`);
     }
 }
