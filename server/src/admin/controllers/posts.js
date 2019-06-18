@@ -44,7 +44,7 @@ module.exports = {
                 errors.invalidData(res, errors);
             }
         } else {
-            fs.unlinkSync(__dirname + `/../../_uploads/posts/${req.file.filename}`);
+            fs.unlinkSync(__dirname + `/../../../_uploads/posts/${req.file.filename}`);
             errors.conflictError(res, errors)
         }
     },
@@ -59,7 +59,7 @@ module.exports = {
             image: req.file ? req.file.filename : req.body.image
         };
         if (req.file) {
-            fs.unlinkSync(__dirname + `/../../_uploads/posts/${oldPost.image}`);
+            fs.unlinkSync(__dirname + `/../../../_uploads/posts/${oldPost.image}`);
         }
         post.updated = new Date();
         try {
@@ -77,8 +77,8 @@ module.exports = {
             let candidate = await Post.findOne({_id: post});
             try {
                 await Post.remove({_id: post});
-                fs.unlinkSync(__dirname + `/../../_uploads/posts/${candidate.image}`);
-                rimraf.sync(__dirname + `/../../_uploads/posts/ckeditor/${candidate.random}`);
+                fs.unlinkSync(__dirname + `/../../../_uploads/posts/${candidate.image}`);
+                rimraf.sync(__dirname + `/../../../_uploads/posts/ckeditor/${candidate.random}`);
                 res.status(201).json({
                     msg: 'Post has removed successfully'
                 })
@@ -87,7 +87,7 @@ module.exports = {
             }
     },
     deleteNoEmptyDir: async (req, res) => {
-        rimraf.sync(__dirname + `/../../_uploads/posts/ckeditor/${req.params.dir}`);
+        rimraf.sync(__dirname + `/../../../_uploads/posts/ckeditor/${req.params.dir}`);
     },
 
     ckEditorAddImage: async (req,res) => {
@@ -100,7 +100,7 @@ module.exports = {
     ckEditorDeleteImage: async (req, res) => {
         console.log(1111111)
         let name = req.query.name;
-        fs.unlinkSync(__dirname + `/../../_uploads/posts/ckeditor/${name}`);
+        fs.unlinkSync(__dirname + `/../../../_uploads/posts/ckeditor/${name}`);
         res.status(201).json({
             msg: 'CkImage has been removed'
         })

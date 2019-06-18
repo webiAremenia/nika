@@ -1,51 +1,46 @@
 const multer = require('multer');
 const fs = require('fs');
+const uploads = '/../../../_uploads';
 
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
 
-        if (!fs.existsSync(__dirname + '/../../_uploads')) {
-            fs.mkdirSync(__dirname + '/../../_uploads');
+        if (!fs.existsSync(__dirname + uploads)) {
+            fs.mkdirSync(__dirname + uploads);
         }
-        if (!fs.existsSync(__dirname + '/../../_uploads/portfolio')) {
-            fs.mkdirSync(__dirname + '/../../_uploads/portfolio');
+        if (!fs.existsSync(__dirname + uploads + '/portfolio')) {
+            fs.mkdirSync(__dirname + uploads + '/portfolio');
         }
-        if (!fs.existsSync(__dirname + '/../../_uploads/posts')) {
-            fs.mkdirSync(__dirname + '/../../_uploads/posts');
+        if (!fs.existsSync(__dirname + uploads + '/posts')) {
+            fs.mkdirSync(__dirname + uploads + '/posts');
         }
-        if (!fs.existsSync(__dirname + '/../../_uploads/pages')) {
-            fs.mkdirSync(__dirname + '/../../_uploads/pages');
+        if (!fs.existsSync(__dirname + uploads + '/pages')) {
+            fs.mkdirSync(__dirname + uploads + '/pages');
         }
-        // if (!fs.existsSync(__dirname + '/../../_uploads/posts/ckeditor')) {
-        //     fs.mkdirSync(__dirname + '/../../_uploads/posts/ckeditor');
-        // }
-        // if (!fs.existsSync(__dirname + '/../../_uploads/pages/ckeditor')) {
-        //     fs.mkdirSync(__dirname + '/../../_uploads/pages/ckeditor');
-        // }
-        if (!fs.existsSync(__dirname + '/../../_uploads/medias')) {
-            fs.mkdirSync(__dirname + '/../../_uploads/medias');
+        if (!fs.existsSync(__dirname + uploads + '/medias')) {
+            fs.mkdirSync(__dirname + uploads + '/medias');
         }
-        if (!fs.existsSync(__dirname + '/../../_uploads/vacancy')) {
-            fs.mkdirSync(__dirname + '/../../_uploads/vacancy');
+        if (!fs.existsSync(__dirname + uploads + '/vacancy')) {
+            fs.mkdirSync(__dirname + uploads + '/vacancy');
         }
-        if (!fs.existsSync(__dirname + '/../../_uploads/slider')) {
-            fs.mkdirSync(__dirname + '/../../_uploads/slider');
+        if (!fs.existsSync(__dirname + uploads + '/slider')) {
+            fs.mkdirSync(__dirname + uploads + '/slider');
         }
 
 
-        if (!fs.existsSync(__dirname + '/../../_uploads/portfolio/ckeditor')) {
-            fs.mkdirSync(__dirname + '/../../_uploads/portfolio/ckeditor');
+        if (!fs.existsSync(__dirname + uploads + '/portfolio/ckeditor')) {
+            fs.mkdirSync(__dirname + uploads + '/portfolio/ckeditor');
         }
-        if (!fs.existsSync(__dirname + '/../../_uploads/posts/ckeditor')) {
-            fs.mkdirSync(__dirname + '/../../_uploads/posts/ckeditor');
+        if (!fs.existsSync(__dirname + uploads + '/posts/ckeditor')) {
+            fs.mkdirSync(__dirname + uploads + '/posts/ckeditor');
         }
-        if (!fs.existsSync(__dirname + '/../../_uploads/pages/ckeditor')) {
-            fs.mkdirSync(__dirname + '/../../_uploads/pages/ckeditor');
+        if (!fs.existsSync(__dirname + uploads + '/pages/ckeditor')) {
+            fs.mkdirSync(__dirname + uploads + '/pages/ckeditor');
         }
 
-        if (!fs.existsSync(__dirname + '/../../_uploads/block')) {
-            fs.mkdirSync(__dirname + '/../../_uploads/block');
+        if (!fs.existsSync(__dirname + uploads + '/block')) {
+            fs.mkdirSync(__dirname + uploads + '/block');
         }
 
 
@@ -64,16 +59,16 @@ const storage = multer.diskStorage({
 
 
         if (req.method === 'POST' && req.originalUrl.split('/')[2] === 'media') {
-            cb(null, __dirname + '/../../_uploads/medias')
+            cb(null, __dirname + uploads + '/medias')
         }
         if (req.method === 'PUT' && req.originalUrl.split('/')[2].split('?')[0] === 'media') {
-            cb(null, __dirname + '/../../_uploads/medias')
+            cb(null, __dirname + uploads + '/medias')
         }
         if (req.method === 'POST' && req.originalUrl.split('/')[2] === 'vacancy') {
-            cb(null, __dirname + '/../../_uploads/vacancy')
+            cb(null, __dirname + uploads + '/vacancy')
         }
         if (req.method === 'PUT' && req.originalUrl.split('/')[2].split('?')[0] === 'vacancy') {
-            cb(null, __dirname + '/../../_uploads/vacancy')
+            cb(null, __dirname + uploads + '/vacancy')
         }
 
 
@@ -84,14 +79,14 @@ const storage = multer.diskStorage({
             if (req.originalUrl.split('/')[3] === 'ckeditor' && req.method === 'POST') {
 
 
-                if (!fs.existsSync(__dirname + '/../../_uploads/portfolio/ckeditor/' + req.body.dirName)) {
-                    fs.mkdirSync(__dirname + '/../../_uploads/portfolio/ckeditor/' + req.body.dirName);
+                if (!fs.existsSync(__dirname + uploads + '/portfolio/ckeditor/' + req.body.dirName)) {
+                    fs.mkdirSync(__dirname + uploads + '/portfolio/ckeditor/' + req.body.dirName);
                 }
 
 
-                cb(null, __dirname + '/../../_uploads/portfolio/ckeditor/' + req.body.dirName)
+                cb(null, __dirname + uploads + '/portfolio/ckeditor/' + req.body.dirName)
             } else {
-                cb(null, __dirname + '/../../_uploads/portfolio')
+                cb(null, __dirname + uploads + '/portfolio')
             }
         }
 
@@ -99,14 +94,14 @@ const storage = multer.diskStorage({
             if (req.originalUrl.split('/')[3] === 'ckeditor' && req.method === 'POST') {
 
 
-                if (!fs.existsSync(__dirname + '/../../_uploads/posts/ckeditor/' + req.body.dirName)) {
-                    fs.mkdirSync(__dirname + '/../../_uploads/posts/ckeditor/' + req.body.dirName);
+                if (!fs.existsSync(__dirname + uploads + '/posts/ckeditor/' + req.body.dirName)) {
+                    fs.mkdirSync(__dirname + uploads + '/posts/ckeditor/' + req.body.dirName);
                 }
 
 
-                cb(null, __dirname + '/../../_uploads/posts/ckeditor/' + req.body.dirName)
+                cb(null, __dirname + uploads + '/posts/ckeditor/' + req.body.dirName)
             } else {
-                cb(null, __dirname + '/../../_uploads/posts')
+                cb(null, __dirname + uploads + '/posts')
             }
         }
 
@@ -114,33 +109,28 @@ const storage = multer.diskStorage({
             if (req.originalUrl.split('/')[3] === 'ckeditor' && req.method === 'POST') {
 
 
-                if (!fs.existsSync(__dirname + '/../../_uploads/pages/ckeditor/' + req.body.dirName)) {
-                    fs.mkdirSync(__dirname + '/../../_uploads/pages/ckeditor/' + req.body.dirName);
+                if (!fs.existsSync(__dirname + uploads + '/pages/ckeditor/' + req.body.dirName)) {
+                    fs.mkdirSync(__dirname + uploads + '/pages/ckeditor/' + req.body.dirName);
                 }
 
-
-                cb(null, __dirname + '/../../_uploads/pages/ckeditor/' + req.body.dirName)
+                cb(null, __dirname + uploads + '/pages/ckeditor/' + req.body.dirName)
             } else {
-                cb(null, __dirname + '/../../_uploads/pages')
+                cb(null, __dirname + uploads + '/pages')
             }
         }
 
 
-
-
-
-
         if (req.method === 'PUT' && req.originalUrl.split('/')[2].split('?')[0] === 'post') {
-            cb(null, __dirname + '/../../_uploads/posts')
+            cb(null, __dirname + uploads + '/posts')
         }
         if (req.method === 'PUT' && req.originalUrl.split('/')[2].split('?')[0] === 'portfolio') {
-            cb(null, __dirname + '/../../_uploads/portfolio')
+            cb(null, __dirname + uploads + '/portfolio')
         }
         if (req.method === 'POST' && req.originalUrl.split('/')[2] === 'block') {
-            cb(null, __dirname + '/../../_uploads/block')
+            cb(null, __dirname + uploads + '/block')
         }
         if (req.method === 'PUT' && req.originalUrl.split('/')[2].split('?')[0] === 'block') {
-            cb(null, __dirname + '/../../_uploads/block')
+            cb(null, __dirname + uploads + '/block')
         }
 
     },

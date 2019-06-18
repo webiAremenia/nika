@@ -68,14 +68,14 @@ module.exports = {
     },
 
     deleteNoEmptyDir: async (req, res) => {
-        rimraf.sync(__dirname + `/../../_uploads/pages/ckeditor/${req.params.dir}`);
+        rimraf.sync(__dirname + `/../../../_uploads/pages/ckeditor/${req.params.dir}`);
     },
     deletePage: async (req, res) => {
         let page = req.query.id + '';
         let candidate = await Page.findOne({_id: page});
         try {
             await Page.remove({_id: page});
-            rimraf.sync(__dirname + `/../../_uploads/pages/ckeditor/${candidate.random}`);
+            rimraf.sync(__dirname + `/../../../_uploads/pages/ckeditor/${candidate.random}`);
             res.status(201).json({
                 msg: 'Page has removed successfully'
             })
