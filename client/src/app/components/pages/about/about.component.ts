@@ -22,7 +22,7 @@ export class AboutComponent implements OnInit {
         if (this.service.pages) {
             this.pages = this.service.pages;
             this.page = this.pages.find(p => {
-                return p.key === 'page_about_us';
+                return p.key === 'page_about';
             });
             this.done = true;
         } else {
@@ -31,7 +31,7 @@ export class AboutComponent implements OnInit {
                     console.log(data)
                     this.pages = data;
                     this.page = this.pages.find(p => {
-                        return p.key === 'page_about_us';
+                        return p.key === 'page_about';
                     });
                     this.done = true;
                 },

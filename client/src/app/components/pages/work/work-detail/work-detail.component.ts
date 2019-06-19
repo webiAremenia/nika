@@ -41,7 +41,6 @@ export class WorkDetailComponent implements OnInit, OnDestroy {
                 data => {
                     this.work = data;
                     console.log(this.work);
-                    this.work.content = '<div class="a">' + this.work.content + '</div>'
                     this.done = true;
                 },
                 err => console.log(err)

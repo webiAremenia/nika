@@ -26,7 +26,6 @@ export class WorkComponent implements OnInit {
         if (this.service.works) {
             console.log(44);
             this.works = this.service.works;
-            console.log(this.works)
             this.done = true;
         } else {
             this.service.getWorks().subscribe(
