@@ -30,6 +30,7 @@ export class StoriesComponent implements OnInit {
             this.service.getAll().subscribe(
                 data => {
                     this.stories = data;
+                    console.log(data)
                     this.done = true;
                 },
                 err => console.log(err)
