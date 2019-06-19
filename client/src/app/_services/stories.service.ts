@@ -9,9 +9,9 @@ import {Post} from '../_models/post';
     providedIn: 'root'
 })
 export class StoriesService {
-    url;
     stories: Post[];
     story: Post;
+    url;
 
     constructor(private http: HttpClient, private config: AppGlobals) {
         this.url = config.url;

@@ -26,6 +26,7 @@ export class WorkDetailComponent implements OnInit, OnDestroy {
         config: AppGlobals
     ) {
         if (service.work) {
+            this.work = this.service.work;
             this.done = true;
         }
         this.imgPath = config.imageUrl + '/portfolio/';
@@ -39,6 +40,8 @@ export class WorkDetailComponent implements OnInit, OnDestroy {
             this.service.getOne(this.id).subscribe(
                 data => {
                     this.work = data;
+                    console.log(this.work);
+                    this.work.content = '<div class="a">' + this.work.content + '</div>'
                     this.done = true;
                 },
                 err => console.log(err)

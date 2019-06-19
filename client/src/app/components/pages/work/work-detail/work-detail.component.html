@@ -1,5 +1,5 @@
 <div class="custom-container pt-0">
-    <div class="row">
+    <div class="row" *ngIf="done">
         <div class="col-4">
             <div class="img-wrapper img" *ngFor="let img of work.images">
 
@@ -14,9 +14,9 @@
             <div class="detail-description">
                 {{work.description}}
             </div>
-            <!--<div class="content-for-form">-->
+            <div class="content-for-form" [innerHTML]="work.content">
 
-            <!--</div>-->
+            </div>
         </div>
 
     </div>
