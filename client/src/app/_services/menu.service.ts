@@ -17,4 +17,7 @@ export class MenuService {
     getMenuText(): Observable<any> {
         return this.http.get<any>(`${this.url}settings/menu-text`);
     }
+    getMenuUrl(): Observable<any> {
+        return this.http.get<any>(`${this.url}settings/meet-us-url`);
+    }
 }

@@ -16,14 +16,7 @@ const PageSchema = new Schema({
 module.exports = mongoose.model('Page', PageSchema);
 
 module.exports.findByKey = (key, pages) => {
-    let obj = pages.find(p => {
+    return pages.find(p => {
         return p.key === key
     });
-    return obj;
-}
-// function findByKey(key) {
-//     let obj = pages.find(p => {
-//         return p.key === key
-//     });
-//     return obj;
-// }
+};

@@ -1,7 +1,8 @@
 const Page = require('./admin/models/page');
-const errors = require('./admin/_help/errorHandler');
+const Settings = require('./admin/models/settings');
 module.exports.createPage = async (req, res) => {
-    let keys = ['page_about', 'page_careers', 'page_work', 'page_story'];
+    const keys = ['page_about', 'page_careers', 'page_work', 'page_story'];
+    const setting_keys = ['menu-text', 'meet-us-url', 'footer-text', 'footer-link-url', 'slider-speed'];
     try {
         const pages = await Page.find();
         keys.forEach(k => {
@@ -9,20 +10,24 @@ module.exports.createPage = async (req, res) => {
             if (!page) {
                 let obj = new Page({
                     key: k,
-                    content: '<p>' + 'Go to admin panel and create ' + k + '</p>'
+                    content: '<p>' + 'Go to admin panel and edit ' + k + '</p>'
+                });
+                obj.save();
+            }
+        });
+        const settings = await Settings.find();
+        setting_keys.forEach(k => {
+            let set = Settings.findByKey(k, settings);
+            if (!set) {
+                let obj = new Settings({
+                    key: k,
+                    value: 'Go to admin panel and edit ' + k
                 });
                 obj.save();
             }
         });
 
-        // function findByKey(key) {
-        //     let obj = pages.find(p => {
-        //         return p.key === key
-        //     });
-        //     return obj;
-        // }
     } catch (e) {
         console.log(e)
-        // errors.invalidData(res, errors);
     }
 };

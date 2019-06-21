@@ -44,15 +44,15 @@
                          [ngClass]="gr.position == 'left'  ? 'in-left' : 'in-right'"
                          (click)="replace(i, gr.id, gr.position)">
                         <div class="icons">
-                            <img class="left-arrow" src="../../../../assets/icons/prev.png">
-                            <img class="right-arrow" src="../../../../assets/icons/next.svg">
+                            <img class="left-arrow" src="assets/icons/prev.png" alt="">
+                            <img class="right-arrow" src="assets/icons/next.svg" alt="">
                         </div>
                     </div>
                     <div class="delete-line"
                          [ngClass]="gr.position == 'left'  ? 'in-left' : 'in-right'"
                          (click)="deleteLine(i, gr.id)">
                         <div class="delete-line-icon">
-                            <img class="delete-icon" src="../../../../assets/icons/delete.svg">
+                            <img class="delete-icon" src="assets/icons/delete.svg" alt="">
                         </div>
                     </div>
 
@@ -85,14 +85,6 @@
                 </tr>
             </table>
 
-
-<!--            <ul *ngIf="canBe.length > 0">-->
-<!--                <li class="my-blocks"-->
-<!--                    (click)="pushToGroup(block._id, block.size, block.name)"-->
-<!--                    *ngFor="let block of canBe">-->
-<!--                    {{block.name}} <b> {{block.size}} </b>  {{block.type}}-->
-<!--                </li>-->
-<!--            </ul>-->
         </div>
 
     </div>

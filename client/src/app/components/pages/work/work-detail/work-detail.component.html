@@ -1,19 +1,25 @@
-<div class="custom-container pt-0">
+<div class="rightContentWrapper">
+    <div class="col-md-9 offset-md-3 col-12 col-sm-12">
+        <app-work-desc></app-work-desc>
+    </div>
+</div>
+
+<div class="custom-container ">
     <div class="row" *ngIf="done">
-        <div class="col-4">
-            <div class="img-wrapper img" *ngFor="let img of work.images">
+<!--        <div class="col-4">-->
+<!--            <div class="img-wrapper img" *ngFor="let img of work.images">-->
 
-               <img class="" [src]="(imgPath +img)" alt="image">
-            </div>
-        </div>
+<!--               <img class="" [src]="(imgPath +img)" alt="image">-->
+<!--            </div>-->
+<!--        </div>-->
 
-        <div class="col-6">
-            <div class="detail-title">
-                {{work.title}}
-            </div>
-            <div class="detail-description">
-                {{work.description}}
-            </div>
+        <div class="col-12">
+<!--            <div class="detail-title">-->
+<!--                {{work.title}}-->
+<!--            </div>-->
+<!--            <div class="detail-description">-->
+<!--                {{work.description}}-->
+<!--            </div>-->
             <div class="content-for-form" [innerHTML]="work.content" class="a">
 
             </div>

@@ -12,6 +12,7 @@ export class SidebarComponent implements OnInit {
 
     route: string;
     menuText;
+    menuUrl;
 
     constructor(location: Location, router: Router, private menuService: MenuService) {
         router.events.subscribe((val) => {
@@ -26,6 +27,9 @@ export class SidebarComponent implements OnInit {
     getMenuText() {
         this.menuService.getMenuText().subscribe(date => {
             this.menuText = date || 'You  can creat this content in admin panel Settings/key = menu-text';
+        });
+        this.menuService.getMenuUrl().subscribe(date => {
+            this.menuUrl = date || 'You  can creat this content in admin panel Settings/key = meet-us-url';
         });
     }
 
