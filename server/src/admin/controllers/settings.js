@@ -41,7 +41,8 @@ module.exports = {
                     {_id: candidate._id},
                     {$set: settings},
                     {new: true});
-                res.status(201).json(settings)
+                let candidates = await Settings.find({});
+                res.status(201).json(candidates)
             } catch (e) {
                 errors.invalidData(res, errors);
             }

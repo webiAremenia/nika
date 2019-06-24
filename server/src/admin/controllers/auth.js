@@ -24,7 +24,8 @@ module.exports = {
                     let user = {
                         username: candidate.username,
                         email: candidate.email,
-                        role: candidate.role
+                        role: candidate.role,
+                        id : candidate.id
                     };
                     let data = jwt.sign(user, global.gConfig.jwt_key);
                     res.status(201).json({

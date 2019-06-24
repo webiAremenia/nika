@@ -3,10 +3,11 @@ import {
     HttpRequest,
     HttpHandler,
     HttpEvent,
-    HttpInterceptor
+    HttpInterceptor, HttpErrorResponse
 } from '@angular/common/http';
 import {DataService} from './data.service';
-import {Observable} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
+import {catchError, retry} from "rxjs/operators";
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -18,9 +19,31 @@ export class TokenInterceptor implements HttpInterceptor {
             const clone = request.clone({
                 setHeaders: {token: this.data.getToken()}
             });
-            return next.handle(clone);
+            return next.handle(clone)
+                .pipe(
+                    retry(1),
+                    catchError((error: HttpErrorResponse) => {
+                        console.log('+++++++++++++++')
+                        const errorMessage = '';
+                        if (error.status === 401) {
+                            localStorage.clear()
+                            window.location.href = '/admin-panel/login';
+                        }
+                        return throwError(errorMessage);
+                    })
+                );
         }
-
-        return next.handle(request);
+        return next.handle(request)
+            .pipe(
+                retry(1),
+                catchError((error: HttpErrorResponse) => {
+                    const errorMessage = '';
+                    if (error.status === 401) {
+                        localStorage.clear()
+                        window.location.href = '/login';
+                    }
+                    return throwError(errorMessage);
+                })
+            );
     }
 }
