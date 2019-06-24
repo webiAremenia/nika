@@ -220,7 +220,7 @@ export class AddBlockComponent implements OnInit {
                 this.blockForm.get('twitter').setValue(this.blockForm.get('twitter').value.split('/')[5]);
             }
         }
-        console.log(this.blockForm.value);
+        // console.log(this.blockForm.value);
         this.formData.append('data', JSON.stringify(this.blockForm.value));
         this.blockService.postBlock(this.formData).subscribe(
             d => {

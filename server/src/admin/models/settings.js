@@ -13,3 +13,9 @@ const SettingsSchema = new Schema({
 });
 
 module.exports = mongoose.model('Settings', SettingsSchema);
+
+module.exports.findByKey = (key, pages) => {
+    return pages.find(p => {
+        return p.key === key
+    });
+};

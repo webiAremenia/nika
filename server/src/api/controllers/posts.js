@@ -20,7 +20,8 @@ module.exports = {
     },
     getMany: async (req, res) => {
         try {
-            arr = JSON.parse(req.params.arr);
+            let arr = JSON.parse(req.params.arr);
+            console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', arr);
             let posts = await Post.find({_id: arr}).select('_id title description content image');
             res.status(201).json(posts)
         } catch (e) {

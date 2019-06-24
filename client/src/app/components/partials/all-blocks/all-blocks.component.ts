@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ComponentService} from '../../../_services/component.service';
 import {Block} from '../../../_models/block';
 import {FooterService} from '../../../_services/footer.service';
@@ -9,7 +9,7 @@ import {Group} from '../../../_models/group';
     templateUrl: './all-blocks.component.html',
     styleUrls: ['./all-blocks.component.scss']
 })
-export class AllBlocksComponent implements OnInit {
+export class AllBlocksComponent implements OnInit , AfterViewInit {
 
     blocks: Block[];
     ggg: Group[];
@@ -26,5 +26,8 @@ export class AllBlocksComponent implements OnInit {
         this.ggg = this.footerService.groups;
     }
 
+    ngAfterViewInit(): void {
+        document.getElementById('for-Click').click();
+    }
 
 }

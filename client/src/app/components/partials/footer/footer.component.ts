@@ -8,7 +8,8 @@ import {FooterService} from '../../../_services/footer.service';
 })
 export class FooterComponent implements OnInit {
 
-    footer;
+    footerText;
+    footerLink;
 
     constructor(private footerService: FooterService) {
     }
@@ -18,6 +19,11 @@ export class FooterComponent implements OnInit {
     }
 
     getFooterBlock() {
-        this.footer = this.footerService.getFooter();
+        this.footerService.getFooter().subscribe(date => {
+            this.footerText = date || 'You  can update this content in admin panel Settings/key = footer-text';
+        });
+        this.footerService.getFooterLink().subscribe(date => {
+            this.footerLink = date || 'You  can update this content in admin panel Settings/key = footer-link-url';
+        });
     }
 }

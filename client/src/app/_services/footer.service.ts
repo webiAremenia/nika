@@ -46,16 +46,10 @@ export class FooterService {
         return this.http.get(this.url + 'post/get-many/' + JSON.stringify(arr));
     }
 
-    getFooter() {
-        return {type: 'small', data: {
-                size: 'small',
-                bg: '#000',
-                category: 'link',
-                content: {
-                    title: 'Lorem ipsum dolor sit amet, consectetur adipisicing ?',
-                    link: 'contact us',
-                    url: 'https://www.facebook.com/'
-                }
-            }};
+    getFooter(): Observable<any> {
+        return this.http.get<any>(`${this.url}settings/footer-text`);
+    }
+    getFooterLink(): Observable<any> {
+        return this.http.get<any>(`${this.url}settings/footer-link-url`);
     }
 }

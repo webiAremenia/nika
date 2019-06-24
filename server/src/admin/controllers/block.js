@@ -1,8 +1,6 @@
 const Block = require('../models/block');
 const errors = require('../_help/errorHandler');
 const fs = require('fs');
-// const sharp = require('sharp');
-// let imgConvert = require('image-convert');
 const gifFrames = require('gif-frames');
 
 module.exports = {
@@ -61,7 +59,7 @@ module.exports = {
             if (data.type === 'GIF') {
                 await gifFrames(
                     {
-                        url: 'http://localhost:3000/uploads/block/' + req.files[0].filename,
+                        url: __dirname + '/../../../_uploads/block/' + req.files[0].filename,
                         frames: '0',
                         outputType: 'png',
                         cumulative: true
