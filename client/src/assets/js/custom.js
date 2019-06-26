@@ -54,8 +54,8 @@ $(document).ready(function () {
         $('.links-content').fadeOut(10);
         faded = !faded;
         if (menuToggled) {
-            $('#toggle-icon').toggleClass('rotate', '');
-            menuToggled = !menuToggled;
+            $('#toggle-icon').removeClass('rotate');
+            menuToggled = false;
         }
         $(window).scrollTop(0);
         faded = false;
@@ -85,8 +85,6 @@ $(document).ready(function () {
                     $('.links-content').fadeOut(10);
                     // faded = faded;
                 }
-
-
 
 
                 if ($(window).scrollTop() > $(window).height()) {
@@ -180,4 +178,3 @@ $(document).ready(function () {
     })
 
 });
-
