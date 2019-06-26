@@ -50,11 +50,11 @@ app.use((req, res, next) => {
     res.status(err.status).json({error: err.message})
 });
 app.use((err, req, res, next) => {
-    res.locals.message = err.message;
-    res.locals.error = err;
-    winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-    res.status(err.status || 500);
-    res.render('error');
+        res.locals.message = err.message;
+        res.locals.error = err;
+        winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+        res.status(err.status || 500);
+        res.render('error');
 });
 
 

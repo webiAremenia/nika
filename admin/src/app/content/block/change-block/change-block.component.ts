@@ -53,7 +53,6 @@ export class ChangeBlockComponent implements OnInit {
     ngOnInit(): void {
         this.url = this.blockService.url + '/uploads/block/';
         this.block = this.blockService.candidateBlock;
-        console.log(this.block);
         if (this.block.stories) {
             this.selectedItems = this.block.stories.map(s => {
                 return {
@@ -74,13 +73,11 @@ export class ChangeBlockComponent implements OnInit {
                 bgColor: [this.block.bgColor, Validators.required]
             });
         } else if (this.selectedType === 'Portfolio') {
-            console.log('portfolio ', this.block);
             this.portfoliosBgColor = this.block.bgColor;
             this.blockForm = this.fb.group({
                 portfolio: [this.block.portfolio, Validators.required],
                 bgColor: [this.block.bgColor]
             });
-            // this.blockForm.addControl('portfolio', this.getPortfolioForm());
         } else if (this.selectedType === 'Video') {
             this.blockForm = this.fb.group({
                 video: [this.block.video, Validators.required],
