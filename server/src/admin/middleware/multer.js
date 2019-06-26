@@ -165,3 +165,94 @@ const upload = multer({
 module.exports = upload;
 
 
+
+
+
+
+
+
+
+// const multer = require('multer');
+// const fs = require('fs');
+
+// import fs from 'fs';
+// import multer from 'multer';
+
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         console.log('********************')
+//         if (!fs.existsSync(__dirname + '/../../_uploads')) {
+//             fs.mkdirSync(__dirname + '/../../_uploads');
+//         }
+//         if (!fs.existsSync(__dirname + '/../../_uploads/media')) {
+//             fs.mkdirSync(__dirname + '/../../_uploads/media');
+//         }
+//         if (!fs.existsSync(__dirname + '/../../_uploads/page')) {
+//             fs.mkdirSync(__dirname + '/../../_uploads/page');
+//         }
+//         if (!fs.existsSync(__dirname + '/../../_uploads/news')) {
+//             fs.mkdirSync(__dirname + '/../../_uploads/news');
+//         }
+
+//         if (!fs.existsSync(__dirname + '/../../_uploads/portfolio')) {
+//             fs.mkdirSync(__dirname + '/../../_uploads/portfolio');
+//         }
+//         if (!fs.existsSync(__dirname + '/../../_uploads/portfolio/ckeditor')) {
+//             fs.mkdirSync(__dirname + '/../../_uploads/portfolio/ckeditor');
+//         }
+//         if (!fs.existsSync(__dirname + '/../../_uploads/team')) {
+//             fs.mkdirSync(__dirname + '/../../_uploads/team');
+//         }
+
+//         if (req.originalUrl.split('/')[2] === 'media') {
+//             cb(null, __dirname + '/../../_uploads/media');
+//         }
+//         if (req.originalUrl.split('/')[2] === 'page') {
+//             cb(null, __dirname + '/../../_uploads/page');
+//         }
+//         if (req.originalUrl.split('/')[2] === 'news') {
+//             cb(null, __dirname + '/../../_uploads/news');
+//         }
+//         if (req.originalUrl.split('/')[2] === 'portfolio') {
+//             cb(null, __dirname + '/../../_uploads/portfolio');
+//         }
+//         if (req.originalUrl.split('/')[2] === 'team') {
+//             cb(null, __dirname + '/../../_uploads/team');
+//         }
+
+//         if (req.method === 'POST' && req.originalUrl.split('/')[2] === 'portfolio') {
+//             if (req.originalUrl.split('/')[3] === 'ckeditor' && req.method === 'POST') {
+//                 if (!fs.existsSync(__dirname + '/../../_uploads/portfolio/ckeditor/' + req.body.dirName)) {
+//                     console.log(1111)
+//                     fs.mkdirSync(__dirname + '/../../_uploads/portfolio/ckeditor/' + req.body.dirName);
+//                 }
+//                 cb(null, __dirname + '/../../_uploads/portfolio/ckeditor/' + req.body.dirName)
+//             } else {
+//                 console.log(22222)
+//                 cb(null, __dirname + '/../../_uploads/portfolio')
+//             }
+
+//         }
+
+
+//     },
+//     filename: function (req, file, cb) {
+//         if (req.originalUrl.split('/')[3] !== 'ckeditor' && req.method === 'POST') {
+//             if (req.method === 'POST') {
+//                 console.log(333333)
+//                 cb(null, new Date().getTime().toString() + file.originalname)
+//             }
+//         } else {
+//             console.log(5555555)
+
+//             cb(null, req.body.random + file.originalname)
+//         }
+//     }
+// });
+
+
+// const upload = multer({
+//     storage: storage,
+// });
+
+// module.exports = upload;

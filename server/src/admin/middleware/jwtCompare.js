@@ -6,8 +6,9 @@ module.exports = (req, res, next) => {
     try {
         const token = req.headers.token;
 
-        let user = jwt.verify(token, global.gConfig.jwt_key);
-        if (user.role === 'supperAdmin') {
+        let admin = jwt.verify(token, global.gConfig.jwt_key);
+        if (admin.role === 'supperAdmin') {
+            req.adminId = admin.id;
             next();
         } else {
             return res.status(403).json({
@@ -15,7 +16,7 @@ module.exports = (req, res, next) => {
             });
         }
     } catch (e) {
-        return res.status(403).json({
+        return res.status(401).json({
             msg: 'Have not permission ...'
         })
     }
