@@ -23,7 +23,6 @@ export class PostsListComponent implements OnInit {
     this.url = this.service.url + '/uploads/posts/';
     this.service.getPosts().subscribe((data) => {
       this.posts = data;
-      console.log(data)
       this.items = data;
     })
   }

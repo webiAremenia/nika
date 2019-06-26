@@ -27,8 +27,6 @@ class UploadAdapter {
 
     upload() {
         return new Promise((resolve, reject) => {
-            console.log('UploadAdapter upload called', this.loader, this.url);
-
             this.loader.file.then(f => {
                 const form = new FormData();
                 form.append('random', this.random);
@@ -36,7 +34,6 @@ class UploadAdapter {
                 form.append('image', f);
                 this.imageName = f.name;
                 this.service.ckEditorSaveImage(form).subscribe(d => {
-                        console.log(d);
                         resolve({default: this.url + this.random + f.name});
                     },
                     e => console.log(e)
@@ -48,7 +45,6 @@ class UploadAdapter {
 
     // Aborts the upload process.
     abort() {
-        console.log(222222);
         // this.service.ckEditorDeleteImage(this.imageName).subscribe(d => {
         //         console.log(d);
         //     },
@@ -92,7 +88,6 @@ export class PageChangeComponent implements OnInit {
 
         // this.url = this.service.url + '/uploads/posts/';
         this.page = this.service.candidatePage;
-        console.log(this.page)
         this.validateForm = this.fb.group({
             key: [{value : this.page.key, disabled : true}, Validators.required],
             content: [this.page.content, Validators.required],

@@ -1,21 +1,23 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <button style="text-align: center;padding-bottom: 10px; margin: 0 5px 0 5px;" class="btn btn-success float-right" (click)="addPage()"><i nz-icon type="folder-add" theme="outline"></i></button>
+            <button style="text-align: center;padding-bottom: 10px; margin: 0 5px 0 5px;"
+                    class="btn btn-success float-right" (click)="addPage()"><i nz-icon type="folder-add"
+                                                                               theme="outline"></i></button>
         </div>
     </div>
     <table class="table">
         <thead>
         <tr>
             <th>Key</th>
-            <th>Controllers</th>
+            <th class="text-right">Controllers</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let data of pages;let i = index">
             <td>{{data.key}}</td>
 
-            <td>
+            <td class="text-right">
                 <i nz-icon type="edit" theme="outline" class="_btn_edit"
                    (click)="edit(data)"></i>
                 <nz-divider nzType="vertical"></nz-divider>

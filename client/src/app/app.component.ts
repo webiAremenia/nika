@@ -19,7 +19,6 @@ export class AppComponent implements OnInit {
     done = false;
 
     @HostListener('scroll') scrolling() {
-        console.log('scrolling');
     }
 
     constructor(

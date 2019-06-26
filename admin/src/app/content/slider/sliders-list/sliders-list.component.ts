@@ -39,7 +39,6 @@ url;
       nzOkType: 'danger',
       nzOnOk: () => this.delete(slider),
       nzCancelText: 'No',
-      nzOnCancel: () => console.log('Cancel')
     });
   }
   addSlider() {

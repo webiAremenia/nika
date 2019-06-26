@@ -4,7 +4,6 @@ const errors = require('../_helper/error_handler');
 
 module.exports = {
     getAll: async (req,res) => {
-        console.log(55);
         try {
             let pages = await Page.find();
             res.status(201).json(pages)

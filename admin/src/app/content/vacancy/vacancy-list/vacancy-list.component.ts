@@ -40,7 +40,6 @@ export class VacancyListComponent implements OnInit {
       nzOkType: 'danger',
       nzOnOk: () => this.delete(vacancy),
       nzCancelText: 'No',
-      nzOnCancel: () => console.log('Cancel')
     });
   }
   addVacancy() {

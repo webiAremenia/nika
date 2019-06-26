@@ -48,7 +48,6 @@ export class PortfolioListComponent implements OnInit {
       nzOkType: 'danger',
       nzOnOk: () => this.delete(data),
       nzCancelText: 'No',
-      nzOnCancel: () => console.log('Cancel')
     });
   }
   showModal(images): void {

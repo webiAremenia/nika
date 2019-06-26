@@ -25,7 +25,6 @@ module.exports = {
     addPage: async (req, res) => {
         let candidate = await Page.findOne({key: req.body.key});
         if (!candidate) {
-            console.log(req.body)
             let page = {
                 key: req.body.key,
                 content: req.body.content,
@@ -48,13 +47,9 @@ module.exports = {
         }
     },
     changePage: async (req, res) => {
-        // console.log(req.body)
-        // console.log(req.query.id)
         let candidate = req.query.id + '';
         let page = {
-            key: req.body.key,
             content: req.body.content
-
         };
         try {
             await Page.findByIdAndUpdate(
@@ -85,14 +80,12 @@ module.exports = {
     },
 
     ckEditorAddImage: async (req, res) => {
-        console.log('eeeeeeeeeeeeeee' + req.file.filename)
         res.status(201).json({
             filename: req.file.filename
         })
     },
 
     ckEditorDeleteImage: async (req, res) => {
-        console.log(11111111111111)
         let name = req.query.name;
         fs.unlinkSync(__dirname + `/../../../_uploads/pages/ckeditor/${name}`);
         res.status(201).json({

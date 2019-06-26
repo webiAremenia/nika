@@ -40,7 +40,6 @@ export class WorkDetailComponent implements OnInit, OnDestroy {
             this.service.getOne(this.id).subscribe(
                 data => {
                     this.work = data;
-                    console.log(this.work);
                     this.done = true;
                 },
                 err => console.log(err)

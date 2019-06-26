@@ -99,7 +99,6 @@ export class AddPostComponent implements OnInit, OnDestroy{
     }
 
     theUploadAdapterPlugin = (editor) => {
-        console.log(11111111111111111111)
         editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
             return new UploadAdapter(loader, this.service, this.dirName, this.randomString += 's', this.url);
         };

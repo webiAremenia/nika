@@ -29,7 +29,6 @@ module.exports = {
             order: order
         };
         req.body.type !== 'url' ? menu.typeId = req.body.typeId : menu.url = req.body.url;
-        console.log(menu);
         try {
             await new Menu(menu).save();
             res.status(201).json({
@@ -70,7 +69,6 @@ module.exports = {
     deleteMenu: async (req,res) => {
         let menu = req.query.id + '';
         let candidate = await Menu.findOne({_id: menu});
-        console.log(candidate)
         if (candidate) {
             try {
                 await Menu.remove({_id: menu});
@@ -86,7 +84,6 @@ module.exports = {
     },
     sortMenu: async (req,res) => {
         let candidates = req.body;
-        console.log(candidates);
         waterfall([
             async function(callback){
                 for(let i = 0; i < candidates.length; ++i) {

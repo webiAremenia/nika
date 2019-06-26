@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 export class ChangePasswordComponent implements OnInit {
     validateForm: FormGroup;
     msg;
+    uploading = false;
 
     constructor(private fb: FormBuilder, private service: ProfileService, private router: Router) {
     }
@@ -24,14 +25,17 @@ export class ChangePasswordComponent implements OnInit {
 
     handleUpload() {
         this.service.changePass(this.validateForm.value).subscribe(data => {
-            console.log(data);
             this.msg = data['msg'];
-            if(data['success']){
-                setTimeout(()=>{
-                    this.router.navigate(['profile'])
-                }, 1000)
+            if (data['success']) {
+                this.uploading = false;
+                setTimeout(() => {
+                    this.router.navigate(['profile']);
+                }, 1000);
             }
-        }, e => console.log(e));
+        }, () => {
+            this.uploading = false;
+            this.msg.error('upload failed.');
+        });
     }
 
 }

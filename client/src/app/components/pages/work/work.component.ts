@@ -24,7 +24,6 @@ export class WorkComponent implements OnInit {
 
     getAllWorks() {
         if (this.service.works) {
-            console.log(44);
             this.works = this.service.works;
             this.done = true;
         } else {

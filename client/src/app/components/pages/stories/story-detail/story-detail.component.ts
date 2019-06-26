@@ -26,7 +26,6 @@ export class StoryDetailComponent implements OnInit {
         if ( service.stories ) {
             this.done = true;
         }
-        console.log('Story')
         this.imgPath = config.imageUrl + '/posts/';
 
     }

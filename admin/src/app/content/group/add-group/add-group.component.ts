@@ -36,7 +36,6 @@ export class AddGroupComponent implements OnInit {
             data => {
                 this.group = data;
                 this.done = true;
-                console.log(data);
             },
             err => console.log(err)
         );

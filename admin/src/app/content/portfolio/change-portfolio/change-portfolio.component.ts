@@ -26,7 +26,6 @@ class PortfolioUploadAdapter {
 
     upload() {
         return new Promise((resolve, reject) => {
-            console.log('UploadAdapter upload called', this.loader, this.url);
 
             this.loader.file.then(f => {
                 const form = new FormData();
@@ -35,7 +34,6 @@ class PortfolioUploadAdapter {
                 form.append('image', f);
                 this.imageName = this.random + f.name;
                 this.service.ckEditorSavePortfolioImage(form).subscribe(d => {
-                        console.log(d);
                         resolve({default: this.url + this.random + f.name});
                     },
                     e => console.log(e)
@@ -49,7 +47,6 @@ class PortfolioUploadAdapter {
     abort() {
         console.log('Abort');
         this.service.ckEditorDeletePortfolioImage(this.dir + '/' + this.imageName).subscribe(d => {
-                console.log(d);
             },
             e => console.log(e)
         );
@@ -98,7 +95,6 @@ export class ChangePortfolioComponent implements OnInit {
         }, 500);
         // this.url = this.service.url + '/uploads/portfolio/';
         this.portfolio = this.service.candidatePortfolio;
-        console.log(this.portfolio)
         this.validateForm = new FormGroup({
             title: new FormControl(this.portfolio.title, [Validators.required]),
             description: new FormControl(this.portfolio.description, [Validators.required]),
@@ -141,7 +137,6 @@ export class ChangePortfolioComponent implements OnInit {
     };
 
     handleUpload(): void {
-        // console.log(this.validateForm.value)
         const formData = new FormData();
         // tslint:disable-next-line:no-any
         this.fileList.forEach((file: any) => {
@@ -164,7 +159,6 @@ export class ChangePortfolioComponent implements OnInit {
                     this.uploading = false;
                     this.fileList = [];
                     this.msg.success('upload successfully.');
-                    console.log(this.portfolio.imgs);
                     this.router.navigate(['portfolio']);
                 },
                 () => {
@@ -177,7 +171,6 @@ export class ChangePortfolioComponent implements OnInit {
     deleteImage(image) {
         this.deletedimages.push(image);
         this.portfolio.imgs = this.portfolio.imgs.filter(item => item !== image);
-        console.log(this.portfolio.imgs);
     }
 
     showModal(): void {
