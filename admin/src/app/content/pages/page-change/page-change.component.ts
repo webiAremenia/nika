@@ -94,7 +94,7 @@ export class PageChangeComponent implements OnInit {
         this.page = this.service.candidatePage;
         console.log(this.page)
         this.validateForm = this.fb.group({
-            key: [this.page.key, Validators.required],
+            key: [{value : this.page.key, disabled : true}, Validators.required],
             content: [this.page.content, Validators.required],
         })
 

@@ -12,7 +12,8 @@ const auth = require('./auth'),
     vacancy = require('./vacancy'),
     block = require('./block'),
     medias = require('./media'),
-    group = require('./group');
+    group = require('./group'),
+    profile = require('./profile');
 
 router.use('/post', posts);
 router.use('/page', pages);
@@ -25,5 +26,6 @@ router.use('/settings', settings);
 router.use('/menu', menu);
 router.use('/portfolio', portfolio);
 router.use('/group', group);
+router.use('/profile', profile);
 
 module.exports = router;

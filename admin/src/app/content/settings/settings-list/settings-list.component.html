@@ -21,7 +21,7 @@
         <td>{{data.key}}</td>
         <td>
             <p [id]="'p' + i">{{data.value}}</p>
-            <input [id]="'input' + i" type="hidden" [(ngModel)]="input" nz-input placeholder="small size" nzSize="small"
+            <input [id]="'input' + i" type="hidden" [(ngModel)]="input" nz-input nzSize="small"
                    style="width: 60%"/>
             <button [id]="'button' + i" class="btn btn-warning ml-2" style="display: none"
                     (click)="change(data.key, input, 'input' + i, 'button' + i,'p' + i)">Change
