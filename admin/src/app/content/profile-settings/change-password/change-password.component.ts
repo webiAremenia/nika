@@ -26,10 +26,10 @@ export class ChangePasswordComponent implements OnInit {
         this.service.changePass(this.validateForm.value).subscribe(data => {
             console.log(data);
             this.msg = data['msg'];
-            if(data['success']){
-                setTimeout(()=>{
-                    this.router.navigate(['profile'])
-                }, 1000)
+            if (data['success']) {
+                setTimeout(() => {
+                    this.router.navigate(['profile']);
+                }, 1000);
             }
         }, e => console.log(e));
     }

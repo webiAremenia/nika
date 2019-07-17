@@ -24,6 +24,7 @@ export class AllBlocksComponent implements OnInit , AfterViewInit {
     }
     getGroups() {
         this.ggg = this.footerService.groups;
+        console.log( this.ggg);
     }
 
     ngAfterViewInit(): void {

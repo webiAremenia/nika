@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SliderService} from '../../../_services/slider.service';
 import {Slide} from '../../../_models/slide';
 import {AppGlobals} from '../../../app.globals';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -17,39 +18,37 @@ export class HomeComponent implements OnInit, OnDestroy {
     imageUrl;
     done = false;
 
-    constructor(private  slider: SliderService, config: AppGlobals) {
+    constructor(private  sliderService: SliderService, config: AppGlobals) {
         this.imageUrl = config.imageUrl + '/medias/';
-        this.slider.getSliderSpeed().subscribe(data => {
-            this.speed = data;
-            this.options = {
-                loop: true,
-                mouseDrag: true,
-                touchDrag: true,
-                pullDrag: false,
-                dots: false,
-                navSpeed: 200,
-                autoplay: true,
-                autoplayTimeout: this.speed || 3000,
-                autoplaySpeed: 1000,
-                // navText: ['', ''],
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    400: {
-                        items: 1
-                    },
-                    740: {
-                        items: 1
-                    },
-                    940: {
-                        items: 1
-                    }
+        this.speed = sliderService.speed;
+        this.options = {
+            loop: true,
+            mouseDrag: true,
+            touchDrag: true,
+            pullDrag: false,
+            dots: false,
+            navSpeed: 200,
+            autoplay: true,
+            autoplayTimeout: this.speed || 3000,
+            autoplaySpeed: 1000,
+            // navText: ['', ''],
+            responsive: {
+                0: {
+                    items: 1
                 },
-                nav: false
-            };
-            return;
-        });
+                400: {
+                    items: 1
+                },
+                740: {
+                    items: 1
+                },
+                940: {
+                    items: 1
+                }
+            },
+            nav: false
+        };
+
     }
 
     ngOnInit() {
@@ -57,14 +56,22 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     getParams() {
-        this.slider.getImages().subscribe(data => {
+
+        if (this.sliderService.slider) {
+            this.slides = this.sliderService.slider;
             this.done = true;
-            this.slides = data;
-        });
+        } else {
+            this.sliderService.getImages().subscribe(
+                d => {
+                    this.slides = d;
+                    this.done = true;
+                }
+            );
+        }
     }
 
     ngOnDestroy(): void {
-        // this.options = null;
         this.slides = null;
+        this.done = false;
     }
 }

@@ -2,11 +2,8 @@ import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {WorkService} from '../../../../_services/work.service';
 import {ActivatedRoute} from '@angular/router';
-import {DOCUMENT} from '@angular/platform-browser';
 import {Work} from '../../../../_models/work';
-import {Post} from "../../../../_models/post";
-import {StoriesService} from "../../../../_services/stories.service";
-import {AppGlobals} from "../../../../app.globals";
+import {AppGlobals} from '../../../../app.globals';
 
 @Component({
     selector: 'app-work-detail',

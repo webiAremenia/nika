@@ -116,7 +116,11 @@ export class PageChangeComponent implements OnInit {
 
 
     handleUpload(): void {
-        this.service.putPage(this.page._id, this.validateForm.value)
+        const form = {
+            key : this.page.key,
+            content : this.validateForm.get('content').value
+        }
+        this.service.putPage(this.page._id, form)
             .subscribe(
                 () => {
                     this.uploading = false;

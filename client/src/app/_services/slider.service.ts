@@ -19,7 +19,7 @@ export class SliderService {
     }
 
     getSliderSpeed(): Observable<any> {
-        return this.http.get<any[]>(`${this.url}/settings/slider-speed`);
+        return this.speed = this.http.get<any[]>(`${this.url}/settings/slider-speed`);
     }
 
     getImages(): Observable<Slide[]> {
