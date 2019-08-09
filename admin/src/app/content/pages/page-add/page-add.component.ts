@@ -114,6 +114,8 @@ export class PageAddComponent implements OnInit, OnDestroy {
             content: this.validateForm.controls.content.value,
             random: this.dirName
         };
+        console.log(form)
+
         this.service.postPage(form)
             .subscribe(
                 () => {

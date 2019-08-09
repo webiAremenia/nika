@@ -8,14 +8,14 @@
         <thead>
         <tr>
             <th>Key</th>
-            <th>Controllers</th>
+            <th class="text-right">Controllers</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let data of pages;let i = index">
             <td>{{data.key}}</td>
 
-            <td>
+            <td class="text-right">
                 <i nz-icon type="edit" theme="outline" class="_btn_edit"
                    (click)="edit(data)"></i>
                 <nz-divider nzType="vertical"></nz-divider>

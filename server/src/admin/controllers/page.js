@@ -54,7 +54,6 @@ module.exports = {
         let page = {
             key: req.body.key,
             content: req.body.content
-
         };
         try {
             await Page.findByIdAndUpdate(
