@@ -6,23 +6,27 @@
 
 <div class="custom-container ">
     <div class="row" *ngIf="done">
-<!--        <div class="col-4">-->
-<!--            <div class="img-wrapper img" *ngFor="let img of work.images">-->
-
-<!--               <img class="" [src]="(imgPath +img)" alt="image">-->
-<!--            </div>-->
-<!--        </div>-->
 
         <div class="col-12">
-<!--            <div class="detail-title">-->
-<!--                {{work.title}}-->
-<!--            </div>-->
-<!--            <div class="detail-description">-->
-<!--                {{work.description}}-->
-<!--            </div>-->
-            <div class="content-for-form" [innerHTML]="work.content" class="a">
-
+            <div class="work-detail-title">
+                {{ work.title }}
             </div>
+        </div>
+
+        <div class="col-12 work-detail-link">
+            <a [href]="work.link" target="_blank" class="">
+                {{ work.link }}
+            </a>
+        </div>
+
+        <div class="col-4">
+            <div class="img-wrapper img" *ngFor="let img of work.images">
+                <img class="" [src]="(imgPath +img)" alt="image">
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="content-for-form" [innerHTML]="work.content" class="a"></div>
         </div>
 
     </div>

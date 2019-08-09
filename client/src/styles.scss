@@ -106,6 +106,8 @@ body {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
   height: 100% !important;
+  border: 1px solid rgb(225, 232, 237);;
+
   .EmbeddedTweet {
     overflow: hidden;
     cursor: pointer;
@@ -158,5 +160,13 @@ body {
 .a {
   img {
     max-width: 100%;
+  }
+}
+@media (max-width: 750px) {
+  .owl-item{
+    max-height: 350px;
+  }
+  .home-page.bg-light{
+    padding: 0;
   }
 }
