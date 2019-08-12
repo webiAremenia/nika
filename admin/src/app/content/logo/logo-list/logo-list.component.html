@@ -1,0 +1,37 @@
+<nz-table #middleTable nzSize="middle" [nzData]="logos" [nzPageSize]="4">
+    <div class="container">
+        <div class="row">
+            <div class="col-12" *ngIf="logos.length <2">
+                <button style="text-align: center;padding-bottom: 10px; margin: 0 5px 0 5px;"
+                        class="btn btn-success float-right" (click)="addLogo()"><i nz-icon type="folder-add"
+                                                                                   theme="outline"></i></button>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-6 mt-3" *ngFor="let logo of middleTable.data">
+                <nz-card style="width:100%;" nzTitle="{{logo.title}}" [nzExtra]="extraTemplate">
+                    <div class="row">
+                        <div class="col-3">
+                            <div *ngIf="logo.img; else link">
+                                <img class="img-thumbnail" [src]="url + logo.img.image" alt="">
+                            </div>
+                            <ng-template #link>
+                                <p>not image</p>
+                            </ng-template>
+                        </div>
+                        <div class="col-9">
+                            <p>{{logo.title}}</p>
+                        </div>
+
+                    </div>
+                </nz-card>
+                <ng-template #extraTemplate>
+                    <i nz-icon type="edit" theme="outline" class="_btn_edit" (click)="edit(logo)"></i>
+                    <nz-divider nzType="vertical"></nz-divider>
+<!--                    <i nz-icon type="delete" theme="outline" class="_btn_delete" (click)="showDeleteConfirm(logo)"></i>-->
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</nz-table>
+

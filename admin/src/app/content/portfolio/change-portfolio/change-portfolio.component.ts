@@ -35,7 +35,6 @@ class PortfolioUploadAdapter {
                 form.append('image', f);
                 this.imageName = this.random + f.name;
                 this.service.ckEditorSavePortfolioImage(form).subscribe(d => {
-                        console.log(d);
                         resolve({default: this.url + this.random + f.name});
                     },
                     e => console.log(e)

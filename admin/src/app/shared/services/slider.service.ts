@@ -9,6 +9,7 @@ export class SliderService {
     url;
     urlApi;
     candidateSlider;
+    menuKeys = [];
 
     constructor(private http: HttpClient, private config: AppGlobals) {
         this.url = config.url;

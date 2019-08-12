@@ -52,4 +52,8 @@ export class AppComponent implements OnInit {
         this.sliderService.getImages().subscribe();
         this.sliderService.getSliderSpeed().subscribe();
     }
+
+    onActivate(event) {
+        window.scroll(0, 0);
+    }
 }

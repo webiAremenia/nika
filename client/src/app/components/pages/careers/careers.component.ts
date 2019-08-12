@@ -16,7 +16,6 @@ export class CareersComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('***********')
         this.getAll();
     }
 
@@ -31,11 +30,9 @@ export class CareersComponent implements OnInit {
             this.service.getAll().subscribe(
                 data => {
                     this.pages = data;
-                    console.log(this.pages)
                     this.page = this.pages.find(p => {
                         return p.key === 'page_careers';
                     });
-                    console.log(this.page)
                     this.done = true;
                 },
                 err => console.log(err)

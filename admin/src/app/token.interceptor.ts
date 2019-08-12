@@ -23,7 +23,6 @@ export class TokenInterceptor implements HttpInterceptor {
                 .pipe(
                     retry(1),
                     catchError((error: HttpErrorResponse) => {
-                        console.log('+++++++++++++++')
                         const errorMessage = '';
                         if (error.status === 401) {
                             localStorage.clear()

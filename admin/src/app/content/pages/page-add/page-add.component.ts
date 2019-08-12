@@ -48,7 +48,6 @@ class UploadAdapter {
 
     // Aborts the upload process.
     abort() {
-        console.log(222222);
         // this.service.ckEditorDeleteImage(this.imageName).subscribe(d => {
         //         console.log(d);
         //     },
@@ -114,7 +113,6 @@ export class PageAddComponent implements OnInit, OnDestroy {
             content: this.validateForm.controls.content.value,
             random: this.dirName
         };
-        console.log(form)
 
         this.service.postPage(form)
             .subscribe(

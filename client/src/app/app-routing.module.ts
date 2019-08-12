@@ -17,11 +17,11 @@ const routes: Routes = [
     {path: 'contact', component: ContactComponent},
     {path: 'about', component: AboutComponent},
     {path: 'works', component: WorkComponent},
+    {path: 'stories', component: StoriesComponent},
+    {path: 'careers', component: CareersComponent},
     {path: 'work/:id', component: WorkDetailComponent},
     {path: 'all-stories', component: StoriesComponent},
-    {path: 'stories', component: StoriesComponent},
     {path: 'story/:id', component: StoryDetailComponent},
-    {path: 'careers', component: CareersComponent},
     {path: '**', redirectTo: ''},
 
 ];

@@ -79,6 +79,20 @@
   @media (max-width: 992px) and (min-width: 767px) {
     width: 80%;
   }
+  @media (min-width: 992px) {
+    width: 80%;
+  }
+}
+
+.align-self-center{
+  width: 465px;
+  height: 262.5px;
+  @media (max-width: 992px) and (min-width: 767px) {
+    width: 80%;
+  }
+  @media (min-width: 992px) {
+    width: 80%;
+  }
 }
 
 .side-bar-meet-link p {
@@ -203,4 +217,10 @@
 
 .restore {
   height: calc((100vw - 116px) / 12 * 3) !important;
+}
+
+
+.logo_image{
+  width: 176px;
+  height: 80px;
 }

@@ -97,7 +97,6 @@ module.exports = {
         try {
 
             if (data.portfolio || data.stories || data.twitter) {
-                // console.log(2)
 
                 await Block.findByIdAndUpdate({_id: req.params.id}, data);
                 res.status(201).json({
@@ -107,7 +106,6 @@ module.exports = {
                 if (data.video) {
 
                     if (req.files.length > 0 || data.videoText) {
-                        console.log('aaa')
                         if (req.files.length > 0) {
                             if (candidate.video) {
                                 fs.unlinkSync( __dirname + `/../../../_uploads/block/${candidate.video}`);
@@ -116,7 +114,6 @@ module.exports = {
                                 video: req.files[0].filename,
                                 videoText: data.videoText
                             };
-                            console.log('block ', block)
                         } else {
                             block = {
                                 videoText: data.videoText
@@ -150,7 +147,6 @@ module.exports = {
                         block.content.image = req.files[0].filename
 
                     }
-                    // console.log(block)
                     await Block.findByIdAndUpdate({_id: req.params.id}, block);
                     res.status(201).json({
                         success: true
@@ -206,7 +202,6 @@ module.exports = {
                             }
                         });
                     }
-                    console.log('block ', block);
                     await Block.findByIdAndUpdate({_id: req.params.id}, block);
                     res.status(201).json({
                         success: true
@@ -222,10 +217,8 @@ module.exports = {
         // console.log(req.params.id)
         let candidate = await Block.findOne({_id: req.params.id});
         if (candidate) {
-            // console.log(candidate);
             try {
                 if (candidate.video) {
-                    console.log(candidate)
                     fs.unlinkSync( __dirname + `/../../../_uploads/block/${candidate.video}`);
                 } else if (candidate.content) {
                     if (candidate.content.image) {

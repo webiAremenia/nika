@@ -180,13 +180,12 @@ export class ChangeBlockComponent implements OnInit {
         }
 
         this.formData.append('data', JSON.stringify(this.blockForm.value));
-        console.log(this.blockForm.value);
         this.blockService.putBlock(this.block._id, this.formData).subscribe(
             d => {
                 if (d) {
+                    this.msg.success('upload successfully.');
                     this.blockForm.reset();
                     this.router.navigate(['/block']);
-                    console.log('Data ', d);
                 }
             },
             e => console.log(e)
@@ -201,25 +200,23 @@ export class ChangeBlockComponent implements OnInit {
             if (this.selectedType === 'Image') {
                 const img = event.target.files[0];
                 if (selector === 'image') {
-                    console.log(444);
                     this.imageForm.get('image').setValue(img);
                 }
             } else if (this.selectedType === 'Video') {
                 const video = event.target.files[0];
+                this.msg.success('Video is uploading');
+
                 this.blockForm.get('video').setValue(video);
             } else if (this.selectedType === 'GIF') {
                 const gif = event.target.files[0];
                 if (selector === 'gif') {
-                    // console.log(444);
                     this.gifForm.get('gif').setValue(gif);
                 } else if (selector === 'mp3') {
                     const mp3 = event.target.files[0];
-                    // console.log(5555);
                     this.gifForm.get('mp3').setValue(mp3);
                 }
             }
 
-            console.log('Files ', event.target.files);
         }
     }
 }

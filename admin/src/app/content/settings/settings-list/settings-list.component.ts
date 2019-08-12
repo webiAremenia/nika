@@ -43,7 +43,6 @@ export class SettingsListComponent implements OnInit {
             this.settings = items;
             this.key = '';
             this.value = '';
-            console.log(this.settings);
         });
     }
 

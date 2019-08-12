@@ -4,7 +4,6 @@ const errors = require('../_helper/error_handler');
 
 module.exports = {
     getPortfolio: async (req,res) => {
-        console.log(55);
         try {
             let portfolio = await Portfolio.find();
             res.status(201).json(portfolio)
