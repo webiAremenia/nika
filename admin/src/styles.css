@@ -10,3 +10,7 @@
   top: 50px !important;
   left: -215px !important;
 }
+
+.table.ck-widget {
+    background-color: red;
+}

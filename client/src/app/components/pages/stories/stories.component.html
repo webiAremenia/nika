@@ -1,15 +1,13 @@
 
 <div class="rightContentWrapper">
-    <div class="col-md-9 offset-md-3 col-12 col-sm-12 p-0" *ngIf="done">
+    <div class="d-none d-md-block col-md-9 offset-md-3 col-12 col-sm-12 p-0" *ngIf="done">
       <app-stories-desc></app-stories-desc>
     </div>
 </div>
 
 
 <div class="custom-container pt-5">
-
-    <div class="row" *ngIf="done">
-
+    <div class="row story-wrapper" *ngIf="done">
         <div class="col-12 row">
             <div *ngFor="let story of stories" class="col-12 col-md-3">
                 <div class="img-wrapper img">

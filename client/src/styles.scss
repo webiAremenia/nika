@@ -162,11 +162,9 @@ body {
     max-width: 100%;
   }
 }
-@media (max-width: 750px) {
-  .owl-item{
-    max-height: 350px;
-  }
-  .home-page.bg-light{
+
+@media (max-width: 767px) {
+  .home-page.bg-light {
     padding: 0;
   }
 }
