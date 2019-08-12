@@ -1,5 +1,7 @@
 const Page = require('./admin/models/page');
 const Settings = require('./admin/models/settings');
+const Logo = require('./admin/models/logo');
+const Menu = require('./admin/models/menu');
 module.exports.createPage = async (req, res) => {
     const keys = ['page_about', 'page_careers', 'page_work', 'page_story'];
     const setting_keys = ['menu-text', 'meet-us-url', 'footer-text', 'footer-link-url', 'slider-speed'];
@@ -30,4 +32,45 @@ module.exports.createPage = async (req, res) => {
     } catch (e) {
         console.log(e)
     }
+};
+
+module.exports.createLogos = (req, res) => {
+    const titles = ['title_1', 'title_2'];
+    try {
+        titles.forEach(async i => {
+            let logo = await Logo.findOne({title: i});
+            if (!logo) {
+                let obj = new Logo({
+                    title: i,
+                    img: null
+                });
+                obj.save()
+            }
+        })
+    } catch (e) {
+        console.log(e)
+    }
+
+
+};
+
+module.exports.createMenus = (req, res) => {
+    const keys = ['about', 'careers', 'works', 'stories', 'contact'];
+    try {
+        keys.forEach(async (key, i) => {
+            let menu = await Menu.findOne({key: key});
+            if (!menu) {
+                let obj = new Menu({
+                    key: key,
+                    value: key.toUpperCase(),
+                    order: i
+                });
+                obj.save()
+            }
+        })
+    } catch (e) {
+        console.log(e)
+    }
+
+
 };

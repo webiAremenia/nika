@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Route, Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {MenuService} from '../../../_services/menu.service';
+import {LogoService} from '../../../_services/logo.service';
+import {Logo} from '../../../_models/logo';
+import {AppGlobals} from '../../../app.globals';
 
 @Component({
     selector: 'app-sidebar',
@@ -13,8 +16,16 @@ export class SidebarComponent implements OnInit {
     route: string;
     menuText;
     menuUrl;
+    logos: Logo[];
+    logo1: Logo;
+    logo2: Logo;
+    done = false;
+    imageUrl;
+    menus;
 
-    constructor(location: Location, router: Router, private menuService: MenuService) {
+    constructor(location: Location, router: Router, private menuService: MenuService, private logoService: LogoService, private config: AppGlobals) {
+        this.imageUrl = config.imageUrl + '/medias/';
+        // console.log(this.imageUrl)
         router.events.subscribe((val) => {
             // console.log(location.path())
         });
@@ -22,7 +33,31 @@ export class SidebarComponent implements OnInit {
 
     ngOnInit(): void {
         this.getMenuText();
+        this.logoService.getImages().subscribe(data => {
+            this.logos = data;
+            // data.forEach(i => {
+            //     if (i.title === 'title_1') {
+            //         this.logo1 = {
+            //             title: i.title,
+            //             image: i.image ? i.image : ''
+            //         };
+            //     }
+            //     if (i.title === 'title_2') {
+            //         this.logo2 = {
+            //             title: i.title,
+            //             image: i.image ? i.image : ''
+            //         }
+            //     }
+            // });
+            this.done = true;
+        }, e => console.log(e));
+        this.menuService.getMenus().subscribe(data => {
+            this.menus = data.filter(m => {
+                return m.isActive;
+            });
+        })
     }
+
 
     getMenuText() {
         this.menuService.getMenuText().subscribe(date => {
@@ -31,6 +66,8 @@ export class SidebarComponent implements OnInit {
         this.menuService.getMenuUrl().subscribe(date => {
             this.menuUrl = date || 'You  can creat this content in admin panel Settings/key = meet-us-url';
         });
+
+
     }
 
 }

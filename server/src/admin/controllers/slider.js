@@ -15,14 +15,12 @@ module.exports = {
         }
     },
     addSlider: async (req,res) => {
-        console.log(req);
         let slider = {
           title: req.body.title,
           description: req.body.description,
           url: req.body.url,
           img: req.body.img
         };
-        console.log(slider);
         try {
             await new Slider(slider).save();
             res.status(201).json({

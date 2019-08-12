@@ -6,6 +6,7 @@ const auth = require('./auth'),
     posts = require('./post'),
     pages = require('./page'),
     sliders = require('./slider'),
+    logo = require('./logo'),
     portfolio = require('./portfolio'),
     settings = require('./settings'),
     menu = require('./menu'),
@@ -20,6 +21,7 @@ router.use('/page', pages);
 router.use('/vacancy', vacancy);
 router.use('/block', block);
 router.use('/slider', sliders);
+router.use('/logo', logo);
 router.use('/media', medias);
 router.use('/auth', auth);
 router.use('/settings', settings);

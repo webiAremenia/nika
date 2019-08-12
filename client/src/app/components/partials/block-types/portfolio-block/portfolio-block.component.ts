@@ -25,7 +25,6 @@ export class PortfolioBlockComponent implements OnInit {
     }
 
     ngOnInit() {
-        // console.log(this.block);
         this.getPortfolio();
     }
 
@@ -35,7 +34,6 @@ export class PortfolioBlockComponent implements OnInit {
                 d => {
                     this.done = true;
                     this.portfolio = d;
-                    // console.log(d);
                 },
                 e => console.log(e)
             );

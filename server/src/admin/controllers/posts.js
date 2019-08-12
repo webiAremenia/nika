@@ -98,7 +98,6 @@ module.exports = {
     },
 
     ckEditorDeleteImage: async (req, res) => {
-        console.log(1111111)
         let name = req.query.name;
         fs.unlinkSync(__dirname + `/../../../_uploads/posts/ckeditor/${name}`);
         res.status(201).json({

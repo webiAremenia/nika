@@ -46,7 +46,6 @@ class UploadAdapter {
 
     // Aborts the upload process.
     abort() {
-        console.log('Abort');
         // this.service.ckEditorDeletePostImage(this.dir + '/' + this.imageName).subscribe(d => {
         //         console.log('22222');
         //         console.log(d);

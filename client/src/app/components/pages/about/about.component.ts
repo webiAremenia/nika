@@ -28,7 +28,6 @@ export class AboutComponent implements OnInit {
         } else {
             this.service.getAll().subscribe(
                 data => {
-                    console.log(data)
                     this.pages = data;
                     this.page = this.pages.find(p => {
                         return p.key === 'page_about';

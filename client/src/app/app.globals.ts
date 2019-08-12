@@ -4,9 +4,11 @@ import {environment} from '../environments/environment';
 @Injectable({
     providedIn: 'root'
 })
+
 export class AppGlobals {
     url = environment.queryUrl;
     imageUrl = environment.queryUrl + '/uploads';
+
     constructor() {
     }
 }

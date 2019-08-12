@@ -17,7 +17,6 @@ module.exports = {
             let text = await Settings.findOne({key: 'menu text'});
             res.status(200).json(text.value)
         } catch (e) {
-            console.log(55);
             errors.notFound(res, errors)
         }
     }

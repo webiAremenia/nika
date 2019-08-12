@@ -7,6 +7,7 @@ const routes: Routes = [
         path: '', component: ContentComponent, children: [
             {path: 'vacancy', loadChildren: './vacancy/vacancy.module#VacancyModule'},
             {path: 'slider', loadChildren: './slider/slider.module#SliderModule'},
+            {path: 'logo', loadChildren: './logo/logo.module#LogoModule'},
             {path: 'settings', loadChildren: './settings/setting.module#SettingModule'},
             {path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule'},
             {path: 'menu', loadChildren: './menu/menu.module#MenuModule'},

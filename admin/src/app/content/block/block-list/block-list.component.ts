@@ -28,7 +28,6 @@ export class BlockListComponent implements OnInit {
     this.router.navigate(['block/changeBlock']);
   }
   remove(block) {
-      console.log(block);
       this.service.deleteBlock(block._id).subscribe(() => {
       this.blocks = this.blocks.filter(item => item._id !== block._id);
     });

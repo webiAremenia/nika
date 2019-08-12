@@ -41,7 +41,6 @@ module.exports = {
                     }
                 })
             } else {
-                console.log('Password eror')
                 res.status(200).json({
                     msg: 'Auth filed'
                 })

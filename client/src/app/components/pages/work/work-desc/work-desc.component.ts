@@ -22,14 +22,12 @@ export class WorkDescComponent implements OnInit {
 
     getAll() {
         if (this.service.pages) {
-            console.log(888888888888888888)
             this.pages = this.service.pages;
             this.page = this.pages.find(p => {
                 return p.key === 'page_work';
             });
             this.done = true;
         } else {
-            console.log(111111111111111111)
             this.service.getAll().subscribe(
                 data => {
                     this.pages = data;

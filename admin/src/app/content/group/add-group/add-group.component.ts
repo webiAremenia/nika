@@ -27,7 +27,6 @@ export class AddGroupComponent implements OnInit {
         this.getGroup();
         this.blockService.getBlock().subscribe((data: []) => {
             this.blocks = data;
-            // console.log(this.blocks);
         });
     }
 
@@ -36,7 +35,6 @@ export class AddGroupComponent implements OnInit {
             data => {
                 this.group = data;
                 this.done = true;
-                console.log(data);
             },
             err => console.log(err)
         );

@@ -34,7 +34,6 @@ class PortfolioUploadAdapter {
                 form.append('image', f);
                 this.imageName = this.random + f.name;
                 this.service.ckEditorSavePortfolioImage(form).subscribe(d => {
-                        console.log(d);
                         resolve({default: this.url + this.random + f.name});
                     },
                     e => console.log(e)
@@ -46,9 +45,7 @@ class PortfolioUploadAdapter {
 
     // Aborts the upload process.
     abort() {
-        console.log('Abort');
         this.service.ckEditorDeletePortfolioImage(this.dir + '/' + this.imageName).subscribe(d => {
-                console.log('22222');
                 console.log(d);
             },
             e => console.log(e)
