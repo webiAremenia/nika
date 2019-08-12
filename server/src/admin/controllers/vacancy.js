@@ -19,7 +19,6 @@ module.exports = {
             alt: req.body.alt,
             image: req.file.filename
         };
-        console.log(vacancy)
         // sharp(req.file.path)
         //     .resize({
         //         width: 400,

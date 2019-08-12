@@ -4,6 +4,7 @@ import {PostsService} from '../../../shared/services/posts.service';
 import {PortfolioService} from '../../../shared/services/portfolio.service';
 import {Router} from '@angular/router';
 import {BlockService} from '../../../shared/services/block.service';
+import {NzMessageService} from 'ng-zorro-antd';
 
 @Component({
     selector: 'app-add-block',
@@ -39,6 +40,7 @@ export class AddBlockComponent implements OnInit {
         private storyService: PostsService,
         private portfolioService: PortfolioService,
         private blockService: BlockService,
+        private msg: NzMessageService
     ) {
         this.formData = new FormData();
     }
@@ -220,12 +222,11 @@ export class AddBlockComponent implements OnInit {
                 this.blockForm.get('twitter').setValue(this.blockForm.get('twitter').value.split('/')[5]);
             }
         }
-        // console.log(this.blockForm.value);
         this.formData.append('data', JSON.stringify(this.blockForm.value));
         this.blockService.postBlock(this.formData).subscribe(
             d => {
                 if (d) {
-                    console.log(d);
+                    this.msg.success('upload successfully.');
                     this.blockForm.reset();
                     this.router.navigate(['/block']);
                 }
@@ -247,6 +248,8 @@ export class AddBlockComponent implements OnInit {
             } else if (this.selectedType === 'Video') {
                 const video = event.target.files[0];
                 this.videoForm.get('videoFile').setValue(video);
+                this.msg.success('Video is uploading');
+
             } else if (this.selectedType === 'GIF') {
                 const gif = event.target.files[0];
                 if (selector === 'gif') {
@@ -254,7 +257,6 @@ export class AddBlockComponent implements OnInit {
                     this.gifForm.get('gif').setValue(gif);
                 } else if (selector === 'mp3') {
                     const mp3 = event.target.files[0];
-                    // console.log(5555);
                     this.gifForm.get('mp3').setValue(mp3);
                 }
             }

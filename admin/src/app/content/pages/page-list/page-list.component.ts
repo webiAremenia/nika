@@ -15,7 +15,6 @@ export class PageListComponent implements OnInit {
   ngOnInit() {
       this.service.getPages().subscribe(data => {
           this.pages = data;
-          console.log(data);
       }, e => console.log(e));
   }
 
@@ -32,7 +31,6 @@ export class PageListComponent implements OnInit {
     }
 
     delete(id) {
-      console.log(id);
       this.service.deletePage(id).subscribe((data) => {
             this.pages = this.pages.filter(item => item._id !== id);
         });

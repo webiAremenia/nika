@@ -2,23 +2,21 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const MenuSchema = new Schema({
-    title: {
+    key: {
         type: String,
         required: true
     },
-    type: {
+    value: {
         type: String,
         required: true
-    },
-    url: {
-        type: String
-    },
-    typeId: {
-        type: String
     },
     order: {
         type: Number,
         required: true
+    },
+    isActive : {
+        type: Boolean,
+        default : true
     }
 });
 

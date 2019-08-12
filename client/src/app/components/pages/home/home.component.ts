@@ -3,6 +3,7 @@ import {SliderService} from '../../../_services/slider.service';
 import {Slide} from '../../../_models/slide';
 import {AppGlobals} from '../../../app.globals';
 import {Subscription} from 'rxjs';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     imageUrl;
     done = false;
 
-    constructor(private  sliderService: SliderService, config: AppGlobals) {
+    constructor(private  sliderService: SliderService, config: AppGlobals, private router : Router) {
         this.imageUrl = config.imageUrl + '/medias/';
         this.speed = sliderService.speed;
         this.options = {
@@ -68,6 +69,10 @@ export class HomeComponent implements OnInit, OnDestroy {
                 }
             );
         }
+    }
+
+    navigate(url) {
+        this.router.navigate([`${url}`])
     }
 
     ngOnDestroy(): void {

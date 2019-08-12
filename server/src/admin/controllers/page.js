@@ -54,7 +54,6 @@ module.exports = {
         let page = {
             key: req.body.key,
             content: req.body.content
-
         };
         try {
             await Page.findByIdAndUpdate(
@@ -85,14 +84,12 @@ module.exports = {
     },
 
     ckEditorAddImage: async (req, res) => {
-        console.log('eeeeeeeeeeeeeee' + req.file.filename)
         res.status(201).json({
             filename: req.file.filename
         })
     },
 
     ckEditorDeleteImage: async (req, res) => {
-        console.log(11111111111111)
         let name = req.query.name;
         fs.unlinkSync(__dirname + `/../../../_uploads/pages/ckeditor/${name}`);
         res.status(201).json({

@@ -29,12 +29,17 @@
             <input nz-input formControlName="description">
           </nz-form-control>
         </nz-form-item>
-        <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" >Url</nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24">
-            <input nz-input formControlName="url">
-          </nz-form-control>
-        </nz-form-item>
+          <nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24">Url</nz-form-label>
+
+              <nz-form-control [nzSm]="14" [nzXs]="24">
+                  <nz-select formControlName="url">
+                      <nz-option *ngFor="let key of menuKeys" nzLabel="{{key}}" [nzValue]="key" >{{key}}</nz-option>
+                  </nz-select>
+              </nz-form-control>
+
+
+          </nz-form-item>
       </div>
       <div class="col-4 offset-4">
         <div class="row">

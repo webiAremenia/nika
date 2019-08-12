@@ -22,7 +22,6 @@ module.exports = {
         }
     },
     addPortfolio: async (req, res) => {
-        console.log(req.body)
         let candidate = await Portfolio.findOne({title: req.body.title});
         if (!candidate) {
             let portfolio = {

@@ -6,6 +6,9 @@ const morgan = require('morgan');
 const winston = require('../config/winston');
 const app = express();
 require('./seed').createPage();
+require('./seed').createLogos();
+require('./seed').createMenus();
+
 
 const mongoDB = global.gConfig.database;
 mongoose.connect(mongoDB, {useNewUrlParser: true, useCreateIndex: true})

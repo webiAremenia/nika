@@ -7,7 +7,7 @@
                     <div class="item-content">
                         <div class="row">
                             <div class="item-text col-10">
-                                <div class="item-title" routerLink="/{{slide.url}}">{{slide.title}}</div>
+                                <div class="item-title"  (click)="navigate(slide.url)">{{slide.title}}</div>
                                 <div class="item-description">{{ slide.description }}</div>
                             </div>
                             <div class="items-counter col-2">
