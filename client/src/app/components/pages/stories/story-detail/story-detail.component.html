@@ -1,18 +1,12 @@
 <div class="rightContentWrapper">
-    <div class="col-md-9 offset-md-3 col-12 col-sm-12 p-0" *ngIf="done">
+    <div class="d-none d-md-block col-md-9 offset-md-3 col-12 col-sm-12 p-0" *ngIf="done">
         <app-stories-desc></app-stories-desc>
     </div>
 </div>
 
 
 <div class="custom-container " *ngIf="done">
-    <div class="row">
-        <!--    <div class="col-4">-->
-        <!--      <div class="img-wrapper img">-->
-        <!--        <img class="" [src]="(imgPath + story.image)" alt="image">-->
-        <!--      </div>-->
-        <!--    </div>-->
-
+    <div class="row story-wrapper">
         <div class="col-12">
             <div class="detail-title">
                 {{story.title}}

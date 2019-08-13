@@ -2,11 +2,11 @@
     <div class="group-wrapper">
         <div *ngFor="let gr of ggg, let i = index" class="line line-{{i}}">
             <div class="d-none d-lg-block
-             bg-size-large parent-large-{{gr.largeBlock.blocks.length}}" id="large-{{i}}"
+             bg-size-large parent-large-{{gr.largeBlock['blocks'].length}}" id="large-{{i}}"
                  [ngClass]="gr.position == 'left'  ? 'left' : 'right'">
 
                 <div class="large-block-wrapper h-100 w-100 ">
-                    <div *ngFor="let ell of gr.largeBlock.blocks" class="{{ell.size}}-block">
+                    <div *ngFor="let ell of gr.largeBlock['blocks']" class="{{ell.size}}-block">
 
                         <div *ngIf="ell.block.type == 'Stories'" class="">
                             <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}"
@@ -57,7 +57,7 @@
 
 
                 <div class="middle-block-wrapper h-100 w-100">
-                    <div *ngFor="let ell of gr.middleBlock.blocks" class="{{ell.size}}-block">
+                    <div *ngFor="let ell of gr.middleBlock['blocks']" class="{{ell.size}}-block">
 
                         <div *ngIf="ell.block.type == 'Stories'">
                             <div class="block-wrapper mt-0 float-left block-size-{{ell.size}}"
@@ -104,7 +104,7 @@
 
             <div class="mobile-wrapper d-block d-lg-none">
 
-                <div *ngFor="let ell of gr.largeBlock.blocks" class="w-100">
+                <div *ngFor="let ell of gr.largeBlock['blocks']" class="w-100">
                     <div *ngIf="ell.block.type == 'Stories'" class="mobile-custom">
                         <app-blog-block [block]="ell.block"></app-blog-block>
                     </div>
@@ -131,7 +131,7 @@
 
                 </div>
 
-                <div *ngFor="let ell of gr.middleBlock.blocks">
+                <div *ngFor="let ell of gr.middleBlock['blocks']">
                     <div *ngIf="ell.block.type == 'Stories'" class="mobile-custom">
                         <app-blog-block [block]="ell.block"></app-blog-block>
                     </div>
@@ -160,5 +160,5 @@
 
         </div>
     </div>
-    <div id="for-Click"></div>
+    <div #forClick></div>
 </div>

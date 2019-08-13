@@ -30,3 +30,8 @@
 img{
   max-width: 100%;
 }
+@media (max-width: 750px) {
+  .story-wrapper{
+    margin-top: 20px;
+  }
+}

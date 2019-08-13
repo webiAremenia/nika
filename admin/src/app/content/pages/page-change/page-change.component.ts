@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {NzMessageService} from "ng-zorro-antd";
-import {Router} from "@angular/router";
-import {PagesService} from "../../../shared/services/pages.service";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {NzMessageService} from 'ng-zorro-antd';
+import {Router} from '@angular/router';
+import {PagesService} from '../../../shared/services/pages.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import {AppGlobals} from "../../../app.globals";
+import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
+import {AppGlobals} from '../../../app.globals';
 
 
 class UploadAdapter {
@@ -36,6 +37,7 @@ class UploadAdapter {
                 form.append('image', f);
                 this.imageName = f.name;
                 this.service.ckEditorSaveImage(form).subscribe(d => {
+                        console.log(d);
                         resolve({default: this.url + this.random + f.name});
                     },
                     e => console.log(e)
@@ -47,6 +49,7 @@ class UploadAdapter {
 
     // Aborts the upload process.
     abort() {
+        console.log(222222);
         // this.service.ckEditorDeleteImage(this.imageName).subscribe(d => {
         //         console.log(d);
         //     },
@@ -90,16 +93,18 @@ export class PageChangeComponent implements OnInit {
 
         // this.url = this.service.url + '/uploads/posts/';
         this.page = this.service.candidatePage;
+        console.log(this.page);
         this.validateForm = this.fb.group({
-            key: [{value : this.page.key, disabled : true}, Validators.required],
+            key: [{value: this.page.key, disabled: true}, Validators.required],
             content: [this.page.content, Validators.required],
-        })
+        });
 
         this.randomString = this.page.random;
         this.dirName = this.page.random;
     }
 
     theUploadAdapterPlugin = (editor) => {
+        console.log(editor.ui.componentFactory.names());
         editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
             return new UploadAdapter(loader, this.service, this.dirName, this.randomString += 's', this.url);
         };
@@ -107,15 +112,39 @@ export class PageChangeComponent implements OnInit {
 
     public initEditor() {
         this.ckconfig = {
-            extraPlugins: [this.theUploadAdapterPlugin]
+            extraPlugins: [this.theUploadAdapterPlugin],
+            toolbar: {
+                items: [
+                    'heading',
+                    '|',
+                    'alignment',                                                 // <--- ADDED
+                    'bold',
+                    'italic',
+                    'link',
+                    'bulletedList',
+                    'numberedList',
+                    'imageUpload',
+                    'blockQuote',
+                    'undo',
+                    'redo'
+                ]
+            },
+            image: {
+                toolbar: [
+                    'imageStyle:full',
+                    'imageStyle:side',
+                    '|',
+                    'imageTextAlternative'
+                ]
+            },
         };
     }
 
 
     handleUpload(): void {
         const form = {
-            key : this.page.key,
-            content : this.validateForm.get('content').value
+            key: this.page.key,
+            content: this.validateForm.get('content').value
         };
         this.service.putPage(this.page._id, form)
             .subscribe(
