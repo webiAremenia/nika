@@ -79,6 +79,6 @@ export class AddSliderComponent implements OnInit {
         this.img = image.image;
         this.imgFlag = true;
         this.isVisible = false;
-        console.log(this.validateForm)
+        console.log(this.validateForm);
     }
 }
