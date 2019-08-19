@@ -22,13 +22,14 @@ export class SlidersListComponent implements OnInit {
         this.url = this.service.url + '/uploads/medias/';
         this.menuService.getMenu().subscribe((data: []) => {
 
-            this.menuKeys = data.map((m: {key: string}) => {
+            this.menuKeys = data.map((m: { key: string }) => {
                 return m.key;
             });
             this.service.menuKeys = this.menuKeys;
         });
         this.service.getSliders().subscribe((data: any[]) => {
             this.sliders = data;
+            console.log(this.sliders)
         });
     }
 

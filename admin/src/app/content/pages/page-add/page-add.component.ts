@@ -7,6 +7,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {AppGlobals} from '../../../app.globals';
 
 
+
 class UploadAdapter {
     loader;  // your adapter communicates to CKEditor through this
     url;

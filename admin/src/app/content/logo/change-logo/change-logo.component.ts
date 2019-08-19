@@ -35,13 +35,12 @@ export class ChangeLogoComponent implements OnInit {
         });
         this.validateForm = new FormGroup({
             title: new FormControl({value: this.image.title, disabled: true}, [Validators.required]),
-            img: new FormControl(this.image.img, [Validators.required])
+            img: new FormControl(this.image.img, )
         });
     }
 
     handleUpload(): void {
         this.uploading = true;
-        console.log(this.validateForm.value)
         this.service.putLogo(this.image._id, this.validateForm.value)
             .subscribe(
                 () => {
@@ -59,6 +58,12 @@ export class ChangeLogoComponent implements OnInit {
     showModal(): void {
         this.isVisible = true;
     }
+    delete() {
+        this.image.img = null;
+        this.imageURL = null;
+        this.validateForm.get('img').setValue(null);
+    }
+
 
     handleOk(): void {
         this.isOkLoading = true;
@@ -75,12 +80,9 @@ export class ChangeLogoComponent implements OnInit {
     chooseImage(image) {
         this.validateForm.get('img').setValue(image._id);
         if (this.image.img) {
-            // this.image.img.image = image.image;
             this.imageURL = image.image;
         } else {
             this.imageURL = image.image;
-
-
         }
         this.isVisible = false;
     }
