@@ -54,7 +54,20 @@ export class ChangePostComponent implements OnInit {
         this.randomString = this.post.random;
         this.dirName = this.post.random;
         this.editorConfigs = {
-            plugins: ['link', 'table', 'image imagetools'],
+            plugins: 'print preview fullpage powerpaste casechange importcss tinydrive searchreplace autolink' +
+                ' autosave save directionality advcode visualblocks visualchars fullscreen image link media' +
+                ' mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime' +
+                ' advlist lists checklist wordcount tinymcespellchecker a11ychecker imagetools textpattern ' +
+                'noneditable help formatpainter permanentpen pageembed charmap mentions quickbars linkchecker ' +
+                'emoticons',
+            menubar: 'file edit view insert format tools table tc help',
+            toolbar: 'undo redo | bold italic underline strikethrough | ' +
+                'fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify |' +
+                ' outdent indent |  numlist bullist checklist |' +
+                ' forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak |' +
+                ' charmap emoticons | fullscreen  preview save print |' +
+                ' insertfile image media pageembed template link anchor codesample | a11ycheck ltr rtl ',
+
             imagetools_toolbar: 'rotateleft rotateright | flipv fliph | editimage imageoptions',
             images_upload_url: this.url + '/uploads/posts/ckeditor/' + this.dirName + '/',
             images_upload_handler: this.handlerEditor,

@@ -4,7 +4,7 @@ import {NzMessageService} from 'ng-zorro-antd';
 import {Router} from '@angular/router';
 import {PagesService} from '../../../shared/services/pages.service';
 import {AppGlobals} from '../../../app.globals';
-import {SettingsService} from "../../../shared/services/settings.service";
+import {SettingsService} from '../../../shared/services/settings.service';
 
 
 @Component({
@@ -49,9 +49,21 @@ export class PageChangeComponent implements OnInit {
         });
         this.randomString = this.page.random;
         this.dirName = this.page.random;
-
         this.editorConfigs = {
-            plugins: ['link', 'table', 'image imagetools'],
+            plugins: 'print preview fullpage powerpaste casechange importcss tinydrive searchreplace autolink' +
+                ' autosave save directionality advcode visualblocks visualchars fullscreen image link media' +
+                ' mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime' +
+                ' advlist lists checklist wordcount tinymcespellchecker a11ychecker imagetools textpattern ' +
+                'noneditable help formatpainter permanentpen pageembed charmap mentions quickbars linkchecker ' +
+                'emoticons',
+            menubar: 'file edit view insert format tools table tc help',
+            toolbar: 'undo redo | bold italic underline strikethrough | ' +
+                'fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify |' +
+                ' outdent indent |  numlist bullist checklist |' +
+                ' forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak |' +
+                ' charmap emoticons | fullscreen  preview save print |' +
+                ' insertfile image media pageembed template link anchor codesample | a11ycheck ltr rtl ',
+
             imagetools_toolbar: 'rotateleft rotateright | flipv fliph | editimage imageoptions',
             images_upload_url: this.url + '/uploads/pages/ckeditor/' + this.dirName + '/',
             images_upload_handler: this.handlerEditor,
