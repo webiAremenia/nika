@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SliderService} from '../../../_services/slider.service';
 import {Slide} from '../../../_models/slide';
 import {AppGlobals} from '../../../app.globals';
-import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 
 
@@ -65,7 +64,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             this.sliderService.getImages().subscribe(
                 d => {
                     this.slides = d;
-                    console.log('sliders ', d)
+                    console.log('sliders ', d);
                     this.done = true;
                 }
             );

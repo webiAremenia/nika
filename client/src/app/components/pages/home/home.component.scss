@@ -22,7 +22,9 @@
     height: calc(100vw - 80px);
   }
 }
-
+.no-image-wrapper{
+  background-size: initial;
+}
 .item-content {
   position: relative;
   top: 100%;

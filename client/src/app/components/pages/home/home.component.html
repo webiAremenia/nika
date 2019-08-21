@@ -16,6 +16,23 @@
                     </div>
                 </div>
             </ng-template>
+            <ng-container *ngIf="slides.length < 1">
+            <ng-template class="h-100" carouselSlide>
+                <div class="my-slider-item no-image-wrapper" [ngStyle]="{'background-image': 'url(' + 'assets/images/no-slid.png' + ')'}"  >
+                    <div class="item-content">
+                        <div class="row">
+                            <div class="item-text col-10">
+                                <div class="item-title"   [style.color]="'black'">No image</div>
+<!--                                <div class="item-description">{{ slide.description }}</div>-->
+                            </div>
+                            <div class="items-counter col-2">
+<!--                                <span class="float-right" [ngStyle]="{'color':slide.image? 'white': 'black'}">{{i + 1}}/{{slides.length}}</span>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            </ng-container>
         </owl-carousel-o>
     </div>
 

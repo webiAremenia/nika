@@ -6,7 +6,7 @@
             <div class="top-part row h-20">
                 <div class="menu-title col-6" *ngIf="done">
                     <div *ngIf="logos[0].image; else link">
-                        <img [src]="imageUrl + logos[0].image['image']" alt="" class="logo_image">
+                        <img [routerLink]="[{ outlets: { primary: [] } }]" [src]="imageUrl + logos[0].image['image']" alt="" class="logo_image">
                     </div>
                     <ng-template #link>
                         <a [routerLink]="[{ outlets: { primary: [] } }]" style="cursor: pointer;"><h1>nika</h1></a>

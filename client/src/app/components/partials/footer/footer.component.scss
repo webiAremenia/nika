@@ -2,16 +2,23 @@
   padding: 20px;
 
   .title {
-    width: 40%;
+    width: 70%;
     font-size: 1.875rem;
     color: #ffffff;
     @media (max-width: 1400px) {
-      width: 60%;
+      width: 80%;
       font-size: 1.5em;
     }
     @media (max-width: 1200px) {
-      width: 50%;
-      font-size: 30px;
+      width: 80%;
+      font-size: 25px;
+    }
+    @media (max-width: 767px) {
+      width: 100%;
+      font-size: 25px;
+    }
+    @media (max-width: 550px) {
+      width: 80%;
     }
   }
 
@@ -22,6 +29,10 @@
   }
 }
 .footer-wrapper{
+  @media (max-width: 992px) {
+    width: 33.3% !important;
+    height: calc((100vw - 25px) / 3) !important;
+  }
   @media (max-width: 767px) {
     padding: 0;
     width: 50% !important;
