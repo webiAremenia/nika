@@ -65,6 +65,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             this.sliderService.getImages().subscribe(
                 d => {
                     this.slides = d;
+                    console.log('sliders ', d)
                     this.done = true;
                 }
             );

@@ -20,6 +20,7 @@ export class ChangeSliderComponent implements OnInit {
     url;
     image;
     menuKeys = [];
+    ifNoImage;
 
     constructor(private service: SliderService, private msg: NzMessageService, private router: Router) {
         if (!this.service.candidateSlider || this.service.menuKeys.length === 0) {
@@ -76,7 +77,12 @@ export class ChangeSliderComponent implements OnInit {
 
     chooseImage(image) {
         this.validateForm.get('img').setValue(image._id);
-        this.image.img.image = image.image;
+        console.log(image);
+        if (this.image.img) {
+            this.image.img.image = image.image;
+        } else {
+            this.ifNoImage = image.image
+        }
         this.isVisible = false;
     }
 

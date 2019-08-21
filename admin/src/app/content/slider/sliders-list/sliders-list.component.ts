@@ -33,6 +33,7 @@ export class SlidersListComponent implements OnInit {
         });
         this.service.getSliders().subscribe((data: any[]) => {
             this.sliders = data;
+            console.log(this.sliders)
         });
     }
 

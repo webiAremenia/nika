@@ -30,8 +30,8 @@ export class SliderService {
                             title: slide.title,
                             description: slide.description,
                             url: slide.url,
-                            image: slide.img.image,
-                            alt: slide.img.alt
+                            image: slide.img ? slide.img.image : null,
+                            alt: slide.img ? slide.img.alt : null
                         };
                     });
                     return this.slider;

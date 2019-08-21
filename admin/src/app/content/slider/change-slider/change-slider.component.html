@@ -2,11 +2,19 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="row">
+                <div class="row" *ngIf="image.img; else noImage ">
                     <div class="col-4 offset-4">
                         <img class="img-fluid" [src]="url + image.img.image" alt="">
                     </div>
                 </div>
+                <ng-template #noImage>
+                    <div class="row">
+                        <div *ngIf="ifNoImage" class="col-4 offset-4">
+                            <img class="img-fluid" [src]="url + ifNoImage" alt="">
+                        </div>
+                    </div>
+                </ng-template>
+
             </div>
             <div class="col-6 offset-3 mt-5">
                 <nz-form-item>

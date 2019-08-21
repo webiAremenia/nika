@@ -34,7 +34,7 @@ export class ChangeLogoComponent implements OnInit {
         });
         this.validateForm = new FormGroup({
             title: new FormControl({value: this.image.title, disabled: true}, [Validators.required]),
-            img: new FormControl(this.image.img, [Validators.required])
+            img: new FormControl(this.image.img, )
         });
     }
 
@@ -57,6 +57,12 @@ export class ChangeLogoComponent implements OnInit {
     showModal(): void {
         this.isVisible = true;
     }
+    delete() {
+        this.image.img = null;
+        this.imageURL = null;
+        this.validateForm.get('img').setValue(null);
+    }
+
 
     handleOk(): void {
         this.isOkLoading = true;

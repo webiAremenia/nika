@@ -12,7 +12,6 @@ import {Router} from '@angular/router';
 export class AddSliderComponent implements OnInit {
     validateForm: FormGroup;
     uploading = false;
-    selectedValue = '';
     isVisible = false;
     isOkLoading = false;
     images = [];

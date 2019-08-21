@@ -2,16 +2,15 @@
     <div class="home-page bg-light col-12 col-sm-12 col-md-9 offset-md-3 pr-0">
         <owl-carousel-o [options]="options">
             <ng-template *ngFor="let slide of slides, let i = index" class="h-100" carouselSlide>
-                <div class="my-slider-item"
-                     [ngStyle]="{'background-image': 'url(' + imageUrl + slide.image + ')'}">
-                    <div class="item-content">
+                <div class="my-slider-item" [ngStyle]="{'background-image': slide.image ? 'url(' + imageUrl + slide.image + ')' : ''}"  >
+                <div class="item-content">
                         <div class="row">
                             <div class="item-text col-10">
-                                <div class="item-title"  (click)="navigate(slide.url)">{{slide.title}}</div>
-                                <div class="item-description">{{ slide.description }}</div>
+                                <div class="item-title"  (click)="navigate(slide.url)" [ngStyle]="{'color':slide.image? 'white': 'black'}">{{slide.title}}</div>
+                                <div class="item-description" [ngStyle]="{'color':slide.image? 'white': 'black'}">{{ slide.description }}</div>
                             </div>
                             <div class="items-counter col-2">
-                                <span class="float-right">{{i + 1}}/{{slides.length}}</span>
+                                <span class="float-right" [ngStyle]="{'color':slide.image? 'white': 'black'}">{{i + 1}}/{{slides.length}}</span>
                             </div>
                         </div>
                     </div>
