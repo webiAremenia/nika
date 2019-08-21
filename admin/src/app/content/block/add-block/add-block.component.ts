@@ -91,7 +91,7 @@ export class AddBlockComponent implements OnInit {
         });
 
         this.videoForm = this.fb.group({
-            videoText: [null, ],
+            videoText: [null,],
             videoFile: [null, Validators.required],
         });
 
@@ -193,16 +193,20 @@ export class AddBlockComponent implements OnInit {
     }
 
     saveBlock() {
+        console.log('ewrrewew');
         let localStories = [];
         if (this.selectedType === 'Image') {
+            this.msg.loading('Uploading file', {nzDuration: 0});
             this.imageForm.get('bgColor').setValue(this.color);
             this.formData.append('image', this.imageForm.get('image').value);
         } else if (this.selectedType === 'GIF') {
+            this.msg.loading('Uploading file', {nzDuration: 0});
             this.gifForm.get('bgColor').setValue(this.gifBgColor);
             this.formData.append('gif', this.gifForm.get('gif').value);
             this.formData.append('mp3', this.gifForm.get('mp3').value);
 
         } else if (this.selectedType === 'Video') {
+            this.msg.loading('Uploading file', {nzDuration: 0});
             this.formData.append('video', this.videoForm.get('videoFile').value);
         } else if (this.selectedType === 'Stories') {
             if (this.storiesForm.get('settings').value) {
@@ -226,14 +230,15 @@ export class AddBlockComponent implements OnInit {
         this.blockService.postBlock(this.formData).subscribe(
             d => {
                 if (d) {
-                    this.msg.success('upload successfully.');
                     this.blockForm.reset();
                     this.router.navigate(['/block']);
+                    this.blockForm.reset();
+                    this.msg.remove();
+                    this.msg.success('upload successfully.');
                 }
             },
-            e => console.log(e)
+            e => this.msg.error(e.message)
         );
-        this.blockForm.reset();
     }
 
     onFileSelect(event, selector) {
@@ -248,7 +253,6 @@ export class AddBlockComponent implements OnInit {
             } else if (this.selectedType === 'Video') {
                 const video = event.target.files[0];
                 this.videoForm.get('videoFile').setValue(video);
-                this.msg.success('Video is uploading');
 
             } else if (this.selectedType === 'GIF') {
                 const gif = event.target.files[0];
