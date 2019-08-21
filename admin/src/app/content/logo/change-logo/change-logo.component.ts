@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {SliderService} from '../../../shared/services/slider.service';
 import {NzMessageService} from 'ng-zorro-antd';
 import {Router} from '@angular/router';
 import {LogoService} from '../../../shared/services/logo.service';
@@ -41,7 +40,6 @@ export class ChangeLogoComponent implements OnInit {
 
     handleUpload(): void {
         this.uploading = true;
-        console.log(this.validateForm.value)
         this.service.putLogo(this.image._id, this.validateForm.value)
             .subscribe(
                 () => {
@@ -75,12 +73,9 @@ export class ChangeLogoComponent implements OnInit {
     chooseImage(image) {
         this.validateForm.get('img').setValue(image._id);
         if (this.image.img) {
-            // this.image.img.image = image.image;
             this.imageURL = image.image;
         } else {
             this.imageURL = image.image;
-
-
         }
         this.isVisible = false;
     }

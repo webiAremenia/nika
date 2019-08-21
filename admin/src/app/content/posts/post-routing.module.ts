@@ -1,10 +1,8 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {PostsListComponent} from "./posts-list/posts-list.component";
-import {ChangePostComponent} from "./change-post/change-post.component";
-import {AddPostComponent} from "./add-post/add-post.component";
-
-
+import {PostsListComponent} from './posts-list/posts-list.component';
+import {ChangePostComponent} from './change-post/change-post.component';
+import {AddPostComponent} from './add-post/add-post.component';
 
 
 const routes: Routes = [

@@ -1,22 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {PagesService} from '../../../shared/services/pages.service';
 import {NzModalService} from 'ng-zorro-antd';
 
 @Component({
-  selector: 'app-page-list',
-  templateUrl: './page-list.component.html',
-  styleUrls: ['./page-list.component.css']
+    selector: 'app-page-list',
+    templateUrl: './page-list.component.html',
+    styleUrls: ['./page-list.component.css']
 })
 export class PageListComponent implements OnInit {
     pages: any = [];
-  constructor(private router: Router, private service: PagesService, private modalService: NzModalService) { }
 
-  ngOnInit() {
-      this.service.getPages().subscribe(data => {
-          this.pages = data;
-      }, e => console.log(e));
-  }
+    constructor(private router: Router, private service: PagesService, private modalService: NzModalService) {
+    }
+
+    ngOnInit() {
+        this.service.getPages().subscribe(data => {
+            this.pages = data;
+        }, e => console.log(e));
+    }
 
     showDeleteConfirm(id): void {
         this.modalService.confirm({
@@ -31,7 +33,7 @@ export class PageListComponent implements OnInit {
     }
 
     delete(id) {
-      this.service.deletePage(id).subscribe((data) => {
+        this.service.deletePage(id).subscribe((data) => {
             this.pages = this.pages.filter(item => item._id !== id);
         });
     }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {NzMessageService, UploadFile} from 'ng-zorro-antd';
+import {FormBuilder, Validators} from '@angular/forms';
+import {NzMessageService} from 'ng-zorro-antd';
 import {PostsService} from '../../../shared/services/posts.service';
 import {PortfolioService} from '../../../shared/services/portfolio.service';
 import {BlockService} from '../../../shared/services/block.service';
@@ -28,12 +28,11 @@ export class ChangeBlockComponent implements OnInit {
     dropdownList;
     imageForm;
     gifForm;
-    portfolioForm;
     formData;
     obj;
     previewImage;
     url;
-    _type;
+    type;
 
     constructor(
         private postService: PostsService,
@@ -62,7 +61,7 @@ export class ChangeBlockComponent implements OnInit {
             });
         }
         this.selectedType = this.block.type;
-        this._type = this.block.type;
+        this.type = this.block.type;
         this.buildForm();
         this.getProjects();
         this.getStoriesSettings();
@@ -154,7 +153,7 @@ export class ChangeBlockComponent implements OnInit {
     }
 
     saveBlock() {
-        let _stories = [];
+        let st = [];
         if (this.selectedType === 'Image') {
             this.imageForm.get('bgColor').setValue(this.color);
             this.formData.append('image', this.imageForm.get('image').value);
@@ -165,10 +164,10 @@ export class ChangeBlockComponent implements OnInit {
         } else if (this.selectedType === 'Video') {
             this.formData.append('video', this.blockForm.get('video').value);
         } else if (this.selectedType === 'Stories') {
-            _stories = this.blockForm.get('stories').value.map(s => {
+            st = this.blockForm.get('stories').value.map(s => {
                 return s.id;
             });
-            this.blockForm.get('stories').setValue(_stories);
+            this.blockForm.get('stories').setValue(st);
             this.blockForm.get('bgColor').setValue(this.storiesBgColor);
 
         } else if (this.selectedType === 'Portfolio') {

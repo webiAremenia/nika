@@ -3,60 +3,8 @@ import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PagesService} from '../../../shared/services/pages.service';
 import {NzMessageService} from 'ng-zorro-antd';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {AppGlobals} from '../../../app.globals';
-
-
-class UploadAdapter {
-    loader;  // your adapter communicates to CKEditor through this
-    url;
-    service;
-    imageName;
-    dir;
-    random;
-
-    // http: HttpClient;
-
-    constructor(loader, service, dir, random, url) {
-        this.random = random;
-        this.dir = dir;
-        this.service = service;
-        this.loader = loader;
-        this.url = url + '/uploads/pages/ckeditor/' + this.dir + '/';
-    }
-
-    upload() {
-        return new Promise((resolve, reject) => {
-            console.log('UploadAdapter upload called', this.loader, this.url);
-
-            this.loader.file.then(f => {
-                const form = new FormData();
-                form.append('random', this.random);
-                form.append('dirName', this.dir);
-                form.append('image', f);
-                this.imageName = f.name;
-                this.service.ckEditorSaveImage(form).subscribe(d => {
-                        console.log(d);
-                        resolve({default: this.url + this.random + f.name});
-                    },
-                    e => console.log(e)
-                );
-            });
-            // resolve({ default: this.url });
-        });
-    }
-
-    // Aborts the upload process.
-    abort() {
-        // this.service.ckEditorDeleteImage(this.imageName).subscribe(d => {
-        //         console.log(d);
-        //     },
-        //     e => console.log(e)
-        // );
-    }
-
-}
-
+import {SettingsService} from '../../../shared/services/settings.service';
 
 @Component({
     selector: 'app-page-add',
@@ -64,26 +12,29 @@ class UploadAdapter {
     styleUrls: ['./page-add.component.css']
 })
 export class PageAddComponent implements OnInit, OnDestroy {
-    public ckconfig: any;
     validateForm: FormGroup;
-    public Editor = ClassicEditor;
     uploading = false;
     randomString;
     dirName;
     saved = false;
-    editorData;
     url;
+    editorConfigs;
+    apiKey;
 
     constructor(
+        private settingService: SettingsService,
         private router: Router,
         private fb: FormBuilder,
         private msg: NzMessageService,
         private service: PagesService,
         private globals: AppGlobals
     ) {
+        if (!settingService.settings) {
+            this.router.navigate(['page']);
+        }
+        this.apiKey = settingService.settings.filter(set => set.key === 'editor_api_key')[0].value;
         this.url = this.globals.url;
-        this.initEditor();
-
+        console.log(this.apiKey, settingService.settings);
     }
 
     ngOnInit() {
@@ -93,18 +44,27 @@ export class PageAddComponent implements OnInit, OnDestroy {
         });
         this.randomString = this.generateRandomString(10);
         this.dirName = this.randomString;
-    }
-
-    theUploadAdapterPlugin = (editor) => {
-        editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-            return new UploadAdapter(loader, this.service, this.dirName, this.randomString += 's', this.url);
+        this.editorConfigs = {
+            plugins: ['link', 'table', 'image imagetools'],
+            imagetools_toolbar: 'rotateleft rotateright | flipv fliph | editimage imageoptions',
+            images_upload_url: this.url + '/uploads/pages/ckeditor/' + this.dirName + '/',
+            images_upload_handler: this.handlerEditor,
         };
     }
 
-    public initEditor() {
-        this.ckconfig = {
-            extraPlugins: [this.theUploadAdapterPlugin]
-        };
+    handlerEditor = (blobInfo, success, failure) => {
+        let formData;
+
+        formData = new FormData();
+        formData.append('random', this.randomString);
+        formData.append('dirName', this.dirName);
+        formData.append('image', blobInfo.blob(), blobInfo.filename());
+
+        this.service.ckEditorSaveImage(formData).subscribe((d: any) => {
+                success(this.url + '/uploads/pages/ckeditor/' + this.dirName + '/' + d.filename);
+            },
+            e => console.log(e)
+        );
     }
 
     handleUpload(): void {

@@ -92,8 +92,7 @@ module.exports = {
 
     ckEditorAddImage: async (req,res) => {
         res.status(201).json({
-            // filename: req.file.filename
-            msg : 'Ok'
+            filename: req.file.filename
         })
     },
 

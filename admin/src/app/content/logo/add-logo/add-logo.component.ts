@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {SliderService} from '../../../shared/services/slider.service';
 import {NzMessageService} from 'ng-zorro-antd';
 import {Router} from '@angular/router';
 import {LogoService} from '../../../shared/services/logo.service';
 
 @Component({
-  selector: 'app-add-logo',
-  templateUrl: './add-logo.component.html',
-  styleUrls: ['./add-logo.component.css']
+    selector: 'app-add-logo',
+    templateUrl: './add-logo.component.html',
+    styleUrls: ['./add-logo.component.css']
 })
 export class AddLogoComponent implements OnInit {
     validateForm: FormGroup;
@@ -21,7 +20,10 @@ export class AddLogoComponent implements OnInit {
     imgFlag = false;
     img = '';
 
-    constructor(private service: LogoService, private msg: NzMessageService, private router: Router) {
+    constructor(
+        private service: LogoService,
+        private msg: NzMessageService,
+        private router: Router) {
     }
 
     ngOnInit() {
@@ -68,11 +70,9 @@ export class AddLogoComponent implements OnInit {
     }
 
     chooseImage(image) {
-        console.log(image);
         this.validateForm.get('img').setValue(image._id);
         this.img = image.image;
         this.imgFlag = true;
         this.isVisible = false;
-        console.log(this.validateForm)
     }
 }

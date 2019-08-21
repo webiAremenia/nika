@@ -1,22 +1,24 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Nika Admin</title>
-<!--  <base href="/admin-panel/">-->
-  <base href="/">
+    <meta charset="utf-8">
+    <title>Nika Admin</title>
+    <!--  <base href="/admin-panel/">-->
+    <base href="/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="assets/icons/logo.PNG">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="assets/icons/logo.PNG">
+
+
 </head>
 <body>
-  <script>
+<script>
     let x = document.getElementsByTagName('body')[0];
     let y = document.createElement('div');
     let z = document.createElement('img');
     z.src = 'https://static.collectui.com/shots/2505716/loading-076-large';
     y.appendChild(z);
-    y.style.width = window.innerWidth +  'px';
+    y.style.width = window.innerWidth + 'px';
     y.style.height = window.innerHeight + 'px';
     z.style.position = 'absolute';
     y.style.position = 'absolute';
@@ -28,12 +30,12 @@
     z.style.left = '50%';
     z.style.transform = 'translate(-50%,-50%)';
     x.appendChild(y);
-    window.onload = ()=> {
-      y.style.display = 'none';
-      z.style.display = 'none';
+    window.onload = () => {
+        y.style.display = 'none';
+        z.style.display = 'none';
     };
 
-  </script>
-  <app-root></app-root>
+</script>
+<app-root></app-root>
 </body>
 </html>

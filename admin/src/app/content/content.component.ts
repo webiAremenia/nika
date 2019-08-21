@@ -1,6 +1,7 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {DataService} from '../data.service';
 import {Router} from '@angular/router';
+import {SettingsService} from '../shared/services/settings.service';
 
 @Component({
     selector: 'app-content',
@@ -15,14 +16,17 @@ export class ContentComponent implements OnInit {
     isCollapsed = false;
     posts;
 
-    constructor(private data: DataService, private router: Router) {
+    constructor(
+        private settingService: SettingsService,
+        private data: DataService,
+        private router: Router) {
+        settingService.getSettings().subscribe();
         if (!localStorage.getItem('user')) {
             this.router.navigate(['/']);
         }
     }
 
     ngOnInit() {
-        // this.layot.elementRef.nativeElement.offsetHeight = window.innerHeight;
         this.user = JSON.parse(localStorage.getItem('user'));
     }
 

@@ -8,6 +8,7 @@ const app = express();
 require('./seed').createPage();
 require('./seed').createLogos();
 require('./seed').createMenus();
+require('./seed').createDefaultAdmin();
 
 
 const mongoDB = global.gConfig.database;

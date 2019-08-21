@@ -1,6 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {SettingsService} from '../../../shared/services/settings.service';
-import {Router} from '@angular/router';
 import {NzModalService} from 'ng-zorro-antd';
 
 @Component({
@@ -17,13 +16,14 @@ export class SettingsListComponent implements OnInit {
     p;
     button;
     id;
-
     inpId;
     butId;
     pId;
     @ViewChild('input') input;
 
-    constructor(private service: SettingsService, private modalService: NzModalService) {
+    constructor(
+        private service: SettingsService,
+        private modalService: NzModalService) {
     }
 
     ngOnInit() {
@@ -48,14 +48,14 @@ export class SettingsListComponent implements OnInit {
 
     edit(key, val, input, par, but) {
         if (this.inpId) {
-            const inp1 = document.getElementById(this.inpId)as HTMLInputElement;
+            const inp1 = document.getElementById(this.inpId) as HTMLInputElement;
             const button1 = document.getElementById(this.butId);
             const p1 = document.getElementById(this.pId);
             inp1.style.display = 'none';
             button1.style.display = 'none';
             p1.style.display = 'inline-block';
 
-            const inp = document.getElementById(input)as HTMLInputElement;
+            const inp = document.getElementById(input) as HTMLInputElement;
             const p = document.getElementById(par);
             const button = document.getElementById(but);
             this.input = val;
@@ -75,12 +75,9 @@ export class SettingsListComponent implements OnInit {
             button.style.display = 'inline-block';
         }
 
-
         this.inpId = input;
         this.butId = but;
         this.pId = par;
-        // p.style.display = 'block';
-        // button.style.display = 'none';
     }
 
 
@@ -91,7 +88,7 @@ export class SettingsListComponent implements OnInit {
     }
 
     change(key, val, input, but, par) {
-        const inp = document.getElementById(input)as HTMLInputElement;
+        const inp = document.getElementById(input) as HTMLInputElement;
         const p = document.getElementById(par);
         const button = document.getElementById(but);
         const data = {

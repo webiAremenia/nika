@@ -1,41 +1,40 @@
-<form [formGroup]="validateForm">
-    <div class="container">
-        <div class="row">
-            <div class="col-6 offset-3 mt-5">
-                <nz-form-item>
-                    <nz-form-label [nzSm]="6" [nzXs]="24">Key</nz-form-label>
-                    <nz-form-control [nzSm]="14" [nzXs]="24">
-                        <input nz-input formControlName="key">
-                    </nz-form-control>
-                </nz-form-item>
-            </div>
-            <div class="col-12 ">
-                <nz-form-item>
-                    <nz-form-control>
-                        <ckeditor [editor]="Editor" [config]="ckconfig" tagName="input"
-                                  formControlName="content"></ckeditor>
-                        <!--<ckeditor [editor]="Editor" [config]="ckconfig" [(ngModel)]="doc.text" name="editcontent"></ckeditor>-->
-                    </nz-form-control>
-                </nz-form-item>
-            </div>
-            <div class="col-4 offset-4">
-                <div class="row">
-                    <div class="col-11 offset-1">
-                        <button
-                            nz-button
-                            [nzType]="'primary'"
-                            [nzLoading]="uploading"
-                            (click)="handleUpload()"
-                            [disabled]="validateForm.invalid"
-                            style="width: 100%"
-                        >
-                            {{ uploading ? 'Uploading' : 'Start Upload' }}
-                        </button>
+<ng-container *ngIf="page">
+    <form [formGroup]="validateForm">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 offset-3 mt-5">
+                    <nz-form-item>
+                        <nz-form-label [nzSm]="6" [nzXs]="24">Key</nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24">
+                            <input nz-input formControlName="key">
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div class="col-12 ">
+                    <nz-form-item>
+                        <nz-form-control>
+                            <<editor formControlName="content" apiKey="{{apiKey}}"
+                                     [init]="editorConfigs"></editor>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div class="col-4 offset-4">
+                    <div class="row">
+                        <div class="col-11 offset-1">
+                            <button
+                                nz-button
+                                [nzType]="'primary'"
+                                [nzLoading]="uploading"
+                                (click)="handleUpload()"
+                                [disabled]="validateForm.invalid"
+                                style="width: 100%"
+                            >
+                                {{ uploading ? 'Uploading' : 'Start Upload' }}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
-
-
+    </form>
+</ng-container>

@@ -5,7 +5,6 @@ import {AddVacancyComponent} from './add-vacancy/add-vacancy.component';
 import {ChangeVacancyComponent} from './change-vacancy/change-vacancy.component';
 
 
-
 const routes: Routes = [
     {path: '', component: VacancyListComponent},
     {path: 'changeVacancy', component: ChangeVacancyComponent},

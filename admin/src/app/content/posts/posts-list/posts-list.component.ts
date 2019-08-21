@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {PostsService} from "../../../shared/services/posts.service";
-import {Router} from "@angular/router";
-import {NzModalService} from "ng-zorro-antd";
+import {PostsService} from '../../../shared/services/posts.service';
+import {Router} from '@angular/router';
+import {NzModalService} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-posts-list',
@@ -15,22 +15,25 @@ export class PostsListComponent implements OnInit {
   searchValue;
   selectedValue = 'title';
   url;
-  isVisibleMiddle = false;
-  constructor(private service: PostsService, private router: Router, private modalService: NzModalService) {
+
+  constructor(
+      private service: PostsService,
+      private router: Router,
+      private modalService: NzModalService) {
   }
 
   ngOnInit() {
     this.url = this.service.url + '/uploads/posts/';
     this.service.getPosts().subscribe((data) => {
       this.posts = data;
-      console.log(data)
+      console.log(data);
       this.items = data;
-    })
+    });
   }
 
   edit(post) {
     this.service.candidatePost = post;
-    this.router.navigate(['post/changePost'])
+    this.router.navigate(['post/changePost']);
   }
 
   delete(post) {
@@ -38,11 +41,11 @@ export class PostsListComponent implements OnInit {
     this.service.deletePosts(post).subscribe((data) => {
       this.items = this.items.filter(items => items._id !== post._id);
       this.posts = this.posts.filter(items => items._id !== post._id);
-    })
+    });
   }
 
   addPost() {
-    this.router.navigate(['post/addPost'])
+    this.router.navigate(['post/addPost']);
   }
 
   filter(val) {
@@ -57,18 +60,6 @@ export class PostsListComponent implements OnInit {
     }
   }
 
-  showModalMiddle(): void {
-    this.isVisibleMiddle = true;
-  }
-
-  handleOkMiddle(): void {
-    console.log('click ok');
-    this.isVisibleMiddle = false;
-  }
-
-  handleCancelMiddle(): void {
-    this.isVisibleMiddle = false;
-  }
   showDeleteConfirm(data): void {
     this.modalService.confirm({
       nzTitle: 'Are you sure delete this post?',

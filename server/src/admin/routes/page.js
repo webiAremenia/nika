@@ -8,7 +8,7 @@ const uploadImg = require('../middleware/multer');
 router.post('/ckeditor', uploadImg.single('image'), controller.ckEditorAddImage);
 
 
-router.use('/', jwtCompare);
+// router.use('/', jwtCompare);
 router.get('/', controller.getPages);
 
 router.post('/',uploadImg.single('image') ,controller.addPage);

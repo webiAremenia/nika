@@ -23,7 +23,7 @@ export class AddSliderComponent implements OnInit {
 
     constructor(private service: SliderService, private msg: NzMessageService, private router: Router) {
         if (this.service.menuKeys.length === 0) {
-            this.router.navigate(['slider'])
+            this.router.navigate(['slider']);
         }
     }
 
@@ -48,7 +48,7 @@ export class AddSliderComponent implements OnInit {
                 () => {
                     this.uploading = false;
                     this.msg.success('upload successfully.');
-                    this.router.navigate(['slider'])
+                    this.router.navigate(['slider']);
                 },
                 () => {
                     this.uploading = false;
@@ -74,11 +74,9 @@ export class AddSliderComponent implements OnInit {
     }
 
     chooseImage(image) {
-        console.log(image);
         this.validateForm.get('img').setValue(image._id);
         this.img = image.image;
         this.imgFlag = true;
         this.isVisible = false;
-        console.log(this.validateForm)
     }
 }

@@ -3,8 +3,6 @@ import {Routes, RouterModule} from '@angular/router';
 import {SettingsListComponent} from './settings-list/settings-list.component';
 
 
-
-
 const routes: Routes = [
     {path: '', component: SettingsListComponent},
 ];

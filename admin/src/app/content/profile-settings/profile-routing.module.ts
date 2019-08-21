@@ -1,14 +1,12 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {ProfileComponent} from './profile/profile.component';
-import {ChangePasswordComponent} from "./change-password/change-password.component";
-
-
+import {ChangePasswordComponent} from './change-password/change-password.component';
 
 
 const routes: Routes = [
     {path: '', component: ProfileComponent},
-    {path : 'change', component : ChangePasswordComponent}
+    {path: 'change', component: ChangePasswordComponent}
 ];
 
 @NgModule({

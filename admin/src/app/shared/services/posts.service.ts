@@ -32,7 +32,7 @@ export class PostsService {
     }
 
     ckEditorSavePostImage(form) {
-        return this.http.post(this.urlApi + '/post/ckeditor' , form);
+        return this.http.post(this.urlApi + '/post/ckeditor', form);
     }
 
     ckEditorDeletePostImage(image) {

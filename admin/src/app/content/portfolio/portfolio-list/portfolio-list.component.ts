@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {MediaService} from '../../../shared/services/media.service';
 import {Router} from '@angular/router';
 import {NzModalService} from 'ng-zorro-antd';
 import {PortfolioService} from '../../../shared/services/portfolio.service';

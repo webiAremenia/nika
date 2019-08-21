@@ -5,8 +5,6 @@ import {ChangeSliderComponent} from './change-slider/change-slider.component';
 import {AddSliderComponent} from './add-slider/add-slider.component';
 
 
-
-
 const routes: Routes = [
     {path: '', component: SlidersListComponent},
     {path: 'changeSlider', component: ChangeSliderComponent},

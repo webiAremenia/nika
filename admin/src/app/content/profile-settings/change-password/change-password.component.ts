@@ -23,10 +23,9 @@ export class ChangePasswordComponent implements OnInit {
     }
 
     handleUpload() {
-        this.service.changePass(this.validateForm.value).subscribe(data => {
-            console.log(data);
-            this.msg = data['msg'];
-            if (data['success']) {
+        this.service.changePass(this.validateForm.value).subscribe((data: any) => {
+            this.msg = data.msg;
+            if (data.success) {
                 setTimeout(() => {
                     this.router.navigate(['profile']);
                 }, 1000);

@@ -2,9 +2,29 @@ const Page = require('./admin/models/page');
 const Settings = require('./admin/models/settings');
 const Logo = require('./admin/models/logo');
 const Menu = require('./admin/models/menu');
+const User = require('./admin/models/user');
+
+module.exports.createDefaultAdmin = async (req, res) => {
+    try {
+        let user = await User.find({});
+        if (user.length === 0) {
+            let obj = new User({
+                role : "supperAdmin",
+                username : "admin",
+                email : "admin@admin.com",
+                password : "$2b$10$5z04AgafX.OBZNcXKmRv4O0iwzHewbb.iW7gJIBx8Tbrd33ID.K6q",
+            });
+            obj.save()
+            console.log('admin created');
+        }
+    } catch (e) {
+        console.log(e)
+    }
+};
+
 module.exports.createPage = async (req, res) => {
     const keys = ['page_about', 'page_careers', 'page_work', 'page_story'];
-    const setting_keys = ['menu-text', 'meet-us-url', 'footer-text', 'footer-link-url', 'slider-speed'];
+    const setting_keys = ['menu-text', 'meet-us-url', 'footer-text', 'footer-link-url', 'slider-speed', 'editor_api_key'];
     try {
         const pages = await Page.find();
         keys.forEach(k => {
@@ -50,8 +70,6 @@ module.exports.createLogos = (req, res) => {
     } catch (e) {
         console.log(e)
     }
-
-
 };
 
 module.exports.createMenus = (req, res) => {

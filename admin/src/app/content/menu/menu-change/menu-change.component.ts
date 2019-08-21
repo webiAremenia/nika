@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {NzMessageService, UploadFile} from 'ng-zorro-antd';
 import {PostsService} from '../../../shared/services/posts.service';
@@ -7,64 +7,66 @@ import {MenuService} from '../../../shared/services/menu.service';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-menu-change',
-  templateUrl: './menu-change.component.html',
-  styleUrls: ['./menu-change.component.css']
+    selector: 'app-menu-change',
+    templateUrl: './menu-change.component.html',
+    styleUrls: ['./menu-change.component.css']
 })
 export class MenuChangeComponent implements OnInit {
 
-  validateForm: FormGroup;
-  uploading = false;
-  fileList: UploadFile[] = [];
-  allItems = [];
-  candidate;
-  constructor(private postService: PostsService, private portfolioService: PortfolioService, private fb: FormBuilder, private msg: NzMessageService, private service: MenuService, private router: Router) {
-    if (!this.service.candidateMenu) {
-      this.router.navigate(['menu']);
-    }
-  }
+    validateForm: FormGroup;
+    uploading = false;
+    fileList: UploadFile[] = [];
+    allItems = [];
+    candidate;
 
-  ngOnInit(): void {
-    this.candidate = this.service.candidateMenu;
-    this.validateForm = new FormGroup({
-      key : new FormControl( {value : this.candidate.key, disabled : true}, [Validators.required ] ),
-      value : new FormControl(this.candidate.value, [Validators.required ] ),
-      order : new FormControl(this.candidate.order, [Validators.required ] ),
-      isActive : new FormControl(this.candidate.isActive, [Validators.required ] ),
-    });
-    // this.selectedValueType = this.validateForm.get('type').value;
-    // this.validateForm.get('type').value === 'post' ?
-    //   this.postService.getPosts().subscribe((data: any[]) => {this.allItems = data;})
-    //   :
-    //   this.portfolioService.getPortfolio().subscribe((data: any[]) => {this.allItems = data;});
-  }
-
-
-  handleUpload(): void {
-    // let val = this.allItems.filter(item => item.title === this.selectedValueTypeId.value)[0]._id;
-    // this.validateForm.get('typeId').setValue(this.selectedValueTypeId.value);
-    //   const obj = this.validateForm.value;
-    //   obj.key = this.candidate.key;
-      this.uploading = true;
-      this.service.changeMenu(this.validateForm.value, this.candidate._id)
-      .subscribe(
-        () => {
-          this.uploading = false;
-          this.fileList = [];
-          this.msg.success('upload successfully.');
-          this.router.navigate(['menu']);
-        },
-        () => {
-          this.uploading = false;
-          this.msg.error('upload failed.');
+    constructor(
+        private postService: PostsService,
+        private portfolioService: PortfolioService,
+        private fb: FormBuilder, private msg: NzMessageService,
+        private service: MenuService,
+        private router: Router) {
+        if (!this.service.candidateMenu) {
+            this.router.navigate(['menu']);
         }
-      );
-  }
-  foo(item) {
-    switch (item) {
-      case 'post': this.postService.getPosts().subscribe((data: []) => this.allItems = data); break;
-      case 'portfolio': this.portfolioService.getPortfolio().subscribe((data: []) => this.allItems = data); break;
     }
-  }
+
+    ngOnInit(): void {
+        this.candidate = this.service.candidateMenu;
+        this.validateForm = new FormGroup({
+            key: new FormControl({value: this.candidate.key, disabled: true}, [Validators.required]),
+            value: new FormControl(this.candidate.value, [Validators.required]),
+            order: new FormControl(this.candidate.order, [Validators.required]),
+            isActive: new FormControl(this.candidate.isActive, [Validators.required]),
+        });
+    }
+
+
+    handleUpload(): void {
+        this.uploading = true;
+        this.service.changeMenu(this.validateForm.value, this.candidate._id)
+            .subscribe(
+                () => {
+                    this.uploading = false;
+                    this.fileList = [];
+                    this.msg.success('upload successfully.');
+                    this.router.navigate(['menu']);
+                },
+                () => {
+                    this.uploading = false;
+                    this.msg.error('upload failed.');
+                }
+            );
+    }
+
+    foo(item) {
+        switch (item) {
+            case 'post':
+                this.postService.getPosts().subscribe((data: []) => this.allItems = data);
+                break;
+            case 'portfolio':
+                this.portfolioService.getPortfolio().subscribe((data: []) => this.allItems = data);
+                break;
+        }
+    }
 
 }

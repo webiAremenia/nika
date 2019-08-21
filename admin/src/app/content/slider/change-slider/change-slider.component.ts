@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {SliderService} from "../../../shared/services/slider.service";
-import {NzMessageService} from "ng-zorro-antd";
-import {Router} from "@angular/router";
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {SliderService} from '../../../shared/services/slider.service';
+import {NzMessageService} from 'ng-zorro-antd';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-change-slider',
@@ -49,7 +49,7 @@ export class ChangeSliderComponent implements OnInit {
                 () => {
                     this.uploading = false;
                     this.msg.success('upload successfully.');
-                    this.router.navigate(['slider'])
+                    this.router.navigate(['slider']);
                 },
                 () => {
                     this.uploading = false;

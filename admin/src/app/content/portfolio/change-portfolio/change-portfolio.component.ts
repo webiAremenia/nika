@@ -1,60 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {SliderService} from '../../../shared/services/slider.service';
 import {NzMessageService, UploadFile} from 'ng-zorro-antd';
 import {Router} from '@angular/router';
 import {PortfolioService} from '../../../shared/services/portfolio.service';
-import {MediaService} from '../../../shared/services/media.service';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import {AppGlobals} from "../../../app.globals";
-
-class PortfolioUploadAdapter {
-    loader;  // your adapter communicates to CKEditor through this
-    url;
-    service;
-    imageName;
-    dir;
-    random;
-
-    constructor(loader, service, dir, random, url) {
-        this.random = random;
-        this.dir = dir;
-        this.service = service;
-        this.loader = loader;
-        this.url = url + '/uploads/portfolio/ckeditor/' + this.dir + '/';
-    }
-
-    upload() {
-        return new Promise((resolve, reject) => {
-            console.log('UploadAdapter upload called', this.loader, this.url);
-
-            this.loader.file.then(f => {
-                const form = new FormData();
-                form.append('random', this.random);
-                form.append('dirName', this.dir);
-                form.append('image', f);
-                this.imageName = this.random + f.name;
-                this.service.ckEditorSavePortfolioImage(form).subscribe(d => {
-                        resolve({default: this.url + this.random + f.name});
-                    },
-                    e => console.log(e)
-                );
-            });
-            // resolve({ default: this.url });
-        });
-    }
-
-    // Aborts the upload process.
-    abort() {
-        console.log('Abort');
-        this.service.ckEditorDeletePortfolioImage(this.dir + '/' + this.imageName).subscribe(d => {
-                console.log(d);
-            },
-            e => console.log(e)
-        );
-    }
-
-}
+import {AppGlobals} from '../../../app.globals';
+import {SettingsService} from '../../../shared/services/settings.service';
 
 
 @Component({
@@ -63,8 +13,6 @@ class PortfolioUploadAdapter {
     styleUrls: ['./change-portfolio.component.css']
 })
 export class ChangePortfolioComponent implements OnInit {
-    public ckconfig: any;
-    public Editor = ClassicEditor;
     validateForm: FormGroup;
     uploading = false;
     fileList: UploadFile[] = [];
@@ -77,8 +25,11 @@ export class ChangePortfolioComponent implements OnInit {
     deletedimages = [];
     randomString;
     dirName;
+    apiKey;
+    editorConfigs;
 
     constructor(
+        private settingService: SettingsService,
         private fb: FormBuilder,
         private msg: NzMessageService,
         private service: PortfolioService,
@@ -86,7 +37,10 @@ export class ChangePortfolioComponent implements OnInit {
         private globals: AppGlobals
     ) {
         this.url = this.globals.url;
-        this.initEditor();
+        if (!settingService.settings) {
+            this.router.navigate(['post']);
+        }
+        this.apiKey = settingService.settings.filter(set => set.key === 'editor_api_key')[0].value;
     }
 
     ngOnInit(): void {
@@ -95,9 +49,7 @@ export class ChangePortfolioComponent implements OnInit {
                 this.router.navigate(['/portfolio']);
             }
         }, 500);
-        // this.url = this.service.url + '/uploads/portfolio/';
         this.portfolio = this.service.candidatePortfolio;
-        console.log(this.portfolio)
         this.validateForm = new FormGroup({
             title: new FormControl(this.portfolio.title, [Validators.required]),
             description: new FormControl(this.portfolio.description, [Validators.required]),
@@ -109,35 +61,33 @@ export class ChangePortfolioComponent implements OnInit {
 
         this.randomString = this.portfolio.random;
         this.dirName = this.portfolio.random;
-    }
-
-    generateRandomString(stringLength) {
-        let randomString = '';
-        let randomAscii;
-        for (let i = 0; i < stringLength; i++) {
-            randomAscii = Math.floor((Math.random() * 25) + 97);
-            randomString += String.fromCharCode(randomAscii);
-        }
-        return randomString;
-    }
-
-    theUploadAdapterPlugin = (editor) => {
-        editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-            return new PortfolioUploadAdapter(loader, this.service, this.dirName, this.randomString += 's', this.url);
+        this.editorConfigs = {
+            plugins: ['link', 'table', 'image imagetools'],
+            imagetools_toolbar: 'rotateleft rotateright | flipv fliph | editimage imageoptions',
+            images_upload_url: this.url + '/uploads/portfolio/ckeditor/' + this.dirName + '/',
+            images_upload_handler: this.handlerEditor,
         };
     }
 
-    public initEditor() {
-        this.ckconfig = {
-            extraPlugins: [this.theUploadAdapterPlugin]
-        };
-    }
+    handlerEditor = (blobInfo, success, failure) => {
+        let formData;
 
+        formData = new FormData();
+        formData.append('random', this.randomString);
+        formData.append('dirName', this.dirName);
+        formData.append('image', blobInfo.blob(), blobInfo.filename());
+
+        this.service.ckEditorSavePortfolioImage(formData).subscribe((d: any) => {
+                success(this.url + '/uploads/portfolio/ckeditor/' + this.dirName + '/' + d.filename);
+            },
+            e => console.log(e)
+        );
+    }
 
     beforeUpload = (file: UploadFile): boolean => {
         this.fileList = this.fileList.concat(file);
         return false;
-    };
+    }
 
     handleUpload(): void {
         // console.log(this.validateForm.value)
@@ -176,7 +126,6 @@ export class ChangePortfolioComponent implements OnInit {
     deleteImage(image) {
         this.deletedimages.push(image);
         this.portfolio.imgs = this.portfolio.imgs.filter(item => item !== image);
-        console.log(this.portfolio.imgs);
     }
 
     showModal(): void {

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {NzMessageService, UploadFile} from "ng-zorro-antd";
-import {Router} from "@angular/router";
-import {MediaService} from "../../../shared/services/media.service";
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {NzMessageService, UploadFile} from 'ng-zorro-antd';
+import {Router} from '@angular/router';
+import {MediaService} from '../../../shared/services/media.service';
 
 @Component({
   selector: 'app-add-media',
@@ -14,17 +14,19 @@ export class AddMediaComponent implements OnInit {
   validateForm: FormGroup;
   uploading = false;
   fileList: UploadFile[] = [];
-  selectedValue = '';
-  typeData = ['media', 'slider'];
-  constructor(private fb: FormBuilder, private msg: NzMessageService, private service: MediaService, private router: Router) {
+  selectedValue = '';constructor(
+      private fb: FormBuilder,
+      private msg: NzMessageService,
+      private service: MediaService,
+      private router: Router) {
   }
 
   ngOnInit(): void {
     this.validateForm = new FormGroup({
-      type : new FormControl( '', [Validators.required ] ),
-      alt : new FormControl('', [Validators.required ] ),
+      type : new FormControl( null, [Validators.required ] ),
+      alt : new FormControl(null, [Validators.required ] ),
       image : new FormControl(null)
-    })
+    });
   }
 
 
@@ -33,11 +35,10 @@ export class AddMediaComponent implements OnInit {
     this.fileList = [];
     this.fileList = this.fileList.concat(file);
     return false;
-  };
+  }
 
   handleUpload(): void {
     const formData = new FormData();
-    // tslint:disable-next-line:no-any
     this.fileList.forEach((file: any) => {
       formData.append('image', file);
     });
@@ -50,7 +51,7 @@ export class AddMediaComponent implements OnInit {
           this.uploading = false;
           this.fileList = [];
           this.msg.success('upload successfully.');
-          this.router.navigate(['media'])
+          this.router.navigate(['media']);
         },
         () => {
           this.uploading = false;
@@ -58,7 +59,5 @@ export class AddMediaComponent implements OnInit {
         }
       );
   }
-  provinceChange(value: string): void {
-    this.selectedValue = this.typeData[value];
-  }
+
 }

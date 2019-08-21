@@ -5,8 +5,6 @@ import {ChangeLogoComponent} from './change-logo/change-logo.component';
 import {AddLogoComponent} from './add-logo/add-logo.component';
 
 
-
-
 const routes: Routes = [
     {path: '', component: LogoListComponent},
     {path: 'changeLogo', component: ChangeLogoComponent},

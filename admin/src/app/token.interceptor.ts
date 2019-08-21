@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import {DataService} from './data.service';
 import {Observable, throwError} from 'rxjs';
-import {catchError, retry} from "rxjs/operators";
+import {catchError, retry} from 'rxjs/operators';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -25,7 +25,7 @@ export class TokenInterceptor implements HttpInterceptor {
                     catchError((error: HttpErrorResponse) => {
                         const errorMessage = '';
                         if (error.status === 401) {
-                            localStorage.clear()
+                            localStorage.clear();
                             window.location.href = '/admin-panel/login';
                         }
                         return throwError(errorMessage);
@@ -38,7 +38,7 @@ export class TokenInterceptor implements HttpInterceptor {
                 catchError((error: HttpErrorResponse) => {
                     const errorMessage = '';
                     if (error.status === 401) {
-                        localStorage.clear()
+                        localStorage.clear();
                         window.location.href = '/login';
                     }
                     return throwError(errorMessage);

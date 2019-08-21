@@ -85,8 +85,8 @@
 }
 
 .align-self-center{
-  width: 465px;
-  height: 262.5px;
+  //width: 465px;
+  //height: 262.5px;
   @media (max-width: 992px) and (min-width: 767px) {
     width: 80%;
   }
@@ -221,6 +221,8 @@
 
 
 .logo_image{
-  width: 176px;
-  height: 80px;
+  height: 60px;
+  @media (max-width: 992px){
+    height: 40px;
+  }
 }

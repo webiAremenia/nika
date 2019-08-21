@@ -5,8 +5,6 @@ import {ChangePortfolioComponent} from './change-portfolio/change-portfolio.comp
 import {AddPortfolioComponent} from './add-portfolio/add-portfolio.component';
 
 
-
-
 const routes: Routes = [
     {path: '', component: PortfolioListComponent},
     {path: 'changePortfolio', component: ChangePortfolioComponent},

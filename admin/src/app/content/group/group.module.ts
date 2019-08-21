@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
-import {CommonModule} from "@angular/common";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-import {NgZorroAntdModule} from "ng-zorro-antd";
-import {GroupRoutingModule} from "./group-routing.module";
-import {AddGroupComponent} from "./add-group/add-group.component";
-
+import {NgZorroAntdModule} from 'ng-zorro-antd';
+import {GroupRoutingModule} from './group-routing.module';
+import {AddGroupComponent} from './add-group/add-group.component';
 
 
 @NgModule({
@@ -20,4 +19,5 @@ import {AddGroupComponent} from "./add-group/add-group.component";
         NgZorroAntdModule,
     ],
 })
-export class GroupModule { }
+export class GroupModule {
+}

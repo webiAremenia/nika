@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {AppGlobals} from '../../app.globals';
+import {map} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -14,9 +15,13 @@ export class SettingsService {
 
     url;
     urlApi;
+    settings;
 
     getSettings() {
-        return this.http.get(this.urlApi + '/settings');
+        return this.http.get(this.urlApi + '/settings').pipe(map(d => {
+            this.settings = d;
+            return d;
+        }));
     }
 
     addSettings(settings) {

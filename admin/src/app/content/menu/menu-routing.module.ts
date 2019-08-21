@@ -5,8 +5,6 @@ import {MenuAddComponent} from './menu-add/menu-add.component';
 import {MenuChangeComponent} from './menu-change/menu-change.component';
 
 
-
-
 const routes: Routes = [
     {path: '', component: MenuListComponent},
     {path: 'addMenu', component: MenuAddComponent},

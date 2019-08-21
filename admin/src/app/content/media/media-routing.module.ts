@@ -5,8 +5,6 @@ import {ChangeMediaComponent} from './change-media/change-media.component';
 import {AddMediaComponent} from './add-media/add-media.component';
 
 
-
-
 const routes: Routes = [
     {path: '', component: MediasListComponent},
     {path: 'changeMedia', component: ChangeMediaComponent},
