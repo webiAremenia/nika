@@ -168,3 +168,7 @@ body {
     padding: 0;
   }
 }
+
+.owl-item, .owl-stage-outer{
+  transition: all 1000ms;
+}

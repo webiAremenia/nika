@@ -3,11 +3,9 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {HomeComponent} from './components/pages/home/home.component';
 import {ContactComponent} from './components/pages/contact/contact.component';
 import {AboutComponent} from './components/pages/about/about.component';
 import {SidebarComponent} from './components/partials/sidebar/sidebar.component';
-import {CarouselModule} from 'ngx-owl-carousel-o';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {WorkComponent} from './components/pages/work/work.component';
 import {StoriesComponent} from './components/pages/stories/stories.component';
@@ -20,7 +18,6 @@ import {VideoBlockComponent} from './components/partials/block-types/video-block
 import {AllStoriesComponent} from './components/pages/all-stories/all-stories.component';
 import {HoverOpacityDirective} from './_directives/hover-opacity.directive';
 import {HoverRotateDirective} from './_directives/hover-rotate.directive';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
     MatDatepickerModule,
     MatFormFieldModule,
@@ -40,14 +37,14 @@ import {StoryDetailComponent} from './components/pages/stories/story-detail/stor
 import {HttpClientModule} from '@angular/common/http';
 import {PortfolioBlockComponent} from './components/partials/block-types/portfolio-block/portfolio-block.component';
 import {NgxTweetModule} from 'ngx-tweet';
-import { TwitterBlockComponent } from './components/partials/block-types/twitter-block/twitter-block.component';
-import { GifBlockComponent } from './components/partials/block-types/gif-block/gif-block.component';
+import {TwitterBlockComponent} from './components/partials/block-types/twitter-block/twitter-block.component';
+import {GifBlockComponent} from './components/partials/block-types/gif-block/gif-block.component';
+import {SharedModule} from './_modules/shared.module';
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        HomeComponent,
         ContactComponent,
         AboutComponent,
         SidebarComponent,
@@ -75,13 +72,11 @@ import { GifBlockComponent } from './components/partials/block-types/gif-block/g
         GifBlockComponent,
     ],
     imports: [
+        SharedModule,
         HttpClientModule,
         BrowserAnimationsModule,
         BrowserModule,
         AppRoutingModule,
-        CarouselModule,
-        FormsModule,
-        ReactiveFormsModule,
         MatFormFieldModule,
         MatInputModule,
         MatGridListModule,
@@ -90,6 +85,7 @@ import { GifBlockComponent } from './components/partials/block-types/gif-block/g
         MatButtonModule,
         NgxTweetModule
     ],
+    exports: [],
     providers: [],
     bootstrap: [AppComponent]
 })

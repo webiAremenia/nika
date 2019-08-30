@@ -1,42 +1,52 @@
 <div class="rightContentWrapper" *ngIf="done">
-    <div class="home-page bg-light col-12 col-sm-12 col-md-9 offset-md-3 pr-0">
-        <owl-carousel-o [options]="options">
-            <ng-template *ngFor="let slide of slides, let i = index" class="h-100" carouselSlide>
-                <div class="my-slider-item" [ngStyle]="{'background-image': slide.image ? 'url(' + imageUrl + slide.image + ')' : ''}"  >
-                <div class="item-content">
-                        <div class="row">
-                            <div class="item-text col-10">
-                                <div class="item-title"  (click)="navigate(slide.url)" [ngStyle]="{'color':slide.image? 'white': 'black'}">{{slide.title}}</div>
-                                <div class="item-description" [ngStyle]="{'color':slide.image? 'white': 'black'}">{{ slide.description }}</div>
-                            </div>
-                            <div class="items-counter col-2">
-                                <span class="float-right" [ngStyle]="{'color':slide.image? 'white': 'black'}">{{i + 1}}/{{slides.length}}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </ng-template>
-            <ng-container *ngIf="slides.length < 1">
-            <ng-template class="h-100" carouselSlide>
-                <div class="my-slider-item no-image-wrapper" [ngStyle]="{'background-image': 'url(' + 'assets/images/no-slid.png' + ')'}"  >
+    <div class="home-page custom-page bg-light col-12 col-sm-12 col-md-9 offset-md-3 pr-0">
+        <owl-carousel-o [options]="options" #mainSlider>
+            <ng-template *ngFor="let slide of slides, let i = index" class="h-100" carouselSlide [id]="'slide-' + i">
+                <div class="my-slider-item"
+                     (click)="navigate(slide.url)"
+                     (mouseenter)="animateDesc($event)"
+                     (mouseleave)="animateDescHide($event)"
+                     [ngStyle]="{'background-image': slide.image ? 'url(' + imageUrl + slide.image + ')' : ''}">
                     <div class="item-content">
                         <div class="row">
-                            <div class="item-text col-10">
-                                <div class="item-title"   [style.color]="'black'">No image</div>
-<!--                                <div class="item-description">{{ slide.description }}</div>-->
+                            <div class="item-text col-12">
+                                <div class="item-title"
+                                     [ngStyle]="{'color':slide.image? 'white': 'black'}">{{slide.title}}</div>
+                                <div class="item-description"
+                                     [ngStyle]="{'color':slide.image? 'white': 'black'}"
+                                >{{ slide.description }}</div>
                             </div>
-                            <div class="items-counter col-2">
-<!--                                <span class="float-right" [ngStyle]="{'color':slide.image? 'white': 'black'}">{{i + 1}}/{{slides.length}}</span>-->
-                            </div>
+                            <div class="items-counter col-12"> some text </div>
                         </div>
                     </div>
                 </div>
             </ng-template>
+
+            <ng-container *ngIf="slides.length < 1">
+                <ng-template class="h-100" carouselSlide>
+                    <div class="my-slider-item no-image-wrapper"
+                         [ngStyle]="{'background-image': 'url(' + 'assets/images/no-slid.png' + ')'}">
+                        <div class="item-content">
+                            <div class="row">
+                                <div class="item-text col-10">
+                                    <div class="item-title" [style.color]="'black'">No image</div>
+                                </div>
+                                <div class="items-counter col-2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
             </ng-container>
         </owl-carousel-o>
+        <router-outlet></router-outlet>
+        <div class="slider-buttons">
+            <div class="slider-next-btn" (click)="sliderNext()"></div>
+            <div class="slider-prev-btn" (click)="sliderPrev()"></div>
+        </div>
     </div>
 
 </div>
-<div class="pt-5" *ngIf="done">
-    <app-all-blocks></app-all-blocks>
-</div>
+<!--<div class="pt-5" *ngIf="done">-->
+<!--    <app-all-blocks></app-all-blocks>-->
+<!--</div>-->

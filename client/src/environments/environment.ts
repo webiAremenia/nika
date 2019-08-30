@@ -4,8 +4,8 @@
 
 export const environment = {
     production: false,
-    // queryUrl: 'http://nika.webi.am'
-    queryUrl: 'http://localhost:3000'
+    queryUrl: 'http://nika.webi.am'
+    // queryUrl: 'http://localhost:3000'
 
 };
 
