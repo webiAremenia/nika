@@ -1,10 +1,8 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {SliderService} from '../../../_services/slider.service';
 import {Slide} from '../../../_models/slide';
 import {AppGlobals} from '../../../app.globals';
 import {Router} from '@angular/router';
-
-console.log('home component');
 
 @Component({
     selector: 'app-home',
@@ -12,102 +10,157 @@ console.log('home component');
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-    @ViewChild('mainSlider') mainSlider;
-
-    options: any;
-    speed: any;
+    @ViewChild('customBody') customBody: ElementRef;
+    accordionItemsStyles = {
+        left: 0,
+        width: 0
+    };
+    mouseWillCount = 0;
     slides: Slide[];
+    count;
+    slideWidth;
+    clickedWidth;
+    slidePosition;
     imageUrl;
     done = false;
-    sliderPosition = 0;
-    animated = false;
+    clickedSlide = null;
+    workScrollTop = 0;
 
-    constructor(private  sliderService: SliderService, config: AppGlobals, private router: Router) {
+    @HostListener('window:resize', ['$event'])
+    onResize() {
+        this.initSlider();
+    }
+
+    @HostListener('window:keydown', ['$event'])
+    onKeyDown(event) {
+        if (event.keyCode === 39 || event.keyCode === 40) {
+            if (this.clickedSlide || this.clickedSlide === 0) {
+                this.scrollFunction({deltaY: 100});
+            } else {
+                this.sliderNext();
+            }
+        } else if (event.keyCode === 37 || event.keyCode === 38) {
+            if (this.clickedSlide || this.clickedSlide === 0) {
+                this.scrollFunction({deltaY: -100});
+            } else {
+                this.sliderPrev();
+            }
+        }
+    }
+
+    constructor(
+        private  sliderService: SliderService, config: AppGlobals,
+        private router: Router) {
         this.imageUrl = config.imageUrl + '/medias/';
-        this.speed = sliderService.speed;
-        this.options = {
-            animateOut: 'fadeOut',
-            loop: false,
-            mouseDrag: true,
-            touchDrag: true,
-            pullDrag: false,
-            dots: false,
-            navSpeed: 200,
-            autoplay: false,
-            autoplayTimeout: this.speed || 3000,
-            autoplaySpeed: 1000,
-            // navText: ['', ''],
-            responsive: {
-                0: {
-                    items: 1
-                },
-                400: {
-                    items: 1
-                },
-                740: {
-                    items: 1
-                },
-                940: {
-                    items: 3
-                }
-            },
-            nav: false
-        };
-
+        console.log('constructor');
     }
 
     ngOnInit() {
         this.getParams();
+        console.log('on   init');
+    }
+
+    initCurrent(index) {
+        this.slidePosition = this.accordionItemsStyles.left;
+        this.clickedSlide = index;
+        this.accordionItemsStyles.left = -index * this.slideWidth;
+        this.accordionItemsStyles.width = this.accordionItemsStyles.width + 2 * this.slideWidth;
+        setTimeout(() => {
+            this.navigate(index);
+        }, 1400);
+    }
+
+    onMouseWheel(event) {
+        if (this.clickedSlide || this.clickedSlide === 0) {
+        } else {
+            this.mouseWillCount++;
+            if (this.mouseWillCount === 1) {
+                setTimeout(() => {
+                    event.deltaY > 0 ? this.sliderNext() : this.sliderPrev();
+                    this.mouseWillCount = 0;
+                }, 200);
+            }
+        }
     }
 
     getParams() {
-
         if (this.sliderService.slider) {
             this.slides = this.sliderService.slider;
             this.done = true;
+            this.initSlider();
         } else {
             this.sliderService.getImages().subscribe(
                 d => {
                     this.slides = d;
-                    console.log('sliders ', d);
+                    console.log('slider items ', d);
                     this.done = true;
-                }
+                    this.initSlider();
+
+                },
+                e => console.log('errrrr', e)
             );
         }
     }
 
-    animateDesc(e) {
-        // e.target.children[0].classList.add('animate-height');
+    initSlider() {
+        this.count = this.slides.length;
+        this.slideWidth = (window.innerWidth - 115) / 4 - 2;
+        this.clickedWidth = this.slideWidth * 3;
+        this.accordionItemsStyles.width = this.slideWidth * this.count;
+        this.accordionItemsStyles.left = 0;
+        this.slidePosition = this.accordionItemsStyles.left;
     }
 
-    animateDescHide(e) {
-        // e.target.children[0].classList.remove('animate-height');
+    resetSlider() {
+        this.workScrollTop = 0;
+        this.customBody.nativeElement.style.transform = `translate3d(0, 0, 0)`;
+        setTimeout(() => {
+            this.clickedSlide = null;
+            this.accordionItemsStyles.left = this.slidePosition;
+            this.accordionItemsStyles.width = this.slideWidth * this.count;
+            this.router.navigate(['/']).then();
+        }, 1800);
     }
 
-    navigate(url) {
-        this.router.navigate([`project`]).then();
+    navigate(index) {
+        this.router.navigate([`project/${index}`]).then();
     }
 
     sliderNext() {
-        if ((this.sliderPosition + 3) > this.slides.length - 1) {
-            this.sliderPosition = this.slides.length - 3;
-        } else {
-            this.sliderPosition += 3;
+        if (this.accordionItemsStyles.left > -this.accordionItemsStyles.width + this.slideWidth * 3) {
+            this.accordionItemsStyles.left -= this.slideWidth;
+            this.slidePosition = this.accordionItemsStyles.left;
         }
-        this.mainSlider.to('slide-' + this.sliderPosition);
     }
 
     sliderPrev() {
-        if ((this.sliderPosition - 3) < 0) {
-            this.sliderPosition = 0;
-        } else {
-            this.sliderPosition -= 3;
+        if (this.accordionItemsStyles.left < 0) {
+            this.accordionItemsStyles.left += this.slideWidth;
+            this.slidePosition = this.accordionItemsStyles.left;
         }
-        this.mainSlider.to('slide-' + this.sliderPosition);
+    }
+
+    scrollFunction(event) {
+        if (this.clickedSlide || this.clickedSlide === 0) {
+            this.mouseWillCount++;
+            if (this.mouseWillCount === 1) {
+                console.log(event.deltaY);
+                setTimeout(() => {
+                    if (event.deltaY > 0) {
+                        this.workScrollTop = this.workScrollTop > -this.customBody.nativeElement.scrollHeight + 50 ?
+                            this.workScrollTop - 50 : -this.customBody.nativeElement.scrollHeight + 50;
+                    } else {
+                        this.workScrollTop = this.workScrollTop < 0 ? this.workScrollTop + 50 : 0;
+                    }
+                    this.customBody.nativeElement.style.transform = `translate3d(0, ${this.workScrollTop}px, 0)`;
+                    this.mouseWillCount = 0;
+                }, 10);
+            }
+        } else {
+        }
     }
 
     ngOnDestroy(): void {
-        this.slides = null;
-        this.done = false;
+        console.log('destroy');
     }
 }

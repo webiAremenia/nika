@@ -6,6 +6,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
+    imports: [
+    ],
     exports: [
         CommonModule,
         CarouselModule,

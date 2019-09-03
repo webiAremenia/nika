@@ -6,12 +6,12 @@ import {WorkComponent} from './work/work.component';
 console.log('home routing module');
 
 const CHILDREN: Routes = [
-    {path: '', component: WorkComponent}
+    {path: 'project/:slug', component: WorkComponent}
 ];
 
 const ROUTES: Routes = [
-    {path: '', component: HomeComponent, pathMatch: 'full'},
-    {path: 'project', component: HomeComponent, children: CHILDREN},
+    {path: '', component: HomeComponent, children: CHILDREN},
+    // {path: 'project/:slug', component: HomeComponent, children: CHILDREN},
 ];
 
 @NgModule({

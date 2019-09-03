@@ -172,3 +172,9 @@ body {
 .owl-item, .owl-stage-outer{
   transition: all 1000ms;
 }
+.animated {
+  visibility: visible !important;
+}
+.hide-on-init {
+  visibility: hidden;
+}
