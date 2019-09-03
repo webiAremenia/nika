@@ -1,8 +1,10 @@
+$font: 'Open Sansf, sans-serif';
+
 .custom-page {
   border: none !important;
 
   .about-desc-title {
-    font-family: Open Sansf;
+    font-family: $font;
     font-size: 80px;
     font-weight: 800;
     line-height: 1.36;
@@ -10,7 +12,7 @@
   }
 
   .about-desc-sub-title {
-    font-family: Open Sans;
+    font-family: $font;
     font-size: 22px;
     font-weight: 600;
     line-height: 1.45;
@@ -18,7 +20,7 @@
   }
 
   .about-desc-description{
-    font-family: Open Sans;
+    font-family: $font;
     font-size: 22px;
     font-weight: 600;
     line-height: 1.36;

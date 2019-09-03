@@ -41,6 +41,8 @@ import {TwitterBlockComponent} from './components/partials/block-types/twitter-b
 import {GifBlockComponent} from './components/partials/block-types/gif-block/gif-block.component';
 import {SharedModule} from './_modules/shared.module';
 
+import {AboutModule} from './components/pages/about/about.module';
+
 
 @NgModule({
     declarations: [
@@ -73,6 +75,7 @@ import {SharedModule} from './_modules/shared.module';
     ],
     imports: [
         SharedModule,
+        AboutModule,
         HttpClientModule,
         BrowserAnimationsModule,
         BrowserModule,

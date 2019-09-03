@@ -1,0 +1,32 @@
+$font-semiBold: 'Semibold, Open Sans, sans-serif';
+$font-extraBold: 'Extrabold, Open Sans, sans-serif';
+
+.remark-content-wrapper {
+  width: 100%;
+  background-color: #DDDDDD;
+
+  .whole-remark {
+    display: inline-block;
+    text-align: center;
+
+    .text {
+      width: 100%;
+      text-align: center;
+      font-family: $font-extraBold;
+      font-size: 45px;
+      line-height: 61px;
+      letter-spacing: -1.8px;
+      opacity: 1;
+      color: #000A1D;
+      padding-bottom: 36px;
+    }
+    .author {
+      width: 100%;
+      font-size: 26px;
+      line-height: 35px;
+      letter-spacing: 0;
+      color: #000000;
+      opacity: 1;
+    }
+  }
+}

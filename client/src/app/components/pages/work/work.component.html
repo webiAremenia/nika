@@ -5,14 +5,16 @@
 <!--</div>-->
 <!--</div>-->
 <!--</div>-->
+
 <div class="rightContentWrapper">
     <div class="col-md-9 offset-md-3 col-12 col-sm-12">
       <app-work-desc></app-work-desc>
     </div>
 </div>
-<div class="custom-container pt-5">
 
+<div class="custom-container pt-5">
     <div class="row">
+
         <div class="col-12 row">
             <div *ngFor="let work of works" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                 <div class="img-wrapper img">
@@ -20,7 +22,7 @@
                 </div>
                 <div class="block-title">{{work.title}}</div>
             </div>
-
         </div>
+
     </div>
 </div>
