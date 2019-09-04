@@ -17,12 +17,16 @@ export class WorkComponent implements OnInit {
         private workService: WorkService,
         private activatedRoute: ActivatedRoute
     ) {
-        this.activatedRoute.params.subscribe(params => {
-            this.slug = params.slug;
-        });
     }
 
     ngOnInit() {
+        this.activatedRoute.params.subscribe(params => {
+            this.slug = params.slug;
+            this.initWork();
+        });
+    }
+
+    initWork() {
         if (this.workService.current) {
             this.work = this.workService.current;
         } else {
@@ -30,5 +34,4 @@ export class WorkComponent implements OnInit {
             this.workService.current = this.work;
         }
     }
-
 }

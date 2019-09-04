@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         left: 0,
         width: 0
     };
+    backToWorkText = 'Our works';
     mouseWillCount = 0;
     slides: Work[];
     count;
@@ -68,38 +69,41 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     initCurrent(index) {
         this.detailWrapperHeight = (window.innerHeight - 100);
-        // console.log(this.detailWrapperHeight);
+        this.bannerHeight = (window.innerHeight - 100);
         this.lastIndex = index;
         this.clickedSlide = index;
         document.getElementById('wwww').style.display = 'block';
         this.detailWrapperLeft = (index + this.accordionItemsStyles.left / this.slideWidth) * this.slideWidth;
         this.clickedWidth = this.slideWidth;
         setTimeout(() => {
-            this.zoomed = 150;
+            this.zoomed = 180;
             this.detailWrapperLeft = 0;
             this.clickedWidth = this.slideWidth * 3;
 
         }, 100);
         setTimeout(() => {
-            this.detailWrapperHeight = null;
+            this.backToWorkText = 'Back to Works';
+            this.detailWrapperHeight = window.innerHeight + 100;
+            this.bannerHeight = window.innerHeight + 100;
             this.navigate(index);
         }, 1400);
-        setTimeout(() => {
-            console.log(this.image.nativeElement.clientHeight,  window.innerHeight - 100);
-            this.bannerHeight = this.image.nativeElement.clientHeight < window.innerHeight - 100 ?
-                window.innerHeight - 100 : this.image.nativeElement.clientHeight;
-        }, 1480);
+        // setTimeout(() => {
+        //     // console.log(this.image.nativeElement.clientHeight,  window.innerHeight - 100);
+        //     // this.bannerHeight = this.image.nativeElement.clientHeight < window.innerHeight - 100 ?
+        //     //     window.innerHeight - 100 : this.image.nativeElement.clientHeight;
+        //     // this.detailWrapperHeight = this.bannerHeight;
+        // }, 1410);
     }
 
-    resetSlider() {
+    backToSlider() {
         this.zoomed = 100;
-        this.detailWrapperHeight = (window.innerHeight - 100);
-        console.log(this.detailWrapperHeight);
+        this.bannerHeight = window.innerHeight - 100;
+        this.detailWrapperHeight = window.innerHeight - 100;
         this.detailWrapperLeft = (this.lastIndex + this.accordionItemsStyles.left / this.slideWidth) * this.slideWidth;
         this.clickedWidth = this.slideWidth;
         this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 100}px, 0)`;
-        // this.clickedWidth = 0;
         setTimeout(() => {
+            this.backToWorkText = 'Our works';
             this.clickedSlide = null;
             this.router.navigate(['/']).then();
             document.getElementById('wwww').style.display = 'none';
@@ -121,7 +125,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     initSlider() {
         this.count = this.slides.length;
-        this.slideWidth = (window.innerWidth - 115) / 4;
+        this.slideWidth = window.innerWidth > 992 ? (window.innerWidth - 115) / 4 : (window.innerWidth) / 3;
         // this.clickedWidth = this.slideWidth;
         this.accordionItemsStyles.width = this.slideWidth * this.count;
         this.accordionItemsStyles.left = 0;
@@ -145,11 +149,31 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     pageNext() {
-
+        if (this.clickedSlide < this.slides.length - 1) {
+            this.image.nativeElement.classList.add('fadeOutLeft');
+            this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 100}px, 0)`;
+            setTimeout(() => {
+                this.image.nativeElement.classList.remove('fadeOutLeft', 'fadeInRight', 'fadeInLeft');
+                this.image.nativeElement.classList.add('fadeInRight');
+                this.clickedSlide++;
+                this.workService.current = this.slides[this.clickedSlide];
+                this.router.navigate([`project/${this.slides[this.clickedSlide].id}`]).then();
+            }, 500);
+        }
     }
 
     pagePrev() {
-
+        if (this.clickedSlide > 0) {
+            this.image.nativeElement.classList.add('fadeOutRight');
+            this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 100}px, 0)`;
+            setTimeout(() => {
+                this.image.nativeElement.classList.remove('fadeOutRight', 'fadeInRight', 'fadeInLeft');
+                this.image.nativeElement.classList.add('fadeInLeft');
+                this.clickedSlide--;
+                this.workService.current = this.slides[this.clickedSlide];
+                this.router.navigate([`project/${this.slides[this.clickedSlide].id}`]).then();
+            }, 500);
+        }
     }
 
     scrollFunction(event) {

@@ -6,6 +6,11 @@
     position: relative;
     top: 0;
     overflow-y: hidden;
+    padding-left: 9px !important;
+
+    @media (max-width: 992px) {
+        padding: 0 !important;
+    }
 
     &::-webkit-scrollbar {
         width: 0;
@@ -255,6 +260,11 @@
     line-height: 50px;
     padding: 0 20px;
     border-radius: 25px;
+
+    @media (max-width: 992px) {
+        top: 115px;
+        left: 15px;
+    }
 }
 
 //=========================
@@ -445,24 +455,24 @@
     min-height: calc(100vh - 100px);
     position: relative;
     top: 0;
-    transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 600ms;
-    -o-transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 600ms;
-    -ms-transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 600ms;
-    -moz-transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 600ms;
-    -webkit-transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 600ms;
+    transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 600ms, min-height 1000ms ease-in-out 600ms;
+    -o-transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 600ms, min-height 1000ms ease-in-out 600ms;
+    -ms-transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 600ms, min-height 1000ms ease-in-out 600ms;
+    -moz-transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 600ms, min-height 1000ms ease-in-out 600ms;
+    -webkit-transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 600ms, min-height 1000ms ease-in-out 600ms;
     transition-timing-function: cubic-bezier(.19, 1, .22, 1);
 
     img {
         position: absolute;
         width: 100%;
-        //height: calc(100vh - 100px);
+        height: calc(100vh - 100px);
         object-fit: cover;
         object-position: center top;
-        transition: left 1000ms ease-in-out 600ms,  width 1000ms ease-in-out 600ms, height 1000ms ;
-        -o-transition: left 1000ms ease-in-out 600ms,  width 1000ms ease-in-out 600ms, height 1000ms ;
-        -ms-transition: left 1000ms ease-in-out 600ms,  width 1000ms ease-in-out 600ms, height 1000ms ;
-        -moz-transition: left 1000ms ease-in-out 600ms,  width 1000ms ease-in-out 600ms, height 1000ms ;
-        -webkit-transition: left 1000ms ease-in-out 600ms,  width 1000ms ease-in-out 600ms, height 1000ms ;
+        transition: left 1000ms ease-in-out 600ms, width 1000ms ease-in-out 600ms, height 1000ms ease-in-out 600ms;
+        -o-transition: left 1000ms ease-in-out 600ms, width 1000ms ease-in-out 600ms, height 1000ms ease-in-out 600ms;
+        -ms-transition: left 1000ms ease-in-out 600ms, width 1000ms ease-in-out 600ms, height 1000ms ease-in-out 600ms;
+        -moz-transition: left 1000ms ease-in-out 600ms, width 1000ms ease-in-out 600ms, height 1000ms ease-in-out 600ms;
+        -webkit-transition: left 1000ms ease-in-out 600ms, width 1000ms ease-in-out 600ms, height 1000ms ease-in-out 600ms;
         transition-timing-function: cubic-bezier(.19, 1, .22, 1);
     }
 }
