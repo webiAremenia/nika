@@ -10,7 +10,7 @@
 }
 
 .custom-page {
-  //height: calc(100vh - 100px);
+  height: calc(100vh - 100px);
   overflow: auto;
   @media (max-width: 768px) {
     height: auto;
@@ -20,7 +20,6 @@
 .custom-container {
   padding: 50px;
   @media (max-width: 500px) {
-    //padding-left: 10px !important;
     padding-left: 10px !important;
     padding-right: 10px !important;
   }
@@ -69,15 +68,15 @@ body {
   padding: 97px 139px 139px;
 }
 
-.menu-animation {
-  height: auto !important;
-  position: fixed;
-  top: 0;
-  width: calc((100vw - 100px) / 12 * 3 + 8px);
-  z-index: 10000;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
+//.menu-animation {
+//  height: auto !important;
+//  position: fixed;
+//  top: 0;
+//  width: calc((100vw - 100px) / 12 * 3 + 8px);
+//  z-index: 10000;
+//  padding-top: 0 !important;
+//  padding-bottom: 0 !important;
+//}
 
 .restore {
   height: calc((100vw - 116px) / 12 * 3) !important;
@@ -134,9 +133,46 @@ body {
 //  max-width: unset !important;
 //}
 
+
+.a {
+  img {
+    max-width: 100%;
+  }
+}
+
+.owl-item, .owl-stage-outer {
+  transition: all 1000ms;
+}
+
+.animated {
+  visibility: visible !important;
+}
+
+.hide-on-init {
+  visibility: hidden;
+}
+
+// // // MEDIA // // //
+
+@media (max-width: 768px) {
+  .custom-container {
+    padding: 0!important;
+  }
+  .about-inner-content {
+    padding: 100px 32px 0 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-page.bg-light {
+    padding: 0;
+  }
+}
+
 //==================================================================================
 //===============================  scroll styles  ==================================
 //==================================================================================
+
 
 /* width */
 @media (min-width: 750px) {
@@ -161,37 +197,3 @@ body {
   }
 }
 
-.a {
-  img {
-    max-width: 100%;
-  }
-}
-
-// // // MEDIA // // //
-
-@media (max-width: 768px) {
-  .custom-container {
-    padding: 0!important;
-  }
-  .about-inner-content {
-    padding: 100px 32px 0 32px;
-  }
-}
-
-@media (max-width: 767px) {
-  .home-page.bg-light {
-    padding: 0;
-  }
-}
-
-.owl-item, .owl-stage-outer {
-  transition: all 1000ms;
-}
-
-.animated {
-  visibility: visible !important;
-}
-
-.hide-on-init {
-  visibility: hidden;
-}

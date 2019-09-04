@@ -7,8 +7,8 @@
 
   .heading {
     text-align: left;
-    font-size: 65px;
-    line-height: 80px;
+    //font-size: calc( 100vw * (1920 / 65 ) ); // 65
+    //line-height: 80px;
     font-family: Extrabold, Open Sans, sans-serif;
     letter-spacing: -2.6px;
     color: #000A1D;
@@ -16,10 +16,11 @@
     opacity: 1;
     padding-bottom: 26px;
   }
+
   .description {
     text-align: left;
-    font-size: 26px;
-    line-height: 45px;
+    //font-size: 26px;
+    //line-height: 45px;
     font-family: Regular, Open Sans, sans-serif;
     letter-spacing: -0.52px;
     color: #000A1D;
@@ -29,11 +30,18 @@
 
 
 // // // Media // // //
-@media (max-width: 1920px) {
-  .heading {
-    width: 672px;
-  }
-  .description {
-    width: 607px;
+@media (max-width: 768px) {
+  .introduce-content {
+    margin-top: 100px;
+    background-position: top;
   }
 }
+
+//@media (max-width: 1920px) {
+//  .heading {
+//    width: 672px;
+//  }
+//  .description {
+//    width: 607px;
+//  }
+//}
