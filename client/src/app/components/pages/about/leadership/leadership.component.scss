@@ -1,34 +1,38 @@
-$font-regular: 'Regular, Open Sans, sans-serif';
-$font-extraBold: 'Extrabold, Open Sans, sans-serif';
-
+$font-regular: 'Open Sans Regular', sans-serif;
+$font-bold: 'Open Sans Bold', sans-serif;
+$font-extraBold: 'Open Sans Extrabold', sans-serif;
 
 .leadership-content-wrapper {
   width: 100%;
 
   .heading {
     text-align: left;
-    font-size: 65px;
-    line-height: 88px;
+    //font-size: 65px;
+    //line-height: 88px;
     font-family: $font-extraBold;
     letter-spacing: -2.6px;
     color: #000A1D;
     opacity: 1;
   }
+
   .description {
     padding: 33px 0;
     text-align: left;
-    font-size: 22px;
-    line-height: 35px;
+    //font-size: 22px;
+    //line-height: 35px;
     font-family: $font-regular;
     letter-spacing: 0;
     color: #000A1D;
     opacity: 1;
   }
+
   .leaders {
     display: flex;
     width: 100%;
+
     .leader {
       width: 50%;
+
       .image {
         background-repeat: no-repeat;
         background-position: center;
@@ -36,6 +40,7 @@ $font-extraBold: 'Extrabold, Open Sans, sans-serif';
         width: 100%;
         height: 529px;
       }
+
       .about {
         display: inline-block;
         padding: 35px 25px;
@@ -43,30 +48,101 @@ $font-extraBold: 'Extrabold, Open Sans, sans-serif';
         width: 73%;
         background-color: #A7F948;
         color: #000A1D;
+
         .author {
-          font-weight: bold;
+          font-size: 19px;
+          line-height: 25px;
+          font-family: $font-bold;
+        }
+
+        .position {
+          font-size: 16px;
+          line-height: 25px;
+          font-family: $font-regular;
         }
       }
     }
+
     .leader:first-child {
       padding-right: 11px;
+
       .image {
         background-image: url('../../../../../assets/images/AboutUs/ali_reduced@2x.png');
       }
+
       .about {
         text-align: left;
         float: left;
       }
     }
+
     .leader:last-child {
       padding-left: 11px;
+
       .image {
         background-image: url('../../../../../assets/images/AboutUs/ayman_reduced@2x.png');
       }
+
       .about {
         text-align: right;
         float: right;
       }
     }
   }
+}
+
+
+// // // Media // // //
+
+@media (max-width: 576px) {
+  .leadership-content-wrapper {
+
+    .heading {
+      font-size: 26px !important;
+      line-height: 35px !important;
+      letter-spacing: -1.04px !important;
+    }
+
+    .description {
+      padding: 8px 0 !important;
+      font-size: 11px !important;
+      line-height: 15px !important;
+      letter-spacing: 0 !important;
+    }
+
+    .leaders {
+      display: inline-block !important;
+
+      .leader {
+        width: 100% !important;
+        padding: 34px !important;
+
+        .image {
+          background-size: contain !important;
+          height: 243px !important;
+        }
+
+        .about {
+          padding: 23px 20px !important;
+          width: 86% !important;
+          float: left !important;
+          text-align: left !important;
+
+          .author {
+            font-size: 14px !important;
+            line-height: 14px !important;
+            letter-spacing: -0.24px !important;
+          }
+
+          .position {
+            font-size: 10px !important;
+            line-height: 14px !important;
+            letter-spacing: -0.2px !important;
+          }
+        }
+
+      }
+    }
+  }
+
 }

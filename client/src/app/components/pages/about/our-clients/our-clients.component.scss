@@ -1,13 +1,13 @@
-$font-regular: 'Regular, Open Sans, sans-serif';
-$font-extraBold: 'Extrabold, Open Sans, sans-serif';
+$font-regular: 'Open Sans Regular', sans-serif;
+$font-extraBold: 'Open Sans Extrabold', sans-serif;
 
 .clients-content-wrapper {
   width: 100%;
 
   .heading {
     text-align: left;
-    font-size: 65px;
-    line-height: 80px;
+    //font-size: 65px;
+    //line-height: 80px;
     font-family: $font-extraBold;
     letter-spacing: -2.6px;
     color: #000A1D;
@@ -15,10 +15,11 @@ $font-extraBold: 'Extrabold, Open Sans, sans-serif';
     opacity: 1;
     padding-bottom: 26px;
   }
+
   .description {
     text-align: left;
-    font-size: 26px;
-    line-height: 45px;
+    //font-size: 26px;
+    //line-height: 45px;
     font-family: $font-regular;
     letter-spacing: -0.52px;
     color: #000A1D;
@@ -27,11 +28,13 @@ $font-extraBold: 'Extrabold, Open Sans, sans-serif';
 
   .partners {
     padding: 86px;
+
     .partner {
       width: 218px;
       height: 218px;
       border: 1px solid #707070;
     }
+
     .partner-img {
       background-image: url('../../../../../assets/images/AboutUs/intel.png');
       background-repeat: no-repeat;
@@ -39,6 +42,7 @@ $font-extraBold: 'Extrabold, Open Sans, sans-serif';
       background-size: 90px;
       opacity: 1;
     }
+
     .partner-text {
       display: flex;
       justify-content: center;
@@ -53,4 +57,42 @@ $font-extraBold: 'Extrabold, Open Sans, sans-serif';
       opacity: 1;
     }
   }
+}
+
+
+// // // Media // // //
+
+@media (max-width: 576px) {
+  .clients-content-wrapper {
+    .heading {
+      font-size: 26px !important;
+      line-height: 35px !important;
+      letter-spacing: -1.04px !important;
+    }
+
+    .description {
+      font-size: 11px !important;
+      line-height: 15px !important;
+      letter-spacing: 0 !important;
+    }
+
+    .partners {
+      padding: 28px 0 28px 0;
+
+      .partner {
+        width: 103px;
+        height: 103px;
+      }
+
+      .partner-img {
+        background-size: 30px;
+      }
+
+      .partner-text {
+        font-size: 7px;
+        line-height: 12px;
+      }
+    }
+  }
+
 }

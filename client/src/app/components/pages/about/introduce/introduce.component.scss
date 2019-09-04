@@ -1,3 +1,6 @@
+$font-regular: 'Open Sans Regular', sans-serif;
+$font-extraBold: 'Open Sans Extrabold', sans-serif;
+
 .introduce-content {
   width: 100%;
   background-image: url('../../../../../assets/images/AboutUs/chair-octopus@2x.png');
@@ -9,7 +12,7 @@
     text-align: left;
     //font-size: calc( 100vw * (1920 / 65 ) ); // 65
     //line-height: 80px;
-    font-family: Extrabold, Open Sans, sans-serif;
+    font-family: $font-extraBold;
     letter-spacing: -2.6px;
     color: #000A1D;
     text-transform: capitalize;
@@ -21,7 +24,7 @@
     text-align: left;
     //font-size: 26px;
     //line-height: 45px;
-    font-family: Regular, Open Sans, sans-serif;
+    font-family: $font-regular;
     letter-spacing: -0.52px;
     color: #000A1D;
     opacity: 1;
@@ -30,18 +33,24 @@
 
 
 // // // Media // // //
-@media (max-width: 768px) {
+
+@media (max-width: 576px) {
   .introduce-content {
     margin-top: 100px;
+    margin-bottom: 32px;
+    padding-top: 225px;
     background-position: top;
   }
+  .heading {
+    font-size: 30px !important;
+    line-height: 35px !important;
+    width: 100% !important;
+    letter-spacing: -1.2px !important;
+  }
+  .description {
+    font-size: 14px !important;
+    line-height: 22px !important;
+    width: 100% !important;
+    letter-spacing: -0.28px !important;
+  }
 }
-
-//@media (max-width: 1920px) {
-//  .heading {
-//    width: 672px;
-//  }
-//  .description {
-//    width: 607px;
-//  }
-//}

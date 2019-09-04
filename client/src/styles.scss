@@ -68,15 +68,15 @@ body {
   padding: 97px 139px 139px;
 }
 
-//.menu-animation {
-//  height: auto !important;
-//  position: fixed;
-//  top: 0;
-//  width: calc((100vw - 100px) / 12 * 3 + 8px);
-//  z-index: 10000;
-//  padding-top: 0 !important;
-//  padding-bottom: 0 !important;
-//}
+.menu-animation {
+  height: auto !important;
+  position: fixed;
+  top: 0;
+  width: calc((100vw - 100px) / 12 * 3 + 8px);
+  z-index: 10000;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
 
 .restore {
   height: calc((100vw - 116px) / 12 * 3) !important;
@@ -159,7 +159,7 @@ body {
     padding: 0!important;
   }
   .about-inner-content {
-    padding: 100px 32px 0 32px;
+    padding: 50px 32px 0 32px;
   }
 }
 

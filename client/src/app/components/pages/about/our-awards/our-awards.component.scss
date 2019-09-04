@@ -1,13 +1,13 @@
-$font-regular: 'Regular, Open Sans, sans-serif';
-$font-extraBold: 'Extrabold, Open Sans, sans-serif';
+$font-regular: 'Open Sans Regular', sans-serif;
+$font-extraBold: 'Open Sans Extrabold', sans-serif;
 
 .our-awards-content-wrapper {
   width: 100%;
 
   .heading {
     text-align: left;
-    font-size: 65px;
-    line-height: 80px;
+    //font-size: 65px;
+    //line-height: 80px;
     font-family: $font-extraBold;
     letter-spacing: -2.6px;
     color: #000A1D;
@@ -18,9 +18,9 @@ $font-extraBold: 'Extrabold, Open Sans, sans-serif';
 
   .description {
     text-align: left;
-    max-width: 675px;
-    font-size: 26px;
-    line-height: 45px;
+    //width: 675px;
+    //font-size: 26px;
+    //line-height: 45px;
     font-family: $font-regular;
     letter-spacing: -0.52px;
     color: #000A1D;
@@ -47,23 +47,72 @@ $font-extraBold: 'Extrabold, Open Sans, sans-serif';
     .award-text {
       display: flex;
       align-items: center;
-      font-size: 25px;
-      line-height: 40px;
-      background-color: #000A1D;
       text-align: left;
       font-family: $font-regular;
+      font-size: 18px;
+      line-height: 35px;
+      background-color: #000A1D;
       letter-spacing: 0;
       color: #FFFFFF;
       opacity: 1;
+
       ul li {
         list-style-type: none;
         color: #ffffff;
         letter-spacing: 0;
         opacity: 1;
+
         span {
           font-weight: bold;
         }
       }
     }
   }
+}
+
+// // // Media // // //
+
+@media (max-width: 576px) {
+  .our-awards-content-wrapper {
+    margin-bottom: 32px;
+
+    .heading {
+      font-size: 26px !important;
+      line-height: 35px !important;
+      letter-spacing: -1.04px !important;
+      padding-bottom: 15px !important;
+    }
+
+    .description {
+      display: none;
+      //font-size: 11px!important;
+      //line-height: 15px!important;
+      //letter-spacing: 0!important;
+    }
+
+    .awards {
+      padding: 0 !important;
+
+      .award {
+        width: 80px !important;
+        height: 78px !important;
+
+        ul {
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+      }
+
+      .award-img {
+        background-size: 30px !important;
+      }
+
+      .award-text {
+        font-size: 10px !important;
+        line-height: 14px !important;
+      }
+    }
+
+  }
+
 }
