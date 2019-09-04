@@ -2,7 +2,9 @@ import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from 
 import {SliderService} from '../../../_services/slider.service';
 import {Slide} from '../../../_models/slide';
 import {AppGlobals} from '../../../app.globals';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {WorkService} from '../../../_services/work.service';
+import {Work} from '../../../_models/work';
 
 @Component({
     selector: 'app-home',
@@ -11,20 +13,25 @@ import {Router} from '@angular/router';
 })
 export class HomeComponent implements OnInit, OnDestroy {
     @ViewChild('customBody') customBody: ElementRef;
+    @ViewChild('image') image: ElementRef;
     accordionItemsStyles = {
         left: 0,
         width: 0
     };
     mouseWillCount = 0;
-    slides: Slide[];
+    slides: Work[];
     count;
     slideWidth;
-    clickedWidth;
-    slidePosition;
+    clickedWidth = 0;
     imageUrl;
     done = false;
     clickedSlide = null;
-    workScrollTop = 0;
+    workScrollTop = -window.innerHeight + 100;
+    detailWrapperLeft = 15;
+    detailWrapperHeight;
+    bannerHeight;
+    lastIndex;
+    zoomed = 100;
 
     @HostListener('window:resize', ['$event'])
     onResize() {
@@ -49,24 +56,53 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     constructor(
-        private  sliderService: SliderService, config: AppGlobals,
+        private activatedRoute: ActivatedRoute,
+        private  workService: WorkService, config: AppGlobals,
         private router: Router) {
-        this.imageUrl = config.imageUrl + '/medias/';
-        console.log('constructor');
+        this.imageUrl = config.imageUrl + '/portfolio/';
     }
 
     ngOnInit() {
         this.getParams();
-        console.log('on   init');
     }
 
     initCurrent(index) {
-        this.slidePosition = this.accordionItemsStyles.left;
+        this.detailWrapperHeight = (window.innerHeight - 100);
+        // console.log(this.detailWrapperHeight);
+        this.lastIndex = index;
         this.clickedSlide = index;
-        this.accordionItemsStyles.left = -index * this.slideWidth;
-        this.accordionItemsStyles.width = this.accordionItemsStyles.width + 2 * this.slideWidth;
+        document.getElementById('wwww').style.display = 'block';
+        this.detailWrapperLeft = (index + this.accordionItemsStyles.left / this.slideWidth) * this.slideWidth;
+        this.clickedWidth = this.slideWidth;
         setTimeout(() => {
+            this.zoomed = 150;
+            this.detailWrapperLeft = 0;
+            this.clickedWidth = this.slideWidth * 3;
+
+        }, 100);
+        setTimeout(() => {
+            this.detailWrapperHeight = null;
             this.navigate(index);
+        }, 1400);
+        setTimeout(() => {
+            console.log(this.image.nativeElement.clientHeight,  window.innerHeight - 100);
+            this.bannerHeight = this.image.nativeElement.clientHeight < window.innerHeight - 100 ?
+                window.innerHeight - 100 : this.image.nativeElement.clientHeight;
+        }, 1480);
+    }
+
+    resetSlider() {
+        this.zoomed = 100;
+        this.detailWrapperHeight = (window.innerHeight - 100);
+        console.log(this.detailWrapperHeight);
+        this.detailWrapperLeft = (this.lastIndex + this.accordionItemsStyles.left / this.slideWidth) * this.slideWidth;
+        this.clickedWidth = this.slideWidth;
+        this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 100}px, 0)`;
+        // this.clickedWidth = 0;
+        setTimeout(() => {
+            this.clickedSlide = null;
+            this.router.navigate(['/']).then();
+            document.getElementById('wwww').style.display = 'none';
         }, 1400);
     }
 
@@ -83,80 +119,92 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
     }
 
-    getParams() {
-        if (this.sliderService.slider) {
-            this.slides = this.sliderService.slider;
-            this.done = true;
-            this.initSlider();
-        } else {
-            this.sliderService.getImages().subscribe(
-                d => {
-                    this.slides = d;
-                    console.log('slider items ', d);
-                    this.done = true;
-                    this.initSlider();
-
-                },
-                e => console.log('errrrr', e)
-            );
-        }
-    }
-
     initSlider() {
         this.count = this.slides.length;
-        this.slideWidth = (window.innerWidth - 115) / 4 - 2;
-        this.clickedWidth = this.slideWidth * 3;
+        this.slideWidth = (window.innerWidth - 115) / 4;
+        // this.clickedWidth = this.slideWidth;
         this.accordionItemsStyles.width = this.slideWidth * this.count;
         this.accordionItemsStyles.left = 0;
-        this.slidePosition = this.accordionItemsStyles.left;
-    }
-
-    resetSlider() {
-        this.workScrollTop = 0;
-        this.customBody.nativeElement.style.transform = `translate3d(0, 0, 0)`;
-        setTimeout(() => {
-            this.clickedSlide = null;
-            this.accordionItemsStyles.left = this.slidePosition;
-            this.accordionItemsStyles.width = this.slideWidth * this.count;
-            this.router.navigate(['/']).then();
-        }, 1800);
     }
 
     navigate(index) {
-        this.router.navigate([`project/${index}`]).then();
+        this.workService.current = this.slides[index];
+        this.router.navigate([`project/${this.slides[index].id}`]).then();
     }
 
     sliderNext() {
         if (this.accordionItemsStyles.left > -this.accordionItemsStyles.width + this.slideWidth * 3) {
             this.accordionItemsStyles.left -= this.slideWidth;
-            this.slidePosition = this.accordionItemsStyles.left;
         }
     }
 
     sliderPrev() {
         if (this.accordionItemsStyles.left < 0) {
             this.accordionItemsStyles.left += this.slideWidth;
-            this.slidePosition = this.accordionItemsStyles.left;
         }
     }
 
+    pageNext() {
+
+    }
+
+    pagePrev() {
+
+    }
+
     scrollFunction(event) {
+        const workHeight = this.customBody.nativeElement.scrollHeight;
         if (this.clickedSlide || this.clickedSlide === 0) {
             this.mouseWillCount++;
             if (this.mouseWillCount === 1) {
-                console.log(event.deltaY);
+                // console.log(event.deltaY);
                 setTimeout(() => {
+                    // console.log(this.workScrollTop, -workHeight);
                     if (event.deltaY > 0) {
-                        this.workScrollTop = this.workScrollTop > -this.customBody.nativeElement.scrollHeight + 50 ?
-                            this.workScrollTop - 50 : -this.customBody.nativeElement.scrollHeight + 50;
+                        this.workScrollTop = this.workScrollTop > -workHeight ?
+                            this.workScrollTop - 100 : -this.customBody.nativeElement.scrollHeight;
                     } else {
-                        this.workScrollTop = this.workScrollTop < 0 ? this.workScrollTop + 50 : 0;
+                        this.workScrollTop = this.workScrollTop < -window.innerHeight + 100 ?
+                            this.workScrollTop + 100 : -window.innerHeight + 100;
                     }
                     this.customBody.nativeElement.style.transform = `translate3d(0, ${this.workScrollTop}px, 0)`;
                     this.mouseWillCount = 0;
                 }, 10);
             }
         } else {
+        }
+    }
+
+    getParams() {
+        if (this.workService.works) {
+            this.slides = this.workService.works;
+            this.done = true;
+            this.initSlider();
+        } else {
+            this.workService.getWorks().subscribe(
+                d => {
+                    this.slides = d;
+                    console.log('slider items ', d);
+                    this.done = true;
+                    this.initSlider();
+                    this.getCurrent();
+                },
+                e => console.log('errrrr', e)
+            );
+        }
+    }
+
+    getCurrent() {
+        const pathObj = location.pathname.split('/');
+        // console.log(pathObj);
+        if (pathObj.length > 1 && pathObj[1] === 'project') {
+            this.slides.forEach((work, index) => {
+                if (work.id.toString() === pathObj[2]) {
+                    setTimeout(() => {
+                        this.initCurrent(index);
+                    }, 200);
+                }
+            });
         }
     }
 

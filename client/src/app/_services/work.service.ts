@@ -10,6 +10,7 @@ import {catchError, map} from 'rxjs/operators';
 })
 export class WorkService {
 
+    current: Work;
     works: Work[];
     work: Work;
     url;
