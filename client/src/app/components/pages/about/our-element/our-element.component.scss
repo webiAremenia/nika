@@ -1,28 +1,41 @@
 ul li {
   list-style-type: none;
   color: #ffffff;
+  transition: 1s all ease-in;
+
 }
 
 ul {
   padding: 0;
-  border-top: 1.5px solid green;
   border-bottom: 1.5px solid green;
   margin: 0;
   margin-block-start: -1.5px;
   margin-block-end: -1.5px;
 }
+
+ul:first-child {
+  border-top: 1.5px solid green;
+  border-bottom: 1.5px solid green;
+}
+
+ul:last-child {
+  border-top: none;
+  border-bottom: none;
+}
+
 ul:hover {
   cursor: pointer;
 }
 
 .active {
-  border-top: 1.5px solid lime!important;
-  border-bottom: 1.5px solid lime!important;
+  border-top: 1.5px solid lime !important;
+  border-bottom: 1.5px solid lime !important;
 }
 
 .our-element-content-wrapper {
   width: 100%;
   background-color: #000A1D;
+
   .our-element-content {
     color: #ffffff;
 
@@ -47,6 +60,7 @@ ul:hover {
         opacity: 1;
         padding: 55px 15px;
       }
+
       .list-description {
         text-align: left;
         font-size: 22px;

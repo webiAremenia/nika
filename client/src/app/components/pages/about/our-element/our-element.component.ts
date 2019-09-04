@@ -11,6 +11,7 @@ import {ActionsService} from '../../../../_services/actions.service';
 export class OurElementComponent implements OnInit, OnDestroy {
     windowSubscription: Subscription;
     windowSize: WindowSize;
+    list: NodeListOf<HTMLUListElement>;
 
     constructor(private actionsService: ActionsService) {
         this.windowSubscription = actionsService.getWindowSize()
@@ -18,10 +19,22 @@ export class OurElementComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.list = document.querySelectorAll('ul');
     }
 
     ngOnDestroy() {
         this.windowSubscription.unsubscribe();
+    }
+
+    openList(e) {
+        if (e.classList.contains('active')) {
+            e.classList.remove('active');
+        } else {
+            this.list.forEach( list => {
+               list.classList.remove('active');
+            });
+            e.classList.add('active');
+        }
     }
 
 }
