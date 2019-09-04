@@ -11,6 +11,8 @@ export class AboutComponent implements OnInit {
     pages: Page[];
     done = false;
     page: Page;
+
+
     constructor(private service: PageService) {
     }
 

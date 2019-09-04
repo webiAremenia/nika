@@ -6,10 +6,13 @@
             <div class="top-part row h-20">
                 <div class="menu-title col-6" *ngIf="done">
                     <div *ngIf="logos[0].image; else link">
-                        <img [routerLink]="[{ outlets: { primary: [] } }]" [src]="imageUrl + logos[0].image['image']" alt="" class="logo_image">
+                        <img [routerLink]="[{ outlets: { primary: [] } }]" [src]="imageUrl + logos[0].image['image']"
+                             alt="" class="logo_image">
                     </div>
                     <ng-template #link>
-                        <a [routerLink]="[{ outlets: { primary: [] } }]" style="cursor: pointer;"><h1>nika</h1></a>
+                        <a [routerLink]="[{ outlets: { primary: [] } }]" style="cursor: pointer;">
+                            <h1>nika</h1>
+                        </a>
                     </ng-template>
                 </div>
                 <div class="hamburger-logo col-6">
@@ -23,23 +26,25 @@
             </div>
 
             <div class="bottom-part">
+
                 <div id="menu-content" class="side-bar-about h-75">
                     <div class="toggle-content font-weight-bolder toggle-content-text">{{menuText}}</div>
 
-                    <div class="toggle-content font-weight-bolder links-content" *ngFor="let menu of menus"  [ngSwitch]="menu.key">
+                    <div class="toggle-content font-weight-bolder links-content" *ngFor="let menu of menus"
+                         [ngSwitch]="menu.key">
                         <div class="menu-items" *ngSwitchCase="menu['key']=== 'about'">
                             <a [routerLink]="[{ outlets: { primary: ['about'] }}]">{{ menu.value | uppercase}}</a>
                         </div>
                         <div class="menu-items" *ngSwitchCase="menu['key']=== 'contact'">
                             <a [routerLink]="[{ outlets: { primary: ['contact'] }}]">{{ menu.value | uppercase}}</a>
                         </div>
-                        <div class="menu-items" *ngSwitchDefault >
+                        <div class="menu-items" *ngSwitchDefault>
                             <a routerLink="/{{menu.key}}">{{menu.value | uppercase}}</a>
                         </div>
                     </div>
 
-
                 </div>
+
                 <div class="side-bar-meet-link h-25">
                     <p class="m-0">Meet Us. <a href="{{ menuUrl }}" target="_blank">Click Here</a></p>
                 </div>
@@ -61,7 +66,7 @@
                 <img class="align-self-center" [src]="imageUrl + logos[1].image['image']" alt="logo">
             </div>
             <ng-template #link class="h-100">
-                <img class="align-self-center"  src="assets/images/logo.PNG" alt="logo">
+                <img class="align-self-center" src="assets/images/logo.PNG" alt="logo">
             </ng-template>
         </div>
 
@@ -84,32 +89,31 @@
         </div>
     </div>
 
-<!--    <div class="hidden-menu">-->
+    <!--    <div class="hidden-menu">-->
 
-<!--        <div class="hidden-menu-items"><a [routerLink]="[{ outlets: { primary: ['about'] }}]">{{ 'about' | uppercase}}</a></div>-->
-<!--        <div class="hidden-menu-items"><a routerLink="/works">{{'work' | uppercase}}</a></div>-->
-<!--        <div class="hidden-menu-items"><a routerLink="/stories">{{'stories' | uppercase}}</a></div>-->
-<!--        <div class="hidden-menu-items"><a routerLink="/careers">{{'careers' | uppercase}}</a></div>-->
-<!--        <div class="hidden-menu-items"><a-->
-<!--                [routerLink]="[{ outlets: { primary: ['contact'] } }]">{{'contact' | uppercase}}</a>-->
-<!--        </div>-->
+    <!--        <div class="hidden-menu-items"><a [routerLink]="[{ outlets: { primary: ['about'] }}]">{{ 'about' | uppercase}}</a></div>-->
+    <!--        <div class="hidden-menu-items"><a routerLink="/works">{{'work' | uppercase}}</a></div>-->
+    <!--        <div class="hidden-menu-items"><a routerLink="/stories">{{'stories' | uppercase}}</a></div>-->
+    <!--        <div class="hidden-menu-items"><a routerLink="/careers">{{'careers' | uppercase}}</a></div>-->
+    <!--        <div class="hidden-menu-items"><a-->
+    <!--                [routerLink]="[{ outlets: { primary: ['contact'] } }]">{{'contact' | uppercase}}</a>-->
+    <!--        </div>-->
 
-<!--        <div class="hidden-menu-items-link">-->
-<!--            <p class="m-0">Meet Us. <a href="{{ menuUrl }}" target="_blank">Click Here</a></p>-->
-<!--        </div>-->
+    <!--        <div class="hidden-menu-items-link">-->
+    <!--            <p class="m-0">Meet Us. <a href="{{ menuUrl }}" target="_blank">Click Here</a></p>-->
+    <!--        </div>-->
 
-<!--    </div>-->
+    <!--    </div>-->
 
 
-
-    <div class="hidden-menu" *ngFor="let menu of menus"  [ngSwitch]="menu.key">
+    <div class="hidden-menu" *ngFor="let menu of menus" [ngSwitch]="menu.key">
         <div class="menu-items" *ngSwitchCase="menu['key']=== 'about'">
             <a [routerLink]="[{ outlets: { primary: ['about'] }}]">{{ menu.value | uppercase}}</a>
         </div>
         <div class="menu-items" *ngSwitchCase="menu['key']=== 'contact'">
             <a [routerLink]="[{ outlets: { primary: ['contact'] }}]">{{ menu.value | uppercase}}</a>
         </div>
-        <div class="menu-items" *ngSwitchDefault >
+        <div class="menu-items" *ngSwitchDefault>
             <a routerLink="/{{menu.key}}">{{menu.value | uppercase}}</a>
         </div>
     </div>

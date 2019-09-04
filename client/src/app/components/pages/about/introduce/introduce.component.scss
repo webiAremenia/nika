@@ -1,0 +1,47 @@
+.introduce-content {
+  width: 100%;
+  background-image: url('../../../../../assets/images/AboutUs/chair-octopus@2x.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right bottom;
+
+  .heading {
+    text-align: left;
+    //font-size: calc( 100vw * (1920 / 65 ) ); // 65
+    //line-height: 80px;
+    font-family: Extrabold, Open Sans, sans-serif;
+    letter-spacing: -2.6px;
+    color: #000A1D;
+    text-transform: capitalize;
+    opacity: 1;
+    padding-bottom: 26px;
+  }
+
+  .description {
+    text-align: left;
+    //font-size: 26px;
+    //line-height: 45px;
+    font-family: Regular, Open Sans, sans-serif;
+    letter-spacing: -0.52px;
+    color: #000A1D;
+    opacity: 1;
+  }
+}
+
+
+// // // Media // // //
+@media (max-width: 768px) {
+  .introduce-content {
+    margin-top: 100px;
+    background-position: top;
+  }
+}
+
+//@media (max-width: 1920px) {
+//  .heading {
+//    width: 672px;
+//  }
+//  .description {
+//    width: 607px;
+//  }
+//}

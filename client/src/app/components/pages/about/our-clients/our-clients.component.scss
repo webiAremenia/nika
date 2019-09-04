@@ -1,0 +1,56 @@
+$font-regular: 'Regular, Open Sans, sans-serif';
+$font-extraBold: 'Extrabold, Open Sans, sans-serif';
+
+.clients-content-wrapper {
+  width: 100%;
+
+  .heading {
+    text-align: left;
+    font-size: 65px;
+    line-height: 80px;
+    font-family: $font-extraBold;
+    letter-spacing: -2.6px;
+    color: #000A1D;
+    text-transform: capitalize;
+    opacity: 1;
+    padding-bottom: 26px;
+  }
+  .description {
+    text-align: left;
+    font-size: 26px;
+    line-height: 45px;
+    font-family: $font-regular;
+    letter-spacing: -0.52px;
+    color: #000A1D;
+    opacity: 1;
+  }
+
+  .partners {
+    padding: 86px;
+    .partner {
+      width: 218px;
+      height: 218px;
+      border: 1px solid #707070;
+    }
+    .partner-img {
+      background-image: url('../../../../../assets/images/AboutUs/intel.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 90px;
+      opacity: 1;
+    }
+    .partner-text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000A1D;
+      text-align: center;
+      font-size: 14px;
+      line-height: 25px;
+      font-family: $font-regular;
+      letter-spacing: 0;
+      color: #FFFFFF;
+      opacity: 1;
+    }
+  }
+}
