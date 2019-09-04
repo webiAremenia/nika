@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ActionsService} from '../../../../_services/actions.service';
-import {WindowSize} from '../../../../_models/WindowSize';
+import {ResponsiveData} from '../../../../_models/ResponsiveData';
 
 @Component({
     selector: 'app-introduce',
@@ -10,11 +10,11 @@ import {WindowSize} from '../../../../_models/WindowSize';
 })
 export class IntroduceComponent implements OnInit, OnDestroy {
     windowSubscription: Subscription;
-    windowSize: WindowSize;
+    windowSize: ResponsiveData;
 
     constructor(private actionsService: ActionsService) {
         this.windowSubscription = actionsService.getWindowSize()
-            .subscribe((size: WindowSize) => this.windowSize = size );
+            .subscribe((size: ResponsiveData) => this.windowSize = size );
     }
 
     ngOnInit() {

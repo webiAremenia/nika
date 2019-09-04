@@ -1,17 +1,25 @@
 <div class="our-awards-content-wrapper">
     <div class="our-awards-content about-inner-content">
 
-        <div class="heading">
+        <div class="heading"
+             [style.font-size]="(windowSize.width * 65) / 1920 + 'px'"
+             [style.line-height]="(windowSize.width * 80) / 1920 + 'px'"
+        >
             Awards
         </div>
-        <div class="description">
+
+        <div class="description"
+             [style.font-size]="(windowSize.width * 26) / 1920 + 'px'"
+             [style.line-height]="(windowSize.width * 45) / 1920 + 'px'"
+             [style.width]="(windowSize.width * 675) / 1920 + 'px'"
+        >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore
             magna aliqua. Ut enim ad minim veniam,
         </div>
 
         <div class="awards">
-            <div class="row">
+            <div class="row m-0">
                 <div class="col-3 award award-text">
                     <ul>
                         <li><span>3</span> Gold</li>

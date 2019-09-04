@@ -1,16 +1,17 @@
+$font-regular: 'Open Sans Regular', sans-serif;
+$font-semiBold: 'Open Sans SemiBold', sans-serif;
+$font-extraBold: 'Open Sans Extrabold', sans-serif;
+
 ul li {
   list-style-type: none;
   color: #ffffff;
   transition: 1s all ease-in;
-
 }
 
 ul {
   padding: 0;
   border-bottom: 1.5px solid green;
   margin: 0;
-  margin-block-start: -1.5px;
-  margin-block-end: -1.5px;
 }
 
 ul:first-child {
@@ -42,9 +43,9 @@ ul:hover {
     .heading {
       padding-bottom: 50px;
       text-align: left;
-      font-size: 65px;
-      line-height: 80px;
-      font-family: Extrabold, Open Sans, sans-serif;
+      //font-size: 65px;
+      //line-height: 80px;
+      font-family: $font-extraBold;
       letter-spacing: -2.6px;
       color: #FFFFFF;
       opacity: 1;
@@ -55,7 +56,7 @@ ul:hover {
         text-align: left;
         font-size: 36px;
         line-height: 30px;
-        font-family: Extrabold, Open Sans, sans-serif;
+        font-family: $font-extraBold;
         letter-spacing: -0.72px;
         opacity: 1;
         padding: 55px 15px;
@@ -66,7 +67,7 @@ ul:hover {
         font-size: 22px;
         line-height: 35px;
         letter-spacing: 0;
-        font-family: Semibold, Open Sans, sans-serif;
+        font-family: $font-semiBold;
         color: #FFFFFF;
         opacity: 1;
         padding: 30px 70px 20px 70px;
@@ -74,4 +75,31 @@ ul:hover {
     }
   }
 
+}
+
+// // // MEDIA // // //
+
+@media (max-width: 576px) {
+  .heading {
+    font-size: 26px!important;
+    line-height: 35px!important;
+    letter-spacing: -1.04px!important;
+    padding-bottom: 20px!important;
+  }
+
+  .list {
+    padding: 20px 0!important;
+    .list-title {
+      font-size: 16px!important;
+      line-height: 30px!important;
+      letter-spacing: -0.32px!important;
+      padding: 0!important;
+    }
+
+    .list-description {
+      font-size: 11px!important;
+      line-height: 15px!important;
+      padding: 0 0 0 30px!important;
+    }
+  }
 }

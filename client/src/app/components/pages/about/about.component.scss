@@ -1,4 +1,5 @@
-$font-family: 'Open Sans, sans-serif';
+$font-regular: 'Open Sans Regular', sans-serif;
+$font-bold: 'Open Sans Bold', sans-serif;
 
 .img-wrapper {
   //width: 95%;
@@ -10,17 +11,19 @@ $font-family: 'Open Sans, sans-serif';
     object-fit: cover;
   }
 }
+
 .about-page {
-  padding-left: 10px!important;
+  padding-left: 10px !important;
 }
-.block-title {
-  margin: 25px 0;
-  font-family: $font-family;
-  font-size: 22px;
-  font-weight: 600;
-  line-height: 1.45;
-  letter-spacing: -0.4px;
-}
+
+//.block-title {
+//  margin: 25px 0;
+//  font-family: $font;
+//  font-size: 22px;
+//  font-weight: 600;
+//  line-height: 1.45;
+//  letter-spacing: -0.4px;
+//}
 
 .link-box {
   display: flex;
@@ -29,18 +32,20 @@ $font-family: 'Open Sans, sans-serif';
   height: 180px;
   background-color: #000A1D;
   color: #FFFFFF;
+
   .link-box-text {
     width: 100%;
     padding: 0 69px;
+
     .question {
       text-align: left;
       float: left;
       font-size: 30px;
       line-height: 40px;
-      //font-weight: bold;
-      font-family: $font-family;
+      font-family: $font-bold;
       letter-spacing: -0.6px;
     }
+
     .link {
       text-align: right;
       float: right;
@@ -48,20 +53,13 @@ $font-family: 'Open Sans, sans-serif';
       font-size: 22px;
       line-height: 35px;
       font-weight: normal;
-      font-family: $font-family;
+      font-family: $font-regular;
       letter-spacing: -0.44px;
       color: #FFFFFF;
       opacity: 1;
     }
   }
 }
-
-@media (max-width: 768px) {
-  .link-box {
-    display: inline-block;
-  }
-}
-
 
 //==================================================================================
 //===============================  scroll styles  ==================================
@@ -85,4 +83,36 @@ $font-family: 'Open Sans, sans-serif';
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+
+// // // MEDIA // // //
+
+@media (max-width: 576px) {
+  .about-page {
+    padding-left: 0 !important;
+
+    .link-box {
+      display: inline-block !important;
+      height: 290px !important;
+
+      .link-box-text {
+        padding: 37px 32px !important;
+      }
+
+      .question {
+        width: 219px;
+        font-size: 20px !important;
+        line-height: 25px !important;
+      }
+
+      .link {
+        width: 100% !important;
+        text-align: left !important;
+        font-size: 14px !important;
+        line-height: 35px !important;
+        padding-top: 22px !important;
+      }
+    }
+  }
 }
