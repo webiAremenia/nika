@@ -14,12 +14,15 @@
 .side-bar-header {
   background: #F7F7F7;
 }
-.bottom-part{
+
+.bottom-part {
   height: 80%;
 }
-.links-content{
+
+.links-content {
   display: none;
 }
+
 .menu-items a {
   cursor: pointer;
   text-decoration: none;
@@ -34,6 +37,7 @@
     font-size: 14px;
   }
 }
+
 .menu-title h1 {
   font-size: 50px;
   @media (max-width: 992px) and (min-width: 767px) {
@@ -84,7 +88,7 @@
   }
 }
 
-.align-self-center{
+.align-self-center {
   //width: 465px;
   //height: 262.5px;
   @media (max-width: 992px) and (min-width: 767px) {
@@ -113,9 +117,10 @@
   }
 }
 
-#toggle-icon{
+#toggle-icon {
   background: #f7f7f7;
 }
+
 .hamburger-logo-toggle-img {
   padding: 10px;
   cursor: pointer;
@@ -136,6 +141,7 @@
   .hamburger-line-2 {
     display: none;
   }
+
   @media (max-width: 992px) and (min-width: 767px) {
     .hamburger-line-1 {
       transition: 200ms;
@@ -156,7 +162,7 @@
 
 //=============== mobile content ========================
 
-.mobile-header{
+.mobile-header {
   position: fixed;
   padding: 15px;
   background: #F7F7F7;
@@ -165,23 +171,28 @@
   left: 0;
   z-index: 1000;
 
-  .mobile-menu{
+  .mobile-menu {
     height: 70px;
   }
+
   .mobile-menu-title {
     padding-top: 10px;
   }
-  .mobile-menu-title a{
+
+  .mobile-menu-title a {
     color: #000;
     font-size: 50px;
     text-decoration: none;
   }
-  .hidden-menu{
+
+  .hidden-menu {
     display: none;
   }
-  .hidden-menu-items a{
+
+  .hidden-menu-items a {
     color: #000;
   }
+
   .hamburger-logo-toggle-img {
     padding: 15px;
     cursor: pointer;
@@ -205,24 +216,24 @@
   }
 }
 
-.menu-animation {
-  height: auto !important;
-  position: fixed;
-  top: 0;
-  width: calc((100vw - 100px) / 12 * 3 + 8px);
-  z-index: 10000;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
+//.menu-animation {
+//  height: auto !important;
+//  position: fixed;
+//  top: 0;
+//  width: calc((100vw - 100px) / 12 * 3 + 8px);
+//  z-index: 10000;
+//  padding-top: 0 !important;
+//  padding-bottom: 0 !important;
+//}
 
 .restore {
   height: calc((100vw - 116px) / 12 * 3) !important;
 }
 
 
-.logo_image{
+.logo_image {
   height: 60px;
-  @media (max-width: 992px){
+  @media (max-width: 992px) {
     height: 40px;
   }
 }

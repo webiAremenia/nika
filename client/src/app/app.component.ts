@@ -4,6 +4,7 @@ import {Location} from '@angular/common';
 import {ComponentService} from './_services/component.service';
 import {FooterService} from './_services/footer.service';
 import {SliderService} from "./_services/slider.service";
+import {ActionsService} from './_services/actions.service';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class AppComponent implements OnInit {
         location: Location,
         router: Router,
         componentService: ComponentService,
+        private actionsService: ActionsService,
         private footerService: FooterService,
         private  sliderService: SliderService
     ) {
@@ -52,6 +54,15 @@ export class AppComponent implements OnInit {
         this.sliderService.getImages().subscribe();
         this.sliderService.getSliderSpeed().subscribe();
     }
+
+    @HostListener('window:resize', ['$event']) onResize(e) {
+        const size = {
+            width: window.innerWidth > 1920 ?  1920 : window.innerWidth,
+            height: window.innerHeight
+        };
+        this.actionsService.innerSize.next(size);
+    }
+
 
     onActivate(event) {
         window.scroll(0, 0);

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Route, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {MenuService} from '../../../_services/menu.service';
 import {LogoService} from '../../../_services/logo.service';
@@ -23,7 +23,12 @@ export class SidebarComponent implements OnInit {
     imageUrl;
     menus;
 
-    constructor(location: Location, router: Router, private menuService: MenuService, private logoService: LogoService, private config: AppGlobals) {
+    constructor(private location: Location,
+                private router: Router,
+                private menuService: MenuService,
+                private logoService: LogoService,
+                private config: AppGlobals
+    ) {
         this.imageUrl = config.imageUrl + '/medias/';
         // console.log(this.imageUrl)
         router.events.subscribe((val) => {
@@ -55,7 +60,7 @@ export class SidebarComponent implements OnInit {
             this.menus = data.filter(m => {
                 return m.isActive;
             });
-        })
+        });
     }
 
 

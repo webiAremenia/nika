@@ -1,15 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {WindowSize} from '../../../../_models/WindowSize';
+import {ActionsService} from '../../../../_services/actions.service';
 
 @Component({
-  selector: 'app-our-element',
-  templateUrl: './our-element.component.html',
-  styleUrls: ['./our-element.component.scss']
+    selector: 'app-our-element',
+    templateUrl: './our-element.component.html',
+    styleUrls: ['./our-element.component.scss']
 })
-export class OurElementComponent implements OnInit {
+export class OurElementComponent implements OnInit, OnDestroy {
+    windowSubscription: Subscription;
+    windowSize: WindowSize;
 
-  constructor() { }
+    constructor(private actionsService: ActionsService) {
+        this.windowSubscription = actionsService.getWindowSize()
+            .subscribe((size: WindowSize) => this.windowSize = size );
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
+
+    ngOnDestroy() {
+        this.windowSubscription.unsubscribe();
+    }
 
 }
