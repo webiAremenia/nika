@@ -1,15 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {WorkService} from '../../../../_services/work.service';
+import {Work} from '../../../../_models/work';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'app-work',
-  templateUrl: './work.component.html',
-  styleUrls: ['./work.component.scss']
+    selector: 'app-work',
+    templateUrl: './work.component.html',
+    styleUrls: ['./work.component.scss']
 })
 export class WorkComponent implements OnInit {
 
-  constructor() { }
+    work: Work;
+    slug;
 
-  ngOnInit() {
-  }
+    constructor(
+        private workService: WorkService,
+        private activatedRoute: ActivatedRoute
+    ) {
+        this.activatedRoute.params.subscribe(params => {
+            this.slug = params.slug;
+        });
+    }
+
+    ngOnInit() {
+        if (this.workService.current) {
+            this.work = this.workService.current;
+        } else {
+            this.work = this.workService.works.filter(w => w.id === this.slug)[0];
+            this.workService.current = this.work;
+        }
+    }
 
 }
