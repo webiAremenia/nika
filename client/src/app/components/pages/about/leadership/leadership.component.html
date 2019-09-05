@@ -2,15 +2,15 @@
     <div class="leadership-content about-inner-content">
 
         <div class="heading"
-             [style.font-size]="(windowSize.width * 65) / 1920 + 'px'"
-             [style.line-height]="(windowSize.width * 88) / 1920 + 'px'"
+             [style.font-size]="(windowSize.width * 65 * windowSize.rate) / 1920 + 'px'"
+             [style.line-height]="(windowSize.width * 88 * windowSize.rate) / 1920 + 'px'"
         >
             Leadership
         </div>
 
         <div class="description"
-             [style.font-size]="(windowSize.width * 22) / 1920 + 'px'"
-             [style.line-height]="(windowSize.width * 35) / 1920 + 'px'"
+             [style.font-size]="(windowSize.width * 22 * windowSize.rate) / 1920 + 'px'"
+             [style.line-height]="(windowSize.width * 35 * windowSize.rate) / 1920 + 'px'"
         >
             We practice design, engineering and strategy in equal parts. We operate as a single unit,
             made up of small integrated teams.
@@ -20,10 +20,14 @@
             <div class="leader">
                 <div class="image"></div>
                 <div class="about">
-                    <div class="author">
+                    <div class="author"
+                         [style.font-size]="(windowSize.width * 19 * windowSize.rate) / 1920 + 'px'"
+                         [style.line-height]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'">
                         Ali Tassavor
                     </div>
-                    <div class="position">
+                    <div class="position"
+                         [style.font-size]="(windowSize.width * 16 * windowSize.rate) / 1920 + 'px'"
+                         [style.line-height]="(windowSize.width * 25* windowSize.rate) / 1920 + 'px'">
                         CEO & Director Of Technology
                     </div>
                 </div>
@@ -31,10 +35,14 @@
             <div class="leader">
                 <div class="image"></div>
                 <div class="about">
-                    <div class="author">
+                    <div class="author"
+                         [style.font-size]="(windowSize.width * 19 * windowSize.rate) / 1920 + 'px'"
+                         [style.line-height]="(windowSize.width * 25* windowSize.rate) / 1920 + 'px'">
                         Ayman Eshaghpour
                     </div>
-                    <div class="position">
+                    <div class="position"
+                         [style.font-size]="(windowSize.width * 16 * windowSize.rate) / 1920 + 'px'"
+                         [style.line-height]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'">
                         Managing Partner & Creative Director
                     </div>
                 </div>

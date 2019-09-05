@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {ContactComponent} from './components/pages/contact/contact.component';
 import {AboutComponent} from './components/pages/about/about.component';
 import {SidebarComponent} from './components/partials/sidebar/sidebar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -18,14 +17,6 @@ import {VideoBlockComponent} from './components/partials/block-types/video-block
 import {AllStoriesComponent} from './components/pages/all-stories/all-stories.component';
 import {HoverOpacityDirective} from './_directives/hover-opacity.directive';
 import {HoverRotateDirective} from './_directives/hover-rotate.directive';
-import {
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatGridListModule,
-    MatButtonModule,
-    MatInputModule,
-    MatNativeDateModule
-} from '@angular/material';
 import {VacancyComponent} from './components/pages/vacancy/vacancy.component';
 import {VacancyDescComponent} from './components/pages/vacancy/vacancy-desc/vacancy-desc.component';
 import {Hover3dRotateDirective} from './_directives/hover-3d-rotate.directive';
@@ -47,7 +38,6 @@ import {AboutModule} from './components/pages/about/about.module';
 @NgModule({
     declarations: [
         AppComponent,
-        ContactComponent,
         AboutComponent,
         SidebarComponent,
         WorkComponent,
@@ -80,12 +70,6 @@ import {AboutModule} from './components/pages/about/about.module';
         BrowserAnimationsModule,
         BrowserModule,
         AppRoutingModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatGridListModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatButtonModule,
         NgxTweetModule
     ],
     exports: [],

@@ -1,9 +1,9 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {Router, RouterEvent} from '@angular/router';
+import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {ComponentService} from './_services/component.service';
 import {FooterService} from './_services/footer.service';
-import {SliderService} from "./_services/slider.service";
+import {SliderService} from './_services/slider.service';
 import {ActionsService} from './_services/actions.service';
 
 
@@ -56,10 +56,15 @@ export class AppComponent implements OnInit {
     }
 
     @HostListener('window:resize', ['$event']) onResize(e) {
-        if (window.innerWidth > 576) {
+        if (window.innerWidth > 767) {
             const size = {
                 width: window.innerWidth > 1920 ?  1920 : window.innerWidth,
-                height: window.innerHeight
+                height: window.innerHeight,
+                rate:
+                    window.innerWidth >= 1920 ? 1 :
+                        window.innerWidth < 1520 && window.innerWidth > 1220 ? 1.20 :
+                            window.innerWidth < 1220 && window.innerWidth > 1020 ? 1.25 :
+                                window.innerWidth < 1020 && window.innerWidth > 820 ? 1.30 : 1
             };
             this.actionsService.responsiveData.next(size);
         }
