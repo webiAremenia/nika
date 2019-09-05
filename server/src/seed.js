@@ -73,7 +73,7 @@ module.exports.createLogos = (req, res) => {
 };
 
 module.exports.createMenus = (req, res) => {
-    const keys = ['about', 'careers', 'works', 'stories', 'contact'];
+    const keys = ['about', 'contact-careers', 'works', 'stories', 'contact'];
     try {
         keys.forEach(async (key, i) => {
             let menu = await Menu.findOne({key: key});

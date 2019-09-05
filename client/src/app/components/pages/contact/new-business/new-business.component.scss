@@ -1,0 +1,63 @@
+$font-regular: 'Open Sans Regular', sans-serif;
+$font-semiBold: 'Open Sans Semibold', sans-serif;
+
+.new-business-content{
+  width: 100%;
+}
+
+.new-business-description {
+  color: #000A1D;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: -0.4px;
+  font-family: $font-regular;
+}
+
+mat-hint {
+  //font-size: 20px;
+  //line-height: 32px;
+  letter-spacing: -0.4px;
+  font-family: $font-semiBold;
+}
+
+.custom-page {
+  padding: 100px 100px 0 100px;
+  @media (max-width: 1200px) and (min-width: 767px) {
+    padding: 30px 50px 0 50px;
+  }
+  @media (max-width: 768px) {
+    padding: 100px 0 20px 0;
+  }
+}
+
+
+.mat-grid-tile .mat-figure {
+  justify-content: unset !important;
+}
+
+.area textarea {
+  border: 1px solid grey;
+  width: 97.5%;
+  height: 80%;
+  resize: none;
+  padding: 10px;
+  outline: none;
+
+}
+
+.button-row {
+  width: 95%;
+}
+
+button {
+  position: absolute;
+  left: 15px;
+  width: 200px;
+  height: 40px;
+  color: #FFFFFF;
+  background-color: #000A1D;
+  font-family: $font-semiBold;
+}
+
+
+

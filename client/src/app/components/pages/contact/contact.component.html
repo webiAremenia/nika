@@ -1,81 +1,47 @@
 <div class="rightContentWrapper">
-    <div class="contact custom-page col-md-9 offset-md-3 col-12 col-sm-12">
-    <div class="row p-0">
-        <div class="contact-title-wrapper col-12 col-md-8 col-xl-4">
-            <p class="contact-title">Feeling good about working with us?</p>
-            <p class="contact-description">Please provide a brief description of your bussines and well do our best to
-                get back to you in a timely
-                manner.
-            </p>
+    <div class="contact custom-page col-12 col-lg-9 offset-lg-3">
+
+        <div class="row navigation">
+
+            <div class="col-4 section"
+                 routerLinkActive="active section-1-active"
+                 [routerLinkActiveOptions]="{exact: true}"
+                 [routerLink]="['new-business']">
+                <a
+                        [style.font-size]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"
+                >NEW BUSINESS</a>
+            </div>
+
+            <div class="col-4 section section-2" routerLinkActive="active section-2-active"
+                 [routerLink]="['speaking-opportunity']">
+                <a
+
+                        [style.font-size]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"
+                >SPEAKING OPPORTUNITY</a>
+            </div>
+
+            <div class="col-4 section section-3" routerLinkActive="active section-3-active"
+                 [routerLink]="['contact-careers']">
+                <a
+
+                        [style.font-size]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"
+                >CAREERS</a>
+            </div>
 
         </div>
-        <div class="col-12 col-xl-10">
-            <form [formGroup]="form" (ngSubmit)="submit()" class="">
 
-                <mat-grid-list cols="2" rowHeight="100px">
-                    <!--<input type="hidden" formControlName="$key">-->
-
-                    <mat-grid-tile [colspan]="1" [rowspan]="1">
-                        <mat-form-field>
-                            <input formControlName="fullName" matInput placeholder="Name">
-                            <mat-error>Name required</mat-error>
-                        </mat-form-field>
-                    </mat-grid-tile>
-
-
-                    <mat-grid-tile [colspan]="1" [rowspan]="1">
-                        <mat-form-field>
-                            <input formControlName="email" matInput placeholder="Email">
-                            <mat-error *ngIf="form.controls['email'].errors?.required">Email required</mat-error>
-                            <mat-error *ngIf="form.controls['email'].errors?.email">Invalid email.</mat-error>
-                        </mat-form-field>
-                    </mat-grid-tile>
-
-                    <mat-grid-tile [colspan]="1" [rowspan]="1">
-                        <mat-form-field>
-                            <input formControlName="date" matInput [matDatepicker]="picker" placeholder="Date">
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                        </mat-form-field>
-
-                    </mat-grid-tile>
-
-                    <mat-grid-tile [colspan]="1" [rowspan]="1">
-                        <mat-form-field>
-                            <input formControlName="eventName" matInput placeholder="EventName">
-                            <mat-error *ngIf="form.controls['eventName'].errors">Event Name required</mat-error>
-                        </mat-form-field>
-                    </mat-grid-tile>
-                </mat-grid-list>
-
-
-                <mat-grid-list cols="2" rowHeight="300px">
-                    <mat-grid-tile colspan="2">
-                        <div class="area">
-                            <label>Short brief</label>
-                            <textarea formControlName="text" rows="5" cols="100" matInput></textarea>
-                        </div>
-                    </mat-grid-tile>
-                </mat-grid-list>
-
-
-                <div class="button-row text-right">
-                    <button mat-raised-button type="submit" [disabled]="form.invalid">SUBMIT
-                        <div *ngIf="!done" class="spinner-border" role="status" style="position: absolute;right: 20px;">
-                            <span class="sr-only">Loading...</span>
-                        </div>
-                    </button>
-
-                </div>
-
-            </form>
+        <div class="row contact-content m-0">
+            <router-outlet></router-outlet>
         </div>
+
     </div>
 </div>
-</div>
+
 <div class="pt-5">
-    <app-all-blocks></app-all-blocks>
+    <!--    <app-all-blocks></app-all-blocks>-->
 </div>
+
+
 <!--<form [formGroup]="myForm" novalidate (ngSubmit)="submit()">-->
 <!--<div class="form-group.js col-6">-->
 
