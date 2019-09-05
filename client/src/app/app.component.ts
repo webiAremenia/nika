@@ -1,9 +1,9 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {Router, RouterEvent} from '@angular/router';
+import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {ComponentService} from './_services/component.service';
 import {FooterService} from './_services/footer.service';
-import {SliderService} from "./_services/slider.service";
+import {SliderService} from './_services/slider.service';
 import {ActionsService} from './_services/actions.service';
 
 
