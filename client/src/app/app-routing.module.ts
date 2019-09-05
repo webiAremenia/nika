@@ -11,7 +11,6 @@ import {CareersComponent} from './components/pages/careers/careers.component';
 const child: Routes = [];
 console.log(window.innerWidth);
 const routes: Routes = [
-    // {path: '', redirectTo: 'home', },
     {path: '', loadChildren: () => import('./components/pages/home/home.module').then(m => m.HomeModule)},
     {
         path: 'contact',

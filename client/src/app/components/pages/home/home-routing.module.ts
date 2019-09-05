@@ -10,7 +10,6 @@ const CHILDREN: Routes = [
 
 const ROUTES: Routes = [
     {path: '', component: HomeComponent, children: CHILDREN},
-    // {path: 'project/:slug', component: HomeComponent, children: CHILDREN},
 ];
 
 @NgModule({
