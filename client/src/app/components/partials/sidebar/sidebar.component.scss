@@ -19,9 +19,9 @@
   height: 80%;
 }
 
-.links-content {
-  display: none;
-}
+//.links-content {
+//  display: none;
+//}
 
 .menu-items a {
   cursor: pointer;
@@ -99,66 +99,21 @@
   }
 }
 
-.side-bar-meet-link p {
-  position: relative;
-  top: 100%;
-  transform: translateY(-100%);
+.side-bar-meet-link a, .menu-items a {
+  text-decoration: underline;
+  font: Bold 25px/45px Open Sans;
+  letter-spacing: -0.5px;
+  color: #000A1D;
 }
 
-.hamburger-line-1, .hamburger-line-2, .hamburger-line-3 {
-  position: relative;
-  width: 40px;
-  border: 3px solid black;
-  margin-top: 8px;
-  @media (max-width: 992px) and (min-width: 767px) {
-    width: 25px;
-    border: 2px solid black;
-    margin-top: 4px;
-  }
+.menu-items span{
+  //text-decoration: none;
+  font: Regular 25px/45px Open Sans;
+  letter-spacing: -0.5px;
+  color: #000A1D;
 }
 
-#toggle-icon {
-  background: #f7f7f7;
-}
 
-.hamburger-logo-toggle-img {
-  padding: 10px;
-  cursor: pointer;
-}
-
-.rotate {
-  .hamburger-line-1 {
-    transition: 200ms;
-    transform: rotate(45deg);
-    top: 14px;
-  }
-
-  .hamburger-line-3 {
-    transition: 200ms;
-    transform: rotate(-45deg);
-  }
-
-  .hamburger-line-2 {
-    display: none;
-  }
-
-  @media (max-width: 992px) and (min-width: 767px) {
-    .hamburger-line-1 {
-      transition: 200ms;
-      transform: rotate(45deg);
-      top: 8px;
-    }
-
-    .hamburger-line-3 {
-      transition: 200ms;
-      transform: rotate(-45deg);
-    }
-
-    .hamburger-line-2 {
-      display: none;
-    }
-  }
-}
 
 //=============== mobile content ========================
 
@@ -191,6 +146,61 @@
 
   .hidden-menu-items a {
     color: #000;
+  }
+
+  .hamburger-line-1, .hamburger-line-2, .hamburger-line-3 {
+    position: relative;
+    width: 40px;
+    border: 3px solid black;
+    margin-top: 8px;
+    @media (max-width: 992px) and (min-width: 767px) {
+      width: 25px;
+      border: 2px solid black;
+      margin-top: 4px;
+    }
+  }
+
+  #toggle-icon {
+    background: #f7f7f7;
+  }
+
+  .hamburger-logo-toggle-img {
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .rotate {
+    .hamburger-line-1 {
+      transition: 200ms;
+      transform: rotate(45deg);
+      top: 14px;
+    }
+
+    .hamburger-line-3 {
+      transition: 200ms;
+      transform: rotate(-45deg);
+    }
+
+    .hamburger-line-2 {
+      display: none;
+    }
+
+    @media (max-width: 992px) and (min-width: 767px) {
+      .hamburger-line-1 {
+        transition: 200ms;
+        transform: rotate(45deg);
+        top: 8px;
+      }
+
+      .hamburger-line-3 {
+        transition: 200ms;
+        transform: rotate(-45deg);
+      }
+
+      .hamburger-line-2 {
+        display: none;
+      }
+    }
   }
 
   .hamburger-logo-toggle-img {
