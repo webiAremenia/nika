@@ -56,10 +56,15 @@ export class AppComponent implements OnInit {
     }
 
     @HostListener('window:resize', ['$event']) onResize(e) {
-        if (window.innerWidth > 576) {
+        if (window.innerWidth > 767) {
             const size = {
                 width: window.innerWidth > 1920 ?  1920 : window.innerWidth,
-                height: window.innerHeight
+                height: window.innerHeight,
+                rate:
+                    window.innerWidth > 1920 ? 1 :
+                        window.innerWidth < 1920 && window.innerWidth > 1220 ? 1.20 :
+                            window.innerWidth < 1220 && window.innerWidth > 1020 ? 1.25 :
+                                window.innerWidth < 1020 && window.innerWidth > 820 ? 1.30 : 1.32
             };
             this.actionsService.responsiveData.next(size);
         }

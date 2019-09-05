@@ -54,18 +54,17 @@ ul:hover {
     .list {
       .list-title {
         text-align: left;
-        font-size: 36px;
-        line-height: 30px;
+        //font-size: 36px;
+        //line-height: 30px;
         font-family: $font-extraBold;
         letter-spacing: -0.72px;
-        opacity: 1;
         padding: 55px 15px;
       }
 
       .list-description {
         text-align: left;
-        font-size: 22px;
-        line-height: 35px;
+        //font-size: 22px;
+        //line-height: 35px;
         letter-spacing: 0;
         font-family: $font-semiBold;
         color: #FFFFFF;
@@ -79,7 +78,7 @@ ul:hover {
 
 // // // MEDIA // // //
 
-@media (max-width: 576px) {
+@media (max-width: 767px) {
   .heading {
     font-size: 26px!important;
     line-height: 35px!important;

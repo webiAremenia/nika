@@ -27,7 +27,6 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
   }
 
   .partners {
-    padding: 86px;
 
     .partner {
       width: 218px;
@@ -62,7 +61,19 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
 // // // Media // // //
 
-@media (max-width: 576px) {
+@media (min-width: 1440px) {
+  .partners {
+    padding: 86px;
+  }
+}
+
+@media (min-width: 767px) and (max-width: 1440px) {
+  .partners {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 767px) {
   .clients-content-wrapper {
     .heading {
       font-size: 26px !important;
