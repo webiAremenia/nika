@@ -2,7 +2,7 @@
     <div class="home-page custom-page bg-light col-12 col-lg-9 offset-lg-3 pr-0"
          (mousewheel)="scrollFunction($event)">
 
-        <div class="accordion w-100 h-100" (mousewheel)="onMouseWheel($event)">
+        <div class="accordion w-100 h-100 d-none d-md-block" (mousewheel)="onMouseWheel($event)">
             <div class="accordion-items h-100"
                  [style.width]="accordionItemsStyles.width + 'px'"
                  [style.left]="accordionItemsStyles.left  + 'px'">
@@ -28,8 +28,7 @@
             <div class="work-outlet" #customBody [style.transform]="'translate3d(0,' + workScrollTop + 'px, 0)'">
                 <div id="wwww" class="detail-banner h-100"
                      [style.width]="clickedWidth + 'px'"
-                     [style.min-height]="bannerHeight + 'px'"
-                >
+                     [style.min-height]="bannerHeight + 'px'">
                     <img class="animated"
                          *ngIf="clickedSlide || clickedSlide == 0"
                          [style.left]="detailWrapperLeft + 'px'"
@@ -44,8 +43,8 @@
         </div>
 
 
-        <div class="go-back-btn" (click)="backToSlider()">{{ backToWorkText }}</div>
-        <div class="slider-buttons">
+        <div class="go-back-btn  d-none d-md-block" (click)="backToSlider()">{{ backToWorkText }}</div>
+        <div class="slider-buttons  d-none d-md-block">
             <div class="slider-next-btn" (click)="!clickedSlide && clickedSlide !== 0 ?
             sliderNext() : pageNext()">
                 <div class="btn-next-text">next job {{ clickedSlide }}</div>
@@ -57,8 +56,27 @@
                 <div class="slider-prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></div>
             </div>
         </div>
-    </div>
 
+
+        <div class="mobile-works row px-0 m-0 d-block d-md-none">
+            <div *ngFor="let slide of slides, let index = index"
+                 (click)="mobileNavigate(index)"
+                 class="slider-item-mobile col-12 col-sm-6 px-0">
+                <div class="slide-image">
+                    <img [style.height]="mobileXsHeight + 'px'" [src]="imageUrl + slide.images[0]">
+                </div>
+                <div class="slide-text-content">
+                    <h2>{{ slide.title }}</h2>
+                    <div class="slide-desc">
+                        <div class="desc-wrap">
+                            <p>{{ slide.description }}</p>
+                        </div>
+                    </div>
+                    <span>some text here</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!--<div class="pt-5" *ngIf="done">-->
 <!--    <app-all-blocks></app-all-blocks>-->
