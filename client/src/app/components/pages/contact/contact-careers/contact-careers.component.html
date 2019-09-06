@@ -13,61 +13,8 @@
             like to be a part of our team.
         </p>
 
-        <form [formGroup]="form" (ngSubmit)="submit()" class="">
+        <app-contact-form [type]="'careers'"></app-contact-form>
 
-            <mat-grid-list [cols]="mobileWidth > 767 ? 2 : 1" rowHeight="100px">
-
-                <!--<input type="hidden" formControlName="$key">-->
-
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                    <mat-form-field>
-                        <input id="fullName" formControlName="fullName" matInput placeholder="Name">
-                        <mat-hint
-                                [style.font-size]="(windowSize.width * 20 * windowSize.rate) / 1920 + 'px'"
-                                [style.line-height]="(windowSize.width * 32* windowSize.rate) / 1920 + 'px'">Name*
-                        </mat-hint>
-                        <mat-error>Name required</mat-error>
-                    </mat-form-field>
-                </mat-grid-tile>
-
-
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                    <mat-form-field>
-                        <input formControlName="email" matInput placeholder="Email">
-                        <mat-hint
-                                *ngIf="form.controls['email'].untouched"
-                                [style.font-size]="(windowSize.width * 20 * windowSize.rate) / 1920 + 'px'"
-                                [style.line-height]="(windowSize.width * 32* windowSize.rate) / 1920 + 'px'">Email*
-                        </mat-hint>
-                        <mat-error *ngIf="form.controls['email'].errors?.required">Email required</mat-error>
-                        <mat-error *ngIf="form.controls['email'].errors?.email">Invalid email.</mat-error>
-                    </mat-form-field>
-                </mat-grid-tile>
-            </mat-grid-list>
-
-
-            <mat-grid-list cols="2" rowHeight="300px">
-                <mat-grid-tile colspan="2">
-                    <div class="area">
-                        <textarea formControlName="text" rows="5" cols="100" matInput></textarea>
-                    </div>
-                </mat-grid-tile>
-            </mat-grid-list>
-
-
-            <div class="button-row">
-                <button mat-raised-button type="submit">
-
-                    <span *ngIf="done">SUBMIT</span>
-
-                    <span *ngIf="!done" class="spinner-border text-light" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </span>
-
-                </button>
-            </div>
-
-        </form>
     </div>
 
 </div>

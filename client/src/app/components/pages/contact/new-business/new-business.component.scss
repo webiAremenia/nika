@@ -1,10 +1,8 @@
 $font-regular: 'Open Sans Regular', sans-serif;
-$font-semiBold: 'Open Sans Semibold', sans-serif;
 
 .new-business-content {
   padding-top: 46px;
 }
-
 
 .new-business-description {
   max-width: 790px;
@@ -15,12 +13,6 @@ $font-semiBold: 'Open Sans Semibold', sans-serif;
   font-family: $font-regular;
 }
 
-mat-hint {
-  //font-size: 20px;
-  //line-height: 32px;
-  letter-spacing: -0.4px;
-  font-family: $font-semiBold;
-}
 
 .custom-page {
   padding: 100px 100px 0 100px;
@@ -33,34 +25,6 @@ mat-hint {
 }
 
 
-.mat-grid-tile .mat-figure {
-  justify-content: unset !important;
-}
-
-.area textarea {
-  border: 1px solid grey;
-  width: 97.5%;
-  height: 80%;
-  resize: none;
-  padding: 10px;
-  outline: none;
-
-}
-
-.button-row {
-  width: 95%;
-}
-
-button {
-  position: absolute;
-  left: 15px;
-  width: 200px;
-  height: 40px;
-  color: #FFFFFF;
-  background-color: #000A1D;
-  font-family: $font-semiBold;
-}
-
 // // // MEDIA // // //
 
 @media (max-width: 797px) {
@@ -68,11 +32,6 @@ button {
     font-size: 11px !important;
     line-height: 15px !important;
     letter-spacing: -0.22px !important;
-  }
-  mat-hint {
-    font-size: 12px !important;
-    line-height: 32px !important;
-    letter-spacing: -0.24px !important;
   }
 }
 
