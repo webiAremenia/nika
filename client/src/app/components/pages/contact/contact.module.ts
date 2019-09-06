@@ -6,13 +6,15 @@ import {ContactRoutingModule} from './contact-routing.module';
 import {ContactComponent} from './contact.component';
 import {MaterialModule} from '../../../_modules/material.module';
 import {SharedModule} from '../../../_modules/shared.module';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
 @NgModule({
     declarations: [
         ContactComponent,
         ContactCareersComponent,
         NewBusinessComponent,
-        SpeakingOpportunityComponent
+        SpeakingOpportunityComponent,
+        ContactFormComponent
     ],
     imports: [
         SharedModule,
