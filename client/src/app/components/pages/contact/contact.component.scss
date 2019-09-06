@@ -1,12 +1,42 @@
 $font-bold: 'Open Sans Bold', sans-serif;
+$font-extraBold: 'Open Sans Extrabold', sans-serif;
+$font-regular: 'Open Sans Regular', sans-serif;
 $border-style: 5px solid #000A1D;
+
+.navigation {
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+  }
+
+  ::ng-deep .mat-form-field-infix {
+    border-top: 1.3em solid transparent;
+  }
+
+  ::ng-deep .mat-select-value {
+    font-family: $font-bold;
+    font-size: 11px;
+    line-height: 25px;
+  }
+}
+
+.mat-form-field, form {
+  width: 100%;
+}
+
+.mobile-navigation-title {
+  display: none;
+  font-family: $font-extraBold;
+  font-size: 26px;
+  line-height: 35px;
+  letter-spacing: -1.04px;
+  padding: 23px 0;
+}
 
 .section:hover {
   cursor: pointer;
 }
 
 .navigation {
-  width: 100%;
   height: 57px;
 
   .section-1-active {
@@ -39,8 +69,40 @@ $border-style: 5px solid #000A1D;
   }
 }
 
-.contact-content {
-  padding: 46px 0 0 0;
+.navigation-mob {
+  display: none;
+  border-bottom: 5px solid #000A1D;
+
+  .section {
+    position: relative;
+    top: 5px;
+    height: 52px;
+  }
+}
+
+.mobile-navigation {
+  margin-top: 60px;
+  padding: 30px;
+  text-align: center;
+  background-color: #F7F7F7;
+
+  .col-8 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    a {
+      font-family: $font-regular;
+      font-size: 12px;
+      line-height: 25px;
+      letter-spacing: -0.24px;
+    }
+  }
+}
+
+.mobile-navigation a {
+  text-decoration: none;
+  padding: 5px;
+  color: #000A1D;
 }
 
 .active {
@@ -49,3 +111,52 @@ $border-style: 5px solid #000A1D;
   background-color: #A7F948;
 }
 
+.active-mobile {
+  border-top: 1px solid #000A1D;
+  border-bottom: 1px solid #000A1D;
+}
+
+// // // MEDIA // // //
+
+@media (min-width: 1440px) {
+  .contact {
+    padding-left: 168px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .contact {
+    padding-left: 100px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1024px) {
+  .contact {
+    padding-left: 70px;
+  }
+}
+
+@media (min-width: 992px) {
+  .mobile-navigation {
+    display: none;
+  }
+}
+
+@media (max-width: 992px) {
+  .navigation-desc {
+    display: none;
+  }
+  .mobile-navigation, .mobile-navigation-title, .navigation-mob {
+    display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  .custom-page {
+    padding-top: 100px;
+  }
+  .section a {
+    font-size: 20px;
+    line-height: 20px;
+  }
+}

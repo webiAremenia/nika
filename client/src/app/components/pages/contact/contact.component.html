@@ -1,7 +1,7 @@
 <div class="rightContentWrapper">
     <div class="contact custom-page col-12 col-lg-9 offset-lg-3">
 
-        <div class="row navigation">
+        <div class="row navigation navigation-desc">
 
             <div class="col-4 section"
                  routerLinkActive="active section-1-active"
@@ -12,7 +12,8 @@
                 >NEW BUSINESS</a>
             </div>
 
-            <div class="col-4 section section-2" routerLinkActive="active section-2-active"
+            <div class="col-4 section"
+                 routerLinkActive="active section-2-active"
                  [routerLink]="['speaking-opportunity']">
                 <a
 
@@ -20,8 +21,9 @@
                 >SPEAKING OPPORTUNITY</a>
             </div>
 
-            <div class="col-4 section section-3" routerLinkActive="active section-3-active"
-                 [routerLink]="['contact-careers']">
+            <div class="col-4 section"
+                 routerLinkActive="active section-3-active"
+                 [routerLink]="['careers']">
                 <a
 
                         [style.font-size]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"
@@ -30,16 +32,44 @@
 
         </div>
 
-        <div class="row contact-content m-0">
-            <router-outlet></router-outlet>
+        <div class="mobile-navigation-title">
+            Contact
+        </div>
+
+        <div class="row navigation navigation-mob m-0">
+            <div class="col-6 offset-3 section active section-2-active">
+                <form [formGroup]="locationGroup">
+                    <mat-form-field>
+                        <mat-select formControlName="select">
+                            <mat-option value="NEW BUSINESS" [routerLink]="['new-business']">NEW BUSINESS</mat-option>
+                            <mat-option value="SPEAKING OPPORTUNITY" [routerLink]="['speaking-opportunity']">SPEAKING OPPORTUNITY</mat-option>
+                            <mat-option value="CAREERS" [routerLink]="['careers']">CAREERS</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </form>
+            </div>
+        </div>
+        
+        <router-outlet></router-outlet>
+
+        <div class="row mobile-navigation">
+            <div class="col-8 offset-2" routerLinkActive="active-mobile">
+                <a [routerLink]="['new-business']">New Business</a>
+            </div>
+            <div class="col-8 offset-2" routerLinkActive="active-mobile">
+                <a [routerLink]="['speaking-opportunity']">Speaking Opportunity</a>
+            </div>
+            <div class="col-8 offset-2" routerLinkActive="active-mobile">
+                <a [routerLink]="['careers']">Careers</a>
+            </div>
         </div>
 
     </div>
 </div>
 
-<div class="pt-5">
+<!--<div class="pt-5">-->
     <!--    <app-all-blocks></app-all-blocks>-->
-</div>
+<!--</div>-->
 
 
 <!--<form [formGroup]="myForm" novalidate (ngSubmit)="submit()">-->
