@@ -1,8 +1,12 @@
 import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AppGlobals} from '../../../app.globals';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {WorkService} from '../../../_services/work.service';
 import {Work} from '../../../_models/work';
+import {filter} from "rxjs/operators";
+
+console.log('home component');
+
 
 @Component({
     selector: 'app-home',
@@ -12,6 +16,7 @@ import {Work} from '../../../_models/work';
 export class HomeComponent implements OnInit, OnDestroy {
     @ViewChild('customBody') customBody: ElementRef;
     @ViewChild('image') image: ElementRef;
+    windowWidth = window.innerWidth;
     accordionItemsStyles = {
         left: 0,
         width: 0
@@ -38,6 +43,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     onResize() {
         this.initSlider();
         this.mobileXsHeight = window.innerWidth * 250 / 375;
+        this.windowWidth = window.innerWidth;
     }
 
     @HostListener('window:keydown', ['$event'])
@@ -62,12 +68,22 @@ export class HomeComponent implements OnInit, OnDestroy {
         private  workService: WorkService, config: AppGlobals,
         private router: Router) {
         this.imageUrl = config.imageUrl + '/portfolio/';
+        router.events.pipe(
+            filter(event => event instanceof NavigationEnd)
+        ).subscribe((event: NavigationEnd) => {
+            console.log(event.url);
+            if (event.url === '/') {
+                this.backToSlider();
+            } else {
+                this.getCurrent();
+            }
+        });
     }
 
     ngOnInit() {
         this.getParams();
         this.mobileXsHeight = window.innerWidth * 250 / 375;
-        console.log(this.mobileXsHeight);
+        // console.log(this.mobileXsHeight);
     }
 
     initCurrent(index) {
@@ -206,7 +222,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             this.workService.getWorks().subscribe(
                 d => {
                     this.slides = d;
-                    console.log('slider items ', d);
+                    // console.log('slider items ', d);
                     this.done = true;
                     this.initSlider();
                     this.getCurrent();
@@ -230,7 +246,15 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
     }
 
+    backToSliderMob() {
+        // this.backToWorkText = 'Our works';
+        this.clickedSlide = null;
+        this.router.navigate(['/']).then();
+        // document.getElementById('wwww').style.display = 'none';
+    }
+
     mobileNavigate(index) {
+        this.clickedSlide = index;
         this.navigate(index);
     }
 

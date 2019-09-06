@@ -31,9 +31,7 @@ import {NgxTweetModule} from 'ngx-tweet';
 import {TwitterBlockComponent} from './components/partials/block-types/twitter-block/twitter-block.component';
 import {GifBlockComponent} from './components/partials/block-types/gif-block/gif-block.component';
 import {SharedModule} from './_modules/shared.module';
-
 import {AboutModule} from './components/pages/about/about.module';
-
 
 @NgModule({
     declarations: [

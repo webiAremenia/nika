@@ -12,17 +12,17 @@ $(document).ready(function () {
         menuToggled = !menuToggled;
         if (!faded) {
             $('.toggle-content-text').fadeOut(10);
-            $('.links-content').fadeIn(10);
+            // $('.links-content').fadeIn(10);
             faded = !faded;
         } else {
             $('.toggle-content-text').fadeIn(10);
-            $('.links-content').fadeOut(10);
+            // $('.links-content').fadeOut(10);
             faded = !faded;
         }
         if ($(window).scrollTop() > 2) {
             $('.menu-animation').toggleClass('restore');
             $('.toggle-content-text').fadeOut(10);
-            $('.links-content').fadeIn(10);
+            // $('.links-content').fadeIn(10);
             $('.bottom-part').fadeToggle(20);
 
             if (menuToggled) {
@@ -41,7 +41,7 @@ $(document).ready(function () {
 
     $(document).on('click', '#menu-content .toggle-content a', function () {
         $('.toggle-content-text').fadeIn(10);
-        $('.links-content').fadeOut(10);
+        // $('.links-content').fadeOut(10);
         faded = !faded;
         $('#toggle-icon').removeClass('rotate');
         $(window).scrollTop(0);
@@ -50,7 +50,7 @@ $(document).ready(function () {
 
     $(document).on('click', '.menu-title', function () {
         $('.toggle-content-text').fadeIn(10);
-        $('.links-content').fadeOut(10);
+        // $('.links-content').fadeOut(10);
         $('#toggle-icon').removeClass('rotate');
         menuToggled = false;
         $(window).scrollTop(0);
@@ -77,7 +77,7 @@ $(document).ready(function () {
                     $('.side-bar-header').removeClass('menu-animation');
 
                     $('.toggle-content-text').fadeIn(10);
-                    $('.links-content').fadeOut(10);
+                    // $('.links-content').fadeOut(10);
                     // faded = faded;
                 }
 
@@ -114,14 +114,14 @@ $(document).ready(function () {
         $(this).toggleClass('rotate', '');
         $('.hidden-menu').fadeToggle(200);
     });
-    $(document).on('click', '.hidden-menu-items', function () {
+    $(document).on('click', '.menu-items', function () {
         $('#mobile-toggle-icon').removeClass('rotate');
-        $('.hidden-menu').fadeOut(200);
+        $('.hidden-menu').fadeOut(0);
     });
-    $(document).on('click', '.mobile-menu-title', function () {
-        $('#mobile-toggle-icon').removeClass('rotate');
-        $('.hidden-menu').fadeOut(200);
-    });
+    // $(document).on('click', '.mobile-menu-title', function () {
+    //     $('#mobile-toggle-icon').removeClass('rotate');
+    //     $('.hidden-menu').fadeOut(200);
+    // });
 
 //    ======================== image blocks animations ==========================
 
