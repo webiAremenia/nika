@@ -4,6 +4,7 @@ import {ContactService} from '../../../../_services/contact.service';
 import {Subscription} from 'rxjs';
 import {ResponsiveData} from '../../../../_models/ResponsiveData';
 import {ActionsService} from '../../../../_services/actions.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-new-business',
@@ -12,7 +13,9 @@ import {ActionsService} from '../../../../_services/actions.service';
 })
 export class NewBusinessComponent implements OnInit, OnDestroy {
     windowSubscription: Subscription;
+    mobileWindowSubscription: Subscription;
     windowSize: ResponsiveData;
+    mobileWidth: number;
 
     form: FormGroup;
     done = true;
@@ -20,16 +23,10 @@ export class NewBusinessComponent implements OnInit, OnDestroy {
     // fullNamePattern = '^[a-zA-Z0-9 ]{5,15}';
     fullNamePattern = '^([^<>&:"]*[^<>&:"\\s][^<>&:"]*|.{0})$';
 
-    constructor(private contactService: ContactService, private actionsService: ActionsService) {
-        this.form = new FormGroup({
-            fullName: new FormControl('', [Validators.required, Validators.pattern(this.fullNamePattern)]),
-            email: new FormControl('', [Validators.email, Validators.required, Validators.pattern(this.emailPattern)]),
-            phone: new FormControl(''),
-            companyName: new FormControl('', [Validators.required, Validators.minLength(5)]),
-            text: new FormControl('')
-        });
-        this.windowSubscription = actionsService.getWindowSize()
-            .subscribe((size: ResponsiveData) => this.windowSize = size);
+    constructor(private contactService: ContactService, private actionsService: ActionsService, private route: ActivatedRoute) {
+        actionsService.contactLocationSubject.next(route.snapshot.routeConfig.path.toUpperCase().replace('-', ' '));
+        this.initForm();
+        this.initSubscriptions();
     }
 
     ngOnInit() {
@@ -54,6 +51,25 @@ export class NewBusinessComponent implements OnInit, OnDestroy {
                 }
             })
             .catch(e => console.log(e));
+    }
+
+    // // // INIT DATA // // //
+
+    initForm() {
+        this.form = new FormGroup({
+            fullName: new FormControl('', [Validators.required, Validators.pattern(this.fullNamePattern)]),
+            email: new FormControl('', [Validators.email, Validators.required, Validators.pattern(this.emailPattern)]),
+            phone: new FormControl(''),
+            companyName: new FormControl('', [Validators.required, Validators.minLength(5)]),
+            text: new FormControl('')
+        });
+    }
+
+    initSubscriptions() {
+        this.windowSubscription = this.actionsService.getWindowSize()
+            .subscribe((size: ResponsiveData) => this.windowSize = size);
+        this.mobileWindowSubscription = this.actionsService.getMobileWindowSize()
+            .subscribe(width => this.mobileWidth = width);
     }
 
 }
