@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {WorkService} from '../../../../_services/work.service';
 import {Work} from '../../../../_models/work';
 import {ActivatedRoute} from '@angular/router';
@@ -8,7 +8,7 @@ import {ActivatedRoute} from '@angular/router';
     templateUrl: './work.component.html',
     styleUrls: ['./work.component.scss']
 })
-export class WorkComponent implements OnInit {
+export class WorkComponent implements OnInit, OnDestroy {
 
     work: Work;
     slug;
@@ -33,5 +33,8 @@ export class WorkComponent implements OnInit {
             this.work = this.workService.works.filter(w => w.id === this.slug)[0];
             this.workService.current = this.work;
         }
+    }
+    ngOnDestroy(): void {
+        // console.log('work destroy');
     }
 }

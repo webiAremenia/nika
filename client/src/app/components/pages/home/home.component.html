@@ -58,24 +58,32 @@
         </div>
 
 
-        <div class="mobile-works row px-0 m-0 d-block d-md-none">
-            <div *ngFor="let slide of slides, let index = index"
-                 (click)="mobileNavigate(index)"
-                 class="slider-item-mobile col-12 col-sm-6 px-0">
-                <div class="slide-image">
-                    <img [style.height]="mobileXsHeight + 'px'" [src]="imageUrl + slide.images[0]">
-                </div>
-                <div class="slide-text-content">
-                    <h2>{{ slide.title }}</h2>
-                    <div class="slide-desc">
-                        <div class="desc-wrap">
-                            <p>{{ slide.description }}</p>
-                        </div>
+        <div class="mobile-works" *ngIf="windowWidth < 767">
+            <div class=" row px-0 m-0">
+                <div *ngFor="let slide of slides, let index = index"
+                     (click)="mobileNavigate(index)"
+                     class="slider-item-mobile col-12 col-sm-6 px-0">
+                    <div class="slide-image">
+                        <img [style.height]="mobileXsHeight + 'px'" [src]="imageUrl + slide.images[0]">
                     </div>
-                    <span>some text here</span>
+                    <div class="slide-text-content">
+                        <h2>{{ slide.title }}</h2>
+                        <div class="slide-desc">
+                            <div class="desc-wrap">
+                                <p>{{ slide.description }}</p>
+                            </div>
+                        </div>
+                        <span>some text here</span>
+                    </div>
                 </div>
             </div>
+            <div class="mobile-router" [style.height]="clickedSlide  || clickedSlide == 0 ? '100vh' : '0'"
+                 [style.width]="clickedSlide || clickedSlide == 0 ? '100vw' : '0'">
+                <div class="go-back-btn-mobile" (click)="backToSliderMob()">Back to works</div>
+                <router-outlet></router-outlet>
+            </div>
         </div>
+
     </div>
 </div>
 <!--<div class="pt-5" *ngIf="done">-->
