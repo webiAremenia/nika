@@ -1,5 +1,5 @@
 const nodeMailer = require('nodemailer');
-import smtpTransport from  'nodemailer-smtp-transport';
+import smtpTransport from 'nodemailer-smtp-transport';
 
 
 module.exports = {
@@ -12,14 +12,30 @@ module.exports = {
                 pass: 'Nikalabs12'
             }
         }));
-        let content = `Event ${req.body.eventName} date ${req.body.date}`;
-        let html = '';
+
+        let subject;
+        let content;
+        let html;
+        if (req.body.type === 'newBusiness') {
+            subject = `NIKA contact form New business`;
+            content = `Company name : ${req.body.companyName},  phone number : ${req.body.phone}`;
+            html = `${content}<br><br><b>${req.body.text}</b>`;
+        } else if (req.body.type === 'opportunity') {
+            subject = `NIKA contact form Speaking Opportunity`;
+            content = `Company name : ${req.body.companyName},  phone number : ${req.body.phone}`;
+            html = `${content}<br><br><b>${req.body.text}</b>`;
+        } else if (req.body.type === 'careers'){
+            subject = `NIKA contact form Careers`;
+            content = `Message from careers form`;
+            html = `${content}<br><br><b>${req.body.text}</b>`;
+        } else {
+            return res.status(200).json({success: false, message: 'Type required !!!'});
+        }
         let mailOptions = {
             from: `${req.body.fullName} ${req.body.email}`,
             to: 'hayrapet2013@gmail.com',
-            subject: 'NIKA contact form',
-
-            html: `${content}<br><br><b>${req.body.text}</b>`
+            subject: subject,
+            html: html
         };
 
         transporter.sendMail(mailOptions, (error, info) => {
