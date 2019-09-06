@@ -11,8 +11,8 @@ const routes: Routes = [
             {path: '', redirectTo: 'new-business', pathMatch: 'full'},
             {path: 'new-business', component: NewBusinessComponent},
             {path: 'speaking-opportunity', component: SpeakingOpportunityComponent},
-            {path: 'contact-careers', component: ContactCareersComponent},
-            {path: '**', redirectTo: ''}
+            {path: 'careers', component: ContactCareersComponent},
+            {path: '**', redirectTo: 'new-business', pathMatch: 'full'}
         ]
     }
 ];
