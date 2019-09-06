@@ -5,8 +5,6 @@ import {WorkService} from '../../../_services/work.service';
 import {Work} from '../../../_models/work';
 import {filter} from 'rxjs/operators';
 
-console.log('home component');
-
 
 @Component({
     selector: 'app-home',
@@ -108,7 +106,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.detailWrapperHeight = window.innerHeight - 100;
         this.detailWrapperLeft = (this.lastIndex + this.accordionItemsStyles.left / this.slideWidth) * this.slideWidth;
         this.clickedWidth = this.slideWidth;
-        this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 100}px, 0)`;
+        if (this.customBody) {
+            this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 100}px, 0)`;
+        }
         setTimeout(() => {
             this.backToWorkText = 'Our works';
             this.clickedSlide = null;
@@ -212,14 +212,14 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (this.workService.works) {
             this.slides = this.workService.works;
             this.done = true;
-            console.log('get params if');
+            // console.log('get params if');
             this.initSlider();
             this.getCurrent();
         } else {
             this.workService.getWorks().subscribe(
                 d => {
                     this.slides = d;
-                    console.log('slider items ', d);
+                    // console.log('slider items ', d);
                     this.done = true;
                     this.initSlider();
                     this.getCurrent();
@@ -241,9 +241,9 @@ export class HomeComponent implements OnInit, OnDestroy {
                 }
             });
         } else {
-            console.log(location.pathname);
+            // console.log(location.pathname);
             if (location.pathname === '/') {
-                console.log('if');
+                // console.log('if');
                 this.backToSlider();
             }
         }
@@ -262,6 +262,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        console.log('destroy');
+        // console.log('destroy');
     }
 }
