@@ -3,7 +3,7 @@ import {AppGlobals} from '../../../app.globals';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {WorkService} from '../../../_services/work.service';
 import {Work} from '../../../_models/work';
-import {filter} from "rxjs/operators";
+import {filter} from 'rxjs/operators';
 
 console.log('home component');
 
@@ -68,22 +68,17 @@ export class HomeComponent implements OnInit, OnDestroy {
         private  workService: WorkService, config: AppGlobals,
         private router: Router) {
         this.imageUrl = config.imageUrl + '/portfolio/';
-        router.events.pipe(
-            filter(event => event instanceof NavigationEnd)
-        ).subscribe((event: NavigationEnd) => {
-            console.log(event.url);
-            if (event.url === '/') {
-                this.backToSlider();
-            } else {
-                this.getCurrent();
-            }
-        });
     }
 
     ngOnInit() {
         this.getParams();
         this.mobileXsHeight = window.innerWidth * 250 / 375;
-        // console.log(this.mobileXsHeight);
+        this.router.events.pipe(
+            filter(event => event instanceof NavigationEnd)
+        ).subscribe((event: NavigationEnd) => {
+            // console.log(event);
+            this.getParams();
+        });
     }
 
     initCurrent(index) {
@@ -217,12 +212,14 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (this.workService.works) {
             this.slides = this.workService.works;
             this.done = true;
+            console.log('get params if');
             this.initSlider();
+            this.getCurrent();
         } else {
             this.workService.getWorks().subscribe(
                 d => {
                     this.slides = d;
-                    // console.log('slider items ', d);
+                    console.log('slider items ', d);
                     this.done = true;
                     this.initSlider();
                     this.getCurrent();
@@ -243,6 +240,12 @@ export class HomeComponent implements OnInit, OnDestroy {
                     }, 200);
                 }
             });
+        } else {
+            console.log(location.pathname);
+            if (location.pathname === '/') {
+                console.log('if');
+                this.backToSlider();
+            }
         }
     }
 
