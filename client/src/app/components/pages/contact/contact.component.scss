@@ -70,6 +70,7 @@ $border-style: 5px solid #000A1D;
 }
 
 .navigation-mob {
+  display: none;
   border-bottom: 5px solid #000A1D;
 
   .section {
@@ -145,7 +146,7 @@ $border-style: 5px solid #000A1D;
   .navigation-desc {
     display: none;
   }
-  .mobile-navigation, .mobile-navigation-title {
+  .mobile-navigation, .mobile-navigation-title, .navigation-mob {
     display: block;
   }
 }
