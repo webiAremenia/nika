@@ -323,14 +323,14 @@
                                                     <video width="320" height="240" controls
                                                     >
                                                         <source
-                                                            [src]="'http://localhost:3000/uploads/work/' + detail['value']['videoURL']"
+                                                            [src]="videoUrl + 'work/' + detail['value']['videoURL']"
                                                         >
                                                     </video>
                                                 </div>
                                                 <ng-template #currentVideo>
                                                     <video width="320" height="240" controls>
                                                         <source
-                                                            [src]="'http://localhost:3000/uploads/work/' + detail['value']['videoURL']"
+                                                            [src]="videoUrl + 'work/' + detail['value']['videoURL']"
                                                         >
                                                     </video>
                                                 </ng-template>
