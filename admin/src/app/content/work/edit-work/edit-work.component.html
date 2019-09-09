@@ -1,0 +1,382 @@
+<div class="row" style="padding-bottom: 100px;">
+    <div class="col-md-10 offset-1">
+        <h2 class="text-center" translate>Create</h2>
+        <form [formGroup]="form">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-4">
+                        <input type="file" id="imgg" (change)="onFileChange($event)">
+                        <label for="imgg">choose a file</label>
+                    </div>
+                    <div class="col-4">
+                        <img [src]="form['value']['imgURL']" class="img-fluid ">
+                    </div>
+                </div>
+                <p *ngIf="form.get('imgURL').invalid && form.get('imgURL').touched" class="invalid">Type
+                    true
+                    Img</p>
+
+            </div>
+
+            <div class="form-group">
+                <label translate>slug</label>
+                <input type="text" placeholder="Slug" class="form-control" formControlName="slug"
+                       (keyup)="filterSlug($event)">
+                <!--                <p *ngIf="slugForm.get('slug').invalid && slugForm.get('slug').touched" class="invalid">Type true Slug</p>-->
+                <!--                <p *ngIf="inValidSlug" class="invalid">Type true Slug</p>-->
+            </div>
+
+
+            <br>
+            <div class="form-group">
+                <label translate>Title</label>
+                <input type="text" placeholder="title" class="form-control" formControlName="title">
+
+                <!--                <p *ngIf="portfolioForm.get('enTitle').invalid && portfolioForm.get('enTitle').touched" class="invalid">Type en-->
+                <!--                    Title</p>-->
+            </div>
+
+            <div class="form-group">
+                <label translate>Description</label>
+                <textarea class="form-control" placeholder="description" rows="3"
+                          formControlName="description"></textarea>
+                <!--                <p *ngIf="portfolioForm.get('enHover').invalid && portfolioForm.get('enHover').touched" class="invalid">Type en-->
+                <!--                    Short Description</p>-->
+            </div>
+
+
+            <h3 class="text-center">Service details</h3>
+
+            <div class="add">
+                <button class="btn btn-success" (click)="addTools()">Add</button>
+                <div class="details" [ngStyle]="{'display':detailsView ? 'block' : 'none' }">
+
+                    <div class="detailItem">
+                        <button class="btn button" (click)="addTool('text')">Text</button>
+                    </div>
+                    <div class="detailItem">
+                        <button class="btn button" (click)="addTool('img')">Image</button>
+                    </div>
+                    <div class="detailItem">
+                        <button class="btn button" (click)="addTool('imageWithImage')">ImageWithImage</button>
+                    </div>
+                    <div class="detailItem">
+                        <button class="btn button" (click)="addTool('slider')">Slider</button>
+                    </div>
+                    <div class="detailItem">
+                        <button class="btn button" (click)="addTool('video')">Video</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div formArrayName="details" *ngFor="let detail of form.get('details')['controls']; let i = index">
+                <div class="row">
+                    <div class="col-12 border pb-3">
+                        <div [formGroupName]="i">
+
+                            <div *ngIf="detail['value']['type'] === 'text'" class="text-component">
+                                <div class="row tools">
+                                    <div class="col-12">
+                                        <h3>Text</h3>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <label for="author">Author</label>
+                                                <div class="ml-2">
+                                                    <input type="checkbox" id="author" formControlName="author">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-2">
+                                                <label for="border">Border</label>
+                                                <div class="ml-2">
+                                                    <input type="checkbox" id="border" formControlName="border">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-2 text-right">
+                                        <!--                                        <button class="btn btn-danger ml-1" (click)="removeFormEl(i)"><i-->
+                                        <!--                                            class="fas fa-times"></i></button>-->
+                                        <i nz-icon type="delete" theme="outline" class="_btn_delete"
+                                           (click)="removeFormEl(i)"></i>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label translate>Title</label>
+                                            <input type="text" placeholder="en" class="form-control"
+                                                   formControlName="title">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label translate>Description</label>
+                                            <textarea class="form-control" placeholder="en" rows="3"
+                                                      formControlName="description"
+                                            ></textarea>
+                                            <!--                <p *ngIf="portfolioForm.get('enHover').invalid && portfolioForm.get('enHover').touched" class="invalid">Type en-->
+                                            <!--                    Short Description</p>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                                language-->
+                                <div class="row " [ngClass]="detail['value']['border']? 'text_border': ''">
+                                    <div class="col-12">
+                                        <h2 class="text-center">{{detail['value']['title']}}</h2>
+                                    </div>
+                                    <div class="col-12">
+                                        <!--                                        <p [style.textAlign]="detail['value']['border']">{{detail['value']['description']}}</p>-->
+                                        <p [ngClass]="{'text-center': detail['value']['author'],'text-left': !detail['value']['author']}">{{detail['value']['description']}}</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--                                        [ngClass]="{'pull-left': detail['value']['imagePosition'] === 'left','pull-right': detail['value']['imagePosition'] === 'right'}">-->
+
+                            <div *ngIf="detail['value']['type'] === 'img'" class="text-component">
+                                <div class="row tools">
+                                    <div class="col-12">
+                                        <h3>Image</h3>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="row">
+                                            <div class="ml-2">
+                                                <input type="file" [id]="'file_' + i"
+                                                       (change)="image($event,i)">
+                                                <label [for]="'file_' + i">choose a file</label>
+                                            </div>
+
+                                            <div class="ml-2">
+                                                <select name="" class="form-control" formControlName="imageHeight">
+                                                    <option [value]="height" *ngFor="let height of imageHeights">
+                                                        {{height}}vh
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                            <div class="ml-2">
+                                                <select name="" class="form-control" formControlName="alignment">
+                                                    <option [value]="alignment" *ngFor="let alignment of alignments">
+                                                        {{alignment}}</option>
+                                                </select>
+                                            </div>
+
+
+                                            <div class="ml-2">
+                                                <select name=""
+                                                        class="form-control" formControlName="verticalAlignment">
+                                                    <option [value]="vAlignment"
+                                                            *ngFor="let vAlignment of verticalAlignments">
+                                                        {{vAlignment}}</option>
+                                                </select>
+                                            </div>
+
+
+                                            <div class="ml-2">
+                                                <select name="" class="form-control" formControlName="objectFit">
+                                                    <option [value]="objF"
+                                                            *ngFor="let objF of objectFits">
+                                                        {{objF}}</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-2 text-right">
+                                        <i nz-icon type="delete" theme="outline" class="_btn_delete"
+                                           (click)="removeFormEl(i)"></i>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div [ngStyle]="{'height':detail['value']['imageHeight'] + 'vh'}"
+                                         class="col-10 offset-1">
+                                        <div class="form-group h-100">
+                                            <img *ngIf="detail['value']['imgURL']; else img"
+                                                 [src]="detail['value']['imgURL']"
+                                                 [style.objectPosition]="detail['value']['alignment'] + ' ' + detail['value']['verticalAlignment']"
+                                                 [style.objectFit]="detail['value']['objectFit']"
+                                                 class="image">
+                                            <ng-template #img>
+                                                <img [src]="">
+                                            </ng-template>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div *ngIf="detail['value']['type'] === 'slider'" class="text-component">
+                                <div class="row tools">
+                                    <div class="col-12">
+                                        <h3>Slider</h3>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="row">
+                                            <div class="ml-2">
+                                                <input type="file" [id]="'file_slider' + i "
+                                                       (change)="slider($event,i, detail.get('sliders')['controls']['length'])">
+                                                <label [for]="'file_slider' + i">add a file</label>
+                                            </div>
+
+                                            <div class="ml-2">
+                                                <select name="" class="form-control" formControlName="size">
+                                                    <option value="big">big</option>
+                                                    <option value="small">small</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="ml-2">
+                                                <select name="" class="form-control" formControlName="alignment">
+                                                    <option [value]="alignment" *ngFor="let alignment of alignments">
+                                                        {{alignment}}</option>
+                                                </select>
+                                            </div>
+
+
+                                            <div class="ml-2">
+                                                <select name=""
+                                                        class="form-control" formControlName="verticalAlignment">
+                                                    <option [value]="vAlignment"
+                                                            *ngFor="let vAlignment of verticalAlignments">
+                                                        {{vAlignment}}</option>
+                                                </select>
+                                            </div>
+
+
+                                            <div class="ml-2">
+                                                <select name="" class="form-control" formControlName="objectFit">
+                                                    <option [value]="objF"
+                                                            *ngFor="let objF of objectFits">
+                                                        {{objF}}</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-2 text-right">
+                                        <i nz-icon type="delete" theme="outline" class="_btn_delete"
+                                           (click)="removeFormEl(i)"></i>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div [ngStyle]="{'height':detail['value']['imageHeight'] + 'vh'}">
+                                        <div class="row">
+                                            <div formArrayName="sliders" class="col-3"
+                                                 *ngFor="let image of form.get('details')['controls'][i]['controls'].sliders['controls']; let index = index">
+                                                <div [formGroupName]="index" class="pt-3">
+                                                    <i nz-icon nzType="close" nzTheme="outline" class="delete_icon" (click)="removeSliderImage(i,index)"></i>
+
+                                                    <img *ngIf="detail['value']['sliders'][index]['imgURL']; else img"
+                                                         [src]="detail['value']['sliders'][index]['imgURL']"
+                                                         (click)="changeImg(i,index)"
+                                                         class="slider">
+                                                    <ng-template #img>
+                                                        <img [src]="">
+                                                    </ng-template>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div *ngIf="detail['value']['type'] === 'video'" class="text-component">
+                                <div class="row tools">
+                                    <div class="col-12">
+                                        <h3>Image</h3>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="row">
+                                            <div class="ml-2">
+                                                <input type="file" [id]="'video' + i"
+                                                       (change)="video($event,i)">
+                                                <label [for]="'video' + i">choose a file</label>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-2 text-right">
+                                        <i nz-icon type="delete" theme="outline" class="_btn_delete"
+                                           (click)="removeVideo(i)"></i>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div
+                                        class="col-10 offset-1">
+                                        <div class="form-group h-100">
+
+                                            <div *ngIf="detail['value']['videoURL']">
+                                                <div *ngIf="videoPath === 'video'+ i; else currentVideo">
+                                                    <video width="320" height="240" controls
+                                                    >
+                                                        <source
+                                                            [src]="'http://localhost:3000/uploads/work/' + detail['value']['videoURL']"
+                                                        >
+                                                    </video>
+                                                </div>
+                                                <ng-template #currentVideo>
+                                                    <video width="320" height="240" controls>
+                                                        <source
+                                                            [src]="'http://localhost:3000/uploads/work/' + detail['value']['videoURL']"
+                                                        >
+                                                    </video>
+                                                </ng-template>
+                                            </div>
+
+
+<!--                                            <div *ngIf="videoPath else currentVideo">-->
+<!--                                                <video width="320" height="240" controls-->
+<!--                                                >-->
+<!--                                                    <source-->
+<!--                                                        [src]="'http://localhost:3000/uploads/work/' + detail['value']['videoURL']"-->
+<!--                                                    >-->
+<!--                                                </video>-->
+<!--                                            </div>-->
+<!--                                            <ng-template #currentVideo>-->
+<!--                                                <video width="320" height="240" controls>-->
+<!--                                                    <source-->
+<!--                                                        [src]="'http://localhost:3000/uploads/work/' + detail['value']['videoURL']"-->
+<!--                                                    >-->
+<!--                                                </video>-->
+<!--                                            </ng-template>-->
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <button type="button" class="btn btn-info" (click)="myWork()"
+                    [disabled]="!form.valid || inValidSlug" translate>
+                Create<i
+                class="fa fa-check"></i></button>
+        </form>
+    </div>
+
+</div>
+
+

@@ -1,0 +1,18 @@
+._btn_edit {
+    cursor: pointer;
+    color:forestgreen;
+    transition: 0.2s all;
+}
+._btn_edit:hover {
+    transform: scale(1.2);
+    color:green;
+}
+._btn_delete {
+    cursor: pointer;
+    color:darkred;
+    transition: 0.2s all;
+}
+._btn_delete:hover {
+    transform: scale(1.2);
+    color:red;
+}

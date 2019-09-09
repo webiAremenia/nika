@@ -14,6 +14,7 @@ const auth = require('./auth'),
     block = require('./block'),
     medias = require('./media'),
     group = require('./group'),
+    work = require('./work'),
     profile = require('./profile');
 
 router.use('/post', posts);
@@ -29,5 +30,6 @@ router.use('/menu', menu);
 router.use('/portfolio', portfolio);
 router.use('/group', group);
 router.use('/profile', profile);
+router.use('/work', work);
 
 module.exports = router;
