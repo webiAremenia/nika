@@ -154,21 +154,6 @@ export class EditWorkComponent implements OnInit, OnDestroy {
         return [];
     }
 
-
-    handleChange(file): void {
-        console.log(file);
-        // const status = file.status;
-        // if (status !== 'uploading') {
-        //     console.log(file, fileList);
-        // }
-        // if (status === 'done') {
-        //     this.msg.success(`${file.name} file uploaded successfully.`);
-        // } else if (status === 'error') {
-        //     this.msg.error(`${file.name} file upload failed.`);
-        // }
-    }
-
-
     onFileChange(event) {
         if (event.target.files.length > 0) {
             const file = event.target.files[0];
@@ -233,7 +218,6 @@ export class EditWorkComponent implements OnInit, OnDestroy {
                     form.append('video', file);
                     this.workService.addVideo(form).subscribe(data => {
                         this.form.get('details')['controls'][i].get('videoURL').setValue(data['video']);
-                        console.log(this.form.value);
                     }, e => {
                         console.log(e);
                     });
@@ -272,7 +256,6 @@ export class EditWorkComponent implements OnInit, OnDestroy {
                     form.append('video', file);
                     this.workService.addVideo(form).subscribe(data => {
                         this.form.get('details')['controls'][i].get('videoURL').setValue(data['video']);
-                        console.log(this.form.value);
                     }, e => {
                         console.log(e);
                     });
