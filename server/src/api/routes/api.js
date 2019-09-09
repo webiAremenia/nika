@@ -11,7 +11,9 @@ const posts = require('./post'),
     menu = require('./menu'),
     settings = require('./settings'),
     group = require('./group'),
+    work = require('./work'),
     page = require('./page');
+
 
 router.use('/post', posts);
 router.use('/slider', sliders);
@@ -23,5 +25,6 @@ router.use('/page', page);
 router.use('/menu', menu);
 router.use('/settings', settings);
 router.use('/group', group);
+router.use('/work', work);
 
 module.exports = router;

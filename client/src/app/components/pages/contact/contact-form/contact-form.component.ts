@@ -54,17 +54,18 @@ export class ContactFormComponent implements OnInit {
     }
 
     onCountryChange(e) {
+        this.form.reset();
         this.currentCountryPhone = parseInt(e.dialCode, 10);
     }
 
     submit() {
-        console.log(this.form.value);
-        return null;
+        this.form.value['phone'] =  '+' + this.currentCountryPhone + this.form.value['phone'];
         this.done = true;
         this.contactService.sendMail(this.form).toPromise()
             .then(d => {
+                console.log(d);
                 if (d.success) {
-                    this.done = true;
+                    this.done = false;
                     this.form.reset();
                     for (const key in this.form.controls) {
                         if (this.form.controls.hasOwnProperty(key)) {
