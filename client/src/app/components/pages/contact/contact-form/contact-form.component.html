@@ -10,7 +10,8 @@
                         [style.font-size]="(windowSize.width * 20 * windowSize.rate) / 1920 + 'px'"
                         [style.line-height]="(windowSize.width * 32* windowSize.rate) / 1920 + 'px'">Name*
                 </mat-hint>
-                <mat-error>Name required</mat-error>
+                <mat-error *ngIf="form.controls['fullName'].errors?.required">Name required</mat-error>
+                <mat-error *ngIf="form.controls['fullName'].errors?.pattern">Not valid name</mat-error>
             </mat-form-field>
         </mat-grid-tile>
 
@@ -23,39 +24,52 @@
                         [style.line-height]="(windowSize.width * 32* windowSize.rate) / 1920 + 'px'">Email*
                 </mat-hint>
                 <mat-error *ngIf="form.controls['email'].errors?.required">Email required</mat-error>
-                <mat-error *ngIf="form.controls['email'].errors?.email">Invalid email.</mat-error>
+                <mat-error *ngIf="form.controls['email'].errors?.pattern">Invalid email.</mat-error>
             </mat-form-field>
         </mat-grid-tile>
 
-        <mat-grid-tile [colspan]="1" [rowspan]="1" *ngIf="type !== 'careers'">
+<!--        <mat-grid-tile [colspan]="1" [rowspan]="1" *ngIf="type !== 'careers'">-->
+<!--            <mat-form-field>-->
+<!--                <input formControlName="phone" type="number" matInput placeholder="Phone">-->
+<!--                <mat-hint-->
+<!--                        [style.font-size]="(windowSize.width * 20 * windowSize.rate) / 1920 + 'px'"-->
+<!--                        [style.line-height]="(windowSize.width * 32* windowSize.rate) / 1920 + 'px'">Phone*-->
+<!--                </mat-hint>-->
+<!--                <mat-error *ngIf="form.controls['phone'].errors?.required">Phone required</mat-error>-->
+<!--                <mat-error *ngIf="form.controls['phone'].errors?.email">Invalid phone</mat-error>-->
+<!--            </mat-form-field>-->
+<!--        </mat-grid-tile>-->
+
+        <mat-grid-tile [colspan]="1" [rowspan]="3" *ngIf="type !== 'careers'">
             <mat-form-field>
-                <input formControlName="phone" type="number" matInput placeholder="Phone">
-                <mat-hint
-                        [style.font-size]="(windowSize.width * 20 * windowSize.rate) / 1920 + 'px'"
-                        [style.line-height]="(windowSize.width * 32* windowSize.rate) / 1920 + 'px'">Phone*
-                </mat-hint>
+                <input
+                        matInput
+                        ng2TelInput
+                        [ng2TelInputOptions]="{initialCountry: 'us'}"
+                        (countryChange)="onCountryChange($event)"
+                        formControlName="phone">
+                <span matPrefix> + {{'(' + currentCountryPhone + ')'}}&nbsp;</span>
+
                 <mat-error *ngIf="form.controls['phone'].errors?.required">Phone required</mat-error>
-                <mat-error *ngIf="form.controls['phone'].errors?.email">Invalid phone</mat-error>
+                <mat-error *ngIf="form.controls['phone'].errors?.pattern">Invalid phone number</mat-error>
             </mat-form-field>
         </mat-grid-tile>
 
-        <mat-grid-tile [colspan]="1" [rowspan]="1" *ngIf="type !== 'careers'">
+        <mat-grid-tile [colspan]="1" [rowspan]="mobileWidth > 767 ? 3 : 1" *ngIf="type !== 'careers'">
             <mat-form-field>
                 <input formControlName="companyName" matInput placeholder="Company Name">
                 <mat-hint
                         [style.font-size]="(windowSize.width * 20 * windowSize.rate) / 1920 + 'px'"
-                        [style.line-height]="(windowSize.width * 32* windowSize.rate) / 1920 + 'px'">Company
-                    Name*
+                        [style.line-height]="(windowSize.width * 32* windowSize.rate) / 1920 + 'px'">Company Name*
                 </mat-hint>
-                <mat-error *ngIf="form.controls['companyName'].errors?.required">Company Name required
-                </mat-error>
-                <mat-error *ngIf="form.controls['companyName'].errors?.email">Invalid Company Name</mat-error>
+                <mat-error *ngIf="form.controls['companyName'].errors?.required">Company Name required</mat-error>
+                <mat-error *ngIf="form.controls['companyName'].errors?.pattern">Invalid Company Name</mat-error>
             </mat-form-field>
         </mat-grid-tile>
 
     </mat-grid-list>
 
-    <mat-grid-list cols="2" rowHeight="300px">
+    <mat-grid-list cols="2" rowHeight="200px">
         <mat-grid-tile colspan="2">
             <div class="area">
                 <textarea formControlName="text" rows="5" cols="100" matInput></textarea>
@@ -67,9 +81,9 @@
     <div class="button-row">
         <button mat-raised-button type="submit">
 
-            <span *ngIf="done">SUBMIT</span>
+            <span *ngIf="!done">SUBMIT</span>
 
-            <span *ngIf="!done" class="spinner-border text-light" role="status">
+            <span *ngIf="done" class="spinner-border text-light" role="status">
                 <span class="sr-only">Loading...</span>
             </span>
 

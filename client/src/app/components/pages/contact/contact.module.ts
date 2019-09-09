@@ -8,6 +8,9 @@ import {MaterialModule} from '../../../_modules/material.module';
 import {SharedModule} from '../../../_modules/shared.module';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 
+import {Ng2TelInputModule} from 'ng2-tel-input';
+
+
 @NgModule({
     declarations: [
         ContactComponent,
@@ -19,7 +22,8 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
     imports: [
         SharedModule,
         MaterialModule,
-        ContactRoutingModule
+        ContactRoutingModule,
+        Ng2TelInputModule
     ]
 })
 

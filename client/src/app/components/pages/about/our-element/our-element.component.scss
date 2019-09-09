@@ -29,8 +29,13 @@ ul:hover {
 }
 
 .active {
+  transition: 350ms all;
   border-top: 1.5px solid lime !important;
   border-bottom: 1.5px solid lime !important;
+
+  .list-description {
+    display: block !important;
+  }
 }
 
 .our-element-content-wrapper {
@@ -62,6 +67,7 @@ ul:hover {
       }
 
       .list-description {
+        display: none;
         text-align: left;
         //font-size: 22px;
         //line-height: 35px;
@@ -80,25 +86,26 @@ ul:hover {
 
 @media (max-width: 767px) {
   .heading {
-    font-size: 26px!important;
-    line-height: 35px!important;
-    letter-spacing: -1.04px!important;
-    padding-bottom: 20px!important;
+    font-size: 26px !important;
+    line-height: 35px !important;
+    letter-spacing: -1.04px !important;
+    padding-bottom: 20px !important;
   }
 
   .list {
-    padding: 20px 0!important;
+    padding: 20px 0 !important;
+
     .list-title {
-      font-size: 16px!important;
-      line-height: 30px!important;
-      letter-spacing: -0.32px!important;
-      padding: 0!important;
+      font-size: 16px !important;
+      line-height: 30px !important;
+      letter-spacing: -0.32px !important;
+      padding: 0 !important;
     }
 
     .list-description {
-      font-size: 11px!important;
-      line-height: 15px!important;
-      padding: 0 0 0 30px!important;
+      font-size: 11px !important;
+      line-height: 15px !important;
+      padding: 0 0 0 30px !important;
     }
   }
 }

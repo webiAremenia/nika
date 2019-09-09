@@ -20,7 +20,7 @@ import {
         MatDatepickerModule,
         MatNativeDateModule,
         MatButtonModule,
-        MatSelectModule
+        MatSelectModule,
     ]
 })
 export class MaterialModule {

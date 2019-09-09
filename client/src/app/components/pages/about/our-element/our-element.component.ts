@@ -11,15 +11,18 @@ import {ActionsService} from '../../../../_services/actions.service';
 export class OurElementComponent implements OnInit, OnDestroy {
     windowSubscription: Subscription;
     windowSize: ResponsiveData;
-    list: NodeListOf<HTMLUListElement>;
+    list;
 
     constructor(private actionsService: ActionsService) {
         this.windowSubscription = actionsService.getWindowSize()
-            .subscribe((size: ResponsiveData) => this.windowSize = size );
+            .subscribe((size: ResponsiveData) => this.windowSize = size);
     }
 
     ngOnInit() {
         this.list = document.querySelectorAll('ul');
+        this.list.forEach((list) => {
+            list.childNodes[1].display = 'none';
+        });
     }
 
     ngOnDestroy() {
@@ -30,8 +33,8 @@ export class OurElementComponent implements OnInit, OnDestroy {
         if (e.classList.contains('active')) {
             e.classList.remove('active');
         } else {
-            this.list.forEach( list => {
-               list.classList.remove('active');
+            this.list.forEach((list) => {
+                list.classList.remove('active');
             });
             e.classList.add('active');
         }
