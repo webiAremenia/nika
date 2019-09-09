@@ -1,0 +1,35 @@
+$font-regular: 'Open Sans Regular', sans-serif;
+
+.speaking-content {
+  padding-top: 46px;
+}
+
+.speaking-description {
+  max-width: 790px;
+  color: #000A1D;
+  //font-size: 20px;
+  //line-height: 30px;
+  letter-spacing: -0.4px;
+  font-family: $font-regular;
+}
+
+.custom-page {
+  padding: 100px 100px 0 100px;
+  @media (max-width: 1200px) and (min-width: 767px) {
+    padding: 30px 50px 0 50px;
+  }
+  @media (max-width: 768px) {
+    padding: 100px 0 20px 0;
+  }
+}
+
+
+// // // MEDIA // // //
+
+@media (max-width: 797px) {
+  .speaking-description {
+    font-size: 11px !important;
+    line-height: 15px !important;
+    letter-spacing: -0.22px !important;
+  }
+}

@@ -35,11 +35,9 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
 // // // Media // // //
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .remark-content-wrapper {
     .whole-remark {
-      padding-bottom: 39px !important;
-
       .text {
         font-size: 15px !important;
         line-height: 20px !important;

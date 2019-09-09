@@ -43,21 +43,20 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
       .about {
         display: inline-block;
-        padding: 35px 25px;
         margin-top: -31px;
         width: 73%;
         background-color: #A7F948;
         color: #000A1D;
 
         .author {
-          font-size: 19px;
-          line-height: 25px;
+          //font-size: 19px;
+          //line-height: 25px;
           font-family: $font-bold;
         }
 
         .position {
-          font-size: 16px;
-          line-height: 25px;
+          //font-size: 16px;
+          //line-height: 25px;
           font-family: $font-regular;
         }
       }
@@ -67,7 +66,6 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
       padding-right: 11px;
 
       .image {
-        background-image: url('../../../../../assets/images/AboutUs/ali_reduced@2x.png');
       }
 
       .about {
@@ -80,7 +78,6 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
       padding-left: 11px;
 
       .image {
-        background-image: url('../../../../../assets/images/AboutUs/ayman_reduced@2x.png');
       }
 
       .about {
@@ -94,7 +91,25 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
 // // // Media // // //
 
-@media (max-width: 576px) {
+@media (min-width: 1440px) {
+  .about {
+    padding: 35px 25px;
+  }
+}
+
+@media (min-width: 991px) and (max-width: 1440px) {
+  .about {
+    padding: 20px 15px;
+  }
+}
+
+@media (min-width: 767px) and (max-width: 991px) {
+  .about {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 767px) {
   .leadership-content-wrapper {
 
     .heading {
@@ -115,11 +130,9 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
       .leader {
         width: 100% !important;
-        padding: 34px !important;
 
         .image {
-          background-size: contain !important;
-          height: 243px !important;
+          background-size: 100% 100% !important;
         }
 
         .about {
@@ -145,4 +158,46 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
     }
   }
 
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .leader {
+    padding: 34px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .leader {
+    padding: 0 0 32px 0 !important;
+  }
+}
+
+@media (min-width: 667px) and (max-width: 767px) {
+  .image {
+    height: 620px !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 667px) {
+  .image {
+    height: 500px !important;
+  }
+}
+
+@media (min-width: 460px) and (max-width: 576px) {
+  .image {
+    height: 380px !important;
+  }
+}
+
+@media (min-width: 350px) and (max-width: 460px) {
+  .image {
+    height: 340px !important;
+  }
+}
+
+@media (max-width: 350px) {
+  .image {
+    height: 250px !important;
+  }
 }

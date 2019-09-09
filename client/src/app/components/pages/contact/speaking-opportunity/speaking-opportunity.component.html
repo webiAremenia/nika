@@ -1,0 +1,19 @@
+<div class="speaking-content-wrapper">
+
+    <!--    <p class="contact-title">Feeling good about working with us?</p>-->
+    <!--    <p class="contact-description">Please provide a brief description of your bussines and well do our best to get back-->
+    <!--        to you in a timely manner.-->
+    <!--    </p>-->
+
+    <div class="speaking-content col-12">
+        <p class="speaking-description"
+           [style.font-size]="(windowSize.width * 20 * windowSize.rate) / 1920 + 'px'"
+           [style.line-height]="(windowSize.width * 30* windowSize.rate) / 1920 + 'px'">
+            Would you like us to speak at an event? Tell us about your event and what you want us to speak about.
+        </p>
+
+        <app-contact-form [type]="'opportunity'"></app-contact-form>
+
+    </div>
+
+</div>

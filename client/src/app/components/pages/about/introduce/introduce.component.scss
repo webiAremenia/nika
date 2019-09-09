@@ -3,7 +3,7 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
 .introduce-content {
   width: 100%;
-  background-image: url('../../../../../assets/images/AboutUs/chair-octopus@2x.png');
+
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right bottom;
@@ -34,7 +34,7 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
 // // // Media // // //
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .introduce-content {
     margin-top: 100px;
     margin-bottom: 32px;

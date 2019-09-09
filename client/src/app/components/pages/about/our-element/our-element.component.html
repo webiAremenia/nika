@@ -2,17 +2,21 @@
     <div class="our-element-content about-inner-content">
 
         <div class="heading"
-             [style.font-size]="(windowSize.width * 65) / 1920 + 'px'"
-             [style.line-height]="(windowSize.width * 80) / 1920 + 'px'"
+             [style.font-size]="(windowSize.width * 65 * windowSize.rate) / 1920 + 'px'"
+             [style.line-height]="(windowSize.width * 80 * windowSize.rate) / 1920 + 'px'"
         >
             Things we are good at
         </div>
 
         <div>
             <ul class="list active" #listElement1 (click)="openList(listElement1)">
-                <li class="list-title">01 Strategic Planning</li>
+                <li class="list-title"
+                    [style.font-size]="(windowSize.width * 36 * windowSize.rate) / 1920 + 'px'"
+                    [style.line-height]="(windowSize.width * 30 * windowSize.rate) / 1920 + 'px'">01 Strategic Planning
+                </li>
                 <li class="list-description"
-                    [style.display]="listElement1.classList.contains('active') ? 'block' : 'none'"
+                    [style.font-size]="(windowSize.width * 22 * windowSize.rate) / 1920 + 'px'"
+                    [style.line-height]="(windowSize.width * 35 * windowSize.rate) / 1920 + 'px'"
                 >
                     We identify actionable opportunities, then prioritize them by value, effort and
                     risk - we intend to start ‘doing’ as quickly as possible. Common activities include product
@@ -38,19 +42,78 @@
             </ul>
 
             <ul class="list" #listElement2 (click)="openList(listElement2)">
-                <li class="list-title">02 Identity System</li>
+                <li class="list-title"
+                    [style.font-size]="(windowSize.width * 36 * windowSize.rate) / 1920 + 'px'"
+                    [style.line-height]="(windowSize.width * 30 * windowSize.rate) / 1920 + 'px'">
+                    02 Identity System
+                </li>
+                <li class="list-description"
+                    [style.font-size]="(windowSize.width * 22 * windowSize.rate) / 1920 + 'px'"
+                    [style.line-height]="(windowSize.width * 35 * windowSize.rate) / 1920 + 'px'"
+                >
+                    We design brands that pique curiosity,
+                    express
+                    ambition and encourage loyalty.
+                </li>
             </ul>
 
             <ul class="list" #listElement3 (click)="openList(listElement3)">
-                <li class="list-title">03 User Experience</li>
+                <li class="list-title"
+                    [style.font-size]="(windowSize.width * 36 * windowSize.rate) / 1920 + 'px'"
+                    [style.line-height]="(windowSize.width * 30 * windowSize.rate) / 1920 + 'px'">
+                    03 User Experience
+                </li>
+                <li class="list-description"
+                    [style.font-size]="(windowSize.width * 22 * windowSize.rate) / 1920 + 'px'"
+                    [style.line-height]="(windowSize.width * 35 * windowSize.rate) / 1920 + 'px'"
+                >
+                    We rely on principles of modern design to ensure the details are
+                    carefully
+                    considered and the design is eloquently executed.
+                    We create user activation programs for on-boarding, one-to-one
+                    engagement and
+                    churn reduction.
+                </li>
             </ul>
 
             <ul class="list" #listElement4 (click)="openList(listElement4)">
-                <li class="list-title">04 Web & Mobile Engineering</li>
+                <li class="list-title"
+                    [style.font-size]="(windowSize.width * 36 * windowSize.rate) / 1920 + 'px'"
+                    [style.line-height]="(windowSize.width * 30 * windowSize.rate) / 1920 + 'px'">
+                    04 Web & Mobile Engineering
+                </li>
+                <li class="list-description"
+                    [style.font-size]="(windowSize.width * 22 * windowSize.rate) / 1920 + 'px'"
+                    [style.line-height]="(windowSize.width * 35 * windowSize.rate) / 1920 + 'px'"
+                >
+                    We marry creative insight with data to deliver
+                    successful
+                    user experiences. Through a process of iteration and prototyping, we design interfaces that bring
+                    joy to people
+                    while allowing them to get things done.
+                    We write high-quality code that prioritizes
+                    reliability,
+                    scalability and performance.
+                </li>
             </ul>
 
             <ul class="list" #listElement5 (click)="openList(listElement5)">
-                <li class="list-title">05 Analytics & Optimization</li>
+                <li class="list-title"
+                    [style.font-size]="(windowSize.width * 36 * windowSize.rate) / 1920 + 'px'"
+                    [style.line-height]="(windowSize.width * 30 * windowSize.rate) / 1920 + 'px'">
+                    05 Analytics & Optimization
+                </li>
+                <li class="list-description"
+                    [style.font-size]="(windowSize.width * 22 * windowSize.rate) / 1920 + 'px'"
+                    [style.line-height]="(windowSize.width * 35 * windowSize.rate) / 1920 + 'px'"
+                >
+                    We develop custom software that responds to business needs
+                    by making
+                    engineering a fundamental part of our design process.
+                    We measure success and ensure optimal reach by implementing holistic frameworks for
+                    monitoring
+                    analytics, SEO, social and content syndication.
+                </li>
             </ul>
         </div>
 

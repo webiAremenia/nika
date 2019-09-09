@@ -1,48 +1,52 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ContactService} from '../../../_services/contact.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {ResponsiveData} from '../../../_models/ResponsiveData';
+import {ActionsService} from '../../../_services/actions.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
     selector: 'app-contact',
     templateUrl: './contact.component.html',
     styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent implements OnInit, OnDestroy {
+    windowSubscription: Subscription;
+    currentLocationSubscription: Subscription;
+    windowSize: ResponsiveData;
+    currentLocation: string;
+    locationGroup: FormGroup;
 
-    form: FormGroup;
-    done = true;
-    emailPattern = '^[a-z0-9._%+-]{5,15}@[a-z0-9.-]+\.[a-z]{2,4}$';
-    // fullNamePattern = '^[a-zA-Z0-9 ]{5,15}';
-    fullNamePattern = '^([^<>&:"]*[^<>&:"\\s][^<>&:"]*|.{0})$';
+    constructor(private actionsService: ActionsService, private route: ActivatedRoute, private router: Router) {
+        this.currentLocation = router.url.split('/contact/')[1].toUpperCase().replace('-', ' ');
+        this.initSubscriptions();
 
-    constructor(private contactService: ContactService) {
-        this.form = new FormGroup({
-            fullName: new FormControl('', [Validators.required, Validators.pattern(this.fullNamePattern)]),
-            email: new FormControl('', [Validators.email, Validators.required, Validators.pattern(this.emailPattern)]),
-            date: new FormControl(''),
-            eventName: new FormControl('', [Validators.required, Validators.minLength(5)]),
-            text: new FormControl('')
+        this.locationGroup = new FormGroup({
+            select: new FormControl(`${this.currentLocation}`)
         });
     }
 
     ngOnInit() {
     }
 
-    submit() {
-        this.done = false;
-        this.contactService.sendMail(this.form).toPromise()
-            .then(d => {
-                if (d.success) {
-                    this.done = true;
-                    this.form.reset();
-                    for (const key in this.form.controls) {
-                        if (this.form.controls.hasOwnProperty(key)) {
-                            this.form.controls[key].setErrors(null);
-                        }
-                    }
-                }
-            })
-            .catch(e => console.log(e));
+    ngOnDestroy() {
+        this.windowSubscription.unsubscribe();
+        this.currentLocationSubscription.unsubscribe();
     }
-}
 
+    // // // INIT DATA // // //
+
+    initSubscriptions() {
+        this.windowSubscription = this.actionsService.getWindowSize()
+            .subscribe((size: ResponsiveData) => this.windowSize = size);
+        this.currentLocationSubscription = this.actionsService.getContactLocation()
+            .subscribe(location => {
+                this.locationGroup.reset();
+                this.currentLocation = location;
+                this.locationGroup = new FormGroup({
+                    select: new FormControl(`${this.currentLocation}`)
+                });
+            });
+    }
+
+}

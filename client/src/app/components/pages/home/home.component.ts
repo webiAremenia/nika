@@ -1,10 +1,10 @@
 import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {SliderService} from '../../../_services/slider.service';
-import {Slide} from '../../../_models/slide';
 import {AppGlobals} from '../../../app.globals';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {WorkService} from '../../../_services/work.service';
 import {Work} from '../../../_models/work';
+import {filter} from 'rxjs/operators';
+
 
 @Component({
     selector: 'app-home',
@@ -14,6 +14,7 @@ import {Work} from '../../../_models/work';
 export class HomeComponent implements OnInit, OnDestroy {
     @ViewChild('customBody') customBody: ElementRef;
     @ViewChild('image') image: ElementRef;
+    windowWidth = window.innerWidth;
     accordionItemsStyles = {
         left: 0,
         width: 0
@@ -34,9 +35,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     lastIndex;
     zoomed = 100;
 
+    mobileXsHeight;
+
     @HostListener('window:resize', ['$event'])
     onResize() {
         this.initSlider();
+        this.mobileXsHeight = window.innerWidth * 250 / 375;
+        this.windowWidth = window.innerWidth;
     }
 
     @HostListener('window:keydown', ['$event'])
@@ -65,6 +70,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.getParams();
+        this.mobileXsHeight = window.innerWidth * 250 / 375;
+        this.router.events.pipe(
+            filter(event => event instanceof NavigationEnd)
+        ).subscribe((event: NavigationEnd) => {
+            // console.log(event);
+            this.getParams();
+        });
     }
 
     initCurrent(index) {
@@ -79,7 +91,6 @@ export class HomeComponent implements OnInit, OnDestroy {
             this.zoomed = 180;
             this.detailWrapperLeft = 0;
             this.clickedWidth = this.slideWidth * 3;
-
         }, 100);
         setTimeout(() => {
             this.backToWorkText = 'Back to Works';
@@ -87,12 +98,6 @@ export class HomeComponent implements OnInit, OnDestroy {
             this.bannerHeight = window.innerHeight + 100;
             this.navigate(index);
         }, 1400);
-        // setTimeout(() => {
-        //     // console.log(this.image.nativeElement.clientHeight,  window.innerHeight - 100);
-        //     // this.bannerHeight = this.image.nativeElement.clientHeight < window.innerHeight - 100 ?
-        //     //     window.innerHeight - 100 : this.image.nativeElement.clientHeight;
-        //     // this.detailWrapperHeight = this.bannerHeight;
-        // }, 1410);
     }
 
     backToSlider() {
@@ -101,7 +106,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.detailWrapperHeight = window.innerHeight - 100;
         this.detailWrapperLeft = (this.lastIndex + this.accordionItemsStyles.left / this.slideWidth) * this.slideWidth;
         this.clickedWidth = this.slideWidth;
-        this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 100}px, 0)`;
+        if (this.customBody) {
+            this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 100}px, 0)`;
+        }
         setTimeout(() => {
             this.backToWorkText = 'Our works';
             this.clickedSlide = null;
@@ -156,6 +163,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.image.nativeElement.classList.remove('fadeOutLeft', 'fadeInRight', 'fadeInLeft');
                 this.image.nativeElement.classList.add('fadeInRight');
                 this.clickedSlide++;
+                this.lastIndex++;
                 this.workService.current = this.slides[this.clickedSlide];
                 this.router.navigate([`project/${this.slides[this.clickedSlide].id}`]).then();
             }, 500);
@@ -170,6 +178,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.image.nativeElement.classList.remove('fadeOutRight', 'fadeInRight', 'fadeInLeft');
                 this.image.nativeElement.classList.add('fadeInLeft');
                 this.clickedSlide--;
+                this.lastIndex--;
                 this.workService.current = this.slides[this.clickedSlide];
                 this.router.navigate([`project/${this.slides[this.clickedSlide].id}`]).then();
             }, 500);
@@ -203,12 +212,14 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (this.workService.works) {
             this.slides = this.workService.works;
             this.done = true;
+            // console.log('get params if');
             this.initSlider();
+            this.getCurrent();
         } else {
             this.workService.getWorks().subscribe(
                 d => {
                     this.slides = d;
-                    console.log('slider items ', d);
+                    // console.log('slider items ', d);
                     this.done = true;
                     this.initSlider();
                     this.getCurrent();
@@ -229,10 +240,28 @@ export class HomeComponent implements OnInit, OnDestroy {
                     }, 200);
                 }
             });
+        } else {
+            // console.log(location.pathname);
+            if (location.pathname === '/') {
+                // console.log('if');
+                this.backToSlider();
+            }
         }
     }
 
+    backToSliderMob() {
+        // this.backToWorkText = 'Our works';
+        this.clickedSlide = null;
+        this.router.navigate(['/']).then();
+        // document.getElementById('wwww').style.display = 'none';
+    }
+
+    mobileNavigate(index) {
+        this.clickedSlide = index;
+        this.navigate(index);
+    }
+
     ngOnDestroy(): void {
-        console.log('destroy');
+        // console.log('destroy');
     }
 }

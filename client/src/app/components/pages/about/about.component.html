@@ -15,13 +15,20 @@
         <app-our-awards></app-our-awards>
 
         <div class="link-box">
-            <div class="link-box-text">
-                <div class="question">
+            <div class="link-box-text row">
+
+                <div class="question col-12 col-md-6"
+                     [style.font-size]="(windowSize.width * 30 * windowSize.rate) / 1920 + 'px'"
+                     [style.line-height]="(windowSize.width * 40 * windowSize.rate) / 1920 + 'px'">
                     Think we’re a good fit? Let’s get to work!
                 </div>
-                <div class="link">
+
+                <div class="link col-12 col-md-6"
+                     [style.font-size]="(windowSize.width * 22 * windowSize.rate) / 1920 + 'px'"
+                     [style.line-height]="(windowSize.width * 35 * windowSize.rate) / 1920 + 'px'">
                     Click Here and let’s talk
                 </div>
+
             </div>
         </div>
 

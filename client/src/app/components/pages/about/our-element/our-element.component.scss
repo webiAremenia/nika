@@ -29,8 +29,13 @@ ul:hover {
 }
 
 .active {
+  transition: 350ms all;
   border-top: 1.5px solid lime !important;
   border-bottom: 1.5px solid lime !important;
+
+  .list-description {
+    display: block !important;
+  }
 }
 
 .our-element-content-wrapper {
@@ -54,18 +59,18 @@ ul:hover {
     .list {
       .list-title {
         text-align: left;
-        font-size: 36px;
-        line-height: 30px;
+        //font-size: 36px;
+        //line-height: 30px;
         font-family: $font-extraBold;
         letter-spacing: -0.72px;
-        opacity: 1;
         padding: 55px 15px;
       }
 
       .list-description {
+        display: none;
         text-align: left;
-        font-size: 22px;
-        line-height: 35px;
+        //font-size: 22px;
+        //line-height: 35px;
         letter-spacing: 0;
         font-family: $font-semiBold;
         color: #FFFFFF;
@@ -79,27 +84,28 @@ ul:hover {
 
 // // // MEDIA // // //
 
-@media (max-width: 576px) {
+@media (max-width: 767px) {
   .heading {
-    font-size: 26px!important;
-    line-height: 35px!important;
-    letter-spacing: -1.04px!important;
-    padding-bottom: 20px!important;
+    font-size: 26px !important;
+    line-height: 35px !important;
+    letter-spacing: -1.04px !important;
+    padding-bottom: 20px !important;
   }
 
   .list {
-    padding: 20px 0!important;
+    padding: 20px 0 !important;
+
     .list-title {
-      font-size: 16px!important;
-      line-height: 30px!important;
-      letter-spacing: -0.32px!important;
-      padding: 0!important;
+      font-size: 16px !important;
+      line-height: 30px !important;
+      letter-spacing: -0.32px !important;
+      padding: 0 !important;
     }
 
     .list-description {
-      font-size: 11px!important;
-      line-height: 15px!important;
-      padding: 0 0 0 30px!important;
+      font-size: 11px !important;
+      line-height: 15px !important;
+      padding: 0 0 0 30px !important;
     }
   }
 }
