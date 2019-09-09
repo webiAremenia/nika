@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   // queryUrl: 'http://nika.webi.am'
-  queryUrl: 'http://localhost:3000'
+  queryUrl: 'http://localhost:3000',
+  imageUrl: 'http://localhost:3000/uploads/'
 };
 
 /*

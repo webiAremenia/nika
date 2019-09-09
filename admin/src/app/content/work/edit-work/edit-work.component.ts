@@ -50,7 +50,7 @@ export class EditWorkComponent implements OnInit, OnDestroy {
             console.log(this.slugs);
 
         }, err => {
-            console.log(err)
+            console.log(err);
         });
     }
 
@@ -353,11 +353,11 @@ export class EditWorkComponent implements OnInit, OnDestroy {
             };
             this.workService.putWork(this.work._id, form).subscribe(data => {
                 this.router.navigate(['work']);
-            })
+            });
         } else {
             this.workService.postWork(this.form.value).subscribe(data => {
                 this.router.navigate(['work']);
-            }, e => console.log(e))
+            }, e => console.log(e));
         }
 
     }
