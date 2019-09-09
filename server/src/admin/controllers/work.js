@@ -44,6 +44,7 @@ module.exports = {
             updated: Date.now(),
         };
         console.log(req.body.videosArr)
+        console.log(req.body.work.details)
         try {
             await Work.findByIdAndUpdate(
                 {_id: candidate},

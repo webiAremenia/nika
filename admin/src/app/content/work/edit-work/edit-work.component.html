@@ -22,8 +22,8 @@
                 <label translate>slug</label>
                 <input type="text" placeholder="Slug" class="form-control" formControlName="slug"
                        (keyup)="filterSlug($event)">
-                <!--                <p *ngIf="slugForm.get('slug').invalid && slugForm.get('slug').touched" class="invalid">Type true Slug</p>-->
-                <!--                <p *ngIf="inValidSlug" class="invalid">Type true Slug</p>-->
+<!--                                <p *ngIf="slugForm.get('slug').invalid && slugForm.get('slug').touched" class="invalid">Type true Slug</p>-->
+                                <p *ngIf="inValidSlug" class="invalid">Slug must be a unique</p>
             </div>
 
 
@@ -56,9 +56,6 @@
                     </div>
                     <div class="detailItem">
                         <button class="btn button" (click)="addTool('img')">Image</button>
-                    </div>
-                    <div class="detailItem">
-                        <button class="btn button" (click)="addTool('imageWithImage')">ImageWithImage</button>
                     </div>
                     <div class="detailItem">
                         <button class="btn button" (click)="addTool('slider')">Slider</button>
@@ -297,7 +294,7 @@
                             <div *ngIf="detail['value']['type'] === 'video'" class="text-component">
                                 <div class="row tools">
                                     <div class="col-12">
-                                        <h3>Image</h3>
+                                        <h3>Video</h3>
                                     </div>
                                     <div class="col-10">
                                         <div class="row">
