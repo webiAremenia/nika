@@ -120,13 +120,13 @@ $border-style: 5px solid #000A1D;
 
 @media (min-width: 1440px) {
   .contact {
-    padding-left: 168px;
+    padding: 100px 50px 0 100px;
   }
 }
 
 @media (min-width: 1024px) and (max-width: 1440px) {
   .contact {
-    padding-left: 100px;
+    padding: 70px 20px 0 70px;
   }
 }
 
@@ -153,7 +153,7 @@ $border-style: 5px solid #000A1D;
 
 @media (max-width: 767px) {
   .custom-page {
-    padding-top: 100px;
+    padding-top: 80px;
   }
   .section a {
     font-size: 20px;
