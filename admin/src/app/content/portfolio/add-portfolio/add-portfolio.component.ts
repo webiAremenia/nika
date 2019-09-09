@@ -76,7 +76,7 @@ export class AddPortfolioComponent implements OnInit, OnDestroy {
         this.flag = false;
         this.fileList = this.fileList.concat(file);
         return false;
-    }
+    };
 
     handleUpload(): void {
         const formData = new FormData();

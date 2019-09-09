@@ -10,6 +10,7 @@ const routes: Routes = [
             {path: 'logo', loadChildren: './logo/logo.module#LogoModule'},
             {path: 'settings', loadChildren: './settings/setting.module#SettingModule'},
             {path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule'},
+            {path: 'work', loadChildren: './work/work.module#WorkModule'},
             {path: 'menu', loadChildren: './menu/menu.module#MenuModule'},
             {path: 'media', loadChildren: './media/media.module#MediaModule'},
             {path: 'group', loadChildren: './group/group.module#GroupModule'},

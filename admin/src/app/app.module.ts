@@ -15,6 +15,7 @@ import {ContentModule} from './content/content.module';
 // import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import {SortablejsModule} from 'angular-sortablejs';
 import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 registerLocaleData(en);
 
@@ -34,7 +35,9 @@ registerLocaleData(en);
         BrowserAnimationsModule,
         // CKEditorModule,
         SortablejsModule.forRoot({animation: 150}),
-        NgMultiSelectDropDownModule.forRoot()
+        NgMultiSelectDropDownModule.forRoot(),
+        NzDropDownModule
+
     ],
     providers: [
         {
