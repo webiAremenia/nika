@@ -71,12 +71,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.getParams();
         this.mobileXsHeight = window.innerWidth * 250 / 375;
-        this.router.events.pipe(
-            filter(event => event instanceof NavigationEnd)
-        ).subscribe((event: NavigationEnd) => {
-            // console.log(event);
-            this.getParams();
-        });
+        // this.router.events.pipe(
+        //     filter(event => event instanceof NavigationEnd)
+        // ).subscribe((event: NavigationEnd) => {
+        //     // console.log(event);
+        //     this.getParams();
+        // });
     }
 
     initCurrent(index) {
@@ -90,12 +90,12 @@ export class HomeComponent implements OnInit, OnDestroy {
         setTimeout(() => {
             this.zoomed = 180;
             this.detailWrapperLeft = 0;
+            this.detailWrapperHeight = window.innerHeight + 100;
+            this.bannerHeight = window.innerHeight + 100;
             this.clickedWidth = this.slideWidth * 3;
         }, 100);
         setTimeout(() => {
             this.backToWorkText = 'Back to Works';
-            this.detailWrapperHeight = window.innerHeight + 100;
-            this.bannerHeight = window.innerHeight + 100;
             this.navigate(index);
         }, 1400);
     }
