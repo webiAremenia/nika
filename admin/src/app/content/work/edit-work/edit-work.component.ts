@@ -3,6 +3,7 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {NzMessageService, NzModalService, UploadFile} from 'ng-zorro-antd';
 import {WorkService} from '../../../shared/services/work.service';
+import {AppGlobals} from "../../../app.globals";
 
 @Component({
     selector: 'app-edit-work',
@@ -27,6 +28,7 @@ export class EditWorkComponent implements OnInit, OnDestroy {
     videoPath = null;
     videosArr = [];
     videosArrOnDestroy = [];
+    videoUrl;
     destroyWork = true;
 
     constructor(
@@ -34,8 +36,10 @@ export class EditWorkComponent implements OnInit, OnDestroy {
         private router: Router,
         private msg: NzMessageService,
         private modalService: NzModalService,
-        private workService: WorkService
+        private workService: WorkService,
+        config: AppGlobals
     ) {
+        this.videoUrl = config.url;
         if (this.workService.candidateWork) {
             this.work = this.workService.candidateWork;
             // this.work.details.forEach(d => {
