@@ -226,6 +226,7 @@ export class EditWorkComponent implements OnInit, OnDestroy {
 
             } else {
                 if (this.form.get('details')['controls'][i].value.videoURL) {
+                    this.msg.loading('Uploading file', {nzDuration: 0});
                     const random = this.generateRandomString(10);
                     const file = event.target.files[0];
 

@@ -1,6 +1,8 @@
-<div class="col-12">
-    <button style="text-align: center;padding-bottom: 10px; margin: 0 5px 0 5px;" class="btn btn-success float-right"
-            (click)="addWork()"><i nz-icon type="folder-add" theme="outline"></i></button>
+<div class="row">
+    <div class="col-12">
+        <button style="text-align: center;padding-bottom: 10px; margin: 0 5px 0 5px;" class="btn btn-success float-right"
+                (click)="addWork()"><i nz-icon type="folder-add" theme="outline"></i></button>
+    </div>
 </div>
 <nz-table #middleTable nzSize="middle" [nzData]="works" [nzPageSize]="4" *ngIf="done">
     <div class="container">
@@ -32,6 +34,7 @@
         </div>
     </div>
 </nz-table>
+
 
 
 
