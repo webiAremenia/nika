@@ -19,7 +19,7 @@ export class WorkService {
         this.url = config.url;
     }
 
-    getWorks(): Observable<Work[]> {
+     getWorks(): Observable<Work[]> {
         return this.http.get<Work[]>(`${this.url}/api/work/`)
             .pipe(map(data => {
                     console.log('Service', data);

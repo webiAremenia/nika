@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {WorkDetails} from '../../../../../_models/work/WorkDetails';
 import {AppGlobals} from '../../../../../app.globals';
 
@@ -8,8 +8,11 @@ import {AppGlobals} from '../../../../../app.globals';
     styleUrls: ['./work-video.component.scss']
 })
 export class WorkVideoComponent implements OnInit {
+    @ViewChild(`videoElement`) videoElement: ElementRef;
+    @ViewChild(`videoLogo`) videoLogo: ElementRef;
 
     videoUrl: string;
+    play = false;
 
     @Input() content: WorkDetails;
 
@@ -18,6 +21,12 @@ export class WorkVideoComponent implements OnInit {
     }
 
     ngOnInit() {
+    }
+
+    toggleVideoPlay() {
+        this.play = !this.play;
+        this.play ? this.videoElement.nativeElement.play() : this.videoElement.nativeElement.pause();
+        this.videoLogo.nativeElement.style.display = this.play ? 'none' : 'block';
     }
 
 }

@@ -2,6 +2,10 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {WorkService} from '../../../../_services/work.service';
 import {Work} from '../../../../_models/work/work';
 import {ActivatedRoute} from '@angular/router';
+import {Subscription} from "rxjs";
+import {ResponsiveData} from "../../../../_models/ResponsiveData";
+import {PageService} from "../../../../_services/page.service";
+import {ActionsService} from "../../../../_services/actions.service";
 
 @Component({
     selector: 'app-work',
@@ -12,11 +16,16 @@ export class WorkComponent implements OnInit, OnDestroy {
 
     work: Work;
     slug;
+    windowSubscription: Subscription;
+    windowSize: ResponsiveData;
 
     constructor(
+        private actionsService: ActionsService,
         private workService: WorkService,
         private activatedRoute: ActivatedRoute
     ) {
+        this.windowSubscription = actionsService.getWindowSize()
+            .subscribe((size: ResponsiveData) => this.windowSize = size);
     }
 
     ngOnInit() {
@@ -34,6 +43,7 @@ export class WorkComponent implements OnInit, OnDestroy {
             this.workService.current = this.work;
         }
     }
+
     ngOnDestroy(): void {
         // console.log('work destroy');
     }

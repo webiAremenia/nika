@@ -16,7 +16,7 @@ import {WorkSliderComponent} from './work/work-slider/work-slider.component';
         WorkVideoComponent,
         WorkTextComponent,
         WorkImgComponent,
-        WorkSliderComponent
+        WorkSliderComponent,
     ],
     imports: [
         CommonModule,

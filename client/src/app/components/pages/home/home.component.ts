@@ -3,8 +3,8 @@ import {AppGlobals} from '../../../app.globals';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {WorkService} from '../../../_services/work.service';
 import {Work} from '../../../_models/work/work';
-import {filter} from 'rxjs/operators';
 
+console.log(4444444444444444);
 
 @Component({
     selector: 'app-home',
@@ -14,6 +14,7 @@ import {filter} from 'rxjs/operators';
 export class HomeComponent implements OnInit, OnDestroy {
     @ViewChild('customBody') customBody: ElementRef;
     @ViewChild('image') image: ElementRef;
+    @ViewChild('detailWrapper') detailWrapper: ElementRef;
     windowWidth = window.innerWidth;
     accordionItemsStyles = {
         left: 0,
@@ -34,6 +35,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     bannerHeight;
     lastIndex;
     zoomed = 100;
+
+    currentTitle;
+    currentDesc;
 
     mobileXsHeight;
 
@@ -69,6 +73,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        console.log(7777);
         this.getParams();
         this.mobileXsHeight = window.innerWidth * 250 / 375;
         // this.router.events.pipe(
@@ -96,11 +101,16 @@ export class HomeComponent implements OnInit, OnDestroy {
         }, 100);
         setTimeout(() => {
             this.backToWorkText = 'Back to Works';
+            this.detailWrapper.nativeElement.style.opacity = '.74';
             this.navigate(index);
         }, 1400);
     }
 
     backToSlider() {
+        if (this.detailWrapper) {
+            this.detailWrapper.nativeElement.style.opacity = '0'
+        }
+        ;
         this.zoomed = 100;
         this.bannerHeight = window.innerHeight - 100;
         this.detailWrapperHeight = window.innerHeight - 100;
@@ -140,6 +150,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     navigate(index) {
         this.workService.current = this.slides[index];
+        this.currentTitle = this.slides[index].title;
+        this.currentDesc = this.slides[index].description;
         this.router.navigate([`project/${this.slides[index].slug}`]).then();
     }
 
@@ -165,6 +177,8 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.clickedSlide++;
                 this.lastIndex++;
                 this.workService.current = this.slides[this.clickedSlide];
+                this.currentTitle = this.slides[this.clickedSlide].title;
+                this.currentDesc = this.slides[this.clickedSlide].description;
                 this.router.navigate([`project/${this.slides[this.clickedSlide].slug}`]).then();
             }, 500);
         }
@@ -180,12 +194,15 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.clickedSlide--;
                 this.lastIndex--;
                 this.workService.current = this.slides[this.clickedSlide];
+                this.currentTitle = this.slides[this.clickedSlide].title;
+                this.currentDesc = this.slides[this.clickedSlide].description;
                 this.router.navigate([`project/${this.slides[this.clickedSlide].slug}`]).then();
             }, 500);
         }
     }
 
     scrollFunction(event) {
+        console.log(document.getElementById('wwww').clientHeight, this.workScrollTop);
         const workHeight = this.customBody.nativeElement.scrollHeight;
         if (this.clickedSlide || this.clickedSlide === 0) {
             this.mouseWillCount++;
@@ -212,14 +229,14 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (this.workService.works) {
             this.slides = this.workService.works;
             this.done = true;
-            // console.log('get params if');
+            console.log('get params if');
             this.initSlider();
             this.getCurrent();
         } else {
             this.workService.getWorks().subscribe(
                 d => {
                     this.slides = d;
-                    // console.log('slider items ', d);
+                    console.log('slider items ', d);
                     this.done = true;
                     this.initSlider();
                     this.getCurrent();

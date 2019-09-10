@@ -1,9 +1,14 @@
 <div class="work-text-content row m-0">
-  <div class="col-12 col-md-8 offset-md-2">
-    <div class="video">
-      <video controls>
-        <source [src]="videoUrl + '/work/' + content.videoURL">
-      </video>
+    <div class="col-12 col-md-8 offset-md-2">
+        <div class="video" (click)="toggleVideoPlay()">
+            <video #videoElement
+                   [autoplay]="play">
+                <source [src]="videoUrl + '/work/' + content.videoURL">
+            </video>
+
+            <div class="play-btn" #videoLogo
+
+                 [style.backgroundImage]="'url(assets/icons/play-button.svg)'"></div>
+        </div>
     </div>
-  </div>
 </div>
