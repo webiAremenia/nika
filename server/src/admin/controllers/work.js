@@ -43,7 +43,6 @@ module.exports = {
             details: req.body.work.details,
             updated: Date.now(),
         };
-        console.log(req.body.videosArr)
         try {
             await Work.findByIdAndUpdate(
                 {_id: candidate},
@@ -108,7 +107,6 @@ module.exports = {
 
     deleteVideoMany: async (req, res) => {
 
-        console.log(req.body);
         req.body.forEach(id => {
             fs.unlinkSync(__dirname + `/../../../_uploads/work/${id}`)
         });
