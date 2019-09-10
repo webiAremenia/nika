@@ -1,0 +1,90 @@
+[type="file"] {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    white-space: nowrap;
+    width: 10px;
+}
+
+[type="file"] + label {
+    background-color: #344154;
+    border-radius: 4rem;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px 15px;
+}
+
+[type="file"]:focus + label,
+[type="file"] + label:hover {
+    background-color: #f15d22;
+}
+
+[type="file"]:focus + label {
+    outline: 1px dotted #000;
+}
+
+.add {
+    width: 200px;
+    position: fixed;
+    right: 0px;
+    top: 100px;
+    z-index: 99999;
+}
+
+.detailItem {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.button {
+    background-color: #344154;
+    color: white;
+}
+
+._btn_delete {
+    cursor: pointer;
+    color: darkred;
+    transition: 0.2s all;
+}
+
+._btn_delete:hover {
+    transform: scale(1.2);
+    color: red;
+}
+
+.text_border {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+/*.tools {*/
+/*    background-color: #6983ab;*/
+/*    border-radius: 5px 5px 0 0;*/
+/*}*/
+.image {
+    width: 100%;
+    height: 100%;
+}
+
+.slider {
+    width: 100%;
+    height: 100%;
+}
+
+.delete_icon {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    cursor: pointer;
+    color: darkred;
+    font-weight: bold;
+}
+
+.delete_icon:hover {
+    transform: scale(1.2);
+    color: red;
+}

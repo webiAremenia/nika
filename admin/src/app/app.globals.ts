@@ -6,6 +6,7 @@ import {environment} from '../environments/environment';
 })
 export class AppGlobals {
     url = environment.queryUrl;
+    imageUrl = environment.imageUrl;
 
     constructor() {
     }
