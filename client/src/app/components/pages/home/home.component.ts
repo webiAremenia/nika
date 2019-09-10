@@ -2,7 +2,7 @@ import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from 
 import {AppGlobals} from '../../../app.globals';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {WorkService} from '../../../_services/work.service';
-import {Work} from '../../../_models/work';
+import {Work} from '../../../_models/work/work';
 import {filter} from 'rxjs/operators';
 
 
@@ -71,12 +71,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.getParams();
         this.mobileXsHeight = window.innerWidth * 250 / 375;
-        this.router.events.pipe(
-            filter(event => event instanceof NavigationEnd)
-        ).subscribe((event: NavigationEnd) => {
-            // console.log(event);
-            this.getParams();
-        });
+        // this.router.events.pipe(
+        //     filter(event => event instanceof NavigationEnd)
+        // ).subscribe((event: NavigationEnd) => {
+        //     // console.log(event);
+        //     this.getParams();
+        // });
     }
 
     initCurrent(index) {
@@ -90,12 +90,12 @@ export class HomeComponent implements OnInit, OnDestroy {
         setTimeout(() => {
             this.zoomed = 180;
             this.detailWrapperLeft = 0;
+            this.detailWrapperHeight = window.innerHeight + 100;
+            this.bannerHeight = window.innerHeight + 100;
             this.clickedWidth = this.slideWidth * 3;
         }, 100);
         setTimeout(() => {
             this.backToWorkText = 'Back to Works';
-            this.detailWrapperHeight = window.innerHeight + 100;
-            this.bannerHeight = window.innerHeight + 100;
             this.navigate(index);
         }, 1400);
     }
@@ -140,7 +140,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     navigate(index) {
         this.workService.current = this.slides[index];
-        this.router.navigate([`project/${this.slides[index].id}`]).then();
+        this.router.navigate([`project/${this.slides[index].slug}`]).then();
     }
 
     sliderNext() {
@@ -165,7 +165,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.clickedSlide++;
                 this.lastIndex++;
                 this.workService.current = this.slides[this.clickedSlide];
-                this.router.navigate([`project/${this.slides[this.clickedSlide].id}`]).then();
+                this.router.navigate([`project/${this.slides[this.clickedSlide].slug}`]).then();
             }, 500);
         }
     }
@@ -180,7 +180,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.clickedSlide--;
                 this.lastIndex--;
                 this.workService.current = this.slides[this.clickedSlide];
-                this.router.navigate([`project/${this.slides[this.clickedSlide].id}`]).then();
+                this.router.navigate([`project/${this.slides[this.clickedSlide].slug}`]).then();
             }, 500);
         }
     }
@@ -234,7 +234,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         // console.log(pathObj);
         if (pathObj.length > 1 && pathObj[1] === 'project') {
             this.slides.forEach((work, index) => {
-                if (work.id.toString() === pathObj[2]) {
+                if (work.slug.toString() === pathObj[2]) {
                     setTimeout(() => {
                         this.initCurrent(index);
                     }, 200);

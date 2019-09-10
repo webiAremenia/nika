@@ -6,6 +6,10 @@ const uploads = '/../../../_uploads';
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
 
+        console.log(file.originalname)
+
+
+
         if (!fs.existsSync(__dirname + uploads)) {
             fs.mkdirSync(__dirname + uploads);
         }
@@ -27,7 +31,9 @@ const storage = multer.diskStorage({
         if (!fs.existsSync(__dirname + uploads + '/slider')) {
             fs.mkdirSync(__dirname + uploads + '/slider');
         }
-
+        if (!fs.existsSync(__dirname + uploads + '/work')) {
+            fs.mkdirSync(__dirname + uploads + '/work');
+        }
 
         if (!fs.existsSync(__dirname + uploads + '/portfolio/ckeditor')) {
             fs.mkdirSync(__dirname + uploads + '/portfolio/ckeditor');
@@ -44,22 +50,18 @@ const storage = multer.diskStorage({
         }
 
 
-        // if (req.originalUrl.split('/')[2] === 'post' && req.method === 'POST') {
-        //     if (req.originalUrl.split('/')[3] === 'ckeditor' && req.method === 'POST') {
-        //         cb(null, __dirname + '/../../_uploads/posts/ckeditor')
-        //     } else {
-        //         cb(null, __dirname + '/../../_uploads/posts')
-        //     }
-        // }
-        // if (req.originalUrl.split('/')[2] === 'page' && req.method === 'POST') {
-        //     if (req.originalUrl.split('/')[3] === 'ckeditor' && req.method === 'POST') {
-        //         cb(null, __dirname + '/../../_uploads/pages/ckeditor')
-        //     }
-        // }
+
+
 
 
         if (req.method === 'POST' && req.originalUrl.split('/')[2] === 'media') {
             cb(null, __dirname + uploads + '/medias')
+        }
+        if (req.method === 'POST' && req.originalUrl.split('/')[2] === 'work') {
+            cb(null, __dirname + uploads + '/work')
+        }
+        if (req.method === 'PUT' && req.originalUrl.split('/')[2] === 'work') {
+            cb(null, __dirname + uploads + '/work')
         }
         if (req.method === 'PUT' && req.originalUrl.split('/')[2].split('?')[0] === 'media') {
             cb(null, __dirname + uploads + '/medias')
@@ -70,9 +72,6 @@ const storage = multer.diskStorage({
         if (req.method === 'PUT' && req.originalUrl.split('/')[2].split('?')[0] === 'vacancy') {
             cb(null, __dirname + uploads + '/vacancy')
         }
-
-
-
 
 
         if (req.method === 'POST' && req.originalUrl.split('/')[2] === 'portfolio') {
@@ -135,12 +134,25 @@ const storage = multer.diskStorage({
 
     },
     filename: function (req, file, cb) {
-        if(req.originalUrl.split('/')[3] !== 'ckeditor' && req.method === 'POST') {
-            if (req.method === 'POST') {
-                cb(null, new Date().getTime().toString() + file.originalname)
-            } else if (req.method === 'PUT') {
-                cb(null, new Date().getTime().toString() + file.originalname)
-            }
+
+
+        // if(req.originalUrl.split('/')[3] !== 'ckeditor' && req.method === 'POST') { ????????????
+
+            if(req.originalUrl.split('/')[3] !== 'ckeditor' ) {
+                if(req.originalUrl.split('/')[2] === 'work') {
+                    console.log(req.body.random);
+                    cb(null, req.body.random + file.originalname)
+                } else {
+                    console.log(1111)
+                    if (req.method === 'POST') {
+                        cb(null, new Date().getTime().toString() + file.originalname)
+                    } else if (req.method === 'PUT') {
+                        cb(null, new Date().getTime().toString() + file.originalname)
+                    }
+                }
+
+
+
         } else {
             cb(null, req.body.random + file.originalname)
         }

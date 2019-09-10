@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, HostListener, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ContactService} from '../../../../_services/contact.service';
 import {ResponsiveData} from '../../../../_models/ResponsiveData';
@@ -12,7 +12,7 @@ import {ActionsService} from '../../../../_services/actions.service';
     templateUrl: './contact-form.component.html',
     styleUrls: ['./contact-form.component.scss']
 })
-export class ContactFormComponent implements OnInit {
+export class ContactFormComponent implements OnInit, AfterViewInit {
     windowSubscription: Subscription;
     mobileWindowSubscription: Subscription;
     windowSize: ResponsiveData;
@@ -25,10 +25,12 @@ export class ContactFormComponent implements OnInit {
     form: FormGroup;
     done = false;
     emailPattern = '^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$';
-    fullNamePattern = '^[a-zA-Z][a-zA-Z-_\\.]{1,20}$';
+    fullNamePattern = '^(?! )(?!.* $)[a-zA-Z+\\s.][a-zA-Z-_\\s.]{1,20}';
     // companyPattern = '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$';
-    companyPattern = '\\w{3,20}$';
+    companyPattern = '(?! )(?!.* $)[\\w.\\s.]{3,20}$';
     phonePattern = '^[0-9]{5,15}$';
+
+    height: number;
 
     currentCountryPhone = 1;
 
@@ -42,6 +44,13 @@ export class ContactFormComponent implements OnInit {
         this.initSubscriptions();
     }
 
+    @HostListener('document: scroll') mouseWheel() {
+        document.getElementsByTagName('ul')[0].style.top = this.height - window.pageYOffset + 'px';
+    }
+    @HostListener('window:resize') onResize() {
+        this.height = document.getElementsByTagName('ul')[0].offsetTop;
+        document.getElementsByTagName('ul')[0].style.top = this.height - window.pageYOffset + 'px';
+    }
     ngOnInit() {
         this.form = this.formBuilder.group({
             type: [`${this.type}`],
@@ -50,6 +59,13 @@ export class ContactFormComponent implements OnInit {
             phone: [null, [Validators.required, Validators.pattern(this.phonePattern)]],
             companyName: ['', [Validators.required, Validators.pattern(this.companyPattern)]],
             text: ['', [Validators.required]]
+        });
+    }
+
+    ngAfterViewInit() {
+        document.getElementsByClassName('iti__selected-flag')[0].addEventListener('click', () => {
+            this.height = document.getElementsByTagName('ul')[0].offsetTop;
+            document.getElementsByTagName('ul')[0].style.top = this.height - window.pageYOffset + 'px';
         });
     }
 

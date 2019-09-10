@@ -1,5 +1,17 @@
 .work-wrapper {
-    padding: 50px;
-    background: #ffffff;
-    min-height: 100vh;
+  padding: 50px;
+  background: #ffffff;
+
+  .work-dynamic-content-details {
+    padding: 32px 0;
+  }
+}
+
+
+// // // Media // // //
+
+@media (max-width: 992px) {
+  .work-wrapper {
+    padding: 0 !important;
+  }
 }

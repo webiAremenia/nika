@@ -40,9 +40,10 @@
 <!--            </mat-form-field>-->
 <!--        </mat-grid-tile>-->
 
-        <mat-grid-tile [colspan]="1" [rowspan]="3" *ngIf="type !== 'careers'">
+        <mat-grid-tile [colspan]="1" [rowspan]="1" *ngIf="type !== 'careers'">
             <mat-form-field>
                 <input
+                        id="phone"
                         matInput
                         ng2TelInput
                         [ng2TelInputOptions]="{initialCountry: 'us'}"
@@ -55,7 +56,7 @@
             </mat-form-field>
         </mat-grid-tile>
 
-        <mat-grid-tile [colspan]="1" [rowspan]="mobileWidth > 767 ? 3 : 1" *ngIf="type !== 'careers'">
+        <mat-grid-tile [colspan]="1" [rowspan]="1" *ngIf="type !== 'careers'">
             <mat-form-field>
                 <input formControlName="companyName" matInput placeholder="Company Name">
                 <mat-hint
