@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {WorkService} from '../../../_services/work.service';
-import {Work} from '../../../_models/work';
+import {Work} from '../../../_models/work/work';
 import {AppGlobals} from '../../../app.globals';
 
 @Component({

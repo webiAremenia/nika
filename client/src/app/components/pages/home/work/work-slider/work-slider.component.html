@@ -1,0 +1,15 @@
+<div class="work-slider-content row m-0">
+    <div class="col-12 col-md-8 offset-md-2">
+        <div class="slider">
+            <owl-carousel-o [options]="customOptions">
+
+                <ng-container *ngFor="let slide of content.sliders">
+                    <ng-template carouselSlide>
+                        <img [src]="slide.imgURL" alt="404">
+                    </ng-template>
+                </ng-container>
+
+            </owl-carousel-o>
+        </div>
+    </div>
+</div>

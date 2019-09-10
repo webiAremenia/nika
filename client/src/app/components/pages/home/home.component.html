@@ -11,7 +11,7 @@
                      class="slider-item"
                      [style.width]="slideWidth + 'px'">
                     <div class="slide-image">
-                        <img [src]="imageUrl + slide.images[0]">
+                        <img [src]="slide.img">
                     </div>
                     <div class="slide-text-content">
                         <h2>{{ slide.title }}</h2>
@@ -34,7 +34,7 @@
                          [style.left]="detailWrapperLeft + 'px'"
                          [style.width]="zoomed + '%'"
                          [style.height]="detailWrapperHeight ? detailWrapperHeight + 'px' : 'auto'"
-                         [src]="imageUrl + slides[clickedSlide].images[0]" #image>
+                         [src]="slides[clickedSlide].img" #image>
                     <!--                    <div *ngIf="clickedSlide || clickedSlide == 0"-->
                     <!--                         class="large-title">{{ slides[clickedSlide].title }}</div>-->
                 </div>
@@ -64,7 +64,7 @@
                      (click)="mobileNavigate(index)"
                      class="slider-item-mobile col-12 col-sm-6 px-0">
                     <div class="slide-image">
-                        <img [style.height]="mobileXsHeight + 'px'" [src]="imageUrl + slide.images[0]">
+                        <img [style.height]="mobileXsHeight + 'px'" [src]="slide.img">
                     </div>
                     <div class="slide-text-content">
                         <h2>{{ slide.title }}</h2>
