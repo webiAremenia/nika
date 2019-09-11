@@ -1,0 +1,394 @@
+<!--<button nz-button nzType="primary" (click)="showModal()">-->
+<!--    <span>Show Modal</span>-->
+<!--</button>-->
+<nz-modal
+    [(nzVisible)]="isVisible"
+    nzTitle="Modal Title"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()"
+    [nzOkLoading]="isOkLoading"
+>
+    <input nz-input placeholder="Basic usage" [(ngModel)]="modalContent"/>
+
+    <!--    <p>{{modalContent}}</p>-->
+</nz-modal>
+
+
+<div *ngIf="done">
+    <div class="introduce-content-wrapper">
+        <div class="introduce-content about-inner-content"
+             [style.backgroundImage]="'url('+ introduce.backgroundImage +')'">
+
+            <div class="heading" (click)="myIntroduce(introduce.title, 'title')">
+                {{introduce.title}}
+            </div>
+
+            <div class="description" (click)="myIntroduce(introduce.description, 'description')">
+                {{introduce.description}}
+            </div>
+
+            <input type="file" [id]="'bg'"
+                   (change)="myIntroduce($event,'backgroundImage')">
+            <label [for]="'bg'">choose a file</label>
+
+        </div>
+    </div>
+
+
+    <div class="our-element-content-wrapper">
+        <div class="our-element-content about-inner-content">
+
+            <div class="heading" (click)="myElement(element.title,'title')">
+                {{element.title}}
+            </div>
+
+            <div>
+                <ul class="list " *ngFor="let block of element.blocks; let i = index">
+                    <li class="list-title"
+                        (click)="elementBlock(i,'title')">{{block.title}}</li>
+                    <li class="list-description"
+                        (click)="elementBlock(i,'description')">{{block.description}}</li>
+                </ul>
+            </div>
+
+            <!--        <div>-->
+            <!--            <ul class="list " #listElement1>-->
+            <!--                <li class="list-title"-->
+            <!--                    (click)="myElement(element.first.title, 'first','title')">{{element.first.title}}</li>-->
+            <!--                <li class="list-description"-->
+            <!--                    (click)="myElement(element.first.description, 'first','description')">{{element.first.description}}</li>-->
+            <!--            </ul>-->
+
+            <!--            <ul class="list" #listElement2>-->
+            <!--                <li class="list-title"-->
+            <!--                    (click)="myElement(element.second.title, 'second','title')">{{element.second.title}}</li>-->
+            <!--                <li class="list-description" (click)="myElement(element.second.title, 'second','description')">-->
+            <!--                    {{element.second.description}}-->
+            <!--                </li>-->
+            <!--            </ul>-->
+
+            <!--            <ul class="list" #listElement3>-->
+            <!--                <li class="list-title" (click)="myElement(element.third.title, 'third','title')">-->
+            <!--                    {{element.third.title}}-->
+            <!--                </li>-->
+            <!--                <li class="list-description" (click)="myElement(element.third.description, 'third','description')">-->
+            <!--                    {{element.third.description}}-->
+            <!--                </li>-->
+            <!--            </ul>-->
+
+            <!--            <ul class="list" #listElement4>-->
+            <!--                <li class="list-title" (click)="myElement(element.forth.title, 'forth','title')">-->
+            <!--                    {{element.forth.title}}-->
+            <!--                </li>-->
+            <!--                <li class="list-description" (click)="myElement(element.forth.description, 'forth','description')">-->
+            <!--                    {{element.forth.description}}-->
+            <!--                </li>-->
+            <!--            </ul>-->
+
+            <!--            <ul class="list" #listElement5>-->
+            <!--                <li class="list-title" (click)="myElement(element.fifth.title, 'fifth','title')">-->
+            <!--                    {{element.fifth.title}}-->
+            <!--                </li>-->
+            <!--                <li class="list-description" (click)="myElement(element.fifth.description, 'fifth','description')">-->
+            <!--                    {{element.fifth.description}}-->
+            <!--                </li>-->
+            <!--            </ul>-->
+            <!--        </div>-->
+
+        </div>
+    </div>
+
+
+    <div class="clients-content-wrapper">
+        <div class="clients-content about-inner-content">
+
+            <div class="heading" (click)="myClient(client.title, 'title')">
+                {{client.title}}
+            </div>
+
+            <div class="description" (click)="myClient(client.description, 'description')">
+                {{client.description}}
+            </div>
+
+            <div class="partners">
+
+                <div class="row m-0">
+
+                    <div *ngFor="let block of client.blocks; let i = index" class="col-4 col-md-3 partner  m-0 p-0">
+                        <ng-container *ngIf="block.text">
+                            <div class="partner-text" (click)="clientBlock(i)">
+                                {{block.text}}
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="block.backGround">
+                            <div class="partner-img" [style.backgroundImage]="'url('+ block.backGround +')'"
+                                 (click)="clientBlock(i)">
+
+                            </div>
+                            <div style="display: none;">
+                                <input type="file" [id]="'clientBlock' + i"
+                                       (change)="clientImage($event)">
+                                <label [for]="'clientBlock' + i">choose a file</label>
+                            </div>
+
+                        </ng-container>
+                    </div>
+
+
+                    <!--                <div class="col-4 col-md-3 partner partner-img" [style.backgroundImage]="'url(assets/images/AboutUs/intel.png)'"></div>-->
+                    <!--                <div class="col-4 col-md-3 partner partner-text">-->
+                    <!--                    North American Lighting is a member of the Japan-based Koito Group of companies-->
+                    <!--                </div>-->
+                </div>
+
+
+                <!--            <div class="row m-0">-->
+
+
+                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.first')"-->
+                <!--                     [style.backgroundImage]="'url('+ client.first +')'">-->
+                <!--                    <div style="display: none;">-->
+                <!--                        <input type="file" [id]="'element.first'"-->
+                <!--                               (change)="clientImage($event,'first')">-->
+                <!--                        <label [for]="'element.first'">choose a file</label>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+
+                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.second')"-->
+                <!--                     [style.backgroundImage]="'url('+ client.second +')'">-->
+                <!--                    <div style="display: none;">-->
+                <!--                        <input type="file" [id]="'element.second'"-->
+                <!--                               (change)="clientImage($event,'second')">-->
+                <!--                        <label [for]="'element.second'">choose a file</label>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+
+                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.third')"-->
+                <!--                     [style.backgroundImage]="'url('+ client.third +')'">-->
+                <!--                    <div style="display: none;">-->
+                <!--                        <input type="file" [id]="'element.third'"-->
+                <!--                               (change)="clientImage($event,'third')">-->
+                <!--                        <label [for]="'element.third'">choose a file</label>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+
+                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.forth')"-->
+                <!--                     [style.backgroundImage]="'url('+ client.forth +')'">-->
+                <!--                    <div style="display: none;">-->
+                <!--                        <input type="file" [id]="'element.forth'"-->
+                <!--                               (change)="clientImage($event,'forth')">-->
+                <!--                        <label [for]="'element.forth'">choose a file</label>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+                <!--                <div class="col-4 col-md-3 partner partner-text" (click)="myClient(client.fifth, 'fifth')">-->
+                <!--                    {{client.fifth}}-->
+                <!--                </div>-->
+
+
+                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.sixth')"-->
+                <!--                     [style.backgroundImage]="'url('+ client.sixth +')'">-->
+                <!--                    <div style="display: none;">-->
+                <!--                        <input type="file" [id]="'element.sixth'"-->
+                <!--                               (change)="clientImage($event,'sixth')">-->
+                <!--                        <label [for]="'element.sixth'">choose a file</label>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+
+                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.seventh')"-->
+                <!--                     [style.backgroundImage]="'url('+ client.seventh +')'">-->
+                <!--                    <div style="display: none;">-->
+                <!--                        <input type="file" [id]="'element.seventh'"-->
+                <!--                               (change)="clientImage($event,'seventh')">-->
+                <!--                        <label [for]="'element.seventh'">choose a file</label>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+
+                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.eighth')"-->
+                <!--                     [style.backgroundImage]="'url('+ client.eighth +')'">-->
+                <!--                    <div style="display: none;">-->
+                <!--                        <input type="file" [id]="'element.eighth'"-->
+                <!--                               (change)="clientImage($event,'eighth')">-->
+                <!--                        <label [for]="'element.eighth'">choose a file</label>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+
+                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.ninth')"-->
+                <!--                     [style.backgroundImage]="'url('+ client.ninth +')'">-->
+                <!--                    <div style="display: none;">-->
+                <!--                        <input type="file" [id]="'element.ninth'"-->
+                <!--                               (change)="clientImage($event,'ninth')">-->
+                <!--                        <label [for]="'element.ninth'">choose a file</label>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+
+                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.tenth')"-->
+                <!--                     [style.backgroundImage]="'url('+ client.tenth +')'">-->
+                <!--                    <div style="display: none;">-->
+                <!--                        <input type="file" [id]="'element.tenth'"-->
+                <!--                               (change)="clientImage($event,'tenth')">-->
+                <!--                        <label [for]="'element.tenth'">choose a file</label>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+
+                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.eleventh')"-->
+                <!--                     [style.backgroundImage]="'url('+ client.eleventh +')'">-->
+                <!--                    <div style="display: none;">-->
+                <!--                        <input type="file" [id]="'element.eleventh'"-->
+                <!--                               (change)="clientImage($event,'eleventh')">-->
+                <!--                        <label [for]="'element.eleventh'">choose a file</label>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+
+                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.twelfth')"-->
+                <!--                     [style.backgroundImage]="'url('+ client.twelfth +')'">-->
+                <!--                    <div style="display: none;">-->
+                <!--                        <input type="file" [id]="'element.twelfth'"-->
+                <!--                               (change)="clientImage($event,'twelfth')">-->
+                <!--                        <label [for]="'element.twelfth'">choose a file</label>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+
+                <!--            </div>-->
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="remark-content-wrapper">
+        <div class="remark-content about-inner-content">
+
+            <div class="whole-remark">
+
+                <div class="text" (click)="myRemark(remark.title, 'title')">
+                    {{remark.title}}
+                </div>
+
+                <div class="author" (click)="myRemark(remark.description, 'description')">
+                    {{remark.description}}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="leadership-content-wrapper">
+        <div class="leadership-content about-inner-content">
+
+            <div class="heading" (click)="myLeadership(leadership.title, 'title', '')">
+                {{leadership.title}}
+            </div>
+
+            <div class="description" (click)="myLeadership(leadership.description, 'description', '')">
+                {{leadership.description}}
+            </div>
+
+            <div class="leaders">
+                <div class="leader">
+                    <div class="image" [style.backgroundImage]="'url('+ leadership.first.avatar +')'"
+                         (click)="myLeadership(leadership.first, 'first', 'avatar')">
+                        <div style="display: none;">
+                            <input type="file" [id]="'first_avatar'"
+                                   (change)="leadershipImage($event)">
+                            <label [for]="'first_avatar'">choose a file</label>
+                        </div>
+                    </div>
+                    <div class="about">
+                        <div class="author" (click)="myLeadership(leadership.first.name, 'first', 'name')">
+                            {{leadership.first.name}}
+                        </div>
+                        <div class="position" (click)="myLeadership(leadership.first.job, 'first', 'job')">
+                            {{leadership.first.job}}
+                        </div>
+                    </div>
+                </div>
+                <div class="leader">
+                    <div class="image" [style.backgroundImage]="'url('+ leadership.second.avatar +')'"
+                         (click)="myLeadership(leadership.first, 'second', 'avatar')">
+                        <div style="display: none;">
+                            <input type="file" [id]="'second_avatar'"
+                                   (change)="leadershipImage($event)">
+                            <label [for]="'second_avatar'">choose a file</label>
+                        </div>
+                    </div>
+                    <div class="about">
+                        <div class="author" (click)="myLeadership(leadership.second.name, 'second', 'name')">
+                            {{leadership.second.name}}
+                        </div>
+                        <div class="position" (click)="myLeadership(leadership.second.job, 'second', 'job')">
+                            {{leadership.second.job}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="our-awards-content-wrapper">
+        <div class="our-awards-content about-inner-content">
+
+            <div class="heading" (click)="myAwards(awards.title, 'title')">
+                {{awards.title}}
+            </div>
+
+            <div class="description" (click)="myAwards(awards.description, 'description')">
+                {{awards.description}}
+
+            </div>
+
+            <div class="awards">
+                <div class="row m-0">
+                    <div class="col-3 award award-text">
+                        <ul>
+                            <li *ngFor="let row of awards.first; let i = index" (click)="awardsFirst(row,i)">{{row}}</li>
+                            <!--                        <li><span>3</span> Gold</li>-->
+                            <!--                        <li><span>7</span> Silver</li>-->
+                            <!--                        <li><span>1</span> Bronze</li>-->
+                        </ul>
+                    </div>
+
+                    <!--                <div *ngFor="let img of awards.blocks; let i = index">-->
+                    <div class="col-3 award award-img" (click)="awardsBlock('awards',i)"
+                         *ngFor="let img of awards.blocks; let i = index"
+                         [style.backgroundImage]="'url('+ img +')'">
+                        <div style="display: none;">
+                            <input type="file" [id]="'awards' + i"
+                                   (change)="awardsImage($event)">
+                            <label [for]="'awards' + i">choose a file</label>
+                        </div>
+                    </div>
+
+                    <!--                </div>-->
+
+
+                    <!--                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/awards-logo2@2x.png)'"></div>-->
+                    <!--                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/awards-logo2@2x.png)'"></div>-->
+                    <!--                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/awards-logo2@2x.png)'"></div>-->
+                    <!--                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/awards-logo2@2x.png)'"></div>-->
+                    <!--                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/awards-logo2@2x.png)'"></div>-->
+                    <!--                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/awards-logo2@2x.png)'"></div>-->
+                    <!--                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/awards-logo2@2x.png)'"></div>-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
