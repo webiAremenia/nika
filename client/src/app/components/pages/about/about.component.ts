@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {PageService} from '../../../_services/page.service';
-import {Page} from '../../../_models/page';
 import {Subscription} from 'rxjs';
 import {ResponsiveData} from '../../../_models/ResponsiveData';
 import {ActionsService} from '../../../_services/actions.service';
+import {TeamService} from '../../../_services/team.service';
+import {TeamPage} from '../../../_models/team/TeamPage';
 
 @Component({
     selector: 'app-about',
@@ -11,45 +11,54 @@ import {ActionsService} from '../../../_services/actions.service';
     styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit, OnDestroy {
-    pages: Page[];
     done = false;
-    page: Page;
-
+    pageContent: TeamPage;
     windowSubscription: Subscription;
     windowSize: ResponsiveData;
 
-    constructor(private service: PageService, private actionsService: ActionsService) {
+    constructor(
+        private teamService: TeamService,
+        private actionsService: ActionsService) {
         this.windowSubscription = actionsService.getWindowSize()
             .subscribe((size: ResponsiveData) => this.windowSize = size);
     }
 
     ngOnInit() {
-        this.getAll();
+        // this.getAll();
+        this.getPage();
     }
 
     ngOnDestroy() {
         this.windowSubscription.unsubscribe();
     }
 
-    getAll() {
-        if (this.service.pages) {
-            this.pages = this.service.pages;
-            this.page = this.pages.find(p => {
-                return p.key === 'page_about';
-            });
+    getPage() {
+        this.teamService.getTeam().subscribe((d: TeamPage) => {
             this.done = true;
-        } else {
-            this.service.getAll().subscribe(
-                data => {
-                    this.pages = data;
-                    this.page = this.pages.find(p => {
-                        return p.key === 'page_about';
-                    });
-                    this.done = true;
-                },
-                err => console.log(err)
-            );
-        }
+            this.pageContent = d;
+            console.log(this.pageContent);
+        });
     }
+
+    // getAll() {
+    //     if (this.service.pages) {
+    //         this.pages = this.service.pages;
+    //         this.page = this.pages.find(p => {
+    //             return p.key === 'page_about';
+    //         });
+    //         this.done = true;
+    //     } else {
+    //         this.service.getAll().subscribe(
+    //             data => {
+    //                 this.pages = data;
+    //                 this.page = this.pages.find(p => {
+    //                     return p.key === 'page_about';
+    //                 });
+    //                 this.done = true;
+    //             },
+    //             err => console.log(err)
+    //         );
+    //     }
+    // }
 
 }

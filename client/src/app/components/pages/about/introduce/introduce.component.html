@@ -10,7 +10,7 @@
              [style.font-size]="(windowSize.width * 65 * windowSize.rate) / 1920 + 'px'"
              [style.line-height]="(windowSize.width * 80 * windowSize.rate) / 1920 + 'px'"
         >
-            Complex Challenges, Simple Solutions, Executed with Excellence
+            {{ content.title }}
         </div>
 
         <div class="description"
@@ -18,10 +18,7 @@
              [style.font-size]="(windowSize.width * 26 * windowSize.rate) / 1920 + 'px'"
              [style.line-height]="(windowSize.width * 45 * windowSize.rate) / 1920 + 'px'"
         >
-            We come to work everyday with one single goal - deliver greatness. <br><br>
-            We love finding simple solutions to complex challenges and place a strong emphasis on excellence in every
-            detail from design and code to the final
-            product.
+           {{ content.description }}
         </div>
 
     </div>

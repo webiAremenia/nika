@@ -2,17 +2,17 @@
 <div *ngIf="done" class="rightContentWrapper">
     <div class="about-page custom-page pr-0 col-12 col-lg-9 offset-lg-3">
 
-        <app-introduce></app-introduce>
+        <app-introduce [content]="pageContent.introduce"></app-introduce>
 
-        <app-our-element></app-our-element>
+        <app-our-element [content]="pageContent.element"></app-our-element>
 
-        <app-our-clients></app-our-clients>
+        <app-our-clients [content]="pageContent.client"></app-our-clients>
 
-        <app-remark></app-remark>
+        <app-remark [content]="pageContent.remark"></app-remark>
 
-        <app-leadership></app-leadership>
+        <app-leadership [content]="pageContent.leadership"></app-leadership>
 
-        <app-our-awards></app-our-awards>
+        <app-our-awards [content]="pageContent.awards"></app-our-awards>
 
         <div class="link-box">
             <div class="link-box-text row">

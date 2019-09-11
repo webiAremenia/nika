@@ -1,7 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ResponsiveData} from '../../../../_models/ResponsiveData';
 import {ActionsService} from '../../../../_services/actions.service';
+import {Remark} from '../../../../_models/team/Remark';
 
 @Component({
     selector: 'app-remark',
@@ -9,6 +10,7 @@ import {ActionsService} from '../../../../_services/actions.service';
     styleUrls: ['./remark.component.scss']
 })
 export class RemarkComponent implements OnInit, OnDestroy {
+    @Input() content: Remark;
     windowSubscription: Subscription;
     windowSize: ResponsiveData;
 

@@ -1,7 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ResponsiveData} from '../../../../_models/ResponsiveData';
 import {ActionsService} from '../../../../_services/actions.service';
+import {ElementList} from '../../../../_models/team/ElementList';
 
 @Component({
     selector: 'app-our-element',
@@ -9,9 +10,10 @@ import {ActionsService} from '../../../../_services/actions.service';
     styleUrls: ['./our-element.component.scss']
 })
 export class OurElementComponent implements OnInit, OnDestroy {
+    @Input() content: ElementList;
+    @ViewChild('list') list: ElementRef;
     windowSubscription: Subscription;
     windowSize: ResponsiveData;
-    list;
 
     constructor(private actionsService: ActionsService) {
         this.windowSubscription = actionsService.getWindowSize()
@@ -19,24 +21,23 @@ export class OurElementComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.list = document.querySelectorAll('ul');
-        this.list.forEach((list) => {
-            list.childNodes[1].display = 'none';
-        });
+        // console.log(this.content);
     }
 
     ngOnDestroy() {
         this.windowSubscription.unsubscribe();
     }
 
-    openList(e) {
-        if (e.classList.contains('active')) {
-            e.classList.remove('active');
+    openList(e, index) {
+        const list = e.children;
+        const el = e.children[index];
+        if (el.classList.contains('active')) {
+            el.classList.remove('active');
         } else {
-            this.list.forEach((list) => {
-                list.classList.remove('active');
-            });
-            e.classList.add('active');
+            for (const l of list) {
+                l.classList.remove('active');
+            }
+            el.classList.add('active');
         }
     }
 

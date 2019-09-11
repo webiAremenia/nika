@@ -5,7 +5,7 @@
              [style.font-size]="(windowSize.width * 65 * windowSize.rate) / 1920 + 'px'"
              [style.line-height]="(windowSize.width * 80 * windowSize.rate) / 1920 + 'px'"
         >
-            Awards
+            {{ content.title }}
         </div>
 
         <div class="description"
@@ -13,27 +13,21 @@
              [style.line-height]="(windowSize.width * 45 * windowSize.rate) / 1920 + 'px'"
              [style.width]="(windowSize.width * 675 * windowSize.rate) / 1920 + 'px'"
         >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore
-            magna aliqua. Ut enim ad minim veniam,
+            {{ content.description }}
         </div>
 
         <div class="awards">
             <div class="row m-0">
                 <div class="col-3 award award-text">
                     <ul>
-                        <li><span>3</span> Gold</li>
-                        <li><span>7</span> Silver</li>
-                        <li><span>1</span> Bronze</li>
+                        <li *ngFor="let cont of content.first">
+                            <span>{{ cont.split(' ')[0] }}</span> {{ cont.split(' ')[1] }}
+                        </li>
                     </ul>
                 </div>
-                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/awards-logo1@2x.png)'"></div>
-                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/w-awards-1@2x.png)'"></div>
-                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/awards-logo6@2x.png)'"></div>
-                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/awards-logo2@2x.png)'"></div>
-                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/awards-logo4@2x.png)'"></div>
-                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/award-1@2x.png)'"></div>
-                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/awards-logo7@2x.png)'"></div>
+                <div *ngFor="let block of content.blocks"
+                     class="col-3 award award-img"
+                     [style.backgroundImage]="'url(' + block + ')'"></div>
             </div>
         </div>
 

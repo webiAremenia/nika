@@ -12,6 +12,7 @@ const posts = require('./post'),
     settings = require('./settings'),
     group = require('./group'),
     work = require('./work'),
+    team = require('./team'),
     page = require('./page');
 
 
@@ -26,5 +27,6 @@ router.use('/menu', menu);
 router.use('/settings', settings);
 router.use('/group', group);
 router.use('/work', work);
+router.use('/team', team);
 
 module.exports = router;

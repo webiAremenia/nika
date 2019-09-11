@@ -114,8 +114,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         }, 100);
         setTimeout(() => {
             this.backToWorkText = 'Back to Works';
-            this.downBtn.nativeElement.classList.remove('fadeOut');
-            this.downBtn.nativeElement.classList.add('fadeIn');
+            this.showDownBtn();
             this.detailWrapper.nativeElement.style.opacity = '.74';
             this.navigate(index);
         }, 1400);
@@ -125,8 +124,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (this.detailWrapper) {
             this.detailWrapper.nativeElement.style.opacity = '0';
         }
-        this.downBtn.nativeElement.classList.remove('fadeIn');
-        this.downBtn.nativeElement.classList.add('fadeOut');
+        this.hideDownBtn();
         this.zoomed = 100;
         this.bannerHeight = window.innerHeight - 100;
         this.detailWrapperHeight = window.innerHeight - 100;
@@ -305,13 +303,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     showDownBtn() {
-        this.downBtn.nativeElement.classList.remove('fadeOut');
-        this.downBtn.nativeElement.classList.add('fadeIn');
+        if (this.downBtn) {
+            this.downBtn.nativeElement.classList.remove('fadeOut');
+            this.downBtn.nativeElement.classList.add('fadeIn');
+        }
     }
 
     hideDownBtn() {
-        this.downBtn.nativeElement.classList.remove('fadeIn');
-        this.downBtn.nativeElement.classList.add('fadeOut');
+        if (this.downBtn) {
+            this.downBtn.nativeElement.classList.remove('fadeIn');
+            this.downBtn.nativeElement.classList.add('fadeOut');
+        }
     }
 
     ngOnDestroy(): void {

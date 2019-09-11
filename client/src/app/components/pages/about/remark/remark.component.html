@@ -7,15 +7,14 @@
            [style.font-size]="(windowSize.width * 45 * windowSize.rate) / 1920 + 'px'"
            [style.line-height]="(windowSize.width * 61 * windowSize.rate) / 1920 + 'px'"
       >
-        “They created a responsive, mobile-friendly, clean design without disrupting
-        our e-commerce workflow.”
+        {{ content.title }}
       </div>
 
       <div class="author"
            [style.font-size]="(windowSize.width * 26 * windowSize.rate) / 1920 + 'px'"
            [style.line-height]="(windowSize.width * 35 * windowSize.rate) / 1920 + 'px'"
       >
-        - Ayman Babajun, Babajundom
+        {{ content.description }}
       </div>
 
     </div>

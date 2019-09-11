@@ -1,7 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ResponsiveData} from '../../../../_models/ResponsiveData';
 import {ActionsService} from '../../../../_services/actions.service';
+import {Awards} from '../../../../_models/team/Awards';
 
 @Component({
     selector: 'app-our-awards',
@@ -9,6 +10,7 @@ import {ActionsService} from '../../../../_services/actions.service';
     styleUrls: ['./our-awards.component.scss']
 })
 export class OurAwardsComponent implements OnInit, OnDestroy {
+    @Input() content: Awards;
     windowSubscription: Subscription;
     windowSize: ResponsiveData;
 
