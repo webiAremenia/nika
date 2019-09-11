@@ -26,12 +26,14 @@ export class WorkComponent implements OnInit, OnDestroy {
     ) {
         this.windowSubscription = actionsService.getWindowSize()
             .subscribe((size: ResponsiveData) => this.windowSize = size);
+        this.actionsService.workOpened.next(true);
     }
 
     ngOnInit() {
         this.activatedRoute.params.subscribe(params => {
             this.slug = params.slug;
             this.initWork();
+            console.log('work init');
         });
     }
 
@@ -45,6 +47,6 @@ export class WorkComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        // console.log('work destroy');
+        this.actionsService.workOpened.next(false);
     }
 }

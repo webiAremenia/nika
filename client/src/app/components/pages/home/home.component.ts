@@ -3,8 +3,8 @@ import {AppGlobals} from '../../../app.globals';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {WorkService} from '../../../_services/work.service';
 import {Work} from '../../../_models/work/work';
+import {ActionsService} from "../../../_services/actions.service";
 
-console.log(4444444444444444);
 
 @Component({
     selector: 'app-home',
@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     @ViewChild('customBody') customBody: ElementRef;
     @ViewChild('image') image: ElementRef;
     @ViewChild('detailWrapper') detailWrapper: ElementRef;
+    @ViewChild('downBtn') downBtn: ElementRef;
     windowWidth = window.innerWidth;
     accordionItemsStyles = {
         left: 0,
@@ -39,6 +40,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     currentTitle;
     currentDesc;
 
+    isWorkPage = false;
     mobileXsHeight;
 
     @HostListener('window:resize', ['$event'])
@@ -66,6 +68,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     constructor(
+        private actionsService: ActionsService,
         private activatedRoute: ActivatedRoute,
         private  workService: WorkService, config: AppGlobals,
         private router: Router) {
@@ -73,9 +76,19 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        console.log(7777);
         this.getParams();
         this.mobileXsHeight = window.innerWidth * 250 / 375;
+        this.actionsService.isWorkPage().subscribe(
+            bool => {
+                // console.log(bool);
+                if (!bool) {
+                    this.backToSlider();
+                } else {
+                    this.getParams();
+                }
+                // this.isWorkPage = bool;
+            }
+        );
         // this.router.events.pipe(
         //     filter(event => event instanceof NavigationEnd)
         // ).subscribe((event: NavigationEnd) => {
@@ -101,6 +114,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         }, 100);
         setTimeout(() => {
             this.backToWorkText = 'Back to Works';
+            this.downBtn.nativeElement.classList.remove('fadeOut');
+            this.downBtn.nativeElement.classList.add('fadeIn');
             this.detailWrapper.nativeElement.style.opacity = '.74';
             this.navigate(index);
         }, 1400);
@@ -108,9 +123,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     backToSlider() {
         if (this.detailWrapper) {
-            this.detailWrapper.nativeElement.style.opacity = '0'
+            this.detailWrapper.nativeElement.style.opacity = '0';
         }
-        ;
+        this.downBtn.nativeElement.classList.remove('fadeIn');
+        this.downBtn.nativeElement.classList.add('fadeOut');
         this.zoomed = 100;
         this.bannerHeight = window.innerHeight - 100;
         this.detailWrapperHeight = window.innerHeight - 100;
@@ -143,7 +159,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     initSlider() {
         this.count = this.slides.length;
         this.slideWidth = window.innerWidth > 992 ? (window.innerWidth - 115) / 4 : (window.innerWidth) / 3;
-        // this.clickedWidth = this.slideWidth;
         this.accordionItemsStyles.width = this.slideWidth * this.count;
         this.accordionItemsStyles.left = 0;
     }
@@ -171,6 +186,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (this.clickedSlide < this.slides.length - 1) {
             this.image.nativeElement.classList.add('fadeOutLeft');
             this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 100}px, 0)`;
+            this.showDownBtn();
             setTimeout(() => {
                 this.image.nativeElement.classList.remove('fadeOutLeft', 'fadeInRight', 'fadeInLeft');
                 this.image.nativeElement.classList.add('fadeInRight');
@@ -188,6 +204,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (this.clickedSlide > 0) {
             this.image.nativeElement.classList.add('fadeOutRight');
             this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 100}px, 0)`;
+            this.showDownBtn();
             setTimeout(() => {
                 this.image.nativeElement.classList.remove('fadeOutRight', 'fadeInRight', 'fadeInLeft');
                 this.image.nativeElement.classList.add('fadeInLeft');
@@ -201,8 +218,13 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
     }
 
+    goDown() {
+        this.workScrollTop = -(document.getElementById('wwww').clientHeight + window.innerHeight - 100);
+        this.hideDownBtn()
+    }
+
     scrollFunction(event) {
-        console.log(document.getElementById('wwww').clientHeight, this.workScrollTop);
+        // console.log(document.getElementById('wwww').clientHeight, this.workScrollTop);
         const workHeight = this.customBody.nativeElement.scrollHeight;
         if (this.clickedSlide || this.clickedSlide === 0) {
             this.mouseWillCount++;
@@ -219,9 +241,13 @@ export class HomeComponent implements OnInit, OnDestroy {
                     }
                     this.customBody.nativeElement.style.transform = `translate3d(0, ${this.workScrollTop}px, 0)`;
                     this.mouseWillCount = 0;
+                    if (this.workScrollTop < -(document.getElementById('wwww').clientHeight + window.innerHeight - 100)) {
+                        this.hideDownBtn();
+                    } else {
+                        this.showDownBtn();
+                    }
                 }, 10);
             }
-        } else {
         }
     }
 
@@ -229,14 +255,14 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (this.workService.works) {
             this.slides = this.workService.works;
             this.done = true;
-            console.log('get params if');
+            // console.log('get params if');
             this.initSlider();
             this.getCurrent();
         } else {
             this.workService.getWorks().subscribe(
                 d => {
                     this.slides = d;
-                    console.log('slider items ', d);
+                    // console.log('slider items ', d);
                     this.done = true;
                     this.initSlider();
                     this.getCurrent();
@@ -276,6 +302,16 @@ export class HomeComponent implements OnInit, OnDestroy {
     mobileNavigate(index) {
         this.clickedSlide = index;
         this.navigate(index);
+    }
+
+    showDownBtn() {
+        this.downBtn.nativeElement.classList.remove('fadeOut');
+        this.downBtn.nativeElement.classList.add('fadeIn');
+    }
+
+    hideDownBtn() {
+        this.downBtn.nativeElement.classList.remove('fadeIn');
+        this.downBtn.nativeElement.classList.add('fadeOut');
     }
 
     ngOnDestroy(): void {

@@ -1,6 +1,9 @@
 <div class="introduce-content-wrapper">
-    <div class="introduce-content about-inner-content"
-    [style.backgroundImage]="'url(assets/images/AboutUs/chair-octopus@2x.png)'">
+    <div class="introduce-content about-inner-content">
+
+        <div class="bg-image">
+            <img [src]="'assets/images/AboutUs/chair-octopus@2x.png'">
+        </div>
 
         <div class="heading"
              [style.width]="(windowSize.width * 672 * windowSize.rate) / 1920 + 'px'"
@@ -11,12 +14,14 @@
         </div>
 
         <div class="description"
-             [style.width]="(windowSize.width * 607 * windowSize.rate) / 1920 + 'px'"
+             [style.width]="(windowSize.width * 500 * windowSize.rate) / 1920 + 'px'"
              [style.font-size]="(windowSize.width * 26 * windowSize.rate) / 1920 + 'px'"
              [style.line-height]="(windowSize.width * 45 * windowSize.rate) / 1920 + 'px'"
         >
-            We come to work everyday with one single goal - deliver greatness. We love finding simple solutions to complex
-            challenges and place a strong emphasis on excellence in every detail from design and code to the final product.
+            We come to work everyday with one single goal - deliver greatness. <br><br>
+            We love finding simple solutions to complex challenges and place a strong emphasis on excellence in every
+            detail from design and code to the final
+            product.
         </div>
 
     </div>

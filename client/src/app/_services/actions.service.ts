@@ -8,7 +8,7 @@ import {ResponsiveData} from '../_models/ResponsiveData';
 export class ActionsService {
     responsiveData = new BehaviorSubject<ResponsiveData>
     ({
-        width: window.innerWidth > 1920 ?  1920 : window.innerWidth,
+        width: window.innerWidth > 1920 ? 1920 : window.innerWidth,
         height: window.innerHeight,
         rate:
             window.innerWidth >= 1920 ? 1 :
@@ -20,6 +20,7 @@ export class ActionsService {
 
     mobileResponsiveData = new BehaviorSubject<number>(window.innerWidth >= 768 ? 768 : 500);
     contactLocationSubject = new Subject<string>();
+    workOpened = new Subject<boolean>();
 
     constructor() {
     }
@@ -34,5 +35,9 @@ export class ActionsService {
 
     getContactLocation() {
         return this.contactLocationSubject.asObservable();
+    }
+
+    isWorkPage() {
+        return this.workOpened.asObservable();
     }
 }
