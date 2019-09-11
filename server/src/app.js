@@ -1,4 +1,5 @@
 import '../config/config.js';
+
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -9,6 +10,7 @@ require('./seed').createPage();
 require('./seed').createLogos();
 require('./seed').createMenus();
 require('./seed').createDefaultAdmin();
+require('./seed').createTeam();
 
 
 const mongoDB = global.gConfig.database;
@@ -28,7 +30,7 @@ app.use(require('cors')());
 
 app.use(morgan('combined', {stream: winston.stream}));
 
-app.use('/uploads', express.static(__dirname +'/../_uploads'));
+app.use('/uploads', express.static(__dirname + '/../_uploads'));
 
 const admin = require('./admin/routes/admin');
 const api = require('./api/routes/api');
@@ -54,11 +56,11 @@ app.use((req, res, next) => {
     res.status(err.status).json({error: err.message})
 });
 app.use((err, req, res, next) => {
-        res.locals.message = err.message;
-        res.locals.error = err;
-        winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-        res.status(err.status || 500);
-        res.render('error');
+    res.locals.message = err.message;
+    res.locals.error = err;
+    winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 
