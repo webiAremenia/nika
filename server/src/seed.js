@@ -3,18 +3,19 @@ const Settings = require('./admin/models/settings');
 const Logo = require('./admin/models/logo');
 const Menu = require('./admin/models/menu');
 const User = require('./admin/models/user');
+const Team = require('./admin/models/team');
 
 module.exports.createDefaultAdmin = async (req, res) => {
     try {
         let user = await User.find({});
         if (user.length === 0) {
             let obj = new User({
-                role : "supperAdmin",
-                username : "admin",
-                email : "admin@admin.com",
-                password : "$2b$10$5z04AgafX.OBZNcXKmRv4O0iwzHewbb.iW7gJIBx8Tbrd33ID.K6q",
+                role: "supperAdmin",
+                username: "admin",
+                email: "admin@admin.com",
+                password: "$2b$10$5z04AgafX.OBZNcXKmRv4O0iwzHewbb.iW7gJIBx8Tbrd33ID.K6q",
             });
-            obj.save()
+            obj.save();
             console.log('admin created');
         }
     } catch (e) {
@@ -89,6 +90,74 @@ module.exports.createMenus = (req, res) => {
     } catch (e) {
         console.log(e)
     }
+};
+module.exports.createTeam = async (req, res) => {
 
+
+    let createElementBlocks = () => {
+        let arr = [];
+
+        for (let i = 0; i < 7; ++i) {
+            arr.push({
+                title: 'Lorem Ipsum is simply dummy text of the printing ',
+                description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+            });
+        }
+
+        return arr;
+    };
+
+    let createClientBlocks = () => {
+        let arr = [];
+        for (let i = 0; i < 11; ++i) {
+            arr.push({
+                backGround: 'assets/images/AboutUs/intel.png'
+            });
+            if (i === 3) {
+                arr.push({
+                    text: 'North American Lighting is a member of the Japan-based Koito Group of companies'
+                });
+            }
+        }
+
+        return arr;
+
+    };
+
+    let createAwardsBlocks = () => {
+        let arr = [];
+        for (let i = 0; i < 7; ++i) {
+            arr.push('assets/images/AboutUs/awards-logo2@2x.png');
+        }
+
+        return arr;
+
+    };
+    try {
+        let teams = await Team.find({});
+        if (teams.length === 0) {
+
+            let team = new Team({
+                element: {
+                    title: 'Things we are good at',
+                    blocks: createElementBlocks()
+                },
+                client: {
+                    title: 'Clients',
+                    description: 'We come to work everyday with one single goal - deliver greatness. We love finding simple solutions to complex',
+                    blocks: createClientBlocks()
+                },
+                awards: {
+                    title: 'Awards',
+                    description: 'Lorem ipsum dolor sit incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
+                    first: ['3 gold', '2 silver', '1 bronze'],
+                    blocks: createAwardsBlocks()
+                }
+            });
+            team.save()
+        }
+    } catch (e) {
+        console.log(e)
+    }
 
 };

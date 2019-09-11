@@ -15,7 +15,8 @@ const auth = require('./auth'),
     medias = require('./media'),
     group = require('./group'),
     work = require('./work'),
-    profile = require('./profile');
+    profile = require('./profile'),
+    team = require('./team');
 
 router.use('/post', posts);
 router.use('/page', pages);
@@ -31,5 +32,6 @@ router.use('/portfolio', portfolio);
 router.use('/group', group);
 router.use('/profile', profile);
 router.use('/work', work);
+router.use('/team', team);
 
 module.exports = router;

@@ -39,7 +39,7 @@ export class EditWorkComponent implements OnInit, OnDestroy {
         private workService: WorkService,
         config: AppGlobals
     ) {
-        this.videoUrl = config.url;
+        this.videoUrl = config.imageUrl;
         if (this.workService.candidateWork) {
             this.work = this.workService.candidateWork;
             // this.work.details.forEach(d => {
@@ -191,6 +191,8 @@ export class EditWorkComponent implements OnInit, OnDestroy {
 
 
                 if (this.form.get('details')['controls'][i].value.videoURL) {
+                    this.msg.loading('Uploading file', {nzDuration: 0});
+
                     const random = this.generateRandomString(10);
                     const file = event.target.files[0];
 
@@ -206,10 +208,14 @@ export class EditWorkComponent implements OnInit, OnDestroy {
                     this.workService.changeVideo(this.form.get('details')['controls'][i].value.videoURL, form).subscribe(data => {
                         this.form.get('details')['controls'][i].get('videoURL').setValue(data['video']);
                         this.videoPath = 'video' + i;
+                        this.msg.remove();
+                        this.msg.success('upload successfully.');
                     }, e => {
                         console.log(e);
                     });
                 } else {
+                    this.msg.loading('Uploading file', {nzDuration: 0});
+
                     const random = this.generateRandomString(10);
                     const file = event.target.files[0];
 
@@ -222,6 +228,8 @@ export class EditWorkComponent implements OnInit, OnDestroy {
                     form.append('video', file);
                     this.workService.addVideo(form).subscribe(data => {
                         this.form.get('details')['controls'][i].get('videoURL').setValue(data['video']);
+                        this.msg.remove();
+                        this.msg.success('upload successfully.');
                     }, e => {
                         console.log(e);
                     });
@@ -230,6 +238,7 @@ export class EditWorkComponent implements OnInit, OnDestroy {
 
             } else {
                 if (this.form.get('details')['controls'][i].value.videoURL) {
+
                     this.msg.loading('Uploading file', {nzDuration: 0});
                     const random = this.generateRandomString(10);
                     const file = event.target.files[0];
@@ -245,10 +254,14 @@ export class EditWorkComponent implements OnInit, OnDestroy {
                     this.workService.changeVideo(this.form.get('details')['controls'][i].value.videoURL, form).subscribe(data => {
                         this.form.get('details')['controls'][i].get('videoURL').setValue(data['video']);
                         this.videoPath = 'video' + i;
+                        this.msg.remove();
+                        this.msg.success('upload successfully.');
                     }, e => {
                         console.log(e);
                     });
                 } else {
+                    this.msg.loading('Uploading file', {nzDuration: 0});
+
                     const random = this.generateRandomString(10);
                     const file = event.target.files[0];
 
@@ -261,6 +274,8 @@ export class EditWorkComponent implements OnInit, OnDestroy {
                     form.append('video', file);
                     this.workService.addVideo(form).subscribe(data => {
                         this.form.get('details')['controls'][i].get('videoURL').setValue(data['video']);
+                        this.msg.remove();
+                        this.msg.success('upload successfully.');
                     }, e => {
                         console.log(e);
                     });
@@ -269,23 +284,6 @@ export class EditWorkComponent implements OnInit, OnDestroy {
 
 
         }
-    }
-
-    slider(event, i, j) {
-        if (this.imgId) {
-            j = this.imgId;
-            this.sliderImgView(event, i, j);
-            // this.imgChange = false;
-            this.imgId = null;
-
-        } else {
-            if (event.target.files.length > 0) {
-                this.createSlidersForm(() => {
-                    this.sliderImgView(event, i, j);
-                });
-            }
-        }
-
     }
 
 
@@ -320,7 +318,7 @@ export class EditWorkComponent implements OnInit, OnDestroy {
         this.imagePath = null;
         reader.onload = () => {
             this.form.get('details')['controls'][i].controls.sliders.controls[j].controls.imgURL.setValue(reader.result);
-            console.log(this.form.value);
+            this.imgId = null;
         };
     }
 
@@ -330,7 +328,27 @@ export class EditWorkComponent implements OnInit, OnDestroy {
 
     changeImg(i, index) {
         this.imgId = index;
-        document.getElementById('file_slider' + i).click()
+        console.log('imgId ', index)
+        document.getElementById('file_slider' + i).click();
+    }
+
+    slider(event, i, j) {
+
+        console.log(typeof this.imgId);
+        console.log('++++ ', this.imgId)
+        if (this.imgId || this.imgId === 0) {
+            this.sliderImgView(event, i, this.imgId);
+            this.imgId = null;
+            // this.imgChange = false;
+
+        } else {
+            if (event.target.files.length > 0) {
+                this.createSlidersForm(() => {
+                    this.sliderImgView(event, i, j);
+                });
+            }
+        }
+
     }
 
 
@@ -429,7 +447,7 @@ export class EditWorkComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        if(this.destroyWork){
+        if (this.destroyWork) {
             if (this.videosArrOnDestroy.length > 0) {
                 this.workService.deleteVideoMany(this.videosArrOnDestroy).subscribe(data => {
                     console.log(data);
