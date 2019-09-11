@@ -58,17 +58,30 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
         margin-bottom: 32px;
         padding-top: 225px;
         background-position: top;
-    }
-    .heading {
-        font-size: 30px !important;
-        line-height: 35px !important;
-        width: 100% !important;
-        letter-spacing: -1.2px !important;
-    }
-    .description {
-        font-size: 14px !important;
-        line-height: 22px !important;
-        width: 100% !important;
-        letter-spacing: -0.28px !important;
+
+        .bg-image {
+            top: 0;
+            height: 225px;
+            width: 100%;
+            padding-top: 0;
+            z-index: -1;
+
+            img{
+                object-fit: contain;
+            }
+        }
+
+        .heading {
+            font-size: 30px !important;
+            line-height: 35px !important;
+            width: 100% !important;
+            letter-spacing: -1.2px !important;
+        }
+        .description {
+            font-size: 14px !important;
+            line-height: 22px !important;
+            width: 100% !important;
+            letter-spacing: -0.28px !important;
+        }
     }
 }

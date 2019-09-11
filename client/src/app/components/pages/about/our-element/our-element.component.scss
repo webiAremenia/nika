@@ -60,7 +60,7 @@ ul:hover {
         text-align: left;
         //font-size: 36px;
         //line-height: 30px;
-        font-family: $font-extraBold;
+        font-family: $font-semiBold;
         letter-spacing: -0.72px;
         padding: 55px 15px;
       }
@@ -71,10 +71,10 @@ ul:hover {
         //font-size: 22px;
         //line-height: 35px;
         letter-spacing: 0;
-        font-family: $font-semiBold;
+        font-family: $font-regular;
         color: #FFFFFF;
         opacity: 1;
-        padding: 30px 70px 20px 70px;
+        padding: 0 70px 20px 70px;
       }
     }
   }

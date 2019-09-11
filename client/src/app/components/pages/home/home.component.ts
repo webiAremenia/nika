@@ -3,7 +3,7 @@ import {AppGlobals} from '../../../app.globals';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {WorkService} from '../../../_services/work.service';
 import {Work} from '../../../_models/work/work';
-import {ActionsService} from "../../../_services/actions.service";
+import {ActionsService} from '../../../_services/actions.service';
 
 
 @Component({
@@ -218,7 +218,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     goDown() {
         this.workScrollTop = -(document.getElementById('wwww').clientHeight + window.innerHeight - 100);
-        this.hideDownBtn()
+        this.hideDownBtn();
     }
 
     scrollFunction(event) {

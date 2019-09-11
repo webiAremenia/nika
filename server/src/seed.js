@@ -97,7 +97,7 @@ module.exports.createTeam = async (req, res) => {
     let createElementBlocks = () => {
         let arr = [];
 
-        for (let i = 0; i < 7; ++i) {
+        for (let i = 0; i < 5; ++i) {
             arr.push({
                 title: 'Lorem Ipsum is simply dummy text of the printing ',
                 description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
