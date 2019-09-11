@@ -1,6 +1,9 @@
 $font-regular: 'Open Sans Regular', sans-serif;
 $font-semiBold: 'Open Sans Semibold', sans-serif;
 
+::ng-deep .iti__country-list {
+  position: fixed !important;;
+}
 
 mat-hint {
   //font-size: 20px;

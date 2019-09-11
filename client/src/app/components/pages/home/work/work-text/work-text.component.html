@@ -1,0 +1,34 @@
+<div class="work-text-content row m-0">
+  <div class="col-12 col-md-8 offset-md-2" [ngClass]="content.border ? 'custom-border': ''">
+      <div class="whole-text">
+
+          <div class="text-with-author" *ngIf="content.author">
+
+              <div class="text-a"
+                   [style.font-size]="(windowSize.width * 30 * windowSize.rate) / 1920 + 'px'"
+                   [style.line-height]="(windowSize.width * 45* windowSize.rate) / 1920 + 'px'"
+              >
+                  “{{content.description}}”
+              </div>
+
+              <div class="author"
+                   [style.font-size]="(windowSize.width * 18 * windowSize.rate) / 1920 + 'px'"
+                   [style.line-height]="(windowSize.width * 30* windowSize.rate) / 1920 + 'px'"
+              >
+                  - {{content.title}}
+              </div>
+
+          </div>
+
+          <div class="text-without-author" *ngIf="!content.author">
+              <div class="text-b"
+                   [style.font-size]="(windowSize.width * 18 * windowSize.rate) / 1920 + 'px'"
+                   [style.line-height]="(windowSize.width * 30* windowSize.rate) / 1920 + 'px'"
+              >
+                  {{content.description}}
+              </div>
+          </div>
+
+      </div>
+  </div>
+</div>

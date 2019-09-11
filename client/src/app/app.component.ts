@@ -48,11 +48,12 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.footerService.getGroups().subscribe(
-            d => this.done = d
-        );
+        this.done = true;
+        // this.footerService.getGroups().subscribe(
+        //     d => this.done = d
+        // );
         this.sliderService.getImages().subscribe();
-        this.sliderService.getSliderSpeed().subscribe();
+        // this.sliderService.getSliderSpeed().subscribe();
     }
 
     @HostListener('window:resize', ['$event']) onResize(e) {

@@ -1,5 +1,9 @@
-<div class="rightContentWrapper" *ngIf="done">
-    <div class="home-page custom-page bg-light col-12 col-lg-9 offset-lg-3 pr-0"
+
+<div class="rightContentWrapper">
+
+    <div class="loading-pppp" *ngIf="!done">loading ...</div>
+
+    <div class="home-page custom-page bg-light col-12 col-lg-9 offset-lg-3 pr-0"  *ngIf="done"
          (mousewheel)="scrollFunction($event)">
 
         <div class="accordion w-100 h-100 d-none d-md-block" (mousewheel)="onMouseWheel($event)">
@@ -11,7 +15,7 @@
                      class="slider-item"
                      [style.width]="slideWidth + 'px'">
                     <div class="slide-image">
-                        <img [src]="imageUrl + slide.images[0]">
+                        <img [src]="slide.img">
                     </div>
                     <div class="slide-text-content">
                         <h2>{{ slide.title }}</h2>
@@ -34,9 +38,17 @@
                          [style.left]="detailWrapperLeft + 'px'"
                          [style.width]="zoomed + '%'"
                          [style.height]="detailWrapperHeight ? detailWrapperHeight + 'px' : 'auto'"
-                         [src]="imageUrl + slides[clickedSlide].images[0]" #image>
-                    <!--                    <div *ngIf="clickedSlide || clickedSlide == 0"-->
-                    <!--                         class="large-title">{{ slides[clickedSlide].title }}</div>-->
+                         [src]="slides[clickedSlide].img" #image>
+                    <div class="text-desc-wrapper" #detailWrapper
+                         [style.padding]="windowWidth * 50 / 1920 + 'px ' + windowWidth * 100 / 1920 + 'px'">
+                        <div class="detail-sub">some text from admin</div>
+                        <div class="detail-title" *ngIf="currentTitle"
+                             [style.fontSize]="windowWidth * 50 / 1920 + 'px'"
+                        > {{ currentTitle }} </div>
+                        <div class="detail-desc" *ngIf="currentDesc"
+                             [style.fontSize]="windowWidth * 18 / 1920 + 'px'"> {{ currentDesc }} </div>
+                        <div class="detail-logo" [style.background]="'url(assets/icons/in-logo.PNG)'"></div>
+                    </div>
                 </div>
                 <router-outlet></router-outlet>
             </div>
@@ -64,7 +76,7 @@
                      (click)="mobileNavigate(index)"
                      class="slider-item-mobile col-12 col-sm-6 px-0">
                     <div class="slide-image">
-                        <img [style.height]="mobileXsHeight + 'px'" [src]="imageUrl + slide.images[0]">
+                        <img [style.height]="mobileXsHeight + 'px'" [src]="slide.img">
                     </div>
                     <div class="slide-text-content">
                         <h2>{{ slide.title }}</h2>

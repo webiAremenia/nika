@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Work} from '../_models/work';
 import {HttpClient} from '@angular/common/http';
 import {AppGlobals} from '../app.globals';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
+import {Work} from '../_models/work/work';
 
 @Injectable({
     providedIn: 'root'
@@ -19,44 +19,53 @@ export class WorkService {
         this.url = config.url;
     }
 
-    getWorks(): Observable<Work[]> {
-        return this.http.get<any[]>(`${this.url}/api/portfolio/`)
+     getWorks(): Observable<Work[]> {
+        return this.http.get<Work[]>(`${this.url}/api/work/`)
             .pipe(map(data => {
-                    this.works = data.map(work => {
-                        return {
-                            id: work._id,
-                            images: work.imgs,
-                            title: work.title,
-                            description: work.description,
-                            link: work.link,
-                            content: work.content
-                        };
-                    });
+                    console.log('Service', data);
+                    this.works = data;
                     return this.works;
                 }),
-                catchError(err => {
-                    console.log(err);
-                    return throwError(err);
-                }));
+                catchError(err => throwError(err)));
     }
 
-    findOne(id): Work {
-        return this.works.find((element) => {
-            return String(element.id) === String(id);
+    findOne(slug): Work {
+        return this.works.find(element => {
+            return String(element.slug) === String(slug);
         });
     }
-    getOne(id): Observable<Work> {
-        return this.http.get<any>(`${this.url}/api/portfolio/${id}`)
-            .pipe(map(work => {
-                this.work = {
-                    id: work._id,
-                    title: work.title,
-                    description: work.description,
-                    images: work.imgs,
-                    link: work.link,
-                    content: work.content
-                };
-                return this.work;
-            }));
+
+    getOne(slug): Observable<Work> {
+        return this.http.get<any>(`${this.url}/api/work/${slug}`)
+            .pipe(map(data => {
+                    console.log('Service', data);
+                    this.work = data;
+                    return this.work;
+                }),
+                catchError(err => throwError(err)));
     }
+
+    // getWorks(): Observable<Work[]> {
+    //     return this.http.get<any[]>(`${this.url}/api/portfolio/`)
+    //         .pipe(map(data => {
+    //             console.log(data)
+    //                 this.works = data.map(work => {
+    //                     return {
+    //                         id: work._id,
+    //                         images: work.imgs,
+    //                         title: work.title,
+    //                         description: work.description,
+    //                         link: work.link,
+    //                         content: work.content
+    //                     };
+    //                 });
+    //                 return this.works;
+    //             }),
+    //             catchError(err => {
+    //                 console.log(err);
+    //                 return throwError(err);
+    //             }));
+    // }
+
+
 }

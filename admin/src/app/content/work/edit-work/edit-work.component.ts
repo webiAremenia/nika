@@ -3,7 +3,7 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {NzMessageService, NzModalService, UploadFile} from 'ng-zorro-antd';
 import {WorkService} from '../../../shared/services/work.service';
-import {AppGlobals} from "../../../app.globals";
+import {AppGlobals} from '../../../app.globals';
 
 @Component({
     selector: 'app-edit-work',

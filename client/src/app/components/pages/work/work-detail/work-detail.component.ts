@@ -2,7 +2,7 @@ import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {WorkService} from '../../../../_services/work.service';
 import {ActivatedRoute} from '@angular/router';
-import {Work} from '../../../../_models/work';
+import {Work} from '../../../../_models/work/work';
 import {AppGlobals} from '../../../../app.globals';
 
 @Component({

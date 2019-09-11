@@ -1,0 +1,29 @@
+<div class="work-slider-content row m-0">
+    <div class="col-12 col-md-8 offset-md-2">
+        <div class="{{ content.size }}-slider"
+             [style.height]="sliderHeight"
+             [style.width]="sliderWidth">
+            <owl-carousel-o [options]="customOptions" #workSlider>
+
+                <ng-container *ngFor="let slide of content.sliders">
+                    <ng-template carouselSlide>
+                        <img [src]="slide.imgURL"
+                             [style.objectFit]="content.objectFit"
+                             [style.objectPosition]="content.alignment + ' ' + content.verticalAlignment"
+                             [style.height]="sliderHeight"
+                             [style.width]="sliderWidth">
+                    </ng-template>
+                </ng-container>
+
+            </owl-carousel-o>
+            <div class="slider-btn slider-next"
+                 (click)="nextSlide()">
+                <div class="img" [style.background-image]="'url(assets/icons/next.svg)'"></div>
+            </div>
+            <div class="slider-btn slider-prev"
+                 (click)="prevSlide()">
+                <div class="img" [style.background-image]="'url(assets/icons/prev.svg)'"></div>
+            </div>
+        </div>
+    </div>
+</div>
