@@ -5,8 +5,12 @@ $font-bold: 'Open Sans Bold', sans-serif;
 .work-wrapper {
     padding: 50px;
     background: #ffffff;
-
     .work-dynamic-content-details {
+        transition: opacity 2000ms;
+        -o-transition: opacity 2000ms;
+        -ms-transition: opacity 2000ms;
+        -moz-transition: opacity 2000ms;
+        -webkit-transition: opacity 2000ms;
         padding: 32px 0;
     }
 }

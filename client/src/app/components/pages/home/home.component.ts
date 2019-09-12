@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     imageUrl;
     done = false;
     clickedSlide = null;
-    workScrollTop = -window.innerHeight + 100;
+    workScrollTop;
     detailWrapperLeft = 15;
     detailWrapperHeight;
     bannerHeight;
@@ -78,6 +78,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.workScrollTop = -window.innerHeight + 100;
+        this.actionsService.workScrollPosition.next(this.workScrollTop);
         this.getParams();
         this.mobileXsHeight = window.innerWidth * 250 / 375;
         this.actionsService.isWorkPage().subscribe(
@@ -221,6 +223,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     goDown() {
         this.workScrollTop = -(document.getElementById('wwww').clientHeight + window.innerHeight - 100);
+        this.actionsService.workScrollPosition.next(this.workScrollTop);
         this.hideDownBtn();
     }
 
@@ -246,6 +249,8 @@ export class HomeComponent implements OnInit, OnDestroy {
                             this.workScrollTop = -window.innerHeight + 100;
                         }
                     }
+                    // console.log(this.workScrollTop);
+                    this.actionsService.workScrollPosition.next(this.workScrollTop);
                     this.customBody.nativeElement.style.transform = `translate3d(0, ${this.workScrollTop}px, 0)`;
                     this.mouseWillCount = 0;
                     if (this.workScrollTop < -(document.getElementById('wwww').clientHeight + window.innerHeight - 100)) {

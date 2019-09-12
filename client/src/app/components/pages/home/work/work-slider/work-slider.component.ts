@@ -34,7 +34,7 @@ export class WorkSliderComponent implements OnInit {
 
     ngOnInit() {
         this.initSizes();
-        console.log(this.content);
+        // console.log(this.content);
     }
 
     initSizes() {
