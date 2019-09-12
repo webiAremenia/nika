@@ -33,9 +33,9 @@ export class AboutComponent implements OnInit, OnDestroy {
     }
 
     getPage() {
-        this.teamService.getTeam().subscribe((d: TeamPage) => {
+        this.teamService.getTeam().subscribe((d: TeamPage[]) => {
             this.done = true;
-            this.pageContent = d;
+            this.pageContent = d[0];
             console.log(this.pageContent);
         });
     }

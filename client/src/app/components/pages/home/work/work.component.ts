@@ -4,7 +4,6 @@ import {Work} from '../../../../_models/work/work';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {ResponsiveData} from '../../../../_models/ResponsiveData';
-import {PageService} from '../../../../_services/page.service';
 import {ActionsService} from '../../../../_services/actions.service';
 
 @Component({

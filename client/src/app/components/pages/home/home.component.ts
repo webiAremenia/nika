@@ -43,6 +43,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     isWorkPage = false;
     mobileXsHeight;
 
+    homePage = true;
+
     @HostListener('window:resize', ['$event'])
     onResize() {
         this.initSlider();
@@ -80,21 +82,22 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.mobileXsHeight = window.innerWidth * 250 / 375;
         this.actionsService.isWorkPage().subscribe(
             bool => {
-                // console.log(bool);
-                if (!bool) {
-                    this.backToSlider();
-                } else {
-                    this.getParams();
-                }
-                // this.isWorkPage = bool;
+                setTimeout(() => {
+                    this.initPageByUrl(bool);
+                }, 100);
             }
         );
-        // this.router.events.pipe(
-        //     filter(event => event instanceof NavigationEnd)
-        // ).subscribe((event: NavigationEnd) => {
-        //     // console.log(event);
-        //     this.getParams();
-        // });
+    }
+
+    initPageByUrl(bool) {
+        console.log('subscribe: ', this.homePage);
+        if (this.homePage) {
+            if (!bool) {
+                this.backToSlider();
+            } else {
+                this.getParams();
+            }
+        }
     }
 
     initCurrent(index) {
@@ -232,10 +235,16 @@ export class HomeComponent implements OnInit, OnDestroy {
                     // console.log(this.workScrollTop, -workHeight);
                     if (event.deltaY > 0) {
                         this.workScrollTop = this.workScrollTop > -workHeight ?
-                            this.workScrollTop - 100 : -this.customBody.nativeElement.scrollHeight;
+                            this.workScrollTop - 100 : -workHeight;
+                        if (this.workScrollTop < -workHeight) {
+                            this.workScrollTop = -workHeight;
+                        }
                     } else {
                         this.workScrollTop = this.workScrollTop < -window.innerHeight + 100 ?
                             this.workScrollTop + 100 : -window.innerHeight + 100;
+                        if (this.workScrollTop > -window.innerHeight + 100) {
+                            this.workScrollTop = -window.innerHeight + 100;
+                        }
                     }
                     this.customBody.nativeElement.style.transform = `translate3d(0, ${this.workScrollTop}px, 0)`;
                     this.mouseWillCount = 0;
@@ -317,6 +326,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        // console.log('destroy');
+        this.homePage = false;
+        console.log('destroy: ', this.homePage);
     }
 }

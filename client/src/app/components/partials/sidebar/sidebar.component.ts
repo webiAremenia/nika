@@ -17,20 +17,18 @@ export class SidebarComponent implements OnInit {
     menuText;
     menuUrl;
     logos: Logo[];
-    logo1: Logo;
-    logo2: Logo;
     done = false;
     imageUrl;
     menus;
 
-    constructor(private location: Location,
-                private router: Router,
-                private menuService: MenuService,
-                private logoService: LogoService,
-                private config: AppGlobals
+    constructor(
+        private location: Location,
+        private router: Router,
+        private menuService: MenuService,
+        private logoService: LogoService,
+        private config: AppGlobals
     ) {
         this.imageUrl = config.imageUrl + '/medias/';
-        // console.log(this.imageUrl)
         router.events.subscribe((val) => {
             // console.log(location.path())
         });
@@ -40,20 +38,6 @@ export class SidebarComponent implements OnInit {
         this.getMenuText();
         this.logoService.getImages().subscribe(data => {
             this.logos = data;
-            // data.forEach(i => {
-            //     if (i.title === 'title_1') {
-            //         this.logo1 = {
-            //             title: i.title,
-            //             image: i.image ? i.image : ''
-            //         };
-            //     }
-            //     if (i.title === 'title_2') {
-            //         this.logo2 = {
-            //             title: i.title,
-            //             image: i.image ? i.image : ''
-            //         }
-            //     }
-            // });
             this.done = true;
         }, e => console.log(e));
         this.menuService.getMenus().subscribe(data => {
@@ -62,7 +46,6 @@ export class SidebarComponent implements OnInit {
             });
         });
     }
-
 
     getMenuText() {
         this.menuService.getMenuText().subscribe(date => {

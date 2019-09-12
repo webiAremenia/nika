@@ -1,5 +1,5 @@
 <div class="clients-content-wrapper">
-    <div class="clients-content about-inner-content">
+    <div class="clients-content about-inner-content" *ngIf="content">
 
         <div class="heading"
              [style.font-size]="(windowSize.width * 65 * windowSize.rate) / 1920 + 'px'"
