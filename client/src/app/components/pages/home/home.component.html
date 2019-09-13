@@ -54,7 +54,7 @@
         </div>
 
 
-        <div class="go-back-btn  d-none d-md-block" (click)="backToSlider()">{{ backToWorkText }}</div>
+        <div class="go-back-btn  d-none d-md-block" (click)="backToSlider()" [ngClass]="{'not-active': !active}">{{ backToWorkText }}</div>
         <div class="slider-buttons  d-none d-md-block">
             <div class="slider-next-btn"
                  (click)="!clickedSlide && clickedSlide !== 0 ? sliderNext() : pageNext()">
