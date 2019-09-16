@@ -22,15 +22,22 @@ export class LoginPageComponent implements OnInit {
         }
         this.data.login(this.validateForm.value).subscribe(
             (data: any) => {
-                localStorage.setItem('token', data.token);
-                const txt = JSON.stringify(data.user);
-                localStorage.setItem('user', txt);
-                this.router.navigate(['post']);
+                if (data.success === false) {
+                    this.msg = data.msg;
+                    this.flagMsg = true;
+
+                } else {
+                    localStorage.setItem('token', data.token);
+                    const txt = JSON.stringify(data.user);
+                    localStorage.setItem('user', txt);
+                    this.router.navigate(['post']);
+                }
+
             },
             (err) => {
-                console.log(err);
-                this.msg = err.error.msg;
-                this.flagMsg = true;
+                console.log('------- ', err);
+                // this.msg = err.error.msg;
+                // this.flagMsg = true;
             }
         );
     }

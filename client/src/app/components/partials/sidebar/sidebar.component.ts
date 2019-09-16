@@ -19,7 +19,8 @@ export class SidebarComponent implements OnInit {
     logos: Logo[];
     done = false;
     imageUrl;
-    menus;
+    menu;
+    menuDone = false;
 
     constructor(
         private location: Location,
@@ -41,9 +42,8 @@ export class SidebarComponent implements OnInit {
             this.done = true;
         }, e => console.log(e));
         this.menuService.getMenus().subscribe(data => {
-            this.menus = data.filter(m => {
-                return m.isActive;
-            });
+            this.menu = data.menu;
+            this.menuDone = true;
         });
     }
 

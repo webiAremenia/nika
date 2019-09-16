@@ -35,6 +35,8 @@ export class MenuChangeComponent implements OnInit {
         this.validateForm = new FormGroup({
             key: new FormControl({value: this.candidate.key, disabled: true}, [Validators.required]),
             value: new FormControl(this.candidate.value, [Validators.required]),
+            title: new FormControl(this.candidate.title, [Validators.required]),
+            description: new FormControl(this.candidate.description),
             order: new FormControl(this.candidate.order, [Validators.required]),
             isActive: new FormControl(this.candidate.isActive, [Validators.required]),
         });

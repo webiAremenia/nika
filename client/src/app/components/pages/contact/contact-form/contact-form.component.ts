@@ -21,13 +21,19 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
     // emailPattern = '^[a-z0-9._%+-]{5,15}@[a-z0-9.-]+\.[a-z]{2,4}$';
     // fullNamePattern = '^[a-zA-Z0-9 ]{5,15}';
     // fullNamePattern = '^([^<>&:"]*[^<>&:"\\s][^<>&:"]*|.{0})$';
+    // companyPattern = '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$';
+
 
     form: FormGroup;
     done = false;
-    emailPattern = '^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$';
-    fullNamePattern = '^(?! )(?!.* $)[a-zA-Z+\\s.][a-zA-Z-_\\s.]{1,20}';
-    // companyPattern = '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$';
-    companyPattern = '(?! )(?!.* $)[\\w.\\s.]{3,20}$';
+    // emailPattern = '^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$';
+    // fullNamePattern = '^(?! )(?!.* $)[a-zA-Z+\\s.][a-zA-Z-_\\s.]{1,20}';
+    // companyPattern = '(?! )(?!.* $)[\\w.\\s.]{3,20}$';
+    // phonePattern = '^[0-9]{5,15}$';
+
+    emailPattern = '^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\\-+)|([A-Za-z0-9]+\\.+)|([A-Za-z0-9]+\\++))*[A-Za-z0-9]+@((\\w+\\-+)|(\\w+\\.))*\\w{1,63}\\.[a-zA-Z]{2,6})$';
+    fullNamePattern = '^[a-z0-9_-]{4,15}$';
+    companyPattern = '(?! )(?!.* $)[\\w.\\s.]{4,20}$';
     phonePattern = '^[0-9]{5,15}$';
 
     height: number;

@@ -7,7 +7,21 @@ module.exports = {
     getMenu: async (req, res) => {
         try {
             let candidates = await Menu.find({});
-            res.status(201).json(candidates)
+            let menu = {};
+
+            candidates.forEach(m => {
+                menu[m.key] = {
+                    title: m.title,
+                    description: m.description,
+                    isActive: m.isActive,
+                    order: m.order,
+                    value: m.value,
+                };
+            });
+
+            res.status(201).json({
+                menu: menu
+            })
         } catch (e) {
             errors.notFound(res, errors)
         }
