@@ -45,6 +45,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     homePage = true;
 
+    initCurrentTimeOut;
+    backToSliderTimeOut;
+
     @HostListener('window:resize', ['$event'])
     onResize() {
         this.initSlider();
@@ -92,7 +95,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     initPageByUrl(bool) {
-        console.log('subscribe: ', this.homePage);
         if (this.homePage) {
             if (!bool) {
                 this.backToSlider();
@@ -103,6 +105,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     initCurrent(index) {
+        clearTimeout(this.backToSliderTimeOut);
         this.detailWrapperHeight = (window.innerHeight - 100);
         this.bannerHeight = (window.innerHeight - 100);
         this.lastIndex = index;
@@ -117,7 +120,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             this.bannerHeight = window.innerHeight + 100;
             this.clickedWidth = this.slideWidth * 3;
         }, 100);
-        setTimeout(() => {
+        this.initCurrentTimeOut = setTimeout(() => {
             this.backToWorkText = 'Back to Works';
             this.showDownBtn();
             this.detailWrapper.nativeElement.style.opacity = '.74';
@@ -126,6 +129,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     backToSlider() {
+        clearTimeout(this.initCurrentTimeOut);
         if (this.detailWrapper) {
             this.detailWrapper.nativeElement.style.opacity = '0';
         }
@@ -138,7 +142,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (this.customBody) {
             this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 100}px, 0)`;
         }
-        setTimeout(() => {
+        this.backToSliderTimeOut = setTimeout(() => {
             this.backToWorkText = 'Our works';
             this.clickedSlide = null;
             this.router.navigate(['/']).then();

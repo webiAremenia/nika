@@ -30,7 +30,7 @@ export class WorkComponent implements OnInit, OnDestroy {
             .subscribe((size: ResponsiveData) => this.windowSize = size);
         this.actionsService.workOpened.next(true);
         this.actionsService.getWorkScrollPosition().subscribe(pos => {
-            console.log('get', pos);
+            // console.log('get', pos);
             // this.scrollPosition = pos;
             this.initAnimation(pos);
         });
