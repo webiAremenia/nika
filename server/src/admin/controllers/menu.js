@@ -46,6 +46,8 @@ module.exports = {
         let menu = {
             value: req.body.value,
             order: req.body.order,
+            title: req.body.title,
+            description: req.body.description,
             isActive: req.body.isActive,
         };
         try {
