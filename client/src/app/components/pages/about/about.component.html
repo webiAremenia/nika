@@ -2,7 +2,7 @@
 <div *ngIf="done" class="rightContentWrapper">
     <div class="about-page custom-page pr-0 col-12 col-lg-9 offset-lg-3">
 
-       <div class="about-scroll">
+       <div class="about-scroll" #aboutScroll style="transition: 1200ms all">
            <div class="section" id="section-1">
                <app-introduce  [content]="pageContent.introduce"></app-introduce>
            </div>
