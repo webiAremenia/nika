@@ -3,5 +3,9 @@ export interface WorkSlider {
     objectFit: string;
     size: string;
     verticalAlignment: string;
-    sliders: Array<any>;
+    sliders: [
+        {
+            imgURL: string;
+        }
+        ];
 }
