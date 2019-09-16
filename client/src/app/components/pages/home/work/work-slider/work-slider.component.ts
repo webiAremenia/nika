@@ -25,7 +25,7 @@ export class WorkSliderComponent implements OnInit {
         setTimeout(() => {
         this.initSizes();
         }, 200);
-        console.log(window.innerWidth, this.index);
+        // console.log(window.innerWidth, this.index);
     }
 
     initSizes() {
@@ -73,7 +73,7 @@ export class WorkSliderComponent implements OnInit {
     }
 
     nextSlide() {
-        console.log(555);
+        // console.log(555);
         this.workSlider.next();
     }
 

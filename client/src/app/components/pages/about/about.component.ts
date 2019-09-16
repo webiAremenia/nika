@@ -99,7 +99,7 @@ export class AboutComponent implements OnInit, OnDestroy {
     getPage() {
         this.teamService.getTeam().subscribe((data: TeamPage[]) => {
             this.pageContent = data[0];
-            console.log(this.pageContent);
+            // console.log(this.pageContent);
             this.done = true;
         });
     }

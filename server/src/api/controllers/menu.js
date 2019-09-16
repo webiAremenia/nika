@@ -6,16 +6,16 @@ const errors = require('../_helper/error_handler');
 module.exports = {
     getMenu: async (req, res) => {
         try {
-            let candidates = await Menu.find({});
+            let candidates = await Menu.find({isActive: true});
             let menu = {};
 
             candidates.forEach(m => {
                 menu[m.key] = {
                     title: m.title,
                     description: m.description,
-                    isActive: m.isActive,
-                    order: m.order,
-                    value: m.value,
+                    // isActive: m.isActive,
+                    // order: m.order,
+                    // value: m.value,
                 };
             });
 

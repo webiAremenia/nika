@@ -83,7 +83,6 @@ module.exports.createMenus = (req, res) => {
                     key: key,
                     title: 'title ' + key,
                     description: 'description ' + key,
-                    value: key.toUpperCase(),
                     order: i
                 });
                 obj.save()

@@ -17,19 +17,19 @@
                 </div>
             </div>
 
-            <div class="bottom-part">
+            <div class="bottom-part" *ngIf="menu">
                 <div id="menu-content" class="side-bar-about h-75">
                     <div class="links-content">
                         <div class="menu-items">
-                            <a [routerLink]="['about']">Our team </a><span> is here to collaborate with people like you to create</span>
+                            <a [routerLink]="['about']">{{ menu.about.title }}</a><span> {{ menu.about.description }} </span>
                         </div>
                         <div class="menu-items">
-                            <a [routerLink]="['/']">Work </a><span>  that drives results.</span>
+                            <a [routerLink]="['/']">{{ menu.works.title }}</a><span> {{ menu.works.description }} </span>
                         </div>
                     </div>
                 </div>
                 <div class="side-bar-meet-link h-25">
-                    <a [routerLink]="['contact']">Let's talk.</a>
+                    <a [routerLink]="['contact']">{{ menu.contact.title }}</a><span> {{ menu.contact.description }} </span>
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@
 
     <div class="hidden-menu">
         <div class="menu-items">
-            <a [routerLink]="['about']">Our team </a><span> is here to collaborate with people like you to create</span>
+            <a [routerLink]="['about']"> {{ 'dd' }} </a><span> is here to collaborate with people like you to create</span>
         </div>
         <div class="menu-items">
             <a [routerLink]="['/']">Work </a><span>  that drives results.</span>

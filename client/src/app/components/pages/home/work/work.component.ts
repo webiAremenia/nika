@@ -70,7 +70,7 @@ export class WorkComponent implements OnInit, OnDestroy {
         for (let i = 0; i < this.sectionArr.length; i++) {
             sum += this.sectionArr[i];
 
-            console.log(position, -(bannerHeight + sum));
+            // console.log(position, -(bannerHeight + sum));
 
             if (position < -(bannerHeight + sum)) {
                 document.getElementById('section_' + (i + 1)).style.opacity = '1';
