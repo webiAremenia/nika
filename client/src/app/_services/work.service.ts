@@ -22,7 +22,7 @@ export class WorkService {
      getWorks(): Observable<Work[]> {
         return this.http.get<Work[]>(`${this.url}/api/work/`)
             .pipe(map(data => {
-                    console.log('Service', data);
+                    // console.log('Service', data);
                     this.works = data;
                     return this.works;
                 }),
@@ -38,34 +38,11 @@ export class WorkService {
     getOne(slug): Observable<Work> {
         return this.http.get<any>(`${this.url}/api/work/${slug}`)
             .pipe(map(data => {
-                    console.log('Service', data);
+                    // console.log('Service', data);
                     this.work = data;
                     return this.work;
                 }),
                 catchError(err => throwError(err)));
     }
-
-    // getWorks(): Observable<Work[]> {
-    //     return this.http.get<any[]>(`${this.url}/api/portfolio/`)
-    //         .pipe(map(data => {
-    //             console.log(data)
-    //                 this.works = data.map(work => {
-    //                     return {
-    //                         id: work._id,
-    //                         images: work.imgs,
-    //                         title: work.title,
-    //                         description: work.description,
-    //                         link: work.link,
-    //                         content: work.content
-    //                     };
-    //                 });
-    //                 return this.works;
-    //             }),
-    //             catchError(err => {
-    //                 console.log(err);
-    //                 return throwError(err);
-    //             }));
-    // }
-
 
 }

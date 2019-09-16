@@ -48,4 +48,10 @@ button {
     line-height: 32px !important;
     letter-spacing: -0.24px !important;
   }
+  ::ng-deep .cdk-overlay-pane {
+    width: 300px !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: auto !important;
+  }
 }

@@ -1,8 +1,11 @@
 <div class="work-wrapper">
 
-    <div class="work-dynamic-content-main">
+    <div class="work-dynamic-content-main" #workContent>
 
-        <div class="work-dynamic-content-details" *ngFor="let detail of work.details">
+        <div id="section_{{ index + 1 }}"
+             class="work-dynamic-content-details"
+             [style.opacity]="'0'"
+             *ngFor="let detail of work.details, let index = index">
             <app-work-img *ngIf="detail.type === 'img'" [content]="detail"></app-work-img>
             <app-work-slider *ngIf="detail.type === 'slider'" [content]="detail"></app-work-slider>
             <app-work-text *ngIf="detail.type === 'text'" [content]="detail"></app-work-text>
@@ -12,6 +15,7 @@
     </div>
 
 </div>
+
 <div class="link-box">
     <div class="link-box-text row">
 

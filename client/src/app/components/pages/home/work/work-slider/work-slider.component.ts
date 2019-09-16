@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {OwlOptions} from 'ngx-owl-carousel-o/lib/models/owl-options.model';
 import {WorkSlider} from '../../../../../_models/work/WorkSlider';
+import {WorkDetails} from '../../../../../_models/work/WorkDetails';
 
 @Component({
     selector: 'app-work-slider',
@@ -9,7 +10,8 @@ import {WorkSlider} from '../../../../../_models/work/WorkSlider';
 })
 export class WorkSliderComponent implements OnInit {
     @ViewChild('workSlider') workSlider;
-    @Input() content: WorkSlider;
+    // @Input() content: WorkSlider;
+    @Input() content: WorkDetails;
     sliderHeight;
     sliderWidth;
 
@@ -34,7 +36,7 @@ export class WorkSliderComponent implements OnInit {
 
     ngOnInit() {
         this.initSizes();
-        console.log(this.content);
+        // console.log(this.content);
     }
 
     initSizes() {

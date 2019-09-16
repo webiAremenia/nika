@@ -21,6 +21,7 @@ export class ActionsService {
     mobileResponsiveData = new BehaviorSubject<number>(window.innerWidth >= 768 ? 768 : 500);
     contactLocationSubject = new Subject<string>();
     workOpened = new Subject<boolean>();
+    workScrollPosition = new Subject<number>();
 
     constructor() {
     }
@@ -35,6 +36,10 @@ export class ActionsService {
 
     getContactLocation() {
         return this.contactLocationSubject.asObservable();
+    }
+
+    getWorkScrollPosition() {
+        return this.workScrollPosition.asObservable();
     }
 
     isWorkPage() {
