@@ -2,35 +2,50 @@
 <div *ngIf="done" class="rightContentWrapper">
     <div class="about-page custom-page pr-0 col-12 col-lg-9 offset-lg-3">
 
-        <app-introduce [content]="pageContent.introduce"></app-introduce>
+       <div class="about-scroll">
+           <div class="section" id="section-1">
+               <app-introduce  [content]="pageContent.introduce"></app-introduce>
+           </div>
 
-        <app-our-element [content]="pageContent.element"></app-our-element>
+           <div class="section" id="section-2">
+               <app-our-element [content]="pageContent.element"></app-our-element>
+           </div>
 
-        <app-our-clients [content]="pageContent.client"></app-our-clients>
+           <div class="section" id="section-3">
+               <app-our-clients [content]="pageContent.client"></app-our-clients>
+           </div>
 
-        <app-remark [content]="pageContent.remark"></app-remark>
+           <div class="section" id="section-4">
+               <app-remark [content]="pageContent.remark"></app-remark>
+           </div>
 
-        <app-leadership [content]="pageContent.leadership"></app-leadership>
+           <div class="section" id="section-5">
+               <app-leadership [content]="pageContent.leadership"></app-leadership>
+           </div>
 
-        <app-our-awards [content]="pageContent.awards"></app-our-awards>
+           <div class="section" id="section-6">
+               <app-our-awards [content]="pageContent.awards"></app-our-awards>
+           </div>
 
-        <div class="link-box">
-            <div class="link-box-text row">
+           <div class="section link-box" id="section-7">
+               <div class="link-box-text row">
 
-                <div class="question col-12 col-md-6"
-                     [style.font-size]="(windowSize.width * 30 * windowSize.rate) / 1920 + 'px'"
-                     [style.line-height]="(windowSize.width * 40 * windowSize.rate) / 1920 + 'px'">
-                    Think we’re a good fit? Let’s get to work!
-                </div>
+                   <div class="question col-12 col-md-6"
+                        [style.font-size]="(windowSize.width * 30 * windowSize.rate) / 1920 + 'px'"
+                        [style.line-height]="(windowSize.width * 40 * windowSize.rate) / 1920 + 'px'">
+                       Think we’re a good fit? Let’s get to work!
+                   </div>
 
-                <div class="link col-12 col-md-6"  [routerLink]="['/contact']"
-                     [style.font-size]="(windowSize.width * 22 * windowSize.rate) / 1920 + 'px'"
-                     [style.line-height]="(windowSize.width * 35 * windowSize.rate) / 1920 + 'px'">
-                    Click Here and let’s talk
-                </div>
+                   <div class="link col-12 col-md-6"  [routerLink]="['/contact']"
+                        [style.font-size]="(windowSize.width * 22 * windowSize.rate) / 1920 + 'px'"
+                        [style.line-height]="(windowSize.width * 35 * windowSize.rate) / 1920 + 'px'">
+                       Click Here and let’s talk
+                   </div>
 
-            </div>
-        </div>
+               </div>
+           </div>
+
+       </div>
 
     </div>
 </div>
