@@ -43,6 +43,7 @@ export class SidebarComponent implements OnInit {
         }, e => console.log(e));
         this.menuService.getMenus().subscribe(data => {
             this.menu = data.menu;
+            console.log(this.menu);
             this.menuDone = true;
         });
     }
