@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {WorkService} from '../../../../_services/work.service';
 import {Work} from '../../../../_models/work/work';
 import {ActivatedRoute} from '@angular/router';

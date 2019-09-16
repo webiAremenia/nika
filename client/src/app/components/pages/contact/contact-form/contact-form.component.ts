@@ -6,7 +6,6 @@ import {Subscription} from 'rxjs';
 import {ActionsService} from '../../../../_services/actions.service';
 
 
-
 @Component({
     selector: 'app-contact-form',
     templateUrl: './contact-form.component.html',
@@ -47,10 +46,14 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
     @HostListener('document: scroll') mouseWheel() {
         document.getElementsByTagName('ul')[0].style.top = this.height - window.pageYOffset + 'px';
     }
-    @HostListener('window:resize') onResize() {
-        this.height = document.getElementsByTagName('ul')[0].offsetTop;
-        document.getElementsByTagName('ul')[0].style.top = this.height - window.pageYOffset + 'px';
+
+    @HostListener('window: resize') onResize() {
+        if (!document.getElementsByClassName('iti__country-list')[0].classList.contains('iti__hide')) {
+            const closeInput: HTMLElement = document.getElementsByClassName('iti__selected-flag')[0] as HTMLElement;
+            closeInput.click();
+        }
     }
+
     ngOnInit() {
         this.form = this.formBuilder.group({
             type: [`${this.type}`],
@@ -63,8 +66,8 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        document.getElementsByClassName('iti__selected-flag')[0].addEventListener('click', () => {
-            this.height = document.getElementsByTagName('ul')[0].offsetTop;
+        document.getElementsByClassName('iti__selected-flag')[0].addEventListener('click', ($event: any) => {
+            this.height = $event.pageY + 10;
             document.getElementsByTagName('ul')[0].style.top = this.height - window.pageYOffset + 'px';
         });
     }
@@ -75,7 +78,8 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
     }
 
     submit() {
-        this.form.value['phone'] =  '+' + this.currentCountryPhone + this.form.value['phone'];
+        const phone = 'phone';
+        this.form.value[phone] = '+' + this.currentCountryPhone + this.form.value[phone];
         this.done = true;
         this.contactService.sendMail(this.form).toPromise()
             .then(d => {
