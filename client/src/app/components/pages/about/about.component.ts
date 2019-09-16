@@ -1,7 +1,7 @@
 import {
-    Component, HostListener,
+    Component, ElementRef, HostListener,
     OnDestroy,
-    OnInit
+    OnInit, ViewChild
 } from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ResponsiveData} from '../../../_models/ResponsiveData';
@@ -26,6 +26,9 @@ export class AboutComponent implements OnInit, OnDestroy {
     scrollPosition = 0;
     scrollHeight = 0;
     bannerHeight = 0;
+    mouseCheck = 0;
+
+    @ViewChild('aboutScroll') aboutScroll: ElementRef;
 
     constructor(
         private teamService: TeamService,
@@ -57,28 +60,42 @@ export class AboutComponent implements OnInit, OnDestroy {
     }
 
     initAnimation(position) {
-        if (this.sectionArr.length === 0 && window.innerWidth > 992) {
-            this.initSectionsArr();
-            this.scrollHeight = document.getElementsByClassName('about-scroll')[0].scrollHeight;
-            this.bannerHeight = document.getElementsByClassName('about-page')[0].clientHeight - 300;
-        }
-        if (this.sectionArr.length === 0 && window.innerWidth <= 992) {
-            this.initSectionsArr();
-            this.scrollHeight = document.getElementsByClassName('about-scroll')[0].scrollHeight;
-            this.bannerHeight = window.innerHeight - 150;
-        }
-
-        this.scrollPosition += position;
-        if (this.scrollPosition < 0) {
-            this.scrollPosition = 0;
-        } else if (this.scrollPosition > this.scrollHeight) {
-            this.scrollPosition = this.scrollHeight;
-        }
-
-        for (let i = 0; i < this.sectionArr.length; i++) {
-            if (this.scrollPosition + this.bannerHeight > this.sectionArr[i]) {
-                document.getElementById('section-' + (i + 1)).style.opacity = '1';
+        this.mouseCheck += 1;
+        if (this.mouseCheck === 1) {
+            const clientHeight = document.getElementsByClassName('about-page')[0].clientHeight;
+            if (this.sectionArr.length === 0 && window.innerWidth > 992) {
+                this.initSectionsArr();
+                this.scrollHeight = document.getElementsByClassName('about-scroll')[0].scrollHeight;
+                this.bannerHeight = document.getElementsByClassName('about-page')[0].clientHeight - 300;
             }
+            if (this.sectionArr.length === 0 && window.innerWidth <= 992) {
+                this.initSectionsArr();
+                this.scrollHeight = document.getElementsByClassName('about-scroll')[0].scrollHeight;
+                this.bannerHeight = window.innerHeight - 150;
+            }
+
+            this.scrollPosition += position;
+            if (this.scrollPosition < 0) {
+                this.scrollPosition = 0;
+            } else if (this.scrollPosition > this.scrollHeight) {
+                this.scrollPosition = this.scrollHeight;
+            }
+
+
+            for (let i = 0; i < this.sectionArr.length; i++) {
+                if (this.scrollPosition + this.bannerHeight > this.sectionArr[i]) {
+                    document.getElementById('section-' + (i + 1)).style.opacity = '1';
+                }
+            }
+
+            if (this.scrollPosition + clientHeight >= this.scrollHeight) {
+                this.aboutScroll.nativeElement.style.transform = `translate3d(0, -${this.scrollHeight - clientHeight}px, 0)`;
+            } else if (this.scrollPosition + clientHeight < this.scrollHeight) {
+                this.aboutScroll.nativeElement.style.transform = `translate3d(0, -${this.scrollPosition}px, 0)`;
+            }
+            setTimeout( () => {
+                this.mouseCheck = 0;
+            }, 25);
         }
 
     }
