@@ -21,7 +21,6 @@ export class TokenInterceptor implements HttpInterceptor {
             });
             return next.handle(clone)
                 .pipe(
-                    retry(1),
                     catchError((error: HttpErrorResponse) => {
                         const errorMessage = '';
                         if (error.status === 401) {
@@ -34,7 +33,6 @@ export class TokenInterceptor implements HttpInterceptor {
         }
         return next.handle(request)
             .pipe(
-                retry(1),
                 catchError((error: HttpErrorResponse) => {
                     const errorMessage = '';
                     if (error.status === 401) {

@@ -10,13 +10,20 @@ const MenuSchema = new Schema({
         type: String,
         required: true
     },
+    title: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String
+    },
     order: {
         type: Number,
         required: true
     },
-    isActive : {
+    isActive: {
         type: Boolean,
-        default : true
+        default: true
     }
 });
 
