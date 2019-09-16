@@ -1,27 +1,42 @@
 $font-regular: 'Open Sans Regular', sans-serif;
 $font-bold: 'Open Sans Bold', sans-serif;
 
+.section {
+  transition: 1.2s all;
+  //transition: transform 1200ms;
+  //-o-transition: transform 1200ms;
+  //-ms-transition: transform 1200ms;
+  //-moz-transition: transform 1200ms;
+  //-webkit-transition: transform 1200ms;
+}
+.section {
+  opacity: 0;
+}
+.section:first-child {
+  opacity: 1;
+}
+
 .custom-container {
-    padding: 50px 0 50px 50px !important;
+  padding: 50px 0 50px 50px !important;
 }
 
 .img-wrapper {
-    //width: 95%;
-    height: 250px;
+  //width: 95%;
+  height: 250px;
 
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .about-page {
-    padding-left: 10px !important;
+  padding-left: 10px !important;
 
-    @media (max-width: 992px) {
-        padding-left: 0 !important;
-    }
+  @media (max-width: 992px) {
+    padding-left: 0 !important;
+  }
 }
 
 //.block-title {
@@ -34,40 +49,40 @@ $font-bold: 'Open Sans Bold', sans-serif;
 //}
 
 .link-box {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 180px;
+  background-color: #000A1D;
+  color: #FFFFFF;
+
+  .link-box-text {
     width: 100%;
-    height: 180px;
-    background-color: #000A1D;
-    color: #FFFFFF;
+    padding: 0 69px;
 
-    .link-box-text {
-        width: 100%;
-        padding: 0 69px;
-
-        .question {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            //font-size: 30px;
-            //line-height: 40px;
-            font-family: $font-bold;
-            letter-spacing: -0.6px;
-        }
-
-        .link {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            text-decoration: underline;
-            //font-size: 22px;
-            //line-height: 35px;
-            font-family: $font-regular;
-            letter-spacing: -0.44px;
-            color: #FFFFFF;
-        }
+    .question {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      //font-size: 30px;
+      //line-height: 40px;
+      font-family: $font-bold;
+      letter-spacing: -0.6px;
     }
+
+    .link {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      text-decoration: underline;
+      //font-size: 22px;
+      //line-height: 35px;
+      font-family: $font-regular;
+      letter-spacing: -0.44px;
+      color: #FFFFFF;
+    }
+  }
 }
 
 //==================================================================================
@@ -76,48 +91,48 @@ $font-bold: 'Open Sans Bold', sans-serif;
 
 /* width */
 ::-webkit-scrollbar {
-    width: 0;
+  width: 0;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+  background: #f1f1f1;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #888;
+  background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+  background: #555;
 }
 
 
 // // // MEDIA // // //
 
 @media (max-width: 767px) {
-    .about-page {
-        padding-left: 0 !important;
+  .about-page {
+    padding-left: 0 !important;
 
-        .link-box-text {
-            padding: 37px 32px !important;
-        }
-
-        .question {
-            width: 219px;
-            font-size: 20px !important;
-            line-height: 25px !important;
-        }
-
-        .link {
-            width: 100% !important;
-            text-align: left !important;
-            font-size: 14px !important;
-            line-height: 35px !important;
-            padding-top: 22px !important;
-            justify-content: flex-start !important;
-        }
+    .link-box-text {
+      padding: 37px 32px !important;
     }
+
+    .question {
+      width: 219px;
+      font-size: 20px !important;
+      line-height: 25px !important;
+    }
+
+    .link {
+      width: 100% !important;
+      text-align: left !important;
+      font-size: 14px !important;
+      line-height: 35px !important;
+      padding-top: 22px !important;
+      justify-content: flex-start !important;
+    }
+  }
 }
