@@ -42,7 +42,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     isWorkPage = false;
     mobileXsHeight;
-    active = false;
 
     homePage = true;
 
@@ -93,7 +92,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     initPageByUrl(bool) {
-        this.active = false;
         console.log('subscribe: ', this.homePage);
         if (this.homePage) {
             if (!bool) {
@@ -252,7 +250,6 @@ export class HomeComponent implements OnInit, OnDestroy {
                         }
                     }
                     // console.log(this.workScrollTop);
-                    this.active = this.workScrollTop < -1000;
                     this.actionsService.workScrollPosition.next(this.workScrollTop);
                     this.customBody.nativeElement.style.transform = `translate3d(0, ${this.workScrollTop}px, 0)`;
                     this.mouseWillCount = 0;
