@@ -1,5 +1,6 @@
 .big-slider {
     position: relative;
+    margin: auto;
 
     .slider-btn {
         width: 58px;
@@ -16,6 +17,7 @@
             width: 100%;
             height: 100%;
         }
+
     }
 
     .slider-next {
@@ -26,6 +28,34 @@
     .slider-prev {
         padding: 10px 12px 10px 8px;
         left: 30px;
+    }
+
+    @media (max-width: 768px) {
+        .slider-btn {
+            width: 40px;
+            height: 40px;
+        }
+        .slider-next {
+            padding: 10px 8px 10px 6px;
+        }
+
+        .slider-prev {
+            padding: 10px 12px 10px 12px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .slider-btn {
+            width: 30px;
+            height: 30px;
+        }
+        .slider-next {
+            padding: 8px 8px 8px 0;
+        }
+
+        .slider-prev {
+            padding: 8px 0 8px 5px;
+        }
     }
 }
 
@@ -57,5 +87,29 @@
 
     .slider-prev {
         left: -90px;
+    }
+    @media (max-width: 768px) {
+        .slider-next {
+            right: -45px;
+            padding: 10px 8px 10px 6px;
+        }
+
+        .slider-prev {
+            left: -45px;
+            padding: 10px 12px 10px 12px;
+        }
+    }
+    @media (max-width: 500px) {
+        .slider-btn {
+            width: 30px;
+            height: 30px;
+        }
+        .slider-next {
+            padding: 8px 8px 8px 0;
+        }
+
+        .slider-prev {
+            padding: 8px 0 8px 5px;
+        }
     }
 }

@@ -233,36 +233,38 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     scrollFunction(event) {
         // console.log(document.getElementById('wwww').clientHeight, this.workScrollTop);
-        const workHeight = this.customBody.nativeElement.scrollHeight;
-        if (this.clickedSlide || this.clickedSlide === 0) {
-            this.mouseWillCount++;
-            if (this.mouseWillCount === 1) {
-                // console.log(event.deltaY);
-                setTimeout(() => {
-                    // console.log(this.workScrollTop, -workHeight);
-                    if (event.deltaY > 0) {
-                        this.workScrollTop = this.workScrollTop > -workHeight ?
-                            this.workScrollTop - 100 : -workHeight;
-                        if (this.workScrollTop < -workHeight) {
-                            this.workScrollTop = -workHeight;
+        if (this.customBody) {
+            const workHeight = this.customBody.nativeElement.scrollHeight;
+            if (this.clickedSlide || this.clickedSlide === 0) {
+                this.mouseWillCount++;
+                if (this.mouseWillCount === 1) {
+                    // console.log(event.deltaY);
+                    setTimeout(() => {
+                        // console.log(this.workScrollTop, -workHeight);
+                        if (event.deltaY > 0) {
+                            this.workScrollTop = this.workScrollTop > -workHeight ?
+                                this.workScrollTop - 100 : -workHeight;
+                            if (this.workScrollTop < -workHeight) {
+                                this.workScrollTop = -workHeight;
+                            }
+                        } else {
+                            this.workScrollTop = this.workScrollTop < -window.innerHeight + 100 ?
+                                this.workScrollTop + 100 : -window.innerHeight + 100;
+                            if (this.workScrollTop > -window.innerHeight + 100) {
+                                this.workScrollTop = -window.innerHeight + 100;
+                            }
                         }
-                    } else {
-                        this.workScrollTop = this.workScrollTop < -window.innerHeight + 100 ?
-                            this.workScrollTop + 100 : -window.innerHeight + 100;
-                        if (this.workScrollTop > -window.innerHeight + 100) {
-                            this.workScrollTop = -window.innerHeight + 100;
+                        // console.log(this.workScrollTop);
+                        this.actionsService.workScrollPosition.next(this.workScrollTop);
+                        this.customBody.nativeElement.style.transform = `translate3d(0, ${this.workScrollTop}px, 0)`;
+                        this.mouseWillCount = 0;
+                        if (this.workScrollTop < -(document.getElementById('wwww').clientHeight + window.innerHeight - 100)) {
+                            this.hideDownBtn();
+                        } else {
+                            this.showDownBtn();
                         }
-                    }
-                    // console.log(this.workScrollTop);
-                    this.actionsService.workScrollPosition.next(this.workScrollTop);
-                    this.customBody.nativeElement.style.transform = `translate3d(0, ${this.workScrollTop}px, 0)`;
-                    this.mouseWillCount = 0;
-                    if (this.workScrollTop < -(document.getElementById('wwww').clientHeight + window.innerHeight - 100)) {
-                        this.hideDownBtn();
-                    } else {
-                        this.showDownBtn();
-                    }
-                }, 10);
+                    }, 10);
+                }
             }
         }
     }

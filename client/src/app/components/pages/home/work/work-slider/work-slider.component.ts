@@ -12,44 +12,68 @@ export class WorkSliderComponent implements OnInit {
     @ViewChild('workSlider') workSlider;
     // @Input() content: WorkSlider;
     @Input() content: WorkDetails;
+    @Input() index: number;
     sliderHeight;
     sliderWidth;
-
-    customOptions: OwlOptions = {
-        loop: true,
-        nav: false,
-        mouseDrag: true,
-        touchDrag: true,
-        pullDrag: true,
-        dots: false,
-        navSpeed: 700,
-        // navText: ['<i class="fas fa-chevron-circle-left"></i>', '<i class="fas fa-chevron-circle-right"></i>'],
-        responsive: {
-            0: {
-                items: 1
-            },
-        },
-    };
+    done = false;
+    customOptions: OwlOptions;
 
     constructor() {
     }
 
     ngOnInit() {
+        setTimeout(() => {
         this.initSizes();
-        // console.log(this.content);
+        }, 200);
+        console.log(window.innerWidth, this.index);
     }
 
     initSizes() {
-        if (this.content.size === 'big') {
-            this.sliderHeight = window.innerWidth * 600 / 1920 + 'px';
-            this.sliderWidth = '100%';
+        console.log('init size');
+        if (window.innerWidth > 768) {
+            if (this.content.size === 'big') {
+                this.sliderHeight = window.innerWidth * 600 / 1920 + 'px';
+                this.sliderWidth = '100%';
+            } else {
+                this.sliderHeight = window.innerWidth * 380 / 1920 + 'px';
+                this.sliderWidth = window.innerWidth * 350 / 1920 + 'px';
+            }
         } else {
-            this.sliderHeight = window.innerWidth * 380 / 1920 + 'px';
-            this.sliderWidth = window.innerWidth * 350 / 1920 + 'px';
+            if (this.content.size === 'big') {
+                this.sliderHeight = window.innerWidth * .5 + 'px';
+                this.sliderWidth = window.innerWidth * .8 + 'px';
+            } else {
+                this.sliderHeight = window.innerWidth * 350 / 720 + 'px';
+                this.sliderWidth = window.innerWidth * 380 / 720 + 'px';
+            }
         }
+
+        this.customOptions = {
+            loop: true,
+            nav: false,
+            mouseDrag: true,
+            touchDrag: true,
+            pullDrag: true,
+            dots: false,
+            navSpeed: 700,
+            // navText: ['<i class="fas fa-chevron-circle-left"></i>', '<i class="fas fa-chevron-circle-right"></i>'],
+            responsive: {
+                10: {
+                    items: 1
+                },
+                320: {
+                    items: 1
+                },
+                767: {
+                    items: 1
+                },
+            },
+        };
+        this.done = true;
     }
 
     nextSlide() {
+        console.log(555);
         this.workSlider.next();
     }
 

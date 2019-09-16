@@ -5,6 +5,7 @@ $font-bold: 'Open Sans Bold', sans-serif;
 .work-wrapper {
     padding: 50px;
     background: #ffffff;
+
     .work-dynamic-content-details {
         transition: opacity 2000ms;
         -o-transition: opacity 2000ms;
@@ -79,4 +80,13 @@ $font-bold: 'Open Sans Bold', sans-serif;
         justify-content: flex-start !important;
     }
 
+}
+
+.work-detail-mobile {
+    padding-top: 30px;
+    background: white;
+
+    .mobile-components {
+        padding: 20px 0;
+    }
 }

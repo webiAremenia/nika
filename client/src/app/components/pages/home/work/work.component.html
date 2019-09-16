@@ -1,4 +1,4 @@
-<div class="work-wrapper">
+<div class="work-wrapper d-none d-md-block" *ngIf="windowSize.width > 767">
 
     <div class="work-dynamic-content-main" #workContent>
 
@@ -16,9 +16,26 @@
 
 </div>
 
+
+
+<div class="work-detail-mobile" *ngIf="windowSize.width < 768">
+    <div class="mobile-banner">
+        <h2 class="text-center"> {{ work.title }} </h2>
+        <p style="padding: 20px;"> {{ work.description }} </p>
+        <img [src]="work.img" class="w-100">
+    </div>
+    <div class="mobile-components" *ngFor="let detail of work.details, let index = index">
+        <app-work-img *ngIf="detail.type === 'img'" [content]="detail"></app-work-img>
+        <app-work-slider *ngIf="detail.type === 'slider'" [content]="detail" [index]="index"></app-work-slider>
+        <app-work-text *ngIf="detail.type === 'text'" [content]="detail"></app-work-text>
+        <app-work-video *ngIf="detail.type === 'video'" [content]="detail"></app-work-video>
+    </div>
+</div>
+
+
+
 <div class="link-box">
     <div class="link-box-text row">
-
         <div class="question col-12 col-md-6"
              [style.font-size]="(windowSize.width * 30 * windowSize.rate) / 1920 + 'px'"
              [style.line-height]="(windowSize.width * 40 * windowSize.rate) / 1920 + 'px'">
@@ -30,6 +47,5 @@
              [style.line-height]="(windowSize.width * 35 * windowSize.rate) / 1920 + 'px'">
             Click Here and let’s talk
         </div>
-
     </div>
 </div>
