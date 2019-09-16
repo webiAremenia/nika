@@ -21,60 +21,65 @@
                 <div id="menu-content" class="side-bar-about h-75">
                     <div class="links-content">
                         <div class="menu-items">
-                            <a [routerLink]="['about']">Our team </a><span> is here to collaborate with people like you to create</span>
-                        </div>
-                        <div class="menu-items">
-                            <a [routerLink]="['/']">Work </a><span>  that drives results.</span>
+                            <ng-container *ngIf="menuDone">
+                                <a [routerLink]="['about']">{{menu.about.title}}</a><span>{{menu.about.description}}</span>
+                                <div class="menu-items">
+                                    <a [routerLink]="['/']">{{menu.works.title}} </a><span>{{menu.works.description}}</span>
+                                </div>
+                            </ng-container>
                         </div>
                     </div>
+                    <div class="side-bar-meet-link h-25">
+                        <ng-container *ngIf="menuDone">
+                            <a [routerLink]="['contact']">{{menu.contact.title}}</a>
+                        </ng-container>
+                    </div>
                 </div>
-                <div class="side-bar-meet-link h-25">
-                    <a [routerLink]="['contact']">Let's talk.</a>
+            </div>
+        </div>
+
+
+        <div class="side-bar-logo h-50" style="background: #000a1d;text-align: center;">
+            <div class="logo-wrapper h-100" *ngIf="done">
+                <div *ngIf="logos[1].image; else link" class="h-100">
+                    <img class="align-self-center" [src]="imageUrl + logos[1].image['image']" alt="logo">
+                </div>
+                <ng-template #link class="h-100">
+                    <img class="align-self-center" src="assets/images/logo.PNG" alt="logo">
+                </ng-template>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="d-block d-lg-none mobile-header">
+
+        <div class="mobile-menu row">
+            <div class="mobile-menu-title col-6">
+                <a [routerLink]="[{ outlets: { primary: [] } }]" style="cursor: pointer;"><h1 class="logo-title">
+                    nika</h1></a>
+            </div>
+            <div class="mobile-hamburger-logo col-6">
+                <div id="mobile-toggle-icon" class="hamburger-logo-toggle-img float-right">
+                    <div class="hamburger-line-1"></div>
+                    <div class="hamburger-line-2"></div>
+                    <div class="hamburger-line-3"></div>
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <div class="side-bar-logo h-50" style="background: #000a1d;text-align: center;">
-        <div class="logo-wrapper h-100" *ngIf="done">
-            <div *ngIf="logos[1].image; else link" class="h-100">
-                <img class="align-self-center" [src]="imageUrl + logos[1].image['image']" alt="logo">
+        <div class="hidden-menu">
+            <div class="menu-items">
+                <a [routerLink]="['about']">Our
+                    team </a><span> is here to collaborate with people like you to create</span>
             </div>
-            <ng-template #link class="h-100">
-                <img class="align-self-center" src="assets/images/logo.PNG" alt="logo">
-            </ng-template>
-        </div>
-    </div>
-
-</div>
-
-<div class="d-block d-lg-none mobile-header">
-
-    <div class="mobile-menu row">
-        <div class="mobile-menu-title col-6">
-            <a [routerLink]="[{ outlets: { primary: [] } }]" style="cursor: pointer;"><h1 class="logo-title">nika</h1></a>
-        </div>
-        <div class="mobile-hamburger-logo col-6">
-            <div id="mobile-toggle-icon" class="hamburger-logo-toggle-img float-right">
-                <div class="hamburger-line-1"></div>
-                <div class="hamburger-line-2"></div>
-                <div class="hamburger-line-3"></div>
+            <div class="menu-items">
+                <a [routerLink]="['/']">Work </a><span>  that drives results.</span>
+            </div>
+            <div class="menu-items">
+                <a [routerLink]="['contact']">Let's talk.</a>
             </div>
         </div>
+
     </div>
-
-
-    <div class="hidden-menu">
-        <div class="menu-items">
-            <a [routerLink]="['about']">Our team </a><span> is here to collaborate with people like you to create</span>
-        </div>
-        <div class="menu-items">
-            <a [routerLink]="['/']">Work </a><span>  that drives results.</span>
-        </div>
-        <div class="menu-items">
-            <a [routerLink]="['contact']">Let's talk.</a>
-        </div>
-    </div>
-
-</div>
