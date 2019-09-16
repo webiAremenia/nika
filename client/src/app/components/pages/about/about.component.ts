@@ -1,11 +1,7 @@
 import {
-    AfterContentChecked,
-    AfterContentInit,
-    AfterViewChecked,
-    AfterViewInit,
-    Component, ElementRef, HostListener,
+    Component, HostListener,
     OnDestroy,
-    OnInit, Renderer, Renderer2
+    OnInit
 } from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ResponsiveData} from '../../../_models/ResponsiveData';
