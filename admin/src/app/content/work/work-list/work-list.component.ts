@@ -37,7 +37,7 @@ export class WorkListComponent implements OnInit {
 
     addWork() {
         this.workService.candidateWork = null;
-        this.router.navigate(['work/editWork']);
+        this.router.navigate(['works/editWork']).then();
     }
 
 
@@ -60,7 +60,7 @@ export class WorkListComponent implements OnInit {
 
     edit(work) {
         this.workService.candidateWork = work;
-        this.router.navigate(['work/editWork']);
+        this.router.navigate(['works/editWork']).then();
 
 
     }

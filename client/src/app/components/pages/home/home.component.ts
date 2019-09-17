@@ -81,6 +81,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        // console.log('onInit');
         this.workScrollTop = -window.innerHeight + 100;
         this.actionsService.workScrollPosition.next(this.workScrollTop);
         this.getParams();
@@ -95,6 +96,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     initPageByUrl(bool) {
+        // console.log('onInitBiUrl');
         if (this.homePage) {
             if (!bool) {
                 this.backToSlider();
@@ -105,6 +107,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     initCurrent(index) {
+        // console.log('onInitCurrent');
         clearTimeout(this.backToSliderTimeOut);
         this.detailWrapperHeight = (window.innerHeight - 100);
         this.bannerHeight = (window.innerHeight - 100);
@@ -129,6 +132,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     backToSlider() {
+        // console.log('backTo');
         clearTimeout(this.initCurrentTimeOut);
         if (this.detailWrapper) {
             this.detailWrapper.nativeElement.style.opacity = '0';
@@ -145,7 +149,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.backToSliderTimeOut = setTimeout(() => {
             this.backToWorkText = 'Our works';
             this.clickedSlide = null;
-            this.router.navigate(['/']).then();
+            if (this.homePage) {
+                this.router.navigate(['/']).then();
+            }
             document.getElementById('wwww').style.display = 'none';
         }, 1400);
     }
@@ -164,6 +170,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     initSlider() {
+        // console.log('initSlider');
         this.count = this.slides.length;
         this.slideWidth = window.innerWidth > 992 ? (window.innerWidth - 115) / 4 : (window.innerWidth) / 3;
         this.accordionItemsStyles.width = this.slideWidth * this.count;
@@ -171,6 +178,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     navigate(index) {
+        // console.log('navigate');
         this.workService.current = this.slides[index];
         this.currentTitle = this.slides[index].title;
         this.currentDesc = this.slides[index].description;
@@ -270,6 +278,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     getParams() {
+        // console.log('get params');
         if (this.workService.works) {
             this.slides = this.workService.works;
             this.done = true;
@@ -291,6 +300,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     getCurrent() {
+        // console.log('get current');
         const pathObj = location.pathname.split('/');
         // console.log(pathObj);
         if (pathObj.length > 1 && pathObj[1] === 'project') {
@@ -338,6 +348,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.homePage = false;
-        console.log('destroy: ', this.homePage);
+        // console.log('destroy: ', this.homePage);
     }
 }

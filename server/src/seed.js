@@ -25,7 +25,7 @@ module.exports.createDefaultAdmin = async (req, res) => {
 
 module.exports.createPage = async (req, res) => {
     const keys = ['page_about', 'page_careers', 'page_work', 'page_story'];
-    const setting_keys = ['menu-text', 'meet-us-url', 'footer-text', 'footer-link-url', 'slider-speed', 'editor_api_key'];
+    const setting_keys = ['admin-email'];
     try {
         const pages = await Page.find();
         keys.forEach(k => {
@@ -44,7 +44,7 @@ module.exports.createPage = async (req, res) => {
             if (!set) {
                 let obj = new Settings({
                     key: k,
-                    value: 'Go to admin panel and edit ' + k
+                    value: 'email for forms'
                 });
                 obj.save();
             }
@@ -83,7 +83,6 @@ module.exports.createMenus = (req, res) => {
                     key: key,
                     title: 'title ' + key,
                     description: 'description ' + key,
-                    value: key.toUpperCase(),
                     order: i
                 });
                 obj.save()

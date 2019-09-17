@@ -253,6 +253,7 @@ i:hover {
 }
 
 .go-back-btn {
+    text-decoration: none;
     background: rgba(0, 0, 0, .42);
     position: fixed;
     top: 75px;
@@ -589,6 +590,7 @@ i:hover {
         }
 
         .go-back-btn-mobile {
+
             background: rgba(0, 0, 0, .42);
             position: fixed;
             top: 100px;

@@ -44,7 +44,6 @@ module.exports = {
     changeMenu: async (req, res) => {
 
         let menu = {
-            value: req.body.value,
             order: req.body.order,
             title: req.body.title,
             description: req.body.description,

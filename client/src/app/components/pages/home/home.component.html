@@ -5,7 +5,8 @@
     <div class="home-page custom-page bg-light col-12 col-lg-9 offset-lg-3 pr-0" *ngIf="done"
          (mousewheel)="scrollFunction($event)">
 
-        <div class="accordion w-100 h-100 d-none d-md-block" (mousewheel)="onMouseWheel($event)" *ngIf="windowWidth > 767">
+        <div class="accordion w-100 h-100 d-none d-md-block" (mousewheel)="onMouseWheel($event)"
+             *ngIf="windowWidth > 767">
             <div class="accordion-items h-100"
                  [style.width]="accordionItemsStyles.width + 'px'"
                  [style.left]="accordionItemsStyles.left  + 'px'">
@@ -13,9 +14,11 @@
                      (click)="initCurrent(index)"
                      class="slider-item"
                      [style.width]="slideWidth + 'px'">
-                    <div class="slide-image">
-                        <img [src]="slide.img">
-                    </div>
+                    <a [routerLink]="['project/' + slides[index].slug]">
+                        <div class="slide-image">
+                            <img [src]="slide.img">
+                        </div>
+                    </a>
                     <div class="slide-text-content">
                         <h2>{{ slide.title }}</h2>
                         <div class="slide-desc">
@@ -54,7 +57,8 @@
         </div>
 
 
-        <div class="go-back-btn  d-none d-md-block" (click)="backToSlider()" *ngIf="windowWidth > 767">{{ backToWorkText }}</div>
+        <a class="go-back-btn  d-none d-md-block" (click)="backToSlider()" routerLink="/"
+             *ngIf="windowWidth > 767">{{ backToWorkText }}</a>
         <div class="slider-buttons  d-none d-md-block">
             <div class="slider-next-btn"
                  (click)="!clickedSlide && clickedSlide !== 0 ? sliderNext() : pageNext()">

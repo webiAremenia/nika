@@ -19,7 +19,7 @@ export class SidebarComponent implements OnInit {
     logos: Logo[];
     done = false;
     imageUrl;
-    menu;
+    menu: any;
     menuDone = false;
 
     constructor(
@@ -49,14 +49,12 @@ export class SidebarComponent implements OnInit {
     }
 
     getMenuText() {
-        this.menuService.getMenuText().subscribe(date => {
-            this.menuText = date || 'You  can creat this content in admin panel Settings/key = menu-text';
-        });
-        this.menuService.getMenuUrl().subscribe(date => {
-            this.menuUrl = date || 'You  can creat this content in admin panel Settings/key = meet-us-url';
-        });
-
-
+        // this.menuService.getMenuText().subscribe(date => {
+        //     this.menuText = date || 'You  can creat this content in admin panel Settings/key = menu-text';
+        // });
+        // this.menuService.getMenuUrl().subscribe(date => {
+        //     this.menuUrl = date || 'You  can creat this content in admin panel Settings/key = meet-us-url';
+        // });
     }
 
 }

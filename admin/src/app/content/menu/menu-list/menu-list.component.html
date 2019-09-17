@@ -11,7 +11,7 @@
     <tbody [sortablejs]="menus" [sortablejsOptions]="options">
     <tr *ngFor="let menu of middleTable.data">
         <td>{{ menu.key }}</td>
-        <td>{{ menu.value }}</td>
+<!--        <td>{{ menu.value }}</td>-->
         <td>{{ menu.isActive }}</td>
         <td>
             <i nz-icon type="edit" theme="outline" class="_btn_edit" (click)="edit(menu)"></i>
