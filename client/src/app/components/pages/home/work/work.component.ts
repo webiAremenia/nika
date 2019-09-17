@@ -15,11 +15,12 @@ export class WorkComponent implements OnInit, OnDestroy {
 
     @ViewChild('workContent') workContent: ElementRef;
     work: Work;
+    details: any;
     slug;
     windowSubscription: Subscription;
     windowSize: ResponsiveData;
     sectionArr: Array<number> = [];
-    mobSectionArr: Array<number> = [];
+    done = false;
 
     constructor(
         private actionsService: ActionsService,
@@ -50,6 +51,11 @@ export class WorkComponent implements OnInit, OnDestroy {
             this.work = this.workService.works.filter(w => w.slug === this.slug)[0];
             this.workService.current = this.work;
         }
+        console.log(this.work);
+        this.workService.getOne(this.work.slug).subscribe(d => {
+            this.details = d.details;
+            this.done = true;
+        });
     }
 
     initAnimation(position) {
@@ -84,6 +90,7 @@ export class WorkComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
+        this.done = false;
         this.actionsService.workOpened.next(false);
     }
 }

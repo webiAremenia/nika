@@ -113,7 +113,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.bannerHeight = (window.innerHeight - 100);
         this.lastIndex = index;
         this.clickedSlide = index;
-        document.getElementById('wwww').style.display = 'block';
+        if (document.getElementById('wwww')) {
+            document.getElementById('wwww').style.display = 'block';
+        }
         this.detailWrapperLeft = (index + this.accordionItemsStyles.left / this.slideWidth) * this.slideWidth;
         this.clickedWidth = this.slideWidth;
         setTimeout(() => {
@@ -126,7 +128,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.initCurrentTimeOut = setTimeout(() => {
             this.backToWorkText = 'Back to Works';
             this.showDownBtn();
-            this.detailWrapper.nativeElement.style.opacity = '.74';
+            if (this.detailWrapper) {
+                this.detailWrapper.nativeElement.style.opacity = '.74';
+            }
             this.navigate(index);
         }, 1400);
     }
@@ -152,7 +156,9 @@ export class HomeComponent implements OnInit, OnDestroy {
             if (this.homePage) {
                 this.router.navigate(['/']).then();
             }
-            document.getElementById('wwww').style.display = 'none';
+            if (document.getElementById('wwww')) {
+                document.getElementById('wwww').style.display = 'none';
+            }
         }, 1400);
     }
 

@@ -1,8 +1,8 @@
 <div class="work-wrapper d-none d-md-block" *ngIf="windowSize.width > 767">
 
-    <div class="work-dynamic-content-main" #workContent>
+    <div class="work-dynamic-content-main" #workContent *ngIf="done">
 
-        <div *ngFor="let detail of work.details, let index = index"
+        <div *ngFor="let detail of details, let index = index"
              id="section_{{ index + 1 }}"
              class="work-dynamic-content-details"
              [style.opacity]="'0'">
@@ -23,7 +23,7 @@
         <p style="padding: 20px;"> {{ work.description }} </p>
         <img [src]="work.img" class="w-100">
     </div>
-    <div *ngFor="let detail of work.details, let index = index"
+    <div *ngFor="let detail of details, let index = index"
          id="mob_section_{{ index + 1 }}"
          class="mobile-components">
         <app-work-img *ngIf="detail.type === 'img'" [content]="detail"></app-work-img>
