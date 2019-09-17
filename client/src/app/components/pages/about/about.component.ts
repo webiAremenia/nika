@@ -66,12 +66,12 @@ export class AboutComponent implements OnInit, OnDestroy {
             if (this.sectionArr.length === 0 && window.innerWidth > 992) {
                 this.initSectionsArr();
                 this.scrollHeight = document.getElementsByClassName('about-scroll')[0].scrollHeight;
-                this.bannerHeight = document.getElementsByClassName('about-page')[0].clientHeight - 300;
+                this.bannerHeight = document.getElementsByClassName('about-page')[0].clientHeight - clientHeight; // 0
             }
             if (this.sectionArr.length === 0 && window.innerWidth <= 992) {
                 this.initSectionsArr();
                 this.scrollHeight = document.getElementsByClassName('about-scroll')[0].scrollHeight;
-                this.bannerHeight = window.innerHeight - 150;
+                this.bannerHeight = window.innerHeight / 4;
             }
 
             this.scrollPosition += position;
