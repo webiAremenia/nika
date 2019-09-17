@@ -18,8 +18,8 @@ export class WorkComponent implements OnInit, OnDestroy {
     slug;
     windowSubscription: Subscription;
     windowSize: ResponsiveData;
-    scrollPosition: number;
     sectionArr: Array<number> = [];
+    mobSectionArr: Array<number> = [];
 
     constructor(
         private actionsService: ActionsService,
@@ -57,13 +57,6 @@ export class WorkComponent implements OnInit, OnDestroy {
             this.initSectionsArr();
         }
         const bannerHeight = window.innerHeight + 100;
-        // const scrollHeight = bannerHeight + this.workContent.nativeElement.clientHeight;
-        // console.log(scrollHeight);
-        // console.log(position);
-        // console.log(this.sectionArr);
-        // console.log(bannerHeight + this.sectionArr[2]);
-
-        // const sectionCount = document.querySelectorAll('.work-dynamic-content-details').length;
 
         let sum = 0;
 
@@ -77,21 +70,16 @@ export class WorkComponent implements OnInit, OnDestroy {
             }
         }
 
-        // if (position < -(bannerHeight + this.sectionArr[0])) {
-        //     document.getElementById('section_' + 1).style.opacity = '1';
-        // }
-        // if (position < -(bannerHeight + this.sectionArr[0] + this.sectionArr[1])) {
-        //     document.getElementById('section_' + 2).style.opacity = '1';
-        // }
-        // if (position < -(bannerHeight + this.sectionArr[0] + this.sectionArr[1] + this.sectionArr[2])) {
-        //     document.getElementById('section_' + 3).style.opacity = '1';
-        // }
     }
 
     initSectionsArr() {
         const sectionCount = document.querySelectorAll('.work-dynamic-content-details').length;
+        const mobSectionCount = document.querySelectorAll('.mobile-components').length;
         for (let i = 0; i < sectionCount; i++) {
             this.sectionArr.push(document.getElementById('section_' + (i + 1)).offsetHeight);
+        }
+        for (let i = 0; i < mobSectionCount; i++) {
+            this.sectionArr.push(document.getElementById('mob_section_' + (i + 1)).offsetHeight);
         }
     }
 
