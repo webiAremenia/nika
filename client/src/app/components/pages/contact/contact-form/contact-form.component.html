@@ -80,7 +80,7 @@
 
 
     <div class="button-row">
-        <button mat-raised-button type="submit">
+        <button mat-raised-button type="submit" [disabled]="form.invalid">
 
             <span *ngIf="!done">SUBMIT</span>
 
