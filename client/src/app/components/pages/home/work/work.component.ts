@@ -73,7 +73,7 @@ export class WorkComponent implements OnInit, OnDestroy {
         for (let i = 0; i < this.sectionArr.length; i++) {
             sum += this.sectionArr[i];
             // console.log(position , -(bannerHeight + sum));
-            if (position < -(bannerHeight + sum)) {
+            if (position < -(bannerHeight + sum - 100)) {
                 document.getElementById('section_' + (i + 1)).style.opacity = '1';
             }
         }
@@ -82,13 +82,13 @@ export class WorkComponent implements OnInit, OnDestroy {
 
     initSectionsArr() {
         const sectionCount = document.querySelectorAll('.work-dynamic-content-details').length;
-        const mobSectionCount = document.querySelectorAll('.mobile-components').length;
+        // const mobSectionCount = document.querySelectorAll('.mobile-components').length;
         for (let i = 0; i < sectionCount; i++) {
             this.sectionArr.push(document.getElementById('section_' + (i + 1)).offsetHeight);
         }
-        for (let i = 0; i < mobSectionCount; i++) {
-            this.sectionArr.push(document.getElementById('mob_section_' + (i + 1)).offsetHeight);
-        }
+        // for (let i = 0; i < mobSectionCount; i++) {
+        //     this.sectionArr.push(document.getElementById('mob_section_' + (i + 1)).offsetHeight);
+        // }
     }
 
     ngOnDestroy(): void {
