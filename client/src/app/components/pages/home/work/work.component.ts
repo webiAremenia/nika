@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {ResponsiveData} from '../../../../_models/ResponsiveData';
 import {ActionsService} from '../../../../_services/actions.service';
+import {AppGlobals} from '../../../../app.globals';
 
 @Component({
     selector: 'app-work',
@@ -14,6 +15,7 @@ import {ActionsService} from '../../../../_services/actions.service';
 export class WorkComponent implements OnInit, OnDestroy {
 
     @ViewChild('workContent') workContent: ElementRef;
+    imageUrl;
     work: Work;
     slug;
     windowSubscription: Subscription;
@@ -24,8 +26,10 @@ export class WorkComponent implements OnInit, OnDestroy {
     constructor(
         private actionsService: ActionsService,
         private workService: WorkService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        config: AppGlobals
     ) {
+        this.imageUrl = config.imageUrl + '/work/';
         this.windowSubscription = actionsService.getWindowSize()
             .subscribe((size: ResponsiveData) => this.windowSize = size);
         this.actionsService.workOpened.next(true);

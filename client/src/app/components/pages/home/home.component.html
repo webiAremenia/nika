@@ -16,7 +16,7 @@
                      [style.width]="slideWidth + 'px'">
                     <a [routerLink]="['project/' + slides[index].slug]">
                         <div class="slide-image">
-                            <img [src]="slide.img">
+                            <img [src]="imageUrl + slide.img + '?resize=' + resizeWidth + ',' + resizeHeight">
                         </div>
                     </a>
                     <div class="slide-text-content">
@@ -40,7 +40,7 @@
                          [style.left]="detailWrapperLeft + 'px'"
                          [style.width]="zoomed + '%'"
                          [style.height]="detailWrapperHeight ? detailWrapperHeight + 'px' : 'auto'"
-                         [src]="slides[clickedSlide].img" #image>
+                         [src]="imageUrl + slides[clickedSlide].img  + '?resize=' + resizeWidth + ',' + resizeHeight + ',!'" #image>
                     <div class="text-desc-wrapper" #detailWrapper
                          [style.padding]="windowWidth * 50 / 1920 + 'px ' + windowWidth * 100 / 1920 + 'px'">
                         <div class="detail-sub">some text from admin</div>
@@ -83,7 +83,7 @@
                      (click)="mobileNavigate(index)"
                      class="slider-item-mobile col-12 col-sm-6 px-0">
                     <div class="slide-image">
-                        <img [style.height]="mobileXsHeight + 'px'" [src]="slide.img">
+                        <img [style.height]="resizeHeight + 'px'" [src]="imageUrl + slide.img + '?resize=' + resizeWidth + ',' + resizeHeight">
                     </div>
                     <div class="slide-text-content">
                         <h2>{{ slide.title }}</h2>

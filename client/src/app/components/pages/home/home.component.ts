@@ -17,6 +17,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     @ViewChild('detailWrapper') detailWrapper: ElementRef;
     @ViewChild('downBtn') downBtn: ElementRef;
     windowWidth = window.innerWidth;
+    windowHeight = window.innerHeight;
+    resizeWidth;
+    resizeHeight;
     accordionItemsStyles = {
         left: 0,
         width: 0
@@ -53,6 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.initSlider();
         this.mobileXsHeight = window.innerWidth * 250 / 375;
         this.windowWidth = window.innerWidth;
+        this.initSizes();
     }
 
     @HostListener('window:keydown', ['$event'])
@@ -75,9 +79,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     constructor(
         private actionsService: ActionsService,
         private activatedRoute: ActivatedRoute,
-        private  workService: WorkService, config: AppGlobals,
+        private  workService: WorkService,
+        config: AppGlobals,
         private router: Router) {
-        this.imageUrl = config.imageUrl + '/portfolio/';
+        this.imageUrl = config.imageUrl + '/work/';
     }
 
     ngOnInit() {
@@ -93,6 +98,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 }, 100);
             }
         );
+        this.initSizes();
     }
 
     initPageByUrl(bool) {
@@ -349,6 +355,22 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (this.downBtn) {
             this.downBtn.nativeElement.classList.remove('fadeIn');
             this.downBtn.nativeElement.classList.add('fadeOut');
+        }
+    }
+
+    initSizes() {
+        if (this.windowWidth >= 992) {
+            this.resizeWidth = (this.windowWidth - 100) * 3 / 4;
+            this.resizeHeight = this.windowHeight - 100;
+        } else if (this.windowWidth >= 768) {
+            this.resizeWidth = this.windowWidth;
+            this.resizeHeight = this.windowHeight - 100;
+        } else if (this.windowWidth >= 576) {
+            this.resizeWidth = this.windowWidth / 2;
+            this.resizeHeight = this.resizeWidth * 250 / 400;
+        } else {
+            this.resizeWidth = this.windowWidth;
+            this.resizeHeight = this.resizeWidth * 250 / 400;
         }
     }
 
