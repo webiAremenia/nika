@@ -34,6 +34,7 @@ export class WorkComponent implements OnInit, OnDestroy {
             .subscribe((size: ResponsiveData) => this.windowSize = size);
         this.actionsService.workOpened.next(true);
         this.actionsService.getWorkScrollPosition().subscribe(pos => {
+            // console.log(pos);
             this.initAnimation(pos);
         });
     }
@@ -41,6 +42,7 @@ export class WorkComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.activatedRoute.params.subscribe(params => {
             this.slug = params.slug;
+            this.sectionArr = [];
             this.initWork();
         });
     }
@@ -67,8 +69,10 @@ export class WorkComponent implements OnInit, OnDestroy {
 
         let sum = 0;
 
+        // console.log(55555);
         for (let i = 0; i < this.sectionArr.length; i++) {
             sum += this.sectionArr[i];
+            // console.log(position , -(bannerHeight + sum));
             if (position < -(bannerHeight + sum)) {
                 document.getElementById('section_' + (i + 1)).style.opacity = '1';
             }
@@ -89,7 +93,8 @@ export class WorkComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.done = false;
+        this.sectionArr = [];
         this.actionsService.workOpened.next(false);
-        this.actionsService.workScrollPosition.next(0);
+        this.actionsService.workScrollPosition.next(-window.innerHeight + 100);
     }
 }

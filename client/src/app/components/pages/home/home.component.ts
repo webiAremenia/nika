@@ -182,11 +182,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     initSlider() {
-        // console.log('initSlider');
+        console.log('initSlider');
         this.count = this.slides.length;
         this.slideWidth = window.innerWidth > 992 ? (window.innerWidth - 115) / 4 : (window.innerWidth) / 3;
         this.accordionItemsStyles.width = this.slideWidth * this.count;
-        this.accordionItemsStyles.left = 0;
+        // this.accordionItemsStyles.left = 0;
     }
 
     navigate(index) {
@@ -210,6 +210,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     pageNext() {
+        this.workScrollTop = -window.innerHeight + 100;
         if (this.clickedSlide < this.slides.length - 1) {
             this.image.nativeElement.classList.add('fadeOutLeft');
             this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 100}px, 0)`;
@@ -228,6 +229,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     pagePrev() {
+        this.workScrollTop = -window.innerHeight + 100;
         if (this.clickedSlide > 0) {
             this.image.nativeElement.classList.add('fadeOutRight');
             this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 100}px, 0)`;
