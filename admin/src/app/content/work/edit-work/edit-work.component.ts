@@ -30,6 +30,8 @@ export class EditWorkComponent implements OnInit, OnDestroy {
     videosArrOnDestroy = [];
     videoUrl;
     destroyWork = true;
+    coverImg: File;
+    coverImgsrc;
 
     constructor(
         private fb: FormBuilder,
@@ -52,7 +54,6 @@ export class EditWorkComponent implements OnInit, OnDestroy {
             data.forEach(w => {
                 this.slugs.push(w.slug);
             });
-            console.log(this.slugs);
 
         }, err => {
             console.log(err);
@@ -161,11 +162,13 @@ export class EditWorkComponent implements OnInit, OnDestroy {
     onFileChange(event) {
         if (event.target.files.length > 0) {
             const file = event.target.files[0];
+            this.coverImg = event.target.files[0];
             const reader = new FileReader();
             this.imagePath = file;
             reader.readAsDataURL(this.imagePath);
             reader.onload = () => {
-                this.form.get('imgURL').setValue(reader.result);
+                // this.form.get('imgURL').setValue(reader.result);
+                this.coverImgsrc = reader.result;
             };
         }
     }
@@ -353,17 +356,51 @@ export class EditWorkComponent implements OnInit, OnDestroy {
 
     myWork() {
         if (this.work) {
+            const random = this.generateRandomString(10);
+
+            const fd = new FormData();
+
+
+            const details = JSON.stringify(this.form.value.details);
+            const videosArr = JSON.stringify(this.videosArr);
+
+
+
+            fd.append('random', random);
+            fd.append('cover', this.coverImg);
+            fd.append('slug', this.form.value.slug);
+            fd.append('title', this.form.value.title);
+            fd.append('description', this.form.value.description);
+            fd.append('details', details);
+            fd.append('videosArr', videosArr);
+
             // console.log(this.videosArr)
-            const form = {
-                work: this.form.value,
-                videosArr: this.videosArr
-            };
-            this.workService.putWork(this.work._id, form).subscribe(data => {
+            // const form = {
+            //     work: this.form.value,
+            //     videosArr: this.videosArr
+            // };
+            this.workService.putWork(this.work._id, fd).subscribe(data => {
                 this.destroyWork = false;
                 this.router.navigate(['works']);
             });
         } else {
-            this.workService.postWork(this.form.value).subscribe(data => {
+
+            const random = this.generateRandomString(10);
+
+            const fd = new FormData();
+
+            const details = JSON.stringify(this.form.value.details);
+
+            fd.append('random', random);
+            fd.append('cover', this.coverImg);
+            fd.append('slug', this.form.value.slug);
+            fd.append('title', this.form.value.title);
+            fd.append('description', this.form.value.description);
+            fd.append('details', details);
+
+
+
+            this.workService.postWork(fd).subscribe(data => {
                 this.router.navigate(['works']);
             }, e => console.log(e));
         }

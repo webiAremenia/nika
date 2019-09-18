@@ -19,8 +19,8 @@ module.exports = {
             title: req.body.title,
             description: req.body.description,
             slug: req.body.slug,
-            img: req.body.imgURL,
-            details: req.body.details,
+            img: req.file.filename,
+            details: JSON.parse(req.body.details),
             created: Date.now(),
             updated: Date.now(),
         };
@@ -34,24 +34,31 @@ module.exports = {
         }
     },
     changeWork: async (req, res) => {
-        let candidate = req.query.id + '';
+        let candidate = req.params.id;
+        console.log(candidate)
+
         let work = {
-            title: req.body.work.title,
-            description: req.body.work.description,
-            slug: req.body.work.slug,
-            img: req.body.work.imgURL,
-            details: req.body.work.details,
+            title: req.body.title,
+            description: req.body.description,
+            slug: req.body.slug,
+            img: req.file.filename,
+            details: JSON.parse(req.body.details),
             updated: Date.now(),
         };
-        console.log(req.body.videosArr)
+        let oldWork = await Work.findOne({_id: candidate});
         try {
-            await Work.findByIdAndUpdate(
+            const old = await Work.findByIdAndUpdate(
                 {_id: candidate},
                 {$set: work},
                 {new: true});
-            req.body.videosArr.forEach(videoName => {
+            const videosArr = JSON.parse(req.body.videosArr);
+            videosArr.forEach(videoName => {
                 fs.unlinkSync(__dirname + `/../../../_uploads/work/${videoName}`)
             });
+
+            // console.log(oldWork)
+            fs.unlinkSync(__dirname + `/../../../_uploads/work/${oldWork.img}`)
+
             res.status(201).json(work)
         } catch (e) {
             errors.invalidData(res, errors);
@@ -62,6 +69,7 @@ module.exports = {
         let candidate = await Work.findOne({_id: work});
         try {
             await Work.deleteOne({_id: work});
+            fs.unlinkSync(__dirname + `/../../../_uploads/work/${candidate.img}`)
             if (candidate.details.length > 0) {
                 candidate.details.forEach(d => {
                     if (d.type === 'video') {
@@ -87,7 +95,7 @@ module.exports = {
     changeVideo: async (req, res) => {
         const remove = JSON.parse(req.body.delete);
         const id = req.query.id;
-        if(remove) {
+        if (remove) {
             fs.unlinkSync(__dirname + `/../../../_uploads/work/${id}`);
         }
         res.status(200).json({

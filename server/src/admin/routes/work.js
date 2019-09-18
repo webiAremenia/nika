@@ -7,10 +7,10 @@ const upload = require('../middleware/multer');
 
 router.use('/', jwtCompare);
 router.get('/', controller.getWork);
-router.post('/', controller.addWork);
+router.post('/', upload.single('cover'), controller.addWork);
 router.post('/video', upload.single('video'), controller.addVideo);
-router.put('/video',upload.single('video'), controller.changeVideo);
-router.put('/', controller.changeWork);
+router.put('/video', upload.single('video'), controller.changeVideo);
+router.put('/:id', upload.single('cover'), controller.changeWork);
 router.delete('/video/many', controller.deleteVideoMany);
 router.delete('/video', controller.deleteVideo);
 router.delete('/', controller.deleteWork);
