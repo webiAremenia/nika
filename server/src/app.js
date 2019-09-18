@@ -6,6 +6,9 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const winston = require('../config/winston');
 const app = express();
+
+const processImage = require('express-processimage');
+
 require('./seed').createPage();
 require('./seed').createLogos();
 require('./seed').createMenus();
@@ -30,6 +33,7 @@ app.use(require('cors')());
 
 app.use(morgan('combined', {stream: winston.stream}));
 
+app.use(processImage(__dirname + '/../_uploads'));
 app.use('/uploads', express.static(__dirname + '/../_uploads'));
 
 const admin = require('./admin/routes/admin');
