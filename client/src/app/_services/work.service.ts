@@ -22,7 +22,7 @@ export class WorkService {
      getWorks(): Observable<Work[]> {
         return this.http.get<Work[]>(`${this.url}/api/work/`)
             .pipe(map(data => {
-                    console.log('Service', data);
+                    // console.log('Service', data);
                     this.works = data;
                     return this.works;
                 }),

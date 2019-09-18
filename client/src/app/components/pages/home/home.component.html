@@ -58,7 +58,7 @@
 
 
         <a class="go-back-btn  d-none d-md-block" (click)="backToSlider()" routerLink="/"
-             *ngIf="windowWidth > 767">{{ backToWorkText }}</a>
+           *ngIf="windowWidth > 767">{{ backToWorkText }}</a>
         <div class="slider-buttons  d-none d-md-block">
             <div class="slider-next-btn"
                  (click)="!clickedSlide && clickedSlide !== 0 ? sliderNext() : pageNext()">
@@ -98,7 +98,10 @@
             </div>
             <div class="mobile-router" [style.height]="clickedSlide  || clickedSlide == 0 ? '100vh' : '0'"
                  [style.width]="clickedSlide || clickedSlide == 0 ? '100vw' : '0'">
-                <div class="go-back-btn-mobile" (click)="backToSliderMob()">Back to works</div>
+                <div *ngIf="(clickedSlide || clickedSlide == 0)"
+                     class="go-back-btn-mobile"
+                     (click)="backToSliderMob()">Back to works
+                </div>
                 <router-outlet></router-outlet>
             </div>
         </div>

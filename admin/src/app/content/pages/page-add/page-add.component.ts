@@ -13,14 +13,6 @@ import {SettingsService} from '../../../shared/services/settings.service';
     styleUrls: ['./page-add.component.css']
 })
 export class PageAddComponent implements OnInit, OnDestroy {
-    validateForm: FormGroup;
-    uploading = false;
-    randomString;
-    dirName;
-    saved = false;
-    url;
-    editorConfigs;
-    apiKey;
 
     constructor(
         private settingService: SettingsService,
@@ -37,13 +29,31 @@ export class PageAddComponent implements OnInit, OnDestroy {
         this.url = this.globals.url;
         console.log(this.apiKey, settingService.settings);
     }
+    validateForm: FormGroup;
+    uploading = false;
+    randomString;
+    dirName;
+    saved = false;
+    url;
+    editorConfigs;
+    apiKey;
+
+    static generateRandomString(stringLength) {
+        let randomString = '';
+        let randomAscii;
+        for (let i = 0; i < stringLength; i++) {
+            randomAscii = Math.floor((Math.random() * 25) + 97);
+            randomString += String.fromCharCode(randomAscii);
+        }
+        return randomString;
+    }
 
     ngOnInit() {
         this.validateForm = this.fb.group({
             key: ['', Validators.required],
             content: ['', Validators.required]
         });
-        this.randomString = this.generateRandomString(10);
+        this.randomString = PageAddComponent.generateRandomString(10);
         this.dirName = this.randomString;
         this.editorConfigs = {
             plugins: 'print preview fullpage powerpaste casechange importcss tinydrive searchreplace autolink' +
@@ -101,16 +111,6 @@ export class PageAddComponent implements OnInit, OnDestroy {
                     this.msg.error('upload failed.');
                 }
             );
-    }
-
-    generateRandomString(stringLength) {
-        let randomString = '';
-        let randomAscii;
-        for (let i = 0; i < stringLength; i++) {
-            randomAscii = Math.floor((Math.random() * 25) + 97);
-            randomString += String.fromCharCode(randomAscii);
-        }
-        return randomString;
     }
 
     ngOnDestroy(): void {
