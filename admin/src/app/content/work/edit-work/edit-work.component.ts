@@ -167,7 +167,7 @@ export class EditWorkComponent implements OnInit, OnDestroy {
             this.imagePath = file;
             reader.readAsDataURL(this.imagePath);
             reader.onload = () => {
-                // this.form.get('imgURL').setValue(reader.result);
+                this.form.get('imgURL').setValue(this.imagePath);
                 this.coverImgsrc = reader.result;
             };
         }
@@ -356,6 +356,8 @@ export class EditWorkComponent implements OnInit, OnDestroy {
 
     myWork() {
         if (this.work) {
+            this.msg.loading('Updating', {nzDuration: 0});
+
             const random = this.generateRandomString(10);
 
             const fd = new FormData();
@@ -381,9 +383,12 @@ export class EditWorkComponent implements OnInit, OnDestroy {
             // };
             this.workService.putWork(this.work._id, fd).subscribe(data => {
                 this.destroyWork = false;
+                this.msg.remove();
+                this.msg.success('Update successfully.');
                 this.router.navigate(['works']);
             });
         } else {
+            this.msg.loading('Creating', {nzDuration: 0});
 
             const random = this.generateRandomString(10);
 
@@ -401,6 +406,8 @@ export class EditWorkComponent implements OnInit, OnDestroy {
 
 
             this.workService.postWork(fd).subscribe(data => {
+                this.msg.remove();
+                this.msg.success('Create successfully.');
                 this.router.navigate(['works']);
             }, e => console.log(e));
         }

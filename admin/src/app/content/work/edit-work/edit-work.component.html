@@ -13,9 +13,15 @@
                         <img *ngIf="coverImgsrc; else fromForm"
                              [src]="coverImgsrc" class="img-fluid ">
                         <ng-template #fromForm>
-                            <img src="{{videoUrl  + 'work/'  +   form['value']['imgURL']}} " class="img-fluid ">
+                            <ng-container *ngIf=" form['value']['imgURL']; else noImg">
+                                <img src="{{videoUrl  + 'work/'  +   form['value']['imgURL']}} " class="img-fluid ">
+                            </ng-container>
+                            <ng-template #noImg>
 
-                        </ng-template>
+                            </ng-template>
+
+
+                            </ng-template>
 
 
                     </div>
