@@ -41,10 +41,13 @@ module.exports = {
             title: req.body.title,
             description: req.body.description,
             slug: req.body.slug,
-            img: req.file.filename,
             details: JSON.parse(req.body.details),
             updated: Date.now(),
         };
+
+        if (req.file) {
+            work.img = req.file.filename
+        }
         let oldWork = await Work.findOne({_id: candidate});
         try {
             const old = await Work.findByIdAndUpdate(
@@ -57,7 +60,9 @@ module.exports = {
             });
 
             // console.log(oldWork)
-            fs.unlinkSync(__dirname + `/../../../_uploads/work/${oldWork.img}`)
+            if (oldWork.img && req.file) {
+                fs.unlinkSync(__dirname + `/../../../_uploads/work/${oldWork.img}`)
+            }
 
             res.status(201).json(work)
         } catch (e) {
