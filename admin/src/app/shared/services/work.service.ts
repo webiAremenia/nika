@@ -25,7 +25,7 @@ export class WorkService {
     }
 
     putWork(id, work) {
-        return this.http.put(this.urlApi + `/work?id=` + id, work);
+        return this.http.put(this.urlApi + `/work/${id}`, work);
     }
 
     deleteWork(work) {

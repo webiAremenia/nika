@@ -4,6 +4,7 @@ import {ContactService} from '../../../../_services/contact.service';
 import {ResponsiveData} from '../../../../_models/ResponsiveData';
 import {Subscription} from 'rxjs';
 import {ActionsService} from '../../../../_services/actions.service';
+import {computeMsgId} from "@angular/compiler/src/i18n/digest";
 
 
 @Component({
@@ -31,7 +32,7 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
     // phonePattern = '^[0-9]{5,15}$';
 
     emailPattern = '^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\\-+)|([A-Za-z0-9]+\\.+)|([A-Za-z0-9]+\\++))*[A-Za-z0-9]+@((\\w+\\-+)|(\\w+\\.))*\\w{1,63}\\.[a-zA-Z]{2,6})$';
-    fullNamePattern = '^[a-z0-9_-]{4,15}$';
+    fullNamePattern = '^[a-zA-Z 0-9_-]{4,20}$';
     companyPattern = '(?! )(?!.* $)[\\w.\\s.]{4,20}$';
     phonePattern = '^[0-9]{5,15}$';
 
@@ -72,10 +73,13 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        document.getElementsByClassName('iti__selected-flag')[0].addEventListener('click', ($event: any) => {
-            this.height = $event.pageY + 10;
-            document.getElementsByTagName('ul')[0].style.top = this.height - window.pageYOffset + 'px';
-        });
+        const phoneDiv = document.getElementsByClassName('iti__selected-flag')[0];
+        if (phoneDiv) {
+            phoneDiv.addEventListener('click', ($event: any) => {
+                this.height = $event.pageY + 10;
+                document.getElementsByTagName('ul')[0].style.top = this.height - window.pageYOffset + 'px';
+            });
+        }
     }
 
     onCountryChange(e) {

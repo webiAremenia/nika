@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {ResponsiveData} from '../../../../_models/ResponsiveData';
 import {ActionsService} from '../../../../_services/actions.service';
+import {AppGlobals} from '../../../../app.globals';
 
 @Component({
     selector: 'app-work',
@@ -14,24 +15,26 @@ import {ActionsService} from '../../../../_services/actions.service';
 export class WorkComponent implements OnInit, OnDestroy {
 
     @ViewChild('workContent') workContent: ElementRef;
+    imageUrl;
     work: Work;
     slug;
     windowSubscription: Subscription;
     windowSize: ResponsiveData;
-    scrollPosition: number;
     sectionArr: Array<number> = [];
+    done = false;
 
     constructor(
         private actionsService: ActionsService,
         private workService: WorkService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        config: AppGlobals
     ) {
+        this.imageUrl = config.imageUrl + '/work/';
         this.windowSubscription = actionsService.getWindowSize()
             .subscribe((size: ResponsiveData) => this.windowSize = size);
         this.actionsService.workOpened.next(true);
         this.actionsService.getWorkScrollPosition().subscribe(pos => {
-            // console.log('get', pos);
-            // this.scrollPosition = pos;
+            // console.log(pos);
             this.initAnimation(pos);
         });
     }
@@ -39,6 +42,7 @@ export class WorkComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.activatedRoute.params.subscribe(params => {
             this.slug = params.slug;
+            this.sectionArr = [];
             this.initWork();
         });
     }
@@ -50,6 +54,11 @@ export class WorkComponent implements OnInit, OnDestroy {
             this.work = this.workService.works.filter(w => w.slug === this.slug)[0];
             this.workService.current = this.work;
         }
+        // console.log(this.work);
+        this.workService.getOne(this.work.slug).subscribe(d => {
+            this.work.details = d.details;
+            this.done = true;
+        });
     }
 
     initAnimation(position) {
@@ -57,45 +66,35 @@ export class WorkComponent implements OnInit, OnDestroy {
             this.initSectionsArr();
         }
         const bannerHeight = window.innerHeight + 100;
-        // const scrollHeight = bannerHeight + this.workContent.nativeElement.clientHeight;
-        // console.log(scrollHeight);
-        // console.log(position);
-        // console.log(this.sectionArr);
-        // console.log(bannerHeight + this.sectionArr[2]);
-
-        // const sectionCount = document.querySelectorAll('.work-dynamic-content-details').length;
 
         let sum = 0;
 
+        // console.log(55555);
         for (let i = 0; i < this.sectionArr.length; i++) {
             sum += this.sectionArr[i];
-
-            // console.log(position, -(bannerHeight + sum));
-
+            // console.log(position , -(bannerHeight + sum));
             if (position < -(bannerHeight + sum)) {
                 document.getElementById('section_' + (i + 1)).style.opacity = '1';
             }
         }
 
-        // if (position < -(bannerHeight + this.sectionArr[0])) {
-        //     document.getElementById('section_' + 1).style.opacity = '1';
-        // }
-        // if (position < -(bannerHeight + this.sectionArr[0] + this.sectionArr[1])) {
-        //     document.getElementById('section_' + 2).style.opacity = '1';
-        // }
-        // if (position < -(bannerHeight + this.sectionArr[0] + this.sectionArr[1] + this.sectionArr[2])) {
-        //     document.getElementById('section_' + 3).style.opacity = '1';
-        // }
     }
 
     initSectionsArr() {
         const sectionCount = document.querySelectorAll('.work-dynamic-content-details').length;
+        const mobSectionCount = document.querySelectorAll('.mobile-components').length;
         for (let i = 0; i < sectionCount; i++) {
             this.sectionArr.push(document.getElementById('section_' + (i + 1)).offsetHeight);
+        }
+        for (let i = 0; i < mobSectionCount; i++) {
+            this.sectionArr.push(document.getElementById('mob_section_' + (i + 1)).offsetHeight);
         }
     }
 
     ngOnDestroy(): void {
+        this.done = false;
+        this.sectionArr = [];
         this.actionsService.workOpened.next(false);
+        this.actionsService.workScrollPosition.next(-window.innerHeight + 100);
     }
 }

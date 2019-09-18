@@ -17,6 +17,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     @ViewChild('detailWrapper') detailWrapper: ElementRef;
     @ViewChild('downBtn') downBtn: ElementRef;
     windowWidth = window.innerWidth;
+    windowHeight = window.innerHeight;
+    resizeWidth;
+    resizeHeight;
     accordionItemsStyles = {
         left: 0,
         width: 0
@@ -53,6 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.initSlider();
         this.mobileXsHeight = window.innerWidth * 250 / 375;
         this.windowWidth = window.innerWidth;
+        this.initSizes();
     }
 
     @HostListener('window:keydown', ['$event'])
@@ -75,9 +79,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     constructor(
         private actionsService: ActionsService,
         private activatedRoute: ActivatedRoute,
-        private  workService: WorkService, config: AppGlobals,
+        private  workService: WorkService,
+        config: AppGlobals,
         private router: Router) {
-        this.imageUrl = config.imageUrl + '/portfolio/';
+        this.imageUrl = config.imageUrl + '/work/';
     }
 
     ngOnInit() {
@@ -93,6 +98,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 }, 100);
             }
         );
+        this.initSizes();
     }
 
     initPageByUrl(bool) {
@@ -113,7 +119,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.bannerHeight = (window.innerHeight - 100);
         this.lastIndex = index;
         this.clickedSlide = index;
-        document.getElementById('wwww').style.display = 'block';
+        if (document.getElementById('wwww')) {
+            document.getElementById('wwww').style.display = 'block';
+        }
         this.detailWrapperLeft = (index + this.accordionItemsStyles.left / this.slideWidth) * this.slideWidth;
         this.clickedWidth = this.slideWidth;
         setTimeout(() => {
@@ -126,7 +134,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.initCurrentTimeOut = setTimeout(() => {
             this.backToWorkText = 'Back to Works';
             this.showDownBtn();
-            this.detailWrapper.nativeElement.style.opacity = '.74';
+            if (this.detailWrapper) {
+                this.detailWrapper.nativeElement.style.opacity = '.74';
+            }
             this.navigate(index);
         }, 1400);
     }
@@ -152,7 +162,9 @@ export class HomeComponent implements OnInit, OnDestroy {
             if (this.homePage) {
                 this.router.navigate(['/']).then();
             }
-            document.getElementById('wwww').style.display = 'none';
+            if (document.getElementById('wwww')) {
+                document.getElementById('wwww').style.display = 'none';
+            }
         }, 1400);
     }
 
@@ -170,11 +182,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     initSlider() {
-        // console.log('initSlider');
+        console.log('initSlider');
         this.count = this.slides.length;
         this.slideWidth = window.innerWidth > 992 ? (window.innerWidth - 115) / 4 : (window.innerWidth) / 3;
         this.accordionItemsStyles.width = this.slideWidth * this.count;
-        this.accordionItemsStyles.left = 0;
+        // this.accordionItemsStyles.left = 0;
     }
 
     navigate(index) {
@@ -198,6 +210,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     pageNext() {
+        this.workScrollTop = -window.innerHeight + 100;
         if (this.clickedSlide < this.slides.length - 1) {
             this.image.nativeElement.classList.add('fadeOutLeft');
             this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 100}px, 0)`;
@@ -216,6 +229,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     pagePrev() {
+        this.workScrollTop = -window.innerHeight + 100;
         if (this.clickedSlide > 0) {
             this.image.nativeElement.classList.add('fadeOutRight');
             this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 100}px, 0)`;
@@ -343,6 +357,22 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (this.downBtn) {
             this.downBtn.nativeElement.classList.remove('fadeIn');
             this.downBtn.nativeElement.classList.add('fadeOut');
+        }
+    }
+
+    initSizes() {
+        if (this.windowWidth >= 992) {
+            this.resizeWidth = (this.windowWidth - 100) * 3 / 4;
+            this.resizeHeight = this.windowHeight - 100;
+        } else if (this.windowWidth >= 768) {
+            this.resizeWidth = this.windowWidth;
+            this.resizeHeight = this.windowHeight - 100;
+        } else if (this.windowWidth >= 576) {
+            this.resizeWidth = this.windowWidth / 2;
+            this.resizeHeight = this.resizeWidth * 250 / 400;
+        } else {
+            this.resizeWidth = this.windowWidth;
+            this.resizeHeight = this.resizeWidth * 250 / 400;
         }
     }
 

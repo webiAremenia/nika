@@ -3,10 +3,10 @@ const fs = require('fs');
 const uploads = '/../../../_uploads';
 
 
+
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-
-        console.log(file.originalname)
 
 
 
@@ -48,10 +48,6 @@ const storage = multer.diskStorage({
         if (!fs.existsSync(__dirname + uploads + '/block')) {
             fs.mkdirSync(__dirname + uploads + '/block');
         }
-
-
-
-
 
 
         if (req.method === 'POST' && req.originalUrl.split('/')[2] === 'media') {
@@ -135,15 +131,12 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
 
-
         // if(req.originalUrl.split('/')[3] !== 'ckeditor' && req.method === 'POST') { ????????????
 
             if(req.originalUrl.split('/')[3] !== 'ckeditor' ) {
                 if(req.originalUrl.split('/')[2] === 'work') {
-                    console.log(req.body.random);
                     cb(null, req.body.random + file.originalname)
                 } else {
-                    console.log(1111)
                     if (req.method === 'POST') {
                         cb(null, new Date().getTime().toString() + file.originalname)
                     } else if (req.method === 'PUT') {

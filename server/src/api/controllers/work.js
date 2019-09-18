@@ -5,7 +5,8 @@ const errors = require('../_helper/error_handler');
 module.exports = {
     getAll: async (req,res) => {
         try {
-            let works = await Work.find();
+            let works = await Work.find({})
+                .select('description img slug title');
             res.status(201).json(works)
         } catch (e) {
             errors.notFound(res, errors);
@@ -13,8 +14,9 @@ module.exports = {
     },
     getOne: async (req, res) => {
         try {
-            let work = await Work.findOne({_id: req.params.id});
-            res.status(200).json(work)
+            let work = await Work.findOne({slug: req.params.slug})
+                .select('details');
+            res.status(200).json({details: work.details})
         } catch (e) {
             errors.notFound(res, errors);
         }

@@ -16,11 +16,6 @@ export class AppComponent implements OnInit {
     route: string;
     path;
     done = false;
-
-    @HostListener('scroll') scrolling() {
-        console.log('scrolling');
-    }
-
     constructor(
         location: Location,
         router: Router,
