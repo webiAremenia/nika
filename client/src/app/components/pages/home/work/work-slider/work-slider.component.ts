@@ -29,7 +29,7 @@ export class WorkSliderComponent implements OnInit {
     }
 
     initSizes() {
-        console.log('init size');
+        // console.log('init size');
         if (window.innerWidth > 768) {
             if (this.content.size === 'big') {
                 this.sliderHeight = window.innerWidth * 600 / 1920 + 'px';

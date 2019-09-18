@@ -39,9 +39,7 @@
             ],
             "scripts": [
               "./node_modules/intl-tel-input/build/js/intlTelInput.min.js",
-              "./node_modules/jquery/dist/jquery.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "src/assets/js/custom.js"
             ],
             "es5BrowserSupport": true
           },

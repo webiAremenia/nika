@@ -140,7 +140,12 @@
     }
 
     .hidden-menu {
-        display: none;
+        opacity: 0;
+        transition: opacity 600ms;
+        -o-transition: opacity 600ms;
+        -ms-transition: opacity 600ms;
+        -moz-transition: opacity 600ms;
+        -webkit-transition: opacity 600ms;
     }
 
     .hidden-menu-items a {
@@ -148,6 +153,7 @@
     }
 
     .hamburger-line-1, .hamburger-line-2, .hamburger-line-3 {
+        pointer-events: none;
         position: relative;
         width: 40px;
         border: 3px solid black;
