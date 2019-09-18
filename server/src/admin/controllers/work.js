@@ -41,10 +41,12 @@ module.exports = {
             title: req.body.title,
             description: req.body.description,
             slug: req.body.slug,
-            img: req.file.filename,
             details: JSON.parse(req.body.details),
             updated: Date.now(),
         };
+
+        console.log(req.file)
+
         let oldWork = await Work.findOne({_id: candidate});
         try {
             const old = await Work.findByIdAndUpdate(
