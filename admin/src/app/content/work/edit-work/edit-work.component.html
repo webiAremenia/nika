@@ -9,7 +9,15 @@
                         <label for="imgg">choose a file</label>
                     </div>
                     <div class="col-4">
-                        <img [src]="form['value']['imgURL']" class="img-fluid ">
+                        <!--                                                <img [src]="form['value']['imgURL']" class="img-fluid ">-->
+                        <img *ngIf="coverImgsrc; else fromForm"
+                             [src]="coverImgsrc" class="img-fluid ">
+                        <ng-template #fromForm>
+                            <img src="{{videoUrl  + 'work/'  +   form['value']['imgURL']}} " class="img-fluid ">
+
+                        </ng-template>
+
+
                     </div>
                 </div>
                 <p *ngIf="form.get('imgURL').invalid && form.get('imgURL').touched" class="invalid">Type
@@ -22,8 +30,8 @@
                 <label translate>slug</label>
                 <input type="text" placeholder="Slug" class="form-control" formControlName="slug"
                        (keyup)="filterSlug($event)">
-<!--                                <p *ngIf="slugForm.get('slug').invalid && slugForm.get('slug').touched" class="invalid">Type true Slug</p>-->
-                                <p *ngIf="inValidSlug" class="invalid">Slug must be a unique</p>
+                <!--                                <p *ngIf="slugForm.get('slug').invalid && slugForm.get('slug').touched" class="invalid">Type true Slug</p>-->
+                <p *ngIf="inValidSlug" class="invalid">Slug must be a unique</p>
             </div>
 
 
@@ -272,7 +280,8 @@
                                             <div formArrayName="sliders" class="col-3"
                                                  *ngFor="let image of form.get('details')['controls'][i]['controls'].sliders['controls']; let index = index">
                                                 <div [formGroupName]="index" class="pt-3">
-                                                    <i nz-icon nzType="close" nzTheme="outline" class="delete_icon" (click)="removeSliderImage(i,index)"></i>
+                                                    <i nz-icon nzType="close" nzTheme="outline" class="delete_icon"
+                                                       (click)="removeSliderImage(i,index)"></i>
 
                                                     <img *ngIf="detail['value']['sliders'][index]['imgURL']; else img"
                                                          [src]="detail['value']['sliders'][index]['imgURL']"
@@ -337,22 +346,21 @@
                                             </div>
 
 
-<!--                                            <div *ngIf="videoPath else currentVideo">-->
-<!--                                                <video width="320" height="240" controls-->
-<!--                                                >-->
-<!--                                                    <source-->
-<!--                                                        [src]="'http://localhost:3000/uploads/work/' + detail['value']['videoURL']"-->
-<!--                                                    >-->
-<!--                                                </video>-->
-<!--                                            </div>-->
-<!--                                            <ng-template #currentVideo>-->
-<!--                                                <video width="320" height="240" controls>-->
-<!--                                                    <source-->
-<!--                                                        [src]="'http://localhost:3000/uploads/work/' + detail['value']['videoURL']"-->
-<!--                                                    >-->
-<!--                                                </video>-->
-<!--                                            </ng-template>-->
-
+                                            <!--                                            <div *ngIf="videoPath else currentVideo">-->
+                                            <!--                                                <video width="320" height="240" controls-->
+                                            <!--                                                >-->
+                                            <!--                                                    <source-->
+                                            <!--                                                        [src]="'http://localhost:3000/uploads/work/' + detail['value']['videoURL']"-->
+                                            <!--                                                    >-->
+                                            <!--                                                </video>-->
+                                            <!--                                            </div>-->
+                                            <!--                                            <ng-template #currentVideo>-->
+                                            <!--                                                <video width="320" height="240" controls>-->
+                                            <!--                                                    <source-->
+                                            <!--                                                        [src]="'http://localhost:3000/uploads/work/' + detail['value']['videoURL']"-->
+                                            <!--                                                    >-->
+                                            <!--                                                </video>-->
+                                            <!--                                            </ng-template>-->
 
 
                                         </div>

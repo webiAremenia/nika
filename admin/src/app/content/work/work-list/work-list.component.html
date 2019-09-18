@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-12">
-        <button style="text-align: center;padding-bottom: 10px; margin: 0 5px 0 5px;" class="btn btn-success float-right"
+        <button style="text-align: center;padding-bottom: 10px; margin: 0 5px 0 5px;"
+                class="btn btn-success float-right"
                 (click)="addWork()"><i nz-icon type="folder-add" theme="outline"></i></button>
     </div>
 </div>
@@ -14,7 +15,7 @@
                 <nz-card style="width:100%;" nzTitle="{{work.title}}" [nzExtra]="extraTemplate">
                     <div class="row">
                         <div class="col-3">
-                            <img title="Show more images..." class="img-thumbnail" [src]="work.img" alt="">
+                            <img title="Show more images..." class="img-thumbnail" src="{{url + 'work/' + work.img}}" alt="">
                         </div>
                         <div class="col-9">
                             <p>{{work.description}}</p>

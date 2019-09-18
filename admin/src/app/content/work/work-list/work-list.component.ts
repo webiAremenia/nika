@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {WorkService} from '../../../shared/services/work.service';
 import {FormArray} from '@angular/forms';
 import {NzModalService} from 'ng-zorro-antd';
+import {AppGlobals} from '../../../app.globals';
 
 @Component({
     selector: 'app-work-list',
@@ -17,12 +18,14 @@ export class WorkListComponent implements OnInit {
     constructor(
         private router: Router,
         private workService: WorkService,
-        private modalService: NzModalService
+        private modalService: NzModalService,
+        globals: AppGlobals
     ) {
+        this.url = globals.imageUrl;
     }
 
     ngOnInit() {
-        this.url = this.workService.url + '/uploads/portfolio/';
+
 
         this.workService.getWorks().subscribe(data => {
             this.works = data;
