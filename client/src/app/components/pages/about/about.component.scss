@@ -9,9 +9,7 @@ $font-bold: 'Open Sans Bold', sans-serif;
   //-moz-transition: transform 1200ms;
   //-webkit-transition: transform 1200ms;
 }
-* {
-  overflow: hidden!important;
-}
+
 .section {
   opacity: 0;
 }
@@ -114,6 +112,12 @@ $font-bold: 'Open Sans Bold', sans-serif;
 
 
 // // // MEDIA // // //
+
+@media (min-width: 992px) {
+  * {
+    overflow: hidden!important;
+  }
+}
 
 @media (max-width: 767px) {
   .about-page {

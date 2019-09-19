@@ -31,7 +31,8 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
     // companyPattern = '(?! )(?!.* $)[\\w.\\s.]{3,20}$';
     // phonePattern = '^[0-9]{5,15}$';
 
-    emailPattern = '^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\\-+)|([A-Za-z0-9]+\\.+)|([A-Za-z0-9]+\\++))*[A-Za-z0-9]+@((\\w+\\-+)|(\\w+\\.))*\\w{1,63}\\.[a-zA-Z]{2,6})$';
+    emailPattern = '^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\\-+)|([A-Za-z0-9]+\\.+)|([A-Za-z0-9]+\\++))*' +
+        '[A-Za-z0-9]+@((\\w+\\-+)|(\\w+\\.))*\\w{1,63}\\.[a-zA-Z]{2,6})$';
     fullNamePattern = '^[a-zA-Z 0-9_-]{4,20}$';
     companyPattern = '(?! )(?!.* $)[\\w.\\s.]{4,20}$';
     phonePattern = '^[0-9]{5,15}$';
@@ -51,7 +52,9 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
     }
 
     @HostListener('document: scroll') mouseWheel() {
-        document.getElementsByTagName('ul')[0].style.top = this.height - window.pageYOffset + 'px';
+        if (document.getElementsByTagName('ul')[0]) {
+            document.getElementsByTagName('ul')[0].style.top = this.height - window.pageYOffset + 'px';
+        }
     }
 
     @HostListener('window: resize') onResize() {

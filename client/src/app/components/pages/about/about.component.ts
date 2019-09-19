@@ -37,7 +37,7 @@ export class AboutComponent implements OnInit, OnDestroy {
             .subscribe((size: ResponsiveData) => this.windowSize = size);
     }
 
-    @HostListener('wheel', ['$event']) scrolling(e) {
+    @HostListener('wheel', ['$event']) wheel(e) {
         this.initAnimation(e.deltaY);
     }
 
@@ -46,7 +46,6 @@ export class AboutComponent implements OnInit, OnDestroy {
         if (event.keyCode === 32) {
             this.initAnimation(650);
         }
-        console.log(event.keyCode);
         if (event.keyCode === 40) {
             this.initAnimation(34);
         } else if (event.keyCode === 38) {
@@ -56,56 +55,58 @@ export class AboutComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         // this.getAll();
-        if (window.innerWidth < 992) {
-            document.getElementsByTagName('body')[0].style.overflowY = 'hidden';
-        }
         this.getPage();
     }
 
     initAnimation(position) {
-        this.mouseCheck += 1;
-        if (this.mouseCheck === 1) {
-            const clientHeight = document.getElementsByClassName('about-page')[0].clientHeight;
-            if (this.sectionArr.length === 0 && window.innerWidth > 992) {
-                this.initSectionsArr();
-                this.scrollHeight = document.getElementsByClassName('about-scroll')[0].scrollHeight;
-                this.bannerHeight = document.getElementsByClassName('about-page')[0].clientHeight - clientHeight; // 0
+        this.scrollPosition += position;
+        if (window.innerWidth > 992) {
+            this.mouseCheck += 1;
+            if (this.mouseCheck === 1) {
+                const clientHeight = document.getElementsByClassName('about-page')[0].clientHeight;
+                if (this.sectionArr.length === 0 && window.innerWidth > 992) {
+                    this.initSectionsArr();
+                    this.scrollHeight = document.getElementsByClassName('about-scroll')[0].scrollHeight;
+                    this.bannerHeight = document.getElementsByClassName('about-page')[0].clientHeight - clientHeight; // 0
+                }
+
+                if (this.scrollPosition < 0) {
+                    this.scrollPosition = 0;
+                } else if (this.scrollPosition > this.scrollHeight) {
+                    this.scrollPosition = this.scrollHeight;
+                }
+
+                for (let i = 0; i < this.sectionArr.length; i++) {
+                    if (this.scrollPosition + this.bannerHeight > this.sectionArr[i]) {
+                        document.getElementById('section-' + (i + 1)).style.opacity = '1';
+                    }
+                }
+
+                if (this.scrollPosition + clientHeight >= this.scrollHeight) {
+                    for (let i = 0; i < this.sectionArr.length; i++) {
+                        document.getElementById('section-' + (i + 1)).style.opacity = '1';
+                    }
+                    return this.aboutScroll.nativeElement.style.transform = `translate3d(0, -${this.scrollHeight - clientHeight}px, 0)`;
+                } else if (this.scrollPosition + clientHeight < this.scrollHeight) {
+                    this.aboutScroll.nativeElement.style.transform = `translate3d(0, -${this.scrollPosition}px, 0)`;
+                }
+
+                setTimeout(() => {
+                    this.mouseCheck = 0;
+                }, 25);
             }
+        } else {
             if (this.sectionArr.length === 0 && window.innerWidth <= 992) {
                 this.initSectionsArr();
                 this.scrollHeight = document.getElementsByClassName('about-scroll')[0].scrollHeight;
                 this.bannerHeight = window.innerHeight / 1.5;
             }
 
-            this.scrollPosition += position;
-            if (this.scrollPosition < 0) {
-                this.scrollPosition = 0;
-            } else if (this.scrollPosition > this.scrollHeight) {
-                this.scrollPosition = this.scrollHeight;
-            }
-
-
             for (let i = 0; i < this.sectionArr.length; i++) {
-                if (this.scrollPosition + this.bannerHeight > this.sectionArr[i]) {
+                if (this.scrollPosition + (document.documentElement.clientHeight / 2) >= this.sectionArr[i]) {
                     document.getElementById('section-' + (i + 1)).style.opacity = '1';
                 }
             }
-
-
-            if (this.scrollPosition + clientHeight >= this.scrollHeight) {
-                if (this.scrollPosition + window.innerHeight > this.scrollHeight) {
-                    return;
-                } else {
-                    this.aboutScroll.nativeElement.style.transform =
-                        `translate3d(0, -${this.scrollPosition + (window.innerHeight / 5)}px, 0)`;
-                }
-            } else if (this.scrollPosition + clientHeight < this.scrollHeight) {
-                this.aboutScroll.nativeElement.style.transform = `translate3d(0, -${this.scrollPosition}px, 0)`;
-            }
-
-            setTimeout(() => {
-                this.mouseCheck = 0;
-            }, 25);
         }
 
     }
