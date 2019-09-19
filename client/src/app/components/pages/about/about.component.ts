@@ -67,21 +67,18 @@ export class AboutComponent implements OnInit, OnDestroy {
                 if (this.sectionArr.length === 0 && window.innerWidth > 992) {
                     this.initSectionsArr();
                     this.scrollHeight = document.getElementsByClassName('about-scroll')[0].scrollHeight;
-                    this.bannerHeight = document.getElementsByClassName('about-page')[0].clientHeight / 2; // 0
+                    this.bannerHeight = document.getElementsByClassName('about-page')[0].clientHeight - clientHeight; // 0
                 }
-
                 if (this.scrollPosition < 0) {
                     this.scrollPosition = 0;
                 } else if (this.scrollPosition > this.scrollHeight) {
                     this.scrollPosition = this.scrollHeight;
                 }
-
                 for (let i = 0; i < this.sectionArr.length; i++) {
                     if (this.scrollPosition + this.bannerHeight > this.sectionArr[i]) {
                         document.getElementById('section-' + (i + 1)).style.opacity = '1';
                     }
                 }
-
                 if (this.scrollPosition + clientHeight >= this.scrollHeight) {
                     for (let i = 0; i < this.sectionArr.length; i++) {
                         document.getElementById('section-' + (i + 1)).style.opacity = '1';
@@ -91,7 +88,6 @@ export class AboutComponent implements OnInit, OnDestroy {
                     this.aboutScroll.nativeElement.style.transform = `translate3d(0, -${this.scrollPosition}px, 0)`;
                 }
             }
-
             setTimeout(() => {
                 this.mouseCheck = 0;
             }, 25);
@@ -104,7 +100,7 @@ export class AboutComponent implements OnInit, OnDestroy {
             }
 
             for (let i = 0; i < this.sectionArr.length; i++) {
-                if (this.scrollPosition + (document.documentElement.clientHeight / 2) >= this.sectionArr[i]) {
+                if (this.scrollPosition + (document.documentElement.clientHeight) - window.innerHeight / 3 >= this.sectionArr[i]) {
                     document.getElementById('section-' + (i + 1)).style.opacity = '1';
                 }
             }
