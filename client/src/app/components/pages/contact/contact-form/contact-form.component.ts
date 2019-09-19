@@ -1,10 +1,9 @@
-import {AfterContentInit, AfterViewInit, Component, HostListener, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, HostListener, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ContactService} from '../../../../_services/contact.service';
 import {ResponsiveData} from '../../../../_models/ResponsiveData';
 import {Subscription} from 'rxjs';
 import {ActionsService} from '../../../../_services/actions.service';
-import {computeMsgId} from "@angular/compiler/src/i18n/digest";
 
 
 @Component({
