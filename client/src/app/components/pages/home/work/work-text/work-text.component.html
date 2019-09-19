@@ -6,14 +6,14 @@
 
               <div class="text-a"
                    [style.font-size]="(windowSize.width * 30 * windowSize.rate) / 1920 + 'px'"
-                   [style.line-height]="(windowSize.width * 45* windowSize.rate) / 1920 + 'px'"
+                   [style.line-height]="(windowSize.width * 45 * windowSize.rate) / 1920 + 'px'"
               >
                   “{{content.description}}”
               </div>
 
               <div class="author"
                    [style.font-size]="(windowSize.width * 18 * windowSize.rate) / 1920 + 'px'"
-                   [style.line-height]="(windowSize.width * 30* windowSize.rate) / 1920 + 'px'"
+                   [style.line-height]="(windowSize.width * 30 * windowSize.rate) / 1920 + 'px'"
               >
                   - {{content.title}}
               </div>
@@ -23,7 +23,7 @@
           <div class="text-without-author" *ngIf="!content.author">
               <div class="text-b"
                    [style.font-size]="(windowSize.width * 18 * windowSize.rate) / 1920 + 'px'"
-                   [style.line-height]="(windowSize.width * 30* windowSize.rate) / 1920 + 'px'">
+                   [style.line-height]="(windowSize.width * 30 * windowSize.rate) / 1920 + 'px'">
                   {{content.description}}
               </div>
           </div>

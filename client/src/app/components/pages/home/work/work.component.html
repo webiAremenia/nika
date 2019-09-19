@@ -6,10 +6,13 @@
              id="section_{{ index + 1 }}"
              class="work-dynamic-content-details"
              [style.opacity]="'0'">
+
             <app-work-img *ngIf="detail.type === 'img'" [content]="detail"></app-work-img>
             <app-work-slider *ngIf="detail.type === 'slider'" [content]="detail"></app-work-slider>
             <app-work-text *ngIf="detail.type === 'text'" [content]="detail"></app-work-text>
             <app-work-video *ngIf="detail.type === 'video'" [content]="detail"></app-work-video>
+            <app-work-columns *ngIf="detail.type === 'column'" [content]="detail"></app-work-columns>
+
         </div>
 
     </div>
@@ -26,10 +29,13 @@
     <div *ngFor="let detail of work.details, let index = index"
          id="mob_section_{{ index + 1 }}"
          class="mobile-components">
+
         <app-work-img *ngIf="detail.type === 'img'" [content]="detail"></app-work-img>
         <app-work-slider *ngIf="detail.type === 'slider'" [content]="detail" [index]="index"></app-work-slider>
         <app-work-text *ngIf="detail.type === 'text'" [content]="detail"></app-work-text>
         <app-work-video *ngIf="detail.type === 'video'" [content]="detail"></app-work-video>
+        <app-work-columns *ngIf="detail.type === 'column'" [content]="detail"></app-work-columns>
+
     </div>
 </div>
 
