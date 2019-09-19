@@ -113,10 +113,16 @@ $font-bold: 'Open Sans Bold', sans-serif;
 
 // // // MEDIA // // //
 
-@media (min-width: 992px) {
-  * {
-    overflow: hidden!important;
+@media (max-width: 992px) {
+  .section {
+    //transition: 1.2s all;
+    transition: all 700ms ease-in 150ms !important;
+    -o-transition: all 700ms ease-in 150ms !important;
+    -ms-transition: all 700ms ease-in 150ms !important;
+    -moz-transition: all 700ms ease-in 150ms !important;
+    -webkit-transition: all 700ms ease-in 150ms !important;
   }
+
 }
 
 @media (max-width: 767px) {
