@@ -41,6 +41,10 @@ export class AboutComponent implements OnInit, OnDestroy {
         this.initAnimation(e.deltaY);
     }
 
+    @HostListener('touchmove') touchmove() {
+        this.initAnimation(window.pageYOffset);
+    }
+
     @HostListener('window:keydown', ['$event'])
     onKeyDown(event) {
         if (event.keyCode === 32) {
@@ -67,7 +71,7 @@ export class AboutComponent implements OnInit, OnDestroy {
                 if (this.sectionArr.length === 0 && window.innerWidth > 992) {
                     this.initSectionsArr();
                     this.scrollHeight = document.getElementsByClassName('about-scroll')[0].scrollHeight;
-                    this.bannerHeight = document.getElementsByClassName('about-page')[0].clientHeight * .4; // 0
+                    this.bannerHeight = document.getElementsByClassName('about-page')[0].clientHeight - clientHeight; // 0
                 }
                 if (this.scrollPosition < 0) {
                     this.scrollPosition = 0;
