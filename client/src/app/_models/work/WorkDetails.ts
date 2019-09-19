@@ -16,4 +16,16 @@ export interface WorkDetails {
             imgURL: string;
         }
         ];
+    col1: {
+        title: string;
+        description: string
+    };
+    col2: {
+        title: string;
+        description: string
+    };
+    col3: {
+        title: string;
+        description: string
+    };
 }
