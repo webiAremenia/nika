@@ -8,6 +8,7 @@ import {WorkVideoComponent} from './work/work-video/work-video.component';
 import {WorkTextComponent} from './work/work-text/work-text.component';
 import {WorkImgComponent} from './work/work-img/work-img.component';
 import {WorkSliderComponent} from './work/work-slider/work-slider.component';
+import { WorkColumnsComponent } from './work/work-columns/work-columns.component';
 
 @NgModule({
     declarations: [
@@ -17,6 +18,7 @@ import {WorkSliderComponent} from './work/work-slider/work-slider.component';
         WorkTextComponent,
         WorkImgComponent,
         WorkSliderComponent,
+        WorkColumnsComponent,
     ],
     imports: [
         CommonModule,
