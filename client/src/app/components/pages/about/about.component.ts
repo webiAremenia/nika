@@ -90,11 +90,12 @@ export class AboutComponent implements OnInit, OnDestroy {
                 } else if (this.scrollPosition + clientHeight < this.scrollHeight) {
                     this.aboutScroll.nativeElement.style.transform = `translate3d(0, -${this.scrollPosition}px, 0)`;
                 }
-
-                setTimeout(() => {
-                    this.mouseCheck = 0;
-                }, 25);
             }
+
+            setTimeout(() => {
+                this.mouseCheck = 0;
+            }, 25);
+
         } else {
             if (this.sectionArr.length === 0 && window.innerWidth <= 992) {
                 this.initSectionsArr();
