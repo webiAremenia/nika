@@ -16,7 +16,7 @@ export class HeaderInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // console.log('intyerv')
         const modified = request.clone({
-            setHeaders: { 'content-encoding': 'gzip' }
+            // setHeaders: { 'content-encoding': 'gzip' }
         });
         return next.handle(modified);
     }

@@ -64,6 +64,7 @@ app.use((err, req, res, next) => {
     res.locals.error = err;
     winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
     res.status(err.status || 500);
+    console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww', err);
     res.render('error');
 });
 

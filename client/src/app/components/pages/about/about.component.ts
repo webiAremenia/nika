@@ -41,6 +41,10 @@ export class AboutComponent implements OnInit, OnDestroy {
         this.initAnimation(e.deltaY);
     }
 
+    @HostListener('touchmove') touchmove() {
+        this.initAnimation(window.pageYOffset);
+    }
+
     @HostListener('window:keydown', ['$event'])
     onKeyDown(event) {
         if (event.keyCode === 32) {
