@@ -8,6 +8,7 @@ import {ResponsiveData} from '../../../_models/ResponsiveData';
 import {ActionsService} from '../../../_services/actions.service';
 import {TeamService} from '../../../_services/team.service';
 import {TeamPage} from '../../../_models/team/TeamPage';
+import {normalizeSlashes} from 'ts-node';
 
 @Component({
     selector: 'app-about',
@@ -38,12 +39,19 @@ export class AboutComponent implements OnInit, OnDestroy {
     }
 
     @HostListener('wheel', ['$event']) wheel(e) {
-        this.initAnimation(e.deltaY);
+        if (e.deltaY > 0) {
+            this.initAnimation(100);
+        } else {
+            this.initAnimation(-100);
+        }
     }
 
     @HostListener('touchmove') touchmove(e) {
-        // console.log('touch', e);
-        this.initAnimation(window.pageYOffset);
+        this.initAnimation();
+    }
+
+    @HostListener('window:scroll') scroll(e) {
+        this.initAnimation();
     }
 
     @HostListener('window:keydown', ['$event'])
@@ -63,9 +71,9 @@ export class AboutComponent implements OnInit, OnDestroy {
         this.getPage();
     }
 
-    initAnimation(position) {
-        this.scrollPosition += position;
+    initAnimation(position?: number) {
         if (window.innerWidth > 992) {
+            this.scrollPosition += position;
             this.mouseCheck += 1;
             if (this.mouseCheck === 1) {
                 const clientHeight = document.getElementsByClassName('about-page')[0].clientHeight;
@@ -98,14 +106,19 @@ export class AboutComponent implements OnInit, OnDestroy {
             }, 25);
 
         } else {
+            this.scrollPosition = window.pageYOffset;
             if (this.sectionArr.length === 0 && window.innerWidth <= 992) {
                 this.initSectionsArr();
                 this.scrollHeight = document.getElementsByClassName('about-scroll')[0].scrollHeight;
                 this.bannerHeight = window.innerHeight / 1.5;
             }
-
             for (let i = 0; i < this.sectionArr.length; i++) {
-                if (this.scrollPosition + (document.documentElement.clientHeight) - window.innerHeight / 3 >= this.sectionArr[i]) {
+                if (this.scrollPosition + this.bannerHeight >= this.sectionArr[i]) {
+                    document.getElementById('section-' + (i + 1)).style.opacity = '1';
+                }
+            }
+            if (this.scrollPosition + document.documentElement.clientHeight >= this.sectionArr[this.sectionArr.length - 2]) {
+                for (let i = 0; i < this.sectionArr.length; i++) {
                     document.getElementById('section-' + (i + 1)).style.opacity = '1';
                 }
             }
