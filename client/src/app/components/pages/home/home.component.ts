@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     zoomed = 100;
 
     currentTitle;
+    currentSubTitle;
     currentDesc;
 
     isWorkPage = false;
@@ -194,6 +195,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.workService.current = this.slides[index];
         this.currentTitle = this.slides[index].title;
         this.currentDesc = this.slides[index].description;
+        this.currentSubTitle = this.slides[index].subTitle;
         this.router.navigate([`project/${this.slides[index].slug}`]).then();
     }
 
@@ -223,6 +225,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.workService.current = this.slides[this.clickedSlide];
                 this.currentTitle = this.slides[this.clickedSlide].title;
                 this.currentDesc = this.slides[this.clickedSlide].description;
+                this.currentSubTitle = this.slides[this.clickedSlide].subTitle;
                 this.router.navigate([`project/${this.slides[this.clickedSlide].slug}`]).then();
             }, 500);
         }
@@ -242,6 +245,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.workService.current = this.slides[this.clickedSlide];
                 this.currentTitle = this.slides[this.clickedSlide].title;
                 this.currentDesc = this.slides[this.clickedSlide].description;
+                this.currentSubTitle = this.slides[this.clickedSlide].subTitle;
                 this.router.navigate([`project/${this.slides[this.clickedSlide].slug}`]).then();
             }, 500);
         }
@@ -309,7 +313,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             this.workService.getWorks().subscribe(
                 d => {
                     this.slides = d;
-                    // console.log('slider items ', d);
+                    console.log('slider items ', d);
                     this.done = true;
                     this.initSlider();
                     this.getCurrent();
