@@ -13,6 +13,7 @@ export class ContactService {
     }
 
     sendMail(form): any {
+        console.log(form.value);
         return this.http.post(`${this.url}/api/contact`, form.value);
     }
 }

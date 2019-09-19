@@ -5,7 +5,7 @@ import {NzModalService} from 'ng-zorro-antd';
 @Component({
     selector: 'app-settings-list',
     templateUrl: './settings-list.component.html',
-    styleUrls: ['./settings-list.component.css']
+    styleUrls: ['./settings-list.component.scss']
 })
 export class SettingsListComponent implements OnInit {
     settings: any = [];

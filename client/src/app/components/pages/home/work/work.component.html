@@ -17,11 +17,11 @@
 </div>
 
 
-<div class="work-detail-mobile" *ngIf="windowSize.width < 768">
+<div class="work-detail-mobile" *ngIf="windowSize.width < 768" style="min-height: 100vh">
     <div class="mobile-banner">
         <h2 class="text-center"> {{ work.title }} </h2>
         <p style="padding: 20px;"> {{ work.description }} </p>
-        <img [src]="work.img" class="w-100">
+        <img [src]="imageUrl + work.img + '?resize=' + windowSize.width + ',' + windowSize.width * 250 / 400" class="w-100">
     </div>
     <div *ngFor="let detail of work.details, let index = index"
          id="mob_section_{{ index + 1 }}"

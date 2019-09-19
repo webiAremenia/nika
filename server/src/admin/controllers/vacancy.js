@@ -1,7 +1,7 @@
 const Vacancy = require('../models/vacancy');
 const errors = require('../_help/errorHandler');
 const fs = require('fs');
-const sharp = require('sharp');
+
 module.exports = {
     getVacancy: async (req,res) => {
         try {
@@ -19,15 +19,6 @@ module.exports = {
             alt: req.body.alt,
             image: req.file.filename
         };
-        // sharp(req.file.path)
-        //     .resize({
-        //         width: 400,
-        //         height: 400
-        //     })
-        //     .sharpen()
-        //     .toBuffer()
-        //     .then(data => fs.writeFileSync(req.file.path, data))
-        //     .catch(e => console.log(e));
         try {
             await new Vacancy(vacancy).save();
             res.status(201).json({

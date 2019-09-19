@@ -1,7 +1,6 @@
 const Work = require('../models/work');
 const errors = require('../_help/errorHandler');
 const fs = require('fs');
-const rimraf = require("rimraf");
 
 
 module.exports = {

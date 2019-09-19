@@ -19,6 +19,7 @@ export class LogoListComponent implements OnInit {
     ngOnInit() {
         this.url = this.service.url + '/uploads/medias/';
         this.service.getLogos().subscribe((data: any[]) => {
+            console.log(data);
             this.logos = data;
         });
     }

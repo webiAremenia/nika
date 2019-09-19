@@ -53,10 +53,13 @@
 
     <div class="mobile-menu row">
         <div class="mobile-menu-title col-6">
-            <a [routerLink]="[{ outlets: { primary: [] } }]" style="cursor: pointer;"><h1 class="logo-title">nika</h1></a>
+            <a [routerLink]="[{ outlets: { primary: [] } }]" style="cursor: pointer;"><h1 class="logo-title">nika</h1>
+            </a>
         </div>
-        <div class="mobile-hamburger-logo col-6">
-            <div id="mobile-toggle-icon" class="hamburger-logo-toggle-img float-right">
+        <div class="mobile-hamburger-logo col-6" (click)="showMenu ? hideMobMenu(): showMobMenu()">
+            <div id="mobile-toggle-icon"
+                 class="hamburger-logo-toggle-img float-right"
+                 [ngClass]="showMenu ? 'rotate' : ''">
                 <div class="hamburger-line-1"></div>
                 <div class="hamburger-line-2"></div>
                 <div class="hamburger-line-3"></div>
@@ -65,7 +68,7 @@
     </div>
 
 
-    <div class="hidden-menu" *ngIf="menu">
+    <div id="hiddenCont" class="hidden-menu" *ngIf="menu && showMenu">
         <div class="menu-items">
             <a [routerLink]="['about']"> {{ menu.about.title }} </a><span> {{ menu.about.description }} </span>
         </div>

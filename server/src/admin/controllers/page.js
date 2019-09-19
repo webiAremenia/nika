@@ -1,7 +1,6 @@
 const Page = require('../models/page');
 const errors = require('../_help/errorHandler');
 const fs = require('fs');
-const sharp = require('sharp');
 const rimraf = require("rimraf");
 
 

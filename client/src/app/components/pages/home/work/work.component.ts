@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {ResponsiveData} from '../../../../_models/ResponsiveData';
 import {ActionsService} from '../../../../_services/actions.service';
+import {AppGlobals} from '../../../../app.globals';
 
 @Component({
     selector: 'app-work',
@@ -14,6 +15,7 @@ import {ActionsService} from '../../../../_services/actions.service';
 export class WorkComponent implements OnInit, OnDestroy {
 
     @ViewChild('workContent') workContent: ElementRef;
+    imageUrl;
     work: Work;
     slug;
     windowSubscription: Subscription;
@@ -24,12 +26,15 @@ export class WorkComponent implements OnInit, OnDestroy {
     constructor(
         private actionsService: ActionsService,
         private workService: WorkService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        config: AppGlobals
     ) {
+        this.imageUrl = config.imageUrl + '/work/';
         this.windowSubscription = actionsService.getWindowSize()
             .subscribe((size: ResponsiveData) => this.windowSize = size);
         this.actionsService.workOpened.next(true);
         this.actionsService.getWorkScrollPosition().subscribe(pos => {
+            // console.log(pos);
             this.initAnimation(pos);
         });
     }
@@ -37,6 +42,7 @@ export class WorkComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.activatedRoute.params.subscribe(params => {
             this.slug = params.slug;
+            this.sectionArr = [];
             this.initWork();
         });
     }
@@ -63,9 +69,11 @@ export class WorkComponent implements OnInit, OnDestroy {
 
         let sum = 0;
 
+        // console.log(55555);
         for (let i = 0; i < this.sectionArr.length; i++) {
             sum += this.sectionArr[i];
-            if (position < -(bannerHeight + sum)) {
+            // console.log(position , -(bannerHeight + sum));
+            if (position < -(bannerHeight + sum - 100)) {
                 document.getElementById('section_' + (i + 1)).style.opacity = '1';
             }
         }
@@ -74,18 +82,19 @@ export class WorkComponent implements OnInit, OnDestroy {
 
     initSectionsArr() {
         const sectionCount = document.querySelectorAll('.work-dynamic-content-details').length;
-        const mobSectionCount = document.querySelectorAll('.mobile-components').length;
+        // const mobSectionCount = document.querySelectorAll('.mobile-components').length;
         for (let i = 0; i < sectionCount; i++) {
             this.sectionArr.push(document.getElementById('section_' + (i + 1)).offsetHeight);
         }
-        for (let i = 0; i < mobSectionCount; i++) {
-            this.sectionArr.push(document.getElementById('mob_section_' + (i + 1)).offsetHeight);
-        }
+        // for (let i = 0; i < mobSectionCount; i++) {
+        //     this.sectionArr.push(document.getElementById('mob_section_' + (i + 1)).offsetHeight);
+        // }
     }
 
     ngOnDestroy(): void {
         this.done = false;
+        this.sectionArr = [];
         this.actionsService.workOpened.next(false);
-        this.actionsService.workScrollPosition.next(0);
+        this.actionsService.workScrollPosition.next(-window.innerHeight + 100);
     }
 }

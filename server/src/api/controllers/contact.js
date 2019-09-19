@@ -5,6 +5,7 @@ const Settings = require('../../admin/models/settings');
 
 module.exports = {
     sendMail: async (req, res, next) => {
+        console.log('dddddddddddddd', req.body);
         try {
             let adminEmail = await Settings.findOne({key: 'admin-email'}, 'value');
 

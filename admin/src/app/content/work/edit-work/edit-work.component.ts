@@ -167,7 +167,7 @@ export class EditWorkComponent implements OnInit, OnDestroy {
             this.imagePath = file;
             reader.readAsDataURL(this.imagePath);
             reader.onload = () => {
-                this.form.get('imgURL').setValue(this.imagePath);
+                this.form.get('imgURL').setValue(this.coverImg);
                 this.coverImgsrc = reader.result;
             };
         }

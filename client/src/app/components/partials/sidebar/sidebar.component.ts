@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {MenuService} from '../../../_services/menu.service';
@@ -14,13 +14,20 @@ import {AppGlobals} from '../../../app.globals';
 export class SidebarComponent implements OnInit {
 
     route: string;
-    menuText;
-    menuUrl;
     logos: Logo[];
     done = false;
     imageUrl;
     menu: any;
     menuDone = false;
+    showMenu = false;
+
+    @HostListener('document:click', ['$event'])
+    onDocClick(event) {
+        const div = event.target;
+        if (div.id !== 'mobile-toggle-icon') {
+            this.hideMobMenu();
+        }
+    }
 
     constructor(
         private location: Location,
@@ -36,7 +43,6 @@ export class SidebarComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getMenuText();
         this.logoService.getImages().subscribe(data => {
             this.logos = data;
             this.done = true;
@@ -47,14 +53,23 @@ export class SidebarComponent implements OnInit {
         });
     }
 
-    getMenuText() {
-        // this.menuService.getMenuText().subscribe(date => {
-        //     this.menuText = date || 'You  can creat this content in admin panel Settings/key = menu-text';
-        // });
-        // this.menuService.getMenuUrl().subscribe(date => {
-        //     this.menuUrl = date || 'You  can creat this content in admin panel Settings/key = meet-us-url';
-        // });
+    showMobMenu() {
+        this.showMenu = true;
+        setTimeout(() => {
+            document.getElementById('hiddenCont').style.opacity = '1';
+        }, 50);
     }
+
+    hideMobMenu() {
+        const menu = document.getElementById('hiddenCont');
+        if (menu) {
+            menu.style.opacity = '0';
+        }
+        setTimeout(() => {
+            this.showMenu = false;
+        }, 200);
+    }
+
 
 }
 

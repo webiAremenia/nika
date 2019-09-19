@@ -2,16 +2,14 @@ $font-regular: 'Open Sans Regular', sans-serif;
 $font-bold: 'Open Sans Bold', sans-serif;
 
 .section {
-  transition: 1.2s all;
-  //transition: transform 1200ms;
-  //-o-transition: transform 1200ms;
-  //-ms-transition: transform 1200ms;
-  //-moz-transition: transform 1200ms;
-  //-webkit-transition: transform 1200ms;
+  //transition: 1.2s all;
+  transition: all 1200ms ease-in 300ms;
+  -o-transition: all 1200ms ease-in 300ms;
+  -ms-transition: all 1200ms ease-in 300ms;
+  -moz-transition: all 1200ms ease-in 300ms;
+  -webkit-transition: all 1200ms ease-in 300ms;
 }
-* {
-  overflow: hidden!important;
-}
+
 .section {
   opacity: 0;
 }
@@ -114,6 +112,12 @@ $font-bold: 'Open Sans Bold', sans-serif;
 
 
 // // // MEDIA // // //
+
+@media (min-width: 992px) {
+  * {
+    overflow: hidden!important;
+  }
+}
 
 @media (max-width: 767px) {
   .about-page {
