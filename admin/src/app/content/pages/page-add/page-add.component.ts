@@ -89,7 +89,7 @@ export class PageAddComponent implements OnInit, OnDestroy {
             },
             e => console.log(e)
         );
-    }
+    };
 
     handleUpload(): void {
         const form = {

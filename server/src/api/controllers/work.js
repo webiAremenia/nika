@@ -6,7 +6,7 @@ module.exports = {
     getAll: async (req,res) => {
         try {
             let works = await Work.find({})
-                .select('description img slug title');
+                .select('description img slug title subTitle');
             res.status(201).json(works)
         } catch (e) {
             errors.notFound(res, errors);
