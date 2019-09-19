@@ -6,7 +6,7 @@ import {SettingsService} from '../shared/services/settings.service';
 @Component({
     selector: 'app-content',
     templateUrl: './content.component.html',
-    styleUrls: ['./content.component.css']
+    styleUrls: ['./content.component.scss']
 })
 export class ContentComponent implements OnInit {
     @ViewChild('page') layot;
@@ -28,6 +28,9 @@ export class ContentComponent implements OnInit {
 
     ngOnInit() {
         this.user = JSON.parse(localStorage.getItem('user'));
+        if (window.innerWidth < 992) {
+            this.isCollapsed = true;
+        }
     }
 
     /**

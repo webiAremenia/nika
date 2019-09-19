@@ -1,20 +1,30 @@
 const Logo = require('../models/logo');
 const Media = require('../models/media');
 const errors = require('../_help/errorHandler');
-const jwtCompare = require('../middleware/jwtCompare');
-const fs = require('fs');
-const sharp = require('sharp');
 
 module.exports = {
-    getLogos: async (req,res) => {
-        let logos = await Logo.find({}).populate('img');
-        if (logos) {
-            res.status(201).json(logos);
-        } else {
-            errors.notFound(res, errors)
+    getLogos: async (req, res) => {
+        try {
+            let logos = await Logo.find({}).populate('img').select('img img title');
+            if (logos) {
+                res.status(201).json(logos.map(logo => {
+                    return {
+                        _id: logo._id,
+                        title: logo.title,
+                        img: {
+                            image: logo.img.image,
+                            alt: logo.img.alt
+                        }
+                    }
+                }));
+            } else {
+                errors.notFound(res, errors)
+            }
+        } catch (e) {
+            errors.invalidData(res, errors);
         }
     },
-    addLogo: async (req,res) => {
+    addLogo: async (req, res) => {
         let logo = {
             title: req.body.title,
             img: req.body.img
@@ -29,7 +39,7 @@ module.exports = {
             errors.invalidData(res, errors);
         }
     },
-    changeLogo: async (req,res) => {
+    changeLogo: async (req, res) => {
         let candidate = req.query.id + '';
         let logo = {
             img: req.body.img
@@ -44,7 +54,7 @@ module.exports = {
             errors.invalidData(res, errors);
         }
     },
-    deleteLogo: async (req,res) => {
+    deleteLogo: async (req, res) => {
         let slider = req.query.id + '';
         try {
             await Logo.remove({_id: slider});
@@ -55,7 +65,7 @@ module.exports = {
             errors.invalidData(res, errors);
         }
     },
-    getMedia: async (req,res) => {
+    getMedia: async (req, res) => {
         let media = await Media.find({type: 'logo'});
         if (media) {
             res.status(201).json(media);

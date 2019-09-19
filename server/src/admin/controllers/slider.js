@@ -1,9 +1,6 @@
 const Slider = require('../models/slider');
 const Media = require('../models/media');
 const errors = require('../_help/errorHandler');
-const jwtCompare = require('../middleware/jwtCompare');
-const fs = require('fs');
-const sharp = require('sharp');
 
 module.exports = {
     getSliders: async (req,res) => {

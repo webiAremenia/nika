@@ -6,8 +6,8 @@
   </div>
   <nz-table #middleTable nzSize="middle" [nzData]="medias" [nzPageSize]="8">
   <div class="row">
-    <div class="col-3 mt-3" *ngFor="let media of middleTable.data">
-      <nz-card style="width:250px;" [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
+    <div class="col-12 col-md-3 mt-3" *ngFor="let media of middleTable.data">
+      <nz-card class="nzCard" [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
         <nz-card-meta
           nzTitle="{{media.type}}"
           nzDescription="media.alt"
