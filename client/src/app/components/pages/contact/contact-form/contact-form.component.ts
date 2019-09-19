@@ -1,10 +1,9 @@
-import {AfterContentInit, AfterViewInit, Component, HostListener, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AfterViewInit, Component, HostListener, Input, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ContactService} from '../../../../_services/contact.service';
 import {ResponsiveData} from '../../../../_models/ResponsiveData';
 import {Subscription} from 'rxjs';
 import {ActionsService} from '../../../../_services/actions.service';
-import {computeMsgId} from "@angular/compiler/src/i18n/digest";
 
 
 @Component({
@@ -69,10 +68,12 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
             type: [`${this.type}`],
             fullName: ['', [Validators.required, Validators.pattern(this.fullNamePattern)]],
             email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-            phone: [null, [Validators.required, Validators.pattern(this.phonePattern)]],
-            companyName: ['', [Validators.required, Validators.pattern(this.companyPattern)]],
             text: ['', [Validators.required]]
         });
+        if (this.type === 'newBusiness'  || this.type === 'opportunity')  {
+            this.form.addControl( 'companyName',  new FormControl(null, [Validators.required, Validators.pattern(this.companyPattern)]));
+            this.form.addControl(  'phone',  new FormControl(null, [Validators.required, Validators.pattern(this.phonePattern)]));
+        }
     }
 
     ngAfterViewInit() {
