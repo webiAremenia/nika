@@ -1,0 +1,53 @@
+.table-operations {
+    margin-bottom: 16px;
+}
+
+.table-operations > button {
+    margin-right: 8px;
+}
+
+._btn_edit {
+    cursor: pointer;
+    color: forestgreen;
+    transition: 0.2s all;
+}
+
+._btn_edit:hover {
+    transform: scale(1.2);
+    color: green;
+}
+
+._btn_delete {
+    cursor: pointer;
+    color: darkred;
+    transition: 0.2s all;
+}
+
+._btn_delete:hover {
+    transform: scale(1.2);
+    color: red;
+}
+
+::ng-deep .vertical-center-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+::ng-deep .vertical-center-modal .ant-modal {
+    top: 0;
+}
+
+.tools {
+    text-align: right;
+    @media (max-width: 767px) {
+        -ms-text-align-last: right;
+        text-align-last: left;
+    }
+}
+
+table {
+    @media (max-width: 767px) {
+        font-size: 12px;
+    }
+}

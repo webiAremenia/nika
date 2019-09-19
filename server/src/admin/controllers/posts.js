@@ -1,8 +1,6 @@
 const Post = require('../models/post');
 const errors = require('../_help/errorHandler');
-const jwtCompare = require('../middleware/jwtCompare');
 const fs = require('fs');
-const sharp = require('sharp');
 const rimraf = require("rimraf");
 
 
@@ -26,15 +24,7 @@ module.exports = {
                 image: req.file.filename,
                 random: req.body.random
             };
-            sharp(req.file.path)
-                .resize({
-                    width: 400,
-                    height: 400
-                })
-                .sharpen()
-                .toBuffer()
-                .then(data => fs.writeFileSync(req.file.path, data))
-                .catch(e => console.log(e));
+
             try {
                 await new Post(post).save();
                 res.status(201).json({

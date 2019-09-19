@@ -48,8 +48,8 @@
         <nz-header style="background: #fff; padding:0;">
             <i class="trigger" nz-icon [type]="isCollapsed?'menu-unfold':'menu-fold'"
                (click)="isCollapsed=!isCollapsed"></i>
-            <button style="float: right;background-color: #00152A;display: inline-block;margin: 10px;"
-                    class="btn btn-dark mt-1" (click)="logOut()">LogOut
+            <button style="float: right;background-color: #00152A;display: inline-block;margin: 13px;"
+                    class="btn btn-dark" (click)="logOut()">LogOut
             </button>
         </nz-header>
         <nz-content style="margin:0 16px;">
@@ -57,7 +57,7 @@
                 <nz-breadcrumb-item>Admin</nz-breadcrumb-item>
                 <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
             </nz-breadcrumb>
-            <div style="padding:24px; background: #fff; min-height: 360px;">
+            <div class="router-wrapper">
                 <router-outlet></router-outlet>
             </div>
         </nz-content>
