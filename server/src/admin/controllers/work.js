@@ -16,6 +16,7 @@ module.exports = {
     addWork: async (req, res) => {
         let work = {
             title: req.body.title,
+            subTitle: req.body.subTitle,
             description: req.body.description,
             slug: req.body.slug,
             img: req.file.filename,
@@ -34,10 +35,11 @@ module.exports = {
     },
     changeWork: async (req, res) => {
         let candidate = req.params.id;
-        console.log(candidate)
+        console.log(candidate);
 
         let work = {
             title: req.body.title,
+            subTitle: req.body.subTitle,
             description: req.body.description,
             slug: req.body.slug,
             details: JSON.parse(req.body.details),

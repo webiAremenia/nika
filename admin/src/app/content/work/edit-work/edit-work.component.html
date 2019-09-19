@@ -51,6 +51,14 @@
             </div>
 
             <div class="form-group">
+                <label translate>Subtitle</label>
+                <input type="text" placeholder="title" class="form-control" formControlName="subTitle">
+
+                <!--                <p *ngIf="portfolioForm.get('enTitle').invalid && portfolioForm.get('enTitle').touched" class="invalid">Type en-->
+                <!--                    Title</p>-->
+            </div>
+
+            <div class="form-group">
                 <label translate>Description</label>
                 <textarea class="form-control" placeholder="description" rows="3"
                           formControlName="description"></textarea>
@@ -76,6 +84,9 @@
                     </div>
                     <div class="detailItem">
                         <button class="btn button" (click)="addTool('video')">Video</button>
+                    </div>
+                    <div class="detailItem">
+                        <button class="btn button" (click)="addTool('column')">Column</button>
                     </div>
                 </div>
             </div>
@@ -372,6 +383,114 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div *ngIf="detail['value']['type'] === 'column'" class="text-component">
+                                <div class="row tools">
+                                    <div class="col-12">
+                                        <h3>Column</h3>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="row">
+                                            <div class="col-4" formGroupName="col1">
+                                                <div class="form-group">
+                                                    <label translate>Title</label>
+                                                    <input type="text" placeholder="en" class="form-control"
+                                                           formControlName="title">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label translate>Description</label>
+                                                    <textarea class="form-control" placeholder="en" rows="3"
+                                                              formControlName="description"
+                                                    ></textarea>
+                                                </div>
+
+                                            </div>
+
+                                            <div class=" col-4"  formGroupName="col2">
+                                                <div class="form-group">
+                                                    <label translate>Title</label>
+                                                    <input type="text" placeholder="en" class="form-control"
+                                                           formControlName="title">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label translate>Description</label>
+                                                    <textarea class="form-control" placeholder="en" rows="3"
+                                                              formControlName="description"
+                                                    ></textarea>
+                                                </div>
+                                            </div>
+
+
+                                            <div class=" col-4"  formGroupName="col3">
+                                                <div class="form-group">
+                                                    <label translate>Title</label>
+                                                    <input type="text" placeholder="en" class="form-control"
+                                                           formControlName="title">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label translate>Description</label>
+                                                    <textarea class="form-control" placeholder="en" rows="3"
+                                                              formControlName="description"
+                                                    ></textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-2 text-right">
+                                        <i nz-icon type="delete" theme="outline" class="_btn_delete"
+                                           (click)="removeVideo(i)"></i>
+                                    </div>
+                                </div>
+
+
+<!--                                <div class="row">-->
+
+<!--                                    <div-->
+<!--                                        class="col-10 offset-1">-->
+<!--                                        <div class="form-group h-100">-->
+
+<!--                                            <div *ngIf="detail['value']['videoURL']">-->
+<!--                                                <div *ngIf="videoPath === 'video'+ i; else currentVideo">-->
+<!--                                                    <video width="320" height="240" controls-->
+<!--                                                    >-->
+<!--                                                        <source-->
+<!--                                                            [src]="videoUrl + 'work/' + detail['value']['videoURL']"-->
+<!--                                                        >-->
+<!--                                                    </video>-->
+<!--                                                </div>-->
+<!--                                                <ng-template #currentVideo>-->
+<!--                                                    <video width="320" height="240" controls>-->
+<!--                                                        <source-->
+<!--                                                            [src]="videoUrl + 'work/' + detail['value']['videoURL']"-->
+<!--                                                        >-->
+<!--                                                    </video>-->
+<!--                                                </ng-template>-->
+<!--                                            </div>-->
+
+
+<!--                                            &lt;!&ndash;                                            <div *ngIf="videoPath else currentVideo">&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                <video width="320" height="240" controls&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                >&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                    <source&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        [src]="'http://localhost:3000/uploads/work/' + detail['value']['videoURL']"&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                    >&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                </video>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                            <ng-template #currentVideo>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                <video width="320" height="240" controls>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                    <source&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        [src]="'http://localhost:3000/uploads/work/' + detail['value']['videoURL']"&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                    >&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                </video>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                            </ng-template>&ndash;&gt;-->
+
+
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
                             </div>
 
 

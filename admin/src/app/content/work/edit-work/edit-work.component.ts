@@ -64,6 +64,7 @@ export class EditWorkComponent implements OnInit, OnDestroy {
         this.form = this.fb.group({
             slug: [this.work ? this.work.slug : '', Validators.required],
             title: [this.work ? this.work.title : '', Validators.required],
+            subTitle: [this.work ? this.work.subTitle : '', Validators.required],
             description: [this.work ? this.work.description : ''],
             imgURL: [this.work ? this.work.img : '', Validators.required],
             details: this.fb.array(this.work ? this.createDetailsForm() : [])
@@ -113,12 +114,29 @@ export class EditWorkComponent implements OnInit, OnDestroy {
                 type: 'video',
                 videoURL: ['', [Validators.required]]
             }));
+        } else if (value === 'column') {
+            type.push(this.fb.group({
+                type: 'column',
+                col1: this.fb.group({
+                    title: '',
+                    description: [''],
+                }),
+                col2: this.fb.group({
+                    title: '',
+                    description: [''],
+                }),
+                col3: this.fb.group({
+                    title: '',
+                    description: [''],
+                })
+            }));
         }
     }
 
     createDetailsForm() {
         setTimeout(() => {
             const type = this.form.controls.details as FormArray;
+            console.log(type)
             this.work.details.forEach((w, i) => {
                 if (w.type === 'img') {
                     type.push(this.fb.group(
@@ -152,6 +170,22 @@ export class EditWorkComponent implements OnInit, OnDestroy {
                     type.push(this.fb.group({
                         type: 'video',
                         videoURL: [w.videoURL, [Validators.required]]
+                    }));
+                } else if (w.type === 'column') {
+                    type.push(this.fb.group({
+                        type: w.type,
+                        col1: this.fb.group({
+                            title: w.col1.title,
+                            description: w.col1.description,
+                        }),
+                        col2: this.fb.group({
+                            title: w.col2.title,
+                            description: w.col2.description,
+                        }),
+                        col3: this.fb.group({
+                            title: w.col3.title,
+                            description: w.col3.description,
+                        })
                     }));
                 }
             });
@@ -367,11 +401,11 @@ export class EditWorkComponent implements OnInit, OnDestroy {
             const videosArr = JSON.stringify(this.videosArr);
 
 
-
             fd.append('random', random);
             fd.append('cover', this.coverImg);
             fd.append('slug', this.form.value.slug);
             fd.append('title', this.form.value.title);
+            fd.append('subTitle', this.form.value.subTitle);
             fd.append('description', this.form.value.description);
             fd.append('details', details);
             fd.append('videosArr', videosArr);
@@ -400,9 +434,9 @@ export class EditWorkComponent implements OnInit, OnDestroy {
             fd.append('cover', this.coverImg);
             fd.append('slug', this.form.value.slug);
             fd.append('title', this.form.value.title);
+            fd.append('subTitle', this.form.value.subTitle);
             fd.append('description', this.form.value.description);
             fd.append('details', details);
-
 
 
             this.workService.postWork(fd).subscribe(data => {
