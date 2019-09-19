@@ -248,9 +248,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     goDown() {
+        const workHeight = this.customBody.nativeElement.scrollHeight;
+
         this.workScrollTop = -(document.getElementById('wwww').clientHeight + window.innerHeight - 100);
         this.actionsService.workScrollPosition.next(this.workScrollTop);
         this.hideDownBtn();
+        if (this.workScrollTop < -workHeight) {
+            this.workScrollTop = -workHeight;
+        }
     }
 
     scrollFunction(event) {
@@ -280,7 +285,8 @@ export class HomeComponent implements OnInit, OnDestroy {
                         this.actionsService.workScrollPosition.next(this.workScrollTop);
                         this.customBody.nativeElement.style.transform = `translate3d(0, ${this.workScrollTop}px, 0)`;
                         this.mouseWillCount = 0;
-                        if (this.workScrollTop < -(document.getElementById('wwww').clientHeight + window.innerHeight - 100)) {
+                        if (this.workScrollTop < -(document.getElementById('wwww').clientHeight + window.innerHeight - 100)
+                            || this.workScrollTop === -workHeight) {
                             this.hideDownBtn();
                         } else {
                             this.showDownBtn();
