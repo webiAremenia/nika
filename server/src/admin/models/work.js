@@ -10,6 +10,10 @@ const WorkSchema = new Schema({
         type: String,
         default: ''
     },
+    subTitle: {
+        type: String,
+        default: ''
+    },
     description: {
         type: String,
         required: true
