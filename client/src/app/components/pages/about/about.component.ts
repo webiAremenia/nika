@@ -41,7 +41,8 @@ export class AboutComponent implements OnInit, OnDestroy {
         this.initAnimation(e.deltaY);
     }
 
-    @HostListener('touchmove') touchmove() {
+    @HostListener('touchmove') touchmove(e) {
+        // console.log('touch', e);
         this.initAnimation(window.pageYOffset);
     }
 
@@ -71,7 +72,7 @@ export class AboutComponent implements OnInit, OnDestroy {
                 if (this.sectionArr.length === 0 && window.innerWidth > 992) {
                     this.initSectionsArr();
                     this.scrollHeight = document.getElementsByClassName('about-scroll')[0].scrollHeight;
-                    this.bannerHeight = document.getElementsByClassName('about-page')[0].clientHeight - clientHeight; // 0
+                    this.bannerHeight = document.getElementsByClassName('about-page')[0].clientHeight / 2; // 0
                 }
                 if (this.scrollPosition < 0) {
                     this.scrollPosition = 0;
