@@ -41,18 +41,11 @@ export class AboutComponent implements OnInit, OnDestroy {
         this.initAnimation(e.deltaY);
     }
 
-    @HostListener('scroll', ['$event']) scrolling(e) {
-        if (window.innerWidth <= 992) {
-            console.log('asdasdasd');
-        }
-    }
-
     @HostListener('window:keydown', ['$event'])
     onKeyDown(event) {
         if (event.keyCode === 32) {
             this.initAnimation(650);
         }
-        console.log(event.keyCode);
         if (event.keyCode === 40) {
             this.initAnimation(34);
         } else if (event.keyCode === 38) {
