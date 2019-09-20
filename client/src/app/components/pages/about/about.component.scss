@@ -13,6 +13,7 @@ $font-bold: 'Open Sans Bold', sans-serif;
 .section {
   opacity: 0;
 }
+
 .section:first-child {
   opacity: 1;
 }
@@ -22,7 +23,6 @@ $font-bold: 'Open Sans Bold', sans-serif;
 }
 
 .img-wrapper {
-  //width: 95%;
   height: 250px;
 
   img {
@@ -33,21 +33,8 @@ $font-bold: 'Open Sans Bold', sans-serif;
 }
 
 .about-page {
-  padding-left: 10px !important;
-
-  @media (max-width: 992px) {
-    padding-left: 0 !important;
-  }
+  padding-left: 10px;
 }
-
-//.block-title {
-//  margin: 25px 0;
-//  font-family: $font;
-//  font-size: 22px;
-//  font-weight: 600;
-//  line-height: 1.45;
-//  letter-spacing: -0.4px;
-//}
 
 .link-box {
   display: flex;
@@ -65,8 +52,6 @@ $font-bold: 'Open Sans Bold', sans-serif;
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      //font-size: 30px;
-      //line-height: 40px;
       font-family: $font-bold;
       letter-spacing: -0.6px;
     }
@@ -77,8 +62,6 @@ $font-bold: 'Open Sans Bold', sans-serif;
       align-items: center;
       justify-content: flex-end;
       text-decoration: underline;
-      //font-size: 22px;
-      //line-height: 35px;
       font-family: $font-regular;
       letter-spacing: -0.44px;
       color: #FFFFFF;
@@ -113,6 +96,18 @@ $font-bold: 'Open Sans Bold', sans-serif;
 
 // // // MEDIA // // //
 
+@media (min-width: 992px) {
+  * {
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 992px) {
+  .about-page {
+    padding-left: 0;
+  }
+}
+
 @media (max-width: 992px) {
   .section {
     //transition: 1.2s all;
@@ -122,12 +117,10 @@ $font-bold: 'Open Sans Bold', sans-serif;
     -moz-transition: all 700ms ease-in 150ms !important;
     -webkit-transition: all 700ms ease-in 150ms !important;
   }
-
 }
 
 @media (max-width: 767px) {
   .about-page {
-    padding-left: 0 !important;
 
     .link-box-text {
       padding: 37px 32px !important;
