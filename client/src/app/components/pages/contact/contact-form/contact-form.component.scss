@@ -2,19 +2,20 @@ $font-regular: 'Open Sans Regular', sans-serif;
 $font-semiBold: 'Open Sans Semibold', sans-serif;
 
 ::ng-deep .iti__country-list {
-  position: fixed !important;;
+  position: fixed;
+}
+
+::ng-deep mat-grid-tile .mat-figure {
+  justify-content: unset !important;
 }
 
 mat-hint {
-  //font-size: 20px;
-  //line-height: 32px;
   letter-spacing: -0.4px;
   font-family: $font-semiBold;
 }
 
-
-.mat-grid-tile .mat-figure {
-  justify-content: unset !important;
+mat-form-field {
+  width: 97%;
 }
 
 .area textarea {
@@ -53,5 +54,19 @@ button {
     left: 0 !important;
     right: 0 !important;
     margin: auto !important;
+    //transform: none !important;
+  }
+
+}
+
+@media (max-width: 576px) {
+  ::ng-deep .iti__country-list {
+    left: 0;
   }
 }
+
+//@media (max-width: 367px) {
+//  ::ng-deep .mat-select-panel {
+//    min-width: 100% !important;
+//  }
+//}

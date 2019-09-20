@@ -109,6 +109,9 @@ $font-bold: 'Open Sans Bold', sans-serif;
 }
 
 @media (max-width: 992px) {
+  .custom-page {
+    height: auto;
+  }
   .section {
     //transition: 1.2s all;
     transition: all 700ms ease-in 150ms !important;

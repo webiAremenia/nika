@@ -52,6 +52,7 @@ export class AboutComponent implements OnInit, OnDestroy {
 
     @HostListener('window:scroll') scroll(e) {
         this.initMobileAnimation();
+        console.log('asdasdasd');
     }
 
     @HostListener('window:keydown', ['$event'])
@@ -108,7 +109,6 @@ export class AboutComponent implements OnInit, OnDestroy {
                     document.getElementById('section-' + (i + 1)).style.opacity = '1';
                 }
             }
-            console.log(this.aboutScroll.nativeElement.clientHeight);
             if (this.scrollPosition + clientHeight >= this.scrollHeight) {
                 for (let i = 0; i < this.sectionArr.length; i++) {
                     document.getElementById('section-' + (i + 1)).style.opacity = '1';

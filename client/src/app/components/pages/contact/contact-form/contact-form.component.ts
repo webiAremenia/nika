@@ -57,9 +57,11 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
     }
 
     @HostListener('window: resize') onResize() {
-        if (!document.getElementsByClassName('iti__country-list')[0].classList.contains('iti__hide')) {
-            const closeInput: HTMLElement = document.getElementsByClassName('iti__selected-flag')[0] as HTMLElement;
-            closeInput.click();
+        if (document.getElementsByClassName('iti__country-list')[0]) {
+            if (!document.getElementsByClassName('iti__country-list')[0].classList.contains('iti__hide')) {
+                const closeInput: HTMLElement = document.getElementsByClassName('iti__selected-flag')[0] as HTMLElement;
+                closeInput.click();
+            }
         }
     }
 
