@@ -120,7 +120,7 @@ export class AboutComponent implements OnInit, OnDestroy {
         }
         setTimeout(() => {
             this.mouseCheck = 0;
-        }, 300);
+        }, 25);
 
     }
 

@@ -19,13 +19,17 @@
                         </div>
                     </a>
                     <div class="slide-text-content">
-                        <h2>{{ slide.title }}</h2>
+                        <h2 [style.fontSize]="windowWidth > 992 ? 50 * windowWidth / 1920 + 'px' : '25px'"
+                            [style.lineHeight]="58 * windowWidth / 1920 + 'px'"
+                        >{{ slide.title }}</h2>
                         <div class="slide-desc">
                             <div class="desc-wrap">
-                                <p>{{ slide.description }}</p>
+                                <p [style.fontSize]="windowWidth > 992 ? 17 * windowWidth / 1920 + 'px' : '14px'"
+                                   [style.lineHeight]="windowWidth > 992 ? 27 * windowWidth / 1920 + 'px' : '18px'"
+                                >{{ slide.description }}</p>
                             </div>
                         </div>
-                        <span>some text here</span>
+                        <span [style.fontSize]="windowWidth > 992 ? 17 * windowWidth / 1920 + 'px' : '14px'">{{ slide.subTitle }}</span>
                     </div>
                 </div>
             </div>
@@ -93,11 +97,12 @@
                                 <p>{{ slide.description.slice(0, 50) + '...' }}</p>
                             </div>
                         </div>
-                        <span>some text here</span>
+                        <span>{{ slide.subTitle }}</span>
                     </div>
                 </div>
             </div>
-            <div id="mobileRouter" class="mobile-router" [style.height]="clickedSlide  || clickedSlide == 0 ? '100vh' : '0'"
+            <div id="mobileRouter" class="mobile-router"
+                 [style.height]="clickedSlide  || clickedSlide == 0 ? '100vh' : '0'"
                  [style.width]="clickedSlide || clickedSlide == 0 ? '100vw' : '0'">
                 <div *ngIf="(clickedSlide || clickedSlide == 0)"
                      class="go-back-btn-mobile"
