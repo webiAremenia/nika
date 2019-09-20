@@ -1,57 +1,63 @@
-<div class="work-wrapper d-none d-md-block" *ngIf="windowSize.width > 767">
+<ng-container *ngIf="work">
+    <div class="work-wrapper d-none d-md-block" *ngIf="windowSize.width > 767">
 
-    <div class="work-dynamic-content-main" #workContent *ngIf="done">
+        <div class="work-dynamic-content-main" #workContent *ngIf="done">
 
-        <div *ngFor="let detail of work.details, let index = index"
-             id="section_{{ index + 1 }}"
-             class="work-dynamic-content-details"
-             [style.opacity]="'0'">
+            <div *ngFor="let detail of work.details, let index = index"
+                 id="section_{{ index + 1 }}"
+                 class="work-dynamic-content-details"
+                 [style.opacity]="'0'">
 
-            <app-work-img *ngIf="detail.type === 'img'" [content]="detail"></app-work-img>
-            <app-work-slider *ngIf="detail.type === 'slider'" [content]="detail"></app-work-slider>
-            <app-work-text *ngIf="detail.type === 'text'" [content]="detail"></app-work-text>
-            <app-work-video *ngIf="detail.type === 'video'" [content]="detail"></app-work-video>
-            <app-work-columns *ngIf="detail.type === 'column'" [content]="detail"></app-work-columns>
+                <app-work-img *ngIf="detail.type === 'img'" [content]="detail"></app-work-img>
+                <app-work-slider *ngIf="detail.type === 'slider'" [content]="detail"></app-work-slider>
+                <app-work-text *ngIf="detail.type === 'text'" [content]="detail"></app-work-text>
+                <app-work-video *ngIf="detail.type === 'video'" [content]="detail"></app-work-video>
+                <app-work-columns *ngIf="detail.type === 'column'" [content]="detail"></app-work-columns>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
 
-
-<div class="work-detail-mobile" *ngIf="windowSize.width < 768" style="min-height: 100vh">
-    <div class="mobile-banner">
-        <h2 class="text-center"> {{ work.title }} </h2>
-        <p style="padding: 20px;"> {{ work.description }} </p>
-        <img [src]="imageUrl + work.img + '?resize=' + windowSize.width + ',' + windowSize.width * 250 / 400" class="w-100">
-    </div>
-    <div *ngFor="let detail of work.details, let index = index"
-         id="mob_section_{{ index + 1 }}"
-         class="mobile-components">
-
-        <app-work-img *ngIf="detail.type === 'img'" [content]="detail"></app-work-img>
-        <app-work-slider *ngIf="detail.type === 'slider'" [content]="detail" [index]="index"></app-work-slider>
-        <app-work-text *ngIf="detail.type === 'text'" [content]="detail"></app-work-text>
-        <app-work-video *ngIf="detail.type === 'video'" [content]="detail"></app-work-video>
-        <app-work-columns *ngIf="detail.type === 'column'" [content]="detail"></app-work-columns>
-
-    </div>
-</div>
-
-
-<div class="link-box">
-    <div class="link-box-text row">
-        <div class="question col-12 col-md-6"
-             [style.font-size]="(windowSize.width * 30 * windowSize.rate) / 1920 + 'px'"
-             [style.line-height]="(windowSize.width * 40 * windowSize.rate) / 1920 + 'px'">
-            Think we’re a good fit? Let’s get to work!
+    <div class="work-detail-mobile" *ngIf="windowSize.width < 768" style="min-height: 100vh">
+        <div class="mobile-banner">
+            <h2 class="text-center"> {{ work.title }} </h2>
+            <p style="padding: 20px;"> {{ work.description }} </p>
+            <img [src]="imageUrl + work.img + '?resize=' + windowSize.width + ',' + windowSize.width * 250 / 400"
+                 class="w-100">
         </div>
+        <ng-container *ngIf="work.details">
+            <div *ngFor="let detail of work.details, let index = index"
+                 id="mob_section_{{ index + 1 }}"
+                 class="mobile-components"
+                 [style.opacity]="'0'">
 
-        <div class="link col-12 col-md-6" [routerLink]="['/contact']"
-             [style.font-size]="(windowSize.width * 22 * windowSize.rate) / 1920 + 'px'"
-             [style.line-height]="(windowSize.width * 35 * windowSize.rate) / 1920 + 'px'">
-            Click Here and let’s talk
+                <app-work-img *ngIf="detail.type === 'img'" [content]="detail"></app-work-img>
+                <app-work-slider *ngIf="detail.type === 'slider'" [content]="detail" [index]="index"></app-work-slider>
+                <app-work-text *ngIf="detail.type === 'text'" [content]="detail"></app-work-text>
+                <app-work-video *ngIf="detail.type === 'video'" [content]="detail"></app-work-video>
+                <app-work-columns *ngIf="detail.type === 'column'" [content]="detail"></app-work-columns>
+
+            </div>
+        </ng-container>
+    </div>
+
+
+    <div class="link-box">
+        <div class="link-box-text row">
+            <div class="question col-12 col-md-6"
+                 [style.font-size]="(windowSize.width * 30 * windowSize.rate) / 1920 + 'px'"
+                 [style.line-height]="(windowSize.width * 40 * windowSize.rate) / 1920 + 'px'">
+                Think we’re a good fit? Let’s get to work!
+            </div>
+
+            <div class="link col-12 col-md-6" [routerLink]="['/contact']"
+                 [style.font-size]="(windowSize.width * 22 * windowSize.rate) / 1920 + 'px'"
+                 [style.line-height]="(windowSize.width * 35 * windowSize.rate) / 1920 + 'px'">
+                Click Here and let’s talk
+            </div>
         </div>
     </div>
-</div>
+</ng-container>

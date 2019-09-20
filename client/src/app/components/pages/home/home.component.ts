@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {WorkService} from '../../../_services/work.service';
 import {Work} from '../../../_models/work/work';
 import {ActionsService} from '../../../_services/actions.service';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -51,6 +52,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     initCurrentTimeOut;
     backToSliderTimeOut;
+    isWork: Subscription;
 
     @HostListener('window:resize', ['$event'])
     onResize() {
@@ -60,17 +62,38 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.initSizes();
     }
 
+    @HostListener('wheel', ['$event']) wheel(e) {
+        if (this.windowWidth > 767) {
+            if (this.clickedSlide || this.clickedSlide === 0) {
+                this.desktopScrollFunction(e);
+            } else {
+                this.onMouseWheel(e);
+            }
+        } else {
+            this.mobileScrollAnimation(e);
+        }
+    }
+
+    @HostListener('touchmove', ['$event']) touchmove(e) {
+        console.log(e);
+        if (window.innerWidth > 992) {
+            return;
+        } else {
+            this.mobileScrollAnimation(e);
+        }
+    }
+
     @HostListener('window:keydown', ['$event'])
     onKeyDown(event) {
         if (event.keyCode === 39 || event.keyCode === 40) {
             if (this.clickedSlide || this.clickedSlide === 0) {
-                this.scrollFunction({deltaY: 100});
+                this.desktopScrollFunction({deltaY: 100});
             } else {
                 this.sliderNext();
             }
         } else if (event.keyCode === 37 || event.keyCode === 38) {
             if (this.clickedSlide || this.clickedSlide === 0) {
-                this.scrollFunction({deltaY: -100});
+                this.desktopScrollFunction({deltaY: -100});
             } else {
                 this.sliderPrev();
             }
@@ -92,7 +115,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.actionsService.workScrollPosition.next(this.workScrollTop);
         this.getParams();
         this.mobileXsHeight = window.innerWidth * 250 / 375;
-        this.actionsService.isWorkPage().subscribe(
+        this.isWork = this.actionsService.isWorkPage().subscribe(
             bool => {
                 setTimeout(() => {
                     this.initPageByUrl(bool);
@@ -183,15 +206,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     initSlider() {
-        console.log('initSlider');
         this.count = this.slides.length;
         this.slideWidth = window.innerWidth > 992 ? (window.innerWidth - 115) / 4 : (window.innerWidth) / 3;
         this.accordionItemsStyles.width = this.slideWidth * this.count;
-        // this.accordionItemsStyles.left = 0;
     }
 
     navigate(index) {
-        // console.log('navigate');
         this.workService.current = this.slides[index];
         this.currentTitle = this.slides[index].title;
         this.currentDesc = this.slides[index].description;
@@ -262,45 +282,40 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
     }
 
-    scrollFunction(event) {
-
+    desktopScrollFunction(event) {
         if (this.customBody) {
             const workHeight = this.customBody.nativeElement.scrollHeight;
-            if (this.clickedSlide || this.clickedSlide === 0) {
-                this.mouseWillCount++;
-                // if (this.mouseWillCount === 1) {
-                console.log(this.mouseWillCount);
-                let delta;
-                // console.log(this.workScrollTop, -workHeight);
-                if (event.deltaY > 0) {
-                    delta = (event.deltaY < 80) ? event.deltaY : 80;
-                    this.workScrollTop = this.workScrollTop > -workHeight ?
-                        this.workScrollTop - event.deltaY * .7 : -workHeight;
-                    if (this.workScrollTop < -workHeight) {
-                        this.workScrollTop = -workHeight;
-                    }
-                } else {
-                    delta = (event.deltaY > -80) ? -event.deltaY : 80;
-                    this.workScrollTop = this.workScrollTop < -window.innerHeight + 100 ?
-                        this.workScrollTop - event.deltaY * .7 : -window.innerHeight + 100;
-                    if (this.workScrollTop > -window.innerHeight + 100) {
-                        this.workScrollTop = -window.innerHeight + 100;
-                    }
+            if (event.deltaY > 10) {
+                this.workScrollTop = this.workScrollTop > -workHeight ?
+                    this.workScrollTop - event.deltaY * .7 : -workHeight;
+                if (this.workScrollTop < -workHeight) {
+                    this.workScrollTop = -workHeight;
                 }
-                console.log('event wheel', delta);
-                // console.log(this.workScrollTop);
-                this.actionsService.workScrollPosition.next(this.workScrollTop);
-                this.customBody.nativeElement.style.transform = `translate3d(0, ${this.workScrollTop}px, 0)`;
-                this.mouseWillCount = 0;
-                if (this.workScrollTop < -(document.getElementById('wwww').clientHeight + window.innerHeight - 100)
-                    || this.workScrollTop === -workHeight) {
-                    this.hideDownBtn();
-                } else {
-                    this.showDownBtn();
+            } else if (event.deltaY < -10) {
+                this.workScrollTop = this.workScrollTop < -window.innerHeight + 100 ?
+                    this.workScrollTop - event.deltaY * .7 : -window.innerHeight + 100;
+                if (this.workScrollTop > -window.innerHeight + 100) {
+                    this.workScrollTop = -window.innerHeight + 100;
                 }
-                // }
             }
+            this.actionsService.workScrollPosition.next(this.workScrollTop);
+            this.customBody.nativeElement.style.transform = `translate3d(0, ${this.workScrollTop}px, 0)`;
+            if (this.workScrollTop < -(document.getElementById('wwww').clientHeight + window.innerHeight - 100)
+                || this.workScrollTop === -workHeight) {
+                this.hideDownBtn();
+            } else {
+                this.showDownBtn();
+            }
+
         }
+    }
+
+    mobileScrollAnimation(event) {
+        const wrapper = document.getElementById('mobileRouter');
+        const cont = document.getElementById('mobileCont');
+        this.actionsService.workScrollPosition.next(wrapper.scrollTop);
+        // console.log(event.deltaY);
+        // console.log(cont.offsetHeight, wrapper.scrollTop);
     }
 
     getParams() {
@@ -315,7 +330,6 @@ export class HomeComponent implements OnInit, OnDestroy {
             this.workService.getWorks().subscribe(
                 d => {
                     this.slides = d;
-                    console.log('slider items ', d);
                     this.done = true;
                     this.initSlider();
                     this.getCurrent();
@@ -390,6 +404,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.homePage = false;
+        this.isWork.unsubscribe();
         // console.log('destroy: ', this.homePage);
     }
 }

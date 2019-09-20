@@ -51,6 +51,14 @@ $font-bold: 'Open Sans Bold', sans-serif;
   }
 }
 
+.mobile-components {
+    transition: opacity 2000ms;
+    -o-transition: opacity 2000ms;
+    -ms-transition: opacity 2000ms;
+    -moz-transition: opacity 2000ms;
+    -webkit-transition: opacity 2000ms;
+}
+
 // // // Media // // //
 
 @media (max-width: 992px) {

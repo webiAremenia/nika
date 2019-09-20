@@ -1,4 +1,4 @@
-i:hover {
+i {
     cursor: pointer;
 }
 
@@ -40,55 +40,6 @@ i:hover {
         -moz-transition: transform 1200ms;
         -webkit-transition: transform 1200ms;
     }
-}
-
-.my-slider-item {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    height: calc(100vh - 100px);
-    padding: 50px;
-    @media (max-width: 992px) and (min-width: 767px) {
-        height: calc(80vh - 100px);
-    }
-
-
-    .item-content {
-        position: relative;
-        top: 90%;
-        -webkit-transform: translateY(-90%);
-        -moz-transform: translateY(-90%);
-        -ms-transform: translateY(-90%);
-        -o-transform: translateY(-90%);
-        transform: translateY(-90%);
-
-        .item-title, .items-counter {
-            cursor: pointer;
-            font-size: 35px;
-            font-weight: bold;
-            color: #ffffff;
-        }
-
-        .item-description {
-            font-size: 20px;
-            max-height: 0;
-            overflow: hidden;
-        }
-    }
-
-    &:hover .item-content {
-
-        .item-description {
-            max-height: 500px;
-            transition: max-height 2000ms;
-            -o-transition: max-height 2000ms;
-            -ms-transition: max-height 2000ms;
-            -moz-transition: max-height 2000ms;
-            -webkit-transition: max-height 2000ms;
-            //transition-timing-function: cubic-bezier(0.1, 0.8, 0.1, 0.8);
-        }
-    }
-
 }
 
 .slider-buttons {
@@ -360,6 +311,13 @@ i:hover {
                     transform: translateY(-100%);
                     transition: 1s -webkit-transform cubic-bezier(.19, 1, .22, 1);
                     transition: 1s transform cubic-bezier(.19, 1, .22, 1);
+
+                    @media (max-width: 992px) {
+                        max-width: calc(((100vw - 100px) / 3));
+                        p {
+                            font-size: 14px !important;
+                        }
+                    }
 
                     .desc-wrap {
                         -webkit-transform: translateY(100%);

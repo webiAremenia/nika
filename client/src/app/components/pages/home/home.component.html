@@ -2,10 +2,9 @@
 
     <div class="loading-pppp" *ngIf="!done">loading ...</div>
 
-    <div class="home-page custom-page bg-light col-12 col-lg-9 offset-lg-3 pr-0" *ngIf="done"
-         (mousewheel)="scrollFunction($event)">
+    <div class="home-page custom-page bg-light col-12 col-lg-9 offset-lg-3 pr-0" *ngIf="done">
 
-        <div class="accordion w-100 h-100 d-none d-md-block" (mousewheel)="onMouseWheel($event)"
+        <div class="accordion w-100 h-100 d-none d-md-block"
              *ngIf="windowWidth > 767">
             <div class="accordion-items h-100"
                  [style.width]="accordionItemsStyles.width + 'px'"
@@ -20,13 +19,17 @@
                         </div>
                     </a>
                     <div class="slide-text-content">
-                        <h2>{{ slide.title }}</h2>
+                        <h2 [style.fontSize]="windowWidth > 992 ? 50 * windowWidth / 1920 + 'px' : '25px'"
+                            [style.lineHeight]="58 * windowWidth / 1920 + 'px'"
+                        >{{ slide.title }}</h2>
                         <div class="slide-desc">
                             <div class="desc-wrap">
-                                <p>{{ slide.description }}</p>
+                                <p [style.fontSize]="windowWidth > 992 ? 17 * windowWidth / 1920 + 'px' : '14px'"
+                                   [style.lineHeight]="windowWidth > 992 ? 27 * windowWidth / 1920 + 'px' : '18px'"
+                                >{{ slide.description }}</p>
                             </div>
                         </div>
-                        <span>some text here</span>
+                        <span [style.fontSize]="windowWidth > 992 ? 17 * windowWidth / 1920 + 'px' : '14px'">{{ slide.subTitle }}</span>
                     </div>
                 </div>
             </div>
@@ -40,7 +43,8 @@
                          [style.left]="detailWrapperLeft + 'px'"
                          [style.width]="zoomed + '%'"
                          [style.height]="detailWrapperHeight ? detailWrapperHeight + 'px' : 'auto'"
-                         [src]="imageUrl + slides[clickedSlide].img  + '?resize=' + resizeWidth + ',' + resizeHeight + ',!'" #image>
+                         [src]="imageUrl + slides[clickedSlide].img  + '?resize=' + resizeWidth + ',' + resizeHeight + ',!'"
+                         #image>
                     <div class="text-desc-wrapper" #detailWrapper
                          [style.padding]="windowWidth * 50 / 1920 + 'px ' + windowWidth * 100 / 1920 + 'px'">
                         <div class="detail-sub" *ngIf="currentSubTitle">{{ currentSubTitle }}</div>
@@ -83,7 +87,8 @@
                      (click)="mobileNavigate(index)"
                      class="slider-item-mobile col-12 col-sm-6 px-0">
                     <div class="slide-image">
-                        <img [style.height]="resizeHeight + 'px'" [src]="imageUrl + slide.img + '?resize=' + resizeWidth + ',' + resizeHeight">
+                        <img [style.height]="resizeHeight + 'px'"
+                             [src]="imageUrl + slide.img + '?resize=' + resizeWidth + ',' + resizeHeight">
                     </div>
                     <div class="slide-text-content">
                         <h2>{{ slide.title }}</h2>
@@ -92,17 +97,20 @@
                                 <p>{{ slide.description.slice(0, 50) + '...' }}</p>
                             </div>
                         </div>
-                        <span>some text here</span>
+                        <span>{{ slide.subTitle }}</span>
                     </div>
                 </div>
             </div>
-            <div class="mobile-router" [style.height]="clickedSlide  || clickedSlide == 0 ? '100vh' : '0'"
+            <div id="mobileRouter" class="mobile-router"
+                 [style.height]="clickedSlide  || clickedSlide == 0 ? '100vh' : '0'"
                  [style.width]="clickedSlide || clickedSlide == 0 ? '100vw' : '0'">
                 <div *ngIf="(clickedSlide || clickedSlide == 0)"
                      class="go-back-btn-mobile"
                      (click)="backToSliderMob()">Back to works
                 </div>
-                <router-outlet></router-outlet>
+                <div id="mobileCont">
+                    <router-outlet></router-outlet>
+                </div>
             </div>
         </div>
 

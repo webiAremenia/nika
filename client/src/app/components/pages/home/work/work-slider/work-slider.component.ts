@@ -1,6 +1,5 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {OwlOptions} from 'ngx-owl-carousel-o/lib/models/owl-options.model';
-import {WorkSlider} from '../../../../../_models/work/WorkSlider';
 import {WorkDetails} from '../../../../../_models/work/WorkDetails';
 
 @Component({
