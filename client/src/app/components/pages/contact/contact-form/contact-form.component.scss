@@ -3,6 +3,7 @@ $font-semiBold: 'Open Sans Semibold', sans-serif;
 
 ::ng-deep .iti__country-list {
   position: fixed;
+  z-index: 999;
 }
 
 ::ng-deep mat-grid-tile .mat-figure {
@@ -59,14 +60,8 @@ button {
 
 }
 
-@media (max-width: 576px) {
-  ::ng-deep .iti__country-list {
-    left: 0;
+@media (max-width: 331px) {
+  ::ng-deep .mat-select-panel {
+    min-width: calc(100% + 16px) !important;
   }
 }
-
-//@media (max-width: 367px) {
-//  ::ng-deep .mat-select-panel {
-//    min-width: 100% !important;
-//  }
-//}

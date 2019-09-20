@@ -56,6 +56,12 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
         }
     }
 
+    @HostListener('touchmove') touchmove() {
+        if (document.getElementsByTagName('ul')[0]) {
+            document.getElementsByTagName('ul')[0].style.top = this.height - window.pageYOffset + 'px';
+        }
+    }
+
     @HostListener('window: resize') onResize() {
         if (document.getElementsByClassName('iti__country-list')[0]) {
             if (!document.getElementsByClassName('iti__country-list')[0].classList.contains('iti__hide')) {
@@ -72,13 +78,16 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
             email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
             text: ['', [Validators.required]]
         });
-        if (this.type === 'newBusiness'  || this.type === 'opportunity')  {
-            this.form.addControl( 'companyName',  new FormControl(null, [Validators.required, Validators.pattern(this.companyPattern)]));
-            this.form.addControl(  'phone',  new FormControl(null, [Validators.required, Validators.pattern(this.phonePattern)]));
+        if (this.type === 'newBusiness' || this.type === 'opportunity') {
+            this.form.addControl('companyName', new FormControl(null, [Validators.required, Validators.pattern(this.companyPattern)]));
+            this.form.addControl('phone', new FormControl(null, [Validators.required, Validators.pattern(this.phonePattern)]));
         }
     }
 
     ngAfterViewInit() {
+        document.getElementsByClassName('iti__flag-container')[0].addEventListener('click', () => {
+            this.form.reset();
+        });
         const phoneDiv = document.getElementsByClassName('iti__selected-flag')[0];
         if (phoneDiv) {
             phoneDiv.addEventListener('click', ($event: any) => {
