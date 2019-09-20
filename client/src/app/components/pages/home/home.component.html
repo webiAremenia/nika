@@ -2,10 +2,9 @@
 
     <div class="loading-pppp" *ngIf="!done">loading ...</div>
 
-    <div class="home-page custom-page bg-light col-12 col-lg-9 offset-lg-3 pr-0" *ngIf="done"
-         (mousewheel)="scrollFunction($event)">
+    <div class="home-page custom-page bg-light col-12 col-lg-9 offset-lg-3 pr-0" *ngIf="done">
 
-        <div class="accordion w-100 h-100 d-none d-md-block" (mousewheel)="onMouseWheel($event)"
+        <div class="accordion w-100 h-100 d-none d-md-block"
              *ngIf="windowWidth > 767">
             <div class="accordion-items h-100"
                  [style.width]="accordionItemsStyles.width + 'px'"
@@ -40,7 +39,8 @@
                          [style.left]="detailWrapperLeft + 'px'"
                          [style.width]="zoomed + '%'"
                          [style.height]="detailWrapperHeight ? detailWrapperHeight + 'px' : 'auto'"
-                         [src]="imageUrl + slides[clickedSlide].img  + '?resize=' + resizeWidth + ',' + resizeHeight + ',!'" #image>
+                         [src]="imageUrl + slides[clickedSlide].img  + '?resize=' + resizeWidth + ',' + resizeHeight + ',!'"
+                         #image>
                     <div class="text-desc-wrapper" #detailWrapper
                          [style.padding]="windowWidth * 50 / 1920 + 'px ' + windowWidth * 100 / 1920 + 'px'">
                         <div class="detail-sub" *ngIf="currentSubTitle">{{ currentSubTitle }}</div>
@@ -83,7 +83,8 @@
                      (click)="mobileNavigate(index)"
                      class="slider-item-mobile col-12 col-sm-6 px-0">
                     <div class="slide-image">
-                        <img [style.height]="resizeHeight + 'px'" [src]="imageUrl + slide.img + '?resize=' + resizeWidth + ',' + resizeHeight">
+                        <img [style.height]="resizeHeight + 'px'"
+                             [src]="imageUrl + slide.img + '?resize=' + resizeWidth + ',' + resizeHeight">
                     </div>
                     <div class="slide-text-content">
                         <h2>{{ slide.title }}</h2>
@@ -96,13 +97,15 @@
                     </div>
                 </div>
             </div>
-            <div class="mobile-router" [style.height]="clickedSlide  || clickedSlide == 0 ? '100vh' : '0'"
+            <div id="mobileRouter" class="mobile-router" [style.height]="clickedSlide  || clickedSlide == 0 ? '100vh' : '0'"
                  [style.width]="clickedSlide || clickedSlide == 0 ? '100vw' : '0'">
                 <div *ngIf="(clickedSlide || clickedSlide == 0)"
                      class="go-back-btn-mobile"
                      (click)="backToSliderMob()">Back to works
                 </div>
-                <router-outlet></router-outlet>
+                <div id="mobileCont">
+                    <router-outlet></router-outlet>
+                </div>
             </div>
         </div>
 
