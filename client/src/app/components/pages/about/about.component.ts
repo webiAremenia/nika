@@ -31,6 +31,41 @@ export class AboutComponent implements OnInit, OnDestroy {
 
     @ViewChild('aboutScroll') aboutScroll: ElementRef;
 
+    @HostListener('wheel', ['$event']) wheel(e) {
+        if (window.innerWidth > 992) {
+            if (e.deltaY > 0) {
+                this.initDesktopAnimation(100);
+            } else {
+                this.initDesktopAnimation(-100);
+            }
+        }
+    }
+
+    @HostListener('touchmove', ['$event']) touchmove(e) {
+        console.log(e);
+        if (window.innerWidth > 992) {
+            return;
+        } else {
+            this.initMobileAnimation();
+        }
+    }
+
+    @HostListener('window:scroll') scroll(e) {
+        this.initMobileAnimation();
+    }
+
+    @HostListener('window:keydown', ['$event'])
+    onKeyDown(event) {
+        if (event.keyCode === 32) {
+            this.initDesktopAnimation(650);
+        }
+        if (event.keyCode === 40) {
+            this.initDesktopAnimation(34);
+        } else if (event.keyCode === 38) {
+            this.initDesktopAnimation(-34);
+        }
+    }
+
     constructor(
         private teamService: TeamService,
         private actionsService: ActionsService) {
@@ -38,93 +73,77 @@ export class AboutComponent implements OnInit, OnDestroy {
             .subscribe((size: ResponsiveData) => this.windowSize = size);
     }
 
-    @HostListener('wheel', ['$event']) wheel(e) {
-        if (e.deltaY > 0) {
-            this.initAnimation(100);
-        } else {
-            this.initAnimation(-100);
-        }
-    }
-
-    @HostListener('touchmove') touchmove(e) {
-        this.initAnimation();
-    }
-
-    @HostListener('window:scroll') scroll(e) {
-        this.initAnimation();
-    }
-
-    @HostListener('window:keydown', ['$event'])
-    onKeyDown(event) {
-        if (event.keyCode === 32) {
-            this.initAnimation(650);
-        }
-        if (event.keyCode === 40) {
-            this.initAnimation(34);
-        } else if (event.keyCode === 38) {
-            this.initAnimation(-34);
-        }
-    }
-
     ngOnInit() {
         // this.getAll();
         this.getPage();
     }
 
-    initAnimation(position?: number) {
-        if (window.innerWidth > 992) {
-            this.scrollPosition += position;
-            this.mouseCheck += 1;
-            if (this.mouseCheck === 1) {
-                const clientHeight = document.getElementsByClassName('about-page')[0].clientHeight;
-                if (this.sectionArr.length === 0 && window.innerWidth > 992) {
-                    this.initSectionsArr();
-                    this.scrollHeight = document.getElementsByClassName('about-scroll')[0].scrollHeight;
-                    this.bannerHeight = document.getElementsByClassName('about-page')[0].clientHeight / 2; // 0
-                }
-                if (this.scrollPosition < 0) {
-                    this.scrollPosition = 0;
-                } else if (this.scrollPosition > this.scrollHeight) {
-                    this.scrollPosition = this.scrollHeight;
-                }
-                for (let i = 0; i < this.sectionArr.length; i++) {
-                    if (this.scrollPosition + this.bannerHeight > this.sectionArr[i]) {
-                        document.getElementById('section-' + (i + 1)).style.opacity = '1';
-                    }
-                }
-                if (this.scrollPosition + clientHeight >= this.scrollHeight) {
-                    for (let i = 0; i < this.sectionArr.length; i++) {
-                        document.getElementById('section-' + (i + 1)).style.opacity = '1';
-                    }
-                    return this.aboutScroll.nativeElement.style.transform = `translate3d(0, -${this.scrollHeight - clientHeight}px, 0)`;
-                } else if (this.scrollPosition + clientHeight < this.scrollHeight) {
-                    this.aboutScroll.nativeElement.style.transform = `translate3d(0, -${this.scrollPosition}px, 0)`;
-                }
-            }
-            setTimeout(() => {
-                this.mouseCheck = 0;
-            }, 25);
+    getPage() {
+        this.teamService.getTeam()
+            .subscribe((data: TeamPage[]) => {
+                this.pageContent = data[0];
+                this.done = true;
+            });
+    }
 
-        } else {
-            this.scrollPosition = window.pageYOffset;
-            if (this.sectionArr.length === 0 && window.innerWidth <= 992) {
+    // // // INIT ANIMATIONS // // //
+
+    initDesktopAnimation(position: number) {
+        this.scrollPosition += position;
+        this.mouseCheck += 1;
+        if (this.mouseCheck === 1) {
+            const clientHeight = document.getElementsByClassName('about-page')[0].clientHeight;
+            if (this.sectionArr.length === 0 && window.innerWidth > 992) {
                 this.initSectionsArr();
                 this.scrollHeight = document.getElementsByClassName('about-scroll')[0].scrollHeight;
-                this.bannerHeight = window.innerHeight / 1.5;
+                this.bannerHeight = document.getElementsByClassName('about-page')[0].clientHeight;
+            }
+            if (this.scrollPosition < 0) {
+                this.scrollPosition = 0;
+            } else if (this.scrollPosition > this.scrollHeight) {
+                this.scrollPosition = this.scrollHeight;
             }
             for (let i = 0; i < this.sectionArr.length; i++) {
-                if (this.scrollPosition + this.bannerHeight >= this.sectionArr[i]) {
+                if (this.scrollPosition + this.bannerHeight > this.sectionArr[i]) {
                     document.getElementById('section-' + (i + 1)).style.opacity = '1';
                 }
             }
-            if (this.scrollPosition + document.documentElement.clientHeight >= this.sectionArr[this.sectionArr.length - 2]) {
+            console.log(this.aboutScroll.nativeElement.clientHeight);
+            if (this.scrollPosition + clientHeight >= this.scrollHeight) {
                 for (let i = 0; i < this.sectionArr.length; i++) {
                     document.getElementById('section-' + (i + 1)).style.opacity = '1';
                 }
+                return this.aboutScroll.nativeElement.style.transform = `translate3d(0, -${this.scrollHeight - clientHeight}px, 0)`;
+            } else if (this.scrollPosition + clientHeight < this.scrollHeight) {
+                this.aboutScroll.nativeElement.style.transform = `translate3d(0, -${this.scrollPosition}px, 0)`;
             }
         }
+        setTimeout(() => {
+            this.mouseCheck = 0;
+        }, 300);
 
     }
+
+    initMobileAnimation() {
+        this.scrollPosition = window.pageYOffset;
+        if (this.sectionArr.length === 0 && window.innerWidth <= 992) {
+            this.initSectionsArr();
+            this.scrollHeight = document.getElementsByClassName('about-scroll')[0].scrollHeight;
+            this.bannerHeight = window.innerHeight / 1.5;
+        }
+        for (let i = 0; i < this.sectionArr.length; i++) {
+            if (this.scrollPosition + this.bannerHeight >= this.sectionArr[i]) {
+                document.getElementById('section-' + (i + 1)).style.opacity = '1';
+            }
+        }
+        if (this.scrollPosition + document.documentElement.clientHeight >= this.sectionArr[this.sectionArr.length - 1]) {
+            for (let i = 0; i < this.sectionArr.length; i++) {
+                document.getElementById('section-' + (i + 1)).style.opacity = '1';
+            }
+        }
+    }
+
+    // // // CREATE COMPONENTS OFFSET'S // // //
 
     initSectionsArr() {
         if (document.getElementById('section-1')) {
@@ -138,34 +157,5 @@ export class AboutComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.windowSubscription.unsubscribe();
     }
-
-    getPage() {
-        this.teamService.getTeam().subscribe((data: TeamPage[]) => {
-            this.pageContent = data[0];
-            // console.log(this.pageContent);
-            this.done = true;
-        });
-    }
-
-    // getAll() {
-    //     if (this.service.pages) {
-    //         this.pages = this.service.pages;
-    //         this.page = this.pages.find(p => {
-    //             return p.key === 'page_about';
-    //         });
-    //         this.done = true;
-    //     } else {
-    //         this.service.getAll().subscribe(
-    //             data => {
-    //                 this.pages = data;
-    //                 this.page = this.pages.find(p => {
-    //                     return p.key === 'page_about';
-    //                 });
-    //                 this.done = true;
-    //             },
-    //             err => console.log(err)
-    //         );
-    //     }
-    // }
 
 }
