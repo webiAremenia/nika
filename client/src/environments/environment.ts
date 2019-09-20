@@ -7,7 +7,6 @@ export const environment = {
     queryUrl: 'http://nika.webi.am',
     uploadsUrl: 'http://nika.webi.am/uploads',
     // queryUrl: 'http://localhost:3000'
-
 };
 
 /*

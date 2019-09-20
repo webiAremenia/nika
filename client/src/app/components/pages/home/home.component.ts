@@ -270,24 +270,24 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.mouseWillCount++;
                 // if (this.mouseWillCount === 1) {
                 console.log(this.mouseWillCount);
-                let delta;
+                // let delta;
                 // console.log(this.workScrollTop, -workHeight);
                 if (event.deltaY > 0) {
-                    delta = (event.deltaY < 80) ? event.deltaY : 80;
+                    // delta = (event.deltaY < 80) ? event.deltaY : 80;
                     this.workScrollTop = this.workScrollTop > -workHeight ?
                         this.workScrollTop - event.deltaY * .7 : -workHeight;
                     if (this.workScrollTop < -workHeight) {
                         this.workScrollTop = -workHeight;
                     }
                 } else {
-                    delta = (event.deltaY > -80) ? -event.deltaY : 80;
+                    // delta = (event.deltaY > -80) ? -event.deltaY : 80;
                     this.workScrollTop = this.workScrollTop < -window.innerHeight + 100 ?
                         this.workScrollTop - event.deltaY * .7 : -window.innerHeight + 100;
                     if (this.workScrollTop > -window.innerHeight + 100) {
                         this.workScrollTop = -window.innerHeight + 100;
                     }
                 }
-                console.log('event wheel', delta);
+                // console.log('event wheel', delta);
                 // console.log(this.workScrollTop);
                 this.actionsService.workScrollPosition.next(this.workScrollTop);
                 this.customBody.nativeElement.style.transform = `translate3d(0, ${this.workScrollTop}px, 0)`;
