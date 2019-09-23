@@ -37,9 +37,9 @@ export class SidebarComponent implements OnInit {
         private config: AppGlobals
     ) {
         this.imageUrl = config.imageUrl + '/medias/';
-        router.events.subscribe((val) => {
-            // console.log(location.path())
-        });
+        // router.events.subscribe((val) => {
+        //     // console.log(location.path())
+        // });
     }
 
     ngOnInit(): void {

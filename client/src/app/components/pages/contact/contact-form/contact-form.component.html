@@ -28,27 +28,27 @@
             </mat-form-field>
         </mat-grid-tile>
 
-<!--        <mat-grid-tile [colspan]="1" [rowspan]="1" *ngIf="type !== 'careers'">-->
-<!--            <mat-form-field>-->
-<!--                <input formControlName="phone" type="number" matInput placeholder="Phone">-->
-<!--                <mat-hint-->
-<!--                        [style.font-size]="(windowSize.width * 20 * windowSize.rate) / 1920 + 'px'"-->
-<!--                        [style.line-height]="(windowSize.width * 32* windowSize.rate) / 1920 + 'px'">Phone*-->
-<!--                </mat-hint>-->
-<!--                <mat-error *ngIf="form.controls['phone'].errors?.required">Phone required</mat-error>-->
-<!--                <mat-error *ngIf="form.controls['phone'].errors?.email">Invalid phone</mat-error>-->
-<!--            </mat-form-field>-->
-<!--        </mat-grid-tile>-->
+        <!--        <mat-grid-tile [colspan]="1" [rowspan]="1" *ngIf="type !== 'careers'">-->
+        <!--            <mat-form-field>-->
+        <!--                <input formControlName="phone" type="number" matInput placeholder="Phone">-->
+        <!--                <mat-hint-->
+        <!--                        [style.font-size]="(windowSize.width * 20 * windowSize.rate) / 1920 + 'px'"-->
+        <!--                        [style.line-height]="(windowSize.width * 32* windowSize.rate) / 1920 + 'px'">Phone*-->
+        <!--                </mat-hint>-->
+        <!--                <mat-error *ngIf="form.controls['phone'].errors?.required">Phone required</mat-error>-->
+        <!--                <mat-error *ngIf="form.controls['phone'].errors?.email">Invalid phone</mat-error>-->
+        <!--            </mat-form-field>-->
+        <!--        </mat-grid-tile>-->
+
 
         <mat-grid-tile [colspan]="1" [rowspan]="1" *ngIf="type !== 'careers'">
             <mat-form-field>
-                <input
-                        id="phone"
-                        matInput
-                        ng2TelInput
-                        [ng2TelInputOptions]="{initialCountry: 'us'}"
-                        (countryChange)="onCountryChange($event)"
-                        formControlName="phone">
+                <input id="phone"
+                       matInput
+                       ng2TelInput
+                       [ng2TelInputOptions]="{initialCountry: 'us'}"
+                       (countryChange)="onCountryChange($event)"
+                       formControlName="phone">
                 <span id="countryCode" matPrefix> + {{'(' + currentCountryPhone + ')'}}&nbsp;</span>
 
                 <mat-error *ngIf="form.controls['phone'].errors?.required">Phone required</mat-error>
@@ -90,5 +90,4 @@
 
         </button>
     </div>
-
 </form>

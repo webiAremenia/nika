@@ -71,6 +71,16 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
         }
     }
 
+    @HostListener('document: click', ['$event']) onClick(e) {
+        let selector;
+        if (e.target.classList[0]) {
+            selector = e.target.classList[0].split('__')[0];
+        }
+        if (selector === 'iti') {
+            document.getElementById('phone').blur();
+        }
+    }
+
     ngOnInit() {
         this.form = this.formBuilder.group({
             type: [`${this.type}`],
