@@ -23,11 +23,11 @@ export class AboutComponent implements OnInit, OnDestroy {
     windowSubscription: Subscription;
     windowSize: ResponsiveData;
 
+    // // // SCROLL // // //
     sectionArr: Array<number> = [];
     scrollPosition = 0;
     scrollHeight = 0;
     bannerHeight = 0;
-    mouseCheck = 0;
 
     @ViewChild('aboutScroll') aboutScroll: ElementRef;
 
@@ -40,8 +40,15 @@ export class AboutComponent implements OnInit, OnDestroy {
         }
     }
 
+    @HostListener('DOMMouseScroll', ['$event']) mozScroll(e) {
+        if (e.detail > 0) {
+            this.initDesktopAnimation(100);
+        } else {
+            this.initDesktopAnimation(-100);
+        }
+    }
+
     @HostListener('touchmove', ['$event']) touchmove(e) {
-        console.log(e);
         if (window.innerWidth > 992) {
             return;
         } else {
@@ -51,7 +58,6 @@ export class AboutComponent implements OnInit, OnDestroy {
 
     @HostListener('window:scroll') scroll(e) {
         this.initMobileAnimation();
-        console.log('asdasdasd');
     }
 
     @HostListener('window:keydown', ['$event'])
