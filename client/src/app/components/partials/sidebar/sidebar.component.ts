@@ -43,10 +43,12 @@ export class SidebarComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.logoService.getImages().subscribe(data => {
-            this.logos = data;
-            this.done = true;
-        }, e => console.log(e));
+        if (window.innerWidth > 992) {
+            this.logoService.getImages().subscribe(data => {
+                this.logos = data;
+                this.done = true;
+            }, e => console.log(e));
+        }
         this.menuService.getMenus().subscribe(data => {
             this.menu = data.menu;
             this.menuDone = true;

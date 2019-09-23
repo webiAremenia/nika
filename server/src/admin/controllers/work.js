@@ -35,7 +35,6 @@ module.exports = {
     },
     changeWork: async (req, res) => {
         let candidate = req.params.id;
-        console.log(candidate);
 
         let work = {
             title: req.body.title,
@@ -51,23 +50,29 @@ module.exports = {
         }
         let oldWork = await Work.findOne({_id: candidate});
         try {
-            const old = await Work.findByIdAndUpdate(
+            const old = await Work.findOneAndUpdate(
                 {_id: candidate},
                 {$set: work},
                 {new: true});
-            const videosArr = JSON.parse(req.body.videosArr);
-            videosArr.forEach(videoName => {
-                fs.unlinkSync(__dirname + `/../../../_uploads/work/${videoName}`)
-            });
 
-            // console.log(oldWork)
+            if (!old) {
+                res.status(200).json({error: {message: 'not found !'}});
+            }
+
+            const videosArr = JSON.parse(req.body.videosArr);
+            if (videosArr.length > 0) {
+                videosArr.forEach(videoName => {
+                    fs.unlinkSync(__dirname + `/../../../_uploads/work/${videoName}`)
+                });
+            }
+
             if (oldWork.img && req.file) {
                 fs.unlinkSync(__dirname + `/../../../_uploads/work/${oldWork.img}`)
             }
 
-            res.status(201).json(work)
+            res.status(200).json(work)
         } catch (e) {
-            errors.invalidData(res, errors);
+            res.status(200).json({error: e});
         }
     },
     deleteWork: async (req, res) => {

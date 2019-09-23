@@ -516,6 +516,7 @@ export class EditWorkComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
+        this.msg.remove();
         if (this.destroyWork) {
             if (this.videosArrOnDestroy.length > 0) {
                 this.workService.deleteVideoMany(this.videosArrOnDestroy).subscribe(data => {
@@ -523,8 +524,6 @@ export class EditWorkComponent implements OnInit, OnDestroy {
                 }, e => console.log(e));
             }
         }
-
-
     }
 
 

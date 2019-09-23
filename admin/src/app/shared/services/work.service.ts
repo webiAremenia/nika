@@ -21,6 +21,7 @@ export class WorkService {
     }
 
     postWork(work) {
+        console.log(work);
         return this.http.post(this.urlApi + '/work', work);
     }
 
