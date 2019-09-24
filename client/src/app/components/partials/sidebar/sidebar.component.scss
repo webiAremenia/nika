@@ -2,10 +2,6 @@
     height: 20% !important;
 }
 
-.h-80 {
-    height: 80% !important;
-}
-
 .side-bar-content{
     user-select: none;
 }
@@ -14,17 +10,9 @@
     color: #000;
 }
 
-.side-bar-header {
-    background: #F7F7F7;
-}
-
 .bottom-part {
     height: 80%;
 }
-
-//.links-content {
-//  display: none;
-//}
 
 .menu-items a {
     cursor: pointer;
@@ -49,6 +37,7 @@
 }
 
 .side-bar-header {
+    background: #F7F7F7;
     height: 100%;
     padding: 30px;
     @media (max-width: 1600px) {
@@ -61,7 +50,6 @@
         padding: 0 !important;
     }
 }
-
 
 .side-bar-about {
     font-size: larger;
@@ -92,8 +80,6 @@
 }
 
 .align-self-center {
-    //width: 465px;
-    //height: 262.5px;
     @media (max-width: 992px) and (min-width: 767px) {
         width: 80%;
     }
@@ -161,11 +147,6 @@
         width: 40px;
         border: 3px solid black;
         margin-top: 8px;
-        //@media (max-width: 992px) and (min-width: 767px) {
-        //  width: 25px;
-        //  border: 2px solid black;
-        //  margin-top: 4px;
-        //}
     }
 
     #toggle-icon {
@@ -176,23 +157,6 @@
         padding: 10px;
         cursor: pointer;
     }
-
-    //.rotate {
-    //    .hamburger-line-1 {
-    //        transition: 200ms;
-    //        transform: rotate(45deg);
-    //        top: 12px;
-    //    }
-    //
-    //    .hamburger-line-3 {
-    //        transition: 200ms;
-    //        transform: rotate(-45deg);
-    //    }
-    //
-    //    .hamburger-line-2 {
-    //        display: none;
-    //    }
-    //}
 
     .hamburger-logo-toggle-img {
         padding: 15px;
@@ -239,20 +203,6 @@
     }
 }
 
-.menu-animation {
-    height: auto !important;
-    position: fixed;
-    top: 0;
-    width: calc((100vw - 100px) / 12 * 3 + 8px);
-    z-index: 10000;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-}
-
-.restore {
-    height: calc((100vw - 116px) / 12 * 3) !important;
-}
-
 
 .logo_image {
     height: 60px;
@@ -260,9 +210,6 @@
         height: 40px;
     }
 }
-
-
-// // // MEDIA // // //
 @media (max-width: 578px) {
     .logo-title {
         color: #000A1D;

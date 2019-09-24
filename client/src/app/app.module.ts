@@ -6,7 +6,6 @@ import {AppComponent} from './app.component';
 import {AboutComponent} from './components/pages/about/about.component';
 import {SidebarComponent} from './components/partials/sidebar/sidebar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FooterComponent} from './components/partials/footer/footer.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {SharedModule} from './_modules/shared.module';
 import {AboutModule} from './components/pages/about/about.module';
@@ -17,7 +16,6 @@ import {HeaderInterceptor} from './header-interceptor';
         AppComponent,
         AboutComponent,
         SidebarComponent,
-        FooterComponent,
     ],
     imports: [
         SharedModule,
