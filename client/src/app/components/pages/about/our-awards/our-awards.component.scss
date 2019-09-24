@@ -6,25 +6,18 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
   .heading {
     text-align: left;
-    //font-size: 65px;
-    //line-height: 80px;
     font-family: $font-extraBold;
     letter-spacing: -2.6px;
     color: #000A1D;
     text-transform: capitalize;
-    opacity: 1;
     padding-bottom: 26px;
   }
 
   .description {
     text-align: left;
-    //width: 675px;
-    //font-size: 26px;
-    //line-height: 45px;
     font-family: $font-regular;
     letter-spacing: -0.52px;
     color: #000A1D;
-    opacity: 1;
   }
 
   .awards {
@@ -43,7 +36,6 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
       background-repeat: no-repeat;
       background-position: center;
       background-size: 70px;
-      opacity: 1;
     }
 
     .award-text {
@@ -62,7 +54,6 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
         list-style-type: none;
         color: #ffffff;
         letter-spacing: 0;
-        opacity: 1;
 
         span {
           font-weight: bold;

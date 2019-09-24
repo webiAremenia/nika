@@ -7,23 +7,17 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
   .heading {
     text-align: left;
-    //font-size: 65px;
-    //line-height: 88px;
     font-family: $font-extraBold;
     letter-spacing: -2.6px;
     color: #000A1D;
-    opacity: 1;
   }
 
   .description {
     padding: 33px 0;
     text-align: left;
-    //font-size: 22px;
-    //line-height: 35px;
     font-family: $font-regular;
     letter-spacing: 0;
     color: #000A1D;
-    opacity: 1;
   }
 
   .leaders {
@@ -49,14 +43,10 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
         color: #000A1D;
 
         .author {
-          //font-size: 19px;
-          //line-height: 25px;
           font-family: $font-bold;
         }
 
         .position {
-          //font-size: 16px;
-          //line-height: 25px;
           font-family: $font-regular;
         }
       }
@@ -64,9 +54,6 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
     .leader:first-child {
       padding-right: 11px;
-
-      .image {
-      }
 
       .about {
         text-align: left;
@@ -76,9 +63,6 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
     .leader:last-child {
       padding-left: 11px;
-
-      .image {
-      }
 
       .about {
         text-align: right;

@@ -1,7 +1,8 @@
-import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, HostListener, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {DataService} from '../data.service';
 import {Router} from '@angular/router';
 import {SettingsService} from '../shared/services/settings.service';
+import {ActionsService} from '../shared/services/actions.service';
 
 @Component({
     selector: 'app-content',
@@ -18,11 +19,12 @@ export class ContentComponent implements OnInit {
 
     constructor(
         private settingService: SettingsService,
+        private actionsService: ActionsService,
         private data: DataService,
         private router: Router) {
         settingService.getSettings().subscribe();
         if (!localStorage.getItem('user')) {
-            this.router.navigate(['/']);
+            this.router.navigate(['/']).then();
         }
     }
 
