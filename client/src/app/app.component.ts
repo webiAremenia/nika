@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
                     window.innerWidth >= 1920 ? 1 :
                         window.innerWidth < 1520 && window.innerWidth > 1220 ? 1.20 :
                             window.innerWidth < 1220 && window.innerWidth > 1020 ? 1.25 :
-                                window.innerWidth < 1020 && window.innerWidth > 820 ? 1.30 :
+                                window.innerWidth < 1024 && window.innerWidth > 820 ? 1.30 :
                                     window.innerWidth < 820 && window.innerWidth > 767 ? 1.35 : 1
             };
             this.actionsService.responsiveData.next(size);

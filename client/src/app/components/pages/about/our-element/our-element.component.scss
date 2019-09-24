@@ -1,10 +1,11 @@
 $font-regular: 'Open Sans Regular', sans-serif;
 $font-semiBold: 'Open Sans SemiBold', sans-serif;
 $font-extraBold: 'Open Sans Extrabold', sans-serif;
+$font-white-color: #ffffff;
 
 ul li {
   list-style-type: none;
-  color: #ffffff;
+  color: $font-white-color;
   transition: 1s all ease-in;
 }
 
@@ -42,39 +43,33 @@ ul:hover {
   background-color: #000A1D;
 
   .our-element-content {
-    color: #ffffff;
+    color: $font-white-color;
 
     .heading {
-      padding-bottom: 50px;
+      padding-bottom: 91px;
       text-align: left;
-      //font-size: 65px;
-      //line-height: 80px;
       font-family: $font-extraBold;
       letter-spacing: -2.6px;
-      color: #FFFFFF;
+      color: $font-white-color;
       opacity: 1;
     }
 
     .list {
       .list-title {
         text-align: left;
-        //font-size: 36px;
-        //line-height: 30px;
         font-family: $font-semiBold;
         letter-spacing: -0.72px;
-        padding: 55px 15px;
+        padding: 0 15px;
       }
 
       .list-description {
         display: none;
         text-align: left;
-        //font-size: 22px;
-        //line-height: 35px;
         letter-spacing: 0;
         font-family: $font-regular;
-        color: #FFFFFF;
+        color: $font-white-color;
         opacity: 1;
-        padding: 0 70px 20px 70px;
+        padding: 0 70px 46px 70px;
       }
     }
   }

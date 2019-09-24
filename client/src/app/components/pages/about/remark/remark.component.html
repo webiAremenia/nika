@@ -1,5 +1,9 @@
 <div class="remark-content-wrapper">
-  <div class="remark-content about-inner-content" *ngIf="content">
+  <div class="remark-content about-inner-content" *ngIf="content"
+       [style.padding]="
+            (windowSize.width * 97)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px' ">
 
     <div class="whole-remark">
 
