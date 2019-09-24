@@ -1,5 +1,9 @@
 <div class="leadership-content-wrapper">
-    <div class="leadership-content about-inner-content" *ngIf="content">
+    <div class="leadership-content about-inner-content" *ngIf="content"
+         [style.padding]="
+            (windowSize.width * 97)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px' ">
 
         <div class="heading"
              [style.font-size]="(windowSize.width * 65 * windowSize.rate) / 1920 + 'px'"
@@ -37,7 +41,7 @@
                     <div class="author"
                          [style.font-size]="(windowSize.width * 19 * windowSize.rate) / 1920 + 'px'"
                          [style.line-height]="(windowSize.width * 25* windowSize.rate) / 1920 + 'px'">
-                       {{ content.second.name }}
+                        {{ content.second.name }}
                     </div>
                     <div class="position"
                          [style.font-size]="(windowSize.width * 16 * windowSize.rate) / 1920 + 'px'"
