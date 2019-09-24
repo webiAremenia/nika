@@ -25,15 +25,14 @@ mongoose.connect(mongoDB, {useNewUrlParser: true, useCreateIndex: true})
         console.log('Error MongoDB not connected ...')
     });
 
-
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 app.use(require('cors')());
 
-app.use((req, res) => {
-    res.setHeader( 'Cache-Control', 'public,max-age=0');
-});
+// app.use((req, res) => {
+//     res.setHeader( 'Cache-Control', 'public,max-age=0');
+// });
 
 app.use(morgan('combined', {stream: winston.stream}));
 

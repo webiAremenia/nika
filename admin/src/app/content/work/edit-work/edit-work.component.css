@@ -26,12 +26,17 @@
 [type="file"]:focus + label {
     outline: 1px dotted #000;
 }
-
-.add {
-    width: 200px;
+.btn-save{
     position: fixed;
-    right: 0px;
+    right: 18px;
     top: 100px;
+    z-index: 99999;
+}
+.add {
+    width: 124px;
+    position: fixed;
+    right: 15px;
+    top: 145px;
     z-index: 99999;
 }
 

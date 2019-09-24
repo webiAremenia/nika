@@ -15,15 +15,15 @@ export class FooterComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getFooterBlock();
+        // this.getFooterBlock();
     }
 
     getFooterBlock() {
-        this.footerService.getFooter().subscribe(date => {
-            this.footerText = date || 'You  can update this content in admin panel Settings/key = footer-text';
-        });
-        this.footerService.getFooterLink().subscribe(date => {
-            this.footerLink = date || 'You  can update this content in admin panel Settings/key = footer-link-url';
-        });
+        // this.footerService.getFooter().subscribe(date => {
+        //     this.footerText = date || 'You  can update this content in admin panel Settings/key = footer-text';
+        // });
+        // this.footerService.getFooterLink().subscribe(date => {
+        //     this.footerLink = date || 'You  can update this content in admin panel Settings/key = footer-link-url';
+        // });
     }
 }
