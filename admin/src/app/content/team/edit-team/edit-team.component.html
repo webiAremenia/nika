@@ -17,13 +17,25 @@
 <div *ngIf="done">
     <div class="introduce-content-wrapper">
         <div class="introduce-content about-inner-content"
-             [style.backgroundImage]="'url('+ introduce.backgroundImage +')'">
+             [style.backgroundImage]="'url('+ introduce.backgroundImage +')'"
+             [style.padding]="
+                    (windowSize.width * 97)/1920 + 'px '
+                 + (windowSize.width * 139)/1920 + 'px '
+                 + (windowSize.width * 139)/1920 + 'px' ">
 
-            <div class="heading" (click)="myIntroduce(introduce.title, 'title')">
+            <div class="heading" (click)="myIntroduce(introduce.title, 'title')"
+                 [style.width]="(windowSize.width * 672 * windowSize.rate) / 1920 + 'px'"
+                 [style.font-size]="(windowSize.width * 65 * windowSize.rate) / 1920 + 'px'"
+                 [style.line-height]="(windowSize.width * 80 * windowSize.rate) / 1920 + 'px'"
+            >
                 {{introduce.title}}
             </div>
 
-            <div class="description" (click)="myIntroduce(introduce.description, 'description')">
+            <div class="description" (click)="myIntroduce(introduce.description, 'description')"
+                 [style.width]="(windowSize.width * 500 * windowSize.rate) / 1920 + 'px'"
+                 [style.font-size]="(windowSize.width * 26 * windowSize.rate) / 1920 + 'px'"
+                 [style.line-height]="(windowSize.width * 45 * windowSize.rate) / 1920 + 'px'"
+            >
                 {{introduce.description}}
             </div>
 
@@ -36,77 +48,53 @@
 
 
     <div class="our-element-content-wrapper">
-        <div class="our-element-content about-inner-content">
+        <div class="our-element-content about-inner-content"
+             [style.padding]="
+            (windowSize.width * 97)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px' ">
 
-            <div class="heading" (click)="myElement(element.title,'title')">
+            <div class="heading" (click)="myElement(element.title,'title')"
+                 [style.font-size]="(windowSize.width * 65 * windowSize.rate) / 1920 + 'px'"
+                 [style.line-height]="(windowSize.width * 80 * windowSize.rate) / 1920 + 'px'">
                 {{element.title}}
             </div>
 
             <div>
                 <ul class="list " *ngFor="let block of element.blocks; let i = index">
                     <li class="list-title"
+                        [style.font-size]="(windowSize.width * 36 * windowSize.rate) / 1920 + 'px'"
+                        [style.line-height]="(windowSize.width * 160 * windowSize.rate) / 1920 + 'px'"
                         (click)="elementBlock(i,'title')">{{block.title}}</li>
                     <li class="list-description"
+                        [style.font-size]="(windowSize.width * 22 * windowSize.rate) / 1920 + 'px'"
+                        [style.line-height]="(windowSize.width * 35 * windowSize.rate) / 1920 + 'px'"
                         (click)="elementBlock(i,'description')">{{block.description}}</li>
                 </ul>
             </div>
-
-            <!--        <div>-->
-            <!--            <ul class="list " #listElement1>-->
-            <!--                <li class="list-title"-->
-            <!--                    (click)="myElement(element.first.title, 'first','title')">{{element.first.title}}</li>-->
-            <!--                <li class="list-description"-->
-            <!--                    (click)="myElement(element.first.description, 'first','description')">{{element.first.description}}</li>-->
-            <!--            </ul>-->
-
-            <!--            <ul class="list" #listElement2>-->
-            <!--                <li class="list-title"-->
-            <!--                    (click)="myElement(element.second.title, 'second','title')">{{element.second.title}}</li>-->
-            <!--                <li class="list-description" (click)="myElement(element.second.title, 'second','description')">-->
-            <!--                    {{element.second.description}}-->
-            <!--                </li>-->
-            <!--            </ul>-->
-
-            <!--            <ul class="list" #listElement3>-->
-            <!--                <li class="list-title" (click)="myElement(element.third.title, 'third','title')">-->
-            <!--                    {{element.third.title}}-->
-            <!--                </li>-->
-            <!--                <li class="list-description" (click)="myElement(element.third.description, 'third','description')">-->
-            <!--                    {{element.third.description}}-->
-            <!--                </li>-->
-            <!--            </ul>-->
-
-            <!--            <ul class="list" #listElement4>-->
-            <!--                <li class="list-title" (click)="myElement(element.forth.title, 'forth','title')">-->
-            <!--                    {{element.forth.title}}-->
-            <!--                </li>-->
-            <!--                <li class="list-description" (click)="myElement(element.forth.description, 'forth','description')">-->
-            <!--                    {{element.forth.description}}-->
-            <!--                </li>-->
-            <!--            </ul>-->
-
-            <!--            <ul class="list" #listElement5>-->
-            <!--                <li class="list-title" (click)="myElement(element.fifth.title, 'fifth','title')">-->
-            <!--                    {{element.fifth.title}}-->
-            <!--                </li>-->
-            <!--                <li class="list-description" (click)="myElement(element.fifth.description, 'fifth','description')">-->
-            <!--                    {{element.fifth.description}}-->
-            <!--                </li>-->
-            <!--            </ul>-->
-            <!--        </div>-->
 
         </div>
     </div>
 
 
     <div class="clients-content-wrapper">
-        <div class="clients-content about-inner-content">
+        <div class="clients-content about-inner-content"
+             [style.padding]="
+            (windowSize.width * 97)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px' ">
 
-            <div class="heading" (click)="myClient(client.title, 'title')">
+            <div class="heading" (click)="myClient(client.title, 'title')"
+                 [style.font-size]="(windowSize.width * 65 * windowSize.rate) / 1920 + 'px'"
+                 [style.line-height]="(windowSize.width * 80 * windowSize.rate) / 1920 + 'px'"
+            >
                 {{client.title}}
             </div>
 
-            <div class="description" (click)="myClient(client.description, 'description')">
+            <div class="description" (click)="myClient(client.description, 'description')"
+                 [style.font-size]="(windowSize.width * 26 * windowSize.rate) / 1920 + 'px'"
+                 [style.line-height]="(windowSize.width * 45 * windowSize.rate) / 1920 + 'px'"
+            >
                 {{client.description}}
             </div>
 
@@ -135,132 +123,8 @@
                         </ng-container>
                     </div>
 
-
-                    <!--                <div class="col-4 col-md-3 partner partner-img" [style.backgroundImage]="'url(assets/images/AboutUs/intel.png)'"></div>-->
-                    <!--                <div class="col-4 col-md-3 partner partner-text">-->
-                    <!--                    North American Lighting is a member of the Japan-based Koito Group of companies-->
-                    <!--                </div>-->
                 </div>
 
-
-                <!--            <div class="row m-0">-->
-
-
-                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.first')"-->
-                <!--                     [style.backgroundImage]="'url('+ client.first +')'">-->
-                <!--                    <div style="display: none;">-->
-                <!--                        <input type="file" [id]="'element.first'"-->
-                <!--                               (change)="clientImage($event,'first')">-->
-                <!--                        <label [for]="'element.first'">choose a file</label>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
-
-                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.second')"-->
-                <!--                     [style.backgroundImage]="'url('+ client.second +')'">-->
-                <!--                    <div style="display: none;">-->
-                <!--                        <input type="file" [id]="'element.second'"-->
-                <!--                               (change)="clientImage($event,'second')">-->
-                <!--                        <label [for]="'element.second'">choose a file</label>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
-
-                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.third')"-->
-                <!--                     [style.backgroundImage]="'url('+ client.third +')'">-->
-                <!--                    <div style="display: none;">-->
-                <!--                        <input type="file" [id]="'element.third'"-->
-                <!--                               (change)="clientImage($event,'third')">-->
-                <!--                        <label [for]="'element.third'">choose a file</label>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
-
-                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.forth')"-->
-                <!--                     [style.backgroundImage]="'url('+ client.forth +')'">-->
-                <!--                    <div style="display: none;">-->
-                <!--                        <input type="file" [id]="'element.forth'"-->
-                <!--                               (change)="clientImage($event,'forth')">-->
-                <!--                        <label [for]="'element.forth'">choose a file</label>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
-                <!--                <div class="col-4 col-md-3 partner partner-text" (click)="myClient(client.fifth, 'fifth')">-->
-                <!--                    {{client.fifth}}-->
-                <!--                </div>-->
-
-
-                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.sixth')"-->
-                <!--                     [style.backgroundImage]="'url('+ client.sixth +')'">-->
-                <!--                    <div style="display: none;">-->
-                <!--                        <input type="file" [id]="'element.sixth'"-->
-                <!--                               (change)="clientImage($event,'sixth')">-->
-                <!--                        <label [for]="'element.sixth'">choose a file</label>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
-
-                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.seventh')"-->
-                <!--                     [style.backgroundImage]="'url('+ client.seventh +')'">-->
-                <!--                    <div style="display: none;">-->
-                <!--                        <input type="file" [id]="'element.seventh'"-->
-                <!--                               (change)="clientImage($event,'seventh')">-->
-                <!--                        <label [for]="'element.seventh'">choose a file</label>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
-
-                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.eighth')"-->
-                <!--                     [style.backgroundImage]="'url('+ client.eighth +')'">-->
-                <!--                    <div style="display: none;">-->
-                <!--                        <input type="file" [id]="'element.eighth'"-->
-                <!--                               (change)="clientImage($event,'eighth')">-->
-                <!--                        <label [for]="'element.eighth'">choose a file</label>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
-
-                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.ninth')"-->
-                <!--                     [style.backgroundImage]="'url('+ client.ninth +')'">-->
-                <!--                    <div style="display: none;">-->
-                <!--                        <input type="file" [id]="'element.ninth'"-->
-                <!--                               (change)="clientImage($event,'ninth')">-->
-                <!--                        <label [for]="'element.ninth'">choose a file</label>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
-
-                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.tenth')"-->
-                <!--                     [style.backgroundImage]="'url('+ client.tenth +')'">-->
-                <!--                    <div style="display: none;">-->
-                <!--                        <input type="file" [id]="'element.tenth'"-->
-                <!--                               (change)="clientImage($event,'tenth')">-->
-                <!--                        <label [for]="'element.tenth'">choose a file</label>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
-
-                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.eleventh')"-->
-                <!--                     [style.backgroundImage]="'url('+ client.eleventh +')'">-->
-                <!--                    <div style="display: none;">-->
-                <!--                        <input type="file" [id]="'element.eleventh'"-->
-                <!--                               (change)="clientImage($event,'eleventh')">-->
-                <!--                        <label [for]="'element.eleventh'">choose a file</label>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
-
-                <!--                <div class="col-4 col-md-3 partner partner-img" (click)="myClient('','element.twelfth')"-->
-                <!--                     [style.backgroundImage]="'url('+ client.twelfth +')'">-->
-                <!--                    <div style="display: none;">-->
-                <!--                        <input type="file" [id]="'element.twelfth'"-->
-                <!--                               (change)="clientImage($event,'twelfth')">-->
-                <!--                        <label [for]="'element.twelfth'">choose a file</label>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
-
-                <!--            </div>-->
             </div>
 
         </div>
@@ -268,15 +132,25 @@
 
 
     <div class="remark-content-wrapper">
-        <div class="remark-content about-inner-content">
+        <div class="remark-content about-inner-content"
+             [style.padding]="
+            (windowSize.width * 97)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px' ">
 
             <div class="whole-remark">
 
-                <div class="text" (click)="myRemark(remark.title, 'title')">
+                <div class="text" (click)="myRemark(remark.title, 'title')"
+                     [style.font-size]="(windowSize.width * 45 * windowSize.rate) / 1920 + 'px'"
+                     [style.line-height]="(windowSize.width * 61 * windowSize.rate) / 1920 + 'px'"
+                >
                     {{remark.title}}
                 </div>
 
-                <div class="author" (click)="myRemark(remark.description, 'description')">
+                <div class="author" (click)="myRemark(remark.description, 'description')"
+                     [style.font-size]="(windowSize.width * 26 * windowSize.rate) / 1920 + 'px'"
+                     [style.line-height]="(windowSize.width * 35 * windowSize.rate) / 1920 + 'px'"
+                >
                     {{remark.description}}
                 </div>
 
@@ -287,13 +161,23 @@
 
 
     <div class="leadership-content-wrapper">
-        <div class="leadership-content about-inner-content">
+        <div class="leadership-content about-inner-content"
+             [style.padding]="
+            (windowSize.width * 97)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px' ">
 
-            <div class="heading" (click)="myLeadership(leadership.title, 'title', '')">
+            <div class="heading" (click)="myLeadership(leadership.title, 'title', '')"
+                 [style.font-size]="(windowSize.width * 65 * windowSize.rate) / 1920 + 'px'"
+                 [style.line-height]="(windowSize.width * 88 * windowSize.rate) / 1920 + 'px'"
+            >
                 {{leadership.title}}
             </div>
 
-            <div class="description" (click)="myLeadership(leadership.description, 'description', '')">
+            <div class="description" (click)="myLeadership(leadership.description, 'description', '')"
+                 [style.font-size]="(windowSize.width * 22 * windowSize.rate) / 1920 + 'px'"
+                 [style.line-height]="(windowSize.width * 35 * windowSize.rate) / 1920 + 'px'"
+            >
                 {{leadership.description}}
             </div>
 
@@ -308,10 +192,16 @@
                         </div>
                     </div>
                     <div class="about">
-                        <div class="author" (click)="myLeadership(leadership.first.name, 'first', 'name')">
+                        <div class="author" (click)="myLeadership(leadership.first.name, 'first', 'name')"
+                             [style.font-size]="(windowSize.width * 19 * windowSize.rate) / 1920 + 'px'"
+                             [style.line-height]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"
+                        >
                             {{leadership.first.name}}
                         </div>
-                        <div class="position" (click)="myLeadership(leadership.first.job, 'first', 'job')">
+                        <div class="position" (click)="myLeadership(leadership.first.job, 'first', 'job')"
+                             [style.font-size]="(windowSize.width * 16 * windowSize.rate) / 1920 + 'px'"
+                             [style.line-height]="(windowSize.width * 25* windowSize.rate) / 1920 + 'px'"
+                        >
                             {{leadership.first.job}}
                         </div>
                     </div>
@@ -326,10 +216,16 @@
                         </div>
                     </div>
                     <div class="about">
-                        <div class="author" (click)="myLeadership(leadership.second.name, 'second', 'name')">
+                        <div class="author" (click)="myLeadership(leadership.second.name, 'second', 'name')"
+                             [style.font-size]="(windowSize.width * 19 * windowSize.rate) / 1920 + 'px'"
+                             [style.line-height]="(windowSize.width * 25* windowSize.rate) / 1920 + 'px'"
+                        >
                             {{leadership.second.name}}
                         </div>
-                        <div class="position" (click)="myLeadership(leadership.second.job, 'second', 'job')">
+                        <div class="position" (click)="myLeadership(leadership.second.job, 'second', 'job')"
+                             [style.font-size]="(windowSize.width * 16 * windowSize.rate) / 1920 + 'px'"
+                             [style.line-height]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"
+                        >
                             {{leadership.second.job}}
                         </div>
                     </div>
@@ -341,13 +237,24 @@
 
 
     <div class="our-awards-content-wrapper">
-        <div class="our-awards-content about-inner-content">
+        <div class="our-awards-content about-inner-content"
+             [style.padding]="
+            (windowSize.width * 97)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px' ">
 
-            <div class="heading" (click)="myAwards(awards.title, 'title')">
+            <div class="heading" (click)="myAwards(awards.title, 'title')"
+                 [style.font-size]="(windowSize.width * 65 * windowSize.rate) / 1920 + 'px'"
+                 [style.line-height]="(windowSize.width * 80 * windowSize.rate) / 1920 + 'px'"
+            >
                 {{awards.title}}
             </div>
 
-            <div class="description" (click)="myAwards(awards.description, 'description')">
+            <div class="description" (click)="myAwards(awards.description, 'description')"
+                 [style.font-size]="(windowSize.width * 26 * windowSize.rate) / 1920 + 'px'"
+                 [style.line-height]="(windowSize.width * 45 * windowSize.rate) / 1920 + 'px'"
+                 [style.width]="(windowSize.width * 675 * windowSize.rate) / 1920 + 'px'"
+            >
                 {{awards.description}}
 
             </div>
@@ -356,14 +263,11 @@
                 <div class="row m-0">
                     <div class="col-3 award award-text">
                         <ul>
-                            <li *ngFor="let row of awards.first; let i = index" (click)="awardsFirst(row,i)">{{row}}</li>
-                            <!--                        <li><span>3</span> Gold</li>-->
-                            <!--                        <li><span>7</span> Silver</li>-->
-                            <!--                        <li><span>1</span> Bronze</li>-->
+                            <li *ngFor="let row of awards.first; let i = index"
+                                (click)="awardsFirst(row,i)">{{row}}</li>
                         </ul>
                     </div>
 
-                    <!--                <div *ngFor="let img of awards.blocks; let i = index">-->
                     <div class="col-3 award award-img" (click)="awardsBlock('awards',i)"
                          *ngFor="let img of awards.blocks; let i = index"
                          [style.backgroundImage]="'url('+ img +')'">
@@ -374,16 +278,6 @@
                         </div>
                     </div>
 
-                    <!--                </div>-->
-
-
-                    <!--                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/awards-logo2@2x.png)'"></div>-->
-                    <!--                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/awards-logo2@2x.png)'"></div>-->
-                    <!--                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/awards-logo2@2x.png)'"></div>-->
-                    <!--                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/awards-logo2@2x.png)'"></div>-->
-                    <!--                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/awards-logo2@2x.png)'"></div>-->
-                    <!--                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/awards-logo2@2x.png)'"></div>-->
-                    <!--                <div class="col-3 award award-img" [style.backgroundImage]="'url(assets/images/AboutUs/awards-logo2@2x.png)'"></div>-->
                 </div>
             </div>
 
