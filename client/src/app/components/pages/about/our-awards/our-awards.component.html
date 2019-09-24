@@ -1,5 +1,9 @@
 <div class="our-awards-content-wrapper">
-    <div class="our-awards-content about-inner-content" *ngIf="content">
+    <div class="our-awards-content about-inner-content" *ngIf="content"
+         [style.padding]="
+            (windowSize.width * 97)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px' ">
 
         <div class="heading"
              [style.font-size]="(windowSize.width * 65 * windowSize.rate) / 1920 + 'px'"
