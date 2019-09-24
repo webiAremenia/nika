@@ -2,39 +2,42 @@
 
     <div class="loading-pppp" *ngIf="!done">loading ...</div>
 
-    <div class="home-page custom-page bg-light col-12 col-lg-9 offset-lg-3 pr-0" *ngIf="done">
+    <div class="home-page custom-page bg-light col-12 col-lg-9 offset-lg-3 pr-0">
 
         <div class="accordion w-100 h-100 d-none d-md-block"
              *ngIf="windowWidth > 767">
             <div class="accordion-items h-100"
                  [style.width]="accordionItemsStyles.width + 'px'"
                  [style.left]="accordionItemsStyles.left  + 'px'">
-                <div *ngFor="let slide of slides, let index = index"
-                     (click)="initCurrent(index)"
-                     class="slider-item"
-                     [style.width]="slideWidth + 'px'">
-                    <a [routerLink]="['project/' + slides[index].slug]">
-                        <div class="slide-image">
-                            <img [src]="imageUrl + slide.img + '?resize=' + resizeWidth + ',' + resizeHeight">
-                        </div>
-                    </a>
-                    <div class="slide-text-content">
-                        <h2 [style.fontSize]="windowWidth > 992 ? 50 * windowWidth / 1920 + 'px' : '25px'"
-                            [style.lineHeight]="58 * windowWidth / 1920 + 'px'"
-                        >{{ slide.title }}</h2>
-                        <div class="slide-desc">
-                            <div class="desc-wrap">
-                                <p [style.fontSize]="windowWidth > 992 ? 17 * windowWidth / 1920 + 'px' : '14px'"
-                                   [style.lineHeight]="windowWidth > 992 ? 27 * windowWidth / 1920 + 'px' : '18px'"
-                                >{{ slide.description }}</p>
+                <ng-container *ngIf="done">
+                    <div *ngFor="let slide of slides, let index = index"
+                         (click)="initCurrent(index)"
+                         class="slider-item"
+                         [style.width]="slideWidth + 'px'">
+                        <a [routerLink]="['project/' + slides[index].slug]">
+                            <div class="slide-image">
+                                <img [src]="imageUrl + slide.img + '?resize=' + resizeWidth + ',' + resizeHeight">
                             </div>
+                        </a>
+                        <div class="slide-text-content">
+                            <h2 [style.fontSize]="windowWidth > 992 ? 50 * windowWidth / 1920 + 'px' : '25px'"
+                                [style.lineHeight]="58 * windowWidth / 1920 + 'px'"
+                            >{{ slide.title }}</h2>
+                            <div class="slide-desc">
+                                <div class="desc-wrap">
+                                    <p [style.fontSize]="windowWidth > 992 ? 17 * windowWidth / 1920 + 'px' : '14px'"
+                                       [style.lineHeight]="windowWidth > 992 ? 27 * windowWidth / 1920 + 'px' : '18px'"
+                                    >{{ slide.description }}</p>
+                                </div>
+                            </div>
+                            <span [style.fontSize]="windowWidth > 992 ? 17 * windowWidth / 1920 + 'px' : '14px'">{{ slide.subTitle }}</span>
                         </div>
-                        <span [style.fontSize]="windowWidth > 992 ? 17 * windowWidth / 1920 + 'px' : '14px'">{{ slide.subTitle }}</span>
                     </div>
-                </div>
+                </ng-container>
             </div>
 
-            <div class="work-outlet" #customBody [style.transform]="'translate3d(0,' + workScrollTop + 'px, 0)'">
+            <div class="work-outlet" #customBody [style.transform]="'translate3d(0,' + workScrollTop + 'px, 0)'"
+                 *ngIf="done">
                 <div id="wwww" class="detail-banner h-100"
                      [style.width]="clickedWidth + 'px'"
                      [style.min-height]="bannerHeight + 'px'">
@@ -83,23 +86,25 @@
 
         <div class="mobile-works" *ngIf="windowWidth <= 767">
             <div class=" row px-0 m-0">
-                <div *ngFor="let slide of slides, let index = index"
-                     (click)="mobileNavigate(index)"
-                     class="slider-item-mobile col-12 col-sm-6 px-0">
-                    <div class="slide-image">
-                        <img [style.height]="resizeHeight + 'px'"
-                             [src]="imageUrl + slide.img + '?resize=' + resizeWidth + ',' + resizeHeight">
-                    </div>
-                    <div class="slide-text-content">
-                        <h2>{{ slide.title }}</h2>
-                        <div class="slide-desc">
-                            <div class="desc-wrap">
-                                <p>{{ slide.description.slice(0, 50) + '...' }}</p>
-                            </div>
+                <ng-container *ngIf="done">
+                    <div *ngFor="let slide of slides, let index = index"
+                         (click)="mobileNavigate(index)"
+                         class="slider-item-mobile col-12 col-sm-6 px-0">
+                        <div class="slide-image">
+                            <img [style.height]="resizeHeight + 'px'"
+                                 [src]="imageUrl + slide.img + '?resize=' + resizeWidth + ',' + resizeHeight">
                         </div>
-                        <span>{{ slide.subTitle }}</span>
+                        <div class="slide-text-content">
+                            <h2>{{ slide.title }}</h2>
+                            <div class="slide-desc">
+                                <div class="desc-wrap">
+                                    <p>{{ slide.description.slice(0, 50) + '...' }}</p>
+                                </div>
+                            </div>
+                            <span>{{ slide.subTitle }}</span>
+                        </div>
                     </div>
-                </div>
+                </ng-container>
             </div>
             <div id="mobileRouter" class="mobile-router"
                  [style.height]="clickedSlide  || clickedSlide == 0 ? '100vh' : '0'"
@@ -108,7 +113,7 @@
                      class="go-back-btn-mobile"
                      (click)="backToSliderMob()">Back to works
                 </div>
-                <div id="mobileCont">
+                <div id="mobileCont" *ngIf="done">
                     <router-outlet></router-outlet>
                 </div>
             </div>
@@ -116,47 +121,3 @@
 
     </div>
 </div>
-<!--<div class="pt-5" *ngIf="done">-->
-<!--    <app-all-blocks></app-all-blocks>-->
-<!--</div>-->
-
-
-<!--<owl-carousel-o [options]="options" #mainSlider>-->
-<!--    <ng-template *ngFor="let slide of slides, let i = index" class="h-100" carouselSlide [id]="'slide-' + i">-->
-<!--        <div class="my-slider-item"-->
-<!--             (click)="navigate(slide.url)"-->
-<!--             (mouseenter)="animateDesc($event)"-->
-<!--             (mouseleave)="animateDescHide($event)"-->
-<!--             [ngStyle]="{'background-image': slide.image ? 'url(' + imageUrl + slide.image + ')' : ''}">-->
-<!--            <div class="item-content">-->
-<!--                <div class="row">-->
-<!--                    <div class="item-text col-12">-->
-<!--                        <div class="item-title"-->
-<!--                             [ngStyle]="{'color':slide.image? 'white': 'black'}">{{slide.title}}</div>-->
-<!--                        <div class="item-description"-->
-<!--                             [ngStyle]="{'color':slide.image? 'white': 'black'}"-->
-<!--                        >{{ slide.description }}</div>-->
-<!--                    </div>-->
-<!--                    <div class="items-counter col-12"> some text </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </ng-template>-->
-
-<!--    <ng-container *ngIf="slides.length < 1">-->
-<!--        <ng-template class="h-100" carouselSlide>-->
-<!--            <div class="my-slider-item no-image-wrapper"-->
-<!--                 [ngStyle]="{'background-image': 'url(' + 'assets/images/no-slid.png' + ')'}">-->
-<!--                <div class="item-content">-->
-<!--                    <div class="row">-->
-<!--                        <div class="item-text col-10">-->
-<!--                            <div class="item-title" [style.color]="'black'">No image</div>-->
-<!--                        </div>-->
-<!--                        <div class="items-counter col-2">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </ng-template>-->
-<!--    </ng-container>-->
-<!--</owl-carousel-o>-->
