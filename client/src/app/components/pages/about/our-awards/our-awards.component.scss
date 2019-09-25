@@ -6,7 +6,7 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
   .heading {
     text-align: left;
-    font-family: $font-extraBold;
+    //font-family: $font-extraBold;
     letter-spacing: -2.6px;
     color: #000A1D;
     text-transform: capitalize;
@@ -15,7 +15,7 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
   .description {
     text-align: left;
-    font-family: $font-regular;
+    //font-family: $font-regular;
     letter-spacing: -0.52px;
     color: #000A1D;
   }
@@ -43,7 +43,7 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
       align-items: center;
       padding: 0;
       justify-content: flex-start;
-      font-family: $font-regular;
+      //font-family: $font-regular;
       font-size: 18px;
       line-height: 35px;
       background-color: #000A1D;

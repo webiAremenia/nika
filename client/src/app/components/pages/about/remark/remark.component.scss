@@ -14,12 +14,12 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
       width: 90%;
       margin: auto;
       text-align: center;
-      font-family: $font-extraBold;
+      //font-family: $font-extraBold;
       letter-spacing: -1.8px;
       color: #000A1D;
       padding-bottom: 36px;
       span{
-        font-family: $font-extraBold;
+        //font-family: $font-extraBold;
         font-style: italic;
         letter-spacing: -1.8px;
         color: #ADFF2F;
@@ -28,7 +28,7 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
     .author {
       width: 100%;
-      font-family: $font-semiBold;
+      //font-family: $font-semiBold;
       letter-spacing: 0;
       color: #000000;
     }
