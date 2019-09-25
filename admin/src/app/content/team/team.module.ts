@@ -5,8 +5,10 @@ import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {NzUploadModule} from 'ng-zorro-antd/upload';
 import {TeamRoutingModule} from './team-routing.module';
 import {EditTeamComponent} from './edit-team/edit-team.component';
-import { NzModalModule } from 'ng-zorro-antd/modal';
-import { NzInputModule } from 'ng-zorro-antd/input';
+import {NzModalModule} from 'ng-zorro-antd/modal';
+import {NzInputModule} from 'ng-zorro-antd/input';
+import {NzSelectModule} from 'ng-zorro-antd/select';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 
 @NgModule({
@@ -21,7 +23,10 @@ import { NzInputModule } from 'ng-zorro-antd/input';
         TeamRoutingModule,
         NzUploadModule,
         NzModalModule,
-        NzInputModule
+        NzInputModule,
+        NzSelectModule,
+        NzInputNumberModule
+
 
     ],
 })
