@@ -3,7 +3,13 @@ const Settings = require('./admin/models/settings');
 const Logo = require('./admin/models/logo');
 const Menu = require('./admin/models/menu');
 const User = require('./admin/models/user');
-const Team = require('./admin/models/team');
+// const Team = require('./admin/models/team');
+const Introduce = require('./admin/models/introduce');
+const Client = require('./admin/models/client');
+const Remark = require('./admin/models/remark');
+const Leadership = require('./admin/models/leadership');
+const Award = require('./admin/models/awards');
+const Element = require('./admin/models/element');
 
 module.exports.createDefaultAdmin = async (req, res) => {
     try {
@@ -95,68 +101,102 @@ module.exports.createMenus = (req, res) => {
 module.exports.createTeam = async (req, res) => {
 
 
-    let createElementBlocks = () => {
-        let arr = [];
+    // let createElementBlocks = () => {
+    //     let arr = [];
+    //
+    //     for (let i = 0; i < 5; ++i) {
+    //         arr.push({
+    //             title: 'Lorem Ipsum is simply dummy text of the printing ',
+    //             description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+    //         });
+    //     }
+    //
+    //     return arr;
+    // };
+    //
+    // let createClientBlocks = () => {
+    //     let arr = [];
+    //     for (let i = 0; i < 11; ++i) {
+    //         arr.push({
+    //             backGround: 'assets/images/AboutUs/intel.png'
+    //         });
+    //         if (i === 3) {
+    //             arr.push({
+    //                 text: 'North American Lighting is a member of the Japan-based Koito Group of companies'
+    //             });
+    //         }
+    //     }
+    //
+    //     return arr;
+    //
+    // };
+    //
+    // let createAwardsBlocks = () => {
+    //     let arr = [];
+    //     for (let i = 0; i < 7; ++i) {
+    //         arr.push('assets/images/AboutUs/awards-logo2@2x.png');
+    //     }
+    //
+    //     return arr;
+    //
+    // };
+    try {
 
-        for (let i = 0; i < 5; ++i) {
-            arr.push({
-                title: 'Lorem Ipsum is simply dummy text of the printing ',
-                description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-            });
-        }
 
-        return arr;
-    };
+        let modelsArr = [Introduce, Client, Remark, Leadership, Award, Element];
 
-    let createClientBlocks = () => {
-        let arr = [];
-        for (let i = 0; i < 11; ++i) {
-            arr.push({
-                backGround: 'assets/images/AboutUs/intel.png'
-            });
-            if (i === 3) {
-                arr.push({
-                    text: 'North American Lighting is a member of the Japan-based Koito Group of companies'
-                });
+
+        for (let i = 0; i < modelsArr.length; ++i) {
+            let items = await modelsArr[i].find({});
+            if (items.length === 0) {
+                let item = new modelsArr[i]()
+                item.save()
             }
         }
 
-        return arr;
 
-    };
+        // let introduces = await Introduce.find({});
+        // let clients = await Client.find({});
+        // let remarks = await Remark.find({});
+        // if (introduces.length === 0) {
+        //     let introduce = new Introduce();
+        //     introduce.save()
+        // }
+        //
+        // if (clients.length === 0) {
+        //     let client = new Client();
+        //     client.save()
+        // }
+        //
+        // if (remarks.length === 0) {
+        //     console.log(111)
+        //     let remark = new Remark();
+        //     remark.save()
+        // }
 
-    let createAwardsBlocks = () => {
-        let arr = [];
-        for (let i = 0; i < 7; ++i) {
-            arr.push('assets/images/AboutUs/awards-logo2@2x.png');
-        }
 
-        return arr;
+        // let teams = await Team.find({});
+        // if (teams.length === 0) {
 
-    };
-    try {
-        let teams = await Team.find({});
-        if (teams.length === 0) {
-
-            let team = new Team({
-                element: {
-                    title: 'Things we are good at',
-                    blocks: createElementBlocks()
-                },
-                client: {
-                    title: 'Clients',
-                    description: 'We come to work everyday with one single goal - deliver greatness. We love finding simple solutions to complex',
-                    blocks: createClientBlocks()
-                },
-                awards: {
-                    title: 'Awards',
-                    description: 'Lorem ipsum dolor sit incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
-                    first: ['3 gold', '2 silver', '1 bronze'],
-                    blocks: createAwardsBlocks()
-                }
-            });
-            team.save()
-        }
+        // let team = new Team({
+        //     element: {
+        //         title: 'Things we are good at',
+        //         blocks: createElementBlocks()
+        //     },
+        //     client: {
+        //         title: 'Clients',
+        //         description: 'We come to work everyday with one single goal - deliver greatness. We love finding simple solutions to complex',
+        //         blocks: createClientBlocks()
+        //     },
+        //     awards: {
+        //         title: 'Awards',
+        //         description: 'Lorem ipsum dolor sit incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
+        //         first: ['3 gold', '2 silver', '1 bronze'],
+        //         blocks: createAwardsBlocks()
+        //     }
+        // });
+        // team.save()
+        // }
     } catch (e) {
         console.log(e)
     }
