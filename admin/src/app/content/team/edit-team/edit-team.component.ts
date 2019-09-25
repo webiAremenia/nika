@@ -207,6 +207,7 @@ export class EditTeamComponent implements OnInit, OnDestroy {
             this.awards = data.awards[0];
 
 
+            console.log(this.element)
             this.done = true;
         }, e => console.log(e));
 
