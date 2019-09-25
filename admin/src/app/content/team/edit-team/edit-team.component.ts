@@ -6,9 +6,9 @@ import {Client} from '../../../shared/models/client';
 import {Remark} from '../../../shared/models/remark';
 import {Leadership} from '../../../shared/models/leadership';
 import {Awards} from '../../../shared/models/awards';
-import {ResponsiveData} from '../../../../../../client/src/app/_models/ResponsiveData';
-import {ActionsService} from '../../../../../../client/src/app/_services/actions.service';
 import {Subscription} from 'rxjs';
+import {ResponsiveData} from '../../../shared/_models/ResponsiveData';
+import {ActionsService} from '../../../shared/services/actions.service';
 
 @Component({
     selector: 'app-edit-team',
@@ -39,131 +39,7 @@ export class EditTeamComponent implements OnInit, OnDestroy {
     blocks = [1, 2, 3, 4, 5, 6, 7];
 
     done = false;
-
-
     isElementBlock = false;
-
-
-    // introduce = {
-    //     _id: '',
-    //     title: {
-    //         text: '',
-    //         fontSize: '',
-    //         lineHeight: '',
-    //         fontFamily: '',
-    //     },
-    //     description: {
-    //         text: '',
-    //         fontSize: '',
-    //         lineHeight: '',
-    //         fontFamily: '',
-    //     },
-    //     backgroundImage: ''
-    // };
-    // element = {
-    //     _id: '',
-    //     title: {
-    //         text: '',
-    //         fontSize: '',
-    //         lineHeight: '',
-    //         fontFamily: '',
-    //     },
-    //     blocks: []
-    // };
-    // client = {
-    //     _id: '',
-    //     title: {
-    //         text: '',
-    //         fontSize: '',
-    //         lineHeight: '',
-    //         fontFamily: '',
-    //     },
-    //     description: {
-    //         text: '',
-    //         fontSize: '',
-    //         lineHeight: '',
-    //         fontFamily: '',
-    //     },
-    //     blocks: []
-    // };
-    // remark = {
-    //     _id: '',
-    //     title: {
-    //         text: '',
-    //         fontSize: '',
-    //         lineHeight: '',
-    //         fontFamily: '',
-    //     },
-    //     description: {
-    //         text: '',
-    //         fontSize: '',
-    //         lineHeight: '',
-    //         fontFamily: '',
-    //     },
-    // };
-    // leadership = {
-    //     _id: '',
-    //     title: {
-    //         text: '',
-    //         fontSize: '',
-    //         lineHeight: '',
-    //         fontFamily: '',
-    //     },
-    //     description: {
-    //         text: '',
-    //         fontSize: '',
-    //         lineHeight: '',
-    //         fontFamily: '',
-    //     },
-    //     first: {
-    //         avatar: '',
-    //         name: {
-    //             text: '',
-    //             fontSize: '',
-    //             lineHeight: '',
-    //             fontFamily: '',
-    //         },
-    //         job: {
-    //             text: '',
-    //             fontSize: '',
-    //             lineHeight: '',
-    //             fontFamily: '',
-    //         }
-    //     },
-    //     second: {
-    //         avatar: '',
-    //         name: {
-    //             text: '',
-    //             fontSize: '',
-    //             lineHeight: '',
-    //             fontFamily: '',
-    //         },
-    //         job: {
-    //             text: '',
-    //             fontSize: '',
-    //             lineHeight: '',
-    //             fontFamily: '',
-    //         }
-    //     }
-    // };
-    // awards = {
-    //     _id: '',
-    //     title: {
-    //         text: '',
-    //         fontSize: '',
-    //         lineHeight: '',
-    //         fontFamily: '',
-    //     },
-    //     description: {
-    //         text: '',
-    //         fontSize: '',
-    //         lineHeight: '',
-    //         fontFamily: '',
-    //     },
-    //     first: [],
-    //     blocks: []
-    // };
-
     introduce: Introduce;
     element: Element;
     client: Client;
@@ -207,7 +83,7 @@ export class EditTeamComponent implements OnInit, OnDestroy {
             this.awards = data.awards[0];
 
 
-            console.log(this.element)
+            console.log(this.element);
             this.done = true;
         }, e => console.log(e));
 

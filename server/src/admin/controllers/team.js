@@ -10,8 +10,6 @@ const errors = require('../_help/errorHandler');
 
 module.exports = {
     getAll: async (req, res) => {
-
-
         try {
             let introduces = await Introduce.find({});
             let clients = await Client.find({});
