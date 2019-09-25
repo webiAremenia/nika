@@ -30,15 +30,27 @@
 <div *ngIf="done">
     <div class="introduce-content-wrapper">
         <div class="introduce-content about-inner-content"
-             [style.backgroundImage]="'url('+ introduce.backgroundImage +')'">
+             [style.backgroundImage]="'url('+ introduce.backgroundImage +')'"
+             [style.padding]="
+                    (windowSize.width * 97)/1920 + 'px '
+                 + (windowSize.width * 139)/1920 + 'px '
+                 + (windowSize.width * 139)/1920 + 'px' ">
 
             <div class="heading" (click)="myIntroduce(introduce.title, 'title')"
-                 [ngStyle]="{'font-size': introduce.title.fontSize+'px', 'font-family': introduce.title.fontFamily, 'line-height':introduce.title.lineHeight + 'px'}">
+                 [style.width]="(windowSize.width * 672 * windowSize.rate) / 1920 + 'px'"
+                 [style.font-size]="(windowSize.width * introduce.title.fontSize * windowSize.rate) / 1920 + 'px'"
+                 [style.line-height]="(windowSize.width * introduce.title.lineHeight * windowSize.rate) / 1920 + 'px'"
+                 [ngStyle]="{'font-family': introduce.title.fontFamily}"
+            >
                 {{introduce.title.text}}
             </div>
 
             <div class="description" (click)="myIntroduce(introduce.description, 'description')"
-                 [ngStyle]="{'font-size': introduce.description.fontSize+'px', 'font-family': introduce.description.fontFamily, 'line-height':introduce.description.lineHeight + 'px'}">
+                 [style.width]="(windowSize.width * 500 * windowSize.rate) / 1920 + 'px'"
+                 [style.font-size]="(windowSize.width * introduce.description.fontSize * windowSize.rate) / 1920 + 'px'"
+                 [style.line-height]="(windowSize.width * introduce.description.lineHeight * windowSize.rate) / 1920 + 'px'"
+                 [ngStyle]="{'font-family': introduce.description.fontFamily}"
+            >
                 {{introduce.description.text}}
             </div>
 
@@ -49,43 +61,63 @@
         </div>
     </div>
 
-    <!--    <h1>++++++++++++++++++++++++++++++++++++++++++</h1>-->
-
 
     <div class="our-element-content-wrapper">
-        <div class="our-element-content about-inner-content">
+        <div class="our-element-content about-inner-content"
+             [style.padding]="
+            (windowSize.width * 97)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px' ">
 
             <div class="heading" (click)="myElement(element.title,'title')"
-                 [ngStyle]="{'font-size': element.title.fontSize+'px', 'font-family': element.title.fontFamily, 'line-height':element.title.lineHeight + 'px'}">
+                 [style.font-size]="(windowSize.width * element.title.fontSize * windowSize.rate) / 1920 + 'px'"
+                 [style.line-height]="(windowSize.width * element.title.lineHeight * windowSize.rate) / 1920 + 'px'"
+                 [ngStyle]="{'font-family': element.title.fontFamily}"
+            >
                 {{element.title.text}}
             </div>
 
             <div>
                 <ul class="list " *ngFor="let block of element.blocks; let i = index">
                     <li class="list-title"
-                        [ngStyle]="{'font-size': block.title.fontSize+'px', 'font-family': block.title.fontFamily, 'line-height':block.title.lineHeight + 'px'}"
-                        (click)="elementBlock(i,'title')">{{block.title.text}}</li>
+                        [style.font-size]="(windowSize.width *  block.title.fontSize * windowSize.rate) / 1920 + 'px'"
+                        [style.line-height]="(windowSize.width *  block.title.lineHeight * windowSize.rate) / 1920 + 'px'"
+                        [ngStyle]="{'font-family': block.title.fontFamily}"
+                        (click)="elementBlock(i,'title')">{{block.title}}</li>
                     <li class="list-description"
-                        [ngStyle]="{'font-size': block.description.fontSize+'px', 'font-family': block.description.fontFamily, 'line-height':block.description.lineHeight + 'px'}"
-                        (click)="elementBlock(i,'description')">{{block.description.text}}</li>
+                        [style.font-size]="(windowSize.width * 22 * windowSize.rate) / 1920 + 'px'"
+                        [style.line-height]="(windowSize.width * 35 * windowSize.rate) / 1920 + 'px'"
+                        [ngStyle]="{'font-family': block.description.fontFamily}"
+                        (click)="elementBlock(i,'description')">{{block.description}}</li>
                 </ul>
             </div>
+
         </div>
     </div>
 
-    <!--    <h1>++++++++++++++++++++++++++++++++++++++++++</h1>-->
-
 
     <div class="clients-content-wrapper">
-        <div class="clients-content about-inner-content">
+        <div class="clients-content about-inner-content"
+             [style.padding]="
+            (windowSize.width * 97)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px' ">
 
             <div class="heading" (click)="myClient(client.title, 'title')"
-                 [ngStyle]="{'font-size': client.title.fontSize+'px', 'font-family': client.title.fontFamily, 'line-height':client.title.lineHeight + 'px'}">
+                 [style.font-size]="(windowSize.width * client.title.fontSize * windowSize.rate) / 1920 + 'px'"
+                 [style.line-height]="(windowSize.width * client.title.lineHeight * windowSize.rate) / 1920 + 'px'"
+                 [ngStyle]="{'font-family': client.title.fontFamily}"
+
+            >
                 {{client.title.text}}
             </div>
 
             <div class="description" (click)="myClient(client.description, 'description')"
-                 [ngStyle]="{'font-size': client.description.fontSize+'px', 'font-family': client.description.fontFamily, 'line-height':client.description.lineHeight + 'px'}">
+                 [style.font-size]="(windowSize.width * client.description.fontSize * windowSize.rate) / 1920 + 'px'"
+                 [style.line-height]="(windowSize.width * client.description.lineHeight * windowSize.rate) / 1920 + 'px'"
+                 [ngStyle]="{'font-family': client.description.fontFamily}"
+
+            >
                 {{client.description.text}}
             </div>
 
@@ -123,21 +155,28 @@
     </div>
 
 
-    <!--    <h1>++++++++++++++++++++++++++++++++++++++++++</h1>-->
-
-
     <div class="remark-content-wrapper">
-        <div class="remark-content about-inner-content">
+        <div class="remark-content about-inner-content"
+             [style.padding]="
+            (windowSize.width * 97)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px' ">
 
             <div class="whole-remark">
 
                 <div class="text" (click)="myRemark(remark.title, 'title')"
-                     [ngStyle]="{'font-size': remark.title.fontSize+'px', 'font-family': remark.title.fontFamily, 'line-height':remark.title.lineHeight + 'px'}">
+                     [style.font-size]="(windowSize.width * remark.title.fontSize * windowSize.rate) / 1920 + 'px'"
+                     [style.line-height]="(windowSize.width * remark.title.lineHeight * windowSize.rate) / 1920 + 'px'"
+                     [ngStyle]="{'font-family': remark.title.fontFamily}"
+                >
                     {{remark.title.text}}
                 </div>
 
                 <div class="author" (click)="myRemark(remark.description, 'description')"
-                     [ngStyle]="{'font-size': remark.description.fontSize+'px', 'font-family': remark.description.fontFamily, 'line-height':remark.description.lineHeight + 'px'}">
+                     [style.font-size]="(windowSize.width * remark.description.fontSize * windowSize.rate) / 1920 + 'px'"
+                     [style.line-height]="(windowSize.width * remark.description.lineHeight * windowSize.rate) / 1920 + 'px'"
+                     [ngStyle]="{'font-family': remark.description.fontFamily}"
+                >
                     {{remark.description.text}}
                 </div>
 
@@ -147,19 +186,26 @@
     </div>
 
 
-    <!--    <h1>++++++++++++++++++++++++++++++++++++++++++</h1>-->
-
-
     <div class="leadership-content-wrapper">
-        <div class="leadership-content about-inner-content">
+        <div class="leadership-content about-inner-content"
+             [style.padding]="
+            (windowSize.width * 97)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px' ">
 
             <div class="heading" (click)="myLeadership(leadership.title, 'title', '')"
-                 [ngStyle]="{'font-size': leadership.title.fontSize+'px', 'font-family': leadership.title.fontFamily, 'line-height':leadership.title.lineHeight + 'px'}">
+                 [style.font-size]="(windowSize.width * leadership.title.fontSize * windowSize.rate) / 1920 + 'px'"
+                 [style.line-height]="(windowSize.width * leadership.title.lineHeight * windowSize.rate) / 1920 + 'px'"
+                 [ngStyle]="{'font-family': leadership.title.fontFamily}"
+            >
                 {{leadership.title.text}}
             </div>
 
             <div class="description" (click)="myLeadership(leadership.description, 'description', '')"
-                 [ngStyle]="{'font-size': leadership.description.fontSize+'px', 'font-family': leadership.description.fontFamily, 'line-height':leadership.description.lineHeight + 'px'}">
+                 [style.font-size]="(windowSize.width * leadership.description.fontSize * windowSize.rate) / 1920 + 'px'"
+                 [style.line-height]="(windowSize.width * leadership.description.lineHeight * windowSize.rate) / 1920 + 'px'"
+                 [ngStyle]="{'font-family': leadership.description.fontFamily}"
+            >
                 {{leadership.description.text}}
             </div>
 
@@ -175,11 +221,17 @@
                     </div>
                     <div class="about">
                         <div class="author" (click)="myLeadership(leadership.first.name, 'first', 'name')"
-                             [ngStyle]="{'font-size': leadership.first.name.fontSize+'px', 'font-family': leadership.first.name.fontFamily, 'line-height':leadership.first.name.lineHeight + 'px'}">
+                             [style.font-size]="(windowSize.width * leadership.first.name.fontSize * windowSize.rate) / 1920 + 'px'"
+                             [style.line-height]="(windowSize.width * leadership.first.name.lineHeight * windowSize.rate) / 1920 + 'px'"
+                             [ngStyle]="{'font-family': leadership.first.name.fontFamily}"
+                        >
                             {{leadership.first.name.text}}
                         </div>
                         <div class="position" (click)="myLeadership(leadership.first.job, 'first', 'job')"
-                             [ngStyle]="{'font-size': leadership.first.job.fontSize+'px', 'font-family': leadership.first.job.fontFamily, 'line-height':leadership.first.job.lineHeight + 'px'}">
+                             [style.font-size]="(windowSize.width * leadership.first.job.fontSize * windowSize.rate) / 1920 + 'px'"
+                             [style.line-height]="(windowSize.width * leadership.first.job.lineHeight * windowSize.rate) / 1920 + 'px'"
+                             [ngStyle]="{'font-family': leadership.first.job.fontFamily}"
+                        >
                             {{leadership.first.job.text}}
                         </div>
                     </div>
@@ -195,11 +247,17 @@
                     </div>
                     <div class="about">
                         <div class="author" (click)="myLeadership(leadership.second.name, 'second', 'name')"
-                             [ngStyle]="{'font-size': leadership.second.name.fontSize+'px', 'font-family': leadership.second.name.fontFamily, 'line-height':leadership.second.name.lineHeight + 'px'}">
+                             [style.font-size]="(windowSize.width * leadership.second.name.fontSize * windowSize.rate) / 1920 + 'px'"
+                             [style.line-height]="(windowSize.width * leadership.second.name.lineHeight * windowSize.rate) / 1920 + 'px'"
+                             [ngStyle]="{'font-family': leadership.second.name.fontFamily}"
+                        >
                             {{leadership.second.name.text}}
                         </div>
                         <div class="position" (click)="myLeadership(leadership.second.job, 'second', 'job')"
-                             [ngStyle]="{'font-size': leadership.second.job.fontSize+'px', 'font-family': leadership.second.job.fontFamily, 'line-height':leadership.second.job.lineHeight + 'px'}">
+                             [style.font-size]="(windowSize.width * leadership.second.job.fontSize * windowSize.rate) / 1920 + 'px'"
+                             [style.line-height]="(windowSize.width * leadership.second.job.lineHeight * windowSize.rate) / 1920 + 'px'"
+                             [ngStyle]="{'font-family': leadership.second.job.fontFamily}"
+                        >
                             {{leadership.second.job.text}}
                         </div>
                     </div>
@@ -210,19 +268,27 @@
     </div>
 
 
-    <!--    <h1>++++++++++++++++++++++++++++++++++++++++++</h1>-->
-
-
     <div class="our-awards-content-wrapper">
-        <div class="our-awards-content about-inner-content">
+        <div class="our-awards-content about-inner-content"
+             [style.padding]="
+            (windowSize.width * 97)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px '
+         + (windowSize.width * 139)/1920 + 'px' ">
 
             <div class="heading" (click)="myAwards(awards.title, 'title')"
-                 [ngStyle]="{'font-size': awards.title.fontSize+'px', 'font-family': awards.title.fontFamily, 'line-height':awards.title.lineHeight + 'px'}">
+                 [style.font-size]="(windowSize.width * awards.title.fontSize * windowSize.rate) / 1920 + 'px'"
+                 [style.line-height]="(windowSize.width * awards.title.lineHeight * windowSize.rate) / 1920 + 'px'"
+                 [ngStyle]="{'font-family': awards.title.fontFamily}"
+            >
                 {{awards.title.text}}
             </div>
 
             <div class="description" (click)="myAwards(awards.description, 'description')"
-                 [ngStyle]="{'font-size': awards.description.fontSize+'px', 'font-family': awards.description.fontFamily, 'line-height':awards.description.lineHeight + 'px'}">
+                 [style.font-size]="(windowSize.width * awards.description.fontSize * windowSize.rate) / 1920 + 'px'"
+                 [style.line-height]="(windowSize.width * awards.description.lineHeight  * windowSize.rate) / 1920 + 'px'"
+                 [style.width]="(windowSize.width * 675 * windowSize.rate) / 1920 + 'px'"
+                 [ngStyle]="{'font-family': awards.description.fontFamily}"
+            >
                 {{awards.description.text}}
 
             </div>
@@ -237,7 +303,6 @@
                         </ul>
                     </div>
 
-                    <!--                <div *ngFor="let img of awards.blocks; let i = index">-->
                     <div class="col-3 award award-img" (click)="awardsBlock('awards',i)"
                          *ngFor="let img of awards.blocks; let i = index"
                          [style.backgroundImage]="'url('+ img +')'">

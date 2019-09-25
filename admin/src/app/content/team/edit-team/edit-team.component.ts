@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {TeamService} from '../../../shared/services/team.service';
 import {Introduce} from '../../../shared/models/introduce';
 import {Element} from '../../../shared/models/element';
@@ -6,13 +6,20 @@ import {Client} from '../../../shared/models/client';
 import {Remark} from '../../../shared/models/remark';
 import {Leadership} from '../../../shared/models/leadership';
 import {Awards} from '../../../shared/models/awards';
+import {ResponsiveData} from '../../../../../../client/src/app/_models/ResponsiveData';
+import {ActionsService} from '../../../../../../client/src/app/_services/actions.service';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-edit-team',
     templateUrl: './edit-team.component.html',
     styleUrls: ['./edit-team.component.scss']
 })
-export class EditTeamComponent implements OnInit {
+export class EditTeamComponent implements OnInit, OnDestroy {
+
+    // // // Font Size // // //
+    windowSubscription: Subscription;
+    windowSize: ResponsiveData;
 
     isVisible = false;
     isOkLoading = false;
@@ -165,8 +172,29 @@ export class EditTeamComponent implements OnInit {
     awards: Awards;
 
 
+    @HostListener('window:resize', ['$event']) onResize(e) {
+        if (window.innerWidth > 767) {
+            const size = {
+                width: window.innerWidth > 1920 ? 1920 : window.innerWidth,
+                height: window.innerHeight,
+                rate:
+                    window.innerWidth >= 1920 ? 1 :
+                        window.innerWidth < 1520 && window.innerWidth > 1220 ? 1.20 :
+                            window.innerWidth < 1220 && window.innerWidth > 1020 ? 1.25 :
+                                window.innerWidth < 1024 && window.innerWidth > 820 ? 1.30 :
+                                    window.innerWidth < 820 && window.innerWidth > 767 ? 1.35 : 1
+            };
+            this.actionsService.responsiveData.next(size);
+            this.actionsService.mobileResponsiveData.next(768);
+        } else {
+            const width = window.innerWidth;
+            this.actionsService.mobileResponsiveData.next(width);
+        }
+    }
+
     constructor(
-        private teamService: TeamService
+        private teamService: TeamService,
+        private actionsService: ActionsService
     ) {
         this.teamService.getTeam().subscribe((data: any) => {
             // console.log(data)
@@ -182,9 +210,16 @@ export class EditTeamComponent implements OnInit {
             this.done = true;
         }, e => console.log(e));
 
+        this.windowSubscription = actionsService.getWindowSize()
+            .subscribe((size: ResponsiveData) => this.windowSize = size);
+
     }
 
     ngOnInit() {
+    }
+
+    ngOnDestroy() {
+        this.windowSubscription.unsubscribe();
     }
 
     myIntroduce(e, field) {
@@ -221,7 +256,6 @@ export class EditTeamComponent implements OnInit {
             this.isVisible = true;
         }
     }
-
 
     myElement(e, field) {
         this.isElementBlock = false;
