@@ -23,7 +23,6 @@ module.exports = {
                 leaderships: leaderships,
                 awards: awards,
                 elements: elements
-
             })
         } catch (e) {
             errors.notFound(res, errors);
