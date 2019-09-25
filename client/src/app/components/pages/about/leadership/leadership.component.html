@@ -6,17 +6,19 @@
          + (windowSize.width * 139)/1920 + 'px' ">
 
         <div class="heading"
-             [style.font-size]="(windowSize.width * 65 * windowSize.rate) / 1920 + 'px'"
-             [style.line-height]="(windowSize.width * 88 * windowSize.rate) / 1920 + 'px'"
+             [style.font-size]="(windowSize.width * content.title.fontSize * windowSize.rate) / 1920 + 'px'"
+             [style.line-height]="(windowSize.width * content.title.lineHeight * windowSize.rate) / 1920 + 'px'"
+             [style.font-family]="content.title.fontFamily"
         >
-            {{ content.title }}
+            {{ content.title.text }}
         </div>
 
         <div class="description"
-             [style.font-size]="(windowSize.width * 22 * windowSize.rate) / 1920 + 'px'"
-             [style.line-height]="(windowSize.width * 35 * windowSize.rate) / 1920 + 'px'"
+             [style.font-size]="(windowSize.width * content.description.fontSize * windowSize.rate) / 1920 + 'px'"
+             [style.line-height]="(windowSize.width * content.description.lineHeight * windowSize.rate) / 1920 + 'px'"
+             [style.font-family]="content.description.fontFamily"
         >
-            {{ content.description }}
+            {{ content.description.text }}
         </div>
 
         <div class="leaders">
@@ -24,16 +26,18 @@
                 <div class="image" [style.backgroundImage]="'url('+  content.first.avatar +')'"></div>
                 <div class="about">
                     <div class="author"
-                         [style.font-size]="(windowSize.width * 19 * windowSize.rate) / 1920 + 'px'"
-                         [style.line-height]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"
+                         [style.font-size]="(windowSize.width * content.first.name.fontSize * windowSize.rate) / 1920 + 'px'"
+                         [style.line-height]="(windowSize.width * content.first.name.lineHeight * windowSize.rate) / 1920 + 'px'"
+                         [style.font-family]="content.first.name.fontFamily"
                     >
-                        {{ content.first.name }}
+                        {{ content.first.name.text }}
                     </div>
                     <div class="position"
-                         [style.font-size]="(windowSize.width * 16 * windowSize.rate) / 1920 + 'px'"
-                         [style.line-height]="(windowSize.width * 25* windowSize.rate) / 1920 + 'px'"
+                         [style.font-size]="(windowSize.width * content.first.job.fontSize * windowSize.rate) / 1920 + 'px'"
+                         [style.line-height]="(windowSize.width * content.first.job.lineHeight * windowSize.rate) / 1920 + 'px'"
+                         [style.font-family]="content.first.job.fontFamily"
                     >
-                        {{ content.first.job }}
+                        {{ content.first.job.text }}
                     </div>
                 </div>
             </div>
@@ -41,16 +45,18 @@
                 <div class="image" [style.backgroundImage]="'url('+ content.second.avatar +')'"></div>
                 <div class="about">
                     <div class="author"
-                         [style.font-size]="(windowSize.width * 19 * windowSize.rate) / 1920 + 'px'"
-                         [style.line-height]="(windowSize.width * 25* windowSize.rate) / 1920 + 'px'"
+                         [style.font-size]="(windowSize.width * content.second.name.fontSize * windowSize.rate) / 1920 + 'px'"
+                         [style.line-height]="(windowSize.width * content.second.name.lineHeight* windowSize.rate) / 1920 + 'px'"
+                         [style.font-family]="content.second.name.fontFamily"
                     >
-                        {{ content.second.name }}
+                        {{ content.second.name.text }}
                     </div>
                     <div class="position"
-                         [style.font-size]="(windowSize.width * 16 * windowSize.rate) / 1920 + 'px'"
-                         [style.line-height]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"
+                         [style.font-size]="(windowSize.width * content.second.job.fontSize * windowSize.rate) / 1920 + 'px'"
+                         [style.line-height]="(windowSize.width * content.second.job.lineHeight * windowSize.rate) / 1920 + 'px'"
+                         [style.font-family]="content.second.job.fontFamily"
                     >
-                        {{ content.second.job }}
+                        {{ content.second.job.text }}
                     </div>
                 </div>
             </div>
