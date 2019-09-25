@@ -1,4 +1,6 @@
+import {TeamText} from './TeamText';
+
 export interface ElementBlock {
-    title: string;
-    description: string;
+    title: TeamText;
+    description: TeamText;
 }

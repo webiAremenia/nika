@@ -6,10 +6,11 @@
          + (windowSize.width * 139)/1920 + 'px' ">
 
         <div class="heading"
-             [style.font-size]="(windowSize.width * 65 * windowSize.rate) / 1920 + 'px'"
-             [style.line-height]="(windowSize.width * 80 * windowSize.rate) / 1920 + 'px'"
+             [style.font-size]="(windowSize.width * content.title.fontSize * windowSize.rate) / 1920 + 'px'"
+             [style.line-height]="(windowSize.width * content.title.lineHeight * windowSize.rate) / 1920 + 'px'"
+             [style.font-family]="content.title.fontFamily"
         >
-            {{ content.title }}
+            {{ content.title.text }}
         </div>
 
         <div #list>
@@ -17,14 +18,18 @@
                 [ngClass]="index == 0 ? 'list active' : 'list'"
                 (click)="openList(list, index)">
                 <li class="list-title"
-                    [style.font-size]="(windowSize.width * 36 * windowSize.rate) / 1920 + 'px'"
-                    [style.line-height]="(windowSize.width * 160 * windowSize.rate) / 1920 + 'px'">{{ block.title }}
+                    [style.font-size]="(windowSize.width * block.title.fontSize * windowSize.rate) / 1920 + 'px'"
+                    [style.line-height]="(windowSize.width * block.title.lineHeight * windowSize.rate) / 1920 + 'px'"
+                    [style.font-family]="block.title.fontFamily"
+                >
+                    {{ block.title.text }}
                 </li>
                 <li class="list-description"
-                    [style.font-size]="(windowSize.width * 22 * windowSize.rate) / 1920 + 'px'"
-                    [style.line-height]="(windowSize.width * 35 * windowSize.rate) / 1920 + 'px'"
+                    [style.font-size]="(windowSize.width * block.description.fontSize * windowSize.rate) / 1920 + 'px'"
+                    [style.line-height]="(windowSize.width * block.description.lineHeight * windowSize.rate) / 1920 + 'px'"
+                    [style.font-family]="block.description.fontFamily"
                 >
-                    {{ block.description }}
+                    {{ block.description.text }}
                 </li>
             </ul>
         </div>

@@ -20,6 +20,7 @@ export class OurAwardsComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.content = this.content[0];
     }
 
     ngOnDestroy() {

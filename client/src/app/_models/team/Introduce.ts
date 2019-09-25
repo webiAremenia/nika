@@ -1,5 +1,7 @@
+import {TeamText} from './TeamText';
+
 export interface Introduce {
-    title: string;
+    title: TeamText;
     backgroundImage: string;
-    description: string;
+    description: TeamText;
 }

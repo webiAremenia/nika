@@ -6,26 +6,32 @@
          + (windowSize.width * 139)/1920 + 'px' ">
 
         <div class="heading"
-             [style.font-size]="(windowSize.width * 65 * windowSize.rate) / 1920 + 'px'"
-             [style.line-height]="(windowSize.width * 80 * windowSize.rate) / 1920 + 'px'"
+             [style.font-size]="(windowSize.width * content.title.fontSize * windowSize.rate) / 1920 + 'px'"
+             [style.line-height]="(windowSize.width * content.title.lineHeight * windowSize.rate) / 1920 + 'px'"
+             [style.font-family]="content.title.fontFamily"
         >
-            {{ content.title }}
+            {{ content.title.text }}
         </div>
 
         <div class="description"
-             [style.font-size]="(windowSize.width * 26 * windowSize.rate) / 1920 + 'px'"
-             [style.line-height]="(windowSize.width * 45 * windowSize.rate) / 1920 + 'px'"
+             [style.font-size]="(windowSize.width * content.description.fontSize * windowSize.rate) / 1920 + 'px'"
+             [style.line-height]="(windowSize.width * content.description.lineHeight * windowSize.rate) / 1920 + 'px'"
              [style.width]="(windowSize.width * 675 * windowSize.rate) / 1920 + 'px'"
+             [style.font-family]="content.description.fontFamily"
         >
-            {{ content.description }}
+            {{ content.description.text }}
         </div>
 
         <div class="awards">
             <div class="row m-0">
                 <div class="col-3 award award-text">
                     <ul>
-                        <li *ngFor="let cont of content.first">
-                            <span>{{ cont.split(' ')[0] }}</span> {{ cont.split(' ')[1] }}
+                        <li *ngFor="let cont of content.first"
+                            [style.font-size]="(windowSize.width * cont.fontSize * windowSize.rate) / 1920 + 'px'"
+                            [style.line-height]="(windowSize.width * cont.lineHeight * windowSize.rate) / 1920 + 'px'"
+                            [style.font-family]="cont.fontFamily"
+                        >
+                            <span>{{ cont.text.split(' ')[0] }}</span> {{ cont.text.split(' ')[1] }}
                         </li>
                     </ul>
                 </div>

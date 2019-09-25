@@ -85,8 +85,8 @@
                         [ngStyle]="{'font-family': block.title.fontFamily}"
                         (click)="elementBlock(i,'title')">{{block.title.text}}</li>
                     <li class="list-description"
-                        [style.font-size]="(windowSize.width * 22 * windowSize.rate) / 1920 + 'px'"
-                        [style.line-height]="(windowSize.width * 35 * windowSize.rate) / 1920 + 'px'"
+                        [style.font-size]="(windowSize.width * block.description.fontSize * windowSize.rate) / 1920 + 'px'"
+                        [style.line-height]="(windowSize.width * block.description.lineHeight * windowSize.rate) / 1920 + 'px'"
                         [ngStyle]="{'font-family': block.description.fontFamily}"
                         (click)="elementBlock(i,'description')">{{block.description.text}}</li>
                 </ul>

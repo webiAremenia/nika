@@ -1,6 +1,8 @@
+import {TeamText} from './TeamText';
+
 export interface Awards {
-    title: string;
-    description: string;
+    title: TeamText;
+    description: TeamText;
     blocks: Array<string>;
-    first: Array<string>;
+    first: Array<TeamText>;
 }

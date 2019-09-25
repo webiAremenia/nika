@@ -1,6 +1,4 @@
-
-export interface ClientBlock {
-    backGround: string;
+export interface TeamText {
     fontFamily: string;
     fontSize: number;
     lineHeight: number;
