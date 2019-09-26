@@ -20,7 +20,7 @@ export class IntroduceComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        // console.log(this.content);
+        this.content = this.content[0];
     }
 
     ngOnDestroy() {

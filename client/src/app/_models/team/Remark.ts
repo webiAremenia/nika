@@ -1,4 +1,6 @@
+import {TeamText} from './TeamText';
+
 export interface Remark {
-    description: string;
-    title: string;
+    description: TeamText;
+    title: TeamText;
 }

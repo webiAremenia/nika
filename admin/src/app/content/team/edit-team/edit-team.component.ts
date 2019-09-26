@@ -1,8 +1,14 @@
 import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {TeamService} from '../../../shared/services/team.service';
-import {ResponsiveData} from '../../../../../../client/src/app/_models/ResponsiveData';
-import {ActionsService} from '../../../../../../client/src/app/_services/actions.service';
+import {Introduce} from '../../../shared/models/introduce';
+import {Element} from '../../../shared/models/element';
+import {Client} from '../../../shared/models/client';
+import {Remark} from '../../../shared/models/remark';
+import {Leadership} from '../../../shared/models/leadership';
+import {Awards} from '../../../shared/models/awards';
 import {Subscription} from 'rxjs';
+import {ResponsiveData} from '../../../shared/_models/ResponsiveData';
+import {ActionsService} from '../../../shared/services/actions.service';
 
 @Component({
     selector: 'app-edit-team',
@@ -18,9 +24,13 @@ export class EditTeamComponent implements OnInit, OnDestroy {
     isVisible = false;
     isOkLoading = false;
     modalContent = '';
+    fontFamily = 'Open Sans';
+    fontSize = 3;
+    lineHeight = 3;
+
+
     public imagePath;
 
-    teamId = '';
     type = '';
     field = '';
     row = '';
@@ -29,58 +39,13 @@ export class EditTeamComponent implements OnInit, OnDestroy {
     blocks = [1, 2, 3, 4, 5, 6, 7];
 
     done = false;
-
-
     isElementBlock = false;
-
-
-    introduce = {
-        title: '',
-        description: '',
-        backgroundImage: ''
-    };
-
-
-    element = {
-        title: '',
-        blocks: []
-
-    };
-
-    client = {
-        title: '',
-        description: '',
-        blocks: []
-    };
-
-
-    remark = {
-        title: '',
-        description: '',
-    };
-
-
-    leadership = {
-        title: '',
-        description: '',
-        first: {
-            avatar: '',
-            name: '',
-            job: ''
-        },
-        second: {
-            avatar: '',
-            name: '',
-            job: ''
-        }
-    };
-
-    awards = {
-        title: '',
-        description: '',
-        first: [],
-        blocks: []
-    };
+    introduce: Introduce;
+    element: Element;
+    client: Client;
+    remark: Remark;
+    leadership: Leadership;
+    awards: Awards;
 
 
     @HostListener('window:resize', ['$event']) onResize(e) {
@@ -107,14 +72,18 @@ export class EditTeamComponent implements OnInit, OnDestroy {
         private teamService: TeamService,
         private actionsService: ActionsService
     ) {
-        this.teamService.getTeam().subscribe(data => {
-            this.teamId = data[0]._id;
-            this.introduce = data[0].introduce;
-            this.element = data[0].element;
-            this.client = data[0].client;
-            this.remark = data[0].remark;
-            this.leadership = data[0].leadership;
-            this.awards = data[0].awards;
+        this.teamService.getTeam().subscribe((data: any) => {
+            // console.log(data)
+            // this.teamId = data[0]._id;
+            this.introduce = data.introduces[0];
+            this.element = data.elements[0];
+            this.client = data.clients[0];
+            this.remark = data.remarks[0];
+            this.leadership = data.leaderships[0];
+            this.awards = data.awards[0];
+
+
+            console.log(this.element);
             this.done = true;
         }, e => console.log(e));
 
@@ -143,13 +112,24 @@ export class EditTeamComponent implements OnInit, OnDestroy {
                 reader.readAsDataURL(this.imagePath);
                 reader.onload = () => {
                     this.introduce[this.field] = reader.result;
-                    this.updateTeam({
-                        introduce: this.introduce
+
+
+                    this.updateTeam(this.introduce._id, {
+                        introduce: {
+                            [this.field]: this.introduce[this.field]
+                        }
                     });
+
+                    // this.updateTeam({
+                    //     introduce: this.introduce
+                    // });
                 };
             }
         } else {
-            this.modalContent = e;
+            this.modalContent = e.text;
+            this.fontSize = this.introduce[this.field].fontSize;
+            this.lineHeight = this.introduce[this.field].lineHeight;
+            this.fontFamily = this.introduce[this.field].fontFamily;
             this.isVisible = true;
         }
     }
@@ -158,8 +138,13 @@ export class EditTeamComponent implements OnInit, OnDestroy {
         this.isElementBlock = false;
         this.type = 'element';
         this.field = field;
-        this.modalContent = e;
+        this.modalContent = e.text;
+        this.fontSize = e.fontSize;
+        this.lineHeight = e.lineHeight;
+        this.fontFamily = e.fontFamily;
         this.isVisible = true;
+
+
     }
 
     elementBlock(i, field) {
@@ -167,14 +152,20 @@ export class EditTeamComponent implements OnInit, OnDestroy {
         this.type = 'element';
         this.field = field;
         this.index = i;
-        this.modalContent = this.element.blocks[i][field];
+        this.modalContent = this.element.blocks[i][field].text;
+        this.fontSize = this.element.blocks[i][field].fontSize;
+        this.lineHeight = this.element.blocks[i][field].lineHeight;
+        this.fontFamily = this.element.blocks[i][field].fontFamily;
         this.isVisible = true;
     }
 
     myClient(e, field) {
         this.type = 'client';
         this.field = field;
-        this.modalContent = e;
+        this.modalContent = e.text;
+        this.fontSize = e.fontSize;
+        this.lineHeight = e.lineHeight;
+        this.fontFamily = e.fontFamily;
         this.isVisible = true;
     }
 
@@ -182,7 +173,10 @@ export class EditTeamComponent implements OnInit, OnDestroy {
     myRemark(e, field) {
         this.type = 'remark';
         this.field = field;
-        this.modalContent = e;
+        this.modalContent = e.text;
+        this.fontSize = e.fontSize;
+        this.lineHeight = e.lineHeight;
+        this.fontFamily = e.fontFamily;
         this.isVisible = true;
     }
 
@@ -195,12 +189,18 @@ export class EditTeamComponent implements OnInit, OnDestroy {
             if (prop === 'avatar') {
                 document.getElementById(field + '_' + prop).click();
             } else {
-                this.modalContent = e;
+                this.modalContent = e.text;
+                this.fontSize = e.fontSize;
+                this.lineHeight = e.lineHeight;
+                this.fontFamily = e.fontFamily;
                 this.isVisible = true;
             }
 
         } else {
-            this.modalContent = e;
+            this.modalContent = e.text;
+            this.fontSize = e.fontSize;
+            this.lineHeight = e.lineHeight;
+            this.fontFamily = e.fontFamily;
             this.isVisible = true;
         }
     }
@@ -209,14 +209,21 @@ export class EditTeamComponent implements OnInit, OnDestroy {
     myAwards(e, filed) {
         this.type = 'awards';
         this.field = filed;
-        this.modalContent = e;
+        this.modalContent = e.text;
+        this.fontSize = e.fontSize;
+        this.lineHeight = e.lineHeight;
+        this.fontFamily = e.fontFamily;
         this.isVisible = true;
 
     }
 
+
     awardsFirst(e, i) {
         this.type = 'awards_first';
-        this.modalContent = e;
+        this.modalContent = e.text;
+        this.fontSize = e.fontSize;
+        this.lineHeight = e.lineHeight;
+        this.fontFamily = e.fontFamily;
         this.field = i;
         this.isVisible = true;
     }
@@ -229,8 +236,10 @@ export class EditTeamComponent implements OnInit, OnDestroy {
             reader.readAsDataURL(this.imagePath);
             reader.onload = () => {
                 this.client.blocks[this.index].backGround = reader.result;
-                this.updateTeam({
-                    client: this.client
+                this.updateTeam(this.client._id, {
+                    client: {
+                        blocks: this.client.blocks
+                    }
                 });
             };
         }
@@ -242,12 +251,16 @@ export class EditTeamComponent implements OnInit, OnDestroy {
         this.index = i;
         if (i === 4) {
             this.modalContent = this.client.blocks[i].text;
+            this.fontSize = this.client.blocks[i].fontSize;
+            this.lineHeight = this.client.blocks[i].lineHeight;
+            this.fontFamily = this.client.blocks[i].fontFamily;
             this.isVisible = true;
 
         } else {
             document.getElementById('clientBlock' + i).click();
         }
     }
+
 
     leadershipImage(e) {
         if (e.target.files.length > 0) {
@@ -259,8 +272,10 @@ export class EditTeamComponent implements OnInit, OnDestroy {
             reader.onload = () => {
                 this.leadership[this.field][this.prop] = reader.result;
 
-                this.updateTeam({
-                    leadership: this.leadership
+                this.updateTeam(this.leadership._id, {
+                    leadership: {
+                        [this.field]: this.leadership[this.field]
+                    }
                 });
             };
         }
@@ -282,80 +297,169 @@ export class EditTeamComponent implements OnInit, OnDestroy {
             reader.onload = () => {
                 this.awards.blocks[this.field] = reader.result;
 
-                this.updateTeam({
-                    awards: this.awards
+                this.updateTeam(this.awards._id, {
+                    awards: {
+                        blocks: this.awards.blocks
+                    }
                 });
             };
         }
     }
 
 
-    handleOk()
-        :
-        void {
+    handleOk(): void {
         this.isOkLoading = true;
 
         if (this.modalContent) {
             if (this.type === 'introduce') {
-                this.introduce[this.field] = this.modalContent;
 
-                this.updateTeam({
-                    introduce: this.introduce
+                this.introduce[this.field] = {
+                    fontSize: this.fontSize,
+                    lineHeight: this.lineHeight,
+                    fontFamily: this.fontFamily,
+                    text: this.modalContent
+                };
+
+
+                // this.introduce[this.field] = this.modalContent;
+
+                // this.updateTeam({
+                //     introduce: this.introduce[this.field]
+                // });
+
+                this.updateTeam(this.introduce._id, {
+                    introduce: {
+                        [this.field]: this.introduce[this.field]
+                    }
                 });
 
             } else if (this.type === 'element') {
+
                 if (this.isElementBlock) {
-                    this.element.blocks[this.index][this.field] = this.modalContent;
+                    this.element.blocks[this.index][this.field] = {
+                        fontSize: this.fontSize,
+                        lineHeight: this.lineHeight,
+                        fontFamily: this.fontFamily,
+                        text: this.modalContent
+                    };
+
+                    this.updateTeam(this.element._id, {
+                        element: {
+                            blocks: this.element.blocks
+                        }
+                    });
 
                 } else {
-                    this.element[this.field] = this.modalContent;
+                    this.element[this.field] = {
+                        fontSize: this.fontSize,
+                        lineHeight: this.lineHeight,
+                        fontFamily: this.fontFamily,
+                        text: this.modalContent
+                    };
 
+                    this.updateTeam(this.element._id, {
+                        element: {
+                            [this.field]: this.element[this.field]
+                        }
+                    });
                 }
 
-                this.updateTeam({
-                    element: this.element
-                });
             } else if (this.type === 'client') {
                 if (this.index === 4) {
-                    this.client.blocks[this.index].text = this.modalContent;
+                    this.client.blocks[this.index] = {
+                        fontSize: this.fontSize,
+                        lineHeight: this.lineHeight,
+                        fontFamily: this.fontFamily,
+                        text: this.modalContent
+                    };
+                    this.updateTeam(this.client._id, {
+                        client: {
+                            blocks: this.client.blocks
+                        }
+                    });
 
                 } else {
-                    this.client[this.field] = this.modalContent;
+                    this.client[this.field] = {
+                        fontSize: this.fontSize,
+                        lineHeight: this.lineHeight,
+                        fontFamily: this.fontFamily,
+                        text: this.modalContent
+                    };
 
+                    this.updateTeam(this.client._id, {
+                        client: {
+                            [this.field]: this.client[this.field]
+                        }
+                    });
                 }
 
-                this.updateTeam({
-                    client: this.client
-                });
-
             } else if (this.type === 'remark') {
-                this.remark[this.field] = this.modalContent;
+                this.remark[this.field] = {
+                    fontSize: this.fontSize,
+                    lineHeight: this.lineHeight,
+                    fontFamily: this.fontFamily,
+                    text: this.modalContent
+                };
 
-                this.updateTeam({
-                    remark: this.remark
+                this.updateTeam(this.remark._id, {
+                    remark: {
+                        [this.field]: this.remark[this.field]
+                    }
                 });
 
             } else if (this.type === 'leadership') {
                 if (this.prop) {
-                    this.leadership[this.field][this.prop] = this.modalContent;
+                    this.leadership[this.field][this.prop] = {
+                        fontSize: this.fontSize,
+                        lineHeight: this.lineHeight,
+                        fontFamily: this.fontFamily,
+                        text: this.modalContent
+                    };
                 } else {
-                    this.leadership[this.field] = this.modalContent;
+                    this.leadership[this.field] = {
+                        fontSize: this.fontSize,
+                        lineHeight: this.lineHeight,
+                        fontFamily: this.fontFamily,
+                        text: this.modalContent
+                    };
+
+
                 }
 
-                this.updateTeam({
-                    remark: this.remark
-                });
-            } else if (this.type === 'awards') {
-                this.awards[this.field] = this.modalContent;
 
-                this.updateTeam({
-                    awards: this.awards
+                this.updateTeam(this.leadership._id, {
+                    leadership: {
+                        [this.field]: this.leadership[this.field]
+                    }
+                });
+
+
+            } else if (this.type === 'awards') {
+                this.awards[this.field] = {
+                    fontSize: this.fontSize,
+                    lineHeight: this.lineHeight,
+                    fontFamily: this.fontFamily,
+                    text: this.modalContent
+                };
+
+
+                this.updateTeam(this.awards._id, {
+                    awards: {
+                        [this.field]: this.awards[this.field]
+                    }
                 });
             } else if (this.type === 'awards_first') {
-                this.awards.first[this.field] = this.modalContent;
+                this.awards.first[this.field] = {
+                    fontSize: this.fontSize,
+                    lineHeight: this.lineHeight,
+                    fontFamily: this.fontFamily,
+                    text: this.modalContent
+                };
 
-                this.updateTeam({
-                    awards: this.awards
+                this.updateTeam(this.awards._id, {
+                    awards: {
+                        first: this.awards.first
+                    }
                 });
             }
 
@@ -375,10 +479,8 @@ export class EditTeamComponent implements OnInit, OnDestroy {
         this.isVisible = false;
     }
 
-
-    updateTeam(obj) {
-        this.teamService.putTeam(this.teamId, obj).subscribe(data => {
-            console.log(data);
+    updateTeam(id, obj) {
+        this.teamService.putTeam(id, obj).subscribe(data => {
         }, e => console.log(e));
     }
 

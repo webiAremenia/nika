@@ -1,30 +1,170 @@
 const Team = require('../models/team');
+const Introduce = require('../models/introduce');
+const Client = require('../models/client');
+const Remark = require('../models/remark');
+const Leadership = require('../models/leadership');
+const Award = require('../models/awards');
+const Element = require('../models/element');
 const errors = require('../_help/errorHandler');
 
 
 module.exports = {
     getAll: async (req, res) => {
         try {
-            let teams = await Team.find({});
-            res.status(201).json(teams)
+            let introduces = await Introduce.find({});
+            let clients = await Client.find({});
+            let remarks = await Remark.find({});
+            let leaderships = await Leadership.find({});
+            let awards = await Award.find({});
+            let elements = await Element.find({});
+            res.status(201).json({
+                introduces: introduces,
+                clients: clients,
+                remarks: remarks,
+                leaderships: leaderships,
+                awards: awards,
+                elements: elements
+
+            })
         } catch (e) {
             errors.notFound(res, errors);
         }
+
+
+        // try {
+        //     let teams = await Team.find({});
+        //     res.status(201).json(teams)
+        // } catch (e) {
+        //     errors.notFound(res, errors);
+        // }
     },
     update: async (req, res) => {
-
         let candidate = req.query.id + '';
-        try {
-            await Team.findByIdAndUpdate(
-                {_id: candidate},
-                {$set: req.body},
-                {new: true});
-            res.status(201).json({
-                success: true
-            })
-        } catch (e) {
-            errors.invalidData(res, errors);
+
+        let type = Object.keys(req.body)[0]; //introduce
+        let field = Object.keys(req.body[Object.keys(req.body)[0]])[0];  //introduce.title
+
+        if (type === 'introduce') {
+            try {
+                let upd = {};
+                upd[field] = req.body[type][field];
+
+                await Introduce.findByIdAndUpdate(
+                    {_id: candidate},
+                    {$set: upd},
+                    {new: true});
+                res.status(201).json({
+                    success: true
+                })
+            } catch (e) {
+                errors.invalidData(res, errors);
+            }
+        } else if (type === 'element') {
+
+
+            try {
+                let upd = {};
+                upd[field] = req.body[type][field];
+
+                await Element.findByIdAndUpdate(
+                    {_id: candidate},
+                    {$set: upd},
+                    {new: true});
+                res.status(201).json({
+                    success: true
+                })
+            } catch (e) {
+                errors.invalidData(res, errors);
+            }
+        } else if (type === 'client') {
+
+            try {
+                let upd = {};
+                upd[field] = req.body[type][field];
+
+                await Client.findByIdAndUpdate(
+                    {_id: candidate},
+                    {$set: upd},
+                    {new: true});
+                res.status(201).json({
+                    success: true
+                })
+            } catch (e) {
+                errors.invalidData(res, errors);
+            }
+        } else if (type === 'remark') {
+
+            try {
+                let upd = {};
+                upd[field] = req.body[type][field];
+
+                await Remark.findByIdAndUpdate(
+                    {_id: candidate},
+                    {$set: upd},
+                    {new: true});
+                res.status(201).json({
+                    success: true
+                })
+            } catch (e) {
+                errors.invalidData(res, errors);
+            }
+        }else if (type === 'leadership') {
+
+            try {
+                let upd = {};
+                upd[field] = req.body[type][field];
+
+                await Leadership.findByIdAndUpdate(
+                    {_id: candidate},
+                    {$set: upd},
+                    {new: true});
+                res.status(201).json({
+                    success: true
+                })
+            } catch (e) {
+                errors.invalidData(res, errors);
+            }
+        }else if (type === 'awards') {
+
+            try {
+                let upd = {};
+                upd[field] = req.body[type][field];
+
+                await Award.findByIdAndUpdate(
+                    {_id: candidate},
+                    {$set: upd},
+                    {new: true});
+                res.status(201).json({
+                    success: true
+                })
+            } catch (e) {
+                errors.invalidData(res, errors);
+            }
         }
+
+
+        // let candidate = req.query.id + '';
+        // try {
+        //
+        //     let a = Object.keys(req.body)[0];
+        //     let b = Object.keys(req.body[Object.keys(req.body)[0]])[0];
+        //     let c = req.body[Object.keys(req.body)[0]][Object.keys(req.body[Object.keys(req.body)[0]])[0]];
+        //
+        //     let d = `${a}.${b}`;
+        //     let upd = {};
+        //     upd[d] = c;
+        //     await Team.findByIdAndUpdate(
+        //         {_id: candidate},
+        //         // {d: c},
+        //         // {$set: {d: c}},
+        //         {$set: upd},
+        //         {new: true});
+        //     res.status(201).json({
+        //         success: true
+        //     })
+        // } catch (e) {
+        //     errors.invalidData(res, errors);
+        // }
     },
 
 
