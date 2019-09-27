@@ -8,11 +8,11 @@ import {ContactCareersComponent} from './contact-careers/contact-careers.compone
 const routes: Routes = [
     {
         path: '', component: ContactComponent, children: [
-            {path: '', redirectTo: 'new-business', pathMatch: 'full'},
-            {path: 'new-business', component: NewBusinessComponent},
-            {path: 'speaking-opportunity', component: SpeakingOpportunityComponent},
+            {path: '', redirectTo: 'business', pathMatch: 'full'},
+            {path: 'business', component: NewBusinessComponent},
+            {path: 'opportunity', component: SpeakingOpportunityComponent},
             {path: 'careers', component: ContactCareersComponent},
-            {path: '**', redirectTo: 'new-business', pathMatch: 'full'}
+            {path: '**', redirectTo: 'business', pathMatch: 'full'}
         ]
     }
 ];

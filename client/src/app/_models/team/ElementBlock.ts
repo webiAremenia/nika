@@ -1,6 +1,6 @@
-import {TeamText} from './TeamText';
+import {TextData} from '../TextData';
 
 export interface ElementBlock {
-    title: TeamText;
-    description: TeamText;
+    title: TextData;
+    description: TextData;
 }

@@ -3,32 +3,44 @@
 
         <div class="row navigation navigation-desc">
 
-            <div class="col-4 section"
-                 routerLinkActive="active section-1-active"
+            <div *ngFor="let form of content, let i = index"
+                    class="col-4 section"
+                 [routerLinkActive]="'active section-' + i + '-active'"
                  [routerLinkActiveOptions]="{exact: true}"
-                 [routerLink]="['new-business']">
+                 [routerLink]="[form.key]">
                 <a
-                        [style.font-size]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"
-                >NEW BUSINESS</a>
+                        [style.font-size]="(windowSize.width * form.title.fontSize * windowSize.rate) / 1920 + 'px'"
+                        [style.line-height]="(windowSize.width * form.title.lineHeight * windowSize.rate) / 1920 + 'px'"
+                        [style.font-family]="form.title.fontFamily"
+                >{{form.title.text}}</a>
             </div>
 
-            <div class="col-4 section"
-                 routerLinkActive="active section-2-active"
-                 [routerLink]="['speaking-opportunity']">
-                <a
+<!--            <div class="col-4 section"-->
+<!--                 routerLinkActive="active section-1-active"-->
+<!--                 [routerLinkActiveOptions]="{exact: true}"-->
+<!--                 [routerLink]="['new-business']">-->
+<!--                <a-->
+<!--                        [style.font-size]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"-->
+<!--                >NEW BUSINESS</a>-->
+<!--            </div>-->
 
-                        [style.font-size]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"
-                >SPEAKING OPPORTUNITY</a>
-            </div>
+<!--            <div class="col-4 section"-->
+<!--                 routerLinkActive="active section-2-active"-->
+<!--                 [routerLink]="['speaking-opportunity']">-->
+<!--                <a-->
 
-            <div class="col-4 section"
-                 routerLinkActive="active section-3-active"
-                 [routerLink]="['careers']">
-                <a
+<!--                        [style.font-size]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"-->
+<!--                >SPEAKING OPPORTUNITY</a>-->
+<!--            </div>-->
 
-                        [style.font-size]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"
-                >CAREERS</a>
-            </div>
+<!--            <div class="col-4 section"-->
+<!--                 routerLinkActive="active section-3-active"-->
+<!--                 [routerLink]="['careers']">-->
+<!--                <a-->
+
+<!--                        [style.font-size]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"-->
+<!--                >CAREERS</a>-->
+<!--            </div>-->
 
         </div>
 

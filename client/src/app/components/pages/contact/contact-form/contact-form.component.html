@@ -82,7 +82,12 @@
     <div class="button-row">
         <button mat-raised-button type="submit" [disabled]="form.invalid">
 
-            <span *ngIf="!done">SUBMIT</span>
+            <span
+                    [style.font-size]="(windowSize.width * buttonValue.fontSize * windowSize.rate) / 1920 + 'px'"
+                    [style.line-height]="(windowSize.width * buttonValue.lineHeight * windowSize.rate) / 1920 + 'px'"
+                    [style.font-family]="buttonValue.fontFamily"
+                    *ngIf="!done"
+            >{{buttonValue.text}}</span>
 
             <span *ngIf="done" class="spinner-border text-light" role="status">
                 <span class="sr-only">Loading...</span>

@@ -1,9 +1,10 @@
-import {AfterViewInit, Component, HostListener, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, HostListener, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ContactService} from '../../../../_services/contact.service';
 import {ResponsiveData} from '../../../../_models/ResponsiveData';
 import {Subscription} from 'rxjs';
 import {ActionsService} from '../../../../_services/actions.service';
+import {TextData} from '../../../../_models/TextData';
 
 
 @Component({
@@ -11,7 +12,7 @@ import {ActionsService} from '../../../../_services/actions.service';
     templateUrl: './contact-form.component.html',
     styleUrls: ['./contact-form.component.scss']
 })
-export class ContactFormComponent implements OnInit, AfterViewInit {
+export class ContactFormComponent implements OnInit, OnDestroy, AfterViewInit {
     windowSubscription: Subscription;
     mobileWindowSubscription: Subscription;
     windowSize: ResponsiveData;
@@ -41,13 +42,15 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
     currentCountryPhone = 1;
 
     @Input() type: string;
+    @Input() buttonValue: TextData;
 
     constructor(
         private contactService: ContactService,
         private actionsService: ActionsService,
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
     ) {
         this.initSubscriptions();
+
     }
 
     @HostListener('document: scroll') mouseWheel() {
@@ -94,10 +97,17 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
         }
     }
 
+    ngOnDestroy() {
+        this.windowSubscription.unsubscribe();
+        this.mobileWindowSubscription.unsubscribe();
+    }
+
     ngAfterViewInit() {
-        document.getElementsByClassName('iti__flag-container')[0].addEventListener('click', () => {
-            this.form.reset();
-        });
+        if (document.getElementsByClassName('iti__flag-container')[0]) {
+            document.getElementsByClassName('iti__flag-container')[0].addEventListener('click', () => {
+                this.form.reset();
+            });
+        }
         const phoneDiv = document.getElementsByClassName('iti__selected-flag')[0];
         if (phoneDiv) {
             phoneDiv.addEventListener('click', ($event: any) => {
