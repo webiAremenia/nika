@@ -4,6 +4,9 @@ import {ResponsiveData} from '../../../_models/ResponsiveData';
 import {ActionsService} from '../../../_services/actions.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
+import {ContactService} from '../../../_services/contact.service';
+import {ContactData} from '../../../_models/contact/ContactData';
+import {ContactResponse} from '../../../_models/ContactResponse';
 
 @Component({
     selector: 'app-contact',
@@ -17,13 +20,23 @@ export class ContactComponent implements OnInit, OnDestroy {
     currentLocation: string;
     locationGroup: FormGroup;
 
-    constructor(private actionsService: ActionsService, private route: ActivatedRoute, private router: Router) {
+    content: ContactData[] = [];
+
+    constructor(private actionsService: ActionsService,
+                private route: ActivatedRoute,
+                private contactService: ContactService,
+                private router: Router
+    ) {
         this.currentLocation = router.url.split('/contact/')[1].toUpperCase().replace('-', ' ');
         this.initSubscriptions();
 
         this.locationGroup = new FormGroup({
             select: new FormControl(`${this.currentLocation}`)
         });
+        this.contactService.getContactPageData()
+            .subscribe( (data: ContactResponse) => {
+                this.content = data.contacts;
+            });
     }
 
     ngOnInit() {

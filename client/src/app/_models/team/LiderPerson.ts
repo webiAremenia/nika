@@ -1,7 +1,7 @@
-import {TeamText} from './TeamText';
+import {TextData} from '../TextData';
 
 export interface LiderPerson {
     avatar: string;
-    name: TeamText;
-    job: TeamText;
+    name: TextData;
+    job: TextData;
 }

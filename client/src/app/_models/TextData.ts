@@ -1,4 +1,4 @@
-export interface TeamText {
+export interface TextData {
     fontFamily: string;
     fontSize: number;
     lineHeight: number;

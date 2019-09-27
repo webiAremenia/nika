@@ -1,6 +1,8 @@
 import {TextData} from '../TextData';
 
-export interface Remark {
+export interface ContactData {
+    buttonText: TextData;
     description: TextData;
+    key: string;
     title: TextData;
 }
