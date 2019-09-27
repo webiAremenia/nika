@@ -1,8 +1,9 @@
 import {LiderPerson} from './LiderPerson';
+import {TeamText} from './TeamText';
 
 export interface Lidership {
-    title: string;
-    description: string;
+    title: TeamText;
+    description: TeamText;
     first: LiderPerson;
     second: LiderPerson;
 }

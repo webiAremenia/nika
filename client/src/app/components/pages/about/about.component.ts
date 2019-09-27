@@ -8,7 +8,6 @@ import {ResponsiveData} from '../../../_models/ResponsiveData';
 import {ActionsService} from '../../../_services/actions.service';
 import {TeamService} from '../../../_services/team.service';
 import {TeamPage} from '../../../_models/team/TeamPage';
-import {normalizeSlashes} from 'ts-node';
 
 @Component({
     selector: 'app-about',
@@ -49,8 +48,9 @@ export class AboutComponent implements OnInit, OnDestroy {
     }
 
     @HostListener('touchmove', ['$event']) touchmove(e) {
+        console.log(e);
         if (window.innerWidth > 992) {
-            return;
+            this.initDesktopAnimation(e.touches[0].clientY - e.touches[0].screenY);
         } else {
             this.initMobileAnimation();
         }
@@ -86,8 +86,9 @@ export class AboutComponent implements OnInit, OnDestroy {
 
     getPage() {
         this.teamService.getTeam()
-            .subscribe((data: TeamPage[]) => {
-                this.pageContent = data[0];
+            .subscribe((data: TeamPage) => {
+                this.pageContent = data;
+                console.log(data);
                 this.done = true;
             });
     }
