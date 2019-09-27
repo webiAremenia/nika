@@ -14,6 +14,7 @@ require('./seed').createLogos();
 require('./seed').createMenus();
 require('./seed').createDefaultAdmin();
 require('./seed').createTeam();
+require('./seed').createContactForm();
 
 
 const mongoDB = global.gConfig.database;

@@ -10,17 +10,40 @@
 >
     <input nz-input placeholder="Basic usage" [(ngModel)]="modalContent">
 
-    <nz-input-number [(ngModel)]="fontSize" [nzMin]="1" [nzMax]="72" [nzStep]="1"></nz-input-number>
+    <div class="row">
+        <div class="col-4">
+            <div class="col-12">
+                <nz-form-label nzFor="size">Font Size</nz-form-label>
+            </div>
+            <div class="col-12">
+                <nz-input-number id="size" [(ngModel)]="fontSize" [nzMin]="fontSizeMin" [nzMax]="fontSizeMax"
+                                 [nzStep]="1"></nz-input-number>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="col-12">
+                <nz-form-label nzFor="line">Line Height</nz-form-label>
+            </div>
+            <div class="col-12">
+                <nz-input-number id="family" [(ngModel)]="lineHeight" [nzMin]="lineHeightMin" [nzMax]="lineHeightMax"
+                                 [nzStep]="1"></nz-input-number>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="col-12">
+                <nz-form-label nzFor="family">Font Family</nz-form-label>
+            </div>
+            <div class="col-12">
 
-    <nz-input-number [(ngModel)]="lineHeight" [nzMin]="1" [nzMax]="300" [nzStep]="1"></nz-input-number>
-
-
-    <nz-select style="width: 120px;" [(ngModel)]="fontFamily" nzAllowClear nzPlaceHolder="Font Family">
-        <nz-option nzValue="Open Sans" nzLabel="Regular"></nz-option>
-        <nz-option nzValue="Open Sans Semibold" nzLabel="Semibold"></nz-option>
-        <nz-option nzValue="Open Sans Bold" nzLabel="Bold"></nz-option>
-        <nz-option nzValue="Open Sans Extrabold" nzLabel="Extrabold"></nz-option>
-    </nz-select>
+                <nz-select style="width: 120px;" [(ngModel)]="fontFamily" nzAllowClear nzPlaceHolder="Font Family">
+                    <nz-option nzValue="Open Sans" nzLabel="Regular"></nz-option>
+                    <nz-option nzValue="Open Sans Semibold" nzLabel="Semibold"></nz-option>
+                    <nz-option nzValue="Open Sans Bold" nzLabel="Bold"></nz-option>
+                    <nz-option nzValue="Open Sans Extrabold" nzLabel="Extrabold"></nz-option>
+                </nz-select>
+            </div>
+        </div>
+    </div>
 
 
     <!--    <p>{{modalContent}}</p>-->

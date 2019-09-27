@@ -13,6 +13,7 @@ const posts = require('./post'),
     group = require('./group'),
     work = require('./work'),
     team = require('./team'),
+    contactForm = require('./contact-form'),
     page = require('./page');
 
 
@@ -28,5 +29,6 @@ router.use('/settings', settings);
 router.use('/group', group);
 router.use('/work', work);
 router.use('/team', team);
+router.use('/contact-form', contactForm);
 
 module.exports = router;
