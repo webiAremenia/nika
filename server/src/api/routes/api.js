@@ -15,7 +15,6 @@ const posts = require('./post'),
     team = require('./team'),
     page = require('./page');
 
-
 router.use('/post', posts);
 router.use('/slider', sliders);
 router.use('/logo', logo);

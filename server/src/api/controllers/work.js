@@ -7,6 +7,9 @@ module.exports = {
         try {
             let works = await Work.find({})
                 .select('description img slug title subTitle');
+            res.cacheControl = {
+                maxAge: 31536000
+            };
             res.status(201).json(works)
         } catch (e) {
             errors.notFound(res, errors);

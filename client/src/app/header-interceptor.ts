@@ -3,7 +3,7 @@ import {
     HttpRequest,
     HttpHandler,
     HttpEvent,
-    HttpInterceptor, HttpErrorResponse
+    HttpInterceptor, HttpErrorResponse, HttpResponse
 } from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
@@ -16,8 +16,9 @@ export class HeaderInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // console.log('intyerv')
         const modified = request.clone({
-            // setHeaders: { 'content-encoding': 'gzip' }
+            setHeaders: {'Cache-Control': 'public,max-age=31536000'}
         });
+        // console.log('intyerv')
         return next.handle(modified);
     }
 }

@@ -30,11 +30,6 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 app.use(require('cors')());
 
-// app.use((req, res) => {
-//     res.setHeader( 'Cache-Control', 'public');
-//     res.setHeader( 'Cache-Control', 'max-age=31536000');
-// });
-
 app.use(morgan('combined', {stream: winston.stream}));
 
 app.use(processImage(__dirname + '/../_uploads'));
