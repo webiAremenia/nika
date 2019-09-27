@@ -23,11 +23,7 @@ module.exports = {
         let upd = {};
         upd[type] = req.body[type];
 
-
-
-
         try {
-
             await Contact.findByIdAndUpdate(
                 {_id: candidate},
                 {$set: upd},

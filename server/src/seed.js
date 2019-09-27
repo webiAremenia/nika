@@ -122,16 +122,30 @@ module.exports.createTeam = async (req, res) => {
 };
 
 module.exports.createContactForm = async (req, res) => {
+    const keys = ['business', 'opportunity', 'careers'];
     try {
-        let contacts = await Contact.find({});
-        if (contacts.length < 2) {
-            for (let i = 0; i < 3; ++i) {
-                let item = new Contact()
-                item.save()
+        keys.forEach(async (key, i) => {
+            let menu = await Contact.findOne({key: key});
+            if (!menu) {
+                let obj = new Contact({
+                    key: key,
+                });
+                obj.save()
             }
-        }
-
+        })
     } catch (e) {
         console.log(e)
     }
+    // try {
+    //     let contacts = await Contact.find({});
+    //     if (contacts.length < 2) {
+    //         for (let i = 0; i < 3; ++i) {
+    //             let item = new Contact();
+    //             item.save()
+    //         }
+    //     }
+    //
+    // } catch (e) {
+    //     console.log(e)
+    // }
 };
