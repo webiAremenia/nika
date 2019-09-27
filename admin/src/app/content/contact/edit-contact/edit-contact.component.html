@@ -1,0 +1,72 @@
+<nz-table #middleTable nzSize="middle" [nzData]="contacts" [nzPageSize]="8">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Buttons text</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let contact of middleTable.data; let i = index">
+        <td (click)="edit(contact.title,'title',i, contact._id)"
+            [ngStyle]="{'font-family': contact.title.fontFamily, 'font-size': contact.title.fontSize + 'px', 'line-height' :contact.title.lineHeight + 'px'}">{{ contact.title.text }}</td>
+        <td (click)="edit(contact.description,'description',i, contact._id)"
+            [ngStyle]="{'font-family': contact.description.fontFamily, 'font-size': contact.description.fontSize + 'px', 'line-height' :contact.description.lineHeight + 'px'}">{{ contact.description.text }}</td>
+        <td (click)="edit(contact.buttonText, 'buttonText',i, contact._id)"
+            [ngStyle]="{'font-family': contact.buttonText.fontFamily, 'font-size': contact.buttonText.fontSize + 'px', 'line-height' :contact.buttonText.lineHeight + 'px'}">{{ contact.buttonText.text }}</td>
+
+    </tr>
+
+
+    </tbody>
+</nz-table>
+
+
+<nz-modal
+    [(nzVisible)]="isVisible"
+    nzTitle="Modal Title"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()"
+    [nzOkLoading]="isOkLoading"
+>
+    <input nz-input placeholder="Basic usage" [(ngModel)]="modalContent">
+
+    <div class="row">
+        <div class="col-4">
+            <div class="col-12">
+                <nz-form-label nzFor="size">Font Size</nz-form-label>
+            </div>
+            <div class="col-12">
+                <nz-input-number id="size" [(ngModel)]="fontSize" [nzMin]="fontSizeMin" [nzMax]="fontSizeMax"
+                                 [nzStep]="1"></nz-input-number>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="col-12">
+                <nz-form-label nzFor="line">Line Height</nz-form-label>
+            </div>
+            <div class="col-12">
+                <nz-input-number id="family" [(ngModel)]="lineHeight" [nzMin]="lineHeightMin" [nzMax]="lineHeightMax"
+                                 [nzStep]="1"></nz-input-number>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="col-12">
+                <nz-form-label nzFor="family">Font Family</nz-form-label>
+            </div>
+            <div class="col-12">
+
+                <nz-select style="width: 120px;" [(ngModel)]="fontFamily" nzAllowClear nzPlaceHolder="Font Family">
+                    <nz-option nzValue="Open Sans" nzLabel="Regular"></nz-option>
+                    <nz-option nzValue="Open Sans Semibold" nzLabel="Semibold"></nz-option>
+                    <nz-option nzValue="Open Sans Bold" nzLabel="Bold"></nz-option>
+                    <nz-option nzValue="Open Sans Extrabold" nzLabel="Extrabold"></nz-option>
+                </nz-select>
+            </div>
+        </div>
+    </div>
+
+
+    <!--    <p>{{modalContent}}</p>-->
+</nz-modal>

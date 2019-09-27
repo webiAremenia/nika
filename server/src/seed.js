@@ -10,6 +10,7 @@ const Remark = require('./admin/models/remark');
 const Leadership = require('./admin/models/leadership');
 const Award = require('./admin/models/awards');
 const Element = require('./admin/models/element');
+const Contact = require('./admin/models/contact');
 
 module.exports.createDefaultAdmin = async (req, res) => {
     try {
@@ -99,7 +100,6 @@ module.exports.createMenus = (req, res) => {
     }
 };
 module.exports.createTeam = async (req, res) => {
-
     try {
 
 
@@ -114,8 +114,24 @@ module.exports.createTeam = async (req, res) => {
             }
         }
 
+
     } catch (e) {
         console.log(e)
     }
 
+};
+
+module.exports.createContactForm = async (req, res) => {
+    try {
+        let contacts = await Contact.find({});
+        if (contacts.length < 2) {
+            for (let i = 0; i < 3; ++i) {
+                let item = new Contact()
+                item.save()
+            }
+        }
+
+    } catch (e) {
+        console.log(e)
+    }
 };

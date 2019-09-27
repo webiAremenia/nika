@@ -47,6 +47,12 @@ export class EditTeamComponent implements OnInit, OnDestroy {
     leadership: Leadership;
     awards: Awards;
 
+    fontSizeMin = 10;
+    fontSizeMax = 100;
+
+    lineHeightMin = 10;
+    lineHeightMax = 100;
+
 
     @HostListener('window:resize', ['$event']) onResize(e) {
         if (window.innerWidth > 767) {
@@ -97,6 +103,24 @@ export class EditTeamComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.windowSubscription.unsubscribe();
+    }
+
+
+    fontSizeChange() {
+        this.lineHeightMin = this.fontSize;
+        if (this.fontSize < this.lineHeight) {
+            this.lineHeight = this.fontSize;
+        }
+    }
+
+
+    lineHeightChange() {
+        this.fontSizeMin = this.lineHeight;
+        console.log(this.fontSizeMin)
+
+        if (this.fontSize < this.lineHeight) {
+            this.lineHeight = this.fontSize;
+        }
     }
 
     myIntroduce(e, field) {
@@ -473,9 +497,7 @@ export class EditTeamComponent implements OnInit, OnDestroy {
         }, 0);
     }
 
-    handleCancel()
-        :
-        void {
+    handleCancel(): void {
         this.isVisible = false;
     }
 
