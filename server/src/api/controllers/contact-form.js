@@ -5,7 +5,7 @@ const errors = require('../_helper/error_handler');
 module.exports = {
     getContact: async (req, res) => {
         try {
-            let contacts = await Contact.find({});
+            let contacts = await Contact.find({}).sort('order');
             res.status(201).json({
                 contacts: contacts,
             })

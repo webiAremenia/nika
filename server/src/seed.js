@@ -127,10 +127,25 @@ module.exports.createContactForm = async (req, res) => {
         keys.forEach(async (key, i) => {
             let menu = await Contact.findOne({key: key});
             if (!menu) {
-                let obj = new Contact({
-                    key: key,
-                });
-                obj.save()
+                if (key === 'business') {
+                    let obj = new Contact({
+                        order: 1,
+                        key: key,
+                    });
+                    obj.save()
+                } else if (key === 'opportunity') {
+                    let obj = new Contact({
+                        order: 2,
+                        key: key,
+                    });
+                    obj.save()
+                } else {
+                    let obj = new Contact({
+                        order: 3,
+                        key: key,
+                    });
+                    obj.save()
+                }
             }
         })
     } catch (e) {
