@@ -1,4 +1,3 @@
-const Team = require('../models/team');
 const Introduce = require('../models/introduce');
 const Client = require('../models/client');
 const Remark = require('../models/remark');
@@ -30,13 +29,6 @@ module.exports = {
             errors.notFound(res, errors);
         }
 
-
-        // try {
-        //     let teams = await Team.find({});
-        //     res.status(201).json(teams)
-        // } catch (e) {
-        //     errors.notFound(res, errors);
-        // }
     },
     update: async (req, res) => {
         let candidate = req.query.id + '';
@@ -108,7 +100,7 @@ module.exports = {
             } catch (e) {
                 errors.invalidData(res, errors);
             }
-        }else if (type === 'leadership') {
+        } else if (type === 'leadership') {
 
             try {
                 let upd = {};
@@ -124,7 +116,7 @@ module.exports = {
             } catch (e) {
                 errors.invalidData(res, errors);
             }
-        }else if (type === 'awards') {
+        } else if (type === 'awards') {
 
             try {
                 let upd = {};
@@ -142,29 +134,6 @@ module.exports = {
             }
         }
 
-
-        // let candidate = req.query.id + '';
-        // try {
-        //
-        //     let a = Object.keys(req.body)[0];
-        //     let b = Object.keys(req.body[Object.keys(req.body)[0]])[0];
-        //     let c = req.body[Object.keys(req.body)[0]][Object.keys(req.body[Object.keys(req.body)[0]])[0]];
-        //
-        //     let d = `${a}.${b}`;
-        //     let upd = {};
-        //     upd[d] = c;
-        //     await Team.findByIdAndUpdate(
-        //         {_id: candidate},
-        //         // {d: c},
-        //         // {$set: {d: c}},
-        //         {$set: upd},
-        //         {new: true});
-        //     res.status(201).json({
-        //         success: true
-        //     })
-        // } catch (e) {
-        //     errors.invalidData(res, errors);
-        // }
     },
 
 

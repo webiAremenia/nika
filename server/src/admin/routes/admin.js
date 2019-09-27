@@ -16,6 +16,7 @@ const auth = require('./auth'),
     group = require('./group'),
     work = require('./work'),
     profile = require('./profile'),
+    contact = require('./contact'),
     team = require('./team');
 
 router.use('/post', posts);
@@ -33,5 +34,6 @@ router.use('/group', group);
 router.use('/profile', profile);
 router.use('/work', work);
 router.use('/team', team);
+router.use('/contact', contact);
 
 module.exports = router;
