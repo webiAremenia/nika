@@ -1,4 +1,5 @@
-<div class="new-business-content-wrapper">
+<div *ngIf="!done">Loading...</div>
+<div class="new-business-content-wrapper" *ngIf="done">
 
     <!--    <p class="contact-title">Feeling good about working with us?</p>-->
     <!--    <p class="contact-description">Please provide a brief description of your bussines and well do our best to get back-->
@@ -7,13 +8,14 @@
 
     <div class="careers-content col-12">
         <p class="careers-description"
-           [style.font-size]="(windowSize.width * 20 * windowSize.rate) / 1920 + 'px'"
-           [style.line-height]="(windowSize.width * 30* windowSize.rate) / 1920 + 'px'">
-            Rebels are always wanted. Please send us a link to your portfolio and tell us in a few words why you would
-            like to be a part of our team.
+           [style.font-size]="(windowSize.width * content.description.fontSize * windowSize.rate) / 1920 + 'px'"
+           [style.line-height]="(windowSize.width * content.description.lineHeight * windowSize.rate) / 1920 + 'px'"
+           [style.font-family]="content.description.fontFamily"
+        >
+           {{content.description.text}}
         </p>
 
-        <app-contact-form [type]="'careers'"></app-contact-form>
+        <app-contact-form [type]="'careers'" [buttonValue]="content.buttonText"></app-contact-form>
 
     </div>
 

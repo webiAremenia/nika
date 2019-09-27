@@ -40,6 +40,7 @@ export class EditContactComponent implements OnInit {
     ngOnInit() {
         this.contactService.getContact().subscribe((data: any) => {
             this.contacts = data.contacts;
+            console.log(data.contacts);
         }, e => console.log(e))
     }
 

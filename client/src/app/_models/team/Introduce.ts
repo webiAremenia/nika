@@ -1,7 +1,7 @@
-import {TeamText} from './TeamText';
+import {TextData} from '../TextData';
 
 export interface Introduce {
-    title: TeamText;
+    title: TextData;
     backgroundImage: string;
-    description: TeamText;
+    description: TextData;
 }

@@ -39,16 +39,16 @@ $border-style: 5px solid #000A1D;
 .navigation {
   height: 57px;
 
-  .section-1-active {
+  .section-0-active {
     border-right: $border-style;
   }
 
-  .section-2-active {
+  .section-1-active {
     border-right: $border-style;
     border-left: $border-style;
   }
 
-  .section-3-active {
+  .section-2-active {
     border-left: $border-style;
   }
 

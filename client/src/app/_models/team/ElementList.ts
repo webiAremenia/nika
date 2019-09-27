@@ -1,7 +1,7 @@
 import {ElementBlock} from './ElementBlock';
-import {TeamText} from './TeamText';
+import {TextData} from '../TextData';
 
 export  interface ElementList {
-    title: TeamText;
+    title: TextData;
     blocks: Array<ElementBlock>;
 }

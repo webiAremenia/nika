@@ -1,8 +1,8 @@
 import {ClientBlock} from './ClientBlock';
-import {TeamText} from './TeamText';
+import {TextData} from '../TextData';
 
 export interface ClientList {
-    title: TeamText;
-    description: TeamText;
+    title: TextData;
+    description: TextData;
     blocks: Array<ClientBlock>;
 }
