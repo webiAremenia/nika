@@ -17,6 +17,8 @@ import {TeamPage} from '../../../_models/team/TeamPage';
 export class AboutComponent implements OnInit, OnDestroy {
     done = false;
     pageContent: TeamPage;
+    edge = false;
+    test = true;
 
     // // // FONT SIZE // // //
     windowSubscription: Subscription;
@@ -31,7 +33,19 @@ export class AboutComponent implements OnInit, OnDestroy {
     @ViewChild('aboutScroll') aboutScroll: ElementRef;
 
     @HostListener('wheel', ['$event']) wheel(e) {
-        if (window.innerWidth > 992) {
+        if (window.innerWidth > 992 && this.edge) {
+            if (this.test) {
+                const delta = (e.deltaY > 10 || e.deltaY < -10) ? e.deltaY * .7 : null;
+                if (delta) {
+                    this.initDesktopAnimation(e.deltaY * 5);
+                }
+                this.test = false;
+                setTimeout( () => {
+                    this.test = true;
+                }, 1000);
+            }
+        }
+        if (window.innerWidth > 992 && !this.edge) {
             const delta = (e.deltaY > 10 || e.deltaY < -10) ? e.deltaY * .7 : null;
             if (delta) {
                 this.initDesktopAnimation(e.deltaY);
@@ -80,6 +94,9 @@ export class AboutComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        if (!!window.StyleMedia) {
+            this.edge = true;
+        }
         // this.getAll();
         this.getPage();
     }
@@ -88,7 +105,6 @@ export class AboutComponent implements OnInit, OnDestroy {
         this.teamService.getTeam()
             .subscribe((data: TeamPage) => {
                 this.pageContent = data;
-                console.log(data);
                 this.done = true;
             });
     }

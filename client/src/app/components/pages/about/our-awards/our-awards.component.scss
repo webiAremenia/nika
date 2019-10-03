@@ -98,17 +98,12 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
     .awards {
       padding: 0;
 
-      .award {
-        width: 80px !important;
-        height: 78px !important;
-      }
-
       .award-img {
         background-size: 30px !important;
       }
 
       .award-text {
-        justify-content: center!important;
+        justify-content: center !important;
         font-size: 10px !important;
         line-height: 14px !important;
       }

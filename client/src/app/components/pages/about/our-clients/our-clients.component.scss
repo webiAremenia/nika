@@ -52,6 +52,14 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
 // // // Media // // //
 
+//@media (max-width: 1400px) {
+//  .partners {
+//    .partner {
+//      height: 12vw!important;
+//    }
+//  }
+//}
+
 @media (min-width: 1440px) {
   .partners {
     padding: 86px;

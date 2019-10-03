@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ResponsiveData} from '../../../../_models/ResponsiveData';
 import {ActionsService} from '../../../../_services/actions.service';
@@ -14,6 +14,13 @@ export class OurClientsComponent implements OnInit, OnDestroy {
     windowSubscription: Subscription;
     windowSize: ResponsiveData;
 
+    @HostListener('window:resize') onResize() {
+        document.querySelectorAll('.partner').forEach((it: HTMLElement) => {
+            const elem: any = document.getElementsByClassName('partner')[0];
+            it.style.height = elem.offsetWidth + 'px';
+        });
+    }
+
     constructor(private actionsService: ActionsService) {
         this.windowSubscription = actionsService.getWindowSize()
             .subscribe((size: ResponsiveData) => this.windowSize = size);
@@ -21,6 +28,12 @@ export class OurClientsComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.content = this.content[0];
+        setTimeout( () => {
+            document.querySelectorAll('.partner').forEach((it: HTMLElement)  => {
+                const elem: any = document.getElementsByClassName('partner')[0];
+                it.style.height = elem.offsetWidth + 'px';
+            });
+        }, 100);
     }
 
     ngOnDestroy() {

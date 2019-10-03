@@ -54,7 +54,8 @@
 .side-bar-about {
     font-size: larger;
     padding-top: 20px;
-    padding-right: 50px;
+    //padding-right: 50px;
+    padding-right: 15px;
     @media (max-width: 1600px) {
         font-size: 13px;
     }
@@ -90,14 +91,20 @@
 
 .side-bar-meet-link a, .menu-items a {
     text-decoration: underline;
-    font: Bold 25px/45px Open Sans;
+    //font: Bold 25px/45px Open Sans;
+    font-family: 'Open Sans Bold', sans-serif;
+    font-size: 25px;
+    line-height: 45px;
     letter-spacing: -0.5px;
     color: #000A1D;
 }
 
 .menu-items span {
-    //text-decoration: none;
-    font: Regular 25px/45px Open Sans;
+    // text-decoration: none;
+    font-family: 'Open Sans Regular', sans-serif;
+    font-size: 25px;
+    line-height: 45px;
+    //font: Regular 25px/45px Open Sans;
     letter-spacing: -0.5px;
     color: #000A1D;
 }
