@@ -1,6 +1,9 @@
 $font-regular: 'Open Sans Regular', sans-serif;
 $font-semiBold: 'Open Sans Semibold', sans-serif;
 
+.common-form{
+  max-width: 790px;
+}
 ::ng-deep .iti__country-list {
   position: fixed;
   z-index: 999;
@@ -21,7 +24,7 @@ mat-form-field {
 
 .area textarea {
   border: 1px solid grey;
-  width: 97.5%;
+  width: 98.5%;
   height: 80%;
   resize: none;
   padding: 10px;

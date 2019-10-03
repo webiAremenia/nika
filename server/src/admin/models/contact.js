@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const ContactSchema = new Schema({
     key: {type: String, required: true},
+    order: {type: Number},
     title: {
         text: {
             type: String,
