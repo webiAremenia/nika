@@ -6,7 +6,7 @@ $font-white-color: #ffffff;
 ul li {
   list-style-type: none;
   color: $font-white-color;
-  transition: 1s all ease-in;
+  transition: 300ms all ease-in;
 }
 
 ul {
@@ -30,11 +30,25 @@ ul:hover {
 }
 
 .active {
-  border-top: 1.5px solid lime !important;
-  border-bottom: 1.5px solid lime !important;
+  //border-top: 1.5px solid lime !important;
+  //border-bottom: 1.5px solid lime !important;
+  height: auto !important;
 
   .list-description {
-    display: block !important;
+    visibility: visible !important;
+
+    animation-name: slideUp;
+    -webkit-animation-name: slideUp;
+
+    animation-duration: 650ms;
+    -webkit-animation-duration: 650ms;
+
+    animation-timing-function: ease;
+    -webkit-animation-timing-function: ease;
+    opacity: 1 !important;
+    height: auto !important;
+    top: 0 !important;
+    padding-bottom: 46px !important;
   }
 }
 
@@ -48,33 +62,63 @@ ul:hover {
     .heading {
       padding-bottom: 91px;
       text-align: left;
-      //font-family: $font-extraBold;
       letter-spacing: -2.6px;
       color: $font-white-color;
     }
 
     .list {
+      position: relative;
+
       .list-title {
+        position: relative;
         text-align: left;
-        //font-family: $font-semiBold;
         letter-spacing: -0.72px;
         padding: 0 15px;
       }
 
       .list-description {
-        display: none;
+        width: 86%;
+        left: 7%;
+        position: relative;
+        padding-bottom: 0;
+        top: -100%;
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
         text-align: left;
         letter-spacing: 0;
-        //font-family: $font-regular;
         color: $font-white-color;
-        padding: 0 70px 46px 70px;
       }
     }
   }
 
 }
 
-// // // MEDIA // // //
+// // // // //  ANIMATION // // // // //
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+  }
+  50% {
+    transform: translateY(-8%);
+  }
+  65% {
+    transform: translateY(4%);
+  }
+  80% {
+    transform: translateY(-4%);
+  }
+  95% {
+    transform: translateY(2%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+
+// // // // //  MEDIA // // // // //
 
 @media (max-width: 767px) {
   .heading {
@@ -97,7 +141,7 @@ ul:hover {
     .list-description {
       font-size: 11px !important;
       line-height: 15px !important;
-      padding: 0 0 0 30px !important;
+      padding: 0 !important;
     }
   }
 }
