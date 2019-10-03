@@ -40,7 +40,7 @@ export class AboutComponent implements OnInit, OnDestroy {
                     this.initDesktopAnimation(e.deltaY * 5);
                 }
                 this.test = false;
-                setTimeout( () => {
+                setTimeout(() => {
                     this.test = true;
                 }, 1000);
             }
@@ -94,10 +94,9 @@ export class AboutComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        if (!!window.StyleMedia) {
+        if (document.documentMode || /Edge/.test(navigator.userAgent)) {
             this.edge = true;
         }
-        // this.getAll();
         this.getPage();
     }
 
