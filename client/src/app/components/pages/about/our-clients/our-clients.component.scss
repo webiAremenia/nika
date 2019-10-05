@@ -26,31 +26,46 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
       width: 218px;
       height: 218px;
       border: 1px solid #707070;
-    }
-
-    .partner-img {
       background-repeat: no-repeat;
       background-position: center;
       background-size: 90px;
-    }
-
-    .partner-text {
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #000A1D;
+    }
+
+    //.partner-img {
+    //  background-repeat: no-repeat;
+    //  background-position: center;
+    //  background-size: 90px;
+    //}
+
+    .partner-text {
+      color: red;
+      //background-color: #000A1D;
+      opacity: 0;
+      visibility: hidden;
       text-align: center;
-      font-size: 14px;
       line-height: 25px;
       //font-family: $font-regular;
       letter-spacing: 0;
-      color: #FFFFFF;
+      //color: #FFFFFF;
     }
   }
 }
 
+.partner:hover {
+  transition: 300ms all ease-in-out;
+  background-color: #000A1D;
+  background-image: none!important;
+  .partner-text {
+    cursor: default;
+    opacity: 1!important;
+    visibility: visible!important;
+  }
+}
 
-// // // Media // // //
+// // // // // Media // // // // //
 
 //@media (max-width: 1400px) {
 //  .partners {

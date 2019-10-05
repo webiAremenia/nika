@@ -1,0 +1,229 @@
+.h-20 {
+  height: 20% !important;
+}
+
+.side-bar-content {
+  user-select: none;
+}
+
+.menu-title a {
+  text-decoration: none;
+  color: #000;
+}
+
+.bottom-part {
+  height: 80%;
+}
+
+.menu-items a {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  font-size: 22px;
+  line-height: 1.7;
+}
+@media (max-width: 1600px) {
+  .menu-items a {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}
+@media (max-width: 992px) and (min-width: 767px) {
+  .menu-items a {
+    font-size: 14px;
+  }
+}
+
+.menu-title h1 {
+  font-size: 50px;
+}
+@media (max-width: 992px) and (min-width: 767px) {
+  .menu-title h1 {
+    font-size: 37px;
+  }
+}
+
+.side-bar-header {
+  background: #F7F7F7;
+  height: 100%;
+  padding: 30px;
+}
+@media (max-width: 1600px) {
+  .side-bar-header {
+    padding: 15px;
+  }
+}
+@media (max-width: 992px) and (min-width: 767px) {
+  .side-bar-header {
+    padding: 5px;
+  }
+}
+@media (max-width: 768px) {
+  .side-bar-header {
+    padding: 0 !important;
+  }
+}
+
+.side-bar-about {
+  font-size: larger;
+  padding-top: 20px;
+  padding-right: 15px;
+}
+@media (max-width: 1600px) {
+  .side-bar-about {
+    font-size: 13px;
+  }
+}
+@media (max-width: 1400px) {
+  .side-bar-about {
+    font-size: 12px;
+  }
+}
+@media (max-width: 992px) and (min-width: 767px) {
+  .side-bar-about {
+    padding-right: 0;
+    font-size: 10px;
+  }
+}
+
+.logo-wrapper img {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+@media (max-width: 992px) and (min-width: 767px) {
+  .logo-wrapper img {
+    width: 80%;
+  }
+}
+@media (min-width: 992px) {
+  .logo-wrapper img {
+    width: 80%;
+  }
+}
+
+@media (max-width: 992px) and (min-width: 767px) {
+  .align-self-center {
+    width: 80%;
+  }
+}
+@media (min-width: 992px) {
+  .align-self-center {
+    width: 80%;
+  }
+}
+
+.side-bar-meet-link a, .menu-items a {
+  text-decoration: underline;
+  font-family: "Open Sans Bold", sans-serif;
+  font-size: 25px;
+  line-height: 45px;
+  letter-spacing: -0.5px;
+  color: #000A1D;
+}
+
+.menu-items span {
+  font-family: "Open Sans Regular", sans-serif;
+  font-size: 25px;
+  line-height: 45px;
+  letter-spacing: -0.5px;
+  color: #000A1D;
+}
+
+.mobile-header {
+  position: fixed;
+  padding: 15px;
+  background: #F7F7F7;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+.mobile-header .mobile-menu {
+  height: 70px;
+}
+.mobile-header .mobile-menu-title {
+  padding-top: 10px;
+}
+.mobile-header .mobile-menu-title a {
+  color: #000;
+  font-size: 50px;
+  text-decoration: none;
+}
+.mobile-header .hidden-menu {
+  opacity: 0;
+  transition: opacity 600ms;
+  -o-transition: opacity 600ms;
+  -ms-transition: opacity 600ms;
+  -moz-transition: opacity 600ms;
+  -webkit-transition: opacity 600ms;
+}
+.mobile-header .hidden-menu-items a {
+  color: #000;
+}
+.mobile-header .hamburger-line-1, .mobile-header .hamburger-line-2, .mobile-header .hamburger-line-3 {
+  pointer-events: none;
+  position: relative;
+  width: 40px;
+  border: 3px solid black;
+  margin-top: 8px;
+}
+.mobile-header #toggle-icon {
+  background: #f7f7f7;
+}
+.mobile-header .hamburger-logo-toggle-img {
+  padding: 10px;
+  cursor: pointer;
+}
+.mobile-header .hamburger-logo-toggle-img {
+  padding: 15px;
+  cursor: pointer;
+}
+.mobile-header .rotate .hamburger-line-1 {
+  transition: 200ms;
+  transform: rotate(45deg);
+  top: 14px;
+}
+.mobile-header .rotate .hamburger-line-3 {
+  transition: 200ms;
+  transform: rotate(-45deg);
+}
+.mobile-header .rotate .hamburger-line-2 {
+  display: none;
+}
+@media (max-width: 767px) {
+  .mobile-header .mobile-menu {
+    height: 50px;
+  }
+  .mobile-header .mobile-menu-title {
+    padding-top: 0;
+  }
+  .mobile-header .hamburger-line-1, .mobile-header .hamburger-line-2, .mobile-header .hamburger-line-3 {
+    width: 30px;
+    border: 2px solid black;
+    margin-top: 8px;
+  }
+  .mobile-header .hamburger-line-1 {
+    margin-top: 0;
+  }
+  .mobile-header .rotate .hamburger-line-1 {
+    top: 12px;
+  }
+}
+
+.logo_image {
+  height: 60px;
+}
+@media (max-width: 992px) {
+  .logo_image {
+    height: 40px;
+  }
+}
+
+@media (max-width: 578px) {
+  .logo-title {
+    color: #000A1D;
+  }
+}
+
+/*# sourceMappingURL=sidebar.component.css.map */
