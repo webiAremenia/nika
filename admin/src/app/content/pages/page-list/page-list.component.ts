@@ -86,6 +86,7 @@ export class PageListComponent implements OnInit {
 
 
     haveMenu(key) {
+
         for (let i = 0; i < this.menus.length; ++i) {
             if (this.menus[i].key === key) {
                 return {menuId: this.menus[i]._id, success: true};
