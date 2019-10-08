@@ -2,7 +2,7 @@ import {Component, HostListener, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ResponsiveData} from '../../../../_models/ResponsiveData';
 import {ActionsService} from '../../../../_services/actions.service';
-import {ClientList} from '../../../../_models/team/ClientList';
+import {BlockList} from '../../../../_models/team/BlockList';
 
 @Component({
     selector: 'app-our-clients',
@@ -10,7 +10,7 @@ import {ClientList} from '../../../../_models/team/ClientList';
     styleUrls: ['./our-clients.component.scss']
 })
 export class OurClientsComponent implements OnInit, OnDestroy {
-    @Input() content: ClientList;
+    @Input() content: BlockList;
     windowSubscription: Subscription;
     windowSize: ResponsiveData;
 

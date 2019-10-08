@@ -16,10 +16,6 @@
   letter-spacing: -0.52px;
   color: #000A1D;
 }
-.our-awards-content-wrapper .awards ul {
-  margin: 0;
-  padding: 0 0 0 20px;
-}
 .our-awards-content-wrapper .awards .award {
   width: 218px;
   height: 218px;
@@ -38,14 +34,8 @@
   letter-spacing: 0;
   color: #FFFFFF;
 }
-.our-awards-content-wrapper .awards .award ul li {
-  list-style-type: none;
-  color: #ffffff;
-  letter-spacing: 0;
-  opacity: 0;
-  visibility: hidden;
-}
-.our-awards-content-wrapper .awards .award ul li span {
+.our-awards-content-wrapper .awards .award span {
+  margin-left: 20px;
   font-weight: bold;
   opacity: 0;
   visibility: hidden;
@@ -59,14 +49,7 @@
   opacity: 1 !important;
   visibility: visible !important;
 }
-.award:hover ul li {
-  list-style-type: none;
-  color: #ffffff;
-  letter-spacing: 0;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-.award:hover ul li span {
+.award:hover span {
   font-weight: bold;
   opacity: 1 !important;
   visibility: visible !important;
@@ -98,13 +81,14 @@
   .our-awards-content-wrapper .awards {
     padding: 0;
   }
-  .our-awards-content-wrapper .awards .award-img {
+  .our-awards-content-wrapper .awards .award {
     background-size: 30px !important;
-  }
-  .our-awards-content-wrapper .awards .award-text {
     justify-content: center !important;
     font-size: 10px !important;
     line-height: 14px !important;
+  }
+  .our-awards-content-wrapper .awards .award span {
+    margin: auto;
   }
 }
 

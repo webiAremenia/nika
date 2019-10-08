@@ -2,7 +2,7 @@ import {Component, HostListener, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ResponsiveData} from '../../../../_models/ResponsiveData';
 import {ActionsService} from '../../../../_services/actions.service';
-import {Awards} from '../../../../_models/team/Awards';
+import {BlockList} from '../../../../_models/team/BlockList';
 
 @Component({
     selector: 'app-our-awards',
@@ -10,7 +10,7 @@ import {Awards} from '../../../../_models/team/Awards';
     styleUrls: ['./our-awards.component.scss']
 })
 export class OurAwardsComponent implements OnInit, OnDestroy {
-    @Input() content: Awards;
+    @Input() content: BlockList;
     windowSubscription: Subscription;
     windowSize: ResponsiveData;
 
