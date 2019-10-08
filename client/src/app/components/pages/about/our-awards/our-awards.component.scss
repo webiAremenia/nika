@@ -4,6 +4,10 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 .our-awards-content-wrapper {
   width: 100%;
 
+  .heading, .description {
+    max-width: 675px;
+  }
+
   .heading {
     text-align: left;
     //font-family: $font-extraBold;
@@ -96,7 +100,7 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
 @media (min-width: 1440px) {
   .awards {
-    padding: 86px;
+    padding: 86px 0 86px 86px;
   }
 }
 

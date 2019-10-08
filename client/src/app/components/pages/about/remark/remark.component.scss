@@ -7,12 +7,11 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
   text-align: center;
 
   .whole-remark {
+    width: 100%;
     display: inline-block;
     text-align: center;
 
     .text {
-      width: 90%;
-      margin: auto;
       text-align: center;
       //font-family: $font-extraBold;
       letter-spacing: -1.8px;
@@ -27,7 +26,8 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
     }
 
     .author {
-      width: 100%;
+      margin: auto;
+      width: 70%;
       //font-family: $font-semiBold;
       letter-spacing: 0;
       color: #000000;

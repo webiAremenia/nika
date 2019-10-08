@@ -1,7 +1,8 @@
-
 .mt-50 {
   margin-top: 50px;
-  @media (max-width: 768px) {
+}
+@media (max-width: 768px) {
+  .mt-50 {
     margin-top: 0;
   }
 }
@@ -14,13 +15,11 @@
   height: calc(100vh - 112px);
   z-index: 1000;
   padding-right: 49px;
-  @media (max-width: 992px) {
+}
+@media (max-width: 992px) {
+  .side-bar {
     height: auto;
   }
-  //@media (max-width: 992px) and (min-width: 767px) {
-  //  height: calc(80vh - 100px);
-  //}
-
 }
 
-
+/*# sourceMappingURL=app.component.css.map */

@@ -4,7 +4,6 @@
   -ms-transition: all 1200ms ease-in 300ms;
   -moz-transition: all 1200ms ease-in 300ms;
   -webkit-transition: all 1200ms ease-in 300ms;
-  transition-property: all;
 }
 
 .section {
@@ -33,7 +32,7 @@
 }
 
 .about-page {
-  padding-left: 10px;
+  padding-left: 0;
 }
 
 .link-box {

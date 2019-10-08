@@ -1,6 +1,9 @@
 .our-awards-content-wrapper {
   width: 100%;
 }
+.our-awards-content-wrapper .heading, .our-awards-content-wrapper .description {
+  max-width: 675px;
+}
 .our-awards-content-wrapper .heading {
   text-align: left;
   letter-spacing: -2.6px;
@@ -71,7 +74,7 @@
 
 @media (min-width: 1440px) {
   .awards {
-    padding: 86px;
+    padding: 86px 0 86px 86px;
   }
 }
 @media (min-width: 767px) and (max-width: 1440px) {

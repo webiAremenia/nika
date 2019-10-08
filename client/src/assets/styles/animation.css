@@ -1,9 +1,48 @@
+.please-wait-false {
+  position: absolute;
+  top: 56px;
+  left: 97px;
+  width: calc(100% - 195px);
+  height: calc(100vh - 112px);
+  z-index: 10000;
+}
+.please-wait-false .loading-section-false {
+  background-color: black;
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.please-wait-false .message-false {
+  position: absolute;
+  top: 70%;
+  width: 90%;
+  left: 5%;
+}
+.please-wait-false .message-false span {
+  display: inline-block;
+  margin-left: 20px;
+  color: #fff;
+  font-family: "Open Sans Bold", sans-serif;
+  font-size: 76px;
+  line-height: 86px;
+  z-index: -1;
+}
+.please-wait-false .message-false div {
+  display: inline-block;
+  background-color: black;
+  position: absolute;
+  top: -150px;
+  height: 300px;
+  z-index: 10;
+}
+
 .please-wait {
   position: absolute;
-  top: 50px;
-  left: 50px;
-  width: calc(100% - 100px);
-  height: calc(100vh - 100px);
+  top: 56px;
+  left: 97px;
+  width: calc(100% - 195px);
+  height: calc(100vh - 112px);
   z-index: 10000;
 }
 .please-wait .loading-section-1 {
@@ -12,7 +51,7 @@
   animation-delay: 2000ms;
   display: inline-block;
   position: relative;
-  width: calc(25% + 15px);
+  width: calc(25%);
   height: 100%;
 }
 .please-wait .loading-section-2 {
@@ -21,7 +60,7 @@
   animation-delay: 2050ms;
   display: inline-block;
   position: relative;
-  width: calc(25% - 5px);
+  width: calc(25%);
   height: 100%;
 }
 .please-wait .loading-section-3 {
@@ -30,7 +69,7 @@
   animation-delay: 2100ms;
   display: inline-block;
   position: relative;
-  width: calc(25% - 5px);
+  width: calc(25%);
   height: 100%;
 }
 .please-wait .loading-section-4 {
@@ -39,7 +78,7 @@
   animation-delay: 2150ms;
   display: inline-block;
   position: relative;
-  width: calc(25% - 5px);
+  width: calc(25%);
   height: 100%;
 }
 .please-wait .message {
@@ -55,11 +94,12 @@
   font-family: "Open Sans Bold", sans-serif;
   font-size: 76px;
   line-height: 86px;
-  animation: move 2s ease-in-out;
+  animation: move 2.2s ease-in-out;
   z-index: -1;
 }
 .please-wait .message div {
-  animation: mutation 2s ease-in-out;
+  animation: mutation 2.2s ease-in-out;
+  animation-delay: 350ms;
   display: inline-block;
   background-color: black;
   position: absolute;
@@ -93,20 +133,20 @@
 @keyframes showSecDescM {
   0% {
     margin-left: 0;
-    width: calc(25% + 15px);
+    width: calc(25%);
   }
   100% {
-    margin-left: calc(25% + 15px);
+    margin-left: calc(25%);
     width: 0;
   }
 }
 @keyframes showSecDescS {
   0% {
     margin-left: 0;
-    width: calc(25% - 5px);
+    width: calc(25%);
   }
   100% {
-    margin-left: calc(25% - 5px);
+    margin-left: calc(25%);
     width: 0;
   }
 }
@@ -182,6 +222,13 @@
   }
 }
 @media (max-width: 992px) {
+  .please-wait-false {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+  }
+
   .please-wait {
     top: 0;
     left: 0;
@@ -222,6 +269,17 @@
   }
 }
 @media (max-width: 767px) {
+  .please-wait-false .message-false {
+    top: 50%;
+  }
+  .please-wait-false .message-false span {
+    font-size: 65px;
+    line-height: 80px;
+  }
+  .please-wait-false .message-false div {
+    height: 350px;
+  }
+
   .please-wait .loading-section-1 {
     animation: showSeMob 1800ms ease-in-out;
     animation-delay: 2000ms;

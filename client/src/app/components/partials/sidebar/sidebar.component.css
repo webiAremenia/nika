@@ -19,14 +19,6 @@
   cursor: pointer;
   text-decoration: none;
   color: black;
-  font-size: 22px;
-  line-height: 1.7;
-}
-@media (max-width: 1600px) {
-  .menu-items a {
-    font-size: 20px;
-    line-height: 1.2;
-  }
 }
 @media (max-width: 992px) and (min-width: 767px) {
   .menu-items a {
@@ -44,9 +36,9 @@
 }
 
 .side-bar-header {
-  background: #F7F7F7;
+  background: #F7F7F7 0 0 no-repeat padding-box;
   height: 100%;
-  padding: 30px;
+  padding: 36px 52px 65px 36px;
 }
 @media (max-width: 1600px) {
   .side-bar-header {
@@ -67,7 +59,6 @@
 .side-bar-about {
   font-size: larger;
   padding-top: 20px;
-  padding-right: 15px;
 }
 @media (max-width: 1600px) {
   .side-bar-about {
@@ -93,12 +84,12 @@
 }
 @media (max-width: 992px) and (min-width: 767px) {
   .logo-wrapper img {
-    width: 80%;
+    width: 65%;
   }
 }
 @media (min-width: 992px) {
   .logo-wrapper img {
-    width: 80%;
+    width: 65%;
   }
 }
 
@@ -116,16 +107,12 @@
 .side-bar-meet-link a, .menu-items a {
   text-decoration: underline;
   font-family: "Open Sans Bold", sans-serif;
-  font-size: 25px;
-  line-height: 45px;
   letter-spacing: -0.5px;
   color: #000A1D;
 }
 
 .menu-items span {
   font-family: "Open Sans Regular", sans-serif;
-  font-size: 25px;
-  line-height: 45px;
   letter-spacing: -0.5px;
   color: #000A1D;
 }
@@ -220,6 +207,12 @@
   }
 }
 
+@media (max-width: 768px) {
+  .menu-items {
+    font-size: 20px !important;
+    line-height: 45px !important;
+  }
+}
 @media (max-width: 578px) {
   .logo-title {
     color: #000A1D;

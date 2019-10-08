@@ -1,15 +1,58 @@
-$section-1-width: calc(25% + 15px);
-$section-2-width: calc(25% - 5px);
+$section-1-width: calc(25%);
+$section-2-width: calc(25%);
 //$section-3-width: calc(25% - 5px);
 //$section-4-width: calc(25% - 5px);
 // // // // // ANIMATION // // // // //
 
+.please-wait-false {
+  position: absolute;
+  top: 56px;
+  left: 97px;
+  width: calc(100% - 195px);
+  height: calc(100vh - 112px);
+  z-index: 10000;
+
+  .loading-section-false {
+    background-color: black;
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .message-false {
+    position: absolute;
+    top: 70%;
+    width: 90%;
+    left: 5%;
+
+    span {
+      display: inline-block;
+      margin-left: 20px;
+      color: #fff;
+      font-family: "Open Sans Bold", sans-serif;
+      font-size: 76px;
+      line-height: 86px;
+      z-index: -1;
+    }
+
+    div {
+      display: inline-block;
+      background-color: black;
+      position: absolute;
+      top: -150px;
+      height: 300px;
+      z-index: 10;
+    }
+  }
+}
+
 .please-wait {
   position: absolute;
-  top: 50px;
-  left: 50px;
-  width: calc(100% - 100px);
-  height: calc(100vh - 100px);
+  top: 56px;
+  left: 97px;
+  width: calc(100% - 195px);
+  height: calc(100vh - 112px);
   z-index: 10000;
 
   .loading-section-1 {
@@ -65,12 +108,13 @@ $section-2-width: calc(25% - 5px);
       font-family: "Open Sans Bold", sans-serif;
       font-size: 76px;
       line-height: 86px;
-      animation: move 2s ease-in-out;
+      animation: move 2.2s ease-in-out;
       z-index: -1;
     }
 
     div {
-      animation: mutation 2s ease-in-out;
+      animation: mutation 2.2s ease-in-out;
+      animation-delay: 350ms;
       display: inline-block;
       background-color: black;
       position: absolute;
@@ -214,6 +258,13 @@ $section-2-width: calc(25% - 5px);
 // // // // // MEDIA // // // // //
 
 @media (max-width: 992px) {
+  .please-wait-false {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+  }
+
   .please-wait {
     top: 0;
     left: 0;
@@ -259,6 +310,20 @@ $section-2-width: calc(25% - 5px);
 }
 
 @media (max-width: 767px) {
+  .please-wait-false {
+    .message-false {
+      top: 50%;
+
+      span {
+        font-size: 65px;
+        line-height: 80px;
+      }
+
+      div {
+        height: 350px;
+      }
+    }
+  }
   .please-wait {
     .loading-section-1 {
       animation: showSeMob 1800ms ease-in-out;
@@ -298,10 +363,12 @@ $section-2-width: calc(25% - 5px);
 
     .message {
       top: 50%;
+
       span {
         font-size: 65px;
         line-height: 80px;
       }
+
       div {
         height: 350px;
       }
