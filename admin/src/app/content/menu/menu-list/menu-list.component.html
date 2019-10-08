@@ -1,7 +1,14 @@
+<div class="row">
+    <div class="col-12">
+        <button style="text-align: center;padding-bottom: 10px; margin: 0 5px 0 5px;"
+                class="btn btn-success float-right"
+                (click)="addMenu()"><i nz-icon type="folder-add" theme="outline"></i></button>
+    </div>
+</div>
 <nz-table #middleTable nzSize="middle" [nzData]="menus" [nzPageSize]="8">
     <thead>
     <tr>
-        <th>Key</th>
+        <th>Title</th>
         <th>Value</th>
         <th>Is Active</th>
         <th></th>
@@ -10,14 +17,15 @@
     </thead>
     <tbody [sortablejs]="menus" [sortablejsOptions]="options">
     <tr *ngFor="let menu of middleTable.data">
-        <td>{{ menu.key }}</td>
-<!--        <td>{{ menu.value }}</td>-->
+        <td>{{ menu.title }}</td>
         <td>{{ menu.isActive }}</td>
         <td>
             <i nz-icon type="edit" theme="outline" class="_btn_edit" (click)="edit(menu)"></i>
             <nz-divider nzType="vertical"></nz-divider>
-            <i nz-icon type="delete" theme="outline" class="_btn_delete" (click)="showDeleteConfirm(menu)"></i>
+            <i nz-icon type="delete" theme="outline" class="_btn_delete" (click)="showDeleteConfirm(menu._id, menu.key)"></i>
         </td>
     </tr>
     </tbody>
+
+
 </nz-table>

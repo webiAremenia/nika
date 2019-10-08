@@ -3,12 +3,27 @@
         <div class="row">
             <div class="col-6 offset-3 mt-5">
 
-                <nz-form-item>
+                <nz-form-item >
                     <nz-form-label [nzSm]="6" [nzXs]="24">Key</nz-form-label>
-                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                    <nz-form-control [nzSm]="14" [nzXs]="24" *ngIf="!canEdit; else edit">
                         <input nz-input formControlName="key">
                     </nz-form-control>
+
+                    <ng-template #edit>
+                        <nz-form-control [nzSm]="14" [nzXs]="24">
+                            <nz-select formControlName="key">
+                                <nz-option nzLabel="{{page.key}}" nzValue="{{page.key}}"
+                                           *ngFor="let page of pages">{{page}}</nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </ng-template>
                 </nz-form-item>
+
+
+
+
+
+
 
                 <nz-form-item>
                     <nz-form-label [nzSm]="6" [nzXs]="24">Title</nz-form-label>

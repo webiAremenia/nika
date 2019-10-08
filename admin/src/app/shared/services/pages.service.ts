@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {AppGlobals} from '../../app.globals';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class PagesService {
 
@@ -43,6 +43,7 @@ export class PagesService {
     ckEditorDeleteImage(image) {
         return this.http.delete(this.urlApi + `/page/ckeditor?name=${image}`);
     }
+
     ckDeleteDir(dir) {
         return this.http.delete(this.urlApi + `/page/ck/${dir}`);
     }

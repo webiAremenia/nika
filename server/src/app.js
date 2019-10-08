@@ -9,7 +9,7 @@ const app = express();
 
 const processImage = require('express-processimage');
 
-require('./seed').createPage();
+// require('./seed').createPage();
 require('./seed').createLogos();
 require('./seed').createMenus();
 require('./seed').createDefaultAdmin();

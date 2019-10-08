@@ -12,34 +12,44 @@ module.exports = {
         }
     },
     addMenu: async (req, res) => {
-        let candidate = await Menu.findOne({title: req.body.title});
-        if (!candidate) {
-            let data = await Menu.find({});
-            let order = 0;
-            data.forEach(menItem => {
-                if (order < menItem.order) {
-                    order = menItem.order
-                }
-            });
-            order = order + 1;
 
-            let menu = {
-                title: req.body.title,
-                type: req.body.type,
-                order: order
-            };
-            req.body.type !== 'url' ? menu.typeId = req.body.typeId : menu.url = req.body.url;
-            try {
-                await new Menu(menu).save();
-                res.status(201).json({
-                    msg: "Menu has created successfully ..."
-                })
-            } catch (e) {
-                errors.userSaveError(res, errors)
-            }
-        } else {
-            errors.conflictError(res, errors)
+        try {
+            await new Menu(req.body).save();
+            res.status(201).json({
+                msg: "Menu has created successfully ..."
+            })
+        } catch (e) {
+            errors.conflictError(res, e)
         }
+
+        // let candidate = await Menu.findOne({title: req.body.title});
+        // if (!candidate) {
+        //     let data = await Menu.find({});
+        //     let order = 0;
+        //     data.forEach(menItem => {
+        //         if (order < menItem.order) {
+        //             order = menItem.order
+        //         }
+        //     });
+        //     order = order + 1;
+        //
+        //     let menu = {
+        //         title: req.body.title,
+        //         type: req.body.type,
+        //         order: order
+        //     };
+        //     req.body.type !== 'url' ? menu.typeId = req.body.typeId : menu.url = req.body.url;
+        //     try {
+        //         await new Menu(menu).save();
+        //         res.status(201).json({
+        //             msg: "Menu has created successfully ..."
+        //         })
+        //     } catch (e) {
+        //         errors.userSaveError(res, errors)
+        //     }
+        // } else {
+        //     errors.conflictError(res, errors)
+        // }
     },
     changeMenu: async (req, res) => {
 
@@ -49,6 +59,9 @@ module.exports = {
             description: req.body.description,
             isActive: req.body.isActive,
         };
+        if (req.body.key) {
+            menu.key = req.body.key;
+        }
         try {
             await Menu.findByIdAndUpdate(
                 {_id: req.query.id},
@@ -77,24 +90,37 @@ module.exports = {
     },
     sortMenu: async (req, res) => {
         let candidates = req.body;
-        waterfall([
-            async function (callback) {
-                for (let i = 0; i < candidates.length; ++i) {
-                    let item = candidates[i];
-                    let menu = await Menu.findOne({_id: item._id});
-                    menu.order = item.order;
-                    await Menu.findByIdAndUpdate(
-                        {_id: menu._id + ''},
-                        {$set: menu},
-                        {new: true});
-                }
-                callback(null);
-            },
-            function () {
-                res.status(201).json({})
+
+        try {
+            for (let i = 0; i < req.body.length; ++i) {
+                await Menu.updateOne({_id: req.body[i]}, {$set: {order: i}});
             }
-        ], function (err, result) {
-        });
+            res.status(201).json({
+                msg: 'Menu has removed successfully'
+            })
+        } catch (e) {
+            errors.notFound(res, e);
+
+        }
+
+        // waterfall([
+        //     async function (callback) {
+        //         for (let i = 0; i < candidates.length; ++i) {
+        //             let item = candidates[i];
+        //             let menu = await Menu.findOne({_id: item._id});
+        //             menu.order = item.order;
+        //             await Menu.findByIdAndUpdate(
+        //                 {_id: menu._id + ''},
+        //                 {$set: menu},
+        //                 {new: true});
+        //         }
+        //         callback(null);
+        //     },
+        //     function () {
+        //         res.status(201).json({})
+        //     }
+        // ], function (err, result) {
+        // });
     }
 };
 

@@ -8,7 +8,8 @@
     (nzOnOk)="handleOk()"
     [nzOkLoading]="isOkLoading"
 >
-    <input nz-input placeholder="Basic usage" [(ngModel)]="modalContent">
+    <!--    <input nz-input placeholder="Basic usage" [(ngModel)]="modalContent">-->
+    <textarea name="" id="" cols="30" rows="5" [(ngModel)]="modalContent" style="width:100%;"></textarea>
 
     <div class="row">
         <div class="col-4">
@@ -51,72 +52,72 @@
 
 
 <div *ngIf="done">
-    <div class="introduce-content-wrapper">
-        <div class="introduce-content about-inner-content"
-             [style.backgroundImage]="'url('+ introduce.backgroundImage +')'"
-             [style.padding]="
+            <div class="introduce-content-wrapper">
+                <div class="introduce-content about-inner-content"
+                     [style.backgroundImage]="'url('+ introduce.backgroundImage +')'"
+                     [style.padding]="
+                            (windowSize.width * 97)/1920 + 'px '
+                         + (windowSize.width * 139)/1920 + 'px '
+                         + (windowSize.width * 139)/1920 + 'px' ">
+
+                    <div class="heading" (click)="myIntroduce(introduce.title, 'title')"
+                         [style.width]="(windowSize.width * 672 * windowSize.rate) / 1920 + 'px'"
+                         [style.font-size]="(windowSize.width * introduce.title.fontSize * windowSize.rate) / 1920 + 'px'"
+                         [style.line-height]="(windowSize.width * introduce.title.lineHeight * windowSize.rate) / 1920 + 'px'"
+                         [ngStyle]="{'font-family': introduce.title.fontFamily}"
+                    >
+                        {{introduce.title.text}}
+                    </div>
+
+                    <div class="description" (click)="myIntroduce(introduce.description, 'description')"
+                         [style.width]="(windowSize.width * 500 * windowSize.rate) / 1920 + 'px'"
+                         [style.font-size]="(windowSize.width * introduce.description.fontSize * windowSize.rate) / 1920 + 'px'"
+                         [style.line-height]="(windowSize.width * introduce.description.lineHeight * windowSize.rate) / 1920 + 'px'"
+                         [ngStyle]="{'font-family': introduce.description.fontFamily}"
+                    >
+                        {{introduce.description.text}}
+                    </div>
+
+                    <input type="file" [id]="'bg'"
+                           (change)="myIntroduce($event,'backgroundImage')">
+                    <label [for]="'bg'">choose a file</label>
+
+                </div>
+            </div>
+
+
+            <div class="our-element-content-wrapper">
+                <div class="our-element-content about-inner-content"
+                     [style.padding]="
                     (windowSize.width * 97)/1920 + 'px '
                  + (windowSize.width * 139)/1920 + 'px '
                  + (windowSize.width * 139)/1920 + 'px' ">
 
-            <div class="heading" (click)="myIntroduce(introduce.title, 'title')"
-                 [style.width]="(windowSize.width * 672 * windowSize.rate) / 1920 + 'px'"
-                 [style.font-size]="(windowSize.width * introduce.title.fontSize * windowSize.rate) / 1920 + 'px'"
-                 [style.line-height]="(windowSize.width * introduce.title.lineHeight * windowSize.rate) / 1920 + 'px'"
-                 [ngStyle]="{'font-family': introduce.title.fontFamily}"
-            >
-                {{introduce.title.text}}
+                    <div class="heading" (click)="myElement(element.title,'title')"
+                         [style.font-size]="(windowSize.width * element.title.fontSize * windowSize.rate) / 1920 + 'px'"
+                         [style.line-height]="(windowSize.width * element.title.lineHeight * windowSize.rate) / 1920 + 'px'"
+                         [ngStyle]="{'font-family': element.title.fontFamily}"
+                    >
+                        {{element.title.text}}
+                    </div>
+
+                    <div>
+                        <ul class="list " *ngFor="let block of element.blocks; let i = index">
+                            <li class="list-title"
+                                [style.font-size]="(windowSize.width *  block.title.fontSize * windowSize.rate) / 1920 + 'px'"
+                                [style.line-height]="(windowSize.width *  block.title.lineHeight * windowSize.rate) / 1920 + 'px'"
+                                [ngStyle]="{'font-family': block.title.fontFamily}"
+                                (click)="elementBlock(i,'title')">{{block.title.text}}</li>
+                            <li class="list-description"
+                                [style.font-size]="(windowSize.width * block.description.fontSize * windowSize.rate) / 1920 + 'px'"
+                                [style.line-height]="(windowSize.width * block.description.lineHeight * windowSize.rate) / 1920 + 'px'"
+                                [ngStyle]="{'font-family': block.description.fontFamily}"
+                                (click)="elementBlock(i,'description')">{{block.description.text}}</li>
+                        </ul>
+                    </div>
+
+                </div>
             </div>
-
-            <div class="description" (click)="myIntroduce(introduce.description, 'description')"
-                 [style.width]="(windowSize.width * 500 * windowSize.rate) / 1920 + 'px'"
-                 [style.font-size]="(windowSize.width * introduce.description.fontSize * windowSize.rate) / 1920 + 'px'"
-                 [style.line-height]="(windowSize.width * introduce.description.lineHeight * windowSize.rate) / 1920 + 'px'"
-                 [ngStyle]="{'font-family': introduce.description.fontFamily}"
-            >
-                {{introduce.description.text}}
-            </div>
-
-            <input type="file" [id]="'bg'"
-                   (change)="myIntroduce($event,'backgroundImage')">
-            <label [for]="'bg'">choose a file</label>
-
-        </div>
-    </div>
-
-
-    <div class="our-element-content-wrapper">
-        <div class="our-element-content about-inner-content"
-             [style.padding]="
-            (windowSize.width * 97)/1920 + 'px '
-         + (windowSize.width * 139)/1920 + 'px '
-         + (windowSize.width * 139)/1920 + 'px' ">
-
-            <div class="heading" (click)="myElement(element.title,'title')"
-                 [style.font-size]="(windowSize.width * element.title.fontSize * windowSize.rate) / 1920 + 'px'"
-                 [style.line-height]="(windowSize.width * element.title.lineHeight * windowSize.rate) / 1920 + 'px'"
-                 [ngStyle]="{'font-family': element.title.fontFamily}"
-            >
-                {{element.title.text}}
-            </div>
-
-            <div>
-                <ul class="list " *ngFor="let block of element.blocks; let i = index">
-                    <li class="list-title"
-                        [style.font-size]="(windowSize.width *  block.title.fontSize * windowSize.rate) / 1920 + 'px'"
-                        [style.line-height]="(windowSize.width *  block.title.lineHeight * windowSize.rate) / 1920 + 'px'"
-                        [ngStyle]="{'font-family': block.title.fontFamily}"
-                        (click)="elementBlock(i,'title')">{{block.title.text}}</li>
-                    <li class="list-description"
-                        [style.font-size]="(windowSize.width * block.description.fontSize * windowSize.rate) / 1920 + 'px'"
-                        [style.line-height]="(windowSize.width * block.description.lineHeight * windowSize.rate) / 1920 + 'px'"
-                        [ngStyle]="{'font-family': block.description.fontFamily}"
-                        (click)="elementBlock(i,'description')">{{block.description.text}}</li>
-                </ul>
-            </div>
-
-        </div>
-    </div>
 
 
     <div class="clients-content-wrapper">
@@ -149,154 +150,158 @@
                 <div class="row m-0">
 
                     <div *ngFor="let block of client.blocks; let i = index" class="col-4 col-md-3 partner  m-0 p-0">
-                        <ng-container *ngIf="block.text">
-                            <div class="partner-text" (click)="clientBlock(i)"
-                                 [ngStyle]="{'font-size': block.fontSize+'px', 'font-family': block.fontFamily, 'line-height':block.lineHeight + 'px'}">
-                                {{block.text}}
-                            </div>
-                        </ng-container>
+                        <!--                        <ng-container *ngIf="block.text">-->
+                        <!--                            <div class="partner-text" (click)="clientBlock(i)"-->
+                        <!--                                 [ngStyle]="{'font-size': block.fontSize+'px', 'line-height':block.lineHeight + 'px'}">-->
+                        <!--                                <pre  [ngStyle]="{'font-family': block.fontFamily}">{{block.text}}</pre>-->
+                        <!--                            </div>-->
+                        <!--                        </ng-container>-->
 
-                        <ng-container *ngIf="block.backGround">
-                            <div class="partner-img" [style.backgroundImage]="'url('+ block.backGround +')'"
-                                 (click)="clientBlock(i)">
+                        <!--                        <ng-container *ngIf="block.backGround">-->
+                        <div class="partner-img" [style.backgroundImage]="'url('+ block.backGround +')'"
+                             (click)="clientBlock(i, 'img', $event)">
+                            <!--                                                        <pre [ngStyle]="{'font-family': block.hover.fontFamily}">{{block.hover.text}}</pre>-->
+                            <pre
+                                [ngStyle]="{'font-family': block.hover.fontFamily, 'font-size': block.hover.fontSize+'px', 'line-height':block.hover.lineHeight + 'px'}"
+                                (click)="clientBlock(i, 'hover', $event)">{{block.hover.text}}</pre>
+                        </div>
 
-                            </div>
-                            <div style="display: none;">
-                                <input type="file" [id]="'clientBlock' + i"
-                                       (change)="clientImage($event)">
-                                <label [for]="'clientBlock' + i">choose a file</label>
-                            </div>
-
-                        </ng-container>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
-
-    <div class="remark-content-wrapper">
-        <div class="remark-content about-inner-content"
-             [style.padding]="
-            (windowSize.width * 97)/1920 + 'px '
-         + (windowSize.width * 139)/1920 + 'px '
-         + (windowSize.width * 139)/1920 + 'px' ">
-
-            <div class="whole-remark">
-
-                <div class="text" (click)="myRemark(remark.title, 'title')"
-                     [style.font-size]="(windowSize.width * remark.title.fontSize * windowSize.rate) / 1920 + 'px'"
-                     [style.line-height]="(windowSize.width * remark.title.lineHeight * windowSize.rate) / 1920 + 'px'"
-                     [ngStyle]="{'font-family': remark.title.fontFamily}"
-                >
-                    {{remark.title.text}}
-                </div>
-
-                <div class="author" (click)="myRemark(remark.description, 'description')"
-                     [style.font-size]="(windowSize.width * remark.description.fontSize * windowSize.rate) / 1920 + 'px'"
-                     [style.line-height]="(windowSize.width * remark.description.lineHeight * windowSize.rate) / 1920 + 'px'"
-                     [ngStyle]="{'font-family': remark.description.fontFamily}"
-                >
-                    {{remark.description.text}}
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
-
-    <div class="leadership-content-wrapper">
-        <div class="leadership-content about-inner-content"
-             [style.padding]="
-            (windowSize.width * 97)/1920 + 'px '
-         + (windowSize.width * 139)/1920 + 'px '
-         + (windowSize.width * 139)/1920 + 'px' ">
-
-            <div class="heading" (click)="myLeadership(leadership.title, 'title', '')"
-                 [style.font-size]="(windowSize.width * leadership.title.fontSize * windowSize.rate) / 1920 + 'px'"
-                 [style.line-height]="(windowSize.width * leadership.title.lineHeight * windowSize.rate) / 1920 + 'px'"
-                 [ngStyle]="{'font-family': leadership.title.fontFamily}"
-            >
-                {{leadership.title.text}}
-            </div>
-
-            <div class="description" (click)="myLeadership(leadership.description, 'description', '')"
-                 [style.font-size]="(windowSize.width * leadership.description.fontSize * windowSize.rate) / 1920 + 'px'"
-                 [style.line-height]="(windowSize.width * leadership.description.lineHeight * windowSize.rate) / 1920 + 'px'"
-                 [ngStyle]="{'font-family': leadership.description.fontFamily}"
-            >
-                {{leadership.description.text}}
-            </div>
-
-            <div class="leaders">
-                <div class="leader">
-                    <div class="image" [style.backgroundImage]="'url('+ leadership.first.avatar +')'"
-                         (click)="myLeadership(leadership.first, 'first', 'avatar')">
                         <div style="display: none;">
-                            <input type="file" [id]="'first_avatar'"
-                                   (change)="leadershipImage($event)">
-                            <label [for]="'first_avatar'">choose a file</label>
+                            <input type="file" [id]="'clientBlock' + i"
+                                   (change)="clientImage($event)">
+                            <label [for]="'clientBlock' + i">choose a file</label>
                         </div>
+
+                        <!--                        </ng-container>-->
                     </div>
-                    <div class="about">
-                        <div class="author" (click)="myLeadership(leadership.first.name, 'first', 'name')"
-                             [style.font-size]="(windowSize.width * leadership.first.name.fontSize * windowSize.rate) / 1920 + 'px'"
-                             [style.line-height]="(windowSize.width * leadership.first.name.lineHeight * windowSize.rate) / 1920 + 'px'"
-                             [ngStyle]="{'font-family': leadership.first.name.fontFamily}"
-                        >
-                            {{leadership.first.name.text}}
-                        </div>
-                        <div class="position" (click)="myLeadership(leadership.first.job, 'first', 'job')"
-                             [style.font-size]="(windowSize.width * leadership.first.job.fontSize * windowSize.rate) / 1920 + 'px'"
-                             [style.line-height]="(windowSize.width * leadership.first.job.lineHeight * windowSize.rate) / 1920 + 'px'"
-                             [ngStyle]="{'font-family': leadership.first.job.fontFamily}"
-                        >
-                            {{leadership.first.job.text}}
-                        </div>
-                    </div>
+
                 </div>
-                <div class="leader">
-                    <div class="image" [style.backgroundImage]="'url('+ leadership.second.avatar +')'"
-                         (click)="myLeadership(leadership.first, 'second', 'avatar')">
-                        <div style="display: none;">
-                            <input type="file" [id]="'second_avatar'"
-                                   (change)="leadershipImage($event)">
-                            <label [for]="'second_avatar'">choose a file</label>
-                        </div>
-                    </div>
-                    <div class="about">
-                        <div class="author" (click)="myLeadership(leadership.second.name, 'second', 'name')"
-                             [style.font-size]="(windowSize.width * leadership.second.name.fontSize * windowSize.rate) / 1920 + 'px'"
-                             [style.line-height]="(windowSize.width * leadership.second.name.lineHeight * windowSize.rate) / 1920 + 'px'"
-                             [ngStyle]="{'font-family': leadership.second.name.fontFamily}"
-                        >
-                            {{leadership.second.name.text}}
-                        </div>
-                        <div class="position" (click)="myLeadership(leadership.second.job, 'second', 'job')"
-                             [style.font-size]="(windowSize.width * leadership.second.job.fontSize * windowSize.rate) / 1920 + 'px'"
-                             [style.line-height]="(windowSize.width * leadership.second.job.lineHeight * windowSize.rate) / 1920 + 'px'"
-                             [ngStyle]="{'font-family': leadership.second.job.fontFamily}"
-                        >
-                            {{leadership.second.job.text}}
-                        </div>
-                    </div>
-                </div>
+
             </div>
 
         </div>
     </div>
+
+
+            <div class="remark-content-wrapper">
+                <div class="remark-content about-inner-content"
+                     [style.padding]="
+                    (windowSize.width * 97)/1920 + 'px '
+                 + (windowSize.width * 139)/1920 + 'px '
+                 + (windowSize.width * 139)/1920 + 'px' ">
+
+                    <div class="whole-remark">
+
+                        <div class="text" (click)="myRemark(remark.title, 'title')"
+                             [style.font-size]="(windowSize.width * remark.title.fontSize * windowSize.rate) / 1920 + 'px'"
+                             [style.line-height]="(windowSize.width * remark.title.lineHeight * windowSize.rate) / 1920 + 'px'"
+                             [ngStyle]="{'font-family': remark.title.fontFamily}"
+                        >
+                            {{remark.title.text}}
+                        </div>
+
+                        <div class="author" (click)="myRemark(remark.description, 'description')"
+                             [style.font-size]="(windowSize.width * remark.description.fontSize * windowSize.rate) / 1920 + 'px'"
+                             [style.line-height]="(windowSize.width * remark.description.lineHeight * windowSize.rate) / 1920 + 'px'"
+                             [ngStyle]="{'font-family': remark.description.fontFamily}"
+                        >
+                            {{remark.description.text}}
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="leadership-content-wrapper">
+                <div class="leadership-content about-inner-content"
+                     [style.padding]="
+                    (windowSize.width * 97)/1920 + 'px '
+                 + (windowSize.width * 139)/1920 + 'px '
+                 + (windowSize.width * 139)/1920 + 'px' ">
+
+                    <div class="heading" (click)="myLeadership(leadership.title, 'title', '')"
+                         [style.font-size]="(windowSize.width * leadership.title.fontSize * windowSize.rate) / 1920 + 'px'"
+                         [style.line-height]="(windowSize.width * leadership.title.lineHeight * windowSize.rate) / 1920 + 'px'"
+                         [ngStyle]="{'font-family': leadership.title.fontFamily}"
+                    >
+                        {{leadership.title.text}}
+                    </div>
+
+                    <div class="description" (click)="myLeadership(leadership.description, 'description', '')"
+                         [style.font-size]="(windowSize.width * leadership.description.fontSize * windowSize.rate) / 1920 + 'px'"
+                         [style.line-height]="(windowSize.width * leadership.description.lineHeight * windowSize.rate) / 1920 + 'px'"
+                         [ngStyle]="{'font-family': leadership.description.fontFamily}"
+                    >
+                        {{leadership.description.text}}
+                    </div>
+
+                    <div class="leaders">
+                        <div class="leader">
+                            <div class="image" [style.backgroundImage]="'url('+ leadership.first.avatar +')'"
+                                 (click)="myLeadership(leadership.first, 'first', 'avatar')">
+                                <div style="display: none;">
+                                    <input type="file" [id]="'first_avatar'"
+                                           (change)="leadershipImage($event)">
+                                    <label [for]="'first_avatar'">choose a file</label>
+                                </div>
+                            </div>
+                            <div class="about">
+                                <div class="author" (click)="myLeadership(leadership.first.name, 'first', 'name')"
+                                     [style.font-size]="(windowSize.width * leadership.first.name.fontSize * windowSize.rate) / 1920 + 'px'"
+                                     [style.line-height]="(windowSize.width * leadership.first.name.lineHeight * windowSize.rate) / 1920 + 'px'"
+                                     [ngStyle]="{'font-family': leadership.first.name.fontFamily}"
+                                >
+                                    {{leadership.first.name.text}}
+                                </div>
+                                <div class="position" (click)="myLeadership(leadership.first.job, 'first', 'job')"
+                                     [style.font-size]="(windowSize.width * leadership.first.job.fontSize * windowSize.rate) / 1920 + 'px'"
+                                     [style.line-height]="(windowSize.width * leadership.first.job.lineHeight * windowSize.rate) / 1920 + 'px'"
+                                     [ngStyle]="{'font-family': leadership.first.job.fontFamily}"
+                                >
+                                    {{leadership.first.job.text}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="leader">
+                            <div class="image" [style.backgroundImage]="'url('+ leadership.second.avatar +')'"
+                                 (click)="myLeadership(leadership.first, 'second', 'avatar')">
+                                <div style="display: none;">
+                                    <input type="file" [id]="'second_avatar'"
+                                           (change)="leadershipImage($event)">
+                                    <label [for]="'second_avatar'">choose a file</label>
+                                </div>
+                            </div>
+                            <div class="about">
+                                <div class="author" (click)="myLeadership(leadership.second.name, 'second', 'name')"
+                                     [style.font-size]="(windowSize.width * leadership.second.name.fontSize * windowSize.rate) / 1920 + 'px'"
+                                     [style.line-height]="(windowSize.width * leadership.second.name.lineHeight * windowSize.rate) / 1920 + 'px'"
+                                     [ngStyle]="{'font-family': leadership.second.name.fontFamily}"
+                                >
+                                    {{leadership.second.name.text}}
+                                </div>
+                                <div class="position" (click)="myLeadership(leadership.second.job, 'second', 'job')"
+                                     [style.font-size]="(windowSize.width * leadership.second.job.fontSize * windowSize.rate) / 1920 + 'px'"
+                                     [style.line-height]="(windowSize.width * leadership.second.job.lineHeight * windowSize.rate) / 1920 + 'px'"
+                                     [ngStyle]="{'font-family': leadership.second.job.fontFamily}"
+                                >
+                                    {{leadership.second.job.text}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
 
     <div class="our-awards-content-wrapper">
         <div class="our-awards-content about-inner-content"
              [style.padding]="
-            (windowSize.width * 97)/1920 + 'px '
-         + (windowSize.width * 139)/1920 + 'px '
-         + (windowSize.width * 139)/1920 + 'px' ">
+                (windowSize.width * 97)/1920 + 'px '
+             + (windowSize.width * 139)/1920 + 'px '
+             + (windowSize.width * 139)/1920 + 'px' ">
 
             <div class="heading" (click)="myAwards(awards.title, 'title')"
                  [style.font-size]="(windowSize.width * awards.title.fontSize * windowSize.rate) / 1920 + 'px'"
@@ -318,17 +323,22 @@
 
             <div class="awards">
                 <div class="row m-0">
-                    <div class="col-3 award award-text">
-                        <ul>
-                            <li *ngFor="let row of awards.first; let i = index"
-                                (click)="awardsFirst(row,i)"
-                                [ngStyle]="{'font-size': row.fontSize+'px', 'font-family': row.fontFamily, 'line-height':row.lineHeight + 'px'}">{{row.text}}</li>
-                        </ul>
-                    </div>
+                    <!--                        <div class="col-3 award award-text">-->
+                    <!--                            <ul>-->
+                    <!--                                <li *ngFor="let row of awards.first; let i = index"-->
+                    <!--                                    (click)="awardsFirst(row,i)"-->
+                    <!--                                    [ngStyle]="{'font-size': row.fontSize+'px', 'font-family': row.fontFamily, 'line-height':row.lineHeight + 'px'}">{{row.text}}</li>-->
+                    <!--                            </ul>-->
+                    <!--                        </div>-->
 
-                    <div class="col-3 award award-img" (click)="awardsBlock('awards',i)"
-                         *ngFor="let img of awards.blocks; let i = index"
-                         [style.backgroundImage]="'url('+ img +')'">
+                    <div class="col-3 award award-img" (click)="awardsBlock('awards',i , 'img', $event)"
+                         *ngFor="let block of awards.blocks; let i = index"
+                         [style.backgroundImage]="'url('+ block.backGround +')'">
+                        <pre
+                            [ngStyle]="{'font-family': block.hover.fontFamily, 'font-size': block.hover.fontSize+'px', 'line-height':block.hover.lineHeight + 'px'}"
+                            (click)="awardsBlock('awards', i, 'hover', $event)">{{block.hover.text}}</pre>
+
+
                         <div style="display: none;">
                             <input type="file" [id]="'awards' + i"
                                    (change)="awardsImage($event)">

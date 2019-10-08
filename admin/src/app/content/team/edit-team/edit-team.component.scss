@@ -4,6 +4,13 @@ $font-bold: 'Open Sans Bold', sans-serif;
 $font-semiBold: 'Open Sans SemiBold', sans-serif;
 $font-white-color: #ffffff;
 
+pre{
+    color: black;
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+
 [type="file"] {
     border: 0;
     clip: rect(0, 0, 0, 0);
@@ -137,10 +144,12 @@ $font-white-color: #ffffff;
     }
 }
 
+
 //////////////////////////////// CLIENT ////////////////////////////////
 
 .clients-content-wrapper {
     width: 100%;
+
 
     .heading {
         text-align: left;
