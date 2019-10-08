@@ -9,6 +9,7 @@ export class MenuService {
     url;
     urlApi;
     candidateMenu;
+    pages: any[];
 
     constructor(private http: HttpClient, config: AppGlobals) {
         this.url = config.url;
@@ -27,8 +28,8 @@ export class MenuService {
         return this.http.put(this.urlApi + `/menu?id=${id}`, menu);
     }
 
-    deleteMenu(menu) {
-        return this.http.delete(this.urlApi + `/menu?id=${menu._id}`);
+    deleteMenu(id) {
+        return this.http.delete(this.urlApi + `/menu?id=${id}`);
     }
 
     sortMenus(menus) {

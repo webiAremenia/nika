@@ -11,7 +11,7 @@
             <th class="text-right">Controllers</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody *ngIf="pages.length > 0">
         <tr *ngFor="let data of pages;let i = index">
             <td>{{data.key}}</td>
 
@@ -19,7 +19,7 @@
                 <i nz-icon type="edit" theme="outline" class="_btn_edit"
                    (click)="edit(data)"></i>
                 <nz-divider nzType="vertical"></nz-divider>
-                <i nz-icon type="delete" theme="outline" class="_btn_delete" (click)="showDeleteConfirm(data._id)"></i>
+                <i nz-icon type="delete" theme="outline" class="_btn_delete" (click)="showDeleteConfirm(data._id, data.key)"></i>
             </td>
         </tr>
         </tbody>

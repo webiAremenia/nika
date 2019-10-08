@@ -13,7 +13,7 @@ module.exports = {
     },
     getOne: async (req, res) => {
         try {
-            let page = await Page.findOne({_id: req.params.id});
+            let page = await Page.findOne({key: req.params.key});
             res.status(200).json(page)
         } catch (e) {
             errors.notFound(res, errors);

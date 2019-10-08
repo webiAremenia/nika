@@ -3,8 +3,16 @@ const Schema = mongoose.Schema;
 
 let createAwardsBlocks = () => {
     let arr = [];
-    for (let i = 0; i < 7; ++i) {
-        arr.push('assets/images/AboutUs/awards-logo2@2x.png');
+    for (let i = 0; i < 8; ++i) {
+        arr.push({
+            backGround : 'assets/images/AboutUs/awards-logo2@2x.png',
+            hover : {
+                text: '1 gold',
+                fontSize: 14,
+                lineHeight: 25,
+                fontFamily: 'Open Sans Regular',
+            }
+        });
     }
 
     return arr;
@@ -63,10 +71,10 @@ const AwardSchema = new Schema({
             default: 'Open Sans Regular'
         }
     },
-    first: {
-        type: Array,
-        default:createAwardsFirst()
-    },
+    // first: {
+    //     type: Array,
+    //     default:createAwardsFirst()
+    // },
     blocks: {
         type: Array,
         default: createAwardsBlocks()

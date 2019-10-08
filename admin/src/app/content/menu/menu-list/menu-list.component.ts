@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MenuService} from '../../../shared/services/menu.service';
 import {Router} from '@angular/router';
 import {NzModalService} from 'ng-zorro-antd';
+import {config} from 'rxjs';
 
 @Component({
     selector: 'app-menu-list',
@@ -12,6 +13,8 @@ export class MenuListComponent implements OnInit {
     menus = [];
     options;
     orders = [];
+    keys = ['about', 'works', 'contact'];
+
 
     constructor(private service: MenuService, private router: Router, private modalService: NzModalService) {
     }
@@ -22,12 +25,10 @@ export class MenuListComponent implements OnInit {
                 const arr = [];
                 let i = 0;
                 this.menus.forEach(item => {
-                    arr.push({
-                        order: this.orders[i],
-                        _id: item._id
-                    });
+                    arr.push(item._id);
                     ++i;
                 });
+                console.log(arr)
                 this.service.sortMenus(arr).subscribe((data) => {
                 });
             }
@@ -37,7 +38,7 @@ export class MenuListComponent implements OnInit {
         });
     }
 
-    add() {
+    addMenu() {
         this.router.navigate(['menu/addMenu']);
     }
 
@@ -46,22 +47,34 @@ export class MenuListComponent implements OnInit {
         this.router.navigate(['menu/changeMenu']);
     }
 
-    remove(menu) {
-        this.service.deleteMenu(menu).subscribe((data) => {
-            this.menus = this.menus.filter(item => item._id !== menu._id);
+    remove(id) {
+        this.service.deleteMenu(id).subscribe((data) => {
+            this.menus = this.menus.filter(item => item._id !== id);
         });
     }
 
-    showDeleteConfirm(data): void {
-        this.modalService.confirm({
-            nzTitle: 'Are you sure delete this menu ?',
-            nzContent: '<b style="color: red;">Some descriptions</b>',
-            nzOkText: 'Yes',
-            nzOkType: 'danger',
-            nzOnOk: () => this.remove(data),
-            nzCancelText: 'No',
-            nzOnCancel: () => console.log('Cancel')
-        });
+    showDeleteConfirm(id, key): void {
+        if (this.keys.indexOf(key) === -1) {
+            this.modalService.confirm({
+                nzTitle: 'Are you sure delete this menu ?',
+                nzContent: '<b style="color: red;">Some descriptions</b>',
+                nzOkText: 'Yes',
+                nzOkType: 'danger',
+                nzOnOk: () => this.remove(id),
+                nzCancelText: 'No',
+                nzOnCancel: () => console.log('Cancel')
+            });
+        } else {
+            this.modalService.confirm({
+                nzTitle: 'You cant delete this menu',
+                nzOkText: 'Ok',
+                nzOkType: 'danger',
+                // nzOnOk: () => this.remove(id),
+                nzCancelText: 'Cancel',
+                // nzOnCancel: () => console.log('Cancel')
+            });
+        }
+
     }
 
 

@@ -151,16 +151,4 @@ module.exports.createContactForm = async (req, res) => {
     } catch (e) {
         console.log(e)
     }
-    // try {
-    //     let contacts = await Contact.find({});
-    //     if (contacts.length < 2) {
-    //         for (let i = 0; i < 3; ++i) {
-    //             let item = new Contact();
-    //             item.save()
-    //         }
-    //     }
-    //
-    // } catch (e) {
-    //     console.log(e)
-    // }
 };

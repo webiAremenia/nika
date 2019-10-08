@@ -122,6 +122,9 @@ module.exports = {
                 let upd = {};
                 upd[field] = req.body[type][field];
 
+                console.log(field)
+                console.log(type)
+
                 await Award.findByIdAndUpdate(
                     {_id: candidate},
                     {$set: upd},
