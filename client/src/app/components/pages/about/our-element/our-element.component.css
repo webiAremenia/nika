@@ -1,0 +1,124 @@
+ul li {
+  list-style-type: none;
+  color: #ffffff;
+  transition: 300ms all ease-in;
+}
+
+ul {
+  padding: 0;
+  border-bottom: 1.5px solid green;
+  margin: 0;
+}
+
+ul:first-child {
+  border-top: 1.5px solid green;
+  border-bottom: 1.5px solid green;
+}
+
+ul:last-child {
+  border-top: none;
+  border-bottom: none;
+}
+
+ul:hover {
+  cursor: pointer;
+}
+
+.active {
+  height: auto !important;
+}
+.active .list-description {
+  visibility: visible !important;
+  animation-name: slideUp;
+  -webkit-animation-name: slideUp;
+  animation-duration: 650ms;
+  -webkit-animation-duration: 650ms;
+  animation-timing-function: ease;
+  -webkit-animation-timing-function: ease;
+  opacity: 1 !important;
+  height: auto !important;
+  top: 0 !important;
+  padding-bottom: 46px !important;
+}
+
+.our-element-content-wrapper {
+  width: 100%;
+  background-color: #000A1D;
+}
+.our-element-content-wrapper .our-element-content {
+  color: #ffffff;
+}
+.our-element-content-wrapper .our-element-content .heading {
+  padding-bottom: 91px;
+  text-align: left;
+  letter-spacing: -2.6px;
+  color: #ffffff;
+}
+.our-element-content-wrapper .our-element-content .list {
+  position: relative;
+}
+.our-element-content-wrapper .our-element-content .list .list-title {
+  position: relative;
+  text-align: left;
+  letter-spacing: -0.72px;
+  padding: 0 15px;
+}
+.our-element-content-wrapper .our-element-content .list .list-description {
+  width: 86%;
+  left: 7%;
+  position: relative;
+  padding-bottom: 0;
+  top: -100%;
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  text-align: left;
+  letter-spacing: 0;
+  color: #ffffff;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+  }
+  50% {
+    transform: translateY(-8%);
+  }
+  65% {
+    transform: translateY(4%);
+  }
+  80% {
+    transform: translateY(-4%);
+  }
+  95% {
+    transform: translateY(2%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+@media (max-width: 767px) {
+  .heading {
+    font-size: 26px !important;
+    line-height: 35px !important;
+    letter-spacing: -1.04px !important;
+    padding-bottom: 20px !important;
+  }
+
+  .list {
+    padding: 20px 0 !important;
+  }
+  .list .list-title {
+    font-size: 16px !important;
+    line-height: 30px !important;
+    letter-spacing: -0.32px !important;
+    padding: 0 !important;
+  }
+  .list .list-description {
+    font-size: 11px !important;
+    line-height: 15px !important;
+    padding: 0 !important;
+  }
+}
+
+/*# sourceMappingURL=our-element.component.css.map */

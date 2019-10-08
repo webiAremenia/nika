@@ -1,0 +1,131 @@
+.section {
+  transition: all 1200ms ease-in 300ms;
+  -o-transition: all 1200ms ease-in 300ms;
+  -ms-transition: all 1200ms ease-in 300ms;
+  -moz-transition: all 1200ms ease-in 300ms;
+  -webkit-transition: all 1200ms ease-in 300ms;
+  transition-property: all;
+}
+
+.section {
+  opacity: 0;
+}
+
+.section:first-child {
+  opacity: 1;
+}
+
+#section-2 {
+  opacity: 1;
+}
+
+.custom-container {
+  padding: 50px 0 50px 50px !important;
+}
+
+.img-wrapper {
+  height: 250px;
+}
+.img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-page {
+  padding-left: 10px;
+}
+
+.link-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 180px;
+  background-color: #000A1D;
+  color: #FFFFFF;
+}
+.link-box .link-box-text {
+  width: 100%;
+  padding: 0 69px;
+}
+.link-box .link-box-text .question {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: "Open Sans Bold", sans-serif;
+  letter-spacing: -0.6px;
+}
+.link-box .link-box-text .link {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-decoration: underline;
+  font-family: "Open Sans Regular", sans-serif;
+  letter-spacing: -0.44px;
+  color: #FFFFFF;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media (min-width: 992px) {
+  * {
+    overflow: hidden;
+  }
+}
+@media (max-width: 992px) {
+  .about-page {
+    padding-left: 0;
+  }
+}
+@media (max-width: 992px) {
+  .custom-page {
+    height: auto;
+  }
+
+  .section {
+    transition: all 700ms ease-in 150ms !important;
+    -o-transition: all 700ms ease-in 150ms !important;
+    -ms-transition: all 700ms ease-in 150ms !important;
+    -moz-transition: all 700ms ease-in 150ms !important;
+    -webkit-transition: all 700ms ease-in 150ms !important;
+  }
+}
+@media (max-width: 767px) {
+  .about-page .link-box-text {
+    padding: 37px 32px !important;
+  }
+  .about-page .question {
+    width: 219px;
+    font-size: 20px !important;
+    line-height: 25px !important;
+  }
+  .about-page .link {
+    width: 100% !important;
+    text-align: left !important;
+    font-size: 14px !important;
+    line-height: 35px !important;
+    padding-top: 22px !important;
+    justify-content: flex-start !important;
+  }
+}
+
+/*# sourceMappingURL=about.component.css.map */

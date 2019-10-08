@@ -49,6 +49,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     mobileXsHeight;
 
     homePage = true;
+    delay = 0;
+
+    location: boolean;
 
     initCurrentTimeOut;
     backToSliderTimeOut;
@@ -109,7 +112,47 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.imageUrl = config.imageUrl + '/work/';
     }
 
+    createMessage() {
+        let timeOne;
+        let timeSecond;
+        if (window.innerWidth < 767) {
+            timeOne = 1800;
+            timeSecond = 3800;
+        } else {
+            timeOne = 2000;
+            timeSecond = 4000;
+        }
+        setTimeout( () => {
+            const data = ['P', 'E', 'A', 'S', 'E', '', 'S', 'T', 'A', 'N', 'D', '', 'B', 'Y'];
+            data.forEach( (wr, index) => {
+                this.delay += 50;
+                const span = document.createElement('span');
+                const div = document.createElement('div');
+                span.innerText = wr;
+                span.style.animationDelay += this.delay + 'ms';
+                document.getElementsByClassName('message')[0].appendChild(span);
+                if (wr !== ' ') {
+                    document.getElementsByClassName('message')[0].appendChild(div);
+                }
+
+            });
+        }, 1);
+        setTimeout( () => {
+            document.getElementsByClassName('message')[0].remove();
+        }, timeOne);
+        setTimeout( () => {
+            document.getElementsByClassName('please-wait')[0].remove();
+        }, timeSecond);
+        // setTimeout( () => {
+        //     const elemFirst: any = document.getElementsByClassName('please-wait')[0];
+        //     const elemSecond: any = document.getElementsByClassName('accordion-items')[0];
+        //     elemFirst.style.zIndex = '1000';
+        //     elemSecond.style.zIndex = '99';
+        // }, 2000);
+    }
+
     ngOnInit() {
+        this.location = !location.href.split('/')[4];
         // console.log('onInit');
         this.workScrollTop = -window.innerHeight + 100;
         this.actionsService.workScrollPosition.next(this.workScrollTop);
@@ -331,6 +374,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 d => {
                     this.slides = d;
                     this.done = true;
+                    this.createMessage();
                     this.initSlider();
                     this.getCurrent();
                 },
