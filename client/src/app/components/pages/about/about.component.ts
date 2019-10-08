@@ -94,7 +94,8 @@ export class AboutComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        if (document.documentMode || /Edge/.test(navigator.userAgent)) {
+        const doc: any = document;
+        if (doc.documentMode || /Edge/.test(navigator.userAgent)) {
             this.edge = true;
         }
         this.getPage();
@@ -108,7 +109,7 @@ export class AboutComponent implements OnInit, OnDestroy {
             });
     }
 
-    // // // INIT ANIMATIONS // // //
+    // // // // // INIT ANIMATIONS // // // // //
 
     initDesktopAnimation(position: number) {
         this.scrollPosition += position;
@@ -123,20 +124,18 @@ export class AboutComponent implements OnInit, OnDestroy {
         } else if (this.scrollPosition > this.scrollHeight) {
             this.scrollPosition = this.scrollHeight;
         }
-        for (let i = 0; i < this.sectionArr.length; i++) {
-            if (this.scrollPosition + this.bannerHeight > this.sectionArr[i]) {
-                document.getElementById('section-' + (i + 1)).style.opacity = '1';
-            }
-        }
+        this.showSections(position);
         if (this.scrollPosition + clientHeight >= this.scrollHeight) {
             for (let i = 0; i < this.sectionArr.length; i++) {
                 document.getElementById('section-' + (i + 1)).style.opacity = '1';
+                document.getElementById('section-' + (i + 1)).style.visibility = 'visible';
             }
             return this.aboutScroll.nativeElement.style.transform = `translate3d(0, -${this.scrollHeight - clientHeight}px, 0)`;
         } else if (this.scrollPosition + clientHeight < this.scrollHeight) {
             this.aboutScroll.nativeElement.style.transform = `translate3d(0, -${this.scrollPosition}px, 0)`;
         }
     }
+
 
     initMobileAnimation() {
         this.scrollPosition = window.pageYOffset;
@@ -145,14 +144,37 @@ export class AboutComponent implements OnInit, OnDestroy {
             this.scrollHeight = document.getElementsByClassName('about-scroll')[0].scrollHeight;
             this.bannerHeight = window.innerHeight / 1.5;
         }
-        for (let i = 0; i < this.sectionArr.length; i++) {
-            if (this.scrollPosition + this.bannerHeight >= this.sectionArr[i]) {
-                document.getElementById('section-' + (i + 1)).style.opacity = '1';
-            }
-        }
+        this.showSections();
         if (this.scrollPosition + document.documentElement.clientHeight >= this.sectionArr[this.sectionArr.length - 1]) {
             for (let i = 0; i < this.sectionArr.length; i++) {
                 document.getElementById('section-' + (i + 1)).style.opacity = '1';
+                document.getElementById('section-' + (i + 1)).style.visibility = 'visible';
+            }
+        }
+    }
+
+    // // // // // SHOW/HIDE SECTION // // // // //
+
+    showSections(position?) {
+        for (let i = 0; i < this.sectionArr.length; i++) {
+            if (position > 0 &&  this.scrollPosition + this.bannerHeight > this.sectionArr[i]) {
+                document.getElementById('section-' + (i + 1)).style.opacity = '1';
+                document.getElementById('section-' + (i + 1)).style.visibility = 'visible';
+            }
+            if (position > 0 &&  this.scrollPosition + this.bannerHeight / 2 > this.sectionArr[i]) {
+                if (i > 1) {
+                    document.getElementById('section-' + (i) ).style.opacity = '0';
+                    document.getElementById('section-' + (i) ).style.visibility = 'hidden';
+                }
+            }
+            if (position < 0 && i > 1 && this.scrollPosition + this.bannerHeight / 2 < this.sectionArr[i]) {
+                if (i + 1 === 3) {
+                    document.getElementById('section-' + (i)).style.opacity = '1';
+                    document.getElementById('section-' + (i)).style.visibility = 'visible';
+                    document.getElementById('section-' + (i + 1)).style.opacity = '0';
+                    document.getElementById('section-' + (i + 1)).style.visibility = 'hidden';
+                }
+                document.getElementById('section-' + (i + 1)).style.opacity = '0';
             }
         }
     }

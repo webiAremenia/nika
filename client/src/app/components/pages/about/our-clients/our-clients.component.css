@@ -1,0 +1,84 @@
+.clients-content-wrapper {
+  width: 100%;
+}
+.clients-content-wrapper .heading {
+  text-align: left;
+  letter-spacing: -2.6px;
+  color: #000A1D;
+  text-transform: capitalize;
+  padding-bottom: 26px;
+}
+.clients-content-wrapper .description {
+  text-align: left;
+  letter-spacing: -0.52px;
+  color: #000A1D;
+}
+.clients-content-wrapper .partners .partner {
+  width: 218px;
+  height: 218px;
+  border: 1px solid #707070;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.clients-content-wrapper .partners .partner-text {
+  color: red;
+  opacity: 0;
+  visibility: hidden;
+  text-align: center;
+  line-height: 25px;
+  letter-spacing: 0;
+}
+
+.partner:hover {
+  transition: 300ms all ease-in-out;
+  background-color: #000A1D;
+  background-image: none !important;
+}
+.partner:hover .partner-text {
+  cursor: default;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+@media (min-width: 1440px) {
+  .partners {
+    padding: 86px;
+  }
+}
+@media (min-width: 767px) and (max-width: 1440px) {
+  .partners {
+    padding: 30px;
+  }
+}
+@media (max-width: 767px) {
+  .clients-content-wrapper .heading {
+    font-size: 26px !important;
+    line-height: 35px !important;
+    letter-spacing: -1.04px !important;
+  }
+  .clients-content-wrapper .description {
+    font-size: 11px !important;
+    line-height: 15px !important;
+    letter-spacing: 0 !important;
+  }
+  .clients-content-wrapper .partners {
+    padding: 28px 0 28px 0;
+  }
+  .clients-content-wrapper .partners .partner {
+    width: 103px;
+    height: 103px;
+  }
+  .clients-content-wrapper .partners .partner-img {
+    background-size: 30px;
+  }
+  .clients-content-wrapper .partners .partner-text {
+    font-size: 7px;
+    line-height: 12px;
+  }
+}
+
+/*# sourceMappingURL=our-clients.component.css.map */
