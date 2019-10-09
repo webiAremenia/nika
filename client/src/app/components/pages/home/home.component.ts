@@ -5,6 +5,7 @@ import {WorkService} from '../../../_services/work.service';
 import {Work} from '../../../_models/work/work';
 import {ActionsService} from '../../../_services/actions.service';
 import {Subscription} from 'rxjs';
+import {MenuService} from '../../../_services/menu.service';
 
 
 @Component({
@@ -57,6 +58,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     backToSliderTimeOut;
     isWork: Subscription;
 
+    loadText: string;
+    settingSubscription: Subscription;
+
     @HostListener('window:resize', ['$event'])
     onResize() {
         this.initSlider();
@@ -106,10 +110,18 @@ export class HomeComponent implements OnInit, OnDestroy {
     constructor(
         private actionsService: ActionsService,
         private activatedRoute: ActivatedRoute,
-        private  workService: WorkService,
+        private workService: WorkService,
+        private menuService: MenuService,
         config: AppGlobals,
-        private router: Router) {
+        private router: Router
+    ) {
         this.imageUrl = config.imageUrl + '/work/';
+        this.settingSubscription = this.menuService.getSettingsRX()
+            .subscribe(settings => {
+                if (settings) {
+                    this.loadText = settings.find(st => st.key === 'animation-text').value;
+                }
+            });
     }
 
     ngOnInit() {
@@ -411,18 +423,19 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     // // // // // LOADING MESSAGE // // // // //
 
-    createMessage(order: boolean) {
+    createMessage(order: boolean): void {
         let timeOne;
         let timeSecond;
         if (window.innerWidth < 767) {
             timeOne = 2100;
             timeSecond = 3800;
         } else {
-            timeOne = 1900;
-            timeSecond = 3600;
+            timeOne = 2000;
+            timeSecond = 3470;
         }
         setTimeout(() => {
-            const data = ['P', 'E', 'A', 'S', 'E', '', 'S', 'T', 'A', 'N', 'D', '', 'B', 'Y'];
+            const data = this.loadText.split('');
+            // const data = ['P', 'E', 'A', 'S', 'E', '', 'S', 'T', 'A', 'N', 'D', '', 'B', 'Y'];
             data.forEach((wr, index) => {
                 this.delay += 50;
                 const span = document.createElement('span');
@@ -456,6 +469,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.homePage = false;
         this.isWork.unsubscribe();
+        this.settingSubscription.unsubscribe();
         // console.log('destroy: ', this.homePage);
     }
 }

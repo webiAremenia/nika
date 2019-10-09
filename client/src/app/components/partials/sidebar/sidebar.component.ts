@@ -8,6 +8,7 @@ import {AppGlobals} from '../../../app.globals';
 import {Subscription} from 'rxjs';
 import {ResponsiveData} from '../../../_models/ResponsiveData';
 import {ActionsService} from '../../../_services/actions.service';
+import set = Reflect.set;
 
 @Component({
     selector: 'app-sidebar',
@@ -23,7 +24,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
     menu: any;
     menuDone = false;
     showMenu = false;
+    imgLink: string;
 
+    settingSubscription: Subscription;
     windowSubscription: Subscription;
     windowSize: ResponsiveData;
 
@@ -44,8 +47,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
         private config: AppGlobals
     ) {
         this.imageUrl = config.imageUrl + '/medias/';
-        this.windowSubscription = actionsService.getWindowSize()
-            .subscribe((size: ResponsiveData) => this.windowSize = size);
+        this.initData();
         // router.events.subscribe((val) => {
         //     // console.log(location.path())
         // });
@@ -64,18 +66,19 @@ export class SidebarComponent implements OnInit, OnDestroy {
         });
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this.windowSubscription.unsubscribe();
+        this.settingSubscription.unsubscribe();
     }
 
-    showMobMenu() {
+    showMobMenu(): void {
         this.showMenu = true;
         setTimeout(() => {
             document.getElementById('hiddenCont').style.opacity = '1';
         }, 50);
     }
 
-    hideMobMenu() {
+    hideMobMenu(): void {
         const menu = document.getElementById('hiddenCont');
         if (menu) {
             menu.style.opacity = '0';
@@ -83,6 +86,17 @@ export class SidebarComponent implements OnInit, OnDestroy {
         setTimeout(() => {
             this.showMenu = false;
         }, 200);
+    }
+
+    initData(): void {
+        this.windowSubscription = this.actionsService.getWindowSize()
+            .subscribe((size: ResponsiveData) => this.windowSize = size);
+        this.settingSubscription = this.menuService.getSettingsRX()
+            .subscribe(settings => {
+                if (settings) {
+                    this.imgLink = settings.find(st => st.key === 'sidebar-link').value;
+                }
+            });
     }
 
 

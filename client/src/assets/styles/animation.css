@@ -68,7 +68,7 @@
 .please-wait .message .letter .upShow {
   position: absolute;
   width: 110%;
-  height: 100%;
+  height: 200%;
   left: -5%;
   animation: stand 1.2s ease-in-out;
   background-color: #262626;
@@ -143,7 +143,7 @@
   0% {
     width: 0;
   }
-  30% {
+  50% {
     width: 0;
   }
   100% {
@@ -153,13 +153,13 @@
 @keyframes stand {
   0% {
     top: 0;
-    height: 100%;
+    height: 200%;
   }
   15% {
-    top: 50%;
-    height: 50%;
+    top: 70%;
+    height: 30%;
   }
-  30% {
+  50% {
     top: 100%;
     height: 0;
   }
