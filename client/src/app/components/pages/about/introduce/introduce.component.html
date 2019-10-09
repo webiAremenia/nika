@@ -1,9 +1,10 @@
 <div class="introduce-content-wrapper">
     <div class="introduce-content about-inner-content" *ngIf="content"
          [style.padding]="
-            (windowSize.width * 97)/1920 + 'px '
+            (windowSize.width * 105)/1920 + 'px '
+         + (windowSize.width * 134)/1920 + 'px '
          + (windowSize.width * 139)/1920 + 'px '
-         + (windowSize.width * 139)/1920 + 'px' ">
+         + (windowSize.width * 138)/1920 + 'px' ">
 
         <div class="bg-image">
             <img [src]="'assets/images/AboutUs/chair-octopus@2x.png'">
@@ -19,12 +20,13 @@
         </div>
 
         <div class="description"
-             [style.width]="(windowSize.width * 500 * windowSize.rate) / 1920 + 'px'"
+             [style.width]="(windowSize.width * 548 * windowSize.rate) / 1920 + 'px'"
              [style.font-size]="(windowSize.width * content.description.fontSize * windowSize.rate) / 1920 + 'px'"
              [style.line-height]="(windowSize.width * content.description.lineHeight * windowSize.rate) / 1920 + 'px'"
              [style.font-family]="content.description.fontFamily"
+             [innerHTML]="content.description.text"
         >
-            {{ content.description.text }}
+<!--            {{ content.description.text }}-->
         </div>
 
     </div>

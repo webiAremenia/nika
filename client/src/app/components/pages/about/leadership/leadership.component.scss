@@ -5,6 +5,10 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 .leadership-content-wrapper {
   width: 100%;
 
+  .heading, .description {
+    max-width: 675px;
+  }
+
   .heading {
     text-align: left;
     //font-family: $font-extraBold;
@@ -78,6 +82,12 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 @media (min-width: 1440px) {
   .about {
     padding: 35px 25px;
+  }
+}
+
+@media (min-width: 1921px) {
+  .image {
+    height: 740px !important;
   }
 }
 
@@ -174,7 +184,13 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
   }
 }
 
-@media (min-width: 350px) and (max-width: 460px) {
+@media (min-width: 400px) and (max-width: 460px) {
+  .image {
+    height: 360px !important;
+  }
+}
+
+@media (min-width: 350px) and (max-width: 400px) {
   .image {
     height: 340px !important;
   }
@@ -182,6 +198,6 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
 @media (max-width: 350px) {
   .image {
-    height: 250px !important;
+    height: 260px !important
   }
 }

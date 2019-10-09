@@ -1,0 +1,42 @@
+.remark-content-wrapper {
+  width: 100%;
+  background-color: #DDDDDD;
+  text-align: center;
+}
+.remark-content-wrapper .whole-remark {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+}
+.remark-content-wrapper .whole-remark .text {
+  text-align: center;
+  letter-spacing: -1.8px;
+  color: #000A1D;
+  padding-bottom: 36px;
+}
+.remark-content-wrapper .whole-remark .text span {
+  font-style: italic;
+  letter-spacing: -1.8px;
+  color: #ADFF2F;
+}
+.remark-content-wrapper .whole-remark .author {
+  margin: auto;
+  width: 70%;
+  letter-spacing: 0;
+  color: #000000;
+}
+
+@media (max-width: 768px) {
+  .remark-content-wrapper .whole-remark .text {
+    font-size: 15px !important;
+    line-height: 20px !important;
+    letter-spacing: -0.6px !important;
+    padding-bottom: 3px !important;
+  }
+  .remark-content-wrapper .whole-remark .author {
+    font-size: 10px !important;
+    line-height: 35px !important;
+  }
+}
+
+/*# sourceMappingURL=remark.component.css.map */

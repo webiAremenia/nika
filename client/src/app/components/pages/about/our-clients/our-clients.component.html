@@ -2,6 +2,7 @@
     <div class="clients-content about-inner-content" *ngIf="content"
          [style.padding]="
             (windowSize.width * 97)/1920 + 'px '
+         + (windowSize.width * 134)/1920 + 'px '
          + (windowSize.width * 139)/1920 + 'px '
          + (windowSize.width * 139)/1920 + 'px' ">
 
@@ -24,19 +25,14 @@
         <div class="partners">
             <div class="row m-0">
                 <ng-container *ngFor="let block of content.blocks">
-<!--                    <div *ngIf="block.backGround"-->
-<!--                         class="col-4 col-md-3 partner partner-img"-->
-<!--                         [style.backgroundImage]="'url(' + block.backGround +')'">-->
-<!--                    </div>-->
                     <div
                          [style.backgroundImage]="'url(' + block.backGround +')'"
-                         [style.font-size]="(windowSize.width * block.fontSize * windowSize.rate) / 1920 + 'px'"
-                         [style.line-height]="(windowSize.width * block.lineHeight * windowSize.rate) / 1920 + 'px'"
-                         [style.font-family]="block.fontFamily"
+                         [style.font-size]="(windowSize.width * block.hover.fontSize * windowSize.rate) / 1920 + 'px'"
+                         [style.line-height]="(windowSize.width * block.hover.lineHeight * windowSize.rate) / 1920 + 'px'"
+                         [style.font-family]="block.hover.fontFamily"
                          class="col-4 col-md-3 partner">
                         <div class="partner-text">
-<!--                            {{ block.text }}-->
-                            Example
+                            {{ block.hover.text }}
                         </div>
                     </div>
                 </ng-container>

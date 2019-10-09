@@ -2,6 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {ActionsService} from './_services/actions.service';
+import {MenuService} from './_services/menu.service';
 
 
 @Component({
@@ -20,7 +21,9 @@ export class AppComponent implements OnInit {
         location: Location,
         router: Router,
         private actionsService: ActionsService,
+        private menuService: MenuService
     ) {
+        menuService.getSettings().subscribe();
     }
 
     ngOnInit() {
@@ -46,7 +49,6 @@ export class AppComponent implements OnInit {
             this.actionsService.mobileResponsiveData.next(width);
         }
     }
-
 
     onActivate(event) {
         window.scroll(0, 0);

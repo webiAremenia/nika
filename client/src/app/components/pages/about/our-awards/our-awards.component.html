@@ -2,6 +2,7 @@
     <div class="our-awards-content about-inner-content" *ngIf="content"
          [style.padding]="
             (windowSize.width * 97)/1920 + 'px '
+         + (windowSize.width * 134)/1920 + 'px '
          + (windowSize.width * 139)/1920 + 'px '
          + (windowSize.width * 139)/1920 + 'px' ">
 
@@ -24,20 +25,16 @@
 
         <div class="awards">
             <div class="row m-0">
-                <div class="col-3 award award-text">
-                    <ul>
-                        <li *ngFor="let cont of content.first"
-                            [style.font-size]="(windowSize.width * cont.fontSize * windowSize.rate) / 1920 + 'px'"
-                            [style.line-height]="(windowSize.width * cont.lineHeight * windowSize.rate) / 1920 + 'px'"
-                            [style.font-family]="cont.fontFamily"
-                        >
-                            <span>{{ cont.text.split(' ')[0] }}</span> {{ cont.text.split(' ')[1] }}
-                        </li>
-                    </ul>
+                <div class="col-3 award award-text"
+                     *ngFor="let block of content.blocks"
+                     [style.backgroundImage]="'url(' + block.backGround + ')'"
+                     [style.font-size]="(windowSize.width * block.hover.fontSize * windowSize.rate) / 1920 + 'px'"
+                     [style.line-height]="(windowSize.width * block.hover.lineHeight * windowSize.rate) / 1920 + 'px'"
+                     [style.font-family]="block.hover.fontFamily"
+                >
+                    <span> {{block.hover.text}} </span>
+<!--                            <span>{{ cont.text.split(' ')[0] }}</span> {{ cont.text.split(' ')[1] }}-->
                 </div>
-                <div *ngFor="let block of content.blocks"
-                     class="col-3 award award-img"
-                     [style.backgroundImage]="'url(' + block + ')'"></div>
             </div>
         </div>
 

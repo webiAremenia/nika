@@ -7,8 +7,8 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
     .bg-image {
         position: absolute;
-        top: 0;
-        right: 0;
+        top: 20px;
+        right: 30px;
         height: 100%;
         width: 50%;
         padding-top: 10%;
@@ -29,7 +29,8 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
         color: #000A1D;
         text-transform: capitalize;
         opacity: 1;
-        padding-bottom: 26px;
+        //padding-bottom: 26px;
+        padding-bottom: 65px;
     }
 
     .description {
@@ -52,6 +53,8 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
         background-position: top;
 
         .bg-image {
+            left: 0;
+            right: 0;
             top: 0;
             height: 225px;
             width: 100%;

@@ -6,13 +6,13 @@ ul li {
 
 ul {
   padding: 0;
-  border-bottom: 1.5px solid green;
+  border-bottom: 1px solid #ADFF2F;
   margin: 0;
 }
 
 ul:first-child {
-  border-top: 1.5px solid green;
-  border-bottom: 1.5px solid green;
+  border-top: 1px solid #ADFF2F;
+  border-bottom: 1px solid #ADFF2F;
 }
 
 ul:last-child {
@@ -61,13 +61,12 @@ ul:hover {
   position: relative;
   text-align: left;
   letter-spacing: -0.72px;
-  padding: 0 15px;
+  padding: 30px 15px;
 }
 .our-element-content-wrapper .our-element-content .list .list-description {
-  width: 86%;
-  left: 7%;
+  width: 80%;
+  left: 11%;
   position: relative;
-  padding-bottom: 0;
   top: -100%;
   opacity: 0;
   visibility: hidden;
@@ -77,26 +76,7 @@ ul:hover {
   color: #ffffff;
 }
 
-@keyframes slideUp {
-  0% {
-    transform: translateY(100%);
-  }
-  50% {
-    transform: translateY(-8%);
-  }
-  65% {
-    transform: translateY(4%);
-  }
-  80% {
-    transform: translateY(-4%);
-  }
-  95% {
-    transform: translateY(2%);
-  }
-  100% {
-    transform: translateY(0%);
-  }
-}
+@keyframes slideUp {}
 @media (max-width: 767px) {
   .heading {
     font-size: 26px !important;

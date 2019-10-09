@@ -20,15 +20,24 @@
             <div class="bottom-part" *ngIf="menu">
                 <div id="menu-content" class="side-bar-about h-75">
                     <div class="links-content">
-                        <div class="menu-items">
+                        <div class="menu-items"
+                             [style.font-size]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"
+                             [style.line-height]="(windowSize.width * 45 * windowSize.rate) / 1920 + 'px'"
+                        >
                             <a [routerLink]="['about']">{{ menu.about.title }}</a><span> {{ menu.about.description }} </span>
                         </div>
-                        <div class="menu-items">
+                        <div class="menu-items"
+                             [style.font-size]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"
+                             [style.line-height]="(windowSize.width * 45 * windowSize.rate) / 1920 + 'px'"
+                        >
                             <a [routerLink]="['/']">{{ menu.works.title }}</a><span> {{ menu.works.description }} </span>
                         </div>
                     </div>
                 </div>
-                <div class="side-bar-meet-link h-25">
+                <div class="side-bar-meet-link h-25"
+                     [style.font-size]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"
+                     [style.line-height]="(windowSize.width * 45 * windowSize.rate) / 1920 + 'px'"
+                >
                     <a [routerLink]="['contact']">{{ menu.contact.title }}</a><span> {{ menu.contact.description }} </span>
                 </div>
             </div>
@@ -42,7 +51,9 @@
                 <img class="align-self-center" [src]="imageUrl + logos[1].image['image']" alt="logo">
             </div>
             <ng-template #link class="h-100">
-                <img class="align-self-center" src="assets/images/logo.PNG" alt="logo">
+                <a [href]="imgLink" target="_blank">
+                    <img class="align-self-center" src="assets/images/logo.PNG" alt="logo">
+                </a>
             </ng-template>
         </div>
     </div>

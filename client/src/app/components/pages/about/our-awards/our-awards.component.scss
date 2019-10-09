@@ -4,9 +4,12 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 .our-awards-content-wrapper {
   width: 100%;
 
+  .heading, .description {
+    max-width: 675px;
+  }
+
   .heading {
     text-align: left;
-    //font-family: $font-extraBold;
     letter-spacing: -2.6px;
     color: #000A1D;
     text-transform: capitalize;
@@ -15,17 +18,11 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
   .description {
     text-align: left;
-    //font-family: $font-regular;
     letter-spacing: -0.52px;
     color: #000A1D;
   }
 
   .awards {
-    ul {
-      margin: 0;
-      padding: 0 0 0 20px;
-    }
-
     .award {
       width: 218px;
       height: 218px;
@@ -39,32 +36,18 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
       justify-content: flex-start;
     }
 
-    //.award-img {
-    //  background-repeat: no-repeat;
-    //  background-position: center;
-    //  background-size: 70px;
-    //}
-
     .award {
-      //font-family: $font-regular;
       font-size: 18px;
       line-height: 35px;
       letter-spacing: 0;
       color: #FFFFFF;
 
-      ul li {
-        list-style-type: none;
-        color: #ffffff;
-        letter-spacing: 0;
-        opacity: 0;
-        visibility: hidden;
-
         span {
+          margin-left: 20px;
           font-weight: bold;
           opacity: 0;
           visibility: hidden;
         }
-      }
     }
   }
 }
@@ -77,26 +60,18 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
   opacity: 1 !important;
   visibility: visible !important;
 
-  ul li {
-    list-style-type: none;
-    color: #ffffff;
-    letter-spacing: 0;
-    opacity: 1 !important;
-    visibility: visible !important;
-
     span {
       font-weight: bold;
       opacity: 1 !important;
       visibility: visible !important;
     }
-  }
 }
 
 // // // Media // // //
 
 @media (min-width: 1440px) {
   .awards {
-    padding: 86px;
+    padding: 86px 0 86px 86px;
   }
 }
 
@@ -127,12 +102,12 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
     .awards {
       padding: 0;
 
-      .award-img {
+      .award {
         background-size: 30px !important;
-      }
-
-      .award-text {
         justify-content: center !important;
+        span {
+          margin: auto;
+        }
         font-size: 10px !important;
         line-height: 14px !important;
       }

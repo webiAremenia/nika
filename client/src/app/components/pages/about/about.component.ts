@@ -130,9 +130,12 @@ export class AboutComponent implements OnInit, OnDestroy {
                 document.getElementById('section-' + (i + 1)).style.opacity = '1';
                 document.getElementById('section-' + (i + 1)).style.visibility = 'visible';
             }
-            return this.aboutScroll.nativeElement.style.transform = `translate3d(0, -${this.scrollHeight - clientHeight}px, 0)`;
+            this.aboutScroll.nativeElement.style.transform = `translate3d(0, -${this.scrollHeight - clientHeight}px, 0)`;
+            this.aboutScroll.nativeElement.style.transform = `-webkit-translate3d(0, -${this.scrollHeight - clientHeight}px, 0)`;
+            return;
         } else if (this.scrollPosition + clientHeight < this.scrollHeight) {
             this.aboutScroll.nativeElement.style.transform = `translate3d(0, -${this.scrollPosition}px, 0)`;
+            this.aboutScroll.nativeElement.style.transform = `-webkit-translate3d(0, -${this.scrollPosition}px, 0)`;
         }
     }
 
@@ -157,24 +160,35 @@ export class AboutComponent implements OnInit, OnDestroy {
 
     showSections(position?) {
         for (let i = 0; i < this.sectionArr.length; i++) {
-            if (position > 0 &&  this.scrollPosition + this.bannerHeight > this.sectionArr[i]) {
+            if (this.scrollPosition + this.bannerHeight > this.sectionArr[i]) {
                 document.getElementById('section-' + (i + 1)).style.opacity = '1';
                 document.getElementById('section-' + (i + 1)).style.visibility = 'visible';
             }
-            if (position > 0 &&  this.scrollPosition + this.bannerHeight / 2 > this.sectionArr[i]) {
+            if (this.scrollPosition + this.bannerHeight / 2 > this.sectionArr[i]) {
                 if (i > 1) {
                     document.getElementById('section-' + (i) ).style.opacity = '0';
                     document.getElementById('section-' + (i) ).style.visibility = 'hidden';
                 }
             }
-            if (position < 0 && i > 1 && this.scrollPosition + this.bannerHeight / 2 < this.sectionArr[i]) {
+            if (i > 1 && this.scrollPosition + this.bannerHeight / 2 < this.sectionArr[i]) {
                 if (i + 1 === 3) {
                     document.getElementById('section-' + (i)).style.opacity = '1';
                     document.getElementById('section-' + (i)).style.visibility = 'visible';
                     document.getElementById('section-' + (i + 1)).style.opacity = '0';
                     document.getElementById('section-' + (i + 1)).style.visibility = 'hidden';
+                } else if (i + 1 > 3) {
+                    document.getElementById('section-' + (i)).style.opacity = '1';
+                    document.getElementById('section-' + (i)).style.visibility = 'visible';
+                    document.getElementById('section-' + (i + 1)).style.opacity = '0';
+                    document.getElementById('section-' + (i + 1)).style.visibility = 'hidden';
+                    return;
                 }
+            }
+        }
+        if (this.scrollPosition < this.sectionArr[1]) {
+            for (let i = 2; i < this.sectionArr.length; i++) {
                 document.getElementById('section-' + (i + 1)).style.opacity = '0';
+                document.getElementById('section-' + (i + 1)).style.visibility = 'hidden';
             }
         }
     }

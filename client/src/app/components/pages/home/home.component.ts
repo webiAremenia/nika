@@ -5,6 +5,7 @@ import {WorkService} from '../../../_services/work.service';
 import {Work} from '../../../_models/work/work';
 import {ActionsService} from '../../../_services/actions.service';
 import {Subscription} from 'rxjs';
+import {MenuService} from '../../../_services/menu.service';
 
 
 @Component({
@@ -57,6 +58,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     backToSliderTimeOut;
     isWork: Subscription;
 
+    loadText: string;
+    settingSubscription: Subscription;
+
     @HostListener('window:resize', ['$event'])
     onResize() {
         this.initSlider();
@@ -106,52 +110,22 @@ export class HomeComponent implements OnInit, OnDestroy {
     constructor(
         private actionsService: ActionsService,
         private activatedRoute: ActivatedRoute,
-        private  workService: WorkService,
+        private workService: WorkService,
+        private menuService: MenuService,
         config: AppGlobals,
-        private router: Router) {
+        private router: Router
+    ) {
         this.imageUrl = config.imageUrl + '/work/';
-    }
-
-    createMessage() {
-        let timeOne;
-        let timeSecond;
-        if (window.innerWidth < 767) {
-            timeOne = 1800;
-            timeSecond = 3800;
-        } else {
-            timeOne = 2000;
-            timeSecond = 4000;
-        }
-        setTimeout( () => {
-            const data = ['P', 'E', 'A', 'S', 'E', '', 'S', 'T', 'A', 'N', 'D', '', 'B', 'Y'];
-            data.forEach( (wr, index) => {
-                this.delay += 50;
-                const span = document.createElement('span');
-                const div = document.createElement('div');
-                span.innerText = wr;
-                span.style.animationDelay += this.delay + 'ms';
-                document.getElementsByClassName('message')[0].appendChild(span);
-                if (wr !== ' ') {
-                    document.getElementsByClassName('message')[0].appendChild(div);
+        this.settingSubscription = this.menuService.getSettingsRX()
+            .subscribe(settings => {
+                if (settings) {
+                    this.loadText = settings.find(st => st.key === 'animation-text').value;
                 }
-
             });
-        }, 1);
-        setTimeout( () => {
-            document.getElementsByClassName('message')[0].remove();
-        }, timeOne);
-        setTimeout( () => {
-            document.getElementsByClassName('please-wait')[0].remove();
-        }, timeSecond);
-        // setTimeout( () => {
-        //     const elemFirst: any = document.getElementsByClassName('please-wait')[0];
-        //     const elemSecond: any = document.getElementsByClassName('accordion-items')[0];
-        //     elemFirst.style.zIndex = '1000';
-        //     elemSecond.style.zIndex = '99';
-        // }, 2000);
     }
 
     ngOnInit() {
+        this.createMessage(false);
         this.location = !location.href.split('/')[4];
         // console.log('onInit');
         this.workScrollTop = -window.innerHeight + 100;
@@ -182,7 +156,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     initCurrent(index) {
         // console.log('onInitCurrent');
         clearTimeout(this.backToSliderTimeOut);
-        this.detailWrapperHeight = (window.innerHeight - 100);
+        this.detailWrapperHeight = (window.innerHeight - 112);
         this.bannerHeight = (window.innerHeight - 100);
         this.lastIndex = index;
         this.clickedSlide = index;
@@ -194,8 +168,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         setTimeout(() => {
             this.zoomed = 180;
             this.detailWrapperLeft = 0;
-            this.detailWrapperHeight = window.innerHeight + 100;
-            this.bannerHeight = window.innerHeight + 100;
+            this.detailWrapperHeight = window.innerHeight + 112;
+            this.bannerHeight = window.innerHeight + 112;
             this.clickedWidth = this.slideWidth * 3;
         }, 100);
         this.initCurrentTimeOut = setTimeout(() => {
@@ -216,8 +190,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
         this.hideDownBtn();
         this.zoomed = 100;
-        this.bannerHeight = window.innerHeight - 100;
-        this.detailWrapperHeight = window.innerHeight - 100;
+        this.bannerHeight = window.innerHeight - 112;
+        this.detailWrapperHeight = window.innerHeight - 112;
         this.detailWrapperLeft = (this.lastIndex + this.accordionItemsStyles.left / this.slideWidth) * this.slideWidth;
         this.clickedWidth = this.slideWidth;
         if (this.customBody) {
@@ -250,7 +224,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     initSlider() {
         this.count = this.slides.length;
-        this.slideWidth = window.innerWidth > 992 ? (window.innerWidth - 115) / 4 : (window.innerWidth) / 3;
+        this.slideWidth = window.innerWidth > 992 ? (window.innerWidth - 195) / 4 : (window.innerWidth) / 3;
         this.accordionItemsStyles.width = this.slideWidth * this.count;
     }
 
@@ -365,7 +339,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         // console.log('get params');
         if (this.workService.works) {
             this.slides = this.workService.works;
-            this.done = true;
+            // this.done = true;
             // console.log('get params if');
             this.initSlider();
             this.getCurrent();
@@ -374,7 +348,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 d => {
                     this.slides = d;
                     this.done = true;
-                    this.createMessage();
+                    this.createMessage(true);
                     this.initSlider();
                     this.getCurrent();
                 },
@@ -432,8 +406,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     initSizes() {
         if (this.windowWidth >= 992) {
-            this.resizeWidth = (this.windowWidth - 100) * 3 / 4;
-            this.resizeHeight = this.windowHeight - 100;
+            this.resizeWidth = (this.windowWidth - 195) * 3 / 4;
+            this.resizeHeight = this.windowHeight - 116;
+            console.log(this.resizeWidth)
         } else if (this.windowWidth >= 768) {
             this.resizeWidth = this.windowWidth;
             this.resizeHeight = this.windowHeight - 100;
@@ -446,9 +421,55 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
     }
 
+    // // // // // LOADING MESSAGE // // // // //
+
+    createMessage(order: boolean): void {
+        let timeOne;
+        let timeSecond;
+        if (window.innerWidth < 767) {
+            timeOne = 2100;
+            timeSecond = 3800;
+        } else {
+            timeOne = 2000;
+            timeSecond = 3470;
+        }
+        setTimeout(() => {
+            const data = this.loadText.split('');
+            // const data = ['P', 'E', 'A', 'S', 'E', '', 'S', 'T', 'A', 'N', 'D', '', 'B', 'Y'];
+            data.forEach((wr, index) => {
+                this.delay += 50;
+                const span = document.createElement('span');
+                const div = document.createElement('div');
+                const spanUp = document.createElement('span');
+                div.className = 'hideMessage';
+                spanUp.className = 'upShow';
+                span.className = 'letter';
+                span.innerText = wr;
+                span.style.animationDelay += this.delay + 'ms';
+                spanUp.style.animationDelay += this.delay + 'ms';
+                if (order) {
+                    if (wr !== ' ') {
+                        document.getElementsByClassName('message')[0].appendChild(div);
+                    }
+                    document.getElementsByClassName('message')[0].appendChild(span);
+                    span.appendChild(spanUp);
+                }
+            });
+        }, 1);
+        if (order) {
+            setTimeout(() => {
+                document.getElementsByClassName('message')[0].remove();
+            }, timeOne);
+            setTimeout(() => {
+                document.getElementsByClassName('please-wait')[0].remove();
+            }, timeSecond);
+        }
+    }
+
     ngOnDestroy(): void {
         this.homePage = false;
         this.isWork.unsubscribe();
+        this.settingSubscription.unsubscribe();
         // console.log('destroy: ', this.homePage);
     }
 }

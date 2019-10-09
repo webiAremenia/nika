@@ -4,6 +4,10 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 .clients-content-wrapper {
   width: 100%;
 
+  .heading, .description {
+    max-width: 880px;
+  }
+
   .heading {
     text-align: left;
     //font-family: $font-extraBold;
@@ -41,7 +45,7 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
     //}
 
     .partner-text {
-      color: red;
+      color: #FFFFFF;
       //background-color: #000A1D;
       opacity: 0;
       visibility: hidden;
@@ -56,7 +60,7 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
 .partner:hover {
   transition: 300ms all ease-in-out;
-  background-color: #000A1D;
+  background-color: #000000;
   background-image: none!important;
   .partner-text {
     cursor: default;
@@ -77,7 +81,7 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
 @media (min-width: 1440px) {
   .partners {
-    padding: 86px;
+    padding: 86px 0 86px 86px;
   }
 }
 
@@ -105,6 +109,7 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
       padding: 28px 0 28px 0;
 
       .partner {
+        background-size: 60px;
         width: 103px;
         height: 103px;
       }

@@ -21,6 +21,7 @@ export class IntroduceComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.content = this.content[0];
+        this.content.description.text = this.content.description.text.replace('--', '<br/><br/>');
     }
 
     ngOnDestroy() {

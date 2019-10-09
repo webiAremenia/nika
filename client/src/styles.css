@@ -9,7 +9,7 @@
 }
 
 .custom-page {
-  height: calc(100vh - 100px);
+  height: calc(100vh - 112px);
   overflow: auto;
 }
 @media (max-width: 767px) {
@@ -34,7 +34,6 @@
 }
 
 .rightContentWrapper {
-  transition-property: all;
   padding: 0;
 }
 

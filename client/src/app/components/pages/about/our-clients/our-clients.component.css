@@ -1,6 +1,9 @@
 .clients-content-wrapper {
   width: 100%;
 }
+.clients-content-wrapper .heading, .clients-content-wrapper .description {
+  max-width: 880px;
+}
 .clients-content-wrapper .heading {
   text-align: left;
   letter-spacing: -2.6px;
@@ -25,7 +28,7 @@
   align-items: center;
 }
 .clients-content-wrapper .partners .partner-text {
-  color: red;
+  color: #FFFFFF;
   opacity: 0;
   visibility: hidden;
   text-align: center;
@@ -35,7 +38,7 @@
 
 .partner:hover {
   transition: 300ms all ease-in-out;
-  background-color: #000A1D;
+  background-color: #000000;
   background-image: none !important;
 }
 .partner:hover .partner-text {
@@ -46,7 +49,7 @@
 
 @media (min-width: 1440px) {
   .partners {
-    padding: 86px;
+    padding: 86px 0 86px 86px;
   }
 }
 @media (min-width: 767px) and (max-width: 1440px) {
@@ -69,6 +72,7 @@
     padding: 28px 0 28px 0;
   }
   .clients-content-wrapper .partners .partner {
+    background-size: 60px;
     width: 103px;
     height: 103px;
   }
