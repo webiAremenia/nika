@@ -419,7 +419,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             timeSecond = 3800;
         } else {
             timeOne = 1900;
-            timeSecond = 3400;
+            timeSecond = 3600;
         }
         setTimeout(() => {
             const data = ['P', 'E', 'A', 'S', 'E', '', 'S', 'T', 'A', 'N', 'D', '', 'B', 'Y'];

@@ -1,4 +1,4 @@
-$section-2-width: calc(33%);
+$section-2-width: calc(33.33%);
 $backgroundColor: #262626;
 //$section-3-width: calc(25% - 5px);
 //$section-4-width: calc(25% - 5px);
@@ -135,9 +135,9 @@ $backgroundColor: #262626;
 
 .animate {
   animation-name: matrix;
-  animation-duration: 2s;
+  animation-duration: 1.8s;
   animation-timing-function: ease-in-out;
-  animation-delay: 2s;
+  animation-delay: 1.8s;
 }
 
 // // // // // ONE TYPE // // // // //
