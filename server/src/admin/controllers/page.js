@@ -24,7 +24,6 @@ module.exports = {
     addPage: async (req, res) => {
         let candidate = await Page.findOne({key: req.body.key});
         if (!candidate) {
-            console.log(req.body)
             let page = {
                 key: req.body.key,
                 content: req.body.content,

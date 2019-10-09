@@ -3,18 +3,24 @@ const Schema = mongoose.Schema;
 
 let createClientBlocks = () => {
     let arr = [];
-    for (let i = 0; i < 11; ++i) {
+    for (let i = 0; i < 12; ++i) {
         arr.push({
-            backGround: 'assets/images/AboutUs/intel.png'
-        });
-        if (i === 3) {
-            arr.push({
-                text: 'North American Lighting is a member of the Japan-based Koito Group of companies',
+            backGround: 'assets/images/AboutUs/intel.png',
+            hover : {
+                text: 'Hover text Client',
                 fontSize: 14,
                 lineHeight: 25,
                 fontFamily: 'Open Sans Regular',
-            });
-        }
+            }
+        });
+        // if (i === 3) {
+        //     arr.push({
+        //         text: 'North American Lighting is a member of the Japan-based Koito Group of companies',
+        //         fontSize: 14,
+        //         lineHeight: 25,
+        //         fontFamily: 'Open Sans Regular',
+        //     });
+        // }
     }
 
     return arr;

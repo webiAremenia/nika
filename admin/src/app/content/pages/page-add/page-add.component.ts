@@ -25,7 +25,7 @@ export class PageAddComponent implements OnInit, OnDestroy {
         if (!settingService.settings) {
             this.router.navigate(['page']);
         }
-        this.apiKey = settingService.settings.filter(set => set.key === 'editor_api_key')[0].value;
+        // this.apiKey = settingService.settings.filter(set => set.key === 'editor_api_key')[0].value;
         this.url = this.globals.url;
         console.log(this.apiKey, settingService.settings);
     }

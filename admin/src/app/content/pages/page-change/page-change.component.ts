@@ -38,7 +38,7 @@ export class PageChangeComponent implements OnInit {
         if (!settingService.settings) {
             this.router.navigate(['page']);
         }
-        this.apiKey = settingService.settings.filter(set => set.key === 'editor_api_key')[0].value;
+        // this.apiKey = settingService.settings.filter(set => set.key === 'editor_api_key')[0].value;
     }
 
     ngOnInit() {

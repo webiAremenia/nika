@@ -13,9 +13,10 @@ import {registerLocaleData} from '@angular/common';
 import en from '@angular/common/locales/en';
 import {ContentModule} from './content/content.module';
 // import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
-import {SortablejsModule} from 'angular-sortablejs';
+// import {SortablejsModule} from 'angular-sortablejs';
 import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import {SortablejsModule} from 'angular-sortablejs';
 
 registerLocaleData(en);
 
@@ -34,9 +35,9 @@ registerLocaleData(en);
         NgZorroAntdModule,
         BrowserAnimationsModule,
         // CKEditorModule,
-        SortablejsModule.forRoot({animation: 150}),
         NgMultiSelectDropDownModule.forRoot(),
-        NzDropDownModule
+        NzDropDownModule,
+        SortablejsModule.forRoot({ animation: 150 }),
 
     ],
     providers: [

@@ -89,7 +89,7 @@ export class EditTeamComponent implements OnInit, OnDestroy {
             this.awards = data.awards[0];
 
 
-            console.log(this.element);
+            console.log(this.awards);
             this.done = true;
         }, e => console.log(e));
 
@@ -116,7 +116,7 @@ export class EditTeamComponent implements OnInit, OnDestroy {
 
     lineHeightChange() {
         this.fontSizeMin = this.lineHeight;
-        console.log(this.fontSizeMin)
+        console.log(this.fontSizeMin);
 
         if (this.fontSize < this.lineHeight) {
             this.lineHeight = this.fontSize;
@@ -269,21 +269,75 @@ export class EditTeamComponent implements OnInit, OnDestroy {
         }
     }
 
+    awardsImage(e) {
+        if (e.target.files.length > 0) {
 
-    clientBlock(i) {
-        this.type = 'client';
-        this.index = i;
-        if (i === 4) {
-            this.modalContent = this.client.blocks[i].text;
-            this.fontSize = this.client.blocks[i].fontSize;
-            this.lineHeight = this.client.blocks[i].lineHeight;
-            this.fontFamily = this.client.blocks[i].fontFamily;
-            this.isVisible = true;
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            this.imagePath = file;
+            reader.readAsDataURL(this.imagePath);
+            reader.onload = () => {
+                this.awards.blocks[this.index].backGround = reader.result;
 
-        } else {
-            document.getElementById('clientBlock' + i).click();
+                this.updateTeam(this.awards._id, {
+                    awards: {
+                        blocks: this.awards.blocks
+                    }
+                });
+            };
         }
     }
+
+
+    clientBlock(i, type, e) {
+        this.type = 'client';
+        this.index = i;
+        this.field = type;
+        // if (i === 4) {
+        //     this.modalContent = this.client.blocks[i].text;
+        //     this.fontSize = this.client.blocks[i].fontSize;
+        //     this.lineHeight = this.client.blocks[i].lineHeight;
+        //     this.fontFamily = this.client.blocks[i].fontFamily;
+        //     this.isVisible = true;
+        //
+        // } else {
+        //     document.getElementById('clientBlock' + i).click();
+        // }
+
+        e.stopPropagation();
+
+
+        if (type === 'img') {
+            document.getElementById('clientBlock' + i).click();
+        } else {
+            this.modalContent = this.client.blocks[i].hover.text;
+            this.fontSize = this.client.blocks[i].hover.fontSize;
+            this.lineHeight = this.client.blocks[i].hover.lineHeight;
+            this.fontFamily = this.client.blocks[i].hover.fontFamily;
+            this.isVisible = true;
+        }
+
+    }
+    awardsBlock(name, i, type, e) {
+        this.index = i;
+        this.field = type;
+        this.type = 'awards';
+
+        e.stopPropagation();
+        // console.log(type);
+        if (type === 'img') {
+            document.getElementById(name + i).click();
+        } else {
+            this.modalContent = this.awards.blocks[i].hover.text;
+            this.fontSize = this.awards.blocks[i].hover.fontSize;
+            this.lineHeight = this.awards.blocks[i].hover.lineHeight;
+            this.fontFamily = this.awards.blocks[i].hover.fontFamily;
+            this.isVisible = true;
+        }
+        // this.field = i;
+        // document.getElementById(name + i).click();
+    }
+
 
 
     leadershipImage(e) {
@@ -306,29 +360,8 @@ export class EditTeamComponent implements OnInit, OnDestroy {
     }
 
 
-    awardsBlock(name, i) {
-        this.field = i;
-        document.getElementById(name + i).click();
-    }
 
-    awardsImage(e) {
-        if (e.target.files.length > 0) {
 
-            const file = e.target.files[0];
-            const reader = new FileReader();
-            this.imagePath = file;
-            reader.readAsDataURL(this.imagePath);
-            reader.onload = () => {
-                this.awards.blocks[this.field] = reader.result;
-
-                this.updateTeam(this.awards._id, {
-                    awards: {
-                        blocks: this.awards.blocks
-                    }
-                });
-            };
-        }
-    }
 
 
     handleOk(): void {
@@ -389,8 +422,12 @@ export class EditTeamComponent implements OnInit, OnDestroy {
                 }
 
             } else if (this.type === 'client') {
-                if (this.index === 4) {
-                    this.client.blocks[this.index] = {
+
+
+                // console.log(this.fontSize, this.modalContent, this.lineHeight, this.fontFamily, this.field, this.index)
+
+                if (this.field === 'hover') {
+                    this.client.blocks[this.index].hover = {
                         fontSize: this.fontSize,
                         lineHeight: this.lineHeight,
                         fontFamily: this.fontFamily,
@@ -459,19 +496,37 @@ export class EditTeamComponent implements OnInit, OnDestroy {
 
 
             } else if (this.type === 'awards') {
-                this.awards[this.field] = {
-                    fontSize: this.fontSize,
-                    lineHeight: this.lineHeight,
-                    fontFamily: this.fontFamily,
-                    text: this.modalContent
-                };
 
 
-                this.updateTeam(this.awards._id, {
-                    awards: {
-                        [this.field]: this.awards[this.field]
-                    }
-                });
+                if (this.field === 'hover') {
+                    this.awards.blocks[this.index].hover = {
+                        fontSize: this.fontSize,
+                        lineHeight: this.lineHeight,
+                        fontFamily: this.fontFamily,
+                        text: this.modalContent
+                    };
+                    this.updateTeam(this.awards._id, {
+                        client: {
+                            blocks: this.awards.blocks
+                        }
+                    });
+                } else {
+                    this.awards[this.field] = {
+                        fontSize: this.fontSize,
+                        lineHeight: this.lineHeight,
+                        fontFamily: this.fontFamily,
+                        text: this.modalContent
+                    };
+
+
+                    this.updateTeam(this.awards._id, {
+                        awards: {
+                            [this.field]: this.awards[this.field]
+                        }
+                    });
+                }
+
+
             } else if (this.type === 'awards_first') {
                 this.awards.first[this.field] = {
                     fontSize: this.fontSize,

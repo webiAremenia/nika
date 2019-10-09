@@ -5,5 +5,5 @@ export interface Awards {
     title: Prevalent;
     description: Prevalent;
     first: Prevalent[];
-    blocks: string[];
+    blocks: any[];
 }

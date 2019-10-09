@@ -6,7 +6,6 @@ import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ContentComponent} from './content.component';
-import {SortablejsModule} from 'angular-sortablejs';
 
 @NgModule({
     declarations: [
@@ -20,7 +19,6 @@ import {SortablejsModule} from 'angular-sortablejs';
         ReactiveFormsModule,
         NgZorroAntdModule,
         BrowserAnimationsModule,
-        SortablejsModule
     ]
 })
 export class ContentModule {

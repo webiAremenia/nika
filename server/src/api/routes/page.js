@@ -4,7 +4,7 @@ const controller = require('../controllers/page');
 
 
 router.get('/', controller.getAll);
-router.get('/:id', controller.getOne);
+router.get('/:key', controller.getOne);
 
 
 module.exports = router;
