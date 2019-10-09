@@ -1,107 +1,83 @@
 .please-wait-false {
   position: absolute;
   top: 56px;
-  left: 97px;
-  width: calc(100% - 195px);
+  left: calc(97px + 25% - 49px);
+  width: calc(100% - 195px - 25% + 49px);
   height: calc(100vh - 112px);
   z-index: 10000;
 }
 .please-wait-false .loading-section-false {
-  background-color: black;
+  background-color: #262626;
   display: block;
   position: relative;
   width: 100%;
   height: 100%;
 }
-.please-wait-false .message-false {
-  position: absolute;
-  top: 70%;
-  width: 90%;
-  left: 5%;
-}
-.please-wait-false .message-false span {
-  display: inline-block;
-  margin-left: 20px;
-  color: #fff;
-  font-family: "Open Sans Bold", sans-serif;
-  font-size: 76px;
-  line-height: 86px;
-  z-index: -1;
-}
-.please-wait-false .message-false div {
-  display: inline-block;
-  background-color: black;
-  position: absolute;
-  top: -150px;
-  height: 300px;
-  z-index: 10;
-}
 
 .please-wait {
   position: absolute;
   top: 56px;
-  left: 97px;
-  width: calc(100% - 195px);
+  left: calc(97px + 25% - 49px);
+  width: calc(100% - 195px - 25% + 49px);
   height: calc(100vh - 112px);
   z-index: 10000;
 }
-.please-wait .loading-section-1 {
-  background-color: black;
-  animation: showSecDescM 2s ease-in-out;
-  animation-delay: 2000ms;
-  display: inline-block;
-  position: relative;
-  width: calc(25%);
-  height: 100%;
-}
 .please-wait .loading-section-2 {
-  background-color: black;
-  animation: showSecDescS 2s ease-in-out;
-  animation-delay: 2050ms;
+  background-color: #262626;
+  animation: showSecDescS 1.8s ease-in-out infinite;
+  animation-delay: 1700ms;
   display: inline-block;
   position: relative;
-  width: calc(25%);
+  width: calc(33%);
   height: 100%;
 }
 .please-wait .loading-section-3 {
-  background-color: black;
-  animation: showSecDescS 2s ease-in-out;
-  animation-delay: 2100ms;
+  background-color: #262626;
+  animation: showSecDescS 1.8s ease-in-out infinite;
+  animation-delay: 1750ms;
   display: inline-block;
   position: relative;
-  width: calc(25%);
+  width: calc(33%);
   height: 100%;
 }
 .please-wait .loading-section-4 {
-  background-color: black;
-  animation: showSecDescS 2s ease-in-out;
-  animation-delay: 2150ms;
+  background-color: #262626;
+  animation: showSecDescS 1.8s ease-in-out infinite;
+  animation-delay: 1800ms;
   display: inline-block;
   position: relative;
-  width: calc(25%);
+  width: calc(33%);
   height: 100%;
 }
 .please-wait .message {
   position: absolute;
-  top: 70%;
+  top: 80%;
   width: 90%;
   left: 5%;
 }
-.please-wait .message span {
+.please-wait .message .letter {
   display: inline-block;
   margin-left: 20px;
   color: #fff;
   font-family: "Open Sans Bold", sans-serif;
   font-size: 76px;
   line-height: 86px;
-  animation: move 2.2s ease-in-out;
+  animation: move 1.2s ease-in-out;
   z-index: -1;
 }
-.please-wait .message div {
-  animation: mutation 2.2s ease-in-out;
+.please-wait .message .letter .upShow {
+  position: absolute;
+  width: 110%;
+  height: 100%;
+  left: -5%;
+  animation: stand 1.2s ease-in-out;
+  background-color: #262626;
+}
+.please-wait .message .hideMessage {
+  animation: mutation 2s ease-in-out;
   animation-delay: 350ms;
   display: inline-block;
-  background-color: black;
+  background-color: #262626;
   position: absolute;
   top: -150px;
   height: 300px;
@@ -113,7 +89,7 @@
 }
 
 .slider-item {
-  background-color: black;
+  background-color: #262626;
 }
 
 .animate {
@@ -123,30 +99,13 @@
   animation-delay: 2s;
 }
 
-.test {
-  animation-name: show;
-  animation-duration: 1.3s;
-  animation-timing-function: ease-in-out;
-  animation-delay: 2s;
-}
-
-@keyframes showSecDescM {
-  0% {
-    margin-left: 0;
-    width: calc(25%);
-  }
-  100% {
-    margin-left: calc(25%);
-    width: 0;
-  }
-}
 @keyframes showSecDescS {
   0% {
     margin-left: 0;
-    width: calc(25%);
+    width: calc(33%);
   }
   100% {
-    margin-left: calc(25%);
+    margin-left: calc(33%);
     width: 0;
   }
 }
@@ -180,14 +139,6 @@
     width: 0;
   }
 }
-@keyframes show {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 @keyframes mutation {
   0% {
     width: 0;
@@ -199,25 +150,45 @@
     width: 85px;
   }
 }
+@keyframes stand {
+  0% {
+    top: 0;
+    height: 100%;
+  }
+  15% {
+    top: 50%;
+    height: 50%;
+  }
+  30% {
+    top: 100%;
+    height: 0;
+  }
+  100% {
+    top: 100%;
+    height: 0;
+  }
+}
 @keyframes move {
   0% {
     -webkit-transform: translate(0, 0);
     transform: translate(0, 0);
   }
   30% {
-    -webkit-transform: translate(0, -50%);
-    transform: translate(0, -50%);
+    -webkit-transform: translate(0, -100%);
+    transform: translate(0, -100%);
   }
   100% {
-    -webkit-transform: translate(100%, -50%);
-    transform: translate(100%, -50%);
+    -webkit-transform: translate(100%, -100%);
+    transform: translate(100%, -100%);
   }
 }
 @keyframes matrix {
   0% {
+    -webkit-transform: matrix(1.3, 0, 0, 1.6, 0, 0);
     transform: matrix(1.3, 0, 0, 1.6, 0, 0);
   }
   100% {
+    -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
     transform: matrix(1, 0, 0, 1, 0, 0);
   }
 }
@@ -235,17 +206,9 @@
     width: 100%;
     height: 100vh;
   }
-  .please-wait .loading-section-1 {
-    animation: showSecDescMS 2s ease-in-out;
-    animation-delay: 2000ms;
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100px;
-  }
   .please-wait .loading-section-2 {
     animation: showSecDescSS 2s ease-in-out;
-    animation-delay: 2050ms;
+    animation-delay: 2000ms;
     display: inline-block;
     position: relative;
     width: 33.33%;
@@ -253,7 +216,7 @@
   }
   .please-wait .loading-section-3 {
     animation: showSecDescSS 2s ease-in-out;
-    animation-delay: 2100ms;
+    animation-delay: 2050ms;
     display: inline-block;
     position: relative;
     width: 33.33%;
@@ -261,7 +224,7 @@
   }
   .please-wait .loading-section-4 {
     animation: showSecDescSS 2s ease-in-out;
-    animation-delay: 2150ms;
+    animation-delay: 2100ms;
     display: inline-block;
     position: relative;
     width: 33.33%;
@@ -272,15 +235,15 @@
   .please-wait-false .message-false {
     top: 50%;
   }
-  .please-wait-false .message-false span {
+  .please-wait-false .message-false .letter {
     font-size: 65px;
     line-height: 80px;
   }
-  .please-wait-false .message-false div {
+  .please-wait-false .message-false .hideMessage {
     height: 350px;
   }
 
-  .please-wait .loading-section-1 {
+  .please-wait .loading-section-2 {
     animation: showSeMob 1800ms ease-in-out;
     animation-delay: 2000ms;
     display: block;
@@ -288,38 +251,30 @@
     width: 100%;
     height: 80px;
   }
-  .please-wait .loading-section-2 {
+  .please-wait .loading-section-3 {
     animation: showSeMob 1800ms ease-in-out;
     animation-delay: 2100ms;
     display: block;
     position: relative;
     width: 100%;
-    height: 33.33vh;
+    height: calc(100vh / 2 - 40px);
   }
-  .please-wait .loading-section-3 {
+  .please-wait .loading-section-4 {
     animation: showSeMob 1800ms ease-in-out;
     animation-delay: 2200ms;
     display: block;
     position: relative;
     width: 100%;
-    height: 33.33vh;
-  }
-  .please-wait .loading-section-4 {
-    animation: showSeMob 1800ms ease-in-out;
-    animation-delay: 2300ms;
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 33.33vh;
+    height: calc(100vh / 2 - 40px);
   }
   .please-wait .message {
     top: 50%;
   }
-  .please-wait .message span {
+  .please-wait .message .letter {
     font-size: 65px;
     line-height: 80px;
   }
-  .please-wait .message div {
+  .please-wait .message .hideMessage {
     height: 350px;
   }
 }

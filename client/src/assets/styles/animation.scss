@@ -1,5 +1,5 @@
-$section-1-width: calc(25%);
-$section-2-width: calc(25%);
+$section-2-width: calc(33%);
+$backgroundColor: #262626;
 //$section-3-width: calc(25% - 5px);
 //$section-4-width: calc(25% - 5px);
 // // // // // ANIMATION // // // // //
@@ -7,68 +7,59 @@ $section-2-width: calc(25%);
 .please-wait-false {
   position: absolute;
   top: 56px;
-  left: 97px;
-  width: calc(100% - 195px);
+  left: calc(97px + 25% - 49px);
+  width: calc(100% - 195px - 25% + 49px);
   height: calc(100vh - 112px);
   z-index: 10000;
 
   .loading-section-false {
-    background-color: black;
+    background-color: $backgroundColor;
     display: block;
     position: relative;
     width: 100%;
     height: 100%;
   }
 
-  .message-false {
-    position: absolute;
-    top: 70%;
-    width: 90%;
-    left: 5%;
-
-    span {
-      display: inline-block;
-      margin-left: 20px;
-      color: #fff;
-      font-family: "Open Sans Bold", sans-serif;
-      font-size: 76px;
-      line-height: 86px;
-      z-index: -1;
-    }
-
-    div {
-      display: inline-block;
-      background-color: black;
-      position: absolute;
-      top: -150px;
-      height: 300px;
-      z-index: 10;
-    }
-  }
+  //.message-false {
+  //  position: absolute;
+  //  top: 80%;
+  //  width: 90%;
+  //  left: 5%;
+  //
+  //  .letter {
+  //    position: relative;
+  //    display: inline-block;
+  //    margin-left: 20px;
+  //    color: #fff;
+  //    font-family: "Open Sans Bold", sans-serif;
+  //    font-size: 76px;
+  //    line-height: 86px;
+  //    z-index: -1;
+  //  }
+  //
+  //  .hideMessage {
+  //    display: inline-block;
+  //    background-color: black;
+  //    position: absolute;
+  //    top: -150px;
+  //    height: 300px;
+  //    z-index: 10;
+  //  }
+  //}
 }
 
 .please-wait {
   position: absolute;
   top: 56px;
-  left: 97px;
-  width: calc(100% - 195px);
+  left: calc(97px + 25% - 49px);
+  width: calc(100% - 195px - 25% + 49px);
   height: calc(100vh - 112px);
   z-index: 10000;
 
-  .loading-section-1 {
-    background-color: black;
-    animation: showSecDescM 2s ease-in-out;
-    animation-delay: 2000ms;
-    display: inline-block;
-    position: relative;
-    width: $section-1-width;
-    height: 100%;
-  }
-
   .loading-section-2 {
-    background-color: black;
-    animation: showSecDescS 2s ease-in-out;
-    animation-delay: 2050ms;
+    background-color: $backgroundColor;
+    animation: showSecDescS 1.8s ease-in-out infinite;
+    animation-delay: 1700ms;
     display: inline-block;
     position: relative;
     width: $section-2-width;
@@ -76,9 +67,9 @@ $section-2-width: calc(25%);
   }
 
   .loading-section-3 {
-    background-color: black;
-    animation: showSecDescS 2s ease-in-out;
-    animation-delay: 2100ms;
+    background-color: $backgroundColor;
+    animation: showSecDescS 1.8s ease-in-out infinite;
+    animation-delay: 1750ms;
     display: inline-block;
     position: relative;
     width: $section-2-width;
@@ -86,9 +77,9 @@ $section-2-width: calc(25%);
   }
 
   .loading-section-4 {
-    background-color: black;
-    animation: showSecDescS 2s ease-in-out;
-    animation-delay: 2150ms;
+    background-color: $backgroundColor;
+    animation: showSecDescS 1.8s ease-in-out infinite;
+    animation-delay: 1800ms;
     display: inline-block;
     position: relative;
     width: $section-2-width;
@@ -97,26 +88,35 @@ $section-2-width: calc(25%);
 
   .message {
     position: absolute;
-    top: 70%;
+    top: 80%;
     width: 90%;
     left: 5%;
 
-    span {
+    .letter {
       display: inline-block;
       margin-left: 20px;
       color: #fff;
       font-family: "Open Sans Bold", sans-serif;
       font-size: 76px;
       line-height: 86px;
-      animation: move 2.2s ease-in-out;
+      animation: move 1.2s ease-in-out;
       z-index: -1;
+
+      .upShow {
+        position: absolute;
+        width: 110%;
+        height: 100%;
+        left: -5%;
+        animation: stand 1.2s ease-in-out;
+        background-color: $backgroundColor;
+      }
     }
 
-    div {
-      animation: mutation 2.2s ease-in-out;
+    .hideMessage {
+      animation: mutation 2s ease-in-out;
       animation-delay: 350ms;
       display: inline-block;
-      background-color: black;
+      background-color: $backgroundColor;
       position: absolute;
       top: -150px;
       height: 300px;
@@ -130,7 +130,7 @@ $section-2-width: calc(25%);
 }
 
 .slider-item {
-  background-color: black;
+  background-color: $backgroundColor;
 }
 
 .animate {
@@ -140,25 +140,18 @@ $section-2-width: calc(25%);
   animation-delay: 2s;
 }
 
-.test {
-  animation-name: show;
-  animation-duration: 1.3s;
-  animation-timing-function: ease-in-out;
-  animation-delay: 2s;
-}
-
 // // // // // ONE TYPE // // // // //
-
-@keyframes showSecDescM {
-  0% {
-    margin-left: 0;
-    width: $section-1-width;
-  }
-  100% {
-    margin-left: $section-1-width;
-    width: 0;
-  }
-}
+//
+//@keyframes showSecDescM {
+//  0% {
+//    margin-left: 0;
+//    width: $section-1-width;
+//  }
+//  100% {
+//    margin-left: $section-1-width;
+//    width: 0;
+//  }
+//}
 
 @keyframes showSecDescS {
   0% {
@@ -210,15 +203,6 @@ $section-2-width: calc(25%);
 
 // // // // // // // // // //
 
-@keyframes show {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 @keyframes mutation {
   0% {
     width: 0;
@@ -231,26 +215,47 @@ $section-2-width: calc(25%);
   }
 }
 
+@keyframes stand {
+  0% {
+    top: 0;
+    height: 100%;
+  }
+  15% {
+    top: 50%;
+    height: 50%;
+  }
+  30% {
+    top: 100%;
+    height: 0;
+  }
+  100% {
+    top: 100%;
+    height: 0;
+  }
+}
+
 @keyframes move {
   0% {
     -webkit-transform: translate(0, 0);
     transform: translate(0, 0);
   }
   30% {
-    -webkit-transform: translate(0, -50%);
-    transform: translate(0, -50%);
+    -webkit-transform: translate(0, -100%);
+    transform: translate(0, -100%);
   }
   100% {
-    -webkit-transform: translate(100%, -50%);
-    transform: translate(100%, -50%);
+    -webkit-transform: translate(100%, -100%);
+    transform: translate(100%, -100%);
   }
 }
 
 @keyframes matrix {
   0% {
+    -webkit-transform: matrix(1.30, 0, 0, 1.60, 0, 0);
     transform: matrix(1.30, 0, 0, 1.60, 0, 0);
   }
   100% {
+    -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
     transform: matrix(1, 0, 0, 1, 0, 0);
   }
 }
@@ -271,18 +276,9 @@ $section-2-width: calc(25%);
     width: 100%;
     height: 100vh;
 
-    .loading-section-1 {
-      animation: showSecDescMS 2s ease-in-out;
-      animation-delay: 2000ms;
-      display: block;
-      position: relative;
-      width: 100%;
-      height: 100px;
-    }
-
     .loading-section-2 {
       animation: showSecDescSS 2s ease-in-out;
-      animation-delay: 2050ms;
+      animation-delay: 2000ms;
       display: inline-block;
       position: relative;
       width: 33.33%;
@@ -291,7 +287,7 @@ $section-2-width: calc(25%);
 
     .loading-section-3 {
       animation: showSecDescSS 2s ease-in-out;
-      animation-delay: 2100ms;
+      animation-delay: 2050ms;
       display: inline-block;
       position: relative;
       width: 33.33%;
@@ -300,7 +296,7 @@ $section-2-width: calc(25%);
 
     .loading-section-4 {
       animation: showSecDescSS 2s ease-in-out;
-      animation-delay: 2150ms;
+      animation-delay: 2100ms;
       display: inline-block;
       position: relative;
       width: 33.33%;
@@ -314,18 +310,19 @@ $section-2-width: calc(25%);
     .message-false {
       top: 50%;
 
-      span {
+      .letter {
         font-size: 65px;
         line-height: 80px;
       }
 
-      div {
+      .hideMessage {
         height: 350px;
       }
     }
   }
   .please-wait {
-    .loading-section-1 {
+
+    .loading-section-2 {
       animation: showSeMob 1800ms ease-in-out;
       animation-delay: 2000ms;
       display: block;
@@ -334,42 +331,33 @@ $section-2-width: calc(25%);
       height: 80px;
     }
 
-    .loading-section-2 {
+    .loading-section-3 {
       animation: showSeMob 1800ms ease-in-out;
       animation-delay: 2100ms;
       display: block;
       position: relative;
       width: 100%;
-      height: 33.33vh;
+      height: calc(100vh / 2 - 40px);
     }
 
-    .loading-section-3 {
+    .loading-section-4 {
       animation: showSeMob 1800ms ease-in-out;
       animation-delay: 2200ms;
       display: block;
       position: relative;
       width: 100%;
-      height: 33.33vh;
-    }
-
-    .loading-section-4 {
-      animation: showSeMob 1800ms ease-in-out;
-      animation-delay: 2300ms;
-      display: block;
-      position: relative;
-      width: 100%;
-      height: 33.33vh;
+      height: calc(100vh / 2 - 40px);
     }
 
     .message {
       top: 50%;
 
-      span {
+      .letter {
         font-size: 65px;
         line-height: 80px;
       }
 
-      div {
+      .hideMessage {
         height: 350px;
       }
     }

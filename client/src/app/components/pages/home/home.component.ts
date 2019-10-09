@@ -336,7 +336,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 d => {
                     this.slides = d;
                     this.done = true;
-                    this.createMessage(this.done);
+                    this.createMessage(true);
                     this.initSlider();
                     this.getCurrent();
                 },
@@ -396,7 +396,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (this.windowWidth >= 992) {
             this.resizeWidth = (this.windowWidth - 195) * 3 / 4;
             this.resizeHeight = this.windowHeight - 116;
-            console.log( this.resizeWidth)
+            console.log(this.resizeWidth)
         } else if (this.windowWidth >= 768) {
             this.resizeWidth = this.windowWidth;
             this.resizeHeight = this.windowHeight - 100;
@@ -415,11 +415,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         let timeOne;
         let timeSecond;
         if (window.innerWidth < 767) {
-            timeOne = 1800;
+            timeOne = 2100;
             timeSecond = 3800;
         } else {
-            timeOne = 2000;
-            timeSecond = 4000;
+            timeOne = 1900;
+            timeSecond = 3400;
         }
         setTimeout(() => {
             const data = ['P', 'E', 'A', 'S', 'E', '', 'S', 'T', 'A', 'N', 'D', '', 'B', 'Y'];
@@ -427,31 +427,30 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.delay += 50;
                 const span = document.createElement('span');
                 const div = document.createElement('div');
+                const spanUp = document.createElement('span');
+                div.className = 'hideMessage';
+                spanUp.className = 'upShow';
+                span.className = 'letter';
                 span.innerText = wr;
                 span.style.animationDelay += this.delay + 'ms';
+                spanUp.style.animationDelay += this.delay + 'ms';
                 if (order) {
                     if (wr !== ' ') {
                         document.getElementsByClassName('message')[0].appendChild(div);
                     }
                     document.getElementsByClassName('message')[0].appendChild(span);
-                } else {
-                    if (wr !== ' ') {
-                        document.getElementsByClassName('message-false')[0].appendChild(div);
-                    }
-                    document.getElementsByClassName('message-false')[0].appendChild(span);
+                    span.appendChild(spanUp);
                 }
             });
         }, 1);
-        setTimeout(() => {
-            if (order) {
+        if (order) {
+            setTimeout(() => {
                 document.getElementsByClassName('message')[0].remove();
-            }
-        }, timeOne);
-        setTimeout(() => {
-            if (order) {
+            }, timeOne);
+            setTimeout(() => {
                 document.getElementsByClassName('please-wait')[0].remove();
-            }
-        }, timeSecond);
+            }, timeSecond);
+        }
     }
 
     ngOnDestroy(): void {

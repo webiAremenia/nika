@@ -130,9 +130,12 @@ export class AboutComponent implements OnInit, OnDestroy {
                 document.getElementById('section-' + (i + 1)).style.opacity = '1';
                 document.getElementById('section-' + (i + 1)).style.visibility = 'visible';
             }
-            return this.aboutScroll.nativeElement.style.transform = `translate3d(0, -${this.scrollHeight - clientHeight}px, 0)`;
+            this.aboutScroll.nativeElement.style.transform = `translate3d(0, -${this.scrollHeight - clientHeight}px, 0)`;
+            this.aboutScroll.nativeElement.style.transform = `-webkit-translate3d(0, -${this.scrollHeight - clientHeight}px, 0)`;
+            return;
         } else if (this.scrollPosition + clientHeight < this.scrollHeight) {
             this.aboutScroll.nativeElement.style.transform = `translate3d(0, -${this.scrollPosition}px, 0)`;
+            this.aboutScroll.nativeElement.style.transform = `-webkit-translate3d(0, -${this.scrollPosition}px, 0)`;
         }
     }
 
