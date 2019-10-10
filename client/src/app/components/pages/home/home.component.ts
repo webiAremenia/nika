@@ -430,7 +430,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             timeOne = 1650;
             timeSecond = 3800;
         } else {
-            timeOne = 1400;
+            timeOne = 1700;
             timeSecond = 3470;
         }
         setTimeout(() => {
