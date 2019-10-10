@@ -427,29 +427,32 @@ export class HomeComponent implements OnInit, OnDestroy {
         let timeOne;
         let timeSecond;
         if (window.innerWidth < 767) {
-            timeOne = 2100;
+            timeOne = 1650;
             timeSecond = 3800;
         } else {
-            timeOne = 2000;
+            timeOne = 1400;
             timeSecond = 3470;
         }
         setTimeout(() => {
             const data = this.loadText.split('');
             // const data = ['P', 'E', 'A', 'S', 'E', '', 'S', 'T', 'A', 'N', 'D', '', 'B', 'Y'];
             data.forEach((wr, index) => {
-                this.delay += 50;
+                this.delay += 10;
                 const span = document.createElement('span');
                 const div = document.createElement('div');
                 const spanUp = document.createElement('span');
                 div.className = 'hideMessage';
                 spanUp.className = 'upShow';
                 span.className = 'letter';
+                span.style.position = 'relative';
                 span.innerText = wr;
                 span.style.animationDelay += this.delay + 'ms';
                 spanUp.style.animationDelay += this.delay + 'ms';
                 if (order) {
                     if (wr !== ' ') {
                         document.getElementsByClassName('message')[0].appendChild(div);
+                    } else {
+                        span.style.width = '30px';
                     }
                     document.getElementsByClassName('message')[0].appendChild(span);
                     span.appendChild(spanUp);
@@ -457,6 +460,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             });
         }, 1);
         if (order) {
+
             setTimeout(() => {
                 document.getElementsByClassName('message')[0].remove();
             }, timeOne);
