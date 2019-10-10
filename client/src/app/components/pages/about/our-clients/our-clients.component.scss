@@ -46,13 +46,14 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
     .partner-text {
       color: #FFFFFF;
-      //background-color: #000A1D;
       opacity: 0;
       visibility: hidden;
       text-align: center;
-      line-height: 25px;
-      //font-family: $font-regular;
+      padding: 5px 18px 5px 12px;
       letter-spacing: 0;
+      //background-color: #000A1D;
+      //line-height: 25px;
+      //font-family: $font-regular;
       //color: #FFFFFF;
     }
   }

@@ -505,8 +505,10 @@ export class EditTeamComponent implements OnInit, OnDestroy {
                         fontFamily: this.fontFamily,
                         text: this.modalContent
                     };
+
+
                     this.updateTeam(this.awards._id, {
-                        client: {
+                        awards: {
                             blocks: this.awards.blocks
                         }
                     });

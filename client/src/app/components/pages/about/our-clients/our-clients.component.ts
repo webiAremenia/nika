@@ -18,6 +18,7 @@ export class OurClientsComponent implements OnInit, OnDestroy {
         document.querySelectorAll('.partner').forEach((it: HTMLElement) => {
             const elem: any = document.getElementsByClassName('partner')[0];
             it.style.height = elem.offsetWidth + 'px';
+            it.style.backgroundSize = Math.floor(elem.offsetWidth / 3.2) + 'px';
         });
     }
 
@@ -32,6 +33,7 @@ export class OurClientsComponent implements OnInit, OnDestroy {
             document.querySelectorAll('.partner').forEach((it: HTMLElement)  => {
                 const elem: any = document.getElementsByClassName('partner')[0];
                 it.style.height = elem.offsetWidth + 'px';
+                it.style.backgroundSize = Math.floor(elem.offsetWidth / 3.2) + 'px';
             });
         }, 100);
     }

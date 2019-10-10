@@ -24,7 +24,7 @@
 }
 .please-wait .loading-section-2 {
   background-color: #262626;
-  animation: showSecDescS 1.8s ease-in-out infinite;
+  animation: showSecDescS 1.8s ease-in-out;
   animation-delay: 1700ms;
   display: inline-block;
   position: relative;
@@ -33,7 +33,7 @@
 }
 .please-wait .loading-section-3 {
   background-color: #262626;
-  animation: showSecDescS 1.8s ease-in-out infinite;
+  animation: showSecDescS 1.8s ease-in-out;
   animation-delay: 1750ms;
   display: inline-block;
   position: relative;
@@ -42,7 +42,7 @@
 }
 .please-wait .loading-section-4 {
   background-color: #262626;
-  animation: showSecDescS 1.8s ease-in-out infinite;
+  animation: showSecDescS 1.8s ease-in-out;
   animation-delay: 1800ms;
   display: inline-block;
   position: relative;
@@ -51,37 +51,38 @@
 }
 .please-wait .message {
   position: absolute;
-  top: 80%;
+  top: 75%;
   width: 90%;
   left: 5%;
 }
 .please-wait .message .letter {
   display: inline-block;
-  margin-left: 20px;
+  margin-left: 10px;
   color: #fff;
   font-family: "Open Sans Bold", sans-serif;
   font-size: 76px;
   line-height: 86px;
   animation: move 1.2s ease-in-out;
-  z-index: -1;
+  z-index: 10;
 }
 .please-wait .message .letter .upShow {
   position: absolute;
-  width: 110%;
-  height: 200%;
-  left: -5%;
+  width: 112%;
+  height: 105%;
+  left: 0;
   animation: stand 1.2s ease-in-out;
+  z-index: 20;
   background-color: #262626;
 }
 .please-wait .message .hideMessage {
+  display: none;
   animation: mutation 2s ease-in-out;
   animation-delay: 350ms;
-  display: inline-block;
-  background-color: #262626;
+  background-color: yellow;
   position: absolute;
   top: -150px;
-  height: 300px;
-  z-index: 10;
+  height: 200px;
+  z-index: 300;
 }
 
 .accordion-items {
@@ -143,29 +144,32 @@
   0% {
     width: 0;
   }
-  50% {
-    width: 0;
-  }
   100% {
-    width: 85px;
+    width: 100px;
   }
 }
 @keyframes stand {
   0% {
     top: 0;
-    height: 200%;
+    height: 105%;
   }
   15% {
     top: 70%;
-    height: 30%;
+    width: 112%;
+    height: 35%;
   }
-  50% {
-    top: 100%;
+  30% {
+    top: 105%;
     height: 0;
+    width: 0;
+  }
+  70% {
+    top: 0;
+    width: 0;
+    height: 105%;
   }
   100% {
-    top: 100%;
-    height: 0;
+    width: 112%;
   }
 }
 @keyframes move {
