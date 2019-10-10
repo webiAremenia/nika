@@ -42,12 +42,12 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
       letter-spacing: 0;
       color: #FFFFFF;
 
-        span {
-          margin-left: 20px;
-          font-weight: bold;
-          opacity: 0;
-          visibility: hidden;
-        }
+      span {
+        margin-left: 20px;
+        font-weight: bold;
+        opacity: 0;
+        visibility: hidden;
+      }
     }
   }
 }
@@ -60,11 +60,11 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
   opacity: 1 !important;
   visibility: visible !important;
 
-    span {
-      font-weight: bold;
-      opacity: 1 !important;
-      visibility: visible !important;
-    }
+  span {
+    font-weight: bold;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
 }
 
 // // // Media // // //
@@ -105,9 +105,11 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
       .award {
         background-size: 30px !important;
         justify-content: center !important;
+
         span {
           margin: auto;
         }
+
         font-size: 10px !important;
         line-height: 14px !important;
       }
