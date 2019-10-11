@@ -1,14 +1,13 @@
-<div class="please-wait"*ngIf="done">
-    <div class="loading-section-2"></div>
-    <div class="loading-section-3"></div>
-    <div class="loading-section-4"></div>
-    <div class="upShow"></div>
+<div class="please-wait" *ngIf="!doneService">
+    <div class="loading-section-1" id="loading-section-1"></div>
+    <div class="loading-section-2" id="loading-section-2"></div>
+    <div class="loading-section-3" id="loading-section-3"></div>
     <div class="message"></div>
 </div>
 
-<div class="please-wait-false" *ngIf="!done">
-    <div class="loading-section-false"></div>
-</div>
+<!--<div class="please-wait-false" *ngIf="!done && !doneService">-->
+<!--    <div class="loading-section-false"></div>-->
+<!--</div>-->
 
 <!--*ngIf="done && location"-->
 
@@ -32,7 +31,7 @@
                          [style.width]="slideWidth + 'px'">
 
                         <a [routerLink]="['project/' + slides[index].slug]">
-                            <div [class]=" location ? 'slide-image animate' : 'slide-image' ">
+                            <div [class]=" location && !doneService ? 'slide-image animate' : 'slide-image' ">
                                 <img [src]="imageUrl + slide.img + '?resize=' + resizeWidth + ',' + resizeHeight" alt="">
                             </div>
                         </a>

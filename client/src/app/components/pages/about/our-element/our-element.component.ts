@@ -39,6 +39,7 @@ export class OurElementComponent implements OnInit, OnDestroy {
             }
             el.classList.add('active');
         }
+        this.actionsService.checkHeightSubject.next(true);
     }
 
 }

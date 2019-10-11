@@ -11,8 +11,8 @@ import {Remark} from '../../../../_models/team/Remark';
 })
 export class RemarkComponent implements OnInit, OnDestroy {
     @Input() content: Remark;
-    windowSubscription: Subscription;
     windowSize: ResponsiveData;
+    windowSubscription: Subscription;
 
     constructor(private actionsService: ActionsService) {
         this.windowSubscription = actionsService.getWindowSize()

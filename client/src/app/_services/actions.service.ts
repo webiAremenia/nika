@@ -23,7 +23,13 @@ export class ActionsService {
     workOpened = new Subject<boolean>();
     workScrollPosition = new Subject<number>();
 
+    checkHeightSubject = new Subject<boolean>();
+
     constructor() {
+    }
+
+    getCheckHeight() {
+        return this.checkHeightSubject.asObservable();
     }
 
     getWindowSize() {

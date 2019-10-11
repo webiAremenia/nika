@@ -40,10 +40,9 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
       font-size: 18px;
       line-height: 35px;
       letter-spacing: 0;
-      color: #FFFFFF;
 
-      span {
-        margin-left: 20px;
+      pre {
+        margin: 0 0 0 20px;
         font-weight: bold;
         opacity: 0;
         visibility: hidden;
@@ -60,14 +59,15 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
   opacity: 1 !important;
   visibility: visible !important;
 
-  span {
+  pre {
+    color: #FFFFFF;
     font-weight: bold;
     opacity: 1 !important;
     visibility: visible !important;
   }
 }
 
-// // // Media // // //
+// // // // // Media // // // // //
 
 @media (min-width: 1440px) {
   .awards {
@@ -94,9 +94,6 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 
     .description {
       display: none;
-      //font-size: 11px!important;
-      //line-height: 15px!important;
-      //letter-spacing: 0!important;
     }
 
     .awards {
@@ -106,12 +103,12 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
         background-size: 30px !important;
         justify-content: center !important;
 
-        span {
+        pre {
           margin: auto;
+          font-size: 10px !important;
+          line-height: 14px !important;
         }
 
-        font-size: 10px !important;
-        line-height: 14px !important;
       }
     }
 

@@ -1,88 +1,71 @@
-.please-wait-false {
-  position: absolute;
-  top: 56px;
-  left: calc(97px + 25% - 49px);
-  width: calc(100% - 195px - 25% + 49px);
-  height: calc(100vh - 112px);
-  z-index: 10000;
+.loadBackActive {
+  animation: showSecDescS 1.8s ease-in-out;
 }
-.please-wait-false .loading-section-false {
-  background-color: #262626;
-  display: block;
-  position: relative;
-  width: 100%;
-  height: 100%;
+
+.loadLetterActive {
+  animation: move 1.2s ease-in-out;
+}
+
+.loadLetterHideActive {
+  animation: stand 1.2s ease-in-out;
 }
 
 .please-wait {
   position: absolute;
   top: 56px;
-  left: calc(97px + 25% - 49px);
-  width: calc(100% - 195px - 25% + 49px);
+  left: calc(56px + 25% - 28px);
+  width: calc(100% - 112px - 25% + 28px);
   height: calc(100vh - 112px);
   z-index: 10000;
 }
-.please-wait .loading-section-2 {
+.please-wait .loading-section-1 {
   background-color: #262626;
-  animation: showSecDescS 1.8s ease-in-out;
   animation-delay: 1700ms;
   display: inline-block;
   position: relative;
-  width: calc(33.33%);
+  width: 33.33%;
+  height: 100%;
+}
+.please-wait .loading-section-2 {
+  background-color: #262626;
+  animation-delay: 1750ms;
+  display: inline-block;
+  position: relative;
+  width: 33.33%;
   height: 100%;
 }
 .please-wait .loading-section-3 {
   background-color: #262626;
-  animation: showSecDescS 1.8s ease-in-out;
-  animation-delay: 1750ms;
-  display: inline-block;
-  position: relative;
-  width: calc(33.33%);
-  height: 100%;
-}
-.please-wait .loading-section-4 {
-  background-color: #262626;
-  animation: showSecDescS 1.8s ease-in-out;
   animation-delay: 1800ms;
   display: inline-block;
   position: relative;
-  width: calc(33.33%);
+  width: 33.33%;
   height: 100%;
 }
 .please-wait .message {
   position: absolute;
-  top: 75%;
+  top: 95%;
+  transform: translateY(-95%);
   width: 90%;
   left: 5%;
 }
 .please-wait .message .letter {
   display: inline-block;
-  margin-left: 10px;
-  color: #fff;
-  font-family: "Open Sans Bold", sans-serif;
-  font-size: 76px;
-  line-height: 86px;
+  margin-right: 10px;
   animation: move 1.2s ease-in-out;
+  color: #fff;
+  font-family: "Open Sans ExtraBold", sans-serif;
   z-index: 10;
 }
 .please-wait .message .letter .upShow {
   position: absolute;
-  width: 112%;
+  width: 150%;
   height: 105%;
+  top: 0;
   left: 0;
-  animation: stand 1.2s ease-in-out;
   z-index: 20;
+  animation: stand 1.2s ease-in-out;
   background-color: #262626;
-}
-.please-wait .message .hideMessage {
-  display: none;
-  animation: mutation 2s ease-in-out;
-  animation-delay: 350ms;
-  background-color: yellow;
-  position: absolute;
-  top: -150px;
-  height: 200px;
-  z-index: 300;
 }
 
 .accordion-items {
@@ -103,10 +86,10 @@
 @keyframes showSecDescS {
   0% {
     margin-left: 0;
-    width: calc(33.33%);
+    width: 33.33%;
   }
   100% {
-    margin-left: calc(33.33%);
+    margin-left: 33.33%;
     width: 0;
   }
 }
@@ -236,17 +219,6 @@
   }
 }
 @media (max-width: 767px) {
-  .please-wait-false .message-false {
-    top: 50%;
-  }
-  .please-wait-false .message-false .letter {
-    font-size: 65px;
-    line-height: 80px;
-  }
-  .please-wait-false .message-false .hideMessage {
-    height: 350px;
-  }
-
   .please-wait .loading-section-2 {
     animation: showSeMob 1800ms ease-in-out;
     animation-delay: 2000ms;
@@ -271,15 +243,9 @@
     width: 100%;
     height: calc(100vh / 2 - 40px);
   }
-  .please-wait .message {
-    top: 50%;
-  }
   .please-wait .message .letter {
-    font-size: 65px;
-    line-height: 80px;
-  }
-  .please-wait .message .hideMessage {
-    height: 350px;
+    font-size: 20px !important;
+    line-height: 45px !important;
   }
 }
 
