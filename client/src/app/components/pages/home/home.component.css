@@ -384,11 +384,11 @@ i {
   left: 50%;
   transform: translate(-50%, -100%);
   opacity: 0;
-  transition: opacity 1000ms ease-in-out 200ms;
-  -o-transition: opacity 1000ms ease-in-out 200ms;
-  -ms-transition: opacity 1000ms ease-in-out 200ms;
-  -moz-transition: opacity 1000ms ease-in-out 200ms;
-  -webkit-transition: opacity 1000ms ease-in-out 200ms;
+  transition: all 1200ms 600ms;
+  -o-transition: all 1200ms 600ms;
+  -ms-transition: all 1200ms 600ms;
+  -moz-transition: all 1200ms 600ms;
+  -webkit-transition: all 1200ms 600ms;
   transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
 }
 .detail-banner .text-desc-wrapper .detail-sub {

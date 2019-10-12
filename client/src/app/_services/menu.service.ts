@@ -11,6 +11,7 @@ import {catchError, map} from 'rxjs/operators';
 export class MenuService {
 
     url;
+    settings: Array<Settings>;
     settingRX = new BehaviorSubject<Array<Settings>>(null);
 
     constructor(private http: HttpClient, config: AppGlobals) {
@@ -33,6 +34,7 @@ export class MenuService {
         return this.http.get(this.url + '/settings')
             .pipe(
                 map((data: Settings[]) => {
+                    this.settings = data;
                     this.settingRX.next(data);
                     return data;
                 }),
