@@ -6,6 +6,7 @@ import {Work} from '../../../_models/work/work';
 import {ActionsService} from '../../../_services/actions.service';
 import {Subscription} from 'rxjs';
 import {MenuService} from '../../../_services/menu.service';
+import {ResponsiveData} from '../../../_models/ResponsiveData';
 
 
 @Component({
@@ -34,6 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     clickedWidth = 0;
     imageUrl;
     done = false;
+    doneService = false;
     clickedSlide = null;
     workScrollTop;
     detailWrapperLeft = 15;
@@ -60,6 +62,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     loadText: string;
     settingSubscription: Subscription;
+
+    windowSize: ResponsiveData;
+    windowSubscription: Subscription;
 
     @HostListener('window:resize', ['$event'])
     onResize() {
@@ -116,16 +121,14 @@ export class HomeComponent implements OnInit, OnDestroy {
         private router: Router
     ) {
         this.imageUrl = config.imageUrl + '/work/';
-        this.settingSubscription = this.menuService.getSettingsRX()
-            .subscribe(settings => {
-                if (settings) {
-                    this.loadText = settings.find(st => st.key === 'animation-text').value;
-                }
-            });
+        if (!this.workService.works) {
+            this.initLoadText();
+        }
+        this.windowSubscription = actionsService.getWindowSize()
+            .subscribe((size: ResponsiveData) => this.windowSize = size);
     }
 
     ngOnInit() {
-        this.createMessage(false);
         this.location = !location.href.split('/')[4];
         // console.log('onInit');
         this.workScrollTop = -window.innerHeight + 100;
@@ -224,7 +227,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     initSlider() {
         this.count = this.slides.length;
-        this.slideWidth = window.innerWidth > 992 ? (window.innerWidth - 195) / 4 : (window.innerWidth) / 3;
+        this.slideWidth = window.innerWidth > 992 ? (window.innerWidth - 112) / 4 : (window.innerWidth) / 3;
         this.accordionItemsStyles.width = this.slideWidth * this.count;
     }
 
@@ -339,7 +342,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         // console.log('get params');
         if (this.workService.works) {
             this.slides = this.workService.works;
-            // this.done = true;
+            this.done = true;
+            this.doneService = true;
             // console.log('get params if');
             this.initSlider();
             this.getCurrent();
@@ -406,9 +410,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     initSizes() {
         if (this.windowWidth >= 992) {
-            this.resizeWidth = (this.windowWidth - 195) * 3 / 4;
+            this.resizeWidth = (this.windowWidth - 112) * 3 / 4;
             this.resizeHeight = this.windowHeight - 116;
-            console.log(this.resizeWidth)
         } else if (this.windowWidth >= 768) {
             this.resizeWidth = this.windowWidth;
             this.resizeHeight = this.windowHeight - 100;
@@ -423,44 +426,58 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     // // // // // LOADING MESSAGE // // // // //
 
+    initLoadText(): void {
+        this.settingSubscription = this.menuService.getSettingsRX()
+            .subscribe(settings => {
+                if (settings) {
+                    this.loadText = settings.find(st => st.key === 'animation-text').value;
+                    const data = this.loadText.split('');
+                    data.forEach((wr, index) => {
+                        this.delay += 10;
+                        const space = document.createElement('span');
+                        const spanUp = document.createElement('span');
+                        const span = document.createElement('span');
+                        space.style.width = '30px';
+                        space.className = 'letter';
+                        spanUp.className = 'upShow';
+                        span.className = 'letter';
+                        span.innerText = wr;
+                        span.style.position = 'relative';
+                        if (wr === ' ') {
+                            document.getElementsByClassName('message')[0].appendChild(space);
+                        } else {
+                            document.getElementsByClassName('message')[0].appendChild(span);
+                        }
+                        span.style.fontSize = (this.windowSize.width * 65 * this.windowSize.rate) / 1920 + 'px';
+                        span.style.lineHeight = (this.windowSize.width * 80 * this.windowSize.rate) / 1920 + 'px';
+                        span.style.animationDelay += this.delay + 'ms';
+                        spanUp.style.animationDelay += this.delay + 'ms';
+                        span.appendChild(spanUp);
+                    });
+                }
+            });
+    }
+
     createMessage(order: boolean): void {
         let timeOne;
         let timeSecond;
-        if (window.innerWidth < 767) {
+
+        if (window.innerWidth > 992) {
+            timeOne = 1700;
+            timeSecond = 3470;
+        } else if (window.innerWidth > 767 && window.innerWidth < 992) {
             timeOne = 1650;
             timeSecond = 3800;
         } else {
-            timeOne = 1400;
-            timeSecond = 3470;
+            timeOne = 1650;
+            timeSecond = 3500;
         }
-        setTimeout(() => {
-            const data = this.loadText.split('');
-            // const data = ['P', 'E', 'A', 'S', 'E', '', 'S', 'T', 'A', 'N', 'D', '', 'B', 'Y'];
-            data.forEach((wr, index) => {
-                this.delay += 10;
-                const span = document.createElement('span');
-                const div = document.createElement('div');
-                const spanUp = document.createElement('span');
-                div.className = 'hideMessage';
-                spanUp.className = 'upShow';
-                span.className = 'letter';
-                span.style.position = 'relative';
-                span.innerText = wr;
-                span.style.animationDelay += this.delay + 'ms';
-                spanUp.style.animationDelay += this.delay + 'ms';
-                if (order) {
-                    if (wr !== ' ') {
-                        document.getElementsByClassName('message')[0].appendChild(div);
-                    } else {
-                        span.style.width = '30px';
-                    }
-                    document.getElementsByClassName('message')[0].appendChild(span);
-                    span.appendChild(spanUp);
-                }
-            });
-        }, 1);
-        if (order) {
 
+        document.getElementById('loading-section-1').className += ' loadBackActive';
+        document.getElementById('loading-section-2').className += ' loadBackActive';
+        document.getElementById('loading-section-3').className += ' loadBackActive';
+
+        if (order) {
             setTimeout(() => {
                 document.getElementsByClassName('message')[0].remove();
             }, timeOne);
@@ -473,7 +490,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.homePage = false;
         this.isWork.unsubscribe();
-        this.settingSubscription.unsubscribe();
+        if (this.settingSubscription) {
+            this.settingSubscription.unsubscribe();
+        }
+        this.windowSubscription.unsubscribe();
         // console.log('destroy: ', this.homePage);
     }
 }

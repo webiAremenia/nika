@@ -62,11 +62,12 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 .partner:hover {
   transition: 300ms all ease-in-out;
   background-color: #000000;
-  background-image: none!important;
+  background-image: none !important;
+
   .partner-text {
     cursor: default;
-    opacity: 1!important;
-    visibility: visible!important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 }
 
@@ -113,15 +114,19 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
         background-size: 60px;
         width: 103px;
         height: 103px;
+        padding: 5px!important;
+        font-size: 7px !important;
+        line-height: 12px !important;
       }
 
-      .partner-img {
-        background-size: 30px;
-      }
+      //.partner-img {
+      //  background-size: 30px;
+      //}
 
       .partner-text {
-        font-size: 7px;
-        line-height: 12px;
+        padding: 0!important;
+        font-size: 7px !important;
+        line-height: 12px !important;
       }
     }
   }

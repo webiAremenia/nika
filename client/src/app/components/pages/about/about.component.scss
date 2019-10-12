@@ -2,11 +2,11 @@ $font-regular: 'Open Sans Regular', sans-serif;
 $font-bold: 'Open Sans Bold', sans-serif;
 
 .section {
-  transition: all 1200ms ease-in 300ms;
-  -o-transition: all 1200ms ease-in 300ms;
-  -ms-transition: all 1200ms ease-in 300ms;
-  -moz-transition: all 1200ms ease-in 300ms;
-  -webkit-transition: all 1200ms ease-in 300ms;
+  transition: all 550ms ease-in 100ms;
+  -o-transition: all 550ms ease-in 100ms;
+  -ms-transition: all 550ms ease-in 100ms;
+  -moz-transition: all 550ms ease-in 100ms;
+  -webkit-transition: all 550ms ease-in 100ms;
 }
 
 .section {
@@ -14,9 +14,6 @@ $font-bold: 'Open Sans Bold', sans-serif;
 }
 
 .section:first-child {
-  opacity: 1;
-}
-#section-2 {
   opacity: 1;
 }
 

@@ -32,10 +32,9 @@
   font-size: 18px;
   line-height: 35px;
   letter-spacing: 0;
-  color: #FFFFFF;
 }
-.our-awards-content-wrapper .awards .award span {
-  margin-left: 20px;
+.our-awards-content-wrapper .awards .award pre {
+  margin: 0 0 0 20px;
   font-weight: bold;
   opacity: 0;
   visibility: hidden;
@@ -49,7 +48,8 @@
   opacity: 1 !important;
   visibility: visible !important;
 }
-.award:hover span {
+.award:hover pre {
+  color: #FFFFFF;
   font-weight: bold;
   opacity: 1 !important;
   visibility: visible !important;
@@ -84,11 +84,11 @@
   .our-awards-content-wrapper .awards .award {
     background-size: 30px !important;
     justify-content: center !important;
+  }
+  .our-awards-content-wrapper .awards .award pre {
+    margin: auto;
     font-size: 10px !important;
     line-height: 14px !important;
-  }
-  .our-awards-content-wrapper .awards .award span {
-    margin: auto;
   }
 }
 

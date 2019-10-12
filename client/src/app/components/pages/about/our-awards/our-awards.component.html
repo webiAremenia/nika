@@ -27,13 +27,12 @@
             <div class="row m-0">
                 <div class="col-3 award award-text"
                      *ngFor="let block of content.blocks"
-                     [style.backgroundImage]="'url(' + block.backGround + ')'"
-                     [style.font-size]="(windowSize.width * block.hover.fontSize * windowSize.rate) / 1920 + 'px'"
-                     [style.line-height]="(windowSize.width * block.hover.lineHeight * windowSize.rate) / 1920 + 'px'"
-                     [style.font-family]="block.hover.fontFamily"
-                >
-                    <span> {{block.hover.text}} </span>
-<!--                            <span>{{ cont.text.split(' ')[0] }}</span> {{ cont.text.split(' ')[1] }}-->
+                     [style.backgroundImage]="'url(' + block.backGround + ')'">
+                    <pre
+                            [style.font-size]="(windowSize.width * block.hover.fontSize * windowSize.rate) / 1920 + 'px'"
+                            [style.line-height]="(windowSize.width * block.hover.lineHeight * windowSize.rate) / 1920 + 'px'"
+                            [style.font-family]="block.hover.fontFamily"
+                    >{{block.hover.text}}</pre>
                 </div>
             </div>
         </div>

@@ -8,6 +8,7 @@ import {ResponsiveData} from '../../../_models/ResponsiveData';
 import {ActionsService} from '../../../_services/actions.service';
 import {TeamService} from '../../../_services/team.service';
 import {TeamPage} from '../../../_models/team/TeamPage';
+import {WorkService} from '../../../_services/work.service';
 
 @Component({
     selector: 'app-about',
@@ -25,6 +26,7 @@ export class AboutComponent implements OnInit, OnDestroy {
     windowSize: ResponsiveData;
 
     // // // SCROLL // // //
+    checkHeihgtSubscription: Subscription;
     sectionArr: Array<number> = [];
     scrollPosition = 0;
     scrollHeight = 0;
@@ -62,7 +64,6 @@ export class AboutComponent implements OnInit, OnDestroy {
     }
 
     @HostListener('touchmove', ['$event']) touchmove(e) {
-        console.log(e);
         if (window.innerWidth > 992) {
             this.initDesktopAnimation(e.touches[0].clientY - e.touches[0].screenY);
         } else {
@@ -88,9 +89,16 @@ export class AboutComponent implements OnInit, OnDestroy {
 
     constructor(
         private teamService: TeamService,
-        private actionsService: ActionsService) {
+        private actionsService: ActionsService
+    ) {
         this.windowSubscription = actionsService.getWindowSize()
             .subscribe((size: ResponsiveData) => this.windowSize = size);
+        this.checkHeihgtSubscription = this.actionsService.getCheckHeight()
+            .subscribe(d => {
+                setTimeout( () => {
+                    this.scrollHeight = document.getElementsByClassName('about-scroll')[0].scrollHeight;
+                }, 1000);
+            });
     }
 
     ngOnInit(): void {
@@ -98,7 +106,12 @@ export class AboutComponent implements OnInit, OnDestroy {
         if (doc.documentMode || /Edge/.test(navigator.userAgent)) {
             this.edge = true;
         }
-        this.getPage();
+        if (this.teamService.team) {
+            this.pageContent = this.teamService.team;
+            this.done = true;
+        } else {
+            this.getPage();
+        }
     }
 
     getPage(): void {
@@ -137,6 +150,7 @@ export class AboutComponent implements OnInit, OnDestroy {
             this.aboutScroll.nativeElement.style.transform = `translate3d(0, -${this.scrollPosition}px, 0)`;
             this.aboutScroll.nativeElement.style.transform = `-webkit-translate3d(0, -${this.scrollPosition}px, 0)`;
         }
+        console.log(this.scrollHeight);
     }
 
 
@@ -159,34 +173,37 @@ export class AboutComponent implements OnInit, OnDestroy {
     // // // // // SHOW/HIDE SECTION // // // // //
 
     showSections(): void {
+        if (this.scrollPosition + this.bannerHeight >= this.sectionArr[this.sectionArr.length]) {
+            return;
+        }
         for (let i = 0; i < this.sectionArr.length; i++) {
             if (this.scrollPosition + this.bannerHeight > this.sectionArr[i]) {
-                document.getElementById('section-' + (i + 1) ).style.opacity = '1';
-                document.getElementById('section-' + (i + 1) ).style.visibility = 'visible';
+                document.getElementById('section-' + (i + 1)).style.opacity = '1';
+                document.getElementById('section-' + (i + 1)).style.visibility = 'visible';
             }
             if (this.scrollPosition + this.bannerHeight / 2 > this.sectionArr[i]) {
                 if (i > 1) {
-                    document.getElementById('section-' + (i) ).style.opacity = '0';
-                    document.getElementById('section-' + (i) ).style.visibility = 'hidden';
+                    document.getElementById('section-' + (i)).style.opacity = '0';
+                    document.getElementById('section-' + (i)).style.visibility = 'hidden';
                 }
             }
-            if (i > 1 && this.scrollPosition + this.bannerHeight < this.sectionArr[i]) {
-                if (i + 1 === 3) {
-                    document.getElementById('section-' + (i) ).style.opacity = '1';
-                    document.getElementById('section-' + (i) ).style.visibility = 'visible';
-                    document.getElementById('section-' + (i + 1) ).style.opacity = '0';
-                    document.getElementById('section-' + (i + 1) ).style.visibility = 'hidden';
-                } else if (i + 1 > 3) {
-                    document.getElementById('section-' + (i) ).style.opacity = '1';
-                    document.getElementById('section-' + (i) ).style.visibility = 'visible';
-                    document.getElementById('section-' + (i + 1) ).style.opacity = '0';
-                    document.getElementById('section-' + (i + 1) ).style.visibility = 'hidden';
-                    return;
-                }
+            if (i >= 1 && this.scrollPosition + this.bannerHeight < this.sectionArr[i]) {
+                // if (i + 1 === 3) {
+                // document.getElementById('section-' + (i) ).style.opacity = '1';
+                // document.getElementById('section-' + (i) ).style.visibility = 'visible';
+                // document.getElementById('section-' + (i + 1) ).style.opacity = '0';
+                // document.getElementById('section-' + (i + 1) ).style.visibility = 'hidden';
+                // } else if (i + 1 > 3) {
+                document.getElementById('section-' + (i)).style.opacity = '1';
+                document.getElementById('section-' + (i)).style.visibility = 'visible';
+                document.getElementById('section-' + (i + 1)).style.opacity = '0';
+                document.getElementById('section-' + (i + 1)).style.visibility = 'hidden';
+                break;
+                // }
             }
         }
-        if (this.scrollPosition < this.sectionArr[1]) {
-            for (let i = 2; i < this.sectionArr.length; i++) {
+        if (this.scrollPosition + this.bannerHeight / 2 < this.sectionArr[1]) {
+            for (let i = 1; i < this.sectionArr.length; i++) {
                 document.getElementById('section-' + (i + 1)).style.opacity = '0';
                 document.getElementById('section-' + (i + 1)).style.visibility = 'hidden';
             }
@@ -206,6 +223,7 @@ export class AboutComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.windowSubscription.unsubscribe();
+        this.checkHeihgtSubscription.unsubscribe();
     }
 
 }

@@ -1,24 +1,28 @@
-$section-2-width: calc(33.33%);
+$section-2-width: 33.33%;
 $backgroundColor: #262626;
+$backgroundDelayD: 1700ms;
+$backgroundDelayM: 2000ms;
+
 //$section-3-width: calc(25% - 5px);
 //$section-4-width: calc(25% - 5px);
+
 // // // // // ANIMATION // // // // //
 
-.please-wait-false {
-  position: absolute;
-  top: 56px;
-  left: calc(97px + 25% - 49px);
-  width: calc(100% - 195px - 25% + 49px);
-  height: calc(100vh - 112px);
-  z-index: 10000;
-
-  .loading-section-false {
-    background-color: $backgroundColor;
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
+//.please-wait-false {
+//  position: absolute;
+//  top: 56px;
+//  left: calc(56px + 25% - 28px);
+//  width: calc(100% - 112px - 25% + 28px);
+//  height: calc(100vh - 112px);
+//  z-index: 10000;
+//
+//  .loading-section-false {
+//    background-color: $backgroundColor;
+//    display: block;
+//    position: relative;
+//    width: 100%;
+//    height: 100%;
+//  }
 
   //.message-false {
   //  position: absolute;
@@ -46,20 +50,38 @@ $backgroundColor: #262626;
   //    z-index: 10;
   //  }
   //}
+//}
+
+.loadBackActive {
+  animation: showSecDescS 1.8s ease-in-out;
+}
+.loadLetterActive {
+  animation: move 1.2s ease-in-out;
+}
+.loadLetterHideActive {
+  animation: stand 1.2s ease-in-out;
 }
 
 .please-wait {
   position: absolute;
   top: 56px;
-  left: calc(97px + 25% - 49px);
-  width: calc(100% - 195px - 25% + 49px);
+  left: calc(56px + 25% - 28px);
+  width: calc(100% - 112px - 25% + 28px);
   height: calc(100vh - 112px);
   z-index: 10000;
 
+  .loading-section-1 {
+    background-color: $backgroundColor;
+    animation-delay: $backgroundDelayD;
+    display: inline-block;
+    position: relative;
+    width: $section-2-width;
+    height: 100%;
+  }
+
   .loading-section-2 {
     background-color: $backgroundColor;
-    animation: showSecDescS 1.8s ease-in-out ;
-    animation-delay: 1700ms;
+    animation-delay: $backgroundDelayD + 50ms;
     display: inline-block;
     position: relative;
     width: $section-2-width;
@@ -68,18 +90,7 @@ $backgroundColor: #262626;
 
   .loading-section-3 {
     background-color: $backgroundColor;
-    animation: showSecDescS 1.8s ease-in-out ;
-    animation-delay: 1750ms;
-    display: inline-block;
-    position: relative;
-    width: $section-2-width;
-    height: 100%;
-  }
-
-  .loading-section-4 {
-    background-color: $backgroundColor;
-    animation: showSecDescS 1.8s ease-in-out ;
-    animation-delay: 1800ms;
+    animation-delay: $backgroundDelayD + 100ms;
     display: inline-block;
     position: relative;
     width: $section-2-width;
@@ -88,43 +99,43 @@ $backgroundColor: #262626;
 
   .message {
     position: absolute;
-    top: 75%;
+    top: 95%;
+    transform: translateY(-95%);
     width: 90%;
     left: 5%;
 
     .letter {
       display: inline-block;
-      margin-left: 10px;
-      color: #fff;
-      font-family: "Open Sans Bold", sans-serif;
-      font-size: 76px;
-      line-height: 86px;
+      margin-right: 10px;
       animation: move 1.2s ease-in-out;
+      color: #fff;
+      font-family: "Open Sans ExtraBold", sans-serif;
       z-index: 10;
 
       .upShow {
         position: absolute;
-        width: 112%;
+        width: 150%;
         height: 105%;
+        top: 0;
         left: 0;
-        animation: stand 1.2s ease-in-out;
         z-index: 20;
+        animation: stand 1.2s ease-in-out;
         background-color: $backgroundColor;
       }
     }
 
-    .hideMessage {
-      display: none;
-      animation: mutation 2s ease-in-out;
-      animation-delay: 350ms;
-      //display: inline-block;
-      //background-color: $backgroundColor;
-      background-color: yellow;
-      position: absolute;
-      top: -150px;
-      height: 200px;
-      z-index: 300;
-    }
+    //.hideMessage {
+    //  display: none;
+    //  animation: mutation 2s ease-in-out;
+    //  animation-delay: 350ms;
+    //  //display: inline-block;
+    //  //background-color: $backgroundColor;
+    //  background-color: yellow;
+    //  position: absolute;
+    //  top: -150px;
+    //  height: 200px;
+    //  z-index: 300;
+    //}
   }
 }
 
@@ -140,7 +151,7 @@ $backgroundColor: #262626;
   animation-name: matrix;
   animation-duration: 1.8s;
   animation-timing-function: ease-in-out;
-  animation-delay: 1.8s;
+  animation-delay: 1.6s;
 }
 
 // // // // // ONE TYPE // // // // //
@@ -225,12 +236,12 @@ $backgroundColor: #262626;
     width: 112%;
     height: 35%;
   }
-  30% {
+  20% {
     top: 105%;
     height: 0;
     width: 0;
   }
-  70% {
+  50% {
     top: 0;
     width: 0;
     height: 105%;
@@ -282,9 +293,18 @@ $backgroundColor: #262626;
     width: 100%;
     height: 100vh;
 
+    .loading-section-1 {
+      animation: showSecDescSS 2s ease-in-out;
+      animation-delay: $backgroundDelayM;
+      display: inline-block;
+      position: relative;
+      width: 33.33%;
+      height: 100%;
+    }
+
     .loading-section-2 {
       animation: showSecDescSS 2s ease-in-out;
-      animation-delay: 2000ms;
+      animation-delay: $backgroundDelayM + 50ms;
       display: inline-block;
       position: relative;
       width: 33.33%;
@@ -293,16 +313,7 @@ $backgroundColor: #262626;
 
     .loading-section-3 {
       animation: showSecDescSS 2s ease-in-out;
-      animation-delay: 2050ms;
-      display: inline-block;
-      position: relative;
-      width: 33.33%;
-      height: 100%;
-    }
-
-    .loading-section-4 {
-      animation: showSecDescSS 2s ease-in-out;
-      animation-delay: 2100ms;
+      animation-delay: $backgroundDelayM + 100ms;
       display: inline-block;
       position: relative;
       width: 33.33%;
@@ -312,43 +323,43 @@ $backgroundColor: #262626;
 }
 
 @media (max-width: 767px) {
-  .please-wait-false {
-    .message-false {
-      top: 50%;
-
-      .letter {
-        font-size: 65px;
-        line-height: 80px;
-      }
-
-      .hideMessage {
-        height: 350px;
-      }
-    }
-  }
+  //.please-wait-false {
+  //.message-false {
+  //  top: 50%;
+  //
+  //  .letter {
+  //    font-size: 65px;
+  //    line-height: 80px;
+  //  }
+  //
+  //  .hideMessage {
+  //    height: 350px;
+  //  }
+  //}
+  //}
   .please-wait {
 
-    .loading-section-2 {
+    .loading-section-1 {
       animation: showSeMob 1800ms ease-in-out;
-      animation-delay: 2000ms;
+      animation-delay: $backgroundDelayM;
       display: block;
       position: relative;
       width: 100%;
       height: 80px;
     }
 
-    .loading-section-3 {
+    .loading-section-2 {
       animation: showSeMob 1800ms ease-in-out;
-      animation-delay: 2100ms;
+      animation-delay: $backgroundDelayM + 100ms;
       display: block;
       position: relative;
       width: 100%;
       height: calc(100vh / 2 - 40px);
     }
 
-    .loading-section-4 {
+    .loading-section-3 {
       animation: showSeMob 1800ms ease-in-out;
-      animation-delay: 2200ms;
+      animation-delay: $backgroundDelayM + 200ms;
       display: block;
       position: relative;
       width: 100%;
@@ -356,16 +367,15 @@ $backgroundColor: #262626;
     }
 
     .message {
-      top: 50%;
 
       .letter {
-        font-size: 65px;
-        line-height: 80px;
+        font-size: 20px !important;
+        line-height: 45px !important;
       }
 
-      .hideMessage {
-        height: 350px;
-      }
+      //.hideMessage {
+      //  height: 350px;
+      //}
     }
   }
 
