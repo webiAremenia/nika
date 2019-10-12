@@ -293,7 +293,7 @@ $backgroundDelayM: 2000ms;
     width: 100%;
     height: 100vh;
 
-    .loading-section-2 {
+    .loading-section-1 {
       animation: showSecDescSS 2s ease-in-out;
       animation-delay: $backgroundDelayM;
       display: inline-block;
@@ -302,7 +302,7 @@ $backgroundDelayM: 2000ms;
       height: 100%;
     }
 
-    .loading-section-3 {
+    .loading-section-2 {
       animation: showSecDescSS 2s ease-in-out;
       animation-delay: $backgroundDelayM + 50ms;
       display: inline-block;
@@ -311,7 +311,7 @@ $backgroundDelayM: 2000ms;
       height: 100%;
     }
 
-    .loading-section-4 {
+    .loading-section-3 {
       animation: showSecDescSS 2s ease-in-out;
       animation-delay: $backgroundDelayM + 100ms;
       display: inline-block;
@@ -339,7 +339,7 @@ $backgroundDelayM: 2000ms;
   //}
   .please-wait {
 
-    .loading-section-2 {
+    .loading-section-1 {
       animation: showSeMob 1800ms ease-in-out;
       animation-delay: $backgroundDelayM;
       display: block;
@@ -348,7 +348,7 @@ $backgroundDelayM: 2000ms;
       height: 80px;
     }
 
-    .loading-section-3 {
+    .loading-section-2 {
       animation: showSeMob 1800ms ease-in-out;
       animation-delay: $backgroundDelayM + 100ms;
       display: block;
@@ -357,7 +357,7 @@ $backgroundDelayM: 2000ms;
       height: calc(100vh / 2 - 40px);
     }
 
-    .loading-section-4 {
+    .loading-section-3 {
       animation: showSeMob 1800ms ease-in-out;
       animation-delay: $backgroundDelayM + 200ms;
       display: block;

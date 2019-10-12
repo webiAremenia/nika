@@ -467,10 +467,10 @@ export class HomeComponent implements OnInit, OnDestroy {
             timeSecond = 3470;
         } else if (window.innerWidth > 767 && window.innerWidth < 992) {
             timeOne = 1650;
-            timeSecond = 3900;
+            timeSecond = 3800;
         } else {
             timeOne = 1650;
-            timeSecond = 3800;
+            timeSecond = 3500;
         }
 
         document.getElementById('loading-section-1').className += ' loadBackActive';
