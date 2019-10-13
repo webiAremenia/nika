@@ -2,12 +2,11 @@
   animation: showSecDescS 1.8s ease-in-out;
 }
 
-.loadLetterActive {
-  animation: move 1.2s ease-in-out;
+.loadLetterActive .letter {
+  animation: move 850ms ease-in-out !important;
 }
-
-.loadLetterHideActive {
-  animation: stand 1.2s ease-in-out;
+.loadLetterActive .upShow {
+  animation: stand 850ms ease-in-out !important;
 }
 
 .please-wait {
@@ -52,10 +51,11 @@
 .please-wait .message .letter {
   display: inline-block;
   margin-right: 10px;
-  animation: move 1.2s ease-in-out;
+  animation: move_1 600ms ease-in-out;
+  animation-fill-mode: forwards;
   color: #fff;
   font-family: "Open Sans ExtraBold", sans-serif;
-  z-index: 10;
+  z-index: 400;
 }
 .please-wait .message .letter .upShow {
   position: absolute;
@@ -64,10 +64,40 @@
   top: 0;
   left: 0;
   z-index: 20;
-  animation: stand 1.2s ease-in-out;
   background-color: #262626;
+  animation: stand_1 600ms ease-in-out;
+  animation-fill-mode: forwards;
 }
 
+@keyframes stand_1 {
+  0% {
+    top: 0;
+    width: 150%;
+    height: 105%;
+  }
+  30% {
+    top: 70%;
+    width: 112%;
+    height: 35%;
+  }
+  100% {
+    top: 105%;
+    height: 0;
+    width: 0;
+  }
+}
+@keyframes move_1 {
+  0% {
+    z-index: 0;
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+  100% {
+    z-index: 400;
+    -webkit-transform: translate(0, -100%);
+    transform: translate(0, -100%);
+  }
+}
 .accordion-items {
   position: relative;
 }
@@ -134,20 +164,6 @@
 @keyframes stand {
   0% {
     top: 0;
-    height: 105%;
-  }
-  15% {
-    top: 70%;
-    width: 112%;
-    height: 35%;
-  }
-  20% {
-    top: 105%;
-    height: 0;
-    width: 0;
-  }
-  50% {
-    top: 0;
     width: 0;
     height: 105%;
   }
@@ -157,10 +173,6 @@
 }
 @keyframes move {
   0% {
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0);
-  }
-  30% {
     -webkit-transform: translate(0, -100%);
     transform: translate(0, -100%);
   }
