@@ -95,7 +95,7 @@ export class AboutComponent implements OnInit, OnDestroy {
             .subscribe((size: ResponsiveData) => this.windowSize = size);
         this.checkHeihgtSubscription = this.actionsService.getCheckHeight()
             .subscribe(d => {
-                setTimeout( () => {
+                setTimeout(() => {
                     this.scrollHeight = document.getElementsByClassName('about-scroll')[0].scrollHeight;
                 }, 1000);
             });
@@ -187,7 +187,7 @@ export class AboutComponent implements OnInit, OnDestroy {
                     document.getElementById('section-' + (i)).style.visibility = 'hidden';
                 }
             }
-            if (i >= 1 && this.scrollPosition + this.bannerHeight < this.sectionArr[i]) {
+            if (i >= 1 && this.scrollPosition + this.bannerHeight / 1.8 < this.sectionArr[i]) {
                 // if (i + 1 === 3) {
                 // document.getElementById('section-' + (i) ).style.opacity = '1';
                 // document.getElementById('section-' + (i) ).style.visibility = 'visible';
