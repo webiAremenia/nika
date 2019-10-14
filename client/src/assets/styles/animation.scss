@@ -55,11 +55,20 @@ $backgroundDelayM: 2000ms;
 .loadBackActive {
   animation: showSecDescS 1.8s ease-in-out;
 }
+//.loadLetterActive {
+//  animation: move 1.2s ease-in-out;
+//}
+//.loadLetterHideActive {
+//  animation: stand 1.2s ease-in-out;
+//}
+
 .loadLetterActive {
-  animation: move 1.2s ease-in-out;
-}
-.loadLetterHideActive {
-  animation: stand 1.2s ease-in-out;
+  .letter {
+    animation: move 850ms ease-in-out!important;
+  }
+  .upShow {
+    animation: stand 850ms ease-in-out!important;
+  }
 }
 
 .please-wait {
@@ -107,10 +116,11 @@ $backgroundDelayM: 2000ms;
     .letter {
       display: inline-block;
       margin-right: 10px;
-      animation: move 1.2s ease-in-out;
+      animation: move_1 600ms ease-in-out;
+      animation-fill-mode: forwards;
       color: #fff;
       font-family: "Open Sans ExtraBold", sans-serif;
-      z-index: 10;
+      z-index: 400;
 
       .upShow {
         position: absolute;
@@ -119,8 +129,9 @@ $backgroundDelayM: 2000ms;
         top: 0;
         left: 0;
         z-index: 20;
-        animation: stand 1.2s ease-in-out;
         background-color: $backgroundColor;
+        animation: stand_1 600ms ease-in-out;
+        animation-fill-mode: forwards;
       }
     }
 
@@ -136,6 +147,37 @@ $backgroundDelayM: 2000ms;
     //  height: 200px;
     //  z-index: 300;
     //}
+  }
+}
+
+@keyframes stand_1 {
+  0% {
+    top: 0;
+    width: 150%;
+    height: 105%;
+  }
+  30% {
+    top: 70%;
+    width: 112%;
+    height: 35%;
+  }
+  100% {
+    top: 105%;
+    height: 0;
+    width: 0;
+  }
+}
+
+@keyframes move_1 {
+  0% {
+    z-index: 0;
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+  100% {
+    z-index: 400;
+    -webkit-transform: translate(0, -100%);
+    transform: translate(0, -100%);
   }
 }
 
@@ -229,20 +271,6 @@ $backgroundDelayM: 2000ms;
 @keyframes stand {
   0% {
     top: 0;
-    height: 105%;
-  }
-  15% {
-    top: 70%;
-    width: 112%;
-    height: 35%;
-  }
-  20% {
-    top: 105%;
-    height: 0;
-    width: 0;
-  }
-  50% {
-    top: 0;
     width: 0;
     height: 105%;
   }
@@ -253,10 +281,6 @@ $backgroundDelayM: 2000ms;
 
 @keyframes move {
   0% {
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0);
-  }
-  30% {
     -webkit-transform: translate(0, -100%);
     transform: translate(0, -100%);
   }

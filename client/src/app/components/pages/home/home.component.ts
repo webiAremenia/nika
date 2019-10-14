@@ -7,6 +7,7 @@ import {ActionsService} from '../../../_services/actions.service';
 import {Subscription} from 'rxjs';
 import {MenuService} from '../../../_services/menu.service';
 import {ResponsiveData} from '../../../_models/ResponsiveData';
+import set = Reflect.set;
 
 
 @Component({
@@ -255,7 +256,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.workScrollTop = -window.innerHeight + 100;
         if (this.clickedSlide < this.slides.length - 1) {
             this.image.nativeElement.classList.add('fadeOutLeft');
-            this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 100}px, 0)`;
+            this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 112}px, 0)`;
             this.showDownBtn();
             setTimeout(() => {
                 this.image.nativeElement.classList.remove('fadeOutLeft', 'fadeInRight', 'fadeInLeft');
@@ -275,7 +276,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.workScrollTop = -window.innerHeight + 100;
         if (this.clickedSlide > 0) {
             this.image.nativeElement.classList.add('fadeOutRight');
-            this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 100}px, 0)`;
+            this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 112}px, 0)`;
             this.showDownBtn();
             setTimeout(() => {
                 this.image.nativeElement.classList.remove('fadeOutRight', 'fadeInRight', 'fadeInLeft');
@@ -294,7 +295,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     goDown() {
         const workHeight = this.customBody.nativeElement.scrollHeight;
 
-        this.workScrollTop = -(document.getElementById('wwww').clientHeight + window.innerHeight - 100);
+        this.workScrollTop = -(document.getElementById('wwww').clientHeight + window.innerHeight - 112);
         this.actionsService.workScrollPosition.next(this.workScrollTop);
         this.hideDownBtn();
         if (this.workScrollTop < -workHeight) {
@@ -303,6 +304,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     desktopScrollFunction(event) {
+        const animHeight = (this.workScrollTop + window.innerHeight - 100) / -window.innerHeight;
         if (this.customBody) {
             const workHeight = this.customBody.nativeElement.scrollHeight;
             if (event.deltaY > 10) {
@@ -319,6 +321,9 @@ export class HomeComponent implements OnInit, OnDestroy {
                 }
             }
             this.actionsService.workScrollPosition.next(this.workScrollTop);
+            if ((animHeight) <= 1) {
+                this.detailWrapper.nativeElement.style.top = 70 + (animHeight * 30) + '%';
+            }
             this.customBody.nativeElement.style.transform = `translate3d(0, ${this.workScrollTop}px, 0)`;
             if (this.workScrollTop < -(document.getElementById('wwww').clientHeight + window.innerHeight - 100)
                 || this.workScrollTop === -workHeight) {
@@ -343,21 +348,25 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (this.workService.works) {
             this.slides = this.workService.works;
             this.done = true;
-            this.doneService = true;
+            if (this.location) {
+                this.doneService = true;
+            }
             // console.log('get params if');
             this.initSlider();
             this.getCurrent();
         } else {
-            this.workService.getWorks().subscribe(
-                d => {
-                    this.slides = d;
-                    this.done = true;
-                    this.createMessage(true);
-                    this.initSlider();
-                    this.getCurrent();
-                },
-                e => console.log('errrrr', e)
-            );
+            this.workService.getWorks()
+                .subscribe(d => {
+                        this.slides = d;
+                        setTimeout( () => {
+                            this.done = true;
+                            this.createMessage(true);
+                        }, 500);
+                        this.initSlider();
+                        this.getCurrent();
+                    },
+                    e => console.log('errrrr', e)
+                );
         }
     }
 
@@ -429,8 +438,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     initLoadText(): void {
         this.settingSubscription = this.menuService.getSettingsRX()
             .subscribe(settings => {
-                if (settings) {
+                if (settings && !this.doneService) {
                     this.loadText = settings.find(st => st.key === 'animation-text').value;
+                    if (this.loadText.length <= 1) {
+                        this.loadText = 'Please stand by';
+                    }
                     const data = this.loadText.split('');
                     data.forEach((wr, index) => {
                         this.delay += 10;
@@ -443,10 +455,15 @@ export class HomeComponent implements OnInit, OnDestroy {
                         span.className = 'letter';
                         span.innerText = wr;
                         span.style.position = 'relative';
+                        if (!document.getElementById('message')) {
+                            const message = document.createElement('div');
+                            message.className = 'message';
+                            document.getElementById('please-wait').appendChild(message);
+                        }
                         if (wr === ' ') {
-                            document.getElementsByClassName('message')[0].appendChild(space);
+                            document.getElementById('message').appendChild(space);
                         } else {
-                            document.getElementsByClassName('message')[0].appendChild(span);
+                            document.getElementById('message').appendChild(span);
                         }
                         span.style.fontSize = (this.windowSize.width * 65 * this.windowSize.rate) / 1920 + 'px';
                         span.style.lineHeight = (this.windowSize.width * 80 * this.windowSize.rate) / 1920 + 'px';
@@ -463,8 +480,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         let timeSecond;
 
         if (window.innerWidth > 992) {
-            timeOne = 1700;
-            timeSecond = 3470;
+            // timeOne = 1700;
+            // timeSecond = 3470;
+            timeOne = 650;
+            timeSecond = 3800;
+
         } else if (window.innerWidth > 767 && window.innerWidth < 992) {
             timeOne = 1650;
             timeSecond = 3800;
@@ -476,6 +496,10 @@ export class HomeComponent implements OnInit, OnDestroy {
         document.getElementById('loading-section-1').className += ' loadBackActive';
         document.getElementById('loading-section-2').className += ' loadBackActive';
         document.getElementById('loading-section-3').className += ' loadBackActive';
+
+       setTimeout( () => {
+           document.getElementById('message').className += ' loadLetterActive';
+       }, 1700);
 
         if (order) {
             setTimeout(() => {
