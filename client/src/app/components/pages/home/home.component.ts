@@ -122,14 +122,16 @@ export class HomeComponent implements OnInit, OnDestroy {
         private router: Router
     ) {
         this.imageUrl = config.imageUrl + '/work/';
-        if (!this.workService.works) {
-            this.initLoadText();
-        }
         this.windowSubscription = actionsService.getWindowSize()
             .subscribe((size: ResponsiveData) => this.windowSize = size);
     }
 
     ngOnInit() {
+        if (!this.workService.works) {
+            this.initLoadText();
+        } else {
+            document.getElementById('please-wait').remove();
+        }
         this.location = !location.href.split('/')[4];
         // console.log('onInit');
         this.workScrollTop = -window.innerHeight + 100;
@@ -436,6 +438,44 @@ export class HomeComponent implements OnInit, OnDestroy {
     // // // // // LOADING MESSAGE // // // // //
 
     initLoadText(): void {
+        // this.loadText = this.menuService.settings.find(st => st.key === 'animation-text').value;
+        // if (this.loadText.length <= 1) {
+        //     this.loadText = 'Please stand by';
+        // }
+        // const data = this.loadText.split('');
+        // data.forEach((wr, index) => {
+        //     this.delay += 10;
+        //     const space = document.createElement('span');
+        //     const spanUp = document.createElement('span');
+        //     const span = document.createElement('span');
+        //     space.style.width = '30px';
+        //     space.className = 'letter';
+        //     spanUp.className = 'upShow';
+        //     span.className = 'letter';
+        //     span.innerText = wr;
+        //     span.style.position = 'relative';
+        //     if (!document.getElementById('message')) {
+        //         const message = document.createElement('div');
+        //         message.className = 'message';
+        //         document.getElementById('please-wait').appendChild(message);
+        //     }
+        //     if (wr === ' ') {
+        //         document.getElementById('message').appendChild(space);
+        //     } else {
+        //         document.getElementById('message').appendChild(span);
+        //     }
+        //     span.style.fontSize = (this.windowSize.width * 65 * this.windowSize.rate) / 1920 + 'px';
+        //     span.style.lineHeight = (this.windowSize.width * 80 * this.windowSize.rate) / 1920 + 'px';
+        //     span.style.animationDelay += this.delay + 'ms';
+        //     spanUp.style.animationDelay += this.delay + 'ms';
+        //     span.appendChild(spanUp);
+        // });
+
+        //
+        //
+        //
+        //
+        //
         this.settingSubscription = this.menuService.getSettingsRX()
             .subscribe(settings => {
                 if (settings && !this.doneService) {
@@ -455,11 +495,6 @@ export class HomeComponent implements OnInit, OnDestroy {
                         span.className = 'letter';
                         span.innerText = wr;
                         span.style.position = 'relative';
-                        if (!document.getElementById('message')) {
-                            const message = document.createElement('div');
-                            message.className = 'message';
-                            document.getElementById('please-wait').appendChild(message);
-                        }
                         if (wr === ' ') {
                             document.getElementById('message').appendChild(space);
                         } else {
@@ -481,9 +516,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
         if (window.innerWidth > 992) {
             // timeOne = 1700;
+            timeOne = 1800;
             // timeSecond = 3470;
-            timeOne = 650;
-            timeSecond = 3800;
+            timeSecond = 3400;
 
         } else if (window.innerWidth > 767 && window.innerWidth < 992) {
             timeOne = 1650;
@@ -499,7 +534,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
        setTimeout( () => {
            document.getElementById('message').className += ' loadLetterActive';
-       }, 1700);
+       }, 1200);
 
         if (order) {
             setTimeout(() => {
