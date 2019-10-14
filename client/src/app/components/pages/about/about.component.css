@@ -1,9 +1,9 @@
 .section {
-  transition: all 550ms ease-in 100ms;
-  -o-transition: all 550ms ease-in 100ms;
-  -ms-transition: all 550ms ease-in 100ms;
-  -moz-transition: all 550ms ease-in 100ms;
-  -webkit-transition: all 550ms ease-in 100ms;
+  transition: all 800ms ease-in 100ms;
+  -o-transition: all 800ms ease-in 100ms;
+  -ms-transition: all 800ms ease-in 100ms;
+  -moz-transition: all 800ms ease-in 100ms;
+  -webkit-transition: all 800ms ease-in 100ms;
 }
 
 .section {

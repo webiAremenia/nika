@@ -187,7 +187,7 @@ export class AboutComponent implements OnInit, OnDestroy {
                     document.getElementById('section-' + (i)).style.visibility = 'hidden';
                 }
             }
-            if (i >= 1 && this.scrollPosition + this.bannerHeight < this.sectionArr[i]) {
+            if (i >= 1 && this.scrollPosition + this.bannerHeight / 1.8 < this.sectionArr[i]) {
                 // if (i + 1 === 3) {
                 // document.getElementById('section-' + (i) ).style.opacity = '1';
                 // document.getElementById('section-' + (i) ).style.visibility = 'visible';
@@ -207,9 +207,6 @@ export class AboutComponent implements OnInit, OnDestroy {
                 document.getElementById('section-' + (i + 1)).style.opacity = '0';
                 document.getElementById('section-' + (i + 1)).style.visibility = 'hidden';
             }
-        }
-        for (let i = 0; i < this.sectionArr.length; i++) {
-            console.log(document.getElementById('section-' + (i + 1)).style.visibility);
         }
     }
 
