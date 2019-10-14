@@ -15,7 +15,7 @@
         </div>
 
         <div #list>
-            <ul *ngFor="let block of content.blocks, let index = index"
+            <ul *ngFor="let block of content.blocks, let index = index" style="background: #000A1D;"
                 [ngClass]="index == 0 ? 'list active' : 'list'"
                 (click)="openList(list, index)">
                 <li class="list-title"
