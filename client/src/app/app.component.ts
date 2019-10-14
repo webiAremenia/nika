@@ -17,17 +17,18 @@ export class AppComponent implements OnInit {
     route: string;
     path;
     done = false;
+
+
     constructor(
         location: Location,
         router: Router,
         private actionsService: ActionsService,
         private menuService: MenuService
     ) {
-        menuService.getSettings().subscribe();
+        menuService.getSettings().subscribe(d => this.done = true);
     }
 
     ngOnInit() {
-        this.done = true;
     }
 
     @HostListener('window:resize', ['$event']) onResize(e) {

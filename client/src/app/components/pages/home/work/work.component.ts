@@ -56,10 +56,11 @@ export class WorkComponent implements OnInit, OnDestroy {
             this.workService.current = this.work;
         }
         if (this.work) {
-            this.workService.getOne(this.work.slug).subscribe(d => {
-                this.work.details = d.details;
-                this.done = true;
-            });
+            this.workService.getOne(this.work.slug)
+                .subscribe(d => {
+                    this.work.details = d.details;
+                    this.done = true;
+                });
         } else {
             this.router.navigate(['/']).then();
         }
