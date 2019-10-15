@@ -518,7 +518,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             // timeOne = 1700;
             timeOne = 1800;
             // timeSecond = 3470;
-            timeSecond = 3400;
+            timeSecond = 3500;
 
         } else if (window.innerWidth > 767 && window.innerWidth < 992) {
             timeOne = 1650;

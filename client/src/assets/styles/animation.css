@@ -1,5 +1,6 @@
 .loadBackActive {
   animation: showSecDescS 1.8s ease-in-out;
+  animation-fill-mode: forwards !important;
 }
 
 .loadLetterActive .letter {
