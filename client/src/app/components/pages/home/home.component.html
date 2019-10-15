@@ -1,4 +1,7 @@
-<div id="please-wait" class="please-wait">
+<div id="please-wait" class="please-wait"
+     [style.margin-left]=" windowSize.width > 992 ? ((windowSize.height - 112) / 2) + 'px' : '0' "
+     [style.width]=" windowSize.width > 992 ? (windowSize.width - 112 - ((windowSize.height - 112) / 2)) + 'px' : '100%' "
+>
     <div class="loading-section-1" id="loading-section-1"></div>
     <div class="loading-section-2" id="loading-section-2"></div>
     <div class="loading-section-3" id="loading-section-3"></div>
@@ -16,7 +19,10 @@
 
     <div class="loading-pppp" *ngIf="!done">loading ...</div>
 
-    <div class="home-page custom-page bg-light col-12 col-lg-9 offset-lg-3 pr-0">
+    <div class="home-page custom-page bg-light"
+         [style.margin-left]=" windowSize.width > 992 ? ((windowSize.height - 112) / 2) + 'px' : '0' "
+         [style.width]=" windowSize.width > 992 ? (windowSize.width - 112 - ((windowSize.height - 112) / 2)) + 'px' : '100%' "
+    >
 
         <div class="accordion w-100 h-100 d-none d-md-block"
              *ngIf="windowWidth > 767">

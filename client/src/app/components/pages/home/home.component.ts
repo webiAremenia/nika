@@ -230,7 +230,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     initSlider() {
         this.count = this.slides.length;
-        this.slideWidth = window.innerWidth > 992 ? (window.innerWidth - 112) / 4 : (window.innerWidth) / 3;
+        this.slideWidth = window.innerWidth > 992 ?
+            (window.innerWidth - 112 - (this.windowSize.height - 112) / 2) / 3
+            : (window.innerWidth) / 3;
         this.accordionItemsStyles.width = this.slideWidth * this.count;
     }
 
@@ -360,7 +362,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             this.workService.getWorks()
                 .subscribe(d => {
                         this.slides = d;
-                        setTimeout( () => {
+                        setTimeout(() => {
                             this.done = true;
                             this.createMessage(true);
                         }, 500);
@@ -429,53 +431,15 @@ export class HomeComponent implements OnInit, OnDestroy {
         } else if (this.windowWidth >= 576) {
             this.resizeWidth = this.windowWidth / 2;
             this.resizeHeight = this.resizeWidth * 250 / 400;
-        } else {
+        } else if (this.windowWidth < 375) {
             this.resizeWidth = this.windowWidth;
-            this.resizeHeight = this.resizeWidth * 250 / 400;
+            this.resizeHeight = this.resizeWidth * 250 / 300;
         }
     }
 
     // // // // // LOADING MESSAGE // // // // //
 
     initLoadText(): void {
-        // this.loadText = this.menuService.settings.find(st => st.key === 'animation-text').value;
-        // if (this.loadText.length <= 1) {
-        //     this.loadText = 'Please stand by';
-        // }
-        // const data = this.loadText.split('');
-        // data.forEach((wr, index) => {
-        //     this.delay += 10;
-        //     const space = document.createElement('span');
-        //     const spanUp = document.createElement('span');
-        //     const span = document.createElement('span');
-        //     space.style.width = '30px';
-        //     space.className = 'letter';
-        //     spanUp.className = 'upShow';
-        //     span.className = 'letter';
-        //     span.innerText = wr;
-        //     span.style.position = 'relative';
-        //     if (!document.getElementById('message')) {
-        //         const message = document.createElement('div');
-        //         message.className = 'message';
-        //         document.getElementById('please-wait').appendChild(message);
-        //     }
-        //     if (wr === ' ') {
-        //         document.getElementById('message').appendChild(space);
-        //     } else {
-        //         document.getElementById('message').appendChild(span);
-        //     }
-        //     span.style.fontSize = (this.windowSize.width * 65 * this.windowSize.rate) / 1920 + 'px';
-        //     span.style.lineHeight = (this.windowSize.width * 80 * this.windowSize.rate) / 1920 + 'px';
-        //     span.style.animationDelay += this.delay + 'ms';
-        //     spanUp.style.animationDelay += this.delay + 'ms';
-        //     span.appendChild(spanUp);
-        // });
-
-        //
-        //
-        //
-        //
-        //
         this.settingSubscription = this.menuService.getSettingsRX()
             .subscribe(settings => {
                 if (settings && !this.doneService) {
@@ -518,7 +482,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             // timeOne = 1700;
             timeOne = 1800;
             // timeSecond = 3470;
-            timeSecond = 3400;
+            timeSecond = 3500;
 
         } else if (window.innerWidth > 767 && window.innerWidth < 992) {
             timeOne = 1650;
@@ -532,9 +496,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         document.getElementById('loading-section-2').className += ' loadBackActive';
         document.getElementById('loading-section-3').className += ' loadBackActive';
 
-       setTimeout( () => {
-           document.getElementById('message').className += ' loadLetterActive';
-       }, 1200);
+        setTimeout(() => {
+            document.getElementById('message').className += ' loadLetterActive';
+        }, 1200);
 
         if (order) {
             setTimeout(() => {
