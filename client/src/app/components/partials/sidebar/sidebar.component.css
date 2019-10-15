@@ -28,6 +28,7 @@
 
 .menu-title h1 {
   font-size: 50px;
+  font-family: "Open Sans Bold", sans-serif;
 }
 @media (max-width: 992px) and (min-width: 767px) {
   .menu-title h1 {
@@ -38,17 +39,6 @@
 .side-bar-header {
   background: #F7F7F7 0 0 no-repeat padding-box;
   height: 100%;
-  padding: 36px 52px 65px 36px;
-}
-@media (max-width: 1600px) {
-  .side-bar-header {
-    padding: 15px;
-  }
-}
-@media (max-width: 992px) and (min-width: 767px) {
-  .side-bar-header {
-    padding: 5px;
-  }
 }
 @media (max-width: 768px) {
   .side-bar-header {
@@ -58,7 +48,6 @@
 
 .side-bar-about {
   font-size: larger;
-  padding-top: 20px;
 }
 @media (max-width: 1600px) {
   .side-bar-about {

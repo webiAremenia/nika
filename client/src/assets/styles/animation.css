@@ -101,10 +101,6 @@
   position: relative;
 }
 
-.slider-item {
-  background-color: #262626;
-}
-
 .animate {
   animation-name: matrix;
   animation-duration: 1.8s;
