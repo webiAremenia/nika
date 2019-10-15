@@ -3,65 +3,12 @@ $backgroundColor: #262626;
 $backgroundDelayD: 1700ms;
 $backgroundDelayM: 2000ms;
 
-//$section-3-width: calc(25% - 5px);
-//$section-4-width: calc(25% - 5px);
-
 // // // // // ANIMATION // // // // //
-
-//.please-wait-false {
-//  position: absolute;
-//  top: 56px;
-//  left: calc(56px + 25% - 28px);
-//  width: calc(100% - 112px - 25% + 28px);
-//  height: calc(100vh - 112px);
-//  z-index: 10000;
-//
-//  .loading-section-false {
-//    background-color: $backgroundColor;
-//    display: block;
-//    position: relative;
-//    width: 100%;
-//    height: 100%;
-//  }
-
-  //.message-false {
-  //  position: absolute;
-  //  top: 80%;
-  //  width: 90%;
-  //  left: 5%;
-  //
-  //  .letter {
-  //    position: relative;
-  //    display: inline-block;
-  //    margin-left: 20px;
-  //    color: #fff;
-  //    font-family: "Open Sans Bold", sans-serif;
-  //    font-size: 76px;
-  //    line-height: 86px;
-  //    z-index: -1;
-  //  }
-  //
-  //  .hideMessage {
-  //    display: inline-block;
-  //    background-color: black;
-  //    position: absolute;
-  //    top: -150px;
-  //    height: 300px;
-  //    z-index: 10;
-  //  }
-  //}
-//}
 
 .loadBackActive {
   animation: showSecDescS 1.8s ease-in-out;
   animation-fill-mode: forwards!important;
 }
-//.loadLetterActive {
-//  animation: move 1.2s ease-in-out;
-//}
-//.loadLetterHideActive {
-//  animation: stand 1.2s ease-in-out;
-//}
 
 .loadLetterActive {
   .letter {
@@ -75,8 +22,8 @@ $backgroundDelayM: 2000ms;
 .please-wait {
   position: absolute;
   top: 56px;
-  left: calc(56px + 25% - 28px);
-  width: calc(100% - 112px - 25% + 28px);
+  //left: calc(56px + 25% - 28px);
+  //width: calc(100% - 112px - 25% + 28px);
   height: calc(100vh - 112px);
   z-index: 10000;
 
@@ -136,18 +83,6 @@ $backgroundDelayM: 2000ms;
       }
     }
 
-    //.hideMessage {
-    //  display: none;
-    //  animation: mutation 2s ease-in-out;
-    //  animation-delay: 350ms;
-    //  //display: inline-block;
-    //  //background-color: $backgroundColor;
-    //  background-color: yellow;
-    //  position: absolute;
-    //  top: -150px;
-    //  height: 200px;
-    //  z-index: 300;
-    //}
   }
 }
 
@@ -198,17 +133,6 @@ $backgroundDelayM: 2000ms;
 }
 
 // // // // // ONE TYPE // // // // //
-//
-//@keyframes showSecDescM {
-//  0% {
-//    margin-left: 0;
-//    width: $section-1-width;
-//  }
-//  100% {
-//    margin-left: $section-1-width;
-//    width: 0;
-//  }
-//}
 
 @keyframes showSecDescS {
   0% {
@@ -348,20 +272,6 @@ $backgroundDelayM: 2000ms;
 }
 
 @media (max-width: 767px) {
-  //.please-wait-false {
-  //.message-false {
-  //  top: 50%;
-  //
-  //  .letter {
-  //    font-size: 65px;
-  //    line-height: 80px;
-  //  }
-  //
-  //  .hideMessage {
-  //    height: 350px;
-  //  }
-  //}
-  //}
   .please-wait {
 
     .loading-section-1 {
@@ -392,15 +302,10 @@ $backgroundDelayM: 2000ms;
     }
 
     .message {
-
       .letter {
         font-size: 20px !important;
         line-height: 45px !important;
       }
-
-      //.hideMessage {
-      //  height: 350px;
-      //}
     }
   }
 

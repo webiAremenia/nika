@@ -13,8 +13,6 @@
 .please-wait {
   position: absolute;
   top: 56px;
-  left: calc(56px + 25% - 28px);
-  width: calc(100% - 112px - 25% + 28px);
   height: calc(100vh - 112px);
   z-index: 10000;
 }

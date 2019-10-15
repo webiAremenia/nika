@@ -8,7 +8,7 @@ import {AppGlobals} from '../../../app.globals';
 import {Subscription} from 'rxjs';
 import {ResponsiveData} from '../../../_models/ResponsiveData';
 import {ActionsService} from '../../../_services/actions.service';
-import set = Reflect.set;
+import {Menu} from '../../../_models/Menu';
 
 @Component({
     selector: 'app-sidebar',
@@ -21,7 +21,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     logos: Logo[];
     done = false;
     imageUrl;
-    menu: any;
+    menu: Menu;
     menuDone = false;
     showMenu = false;
     imgLink: string;
@@ -55,15 +55,17 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         if (window.innerWidth > 992) {
-            this.logoService.getImages().subscribe(data => {
-                this.logos = data;
-                this.done = true;
-            }, e => console.log(e));
+            this.logoService.getImages()
+                .subscribe(data => {
+                    this.logos = data;
+                    this.done = true;
+                }, e => console.log(e));
         }
-        this.menuService.getMenus().subscribe(data => {
-            this.menu = data.menu;
-            this.menuDone = true;
-        });
+        this.menuService.getMenus()
+            .subscribe(data => {
+                this.menu = data.menu;
+                this.menuDone = true;
+            });
     }
 
     ngOnDestroy(): void {

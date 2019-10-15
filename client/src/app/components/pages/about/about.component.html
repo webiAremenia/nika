@@ -1,5 +1,7 @@
 <div class="rightContentWrapper" *ngIf="!done">
-    <div class="about-page custom-page pr-0 col-12 col-lg-9 offset-lg-3">
+    <div class="about-page custom-page"
+         [style.margin-left]=" windowSize.width > 992 ? ((windowSize.height - 112) / 2) + 'px' : '0' "
+         [style.width]=" windowSize.width > 992 ? (windowSize.width - 112 - ((windowSize.height - 112) / 2)) + 'px' : '100%' ">
         <div class="spinner-border" role="status">
             <span class="sr-only">Loading...</span>
         </div>
@@ -8,7 +10,9 @@
 
 
 <div *ngIf="done" class="rightContentWrapper">
-    <div class="about-page custom-page pr-0 col-12 col-lg-9 offset-lg-3">
+    <div class="about-page custom-page"
+         [style.margin-left]=" windowSize.width > 992 ? ((windowSize.height - 112) / 2) + 'px' : '0' "
+         [style.width]=" windowSize.width > 992 ? (windowSize.width - 112 - ((windowSize.height - 112) / 2)) + 'px' : '100%' ">
 
        <div class="about-scroll" #aboutScroll style="transition: 1200ms all">
            <div class="section" id="section-1">

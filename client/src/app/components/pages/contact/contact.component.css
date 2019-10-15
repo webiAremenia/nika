@@ -1,22 +1,13 @@
-$font-bold: 'Open Sans Bold', sans-serif;
-$font-extraBold: 'Open Sans Extrabold', sans-serif;
-$font-regular: 'Open Sans Regular', sans-serif;
-$border-style: 5px solid #000A1D;
-
-.navigation {
-  ::ng-deep .mat-form-field-underline {
-    display: none;
-  }
-
-  ::ng-deep .mat-form-field-infix {
-    border-top: 1.3em solid transparent;
-  }
-
-  ::ng-deep .mat-select-value {
-    font-family: $font-bold;
-    font-size: 11px;
-    line-height: 25px;
-  }
+.navigation ::ng-deep .mat-form-field-underline {
+  display: none;
+}
+.navigation ::ng-deep .mat-form-field-infix {
+  border-top: 1.3em solid transparent;
+}
+.navigation ::ng-deep .mat-select-value {
+  font-family: "Open Sans Bold", sans-serif;
+  font-size: 11px;
+  line-height: 25px;
 }
 
 .mat-form-field, form {
@@ -25,7 +16,7 @@ $border-style: 5px solid #000A1D;
 
 .mobile-navigation-title {
   display: none;
-  font-family: $font-extraBold;
+  font-family: "Open Sans Extrabold", sans-serif;
   font-size: 26px;
   line-height: 35px;
   letter-spacing: -1.04px;
@@ -38,46 +29,39 @@ $border-style: 5px solid #000A1D;
 
 .navigation {
   height: 57px;
-
-  .section-0-active {
-    border-right: $border-style;
-  }
-
-  .section-1-active {
-    border-right: $border-style;
-    border-left: $border-style;
-  }
-
-  .section-2-active {
-    border-left: $border-style;
-  }
-
-  .section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    outline: none;
-    border-bottom: $border-style;
-    text-align: center;
-
-    a {
-      //font-size: 25px;
-      font-family: $font-bold;
-      color: #000A1D;
-      text-decoration: none;
-    }
-  }
+}
+.navigation .section-0-active {
+  border-right: 5px solid #000A1D;
+}
+.navigation .section-1-active {
+  border-right: 5px solid #000A1D;
+  border-left: 5px solid #000A1D;
+}
+.navigation .section-2-active {
+  border-left: 5px solid #000A1D;
+}
+.navigation .section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border-bottom: 5px solid #000A1D;
+  text-align: center;
+}
+.navigation .section a {
+  font-family: "Open Sans Bold", sans-serif;
+  color: #000A1D;
+  text-decoration: none;
 }
 
 .navigation-mob {
   display: none;
   border-bottom: 5px solid #000A1D;
-
-  .section {
-    position: relative;
-    top: 5px;
-    height: 52px;
-  }
+}
+.navigation-mob .section {
+  position: relative;
+  top: 5px;
+  height: 52px;
 }
 
 .mobile-navigation {
@@ -85,18 +69,16 @@ $border-style: 5px solid #000A1D;
   padding: 30px;
   text-align: center;
   background-color: #F7F7F7;
-
-  .col-8 {
-    margin-top: 5px;
-    margin-bottom: 5px;
-
-    a {
-      font-family: $font-regular;
-      font-size: 12px;
-      line-height: 25px;
-      letter-spacing: -0.24px;
-    }
-  }
+}
+.mobile-navigation .col-8 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.mobile-navigation .col-8 a {
+  font-family: "Open Sans Regular", sans-serif;
+  font-size: 12px;
+  line-height: 25px;
+  letter-spacing: -0.24px;
 }
 
 .mobile-navigation a {
@@ -107,7 +89,7 @@ $border-style: 5px solid #000A1D;
 
 .active {
   border-bottom: none !important;
-  border-top: $border-style;
+  border-top: 5px solid #000A1D;
   background-color: #A7F948;
 }
 
@@ -116,47 +98,44 @@ $border-style: 5px solid #000A1D;
   border-bottom: 1px solid #000A1D;
 }
 
-// // // MEDIA // // //
-
 @media (min-width: 1440px) {
   .contact {
     padding: 100px 50px 0 100px;
   }
 }
-
 @media (min-width: 1024px) and (max-width: 1440px) {
   .contact {
     padding: 70px 20px 0 70px;
   }
 }
-
 @media (min-width: 992px) and (max-width: 1024px) {
   .contact {
     padding-left: 70px;
   }
 }
-
 @media (min-width: 992px) {
   .mobile-navigation {
     display: none;
   }
 }
-
 @media (max-width: 992px) {
   .navigation-desc {
     display: none;
   }
+
   .mobile-navigation, .mobile-navigation-title, .navigation-mob {
     display: block;
   }
 }
-
 @media (max-width: 767px) {
   .custom-page {
     padding-top: 80px;
   }
+
   .section a {
     font-size: 20px;
     line-height: 20px;
   }
 }
+
+/*# sourceMappingURL=contact.component.css.map */

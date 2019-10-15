@@ -1,4 +1,4 @@
-<div class="d-none d-lg-block side-bar-content h-100">
+<div class="d-none d-lg-block side-bar-content h-100" [style.width]="((windowSize.height - 112) / 2) + 'px'">
 
     <div class="an h-50">
         <div class="side-bar-header">
@@ -21,22 +21,22 @@
                 <div id="menu-content" class="side-bar-about h-75">
                     <div class="links-content">
                         <div class="menu-items"
-                             [style.font-size]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"
-                             [style.line-height]="(windowSize.width * 45 * windowSize.rate) / 1920 + 'px'"
+                             [style.font-size]="(((windowSize.height - 112) / 2) * 25 ) / 455 + 'px'"
+                             [style.line-height]="(((windowSize.height - 112) / 2) * 45 ) / 455 + 'px'"
                         >
                             <a [routerLink]="['about']">{{ menu.about.title }}</a><span> {{ menu.about.description }} </span>
                         </div>
                         <div class="menu-items"
-                             [style.font-size]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"
-                             [style.line-height]="(windowSize.width * 45 * windowSize.rate) / 1920 + 'px'"
+                             [style.font-size]="(((windowSize.height - 112) / 2) * 25 ) / 455 + 'px'"
+                             [style.line-height]="(((windowSize.height - 112) / 2) * 45 ) / 455 + 'px'"
                         >
                             <a [routerLink]="['/']">{{ menu.works.title }}</a><span> {{ menu.works.description }} </span>
                         </div>
                     </div>
                 </div>
                 <div class="side-bar-meet-link h-25"
-                     [style.font-size]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"
-                     [style.line-height]="(windowSize.width * 45 * windowSize.rate) / 1920 + 'px'"
+                     [style.font-size]="(((windowSize.height - 112) / 2) * 25 ) / 455 + 'px'"
+                     [style.line-height]="(((windowSize.height - 112) / 2) * 45 ) / 455 + 'px'"
                 >
                     <a [routerLink]="['contact']">{{ menu.contact.title }}</a><span> {{ menu.contact.description }} </span>
                 </div>
