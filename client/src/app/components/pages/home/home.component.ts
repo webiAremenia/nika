@@ -201,7 +201,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.detailWrapperLeft = (this.lastIndex + this.accordionItemsStyles.left / this.slideWidth) * this.slideWidth;
         this.clickedWidth = this.slideWidth;
         if (this.customBody) {
-            this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 100}px, 0)`;
+            this.customBody.nativeElement.style.transform = `translate3d(0, ${-window.innerHeight + 112}px, 0)`;
         }
         this.backToSliderTimeOut = setTimeout(() => {
             this.backToWorkText = 'Our works';
@@ -245,7 +245,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     sliderNext() {
-        if (this.accordionItemsStyles.left > -this.accordionItemsStyles.width + this.slideWidth * 3) {
+        if (this.accordionItemsStyles.left >= -this.accordionItemsStyles.width + this.slideWidth * 4) {
             this.accordionItemsStyles.left -= this.slideWidth;
         }
     }
@@ -308,7 +308,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     desktopScrollFunction(event) {
-        const animHeight = (this.workScrollTop + window.innerHeight - 100) / -window.innerHeight;
+        const animHeight = (this.workScrollTop + window.innerHeight - 112) / -window.innerHeight;
         if (this.customBody) {
             const workHeight = this.customBody.nativeElement.scrollHeight;
             if (event.deltaY > 10) {
@@ -318,10 +318,10 @@ export class HomeComponent implements OnInit, OnDestroy {
                     this.workScrollTop = -workHeight;
                 }
             } else if (event.deltaY < -10) {
-                this.workScrollTop = this.workScrollTop < -window.innerHeight + 100 ?
-                    this.workScrollTop - event.deltaY * .7 : -window.innerHeight + 100;
-                if (this.workScrollTop > -window.innerHeight + 100) {
-                    this.workScrollTop = -window.innerHeight + 100;
+                this.workScrollTop = this.workScrollTop < -window.innerHeight + 112 ?
+                    this.workScrollTop - event.deltaY * .7 : -window.innerHeight + 112;
+                if (this.workScrollTop > -window.innerHeight + 112) {
+                    this.workScrollTop = -window.innerHeight + 112;
                 }
             }
             this.actionsService.workScrollPosition.next(this.workScrollTop);

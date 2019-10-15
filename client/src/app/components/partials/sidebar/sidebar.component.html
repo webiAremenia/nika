@@ -1,17 +1,28 @@
 <div class="d-none d-lg-block side-bar-content h-100" [style.width]="((windowSize.height - 112) / 2) + 'px'">
 
     <div class="an h-50">
-        <div class="side-bar-header">
+        <div class="side-bar-header"
+             [style.padding-top]="(((windowSize.height - 112) / 2) * 36 ) / 455 + 'px'"
+             [style.padding-right]="(((windowSize.height - 112) / 2) * 52 ) / 455 + 'px'"
+             [style.padding-bottom]="(((windowSize.height - 112) / 2) * 65 ) / 455 + 'px'"
+             [style.padding-left]="(((windowSize.height - 112) / 2) * 36 ) / 455 + 'px'">
 
-            <div class="top-part row h-20">
+            <div class="top-part row m-0">
                 <div class="menu-title col-6 px-0" *ngIf="done">
                     <div *ngIf="logos[0].image; else link">
-                        <img [routerLink]="[{ outlets: { primary: [] } }]" [src]="imageUrl + logos[0].image['image']"
-                             alt="" class="logo_image">
+                        <img [routerLink]="[{ outlets: { primary: [] } }]"
+                             [src]="imageUrl + logos[0].image['image']"
+                             alt=""
+                             class="logo_image"
+                             [style.margin-bottom]="(((windowSize.height - 112) / 2) * 63 ) / 455 + 'px'"
+                             [style.height]="(((windowSize.height - 112) / 2) * 47 ) / 455 + 'px'">
                     </div>
                     <ng-template #link>
                         <a [routerLink]="[{ outlets: { primary: [] } }]" style="cursor: pointer;">
-                            <h1>nika</h1>
+                            <h1 [style.font-size]="(((windowSize.height - 112) / 2) * 50 ) / 455 + 'px'"
+                                [style.letter-spacing]="-(((windowSize.height - 112) / 2) * 5 ) / 455 + 'px'"
+                                [style.margin-bottom]="(((windowSize.height - 112) / 2) * 63 ) / 455 + 'px'"
+                            >nika</h1>
                         </a>
                     </ng-template>
                 </div>
