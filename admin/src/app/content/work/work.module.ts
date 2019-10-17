@@ -6,6 +6,7 @@ import {WorkRoutingModule} from './work-routing.module';
 import {WorkListComponent} from './work-list/work-list.component';
 import {EditWorkComponent} from './edit-work/edit-work.component';
 import {NzUploadModule} from 'ng-zorro-antd/upload';
+import {SortablejsModule} from 'angular-sortablejs';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {NzUploadModule} from 'ng-zorro-antd/upload';
         ReactiveFormsModule,
         NgZorroAntdModule,
         WorkRoutingModule,
-        NzUploadModule
+        NzUploadModule,
+        SortablejsModule
 
     ],
 })

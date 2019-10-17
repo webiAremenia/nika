@@ -15,9 +15,9 @@ module.exports = {
 
     addWork: async (req, res) => {
         let work = {
-            title: req.body.title,
-            subTitle: req.body.subTitle,
-            description: req.body.description,
+            title: JSON.parse(req.body.title),
+            subTitle: JSON.parse(req.body.subTitle),
+            description: JSON.parse(req.body.description),
             slug: req.body.slug,
             img: req.file.filename,
             details: JSON.parse(req.body.details),
@@ -37,9 +37,9 @@ module.exports = {
         let candidate = req.params.id;
 
         let work = {
-            title: req.body.title,
-            subTitle: req.body.subTitle,
-            description: req.body.description,
+            title: JSON.parse(req.body.title),
+            subTitle: JSON.parse(req.body.subTitle),
+            description: JSON.parse(req.body.description),
             slug: req.body.slug,
             details: JSON.parse(req.body.details),
             updated: Date.now(),
