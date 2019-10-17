@@ -82,7 +82,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.onMouseWheel(e);
             }
         } else {
-            this.mobileScrollAnimation(e);
+            this.mobileScrollAnimation();
         }
     }
 
@@ -90,7 +90,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (window.innerWidth > 992) {
             return;
         } else {
-            this.mobileScrollAnimation(e);
+            this.mobileScrollAnimation();
         }
     }
 
