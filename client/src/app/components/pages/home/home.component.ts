@@ -7,7 +7,6 @@ import {ActionsService} from '../../../_services/actions.service';
 import {Subscription} from 'rxjs';
 import {MenuService} from '../../../_services/menu.service';
 import {ResponsiveData} from '../../../_models/ResponsiveData';
-import set = Reflect.set;
 
 
 @Component({
@@ -267,9 +266,9 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.clickedSlide++;
                 this.lastIndex++;
                 this.workService.current = this.slides[this.clickedSlide];
-                this.currentTitle = this.slides[this.clickedSlide].title;
-                this.currentDesc = this.slides[this.clickedSlide].description;
-                this.currentSubTitle = this.slides[this.clickedSlide].subTitle;
+                this.currentTitle = this.slides[this.clickedSlide].title.text;
+                this.currentDesc = this.slides[this.clickedSlide].description.text;
+                this.currentSubTitle = this.slides[this.clickedSlide].subTitle.text;
                 this.router.navigate([`project/${this.slides[this.clickedSlide].slug}`]).then();
             }, 500);
         }
@@ -287,9 +286,9 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.clickedSlide--;
                 this.lastIndex--;
                 this.workService.current = this.slides[this.clickedSlide];
-                this.currentTitle = this.slides[this.clickedSlide].title;
-                this.currentDesc = this.slides[this.clickedSlide].description;
-                this.currentSubTitle = this.slides[this.clickedSlide].subTitle;
+                this.currentTitle = this.slides[this.clickedSlide].title.text;
+                this.currentDesc = this.slides[this.clickedSlide].description.text;
+                this.currentSubTitle = this.slides[this.clickedSlide].subTitle.text;
                 this.router.navigate([`project/${this.slides[this.clickedSlide].slug}`]).then();
             }, 500);
         }
@@ -338,9 +337,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
     }
 
-    mobileScrollAnimation(event) {
+    mobileScrollAnimation() {
         const wrapper = document.getElementById('mobileRouter');
-        const cont = document.getElementById('mobileCont');
+        // const cont = document.getElementById('mobileCont');
         this.actionsService.workScrollPosition.next(wrapper.scrollTop);
         // console.log(event.deltaY);
         // console.log(cont.offsetHeight, wrapper.scrollTop);
@@ -448,7 +447,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                         this.loadText = 'Please stand by';
                     }
                     const data = this.loadText.split('');
-                    data.forEach((wr, index) => {
+                    data.forEach(wr => {
                         this.delay += 10;
                         const space = document.createElement('span');
                         const spanUp = document.createElement('span');
