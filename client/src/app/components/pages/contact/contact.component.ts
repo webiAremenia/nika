@@ -47,7 +47,7 @@ export class ContactComponent implements OnInit, OnDestroy {
         this.currentLocationSubscription.unsubscribe();
     }
 
-    // // // INIT DATA // // //
+    // // // // // INIT DATA // // // // //
 
     initSubscriptions() {
         this.windowSubscription = this.actionsService.getWindowSize()

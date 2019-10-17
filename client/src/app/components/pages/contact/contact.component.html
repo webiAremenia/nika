@@ -7,43 +7,17 @@
         <div class="row navigation navigation-desc">
 
             <div *ngFor="let form of content, let i = index"
-                    class="col-4 section"
+                 class="col-4 section"
                  [routerLinkActive]="'active section-' + i + '-active'"
                  [routerLinkActiveOptions]="{exact: true}"
                  [routerLink]="[form.key]">
                 <a
+                        class="section-a"
                         [style.font-size]="(windowSize.width * form.title.fontSize * windowSize.rate) / 1920 + 'px'"
                         [style.line-height]="(windowSize.width * form.title.lineHeight * windowSize.rate) / 1920 + 'px'"
                         [style.font-family]="form.title.fontFamily"
                 >{{form.title.text}}</a>
             </div>
-
-<!--            <div class="col-4 section"-->
-<!--                 routerLinkActive="active section-1-active"-->
-<!--                 [routerLinkActiveOptions]="{exact: true}"-->
-<!--                 [routerLink]="['new-business']">-->
-<!--                <a-->
-<!--                        [style.font-size]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"-->
-<!--                >NEW BUSINESS</a>-->
-<!--            </div>-->
-
-<!--            <div class="col-4 section"-->
-<!--                 routerLinkActive="active section-2-active"-->
-<!--                 [routerLink]="['speaking-opportunity']">-->
-<!--                <a-->
-
-<!--                        [style.font-size]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"-->
-<!--                >SPEAKING OPPORTUNITY</a>-->
-<!--            </div>-->
-
-<!--            <div class="col-4 section"-->
-<!--                 routerLinkActive="active section-3-active"-->
-<!--                 [routerLink]="['careers']">-->
-<!--                <a-->
-
-<!--                        [style.font-size]="(windowSize.width * 25 * windowSize.rate) / 1920 + 'px'"-->
-<!--                >CAREERS</a>-->
-<!--            </div>-->
 
         </div>
 
@@ -53,7 +27,8 @@
 
         <div class="row navigation navigation-mob m-0">
             <div class="col-6 offset-3 section active section-1-active">
-                <form [formGroup]="locationGroup">
+                <form class="form-custom"
+                      [formGroup]="locationGroup">
                     <mat-form-field>
                         <mat-select formControlName="select">
                             <mat-option value="BUSINESS" [routerLink]="['business']">NEW BUSINESS</mat-option>
@@ -69,13 +44,13 @@
 
         <div class="row mobile-navigation">
             <div class="col-8 offset-2" routerLinkActive="active-mobile">
-                <a [routerLink]="['business']">New Business</a>
+                <a class="mb-a" [routerLink]="['business']">New Business</a>
             </div>
             <div class="col-8 offset-2" routerLinkActive="active-mobile">
-                <a [routerLink]="['opportunity']">Speaking Opportunity</a>
+                <a class="mb-a" [routerLink]="['opportunity']">Speaking Opportunity</a>
             </div>
             <div class="col-8 offset-2" routerLinkActive="active-mobile">
-                <a [routerLink]="['careers']">Careers</a>
+                <a class="mb-a" [routerLink]="['careers']">Careers</a>
             </div>
         </div>
 

@@ -1,35 +1,36 @@
 $font-regular: 'Open Sans Regular', sans-serif;
 $font-bold: 'Open Sans Bold', sans-serif;
 
-.section {
-  transition: all 800ms ease-in 100ms;
-  -o-transition: all 800ms ease-in 100ms;
-  -ms-transition: all 800ms ease-in 100ms;
-  -moz-transition: all 800ms ease-in 100ms;
-  -webkit-transition: all 800ms ease-in 100ms;
+.about-scroll {
+  transition: 1200ms all;
 }
 
 .section {
   opacity: 0;
+  transition: all 800ms ease-in 100ms;
+  -o-transition: all 800ms ease-in 100ms;
+  //-ms-transition: all 800ms ease-in 100ms;
+  -moz-transition: all 800ms ease-in 100ms;
+  -webkit-transition: all 800ms ease-in 100ms;
 }
 
 .section:first-child {
   opacity: 1;
 }
 
-.custom-container {
-  padding: 50px 0 50px 50px !important;
-}
+//.custom-container {
+//  padding: 50px 0 50px 50px !important;
+//}
 
-.img-wrapper {
-  height: 250px;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-}
+//.img-wrapper {
+//  height: 250px;
+//
+//  img {
+//    width: 100%;
+//    height: 100%;
+//    object-fit: cover;
+//  }
+//}
 
 .about-page {
   padding-left: 0;
@@ -72,28 +73,23 @@ $font-bold: 'Open Sans Bold', sans-serif;
 //===============================  scroll styles  ==================================
 //==================================================================================
 
-/* width */
 ::-webkit-scrollbar {
   width: 0;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #888;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
 
-
-// // // MEDIA // // //
+// // // // // MEDIA // // // // //
 
 @media (min-width: 992px) {
   * {
@@ -118,7 +114,7 @@ $font-bold: 'Open Sans Bold', sans-serif;
     //transition: 1.2s all;
     transition: all 700ms ease-in 150ms !important;
     -o-transition: all 700ms ease-in 150ms !important;
-    -ms-transition: all 700ms ease-in 150ms !important;
+    //-ms-transition: all 700ms ease-in 150ms !important;
     -moz-transition: all 700ms ease-in 150ms !important;
     -webkit-transition: all 700ms ease-in 150ms !important;
   }
@@ -126,17 +122,14 @@ $font-bold: 'Open Sans Bold', sans-serif;
 
 @media (max-width: 767px) {
   .about-page {
-
     .link-box-text {
       padding: 37px 32px !important;
     }
-
     .question {
       width: 219px;
       font-size: 20px !important;
       line-height: 25px !important;
     }
-
     .link {
       width: 100% !important;
       text-align: left !important;
