@@ -86,7 +86,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
     }
 
-    @HostListener('touchmove', ['$event']) touchmove(e) {
+    @HostListener('touchmove', ['$event']) touchmove() {
         if (window.innerWidth > 992) {
             return;
         } else {
