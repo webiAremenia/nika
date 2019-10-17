@@ -4,10 +4,10 @@
 
 export const environment = {
     production: false,
-    queryUrl: 'http://nika.webi.am',
-    uploadsUrl: 'http://nika.webi.am/uploads',
-    // uploadsUrl: 'http://localhost:3000/uploads',
-    // queryUrl: 'http://localhost:3000'
+    // queryUrl: 'http://nika.webi.am',
+    // uploadsUrl: 'http://nika.webi.am/uploads',
+    uploadsUrl: 'http://localhost:3000/uploads',
+    queryUrl: 'http://localhost:3000'
 };
 
 /*

@@ -1,4 +1,4 @@
-i {
+.fa {
   cursor: pointer;
 }
 
@@ -36,7 +36,7 @@ i {
     //background: white;
     transition: transform 1200ms;
     -o-transition: transform 1200ms;
-    -ms-transition: transform 1200ms;
+    //-ms-transition: transform 1200ms;
     -moz-transition: transform 1200ms;
     -webkit-transition: transform 1200ms;
   }
@@ -70,7 +70,7 @@ i {
       top: 0;
       right: 0;
 
-      i {
+      .fa {
         color: white;
         width: 100%;
         height: 100%;
@@ -90,7 +90,7 @@ i {
     opacity: 0.5;
     transition: width 300ms ease-in-out;
     -o-transition: width 300ms ease-in-out;
-    -ms-transition: width 300ms ease-in-out;
+    //-ms-transition: width 300ms ease-in-out;
     -moz-transition: width 300ms ease-in-out;
     -webkit-transition: width 300ms ease-in-out;
 
@@ -105,7 +105,7 @@ i {
       overflow-x: auto;
       transition: width 10ms ease-in 300ms, opacity 600ms ease-in 150ms;
       -o-transition: width 10ms ease-in 300ms, opacity 600ms ease-in 150ms;
-      -ms-transition: width 10ms ease-in 300ms, opacity 600ms ease-in 150ms;
+      //-ms-transition: width 10ms ease-in 300ms, opacity 600ms ease-in 150ms;
       -moz-transition: width 10ms ease-in 300ms, opacity 600ms ease-in 150ms;
       -webkit-transition: width 10ms ease-in 300ms, opacity 600ms ease-in 150ms;
     }
@@ -119,7 +119,7 @@ i {
       top: 0;
       right: 0;
 
-      i {
+      .fa {
         color: white;
         width: 100%;
         height: 100%;
@@ -153,7 +153,7 @@ i {
     opacity: 0.5;
     transition: width 300ms ease-in-out;
     -o-transition: width 300ms ease-in-out;
-    -ms-transition: width 300ms ease-in-out;
+    //-ms-transition: width 300ms ease-in-out;
     -moz-transition: width 300ms ease-in-out;
     -webkit-transition: width 300ms ease-in-out;
 
@@ -171,7 +171,7 @@ i {
       overflow-x: auto;
       transition: width 10ms ease-in 300ms, opacity 600ms ease-in 150ms;
       -o-transition: width 10ms ease-in 300ms, opacity 600ms ease-in 150ms;
-      -ms-transition: width 10ms ease-in 300ms, opacity 600ms ease-in 150ms;
+      //-ms-transition: width 10ms ease-in 300ms, opacity 600ms ease-in 150ms;
       -moz-transition: width 10ms ease-in 300ms, opacity 600ms ease-in 150ms;
       -webkit-transition: width 10ms ease-in 300ms, opacity 600ms ease-in 150ms;
     }
@@ -185,7 +185,7 @@ i {
       top: 0;
       left: 0;
 
-      i {
+      .fa {
         color: white;
         width: 100%;
         height: 100%;
@@ -216,9 +216,12 @@ i {
 .go-back-btn {
   text-decoration: none;
   background: rgba(0, 0, 0, .42);
-  position: fixed;
-  top: 75px;
-  left: 28%;
+  //position: fixed;
+  position: absolute;
+  //top: 75px;
+  //left: 28%;
+  top: 25px;
+  left: 25px;
   color: white;
   font-size: 20px;
   font-weight: bold;
@@ -251,7 +254,7 @@ i {
     //left: 0;
     transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 300ms;
     -o-transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 300ms;
-    -ms-transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 300ms;
+    //-ms-transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 300ms;
     -moz-transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 300ms;
     -webkit-transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 300ms;
     transition-timing-function: cubic-bezier(.19, 1, .22, 1);
@@ -264,7 +267,7 @@ i {
       cursor: pointer;
       transition: width 1000ms ease-in-out 300ms;
       -o-transition: width 1000ms ease-in-out 300ms;
-      -ms-transition: width 1000ms ease-in-out 300ms;
+      //-ms-transition: width 1000ms ease-in-out 300ms;
       -moz-transition: width 1000ms ease-in-out 300ms;
       -webkit-transition: width 1000ms ease-in-out 300ms;
       transition-timing-function: cubic-bezier(.19, 1, .22, 1);
@@ -276,7 +279,7 @@ i {
         top: 0;
         left: 0;
 
-        img {
+        .slide-image-img {
           position: relative;
           width: 100%;
           height: 100%;
@@ -297,12 +300,12 @@ i {
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
 
-        h2 {
+        .text-h2 {
           transform: translateY(54px);
           //-webkit-transform: translateY(40px);
           //transform: translateY(40px);
           word-break: keep-all;
-          font-family: Graphik, sans-serif;
+          //font-family: Graphik, sans-serif;
           font-size: 3.125rem;
           line-height: 3.438rem;
           font-weight: 700;
@@ -311,7 +314,7 @@ i {
           //-webkit-transform: none;
           //transform: none;
           pointer-events: none;
-          transition: -webkit-transform 1s cubic-bezier(.19, 1, .22, 1);
+          -webkit-transition: -webkit-transform 1s cubic-bezier(.19, 1, .22, 1);
           transition: transform 1s cubic-bezier(.19, 1, .22, 1);
         }
 
@@ -319,12 +322,12 @@ i {
           overflow: hidden;
           max-width: calc(((100vw - 100px) / 4) - 100px);
           transform: translateY(-100%);
-          transition: 1s -webkit-transform cubic-bezier(.19, 1, .22, 1);
+          -webkit-transition: 1s -webkit-transform cubic-bezier(.19, 1, .22, 1);
           transition: 1s transform cubic-bezier(.19, 1, .22, 1);
 
           @media (max-width: 992px) {
             max-width: calc(((100vw - 100px) / 3));
-            p {
+            .desc-wrap-p {
               font-size: 14px !important;
             }
           }
@@ -332,26 +335,26 @@ i {
           .desc-wrap {
             -webkit-transform: translateY(100%);
             transform: translateY(100%);
-            transition: 1s -webkit-transform cubic-bezier(.19, 1, .22, 1);
+            -webkit-transition: 1s -webkit-transform cubic-bezier(.19, 1, .22, 1);
             transition: 1s transform cubic-bezier(.19, 1, .22, 1);
 
-            p {
+            .desc-wrap-p {
               //-webkit-transform: translateY(0);
               //transform: translateY(0);
-              font-family: Graphik, sans-serif;
+              //font-family: Graphik, sans-serif;
               font-weight: 700;
-              font-size: 1rem;
+              //font-size: 1rem;
               line-height: 1.688rem;
               -webkit-transform: translateY(100%);
               transform: translateY(100%);
-              transition: .6s -webkit-transform cubic-bezier(.19, 1, .22, 1);
+              -webkit-transition: .6s -webkit-transform cubic-bezier(.19, 1, .22, 1);
               transition: .6s transform cubic-bezier(.19, 1, .22, 1);
             }
           }
         }
 
-        span {
-          font-family: Graphik, sans-serif;
+        .text-span {
+          //font-family: Graphik, sans-serif;
           font-weight: 400;
           font-size: 1rem;
           line-height: 1rem;
@@ -368,25 +371,25 @@ i {
       &:hover {
         .slide-text-content {
 
-          h2 {
+          .text-h2 {
             transform: translateY(0) !important;
           }
 
           .slide-desc {
-            webkit-transform: translateY(0);
+            -webkit-transform: translateY(0);
             transform: translateY(0);
 
             .desc-wrap {
               transform: translateY(0);
 
-              p {
+              .desc-wrap-p {
                 -webkit-transform: translateY(0);
                 transform: translateY(0);
               }
             }
           }
 
-          span {
+          .text-span {
             -webkit-transform: translateY(30px);
             transform: translateY(30px);
           }
@@ -395,7 +398,7 @@ i {
 
       .active.slide-text-content {
 
-        h2 {
+        .text-h2 {
           display: none;
         }
 
@@ -403,7 +406,7 @@ i {
           display: none;
         }
 
-        span {
+        .text-span {
           display: none;
         }
       }
@@ -411,10 +414,6 @@ i {
       .large-title {
         opacity: 0;
         font-size: 0;
-      }
-
-      .large-title.large-active {
-
       }
 
     }
@@ -431,12 +430,12 @@ i {
   top: 0;
   transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 600ms, min-height 1000ms ease-in-out 600ms;
   -o-transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 600ms, min-height 1000ms ease-in-out 600ms;
-  -ms-transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 600ms, min-height 1000ms ease-in-out 600ms;
+  //-ms-transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 600ms, min-height 1000ms ease-in-out 600ms;
   -moz-transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 600ms, min-height 1000ms ease-in-out 600ms;
   -webkit-transition: left 1000ms ease-in-out 300ms, width 1000ms ease-in-out 600ms, min-height 1000ms ease-in-out 600ms;
   transition-timing-function: cubic-bezier(.19, 1, .22, 1);
 
-  img {
+  .animated {
     position: absolute;
     width: 100%;
     height: calc(100vh - 100px);
@@ -444,7 +443,7 @@ i {
     object-position: center top;
     transition: left 1000ms ease-in-out 600ms, width 1000ms ease-in-out 600ms, height 1000ms ease-in-out 600ms;
     -o-transition: left 1000ms ease-in-out 600ms, width 1000ms ease-in-out 600ms, height 1000ms ease-in-out 600ms;
-    -ms-transition: left 1000ms ease-in-out 600ms, width 1000ms ease-in-out 600ms, height 1000ms ease-in-out 600ms;
+    //-ms-transition: left 1000ms ease-in-out 600ms, width 1000ms ease-in-out 600ms, height 1000ms ease-in-out 600ms;
     -moz-transition: left 1000ms ease-in-out 600ms, width 1000ms ease-in-out 600ms, height 1000ms ease-in-out 600ms;
     -webkit-transition: left 1000ms ease-in-out 600ms, width 1000ms ease-in-out 600ms, height 1000ms ease-in-out 600ms;
     transition-timing-function: cubic-bezier(.19, 1, .22, 1);
@@ -462,7 +461,7 @@ i {
     opacity: 0;
     transition: all 1200ms 600ms;
     -o-transition: all 1200ms 600ms;
-    -ms-transition: all 1200ms 600ms;
+    //-ms-transition: all 1200ms 600ms;
     -moz-transition: all 1200ms 600ms;
     -webkit-transition: all 1200ms 600ms;
     transition-timing-function: cubic-bezier(.19, 1, .22, 1);
@@ -514,7 +513,7 @@ i {
     position: relative;
 
     .slide-image {
-      img {
+      .slide-image-img {
         width: 100%;
         //height: 250px;
         object-fit: cover;
@@ -530,16 +529,6 @@ i {
       transform: translateY(-100%);
       @media (max-width: 400px) {
         padding: 20px;
-      }
-
-      h2 {
-
-      }
-
-      .slide-desc {
-        .desc-wrap {
-
-        }
       }
     }
   }
@@ -559,7 +548,6 @@ i {
     }
 
     .go-back-btn-mobile {
-
       background: rgba(0, 0, 0, .42);
       position: fixed;
       top: 100px;

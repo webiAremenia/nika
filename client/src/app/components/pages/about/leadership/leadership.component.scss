@@ -46,13 +46,6 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
         background-color: #A7F948;
         color: #000A1D;
 
-        .author {
-          //font-family: $font-bold;
-        }
-
-        .position {
-          //font-family: $font-regular;
-        }
       }
     }
 
@@ -77,7 +70,7 @@ $font-extraBold: 'Open Sans Extrabold', sans-serif;
 }
 
 
-// // // Media // // //
+// // // // // Media // // // // //
 
 @media (min-width: 1440px) {
   .about {

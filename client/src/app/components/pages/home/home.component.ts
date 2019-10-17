@@ -7,7 +7,6 @@ import {ActionsService} from '../../../_services/actions.service';
 import {Subscription} from 'rxjs';
 import {MenuService} from '../../../_services/menu.service';
 import {ResponsiveData} from '../../../_models/ResponsiveData';
-import set = Reflect.set;
 
 
 @Component({
@@ -83,16 +82,15 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.onMouseWheel(e);
             }
         } else {
-            this.mobileScrollAnimation(e);
+            this.mobileScrollAnimation();
         }
     }
 
-    @HostListener('touchmove', ['$event']) touchmove(e) {
-        console.log(e);
+    @HostListener('touchmove', ['$event']) touchmove() {
         if (window.innerWidth > 992) {
             return;
         } else {
-            this.mobileScrollAnimation(e);
+            this.mobileScrollAnimation();
         }
     }
 
@@ -134,17 +132,17 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
         this.location = !location.href.split('/')[4];
         // console.log('onInit');
-        this.workScrollTop = -window.innerHeight + 100;
+        this.workScrollTop = -window.innerHeight + 112;
         this.actionsService.workScrollPosition.next(this.workScrollTop);
         this.getParams();
         this.mobileXsHeight = window.innerWidth * 250 / 375;
-        this.isWork = this.actionsService.isWorkPage().subscribe(
-            bool => {
-                setTimeout(() => {
-                    this.initPageByUrl(bool);
-                }, 100);
-            }
-        );
+        this.isWork = this.actionsService.isWorkPage()
+            .subscribe(bool => {
+                    setTimeout(() => {
+                        this.initPageByUrl(bool);
+                    }, 100);
+                }
+            );
         this.initSizes();
     }
 
@@ -163,7 +161,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         // console.log('onInitCurrent');
         clearTimeout(this.backToSliderTimeOut);
         this.detailWrapperHeight = (window.innerHeight - 112);
-        this.bannerHeight = (window.innerHeight - 100);
+        this.bannerHeight = (window.innerHeight - 112);
         this.lastIndex = index;
         this.clickedSlide = index;
         if (document.getElementById('wwww')) {
@@ -238,9 +236,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     navigate(index) {
         this.workService.current = this.slides[index];
-        this.currentTitle = this.slides[index].title;
-        this.currentDesc = this.slides[index].description;
-        this.currentSubTitle = this.slides[index].subTitle;
+        this.currentTitle = this.slides[index].title.text;
+        this.currentDesc = this.slides[index].description.text;
+        this.currentSubTitle = this.slides[index].subTitle.text;
         this.router.navigate([`project/${this.slides[index].slug}`]).then();
     }
 
@@ -268,9 +266,9 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.clickedSlide++;
                 this.lastIndex++;
                 this.workService.current = this.slides[this.clickedSlide];
-                this.currentTitle = this.slides[this.clickedSlide].title;
-                this.currentDesc = this.slides[this.clickedSlide].description;
-                this.currentSubTitle = this.slides[this.clickedSlide].subTitle;
+                this.currentTitle = this.slides[this.clickedSlide].title.text;
+                this.currentDesc = this.slides[this.clickedSlide].description.text;
+                this.currentSubTitle = this.slides[this.clickedSlide].subTitle.text;
                 this.router.navigate([`project/${this.slides[this.clickedSlide].slug}`]).then();
             }, 500);
         }
@@ -288,9 +286,9 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.clickedSlide--;
                 this.lastIndex--;
                 this.workService.current = this.slides[this.clickedSlide];
-                this.currentTitle = this.slides[this.clickedSlide].title;
-                this.currentDesc = this.slides[this.clickedSlide].description;
-                this.currentSubTitle = this.slides[this.clickedSlide].subTitle;
+                this.currentTitle = this.slides[this.clickedSlide].title.text;
+                this.currentDesc = this.slides[this.clickedSlide].description.text;
+                this.currentSubTitle = this.slides[this.clickedSlide].subTitle.text;
                 this.router.navigate([`project/${this.slides[this.clickedSlide].slug}`]).then();
             }, 500);
         }
@@ -339,9 +337,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
     }
 
-    mobileScrollAnimation(event) {
+    mobileScrollAnimation() {
         const wrapper = document.getElementById('mobileRouter');
-        const cont = document.getElementById('mobileCont');
+        // const cont = document.getElementById('mobileCont');
         this.actionsService.workScrollPosition.next(wrapper.scrollTop);
         // console.log(event.deltaY);
         // console.log(cont.offsetHeight, wrapper.scrollTop);
@@ -362,6 +360,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             this.workService.getWorks()
                 .subscribe(d => {
                         this.slides = d;
+                        console.log(d);
                         setTimeout(() => {
                             this.done = true;
                             this.createMessage(true);
@@ -448,7 +447,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                         this.loadText = 'Please stand by';
                     }
                     const data = this.loadText.split('');
-                    data.forEach((wr, index) => {
+                    data.forEach(wr => {
                         this.delay += 10;
                         const space = document.createElement('span');
                         const spanUp = document.createElement('span');
@@ -482,7 +481,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             // timeOne = 1700;
             timeOne = 1800;
             // timeSecond = 3470;
-            timeSecond = 3500;
+            timeSecond = 4000;
 
         } else if (window.innerWidth > 767 && window.innerWidth < 992) {
             timeOne = 1650;

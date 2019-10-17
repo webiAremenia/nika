@@ -4,23 +4,23 @@ ul li {
   transition: 300ms all ease-in;
 }
 
-ul {
+.list {
   padding: 0;
   border-bottom: 1px solid #ADFF2F;
   margin: 0;
 }
 
-ul:first-child {
+.list:first-child {
   border-top: 1px solid #ADFF2F;
   border-bottom: 1px solid #ADFF2F;
 }
 
-ul:last-child {
+.list:last-child {
   border-top: none;
   border-bottom: none;
 }
 
-ul:hover {
+.list:hover {
   cursor: pointer;
 }
 
@@ -47,6 +47,7 @@ ul:hover {
 }
 .our-element-content-wrapper .our-element-content .list {
   position: relative;
+  background: #000A1D;
 }
 .our-element-content-wrapper .our-element-content .list .list-title {
   position: relative;
@@ -69,7 +70,7 @@ ul:hover {
 
 @keyframes dropDown {
   0% {
-    max-height: auto;
+    max-height: unset;
     overflow: hidden;
   }
   100% {
