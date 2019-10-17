@@ -21,7 +21,7 @@
                             </ng-template>
 
 
-                            </ng-template>
+                        </ng-template>
 
 
                     </div>
@@ -42,28 +42,146 @@
 
 
             <br>
-            <div class="form-group">
-                <label translate>Title</label>
-                <input type="text" placeholder="title" class="form-control" formControlName="title">
+            <div class="form-group" formGroupName="title">
+                <div class="row">
+                    <div class="col-6">
+                        <label translate>Title</label>
+                        <input type="text" placeholder="title" class="form-control" formControlName="text">
+                    </div>
+                    <div class="col-6">
+                        <div class="row offset-2">
+                            <div class="col-5">
+                                <div class="col-12">
+                                    <label for="titleFontSize">Font Size</label>
+                                </div>
+                                <div class="col-12">
+                                    <nz-input-number id="titleFontSize" [nzMin]="fontSizeMin" nzPlaceHolder="Font Size"
+                                                     [nzMax]="fontSizeMax"
+                                                     formControlName="fontSize"
+                                                     [nzStep]="1"></nz-input-number>
+                                </div>
+                            </div>
+
+                            <div class="col-5">
+                                <div class="col-12">
+                                    <label for="titleFontFamily">Font Family</label>
+                                </div>
+                                <div class="col-12">
+
+                                    <nz-select style="width: 120px;" formControlName="fontFamily"
+                                               nzAllowClear nzPlaceHolder="Font Family" id="titleFontFamily">
+                                        <nz-option nzValue="Open Sans"
+                                                   nzLabel="Regular"></nz-option>
+                                        <nz-option nzValue="Open Sans Semibold"
+                                                   nzLabel="Semibold"></nz-option>
+                                        <nz-option nzValue="Open Sans Bold"
+                                                   nzLabel="Bold"></nz-option>
+                                        <nz-option nzValue="Open Sans Extrabold"
+                                                   nzLabel="Extrabold"></nz-option>
+                                    </nz-select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" formGroupName="subTitle">
+                <div class="row">
+                    <div class="col-6">
+                        <label translate>Subtitle</label>
+                        <input type="text" placeholder="title" class="form-control" formControlName="text">
+                    </div>
+                    <div class="col-6">
+                        <div class="row offset-2">
+                            <div class="col-5">
+                                <div class="col-12">
+                                    <label for="titleFontSize">Font Size</label>
+                                </div>
+                                <div class="col-12">
+                                    <nz-input-number id="titleFontSize" [nzMin]="fontSizeMin" nzPlaceHolder="Font Size"
+                                                     [nzMax]="fontSizeMax"
+                                                     formControlName="fontSize"
+                                                     [nzStep]="1"></nz-input-number>
+                                </div>
+                            </div>
+
+                            <div class="col-5">
+                                <div class="col-12">
+                                    <label for="titleFontFamily">Font Family</label>
+                                </div>
+                                <div class="col-12">
+
+                                    <nz-select style="width: 120px;" formControlName="fontFamily"
+                                               nzAllowClear nzPlaceHolder="Font Family" id="titleFontFamily">
+                                        <nz-option nzValue="Open Sans"
+                                                   nzLabel="Regular"></nz-option>
+                                        <nz-option nzValue="Open Sans Semibold"
+                                                   nzLabel="Semibold"></nz-option>
+                                        <nz-option nzValue="Open Sans Bold"
+                                                   nzLabel="Bold"></nz-option>
+                                        <nz-option nzValue="Open Sans Extrabold"
+                                                   nzLabel="Extrabold"></nz-option>
+                                    </nz-select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
 
                 <!--                <p *ngIf="portfolioForm.get('enTitle').invalid && portfolioForm.get('enTitle').touched" class="invalid">Type en-->
                 <!--                    Title</p>-->
             </div>
 
-            <div class="form-group">
-                <label translate>Subtitle</label>
-                <input type="text" placeholder="title" class="form-control" formControlName="subTitle">
+            <div class="form-group" formGroupName="description">
+                <div class="row">
+                    <div class="col-6"><label translate>Description</label>
+                        <textarea class="form-control" placeholder="description" rows="3"
+                                  formControlName="text"></textarea>
 
-                <!--                <p *ngIf="portfolioForm.get('enTitle').invalid && portfolioForm.get('enTitle').touched" class="invalid">Type en-->
-                <!--                    Title</p>-->
-            </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row offset-2">
+                            <div class="col-5">
+                                <div class="col-12">
+                                    <label for="titleFontSize">Font Size</label>
+                                </div>
+                                <div class="col-12">
+                                    <nz-input-number id="titleFontSize" [nzMin]="fontSizeMin" nzPlaceHolder="Font Size"
+                                                     [nzMax]="fontSizeMax"
+                                                     formControlName="fontSize"
+                                                     [nzStep]="1"></nz-input-number>
+                                </div>
+                            </div>
 
-            <div class="form-group">
-                <label translate>Description</label>
-                <textarea class="form-control" placeholder="description" rows="3"
-                          formControlName="description"></textarea>
-                <!--                <p *ngIf="portfolioForm.get('enHover').invalid && portfolioForm.get('enHover').touched" class="invalid">Type en-->
-                <!--                    Short Description</p>-->
+                            <div class="col-5">
+                                <div class="col-12">
+                                    <label for="titleFontFamily">Font Family</label>
+                                </div>
+                                <div class="col-12">
+
+                                    <nz-select style="width: 120px;" formControlName="fontFamily"
+                                               nzAllowClear nzPlaceHolder="Font Family" id="titleFontFamily">
+                                        <nz-option nzValue="Open Sans"
+                                                   nzLabel="Regular"></nz-option>
+                                        <nz-option nzValue="Open Sans Semibold"
+                                                   nzLabel="Semibold"></nz-option>
+                                        <nz-option nzValue="Open Sans Bold"
+                                                   nzLabel="Bold"></nz-option>
+                                        <nz-option nzValue="Open Sans Extrabold"
+                                                   nzLabel="Extrabold"></nz-option>
+                                    </nz-select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
 
@@ -91,13 +209,14 @@
                 </div>
             </div>
 
+            <div class="row" [sortablejs]="form.get('details')['value']" [sortablejsOptions]="options">
 
-            <div formArrayName="details" *ngFor="let detail of form.get('details')['controls']; let i = index">
-                <div class="row">
+                <div formArrayName="details" *ngFor="let detail of form.get('details')['controls']; let i = index"
+                     class="col-12">
                     <div class="col-12 border pb-3">
                         <div [formGroupName]="i">
 
-                            <div *ngIf="detail['value']['type'] === 'text'" class="text-component">
+                            <div *ngIf="detail['value']['type'] === 'text'" class="component">
                                 <div class="row tools">
                                     <div class="col-12">
                                         <h3>Text</h3>
@@ -117,6 +236,8 @@
                                                     <input type="checkbox" id="border" formControlName="border">
                                                 </div>
                                             </div>
+
+
                                         </div>
 
                                     </div>
@@ -129,40 +250,125 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-12">
+                                <div class="row" formGroupName="title">
+                                    <div class="col-6 pt-2 pb-2 text">
                                         <div class="form-group">
                                             <label translate>Title</label>
                                             <input type="text" placeholder="en" class="form-control"
-                                                   formControlName="title">
+                                                   formControlName="text">
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-6">
+                                        <div class="row offset-2">
+                                            <div class="col-5">
+                                                <div class="col-12">
+                                                    <label for="titleFontSize">Font Size</label>
+                                                </div>
+                                                <div class="col-12">
+                                                    <nz-input-number id="titleFontSize" [nzMin]="fontSizeMin"
+                                                                     nzPlaceHolder="Font Size"
+                                                                     [nzMax]="fontSizeMax"
+                                                                     formControlName="fontSize"
+                                                                     [nzStep]="1"></nz-input-number>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-5">
+                                                <div class="col-12">
+                                                    <label for="titleFontFamily">Font Family</label>
+                                                </div>
+                                                <div class="col-12">
+
+                                                    <nz-select style="width: 120px;" formControlName="fontFamily"
+                                                               nzAllowClear nzPlaceHolder="Font Family"
+                                                               id="titleFontFamily">
+                                                        <nz-option nzValue="Open Sans"
+                                                                   nzLabel="Regular"></nz-option>
+                                                        <nz-option nzValue="Open Sans Semibold"
+                                                                   nzLabel="Semibold"></nz-option>
+                                                        <nz-option nzValue="Open Sans Bold"
+                                                                   nzLabel="Bold"></nz-option>
+                                                        <nz-option nzValue="Open Sans Extrabold"
+                                                                   nzLabel="Extrabold"></nz-option>
+                                                    </nz-select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="row" formGroupName="description">
+                                    <div class="col-6 pt-2 pb-2 text">
                                         <div class="form-group">
                                             <label translate>Description</label>
                                             <textarea class="form-control" placeholder="en" rows="3"
-                                                      formControlName="description"
+                                                      formControlName="text"
                                             ></textarea>
-                                            <!--                <p *ngIf="portfolioForm.get('enHover').invalid && portfolioForm.get('enHover').touched" class="invalid">Type en-->
-                                            <!--                    Short Description</p>-->
                                         </div>
                                     </div>
-                                </div>
-                                <!--                                language-->
-                                <div class="row " [ngClass]="detail['value']['border']? 'text_border': ''">
-                                    <div class="col-12">
-                                        <h2 class="text-center">{{detail['value']['title']}}</h2>
+                                    <div class="col-6">
+                                        <div class="row offset-2">
+                                            <div class="col-5">
+                                                <div class="col-12">
+                                                    <label for="titleFontSize">Font Size</label>
+                                                </div>
+                                                <div class="col-12">
+                                                    <nz-input-number id="titleFontSize" [nzMin]="fontSizeMin"
+                                                                     nzPlaceHolder="Font Size"
+                                                                     [nzMax]="fontSizeMax"
+                                                                     formControlName="fontSize"
+                                                                     [nzStep]="1"></nz-input-number>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-5">
+                                                <div class="col-12">
+                                                    <label for="titleFontFamily">Font Family</label>
+                                                </div>
+                                                <div class="col-12">
+
+                                                    <nz-select style="width: 120px;" formControlName="fontFamily"
+                                                               nzAllowClear nzPlaceHolder="Font Family"
+                                                               id="titleFontFamily">
+                                                        <nz-option nzValue="Open Sans"
+                                                                   nzLabel="Regular"></nz-option>
+                                                        <nz-option nzValue="Open Sans Semibold"
+                                                                   nzLabel="Semibold"></nz-option>
+                                                        <nz-option nzValue="Open Sans Bold"
+                                                                   nzLabel="Bold"></nz-option>
+                                                        <nz-option nzValue="Open Sans Extrabold"
+                                                                   nzLabel="Extrabold"></nz-option>
+                                                    </nz-select>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
-                                    <div class="col-12">
-                                        <!--                                        <p [style.textAlign]="detail['value']['border']">{{detail['value']['description']}}</p>-->
-                                        <p [ngClass]="{'text-center': detail['value']['author'],'text-left': !detail['value']['author']}">{{detail['value']['description']}}</p>
+
+
+                                </div>
+
+
+                                <div class="row mt-3 " [ngClass]="detail['value']['border']? 'text_border': ''">
+                                    <div class="col-12 text-center"
+                                         [ngStyle]="{'font-family': detail['value'].title.fontFamily , 'font-size' : detail['value'].title.fontSize + 'px', 'text-align': detail['value']['border']}"
+                                         [style.font-size]="( detail['value'].title.fontSize)+ 'px'">
+
+                                        {{detail['value']['title']['text']}}
+
+                                    </div>
+                                    <div class="col-12"
+                                         [ngStyle]="{'font-family': detail['value'].description.fontFamily , 'font-size' : detail['value'].description.fontSize + 'px', 'text-align': detail['value']['border']}"
+                                         [ngClass]="{'text-center': detail['value']['author'],'text-left': !detail['value']['author']}">
+                                        {{detail['value']['description']['text']}}
+
                                     </div>
                                 </div>
 
                             </div>
-                            <!--                                        [ngClass]="{'pull-left': detail['value']['imagePosition'] === 'left','pull-right': detail['value']['imagePosition'] === 'right'}">-->
 
-                            <div *ngIf="detail['value']['type'] === 'img'" class="text-component">
+                            <div *ngIf="detail['value']['type'] === 'img'" class="component">
                                 <div class="row tools">
                                     <div class="col-12">
                                         <h3>Image</h3>
@@ -236,7 +442,7 @@
 
                             </div>
 
-                            <div *ngIf="detail['value']['type'] === 'slider'" class="text-component">
+                            <div *ngIf="detail['value']['type'] === 'slider'" class="component">
                                 <div class="row tools">
                                     <div class="col-12">
                                         <h3>Slider</h3>
@@ -317,7 +523,7 @@
 
                             </div>
 
-                            <div *ngIf="detail['value']['type'] === 'video'" class="text-component">
+                            <div *ngIf="detail['value']['type'] === 'video'" class="component">
                                 <div class="row tools">
                                     <div class="col-12">
                                         <h3>Video</h3>
@@ -385,10 +591,99 @@
                                 </div>
                             </div>
 
-                            <div *ngIf="detail['value']['type'] === 'column'" class="text-component">
+                            <div *ngIf="detail['value']['type'] === 'column'" class="component">
                                 <div class="row tools">
                                     <div class="col-12">
                                         <h3>Column</h3>
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="row" formGroupName="title">
+                                                    <div class="col-12 text-center">
+                                                        <h4>Title</h4>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="col-12">
+                                                            <label for="titleFontSize">Font Size</label>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <nz-input-number id="titleFontSize" [nzMin]="fontSizeMin"
+                                                                             nzPlaceHolder="Font Size"
+                                                                             [nzMax]="fontSizeMax"
+                                                                             formControlName="fontSize"
+                                                                             [nzStep]="1"></nz-input-number>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-4">
+                                                        <div class="col-12">
+                                                            <label for="titleFontFamily">Font Family</label>
+                                                        </div>
+                                                        <div class="col-12">
+
+                                                            <nz-select style="width: 120px;"
+                                                                       formControlName="fontFamily"
+                                                                       nzAllowClear nzPlaceHolder="Font Family"
+                                                                       id="titleFontFamily">
+                                                                <nz-option nzValue="Open Sans"
+                                                                           nzLabel="Regular"></nz-option>
+                                                                <nz-option nzValue="Open Sans Semibold"
+                                                                           nzLabel="Semibold"></nz-option>
+                                                                <nz-option nzValue="Open Sans Bold"
+                                                                           nzLabel="Bold"></nz-option>
+                                                                <nz-option nzValue="Open Sans Extrabold"
+                                                                           nzLabel="Extrabold"></nz-option>
+                                                            </nz-select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="row" formGroupName="description">
+                                                    <div class="col-12 text-center">
+                                                        <h4>Description</h4>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="col-12">
+                                                            <label for="titleFontSize">Font Size</label>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <nz-input-number id="titleFontSize" [nzMin]="fontSizeMin"
+                                                                             nzPlaceHolder="Font Size"
+                                                                             [nzMax]="fontSizeMax"
+                                                                             formControlName="fontSize"
+                                                                             [nzStep]="1"></nz-input-number>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-4">
+                                                        <div class="col-12">
+                                                            <label for="titleFontFamily">Font Family</label>
+                                                        </div>
+                                                        <div class="col-12">
+
+                                                            <nz-select style="width: 120px;"
+                                                                       formControlName="fontFamily"
+                                                                       nzAllowClear nzPlaceHolder="Font Family"
+                                                                       id="titleFontFamily">
+                                                                <nz-option nzValue="Open Sans"
+                                                                           nzLabel="Regular"></nz-option>
+                                                                <nz-option nzValue="Open Sans Semibold"
+                                                                           nzLabel="Semibold"></nz-option>
+                                                                <nz-option nzValue="Open Sans Bold"
+                                                                           nzLabel="Bold"></nz-option>
+                                                                <nz-option nzValue="Open Sans Extrabold"
+                                                                           nzLabel="Extrabold"></nz-option>
+                                                            </nz-select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                     <div class="col-10">
                                         <div class="row">
@@ -407,7 +702,7 @@
 
                                             </div>
 
-                                            <div class=" col-4"  formGroupName="col2">
+                                            <div class=" col-4" formGroupName="col2">
                                                 <div class="form-group">
                                                     <label translate>Title</label>
                                                     <input type="text" placeholder="en" class="form-control"
@@ -422,7 +717,7 @@
                                             </div>
 
 
-                                            <div class=" col-4"  formGroupName="col3">
+                                            <div class=" col-4" formGroupName="col3">
                                                 <div class="form-group">
                                                     <label translate>Title</label>
                                                     <input type="text" placeholder="en" class="form-control"
@@ -446,57 +741,59 @@
                                 </div>
 
 
-<!--                                <div class="row">-->
+                                <!--                                <div class="row">-->
 
-<!--                                    <div-->
-<!--                                        class="col-10 offset-1">-->
-<!--                                        <div class="form-group h-100">-->
+                                <!--                                    <div-->
+                                <!--                                        class="col-10 offset-1">-->
+                                <!--                                        <div class="form-group h-100">-->
 
-<!--                                            <div *ngIf="detail['value']['videoURL']">-->
-<!--                                                <div *ngIf="videoPath === 'video'+ i; else currentVideo">-->
-<!--                                                    <video width="320" height="240" controls-->
-<!--                                                    >-->
-<!--                                                        <source-->
-<!--                                                            [src]="videoUrl + 'work/' + detail['value']['videoURL']"-->
-<!--                                                        >-->
-<!--                                                    </video>-->
-<!--                                                </div>-->
-<!--                                                <ng-template #currentVideo>-->
-<!--                                                    <video width="320" height="240" controls>-->
-<!--                                                        <source-->
-<!--                                                            [src]="videoUrl + 'work/' + detail['value']['videoURL']"-->
-<!--                                                        >-->
-<!--                                                    </video>-->
-<!--                                                </ng-template>-->
-<!--                                            </div>-->
-
-
-<!--                                            &lt;!&ndash;                                            <div *ngIf="videoPath else currentVideo">&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                                <video width="320" height="240" controls&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                                >&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                                    <source&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                                        [src]="'http://localhost:3000/uploads/work/' + detail['value']['videoURL']"&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                                    >&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                                </video>&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                            </div>&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                            <ng-template #currentVideo>&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                                <video width="320" height="240" controls>&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                                    <source&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                                        [src]="'http://localhost:3000/uploads/work/' + detail['value']['videoURL']"&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                                    >&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                                </video>&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                            </ng-template>&ndash;&gt;-->
+                                <!--                                            <div *ngIf="detail['value']['videoURL']">-->
+                                <!--                                                <div *ngIf="videoPath === 'video'+ i; else currentVideo">-->
+                                <!--                                                    <video width="320" height="240" controls-->
+                                <!--                                                    >-->
+                                <!--                                                        <source-->
+                                <!--                                                            [src]="videoUrl + 'work/' + detail['value']['videoURL']"-->
+                                <!--                                                        >-->
+                                <!--                                                    </video>-->
+                                <!--                                                </div>-->
+                                <!--                                                <ng-template #currentVideo>-->
+                                <!--                                                    <video width="320" height="240" controls>-->
+                                <!--                                                        <source-->
+                                <!--                                                            [src]="videoUrl + 'work/' + detail['value']['videoURL']"-->
+                                <!--                                                        >-->
+                                <!--                                                    </video>-->
+                                <!--                                                </ng-template>-->
+                                <!--                                            </div>-->
 
 
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
+                                <!--                                            &lt;!&ndash;                                            <div *ngIf="videoPath else currentVideo">&ndash;&gt;-->
+                                <!--                                            &lt;!&ndash;                                                <video width="320" height="240" controls&ndash;&gt;-->
+                                <!--                                            &lt;!&ndash;                                                >&ndash;&gt;-->
+                                <!--                                            &lt;!&ndash;                                                    <source&ndash;&gt;-->
+                                <!--                                            &lt;!&ndash;                                                        [src]="'http://localhost:3000/uploads/work/' + detail['value']['videoURL']"&ndash;&gt;-->
+                                <!--                                            &lt;!&ndash;                                                    >&ndash;&gt;-->
+                                <!--                                            &lt;!&ndash;                                                </video>&ndash;&gt;-->
+                                <!--                                            &lt;!&ndash;                                            </div>&ndash;&gt;-->
+                                <!--                                            &lt;!&ndash;                                            <ng-template #currentVideo>&ndash;&gt;-->
+                                <!--                                            &lt;!&ndash;                                                <video width="320" height="240" controls>&ndash;&gt;-->
+                                <!--                                            &lt;!&ndash;                                                    <source&ndash;&gt;-->
+                                <!--                                            &lt;!&ndash;                                                        [src]="'http://localhost:3000/uploads/work/' + detail['value']['videoURL']"&ndash;&gt;-->
+                                <!--                                            &lt;!&ndash;                                                    >&ndash;&gt;-->
+                                <!--                                            &lt;!&ndash;                                                </video>&ndash;&gt;-->
+                                <!--                                            &lt;!&ndash;                                            </ng-template>&ndash;&gt;-->
+
+
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
                             </div>
 
 
                         </div>
                     </div>
                 </div>
+
+
             </div>
 
 

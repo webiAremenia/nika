@@ -12,13 +12,13 @@
         </div>
         <div class="row mt-2">
             <div class="col-6 mt-3" *ngFor="let work of middleTable.data">
-                <nz-card style="width:100%;" nzTitle="{{work.title}}" [nzExtra]="extraTemplate">
+                <nz-card style="width:100%;" nzTitle="{{work.title.text}}" [nzExtra]="extraTemplate">
                     <div class="row">
                         <div class="col-3">
                             <img title="Show more images..." class="img-thumbnail" src="{{url + 'work/' + work.img}}" alt="">
                         </div>
                         <div class="col-9">
-                            <p>{{work.description}}</p>
+                            <p>{{work.description.text}}</p>
                         </div>
                         <div class="col-12">
                             <a href="" class="float-right">{{work.slug}}</a>

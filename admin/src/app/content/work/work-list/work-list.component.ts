@@ -29,7 +29,6 @@ export class WorkListComponent implements OnInit {
 
         this.workService.getWorks().subscribe(data => {
             this.works = data;
-            console.log(data);
             this.done = true;
 
         }, e => {

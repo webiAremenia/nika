@@ -26,12 +26,14 @@
 [type="file"]:focus + label {
     outline: 1px dotted #000;
 }
-.btn-save{
+
+.btn-save {
     position: fixed;
     right: 18px;
     top: 100px;
     z-index: 99999;
 }
+
 .add {
     width: 124px;
     position: fixed;
@@ -92,4 +94,8 @@
 .delete_icon:hover {
     transform: scale(1.2);
     color: red;
+}
+
+.text {
+    /*border: 1px solid black*/
 }

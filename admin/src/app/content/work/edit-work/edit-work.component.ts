@@ -32,6 +32,16 @@ export class EditWorkComponent implements OnInit, OnDestroy {
     destroyWork = true;
     coverImg: File;
     coverImgsrc;
+    options;
+
+
+    fontSizeMin = 10;
+    fontSizeMax = 100;
+
+    lineHeightMin = 10;
+    lineHeightMax = 100;
+
+    textForm: FormGroup;
 
     constructor(
         private fb: FormBuilder,
@@ -61,14 +71,60 @@ export class EditWorkComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.options = {
+            onUpdate: (event: any) => {
+                const arr = [];
+                let i = 0;
+                const type = this.form.controls.details as FormArray;
+                this.updateOrders(type.value)
+                // this.menus.forEach(item => {
+                //     arr.push(item._id);
+                //     ++i;
+                // });
+                // console.log(arr)
+                // this.service.sortMenus(arr).subscribe((data) => {
+                // });
+            }
+        };
+
         this.form = this.fb.group({
             slug: [this.work ? this.work.slug : '', Validators.required],
-            title: [this.work ? this.work.title : '', Validators.required],
-            subTitle: [this.work ? this.work.subTitle : '', Validators.required],
-            description: [this.work ? this.work.description : ''],
+            title: this.work ? this.fb.group({
+                text: [this.work.title.text, Validators.required],
+                fontSize: this.work.title.fontSize,
+                fontFamily: this.work.title.fontFamily
+            }) : this.fb.group({
+                text: ['', Validators.required],
+                fontSize: null,
+                fontFamily: null
+            }),
+            subTitle: this.work ? this.fb.group({
+                text: [this.work.subTitle.text, Validators.required],
+                fontSize: this.work.subTitle.fontSize,
+                fontFamily: this.work.subTitle.fontFamily
+            }) : this.fb.group({
+                text: ['', Validators.required],
+                fontSize: null,
+                fontFamily: null
+            }),
+            description: this.work ? this.fb.group({
+                text: [this.work.description.text, Validators.required],
+                fontSize: this.work.description.fontSize,
+                fontFamily: this.work.description.fontFamily
+            }) : this.fb.group({
+                text: ['', Validators.required],
+                fontSize: null,
+                fontFamily: null
+            }),
             imgURL: [this.work ? this.work.img : '', Validators.required],
             details: this.fb.array(this.work ? this.createDetailsForm() : [])
         });
+
+        // this.textForm = this.fb.group({
+        //     text: '',
+        //     fontSize: null,
+        //     fontFamily: null
+        // });
     }
 
     filterSlug(e) {
@@ -91,15 +147,27 @@ export class EditWorkComponent implements OnInit, OnDestroy {
                 alignment: 'center',
                 verticalAlignment: 'center',
                 objectFit: 'cover',
+                order: null
             }));
+
         } else if (value === 'text') {
             type.push(this.fb.group({
                 type: 'text',
-                title: '',
-                description: ['', [Validators.required]],
+                title: this.fb.group({
+                    text: '',
+                    fontSize: null,
+                    fontFamily: null
+                }),
+                description: this.fb.group({
+                    text: '',
+                    fontSize: null,
+                    fontFamily: null
+                }),
                 author: false,
                 border: false,
+                order: null
             }));
+
         } else if (value === 'slider') {
             type.push(this.fb.group({
                 type: 'slider',
@@ -107,16 +175,26 @@ export class EditWorkComponent implements OnInit, OnDestroy {
                 alignment: 'center',
                 verticalAlignment: 'center',
                 objectFit: 'cover',
+                order: null,
                 sliders: this.fb.array([])
             }));
         } else if (value === 'video') {
             type.push(this.fb.group({
                 type: 'video',
+                order: null,
                 videoURL: ['', [Validators.required]]
             }));
         } else if (value === 'column') {
             type.push(this.fb.group({
                 type: 'column',
+                title: this.fb.group({
+                    fontSize: null,
+                    fontFamily: null
+                }),
+                description: this.fb.group({
+                    fontSize: null,
+                    fontFamily: null
+                }),
                 col1: this.fb.group({
                     title: '',
                     description: [''],
@@ -128,15 +206,17 @@ export class EditWorkComponent implements OnInit, OnDestroy {
                 col3: this.fb.group({
                     title: '',
                     description: [''],
-                })
+                }),
+                order: null
             }));
         }
+        this.updateOrders(type.value);
     }
 
     createDetailsForm() {
         setTimeout(() => {
+
             const type = this.form.controls.details as FormArray;
-            console.log(type)
             this.work.details.forEach((w, i) => {
                 if (w.type === 'img') {
                     type.push(this.fb.group(
@@ -152,8 +232,20 @@ export class EditWorkComponent implements OnInit, OnDestroy {
                 } else if (w.type === 'text') {
                     type.push(this.fb.group({
                         type: w.type,
-                        title: w.title,
-                        description: [w.description, [Validators.required]],
+                        // title: w.title,
+                        // description: [w.description, [Validators.required]],
+
+                        title: this.fb.group({
+                            text: w.title.text,
+                            fontSize: w.title.fontSize,
+                            fontFamily: w.title.fontFamily
+                        }),
+                        description: this.fb.group({
+                            text: [w.description.text, Validators.required],
+                            fontSize: w.description.fontSize,
+                            fontFamily: w.description.fontFamily
+                        }),
+
                         author: w.author,
                         border: w.border,
                     }));
@@ -174,6 +266,14 @@ export class EditWorkComponent implements OnInit, OnDestroy {
                 } else if (w.type === 'column') {
                     type.push(this.fb.group({
                         type: w.type,
+                        title: this.fb.group({
+                            fontSize: w.title.fontSize,
+                            fontFamily: w.title.fontFamily
+                        }),
+                        description: this.fb.group({
+                            fontSize: w.description.fontSize,
+                            fontFamily: w.description.fontFamily
+                        }),
                         col1: this.fb.group({
                             title: w.col1.title,
                             description: w.col1.description,
@@ -364,14 +464,11 @@ export class EditWorkComponent implements OnInit, OnDestroy {
 
     changeImg(i, index) {
         this.imgId = index;
-        // console.log('imgId ', index)
         document.getElementById('file_slider' + i).click();
     }
 
     slider(event, i, j) {
 
-        // console.log(typeof this.imgId);
-        // console.log('++++ ', this.imgId)
         if (this.imgId || this.imgId === 0) {
             this.sliderImgView(event, i, this.imgId);
             this.imgId = null;
@@ -389,6 +486,8 @@ export class EditWorkComponent implements OnInit, OnDestroy {
 
 
     myWork() {
+
+
         if (this.work) {
             this.msg.loading('Updating', {nzDuration: 0});
 
@@ -397,16 +496,21 @@ export class EditWorkComponent implements OnInit, OnDestroy {
             const fd = new FormData();
 
 
-            const details = JSON.stringify(this.form.value.details);
             const videosArr = JSON.stringify(this.videosArr);
+
+            const details = JSON.stringify(this.form.value.details);
+            const title = JSON.stringify(this.form.value.title);
+            const subTitle = JSON.stringify(this.form.value.subTitle);
+            const description = JSON.stringify(this.form.value.description);
+
 
 
             fd.append('random', random);
             fd.append('cover', this.coverImg);
             fd.append('slug', this.form.value.slug);
-            fd.append('title', this.form.value.title);
-            fd.append('subTitle', this.form.value.subTitle);
-            fd.append('description', this.form.value.description);
+            fd.append('title', title);
+            fd.append('subTitle', subTitle);
+            fd.append('description', description);
             fd.append('details', details);
             fd.append('videosArr', videosArr);
 
@@ -429,13 +533,16 @@ export class EditWorkComponent implements OnInit, OnDestroy {
             const fd = new FormData();
 
             const details = JSON.stringify(this.form.value.details);
+            const title = JSON.stringify(this.form.value.title);
+            const subTitle = JSON.stringify(this.form.value.subTitle);
+            const description = JSON.stringify(this.form.value.description);
 
             fd.append('random', random);
             fd.append('cover', this.coverImg);
             fd.append('slug', this.form.value.slug);
-            fd.append('title', this.form.value.title);
-            fd.append('subTitle', this.form.value.subTitle);
-            fd.append('description', this.form.value.description);
+            fd.append('title', title);
+            fd.append('subTitle', subTitle);
+            fd.append('description', description);
             fd.append('details', details);
 
 
@@ -468,6 +575,7 @@ export class EditWorkComponent implements OnInit, OnDestroy {
             nzOnOk: () => {
                 const type = this.form.controls.details as FormArray;
                 type.removeAt(i);
+                this.updateOrders(type.value)
             },
             nzCancelText: 'No',
             nzOnCancel: () => console.log('Cancel')
@@ -515,12 +623,17 @@ export class EditWorkComponent implements OnInit, OnDestroy {
 
     }
 
+    updateOrders(arr) {
+        arr.forEach((item, i) => {
+            item.order = i;
+        });
+    }
+
     ngOnDestroy(): void {
         this.msg.remove();
         if (this.destroyWork) {
             if (this.videosArrOnDestroy.length > 0) {
                 this.workService.deleteVideoMany(this.videosArrOnDestroy).subscribe(data => {
-                    // console.log(data);
                 }, e => console.log(e));
             }
         }

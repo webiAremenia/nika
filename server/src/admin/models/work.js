@@ -6,31 +6,58 @@ const WorkSchema = new Schema({
         type: String,
         required: true
     },
+    // title: {
+    //     type: String,
+    //     default: ''
+    // },
+
     title: {
-        type: String,
-        default: ''
+        text: {
+            type: String,
+        },
+        fontSize: {
+            type: Number,
+        },
+        fontFamily: {
+            type: String,
+        }
     },
+
     subTitle: {
-        type: String,
-        default: ''
+        text: {
+            type: String,
+        },
+        fontSize: {
+            type: Number,
+        },
+        fontFamily: {
+            type: String,
+        }
     },
     description: {
-        type: String,
-        required: true
+        text: {
+            type: String,
+        },
+        fontSize: {
+            type: Number,
+        },
+        fontFamily: {
+            type: String,
+        }
     },
     slug: {
         type: String,
         required: true,
         unique: true
     },
-    details : {
+    details: {
         type: Object
     },
-    created : {
+    created: {
         type: Date,
         default: Date.now()
     },
-    updated : {
+    updated: {
         type: Date,
         default: Date.now()
     }
