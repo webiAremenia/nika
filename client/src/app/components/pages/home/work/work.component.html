@@ -23,8 +23,8 @@
 
     <div class="work-detail-mobile" *ngIf="windowSize.width < 768" style="min-height: 100vh">
         <div class="mobile-banner">
-            <h2 class="text-center"> {{ work.title }} </h2>
-            <p style="padding: 20px;"> {{ work.description }} </p>
+            <h2 class="text-center"> {{ work.title.text }} </h2>
+            <p style="padding: 20px;"> {{ work.description.text }} </p>
             <img [src]="imageUrl + work.img + '?resize=' + windowSize.width + ',' + windowSize.width * 250 / 400"
                  class="w-100">
         </div>

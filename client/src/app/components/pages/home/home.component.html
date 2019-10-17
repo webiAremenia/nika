@@ -38,23 +38,36 @@
 
                         <a [routerLink]="['project/' + slides[index].slug]">
                             <div [class]=" location && !doneService ? 'slide-image animate' : 'slide-image' ">
-                                <img [src]="imageUrl + slide.img + '?resize=' + resizeWidth + ',' + resizeHeight" alt="">
+                                <img [src]="imageUrl + slide.img + '?resize=' + resizeWidth + ',' + resizeHeight"
+                                     alt="">
                             </div>
                         </a>
 
                         <div class="slide-text-content">
-                            <h2 [style.fontSize]="windowWidth > 992 ? 50 * windowWidth / 1920 + 'px' : '25px'"
+
+                            <!--                            [style.fontSize]="windowWidth > 992 ? 50 * windowWidth / 1920 + 'px' : '25px'"-->
+                            <!--                            [style.lineHeight]="58 * windowWidth / 1920 + 'px'"-->
+
+                            <!--                            [style.fontSize]="windowWidth > 992 ? 17 * windowWidth / 1920 + 'px' : '14px'"-->
+                            <!--                            [style.lineHeight]="windowWidth > 992 ? 27 * windowWidth / 1920 + 'px' : '18px'"-->
+
+                            <h2 [style.fontSize]="windowWidth > 992 ? slide.title.fontSize * windowWidth / 1920 + 'px' : '25px'"
                                 [style.lineHeight]="58 * windowWidth / 1920 + 'px'"
-                            >{{ slide.title }}</h2>
+                                [style.font-family]="slide.title.fontFamily"
+                            >{{ slide.title.text }}</h2>
                             <div class="slide-desc">
                                 <div class="desc-wrap">
-                                    <p [style.fontSize]="windowWidth > 992 ? 17 * windowWidth / 1920 + 'px' : '14px'"
+                                    <p [style.fontSize]="windowWidth > 992 ? slide.description.fontSize * windowWidth / 1920 + 'px' : '14px'"
                                        [style.lineHeight]="windowWidth > 992 ? 27 * windowWidth / 1920 + 'px' : '18px'"
-                                    >{{ slide.description }}</p>
+                                       [style.font-family]="slide.description.fontFamily"
+                                    >{{ slide.description.text }}</p>
                                 </div>
                             </div>
-                            <span [style.fontSize]="windowWidth > 992 ? 17 * windowWidth / 1920 + 'px' : '14px'">
-                                {{ slide.subTitle }}
+                            <span [style.fontSize]="windowWidth > 992 ? slide.subTitle.fontSize * windowWidth / 1920 + 'px' : '14px'"
+                                  [style.lineHeight]="windowWidth > 992 ? 35 * windowWidth / 1920 + 'px' : '18px'"
+                                  [style.font-family]="slide.subTitle.fontFamily"
+                            >
+                                {{ slide.subTitle.text }}
                             </span>
                         </div>
 
@@ -62,11 +75,14 @@
                 </ng-container>
             </div>
 
-            <div class="work-outlet" #customBody [style.transform]="'translate3d(0,' + workScrollTop + 'px, 0)'"
+            <div class="work-outlet"
+                 #customBody
+                 [style.transform]="'translate3d(0,' + workScrollTop + 'px, 0)'"
                  *ngIf="done">
                 <div id="wwww" class="detail-banner h-100"
                      [style.width]="clickedWidth + 'px'"
                      [style.min-height]="bannerHeight + 'px'">
+
                     <img class="animated"
                          *ngIf="(clickedSlide || clickedSlide == 0)"
                          [style.left]="detailWrapperLeft + 'px'"
@@ -74,15 +90,23 @@
                          [style.height]="detailWrapperHeight ? detailWrapperHeight + 'px' : 'auto'"
                          [src]="imageUrl + slides[clickedSlide].img  + '?resize=' + resizeWidth + ',' + resizeHeight + ',!'"
                          #image>
-                    <div class="text-desc-wrapper" #detailWrapper
-                         [style.padding]="windowWidth * 50 / 1920 + 'px ' + windowWidth * 100 / 1920 + 'px'">
-                        <div class="detail-sub" *ngIf="currentSubTitle">{{ currentSubTitle }}</div>
+
+                    <div class="text-desc-wrapper"
+                         #detailWrapper
+                         [style.padding]="windowWidth * 50 / 1920 + 'px ' + windowWidth * 100 / 1920 + 'px'"
+                    >
+                        <div class="detail-sub" *ngIf="currentSubTitle">
+                            {{ currentSubTitle }}
+                        </div>
                         <div class="detail-title" *ngIf="currentTitle"
                              [style.fontSize]="windowWidth * 50 / 1920 + 'px'"
                         > {{ currentTitle }} </div>
                         <div class="detail-desc" *ngIf="currentDesc"
-                             [style.fontSize]="windowWidth * 18 / 1920 + 'px'"> {{ currentDesc }} </div>
+                             [style.fontSize]="windowWidth * 18 / 1920 + 'px'">
+                            {{ currentDesc }}
+                        </div>
                         <div class="detail-logo" [style.background]="'url(assets/icons/in-logo.PNG)'"></div>
+
                     </div>
                 </div>
                 <router-outlet></router-outlet>
@@ -121,13 +145,13 @@
                                  [src]="imageUrl + slide.img + '?resize=' + resizeWidth + ',' + resizeHeight">
                         </div>
                         <div class="slide-text-content">
-                            <h2>{{ slide.title }}</h2>
+                            <h2>{{ slide.title.text }}</h2>
                             <div class="slide-desc">
                                 <div class="desc-wrap">
-                                    <p>{{ slide.description.slice(0, 50) + '...' }}</p>
+                                    <p>{{ slide.description.text.slice(0, 50) + '...' }}</p>
                                 </div>
                             </div>
-                            <span>{{ slide.subTitle }}</span>
+                            <span>{{ slide.subTitle.text }}</span>
                         </div>
                     </div>
                 </ng-container>

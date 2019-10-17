@@ -7,25 +7,20 @@ $font-bold: 'Open Sans Bold', sans-serif;
 
 .title {
   text-align: center;
-  font-family: $font-bold;
+  //font-family: $font-bold;
   letter-spacing: -0.8px;
   color: #242424;
 }
 
 .description {
   text-align: center;
-  font-family: $font-regular;
+  //font-family: $font-regular;
   letter-spacing: -0.4px;
   color: #021221;
   text-transform: uppercase;
 }
 
-.whole-column-text {
-
-}
-
-
-// // // Media // // //
+// // // // // Media // // // // //
 
 @media (max-width: 768px) {
   .title {

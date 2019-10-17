@@ -189,9 +189,9 @@ i {
 .go-back-btn {
   text-decoration: none;
   background: rgba(0, 0, 0, 0.42);
-  position: fixed;
-  top: 75px;
-  left: 28%;
+  position: absolute;
+  top: 25px;
+  left: 25px;
   color: white;
   font-size: 20px;
   font-weight: bold;

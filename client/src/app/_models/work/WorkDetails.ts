@@ -1,8 +1,10 @@
+import {TextData} from '../TextData';
+
 export interface WorkDetails {
     type: string;
     videoURL?: string;
-    title?: string;
-    description?: string;
+    title?: TextData;
+    description?: TextData;
     author?: boolean;
     border?: boolean;
     imgURL?: string;
