@@ -21,6 +21,7 @@ export class LeadershipComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.content = this.content[0];
+        console.log(this.content);
     }
 
     ngOnDestroy() {
