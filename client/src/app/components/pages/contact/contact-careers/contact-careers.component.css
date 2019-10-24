@@ -1,5 +1,3 @@
-$font-regular: 'Open Sans Regular', sans-serif;
-
 .careers-content {
   padding-top: 46px;
 }
@@ -7,23 +5,23 @@ $font-regular: 'Open Sans Regular', sans-serif;
 .careers-description {
   max-width: 790px;
   color: #000A1D;
-  //font-size: 20px;
-  //line-height: 30px;
   letter-spacing: -0.4px;
-  font-family: $font-regular;
+  font-family: "Open Sans Regular", sans-serif;
 }
 
 .custom-page {
   padding: 100px 100px 0 100px;
-  @media (max-width: 1200px) and (min-width: 767px) {
+}
+@media (max-width: 1200px) and (min-width: 767px) {
+  .custom-page {
     padding: 30px 50px 0 50px;
   }
-  @media (max-width: 768px) {
+}
+@media (max-width: 768px) {
+  .custom-page {
     padding: 100px 0 20px 0;
   }
 }
-
-// // // // // MEDIA // // // // //
 
 @media (max-width: 797px) {
   .careers-description {
@@ -32,3 +30,5 @@ $font-regular: 'Open Sans Regular', sans-serif;
     letter-spacing: -0.22px !important;
   }
 }
+
+/*# sourceMappingURL=contact-careers.component.css.map */

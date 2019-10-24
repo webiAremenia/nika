@@ -5,26 +5,30 @@
           <div class="text-with-author" *ngIf="content.author">
 
               <div class="text-a"
-                   [style.font-size]="(windowSize.width * 30 * windowSize.rate) / 1920 + 'px'"
+                   [style.font-size]="(windowSize.width * content.description.fontSize * windowSize.rate) / 1920 + 'px'"
                    [style.line-height]="(windowSize.width * 45 * windowSize.rate) / 1920 + 'px'"
+                   [style.font-family]="content.description.fontFamily"
               >
-                  “{{content.description}}”
+                  “{{content.description.text}}”
               </div>
 
               <div class="author"
-                   [style.font-size]="(windowSize.width * 18 * windowSize.rate) / 1920 + 'px'"
+                   [style.font-size]="(windowSize.width * content.title.fontSize * windowSize.rate) / 1920 + 'px'"
                    [style.line-height]="(windowSize.width * 30 * windowSize.rate) / 1920 + 'px'"
+                   [style.font-family]="content.title.fontFamily"
               >
-                  - {{content.title}}
+                  - {{content.title.text}}
               </div>
 
           </div>
 
           <div class="text-without-author" *ngIf="!content.author">
               <div class="text-b"
-                   [style.font-size]="(windowSize.width * 18 * windowSize.rate) / 1920 + 'px'"
-                   [style.line-height]="(windowSize.width * 30 * windowSize.rate) / 1920 + 'px'">
-                  {{content.description}}
+                   [style.font-size]="(windowSize.width * content.description.fontSize * windowSize.rate) / 1920 + 'px'"
+                   [style.line-height]="(windowSize.width * 30 * windowSize.rate) / 1920 + 'px'"
+                   [style.font-family]="content.description.fontFamily"
+              >
+                  {{content.description.text}}
               </div>
           </div>
 

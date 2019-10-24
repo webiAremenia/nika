@@ -19,7 +19,7 @@ $border-style: 5px solid #000A1D;
   }
 }
 
-.mat-form-field, form {
+.mat-form-field, .form-custom {
   width: 100%;
 }
 
@@ -60,8 +60,7 @@ $border-style: 5px solid #000A1D;
     border-bottom: $border-style;
     text-align: center;
 
-    a {
-      //font-size: 25px;
+    .section-a {
       font-family: $font-bold;
       color: #000A1D;
       text-decoration: none;
@@ -90,7 +89,7 @@ $border-style: 5px solid #000A1D;
     margin-top: 5px;
     margin-bottom: 5px;
 
-    a {
+    .section-a {
       font-family: $font-regular;
       font-size: 12px;
       line-height: 25px;
@@ -99,7 +98,7 @@ $border-style: 5px solid #000A1D;
   }
 }
 
-.mobile-navigation a {
+.mobile-navigation .mb-a {
   text-decoration: none;
   padding: 5px;
   color: #000A1D;
@@ -116,7 +115,7 @@ $border-style: 5px solid #000A1D;
   border-bottom: 1px solid #000A1D;
 }
 
-// // // MEDIA // // //
+// // // // // MEDIA // // // // //
 
 @media (min-width: 1440px) {
   .contact {
@@ -150,13 +149,13 @@ $border-style: 5px solid #000A1D;
     display: block;
   }
 }
-
-@media (max-width: 767px) {
-  .custom-page {
-    padding-top: 80px;
-  }
-  .section a {
-    font-size: 20px;
-    line-height: 20px;
-  }
-}
+//
+//@media (max-width: 767px) {
+//  .custom-page {
+//    padding-top: 80px;
+//  }
+//  .section .section-a {
+//    font-size: 20px;
+//    line-height: 20px;
+//  }
+//}

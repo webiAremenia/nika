@@ -1,0 +1,62 @@
+.custom-border {
+  padding: 44px 15px;
+  border-top: 4px solid #D9D9D9;
+  border-bottom: 4px solid #D9D9D9;
+}
+
+.work-text-content {
+  width: 100%;
+  padding: 32px 0;
+}
+.work-text-content .col-10 {
+  padding: 30px 15px;
+}
+.work-text-content .text-with-author {
+  text-align: center;
+}
+.work-text-content .text-with-author .text-a {
+  padding: 0 100px 21px 100px;
+  width: 100%;
+  text-align: center;
+  letter-spacing: -0.6px;
+  color: #000A1D;
+}
+.work-text-content .text-with-author .author {
+  width: 100%;
+  letter-spacing: -0.36px;
+  color: #000000;
+}
+@media (max-width: 1600px) {
+  .work-text-content .text-with-author .text-a {
+    padding: 0 0 21px 0;
+  }
+}
+@media (max-width: 768px) {
+  .work-text-content .text-with-author .text-a {
+    padding: 0 10px 21px 10px;
+  }
+}
+.work-text-content .text-without-author {
+  text-align: left;
+  max-width: 720px;
+}
+.work-text-content .text-without-author .text-b {
+  color: #000000;
+  letter-spacing: -0.36px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .work-text-content .whole-text .text-a, .work-text-content .whole-text .text-b {
+    font-size: 15px !important;
+    line-height: 20px !important;
+    letter-spacing: -0.6px !important;
+    padding-bottom: 3px !important;
+  }
+  .work-text-content .whole-text .author {
+    font-size: 10px !important;
+    line-height: 35px !important;
+  }
+}
+
+/*# sourceMappingURL=work-text.component.css.map */

@@ -5,7 +5,11 @@
 
         <mat-grid-tile [colspan]="1" [rowspan]="1">
             <mat-form-field>
-                <input id="fullName" formControlName="fullName" matInput placeholder="Name">
+                <label for="fullName"></label>
+                <input id="fullName"
+                       formControlName="fullName"
+                       matInput
+                       placeholder="Name">
                 <mat-hint
                         [style.font-size]="(windowSize.width * 20 * windowSize.rate) / 1920 + 'px'"
                         [style.line-height]="(windowSize.width * 32* windowSize.rate) / 1920 + 'px'">Name*
@@ -18,7 +22,11 @@
 
         <mat-grid-tile [colspan]="1" [rowspan]="1">
             <mat-form-field>
-                <input formControlName="email" matInput placeholder="Email">
+                <label for="email"></label>
+                <input id="email"
+                       formControlName="email"
+                       matInput
+                       placeholder="Email">
                 <mat-hint
                         [style.font-size]="(windowSize.width * 20 * windowSize.rate) / 1920 + 'px'"
                         [style.line-height]="(windowSize.width * 32* windowSize.rate) / 1920 + 'px'">Email*
@@ -43,6 +51,7 @@
 
         <mat-grid-tile [colspan]="1" [rowspan]="1" *ngIf="type !== 'careers'">
             <mat-form-field>
+                <label for="phone"></label>
                 <input id="phone"
                        matInput
                        ng2TelInput
@@ -58,7 +67,11 @@
 
         <mat-grid-tile [colspan]="1" [rowspan]="1" *ngIf="type !== 'careers'">
             <mat-form-field>
-                <input formControlName="companyName" matInput placeholder="Company Name">
+                <label for="companyName"></label>
+                <input id="companyName"
+                       formControlName="companyName"
+                       matInput
+                       placeholder="Company Name">
                 <mat-hint
                         [style.font-size]="(windowSize.width * 20 * windowSize.rate) / 1920 + 'px'"
                         [style.line-height]="(windowSize.width * 32* windowSize.rate) / 1920 + 'px'">Company Name*
@@ -73,7 +86,12 @@
     <mat-grid-list cols="2" rowHeight="200px">
         <mat-grid-tile colspan="2">
             <div class="area">
-                <textarea formControlName="text" rows="5" cols="100" matInput></textarea>
+                <label for="commentArea"></label>
+                <textarea id="commentArea"
+                          formControlName="text"
+                          rows="5"
+                          cols="100"
+                          matInput></textarea>
             </div>
         </mat-grid-tile>
     </mat-grid-list>

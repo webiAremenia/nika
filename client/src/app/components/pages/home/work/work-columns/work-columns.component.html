@@ -5,45 +5,51 @@
 
             <div class="col-12 col-sm-4 whole-column-text">
                 <div class="title"
-                     [style.font-size]="(windowSize.width * 40 * windowSize.rate) / 1920 + 'px'"
+                     [style.font-size]="(windowSize.width * content.title.fontSize * windowSize.rate) / 1920 + 'px'"
                      [style.line-height]="(windowSize.width * 60 * windowSize.rate) / 1920 + 'px'"
+                     [style.font-family]="content.title.fontFamily"
                 >
                    {{content.col1.title}}
                 </div>
 
                 <div class="description"
-                     [style.font-size]="(windowSize.width * 20 * windowSize.rate) / 1920 + 'px'"
+                     [style.font-size]="(windowSize.width * content.description.fontSize * windowSize.rate) / 1920 + 'px'"
                      [style.line-height]="(windowSize.width * 60 * windowSize.rate) / 1920 + 'px'"
+                     [style.font-family]="content.description.fontFamily"
                 >
                     {{content.col1.description}}
                 </div>
             </div>
             <div class="col-12 col-sm-4 whole-column-text">
                 <div class="title"
-                     [style.font-size]="(windowSize.width * 40 * windowSize.rate) / 1920 + 'px'"
+                     [style.font-size]="(windowSize.width * content.title.fontSize * windowSize.rate) / 1920 + 'px'"
                      [style.line-height]="(windowSize.width * 60 * windowSize.rate) / 1920 + 'px'"
+                     [style.font-family]="content.title.fontFamily"
                 >
                     {{content.col2.title}}
                 </div>
 
                 <div class="description"
-                     [style.font-size]="(windowSize.width * 20 * windowSize.rate) / 1920 + 'px'"
+                     [style.font-size]="(windowSize.width * content.description.fontSize * windowSize.rate) / 1920 + 'px'"
                      [style.line-height]="(windowSize.width * 60 * windowSize.rate) / 1920 + 'px'"
+                     [style.font-family]="content.description.fontFamily"
                 >
                     {{content.col2.description}}
                 </div>
             </div>
             <div class="col-12 col-sm-4 whole-column-text">
                 <div class="title"
-                     [style.font-size]="(windowSize.width * 40 * windowSize.rate) / 1920 + 'px'"
+                     [style.font-size]="(windowSize.width * content.title.fontSize * windowSize.rate) / 1920 + 'px'"
                      [style.line-height]="(windowSize.width * 60 * windowSize.rate) / 1920 + 'px'"
+                     [style.font-family]="content.title.fontFamily"
                 >
                     {{content.col3.title}}
                 </div>
 
                 <div class="description"
-                     [style.font-size]="(windowSize.width * 20 * windowSize.rate) / 1920 + 'px'"
+                     [style.font-size]="(windowSize.width * content.description.fontSize * windowSize.rate) / 1920 + 'px'"
                      [style.line-height]="(windowSize.width * 60 * windowSize.rate) / 1920 + 'px'"
+                     [style.font-family]="content.description.fontFamily"
                 >
                     {{content.col3.description}}
                 </div>
