@@ -6,10 +6,10 @@ const WorkSchema = new Schema({
         type: String,
         required: true
     },
-    // title: {
-    //     type: String,
-    //     default: ''
-    // },
+    color: {
+        type: String,
+        // default: 'black'
+    },
 
     title: {
         text: {

@@ -33,6 +33,7 @@ export class EditWorkComponent implements OnInit, OnDestroy {
     coverImg: File;
     coverImgsrc;
     options;
+    color = 'yellow';
 
 
     fontSizeMin = 10;
@@ -54,6 +55,8 @@ export class EditWorkComponent implements OnInit, OnDestroy {
         this.videoUrl = config.imageUrl;
         if (this.workService.candidateWork) {
             this.work = this.workService.candidateWork;
+            this.color = this.work.color
+
             // this.work.details.forEach(d => {
             //     if (d.type === 'video') {
             //         this.videosArr.push(d.videoURL);
@@ -87,8 +90,11 @@ export class EditWorkComponent implements OnInit, OnDestroy {
             }
         };
 
+
+
         this.form = this.fb.group({
-            slug: [this.work ? this.work.slug : '', Validators.required],
+            slug: [this.work ? this.work.slug : '', [Validators.required, Validators.pattern('^[a-zA-Z0-9_-]*$')]],
+            color: [this.color, Validators.required],
             title: this.work ? this.fb.group({
                 text: [this.work.title.text, Validators.required],
                 fontSize: this.work.title.fontSize,
@@ -125,6 +131,7 @@ export class EditWorkComponent implements OnInit, OnDestroy {
         //     fontSize: null,
         //     fontFamily: null
         // });
+
     }
 
     filterSlug(e) {
@@ -487,6 +494,8 @@ export class EditWorkComponent implements OnInit, OnDestroy {
 
     myWork() {
 
+        this.form.controls.color.setValue(this.color);
+
 
         if (this.work) {
             this.msg.loading('Updating', {nzDuration: 0});
@@ -504,21 +513,16 @@ export class EditWorkComponent implements OnInit, OnDestroy {
             const description = JSON.stringify(this.form.value.description);
 
 
-
             fd.append('random', random);
             fd.append('cover', this.coverImg);
             fd.append('slug', this.form.value.slug);
+            fd.append('color', this.form.value.color);
             fd.append('title', title);
             fd.append('subTitle', subTitle);
             fd.append('description', description);
             fd.append('details', details);
             fd.append('videosArr', videosArr);
 
-            // console.log(this.videosArr)
-            // const form = {
-            //     work: this.form.value,
-            //     videosArr: this.videosArr
-            // };
             this.workService.putWork(this.work._id, fd).subscribe(data => {
                 this.destroyWork = false;
                 this.msg.remove();
@@ -540,6 +544,7 @@ export class EditWorkComponent implements OnInit, OnDestroy {
             fd.append('random', random);
             fd.append('cover', this.coverImg);
             fd.append('slug', this.form.value.slug);
+            fd.append('color', this.form.value.color);
             fd.append('title', title);
             fd.append('subTitle', subTitle);
             fd.append('description', description);
