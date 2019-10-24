@@ -12,6 +12,8 @@
 }
 
 .bottom-part {
+  display: flex;
+  flex-direction: column;
   height: 80%;
 }
 
@@ -91,6 +93,10 @@
   .align-self-center {
     width: 80%;
   }
+}
+
+.side-bar-meet-link {
+  margin-top: auto;
 }
 
 .side-bar-meet-link a, .menu-items a {
