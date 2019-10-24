@@ -55,7 +55,8 @@ export class EditWorkComponent implements OnInit, OnDestroy {
         this.videoUrl = config.imageUrl;
         if (this.workService.candidateWork) {
             this.work = this.workService.candidateWork;
-            this.color = this.work.color
+            this.work.color ? this.color = this.work.color : this.color = 'black';
+            // this.color = this.work.color;
 
             // this.work.details.forEach(d => {
             //     if (d.type === 'video') {
@@ -89,7 +90,6 @@ export class EditWorkComponent implements OnInit, OnDestroy {
                 // });
             }
         };
-
 
 
         this.form = this.fb.group({
