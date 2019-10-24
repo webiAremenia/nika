@@ -70,7 +70,8 @@ module.exports.createLogos = (req, res) => {
             if (!logo) {
                 let obj = new Logo({
                     title: i,
-                    img: null
+                    img: null,
+                    bgColor : 'black'
                 });
                 obj.save()
             }

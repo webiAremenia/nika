@@ -59,7 +59,6 @@ export class ContactComponent implements OnInit, OnDestroy {
                 this.locationGroup = new FormGroup({
                     select: new FormControl(`${this.currentLocation}`)
                 });
-                console.log(this.currentLocation);
             });
     }
 
