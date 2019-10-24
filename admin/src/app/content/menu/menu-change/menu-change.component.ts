@@ -22,6 +22,8 @@ export class MenuChangeComponent implements OnInit {
     keys = ['about', 'works', 'contact'];
     pages: any = [];
     canEdit = false;
+    fontSizeMin = 10;
+    fontSizeMax = 100;
 
     constructor(
         private postService: PostsService,
@@ -35,33 +37,59 @@ export class MenuChangeComponent implements OnInit {
         }
         this.pageService.getPages().subscribe(data => {
             this.pages = data;
-            console.log(this.pages);
         }, e => console.log(e));
     }
 
     ngOnInit(): void {
         this.candidate = this.service.candidateMenu;
 
-        if (this.keys.indexOf(this.candidate.key) === -1) {
-            this.canEdit = true;
-            this.validateForm = new FormGroup({
-                key: new FormControl(this.candidate.key, [Validators.required]),
-                // value: new FormControl(this.candidate.value, [Validators.required]),
-                title: new FormControl(this.candidate.title, [Validators.required]),
-                description: new FormControl(this.candidate.description),
-                order: new FormControl(this.candidate.order, [Validators.required]),
-                isActive: new FormControl(this.candidate.isActive, [Validators.required]),
-            });
-        } else {
-            this.validateForm = new FormGroup({
-                key: new FormControl({value: this.candidate.key, disabled: true}, [Validators.required]),
-                // value: new FormControl(this.candidate.value, [Validators.required]),
-                title: new FormControl(this.candidate.title, [Validators.required]),
-                description: new FormControl(this.candidate.description),
-                order: new FormControl(this.candidate.order, [Validators.required]),
-                isActive: new FormControl(this.candidate.isActive, [Validators.required]),
-            });
-        }
+        this.validateForm = new FormGroup({
+            key: new FormControl({value: this.candidate.key, disabled: true}, [Validators.required]),
+            // value: new FormControl(this.candidate.value, [Validators.required]),
+            // title: new FormControl(this.candidate.title, [Validators.required]),
+            // description: new FormControl(this.candidate.description),
+
+            title: this.fb.group({
+                text: [this.candidate.title.text, [Validators.required]],
+                fontSize: this.candidate.title.fontSize,
+                fontFamily: this.candidate.title.fontFamily
+            }),
+
+            description: this.fb.group({
+                text: [this.candidate.description.text, [Validators.required]],
+                fontSize: this.candidate.description.fontSize,
+                fontFamily: this.candidate.description.fontFamily
+            }),
+            order: new FormControl(this.candidate.order, [Validators.required]),
+            isActive: new FormControl(this.candidate.isActive, [Validators.required]),
+        });
+
+
+        // if (this.keys.indexOf(this.candidate.key) === -1) {
+        //     this.canEdit = true;
+        //     this.validateForm = new FormGroup({
+        //         key: new FormControl(this.candidate.key, [Validators.required]),
+        //         // value: new FormControl(this.candidate.value, [Validators.required]),
+        //         // title: new FormControl(this.candidate.title, [Validators.required]),
+        //         // description: new FormControl(this.candidate.description),
+        //
+        //
+        //         title: this.fb.group({
+        //             text: [this.candidate.title.text, [Validators.required]],
+        //             fontSize: this.candidate.title.fontSize,
+        //             fontFamily: this.candidate.title.fontFamily
+        //         }),
+        //         description: this.fb.group({
+        //             text: [this.candidate.description.text, [Validators.required]],
+        //             fontSize: this.candidate.description.fontSize,
+        //             fontFamily: this.candidate.description.fontFamily
+        //         }),
+        //
+        //         order: new FormControl(this.candidate.order, [Validators.required]),
+        //         isActive: new FormControl(this.candidate.isActive, [Validators.required]),
+        //     });
+        // } else {
+        // }
 
 
     }

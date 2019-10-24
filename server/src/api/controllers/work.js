@@ -6,7 +6,7 @@ module.exports = {
     getAll: async (req,res) => {
         try {
             let works = await Work.find({})
-                .select('description img slug title subTitle');
+                .select('description img slug title subTitle color');
             res.cacheControl = {
                 maxAge: 31536000
             };

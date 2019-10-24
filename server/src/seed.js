@@ -33,6 +33,8 @@ module.exports.createDefaultAdmin = async (req, res) => {
 module.exports.createPage = async (req, res) => {
     const keys = ['page_about', 'page_careers', 'page_work', 'page_story'];
     const setting_keys = ['admin-email', 'animation-text', 'sidebar-link'];
+
+
     try {
         // const pages = await Page.find();
         // keys.forEach(k => {
@@ -89,8 +91,20 @@ module.exports.createMenus = (req, res) => {
             if (!menu) {
                 let obj = new Menu({
                     key: key,
-                    title: 'title ' + key,
-                    description: 'description ' + key,
+
+                    // titl e: 'title ' + key,
+                    // description: 'description ' + key,
+
+                    title : {
+                        text: 'title ' + key,
+                        fontSize: 14,
+                        fontFamily: 'Open Sans Regular',
+                    },
+                    description : {
+                        text: 'description ' + key,
+                        fontSize: 14,
+                        fontFamily: 'Open Sans Regular',
+                    },
                     order: i
                 });
                 obj.save()

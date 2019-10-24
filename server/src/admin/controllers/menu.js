@@ -55,8 +55,8 @@ module.exports = {
 
         let menu = {
             order: req.body.order,
-            title: req.body.title,
-            description: req.body.description,
+            title: JSON.parse(req.body.title),
+            description: JSON.parse(req.body.description),
             isActive: req.body.isActive,
         };
         if (req.body.key) {
