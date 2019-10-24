@@ -22,6 +22,8 @@ export class MenuAddComponent implements OnInit {
     allItems = [];
     candidate;
     pages: any = [];
+    fontSizeMin = 10;
+    fontSizeMax = 100;
 
     constructor(
         private postService: PostsService,
@@ -41,8 +43,20 @@ export class MenuAddComponent implements OnInit {
         this.validateForm = new FormGroup({
             key: new FormControl('', [Validators.required]),
             // value: new FormControl(this.candidate.value, [Validators.required]),
-            title: new FormControl('', [Validators.required]),
-            description: new FormControl(''),
+
+            // title: new FormControl('', [Validators.required]),
+            // description: new FormControl(''),
+
+            title : this.fb.group({
+                text: ['', Validators.required],
+                fontSize: null,
+                fontFamily: null
+            }),
+            description: this.fb.group({
+                text: ['', Validators.required],
+                fontSize: null,
+                fontFamily: null
+            }),
             order: new FormControl('', [Validators.required]),
             isActive: new FormControl('', [Validators.required]),
         });
