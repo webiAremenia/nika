@@ -44,6 +44,20 @@
                             <input nz-input formControlName="title" >
                         </nz-form-control>
                     </nz-form-item>
+
+
+                    <nz-form-item class="mt-3">
+                        <nz-form-label [nzSm]="6" [nzXs]="24">Background color</nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24">
+                            <input nz-input [(colorPicker)]="bgColor" [style.background]="bgColor"/>
+
+                        </nz-form-control>
+                    </nz-form-item>
+
+
+
+
+
                 </nz-form-item>
             </div>
             <div class="col-4 offset-4">

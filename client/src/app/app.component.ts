@@ -15,23 +15,19 @@ export class AppComponent implements OnInit {
     slider = false;
     contact = false;
     route: string;
-    path;
     done = false;
 
-
     constructor(
-        location: Location,
-        router: Router,
         private actionsService: ActionsService,
         private menuService: MenuService
     ) {
-        menuService.getSettings().subscribe(d => this.done = true);
+        this.menuService.getSettings().subscribe( () => this.done = true);
     }
 
     ngOnInit() {
     }
 
-    @HostListener('window:resize', ['$event']) onResize(e) {
+    @HostListener('window:resize', ['$event']) onResize() {
         if (window.innerWidth > 767) {
             const size = {
                 width: window.innerWidth > 1920 ? 1920 : window.innerWidth,
@@ -51,7 +47,7 @@ export class AppComponent implements OnInit {
         }
     }
 
-    onActivate(event) {
+    onActivate() {
         window.scroll(0, 0);
     }
 }

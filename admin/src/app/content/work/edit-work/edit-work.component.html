@@ -1,4 +1,4 @@
-<div class="row" style="padding-bottom: 100px;">
+<div class="row" id="work-detail" style="padding-bottom: 100px;">
     <div class="col-md-10 offset-1">
         <h2 class="text-center" translate>Create</h2>
         <form [formGroup]="form">
@@ -39,6 +39,13 @@
                 <!--                                <p *ngIf="slugForm.get('slug').invalid && slugForm.get('slug').touched" class="invalid">Type true Slug</p>-->
                 <p *ngIf="inValidSlug" class="invalid">Slug must be a unique</p>
             </div>
+            <br>
+
+            <div class="form-group">
+                <label translate>text color on slider</label>
+                <input [(colorPicker)]="color" [style.background]="color" class="form-control">
+
+            </div>
 
 
             <br>
@@ -47,6 +54,9 @@
                     <div class="col-6">
                         <label translate>Title</label>
                         <input type="text" placeholder="title" class="form-control" formControlName="text">
+                        <p [style.font-size]=" form.controls.title.value.fontSize + 'px'"
+                           [style.font-family]=" form.controls.title.value.fontFamily"
+                        >{{ form.controls.title.value.text }}</p>
                     </div>
                     <div class="col-6">
                         <div class="row offset-2">
@@ -92,6 +102,9 @@
                     <div class="col-6">
                         <label translate>Subtitle</label>
                         <input type="text" placeholder="title" class="form-control" formControlName="text">
+                        <p [style.font-size]=" form.controls.subTitle.value.fontSize + 'px'"
+                           [style.font-family]=" form.controls.subTitle.value.fontFamily"
+                        >{{ form.controls.subTitle.value.text }}</p>
                     </div>
                     <div class="col-6">
                         <div class="row offset-2">
@@ -141,6 +154,9 @@
                     <div class="col-6"><label translate>Description</label>
                         <textarea class="form-control" placeholder="description" rows="3"
                                   formControlName="text"></textarea>
+                        <p [style.font-size]=" form.controls.description.value.fontSize + 'px'"
+                           [style.font-family]=" form.controls.description.value.fontFamily"
+                        >{{ form.controls.description.value.text }}</p>
 
                     </div>
                     <div class="col-6">

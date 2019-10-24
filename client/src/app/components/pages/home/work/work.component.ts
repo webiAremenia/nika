@@ -1,11 +1,11 @@
-import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {WorkService} from '../../../../_services/work.service';
-import {Work} from '../../../../_models/work/work';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Subscription} from 'rxjs';
-import {ResponsiveData} from '../../../../_models/ResponsiveData';
-import {ActionsService} from '../../../../_services/actions.service';
-import {AppGlobals} from '../../../../app.globals';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { WorkService } from '../../../../_services/work.service';
+import { Work } from '../../../../_models/work/work';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { ResponsiveData } from '../../../../_models/ResponsiveData';
+import { ActionsService } from '../../../../_services/actions.service';
+import { AppGlobals } from '../../../../app.globals';
 
 @Component({
     selector: 'app-work',
@@ -35,9 +35,10 @@ export class WorkComponent implements OnInit, OnDestroy {
         this.windowSubscription = actionsService.getWindowSize()
             .subscribe((size: ResponsiveData) => this.windowSize = size);
         this.actionsService.workOpened.next(true);
-        this.positionSubscription = this.actionsService.getWorkScrollPosition().subscribe(pos => {
-            this.initAnimation(pos);
-        });
+        this.positionSubscription = this.actionsService.getWorkScrollPosition()
+            .subscribe(pos => {
+                this.initAnimation(pos);
+            });
     }
 
     ngOnInit() {
@@ -79,7 +80,6 @@ export class WorkComponent implements OnInit, OnDestroy {
     }
 
     animateDesktop(position) {
-        console.log(position);
         const bannerHeight = window.innerHeight + 100;
         let sum = 0;
         for (let i = 0; i < this.sectionArr.length; i++) {

@@ -7,6 +7,7 @@ module.exports = {
     getWork: async (req, res) => {
         try {
             let works = await Work.find({});
+
             res.status(200).json(works)
         } catch (e) {
             errors.notFound(res, errors);
@@ -19,6 +20,7 @@ module.exports = {
             subTitle: JSON.parse(req.body.subTitle),
             description: JSON.parse(req.body.description),
             slug: req.body.slug,
+            color: req.body.color,
             img: req.file.filename,
             details: JSON.parse(req.body.details),
             created: Date.now(),
@@ -41,6 +43,7 @@ module.exports = {
             subTitle: JSON.parse(req.body.subTitle),
             description: JSON.parse(req.body.description),
             slug: req.body.slug,
+            color: req.body.color,
             details: JSON.parse(req.body.details),
             updated: Date.now(),
         };

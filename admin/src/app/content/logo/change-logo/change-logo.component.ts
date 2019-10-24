@@ -19,6 +19,7 @@ export class ChangeLogoComponent implements OnInit {
     url;
     image;
     imageURL;
+    bgColor = '';
 
     constructor(private service: LogoService, private msg: NzMessageService, private router: Router) {
         if (!this.service.candidateLogo) {
@@ -29,17 +30,21 @@ export class ChangeLogoComponent implements OnInit {
     ngOnInit() {
         this.url = this.service.url + '/uploads/medias/';
         this.image = this.service.candidateLogo;
+        this.bgColor = this.image.bgColor;
         this.service.getImages().subscribe((data: []) => {
             this.images = data;
         });
         this.validateForm = new FormGroup({
             title: new FormControl({value: this.image.title, disabled: true}, [Validators.required]),
-            img: new FormControl(this.image.img, )
+            img: new FormControl(this.image.img),
+            bgColor: new FormControl(this.bgColor)
         });
     }
 
     handleUpload(): void {
         this.uploading = true;
+        this.validateForm.controls.bgColor.setValue(this.bgColor);
+        console.log(this.validateForm.value);
         this.service.putLogo(this.image._id, this.validateForm.value)
             .subscribe(
                 () => {
@@ -57,6 +62,7 @@ export class ChangeLogoComponent implements OnInit {
     showModal(): void {
         this.isVisible = true;
     }
+
     delete() {
         this.image.img = null;
         this.imageURL = null;

@@ -1,7 +1,7 @@
 <div id="please-wait" class="please-wait"
-     [style.margin-left]=" windowSize.width > 992 ? ((windowSize.height - 112) / 2) + 'px' : '0' "
-     [style.width]=" windowSize.width > 992 ? (windowSize.width - 112 - ((windowSize.height - 112) / 2)) + 'px' : '100%' "
->
+     [style.margin-left]=" windowWidth > 992 ? ((windowSize.height - 112) / 2) + 'px' : '0' "
+     [style.width]=" windowWidth > 992 ? (windowWidth - 112 - ((windowSize.height - 112) / 2)) + 'px' : '100%' ">
+
     <div class="loading-section-1" id="loading-section-1"></div>
     <div class="loading-section-2" id="loading-section-2"></div>
     <div class="loading-section-3" id="loading-section-3"></div>
@@ -20,26 +20,26 @@
     <div class="loading-pppp" *ngIf="!done">loading ...</div>
 
     <div class="home-page custom-page bg-light"
-         [style.margin-left]=" windowSize.width > 992 ? ((windowSize.height - 112) / 2) + 'px' : '0' "
-         [style.width]=" windowSize.width > 992 ? (windowSize.width - 112 - ((windowSize.height - 112) / 2)) + 'px' : '100%' ">
+         [style.margin-left]=" windowWidth > 992 ? ((windowSize.height - 112) / 2) + 'px' : '0' "
+         [style.width]=" windowWidth > 992 ? (windowWidth - 112 - ((windowSize.height - 112) / 2)) + 'px' : '100%' ">
 
-        <div class="accordion w-100 h-100 d-none d-md-block"
-             *ngIf="windowWidth > 767">
+        <div class="accordion w-100 h-100 d-none d-md-block" *ngIf="windowWidth > 767">
 
             <div class="accordion-items h-100"
-                 [style.width]="accordionItemsStyles.width + 'px'"
-                 [style.left]="accordionItemsStyles.left  + 'px'">
+                 [style.left]="accordionItemsStyles.left  + 'px'"
+                 [style.width]="accordionItemsStyles.width + 'px'">
+
+
                 <ng-container *ngIf="done">
-                    <div *ngFor="let slide of slides, let index = index"
-                         (click)="initCurrent(index)"
-                         [class]="'slider-item ' + 'slider-item-' + index"
-                         [style.width]="slideWidth + 'px'">
+                    <div *ngFor="let slide of slides, let index = index" (click)="initCurrent(index)"
+                         [class]="'slider-item ' + 'slider-item-' + index" [style.width]="slideWidth + 'px'">
 
                         <a [routerLink]="['project/' + slides[index].slug]">
                             <div [class]=" location && !doneService ? 'slide-image animate' : 'slide-image' ">
-                                <img class="slide-image-img"
-                                     alt="No image"
-                                     [src]="imageUrl + slide.img + '?resize=' + resizeWidth + ',' + resizeHeight">
+                                <img class="slide-image-img" alt="No image"
+                                     [src]="slide.img.split('.')[1] === 'gif' ?
+                                    imageUrl + slide.img :
+                                    imageUrl + slide.img + '?resize=' + resizeWidth + ',' + resizeHeight">
                             </div>
                         </a>
 
@@ -47,21 +47,23 @@
 
                             <h2 [style.fontSize]="windowWidth > 992 ? slide.title.fontSize * windowWidth / 1920 + 'px' : '25px'"
                                 [style.lineHeight]="58 * windowWidth / 1920 + 'px'"
-                                [style.font-family]="slide.title.fontFamily"
-                            >{{ slide.title.text }}</h2>
+                                [style.color]="slide.color"
+                                [style.font-family]="slide.title.fontFamily">{{ slide.title.text }}</h2>
                             <div class="slide-desc">
                                 <div class="desc-wrap">
                                     <p class="desc-wrap-p"
-                                            [style.fontSize]="windowWidth > 992 ? slide.description.fontSize * windowWidth / 1920 + 'px' : '14px'"
+                                       [style.color]="slide.color"
+                                       [style.fontSize]="windowWidth > 992 ? slide.description.fontSize * windowWidth / 1920 + 'px' : '14px'"
                                        [style.lineHeight]="windowWidth > 992 ? 27 * windowWidth / 1920 + 'px' : '18px'"
-                                       [style.font-family]="slide.description.fontFamily"
-                                    >{{ slide.description.text }}</p>
+                                       [style.font-family]="slide.description.fontFamily">{{ slide.description.text }}
+                                    </p>
                                 </div>
                             </div>
-                            <span [style.fontSize]="windowWidth > 992 ? slide.subTitle.fontSize * windowWidth / 1920 + 'px' : '14px'"
-                                  [style.lineHeight]="windowWidth > 992 ? 35 * windowWidth / 1920 + 'px' : '18px'"
-                                  [style.font-family]="slide.subTitle.fontFamily"
-                            >
+                            <span
+                                    [style.color]="slide.color"
+                                    [style.fontSize]="windowWidth > 992 ? slide.subTitle.fontSize * windowWidth / 1920 + 'px' : '14px'"
+                                    [style.lineHeight]="windowWidth > 992 ? 35 * windowWidth / 1920 + 'px' : '18px'"
+                                    [style.font-family]="slide.subTitle.fontFamily">
                                 {{ slide.subTitle.text }}
                             </span>
                         </div>
@@ -74,7 +76,8 @@
                  #customBody
                  [style.transform]="'translate3d(0,' + workScrollTop + 'px, 0)'"
                  *ngIf="done">
-                <div id="wwww" class="detail-banner h-100"
+                <div id="wwww"
+                     class="detail-banner h-100"
                      [style.width]="clickedWidth + 'px'"
                      [style.min-height]="bannerHeight + 'px'">
 
@@ -84,21 +87,23 @@
                          [style.left]="detailWrapperLeft + 'px'"
                          [style.width]="zoomed + '%'"
                          [style.height]="detailWrapperHeight ? detailWrapperHeight + 'px' : 'auto'"
-                         [src]="imageUrl + slides[clickedSlide].img  + '?resize=' + resizeWidth + ',' + resizeHeight + ',!'"
+                         [src]="slides[clickedSlide].img.split('.')[1] === 'gif' ?
+                                imageUrl + slides[clickedSlide].img :
+                                imageUrl + slides[clickedSlide].img + '?resize=' + resizeWidth + ',' + resizeHeight + ',!'"
                          #image>
+
+                    <!-- [src]="imageUrl + slides[clickedSlide].img  + '?resize=' + resizeWidth + ',' + resizeHeight + ',!'" -->
+
 
                     <div class="text-desc-wrapper"
                          #detailWrapper
-                         [style.padding]="windowWidth * 50 / 1920 + 'px ' + windowWidth * 100 / 1920 + 'px'"
-                    >
+                         [style.padding]="windowWidth * 50 / 1920 + 'px ' + windowWidth * 100 / 1920 + 'px'">
                         <div class="detail-sub" *ngIf="currentSubTitle">
                             {{ currentSubTitle }}
                         </div>
                         <div class="detail-title" *ngIf="currentTitle"
-                             [style.fontSize]="windowWidth * 50 / 1920 + 'px'"
-                        > {{ currentTitle }} </div>
-                        <div class="detail-desc" *ngIf="currentDesc"
-                             [style.fontSize]="windowWidth * 18 / 1920 + 'px'">
+                             [style.fontSize]="windowWidth * 50 / 1920 + 'px'"> {{ currentTitle }} </div>
+                        <div class="detail-desc" *ngIf="currentDesc" [style.fontSize]="windowWidth * 18 / 1920 + 'px'">
                             {{ currentDesc }}
                         </div>
                         <div class="detail-logo" [style.background]="'url(assets/icons/in-logo.PNG)'"></div>
@@ -113,22 +118,19 @@
         <a class="go-back-btn  d-none d-md-block" (click)="backToSlider()"
            *ngIf="windowWidth > 767">{{ backToWorkText }}</a>
         <div class="slider-buttons  d-none d-md-block">
-            <div class="slider-next-btn"
-                 (click)="!clickedSlide && clickedSlide !== 0 ? sliderNext() : pageNext()">
+            <div class="slider-next-btn" (click)="!clickedSlide && clickedSlide !== 0 ? sliderNext() : pageNext()">
                 <div class="btn-next-text">next job</div>
                 <div class="slider-next-arrow">
                     <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                 </div>
             </div>
-            <div class="slider-prev-btn"
-                 (click)="!clickedSlide && clickedSlide !== 0 ? sliderPrev() : pagePrev()">
+            <div class="slider-prev-btn" (click)="!clickedSlide && clickedSlide !== 0 ? sliderPrev() : pagePrev()">
                 <div class="btn-prev-text">prev job</div>
                 <div class="slider-prev-arrow">
                     <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
                 </div>
             </div>
-            <div class="down-btn animated fadeOut" #downBtn
-                 (click)="goDown()">
+            <div class="down-btn animated fadeOut" #downBtn (click)="goDown()">
                 <div class="slider-down-arrow">
                     <i class="fa fa-long-arrow-down" aria-hidden="true"></i>
                 </div>
@@ -139,23 +141,23 @@
         <div class="mobile-works" *ngIf="windowWidth <= 767">
             <div class=" row px-0 m-0">
                 <ng-container *ngIf="done">
-                    <div *ngFor="let slide of slides, let index = index"
-                         (click)="mobileNavigate(index)"
+                    <div *ngFor="let slide of slides, let index = index" (click)="mobileNavigate(index)"
                          class="slider-item-mobile col-12 col-sm-6 px-0">
                         <div class="slide-image">
-                            <img class="slide-image-img"
-                                 alt="No image"
+                            <img class="slide-image-img" alt="No image"
                                  [style.height]="resizeHeight + 'px'"
-                                 [src]="imageUrl + slide.img + '?resize=' + resizeWidth + ',' + resizeHeight">
+                                 [src]="slide.img.split('.')[1] === 'gif' ?
+                                imageUrl + slide.img :
+                                imageUrl + slide.img + '?resize=' + resizeWidth + ',' + resizeHeight">
                         </div>
                         <div class="slide-text-content">
-                            <h2 class="text-h2">{{ slide.title.text }}</h2>
+                            <h2 class="text-h2" [style.color]="slide.color">{{ slide.title.text }}</h2>
                             <div class="slide-desc">
                                 <div class="desc-wrap">
-                                    <p class="desc-wrap-p">{{ slide.description.text.slice(0, 50) + '...' }}</p>
+                                    <p class="desc-wrap-p" [style.color]="slide.color">{{ slide.description.text.slice(0, 50) + '...' }}</p>
                                 </div>
                             </div>
-                            <span class="text-span">{{ slide.subTitle.text }}</span>
+                            <span class="text-span" [style.color]="slide.color">{{ slide.subTitle.text }}</span>
                         </div>
                     </div>
                 </ng-container>
@@ -163,9 +165,8 @@
             <div id="mobileRouter" class="mobile-router"
                  [style.height]="clickedSlide  || clickedSlide == 0 ? '100vh' : '0'"
                  [style.width]="clickedSlide || clickedSlide == 0 ? '100vw' : '0'">
-                <div *ngIf="(clickedSlide || clickedSlide == 0)"
-                     class="go-back-btn-mobile"
-                     (click)="backToSliderMob()">Back to works
+                <div *ngIf="(clickedSlide || clickedSlide == 0)" class="go-back-btn-mobile" (click)="backToSliderMob()">
+                    Back to works
                 </div>
                 <div id="mobileCont" *ngIf="done">
                     <router-outlet></router-outlet>

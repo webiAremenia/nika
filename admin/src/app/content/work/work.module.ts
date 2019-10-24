@@ -7,6 +7,7 @@ import {WorkListComponent} from './work-list/work-list.component';
 import {EditWorkComponent} from './edit-work/edit-work.component';
 import {NzUploadModule} from 'ng-zorro-antd/upload';
 import {SortablejsModule} from 'angular-sortablejs';
+import {ColorPickerModule} from 'ngx-color-picker';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {SortablejsModule} from 'angular-sortablejs';
         NgZorroAntdModule,
         WorkRoutingModule,
         NzUploadModule,
-        SortablejsModule
+        SortablejsModule,
+        ColorPickerModule
 
     ],
 })

@@ -1,12 +1,13 @@
-import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {AppGlobals} from '../../../app.globals';
-import {ActivatedRoute, Router} from '@angular/router';
-import {WorkService} from '../../../_services/work.service';
-import {Work} from '../../../_models/work/work';
-import {ActionsService} from '../../../_services/actions.service';
-import {Subscription} from 'rxjs';
-import {MenuService} from '../../../_services/menu.service';
-import {ResponsiveData} from '../../../_models/ResponsiveData';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { AppGlobals } from '../../../app.globals';
+import { WorkService } from '../../../_services/work.service';
+import { Work } from '../../../_models/work/work';
+import { ActionsService } from '../../../_services/actions.service';
+import { Subscription } from 'rxjs';
+import { MenuService } from '../../../_services/menu.service';
+import { ResponsiveData } from '../../../_models/ResponsiveData';
 
 
 @Component({
@@ -74,7 +75,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.initSizes();
     }
 
-    @HostListener('wheel', ['$event']) wheel(e) {
+    @HostListener('wheel', ['$event'])
+    wheel(e: MouseEvent) {
         if (this.windowWidth > 767) {
             if (this.clickedSlide || this.clickedSlide === 0) {
                 this.desktopScrollFunction(e);
@@ -86,7 +88,24 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
     }
 
-    @HostListener('touchmove', ['$event']) touchmove() {
+    @HostListener('DOMMouseScroll', ['$event'])
+    wheelMoz(e: MouseEvent) {
+        const mozDelta = {
+            deltaY: e.detail * 30
+        };
+        if (this.windowWidth > 767) {
+            if (this.clickedSlide || this.clickedSlide === 0) {
+                this.desktopScrollFunction(mozDelta);
+            } else {
+                this.onMouseWheel(mozDelta);
+            }
+        } else {
+            this.mobileScrollAnimation();
+        }
+    }
+
+    @HostListener('touchmove', ['$event'])
+    touchmove() {
         if (window.innerWidth > 992) {
             return;
         } else {
@@ -98,13 +117,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     onKeyDown(event) {
         if (event.keyCode === 39 || event.keyCode === 40) {
             if (this.clickedSlide || this.clickedSlide === 0) {
-                this.desktopScrollFunction({deltaY: 100});
+                this.desktopScrollFunction({ deltaY: 100 });
             } else {
                 this.sliderNext();
             }
         } else if (event.keyCode === 37 || event.keyCode === 38) {
             if (this.clickedSlide || this.clickedSlide === 0) {
-                this.desktopScrollFunction({deltaY: -100});
+                this.desktopScrollFunction({ deltaY: -100 });
             } else {
                 this.sliderPrev();
             }
@@ -113,41 +132,38 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     constructor(
         private actionsService: ActionsService,
-        private activatedRoute: ActivatedRoute,
         private workService: WorkService,
         private menuService: MenuService,
-        config: AppGlobals,
+        private config: AppGlobals,
         private router: Router
     ) {
-        this.imageUrl = config.imageUrl + '/work/';
+        this.imageUrl = this.config.imageUrl + '/work/';
         this.windowSubscription = actionsService.getWindowSize()
             .subscribe((size: ResponsiveData) => this.windowSize = size);
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         if (!this.workService.works) {
             this.initLoadText();
         } else {
             document.getElementById('please-wait').remove();
         }
         this.location = !location.href.split('/')[4];
-        // console.log('onInit');
         this.workScrollTop = -window.innerHeight + 112;
         this.actionsService.workScrollPosition.next(this.workScrollTop);
         this.getParams();
         this.mobileXsHeight = window.innerWidth * 250 / 375;
         this.isWork = this.actionsService.isWorkPage()
             .subscribe(bool => {
-                    setTimeout(() => {
-                        this.initPageByUrl(bool);
-                    }, 100);
-                }
+                setTimeout(() => {
+                    this.initPageByUrl(bool);
+                }, 100);
+            }
             );
         this.initSizes();
     }
 
     initPageByUrl(bool) {
-        // console.log('onInitBiUrl');
         if (this.homePage) {
             if (!bool) {
                 this.backToSlider();
@@ -158,7 +174,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     initCurrent(index) {
-        // console.log('onInitCurrent');
         clearTimeout(this.backToSliderTimeOut);
         this.detailWrapperHeight = (window.innerHeight - 112);
         this.bannerHeight = (window.innerHeight - 112);
@@ -170,7 +185,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.detailWrapperLeft = (index + this.accordionItemsStyles.left / this.slideWidth) * this.slideWidth;
         this.clickedWidth = this.slideWidth;
         setTimeout(() => {
-            this.zoomed = 180;
+            this.zoomed = 120;
             this.detailWrapperLeft = 0;
             this.detailWrapperHeight = window.innerHeight + 112;
             this.bannerHeight = window.innerHeight + 112;
@@ -187,7 +202,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     backToSlider() {
-        // console.log('backTo');
         clearTimeout(this.initCurrentTimeOut);
         if (this.detailWrapper) {
             this.detailWrapper.nativeElement.style.opacity = '0';
@@ -215,6 +229,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     onMouseWheel(event) {
         if (this.clickedSlide || this.clickedSlide === 0) {
+            return;
         } else {
             this.mouseWillCount++;
             if (this.mouseWillCount === 1) {
@@ -346,28 +361,25 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     getParams() {
-        // console.log('get params');
         if (this.workService.works) {
             this.slides = this.workService.works;
             this.done = true;
             if (this.location) {
                 this.doneService = true;
             }
-            // console.log('get params if');
             this.initSlider();
             this.getCurrent();
         } else {
             this.workService.getWorks()
                 .subscribe(d => {
-                        this.slides = d;
-                        console.log(d);
-                        setTimeout(() => {
-                            this.done = true;
-                            this.createMessage(true);
-                        }, 500);
-                        this.initSlider();
-                        this.getCurrent();
-                    },
+                    this.slides = d;
+                    setTimeout(() => {
+                        this.done = true;
+                        this.createMessage(true);
+                    }, 500);
+                    this.initSlider();
+                    this.getCurrent();
+                },
                     e => console.log('errrrr', e)
                 );
         }
@@ -474,8 +486,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     createMessage(order: boolean): void {
-        let timeOne;
-        let timeSecond;
+        let timeOne: number;
+        let timeSecond: number;
 
         if (window.innerWidth > 992) {
             // timeOne = 1700;
@@ -516,6 +528,5 @@ export class HomeComponent implements OnInit, OnDestroy {
             this.settingSubscription.unsubscribe();
         }
         this.windowSubscription.unsubscribe();
-        // console.log('destroy: ', this.homePage);
     }
 }
