@@ -6,6 +6,7 @@ import {LogoListComponent} from './logo-list/logo-list.component';
 import {ChangeLogoComponent} from './change-logo/change-logo.component';
 import {AddLogoComponent} from './add-logo/add-logo.component';
 import {LogoRoutingModule} from './logo-routing.module';
+import {ColorPickerModule} from 'ngx-color-picker';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {LogoRoutingModule} from './logo-routing.module';
         ReactiveFormsModule,
         LogoRoutingModule,
         NgZorroAntdModule,
+        ColorPickerModule
 
     ],
 })

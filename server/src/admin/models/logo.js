@@ -9,6 +9,9 @@ const LogoSchema = new Schema({
     img: {
         type: Schema.Types.ObjectId,
         ref: 'Media',
+    },
+    bgColor : {
+        type : String
     }
 });
 

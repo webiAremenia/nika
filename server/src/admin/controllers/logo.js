@@ -5,16 +5,14 @@ const errors = require('../_help/errorHandler');
 module.exports = {
     getLogos: async (req, res) => {
         try {
-            let logos = await Logo.find({}).populate('img').select('img img title');
+            let logos = await Logo.find({}).populate('img').select('img img title bgColor');
             if (logos) {
                 res.status(201).json(logos.map(logo => {
                     return {
                         _id: logo._id,
                         title: logo.title,
-                        img: {
-                            image: logo.img.image,
-                            alt: logo.img.alt
-                        }
+                        bgColor: logo.bgColor,
+                        img: logo.img ? {image: logo.img.image, alt: logo.img.alt} : logo.img
                     }
                 }));
             } else {
@@ -29,7 +27,6 @@ module.exports = {
             title: req.body.title,
             img: req.body.img
         };
-        console.log(logo);
         try {
             await new Logo(logo).save();
             res.status(201).json({
@@ -41,9 +38,12 @@ module.exports = {
     },
     changeLogo: async (req, res) => {
         let candidate = req.query.id + '';
-        let logo = {
-            img: req.body.img
-        };
+        let logo = {};
+        if (typeof (req.body.img) === 'string' || !req.body.img){
+            logo.img = req.body.img;
+        }
+        logo.bgColor = req.body.bgColor;
+
         try {
             await Logo.findByIdAndUpdate(
                 {_id: candidate},
