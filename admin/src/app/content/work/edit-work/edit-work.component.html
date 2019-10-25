@@ -41,26 +41,31 @@
             </div>
             <br>
 
-            <div class="form-group">
-                <label translate>text color on slider</label>
-                <input [(colorPicker)]="color" [style.background]="color" class="form-control">
+            <div class="row">
+                <div class="col-10">
+                    <div class="form-group">
+                        <label translate>text color on slider</label>
+                        <input [(colorPicker)]="form.controls.color.value" [style.background]="form.controls.color.value"
+                               (colorPickerChange)="colorChange($event)" class="form-control">
 
+                    </div>
+                </div>
             </div>
 
 
             <br>
             <div class="form-group" formGroupName="title">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
                         <label translate>Title</label>
                         <input type="text" placeholder="title" class="form-control" formControlName="text">
                         <p [style.font-size]=" form.controls.title.value.fontSize + 'px'"
                            [style.font-family]=" form.controls.title.value.fontFamily"
                         >{{ form.controls.title.value.text }}</p>
                     </div>
-                    <div class="col-6">
+                    <div class="col-8">
                         <div class="row offset-2">
-                            <div class="col-5">
+                            <div class="col-3">
                                 <div class="col-12">
                                     <label for="titleFontSize">Font Size</label>
                                 </div>
@@ -72,7 +77,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-5">
+                            <div class="col-3">
                                 <div class="col-12">
                                     <label for="titleFontFamily">Font Family</label>
                                 </div>
@@ -91,6 +96,24 @@
                                     </nz-select>
                                 </div>
                             </div>
+
+                            <div class="col-3">
+                                <div class="col-12">
+                                    <label for="titleFontFamily">Font Weight</label>
+                                </div>
+                                <div class="col-12">
+
+                                    <nz-select style="width: 120px;" formControlName="fontWeight"
+                                               nzAllowClear nzPlaceHolder="Font Family" id="titleFontFamily">
+                                        <nz-option nzValue="regular"
+                                                   nzLabel="Regular"></nz-option>
+                                        <nz-option nzValue="bold"
+                                                   nzLabel="Bold"></nz-option>
+                                        <nz-option nzValue="extrabold"
+                                                   nzLabel="Extrabold"></nz-option>
+                                    </nz-select>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -99,16 +122,16 @@
 
             <div class="form-group" formGroupName="subTitle">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
                         <label translate>Subtitle</label>
                         <input type="text" placeholder="title" class="form-control" formControlName="text">
                         <p [style.font-size]=" form.controls.subTitle.value.fontSize + 'px'"
                            [style.font-family]=" form.controls.subTitle.value.fontFamily"
                         >{{ form.controls.subTitle.value.text }}</p>
                     </div>
-                    <div class="col-6">
+                    <div class="col-8">
                         <div class="row offset-2">
-                            <div class="col-5">
+                            <div class="col-3">
                                 <div class="col-12">
                                     <label for="titleFontSize">Font Size</label>
                                 </div>
@@ -120,7 +143,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-5">
+                            <div class="col-3">
                                 <div class="col-12">
                                     <label for="titleFontFamily">Font Family</label>
                                 </div>
@@ -135,6 +158,24 @@
                                         <nz-option nzValue="Open Sans Bold"
                                                    nzLabel="Bold"></nz-option>
                                         <nz-option nzValue="Open Sans Extrabold"
+                                                   nzLabel="Extrabold"></nz-option>
+                                    </nz-select>
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="col-12">
+                                    <label for="titleFontFamily">Font Weight</label>
+                                </div>
+                                <div class="col-12">
+
+                                    <nz-select style="width: 120px;" formControlName="fontWeight"
+                                               nzAllowClear nzPlaceHolder="Font Family" id="titleFontFamily">
+                                        <nz-option nzValue="regular"
+                                                   nzLabel="Regular"></nz-option>
+                                        <nz-option nzValue="bold"
+                                                   nzLabel="Bold"></nz-option>
+                                        <nz-option nzValue="extrabold"
                                                    nzLabel="Extrabold"></nz-option>
                                     </nz-select>
                                 </div>
@@ -151,7 +192,7 @@
 
             <div class="form-group" formGroupName="description">
                 <div class="row">
-                    <div class="col-6"><label translate>Description</label>
+                    <div class="col-4"><label translate>Description</label>
                         <textarea class="form-control" placeholder="description" rows="3"
                                   formControlName="text"></textarea>
                         <p [style.font-size]=" form.controls.description.value.fontSize + 'px'"
@@ -159,9 +200,9 @@
                         >{{ form.controls.description.value.text }}</p>
 
                     </div>
-                    <div class="col-6">
+                    <div class="col-8">
                         <div class="row offset-2">
-                            <div class="col-5">
+                            <div class="col-3">
                                 <div class="col-12">
                                     <label for="titleFontSize">Font Size</label>
                                 </div>
@@ -173,7 +214,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-5">
+                            <div class="col-3">
                                 <div class="col-12">
                                     <label for="titleFontFamily">Font Family</label>
                                 </div>
@@ -188,6 +229,24 @@
                                         <nz-option nzValue="Open Sans Bold"
                                                    nzLabel="Bold"></nz-option>
                                         <nz-option nzValue="Open Sans Extrabold"
+                                                   nzLabel="Extrabold"></nz-option>
+                                    </nz-select>
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="col-12">
+                                    <label for="titleFontFamily">Font Weight</label>
+                                </div>
+                                <div class="col-12">
+
+                                    <nz-select style="width: 120px;" formControlName="fontWeight"
+                                               nzAllowClear nzPlaceHolder="Font Family" id="titleFontFamily">
+                                        <nz-option nzValue="regular"
+                                                   nzLabel="Regular"></nz-option>
+                                        <nz-option nzValue="bold"
+                                                   nzLabel="Bold"></nz-option>
+                                        <nz-option nzValue="extrabold"
                                                    nzLabel="Extrabold"></nz-option>
                                     </nz-select>
                                 </div>
@@ -267,37 +326,35 @@
                                 </div>
 
                                 <div class="row" formGroupName="title">
-                                    <div class="col-6 pt-2 pb-2 text">
+                                    <div class="col-4 pt-2 pb-2 text">
                                         <div class="form-group">
                                             <label translate>Title</label>
                                             <input type="text" placeholder="en" class="form-control"
                                                    formControlName="text">
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-8">
                                         <div class="row offset-2">
-                                            <div class="col-5">
+                                            <div class="col-3">
                                                 <div class="col-12">
                                                     <label for="titleFontSize">Font Size</label>
                                                 </div>
                                                 <div class="col-12">
-                                                    <nz-input-number id="titleFontSize" [nzMin]="fontSizeMin"
-                                                                     nzPlaceHolder="Font Size"
+                                                    <nz-input-number id="titleFontSize" [nzMin]="fontSizeMin" nzPlaceHolder="Font Size"
                                                                      [nzMax]="fontSizeMax"
                                                                      formControlName="fontSize"
                                                                      [nzStep]="1"></nz-input-number>
                                                 </div>
                                             </div>
 
-                                            <div class="col-5">
+                                            <div class="col-3">
                                                 <div class="col-12">
                                                     <label for="titleFontFamily">Font Family</label>
                                                 </div>
                                                 <div class="col-12">
 
                                                     <nz-select style="width: 120px;" formControlName="fontFamily"
-                                                               nzAllowClear nzPlaceHolder="Font Family"
-                                                               id="titleFontFamily">
+                                                               nzAllowClear nzPlaceHolder="Font Family" id="titleFontFamily">
                                                         <nz-option nzValue="Open Sans Regular"
                                                                    nzLabel="Regular"></nz-option>
                                                         <nz-option nzValue="Open Sans Semibold"
@@ -309,13 +366,31 @@
                                                     </nz-select>
                                                 </div>
                                             </div>
+
+                                            <div class="col-3">
+                                                <div class="col-12">
+                                                    <label for="titleFontFamily">Font Weight</label>
+                                                </div>
+                                                <div class="col-12">
+
+                                                    <nz-select style="width: 120px;" formControlName="fontWeight"
+                                                               nzAllowClear nzPlaceHolder="Font Family" id="titleFontFamily">
+                                                        <nz-option nzValue="regular"
+                                                                   nzLabel="Regular"></nz-option>
+                                                        <nz-option nzValue="bold"
+                                                                   nzLabel="Bold"></nz-option>
+                                                        <nz-option nzValue="extrabold"
+                                                                   nzLabel="Extrabold"></nz-option>
+                                                    </nz-select>
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>
 
                                 </div>
                                 <div class="row" formGroupName="description">
-                                    <div class="col-6 pt-2 pb-2 text">
+                                    <div class="col-4 pt-2 pb-2 text">
                                         <div class="form-group">
                                             <label translate>Description</label>
                                             <textarea class="form-control" placeholder="en" rows="3"
@@ -323,30 +398,28 @@
                                             ></textarea>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-8">
                                         <div class="row offset-2">
-                                            <div class="col-5">
+                                            <div class="col-3">
                                                 <div class="col-12">
                                                     <label for="titleFontSize">Font Size</label>
                                                 </div>
                                                 <div class="col-12">
-                                                    <nz-input-number id="titleFontSize" [nzMin]="fontSizeMin"
-                                                                     nzPlaceHolder="Font Size"
+                                                    <nz-input-number id="titleFontSize" [nzMin]="fontSizeMin" nzPlaceHolder="Font Size"
                                                                      [nzMax]="fontSizeMax"
                                                                      formControlName="fontSize"
                                                                      [nzStep]="1"></nz-input-number>
                                                 </div>
                                             </div>
 
-                                            <div class="col-5">
+                                            <div class="col-3">
                                                 <div class="col-12">
                                                     <label for="titleFontFamily">Font Family</label>
                                                 </div>
                                                 <div class="col-12">
 
                                                     <nz-select style="width: 120px;" formControlName="fontFamily"
-                                                               nzAllowClear nzPlaceHolder="Font Family"
-                                                               id="titleFontFamily">
+                                                               nzAllowClear nzPlaceHolder="Font Family" id="titleFontFamily">
                                                         <nz-option nzValue="Open Sans Regular"
                                                                    nzLabel="Regular"></nz-option>
                                                         <nz-option nzValue="Open Sans Semibold"
@@ -354,6 +427,24 @@
                                                         <nz-option nzValue="Open Sans Bold"
                                                                    nzLabel="Bold"></nz-option>
                                                         <nz-option nzValue="Open Sans Extrabold"
+                                                                   nzLabel="Extrabold"></nz-option>
+                                                    </nz-select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-3">
+                                                <div class="col-12">
+                                                    <label for="titleFontFamily">Font Weight</label>
+                                                </div>
+                                                <div class="col-12">
+
+                                                    <nz-select style="width: 120px;" formControlName="fontWeight"
+                                                               nzAllowClear nzPlaceHolder="Font Family" id="titleFontFamily">
+                                                        <nz-option nzValue="regular"
+                                                                   nzLabel="Regular"></nz-option>
+                                                        <nz-option nzValue="bold"
+                                                                   nzLabel="Bold"></nz-option>
+                                                        <nz-option nzValue="extrabold"
                                                                    nzLabel="Extrabold"></nz-option>
                                                     </nz-select>
                                                 </div>
@@ -613,7 +704,7 @@
                                         <h3>Column</h3>
 
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div style="background-color: lightskyblue; padding-bottom: 10px" class="col-6">
                                                 <div class="row" formGroupName="title">
                                                     <div class="col-12 text-center">
                                                         <h4>Title</h4>
@@ -652,10 +743,28 @@
                                                             </nz-select>
                                                         </div>
                                                     </div>
+                                                    <div class="col-4">
+                                                        <div class="col-12">
+                                                            <label for="titleFontFamily">Font Weight</label>
+                                                        </div>
+                                                        <div class="col-12">
+
+                                                            <nz-select style="width: 120px;" formControlName="fontWeight"
+                                                                       nzAllowClear nzPlaceHolder="Font Family" id="titleFontFamily">
+                                                                <nz-option nzValue="regular"
+                                                                           nzLabel="Regular"></nz-option>
+                                                                <nz-option nzValue="bold"
+                                                                           nzLabel="Bold"></nz-option>
+                                                                <nz-option nzValue="extrabold"
+                                                                           nzLabel="Extrabold"></nz-option>
+                                                            </nz-select>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
 
                                             </div>
-                                            <div class="col-6">
+                                            <div style="background-color: lightpink; padding-bottom: 10px" class="col-6">
                                                 <div class="row" formGroupName="description">
                                                     <div class="col-12 text-center">
                                                         <h4>Description</h4>
@@ -694,6 +803,25 @@
                                                             </nz-select>
                                                         </div>
                                                     </div>
+
+                                                    <div class="col-4">
+                                                        <div class="col-12">
+                                                            <label for="titleFontFamily">Font Weight</label>
+                                                        </div>
+                                                        <div class="col-12">
+
+                                                            <nz-select style="width: 120px;" formControlName="fontWeight"
+                                                                       nzAllowClear nzPlaceHolder="Font Family" id="titleFontFamily">
+                                                                <nz-option nzValue="regular"
+                                                                           nzLabel="Regular"></nz-option>
+                                                                <nz-option nzValue="bold"
+                                                                           nzLabel="Bold"></nz-option>
+                                                                <nz-option nzValue="extrabold"
+                                                                           nzLabel="Extrabold"></nz-option>
+                                                            </nz-select>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
 
                                             </div>

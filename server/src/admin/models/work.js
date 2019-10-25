@@ -20,6 +20,9 @@ const WorkSchema = new Schema({
         },
         fontFamily: {
             type: String,
+        },
+        fontWeight : {
+            type: String
         }
     },
 
@@ -32,6 +35,9 @@ const WorkSchema = new Schema({
         },
         fontFamily: {
             type: String,
+        },
+        fontWeight : {
+            type: String
         }
     },
     description: {
@@ -43,6 +49,9 @@ const WorkSchema = new Schema({
         },
         fontFamily: {
             type: String,
+        },
+        fontWeight : {
+            type: String
         }
     },
     slug: {

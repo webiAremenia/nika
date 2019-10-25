@@ -8,12 +8,13 @@ import {EditWorkComponent} from './edit-work/edit-work.component';
 import {NzUploadModule} from 'ng-zorro-antd/upload';
 import {SortablejsModule} from 'angular-sortablejs';
 import {ColorPickerModule} from 'ngx-color-picker';
-
+import { TextFormComponent } from './text-form/text-form.component';
 
 @NgModule({
     declarations: [
         WorkListComponent,
-        EditWorkComponent
+        EditWorkComponent,
+        TextFormComponent,
     ],
     imports: [
         CommonModule,

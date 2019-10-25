@@ -33,7 +33,7 @@ export class EditWorkComponent implements OnInit, OnDestroy {
     coverImg: File;
     coverImgsrc;
     options;
-    color = 'yellow';
+    // color = 'yellow';
 
 
     fontSizeMin = 10;
@@ -55,14 +55,8 @@ export class EditWorkComponent implements OnInit, OnDestroy {
         this.videoUrl = config.imageUrl;
         if (this.workService.candidateWork) {
             this.work = this.workService.candidateWork;
-            this.work.color ? this.color = this.work.color : this.color = 'black';
+            // this.work.color ? this.color = this.work.color : this.color = 'black';
             // this.color = this.work.color;
-
-            // this.work.details.forEach(d => {
-            //     if (d.type === 'video') {
-            //         this.videosArr.push(d.videoURL);
-            //     }
-            // });
         }
         this.workService.getWorks().subscribe((data: Array<any>) => {
             data.forEach(w => {
@@ -75,6 +69,7 @@ export class EditWorkComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+
         this.options = {
             onUpdate: (event: any) => {
                 const arr = [];
@@ -94,43 +89,14 @@ export class EditWorkComponent implements OnInit, OnDestroy {
 
         this.form = this.fb.group({
             slug: [this.work ? this.work.slug : '', [Validators.required, Validators.pattern('^[a-zA-Z0-9_-]*$')]],
-            color: [this.color, Validators.required],
-            title: this.work ? this.fb.group({
-                text: [this.work.title.text, Validators.required],
-                fontSize: this.work.title.fontSize ? this.work.title.fontSize : 15,
-                fontFamily: this.work.title.fontFamily
-            }) : this.fb.group({
-                text: ['', Validators.required],
-                fontSize: 15,
-                fontFamily: null
-            }),
-            subTitle: this.work ? this.fb.group({
-                text: [this.work.subTitle.text, Validators.required],
-                fontSize: this.work.subTitle.fontSize ? this.work.subTitle.fontSize : 15,
-                fontFamily: this.work.subTitle.fontFamily
-            }) : this.fb.group({
-                text: ['', Validators.required],
-                fontSize: 15,
-                fontFamily: null
-            }),
-            description: this.work ? this.fb.group({
-                text: [this.work.description.text, Validators.required],
-                fontSize: this.work.description.fontSize ? this.work.description.fontSize : 15,
-                fontFamily: this.work.description.fontFamily
-            }) : this.fb.group({
-                text: ['', Validators.required],
-                fontSize: 15,
-                fontFamily: null
-            }),
+            color: [this.work ? this.work.color : 'black', Validators.required],
+            title: this.work ? this.createFontFormforUpdate(this.work, 'title') : this.createFontForm(),
+            subTitle: this.work ? this.createFontFormforUpdate(this.work, 'subTitle') : this.createFontForm(),
+            description: this.work ? this.createFontFormforUpdate(this.work, 'description') : this.createFontForm(),
             imgURL: [this.work ? this.work.img : '', Validators.required],
             details: this.fb.array(this.work ? this.createDetailsForm() : [])
         });
 
-        // this.textForm = this.fb.group({
-        //     text: '',
-        //     fontSize: null,
-        //     fontFamily: null
-        // });
 
     }
 
@@ -140,6 +106,31 @@ export class EditWorkComponent implements OnInit, OnDestroy {
             if (slug.toLowerCase() === e.target.value.toLowerCase()) {
                 this.inValidSlug = true;
             }
+        });
+    }
+
+    colorChange(e) {
+        this.form.controls.color.setValue(e);
+
+        console.log(this.form.value)
+    }
+
+    createFontForm() {
+        return this.fb.group({
+            text: ['', Validators.required],
+            fontSize: 15,
+            fontFamily: null,
+            fontWeight: 'regular'
+        });
+    }
+
+    createFontFormforUpdate(work, type) {
+        return this.fb.group({
+            text: [work[type].text, Validators.required],
+            fontSize: work[type].fontSize ? work[type].fontSize : 15,
+            fontFamily: work[type].fontFamily,
+            fontWeight: work[type].fontWeight
+
         });
     }
 
@@ -160,16 +151,8 @@ export class EditWorkComponent implements OnInit, OnDestroy {
         } else if (value === 'text') {
             type.push(this.fb.group({
                 type: 'text',
-                title: this.fb.group({
-                    text: '',
-                    fontSize: 15,
-                    fontFamily: null
-                }),
-                description: this.fb.group({
-                    text: '',
-                    fontSize: 15,
-                    fontFamily: null
-                }),
+                title: this.createFontForm(),
+                description: this.createFontForm(),
                 author: false,
                 border: false,
                 order: null
@@ -196,11 +179,14 @@ export class EditWorkComponent implements OnInit, OnDestroy {
                 type: 'column',
                 title: this.fb.group({
                     fontSize: 15,
-                    fontFamily: null
+                    fontFamily: null,
+                    fontWeight: 'regular'
+
                 }),
                 description: this.fb.group({
                     fontSize: 15,
-                    fontFamily: null
+                    fontFamily: null,
+                    fontWeight: 'regular'
                 }),
                 col1: this.fb.group({
                     title: '',
@@ -242,16 +228,8 @@ export class EditWorkComponent implements OnInit, OnDestroy {
                         // title: w.title,
                         // description: [w.description, [Validators.required]],
 
-                        title: this.fb.group({
-                            text: w.title.text,
-                            fontSize: w.title.fontSize ? w.title.fontSize : 15,
-                            fontFamily: w.title.fontFamily
-                        }),
-                        description: this.fb.group({
-                            text: [w.description.text, Validators.required],
-                            fontSize: w.description.fontSize ? w.description.fontSize : 15,
-                            fontFamily: w.description.fontFamily
-                        }),
+                        title: this.createFontFormforUpdate(w, 'title'),
+                        description: this.createFontFormforUpdate(w, 'description'),
 
                         author: w.author,
                         border: w.border,
@@ -275,11 +253,15 @@ export class EditWorkComponent implements OnInit, OnDestroy {
                         type: w.type,
                         title: this.fb.group({
                             fontSize: w.title.fontSize ? w.title.fontSize : 15,
-                            fontFamily: w.title.fontFamily
+                            fontFamily: w.title.fontFamily,
+                            fontWeight: w.title.fontWeight
+
                         }),
                         description: this.fb.group({
                             fontSize: w.description.fontSize ? w.description.fontSize : 15,
-                            fontFamily: w.description.fontFamily
+                            fontFamily: w.description.fontFamily,
+                            fontWeight: w.description.fontWeight
+
                         }),
                         col1: this.fb.group({
                             title: w.col1.title,
@@ -494,7 +476,8 @@ export class EditWorkComponent implements OnInit, OnDestroy {
 
     myWork() {
 
-        this.form.controls.color.setValue(this.color);
+        // this.form.controls.color.setValue(this.color);
+
 
 
         if (this.work) {
