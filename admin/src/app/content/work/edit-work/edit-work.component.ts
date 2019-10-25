@@ -55,7 +55,8 @@ export class EditWorkComponent implements OnInit, OnDestroy {
         this.videoUrl = config.imageUrl;
         if (this.workService.candidateWork) {
             this.work = this.workService.candidateWork;
-            this.color = this.work.color
+            this.work.color ? this.color = this.work.color : this.color = 'black';
+            // this.color = this.work.color;
 
             // this.work.details.forEach(d => {
             //     if (d.type === 'video') {
@@ -91,35 +92,34 @@ export class EditWorkComponent implements OnInit, OnDestroy {
         };
 
 
-
         this.form = this.fb.group({
             slug: [this.work ? this.work.slug : '', [Validators.required, Validators.pattern('^[a-zA-Z0-9_-]*$')]],
             color: [this.color, Validators.required],
             title: this.work ? this.fb.group({
                 text: [this.work.title.text, Validators.required],
-                fontSize: this.work.title.fontSize,
+                fontSize: this.work.title.fontSize ? this.work.title.fontSize : 15,
                 fontFamily: this.work.title.fontFamily
             }) : this.fb.group({
                 text: ['', Validators.required],
-                fontSize: null,
+                fontSize: 15,
                 fontFamily: null
             }),
             subTitle: this.work ? this.fb.group({
                 text: [this.work.subTitle.text, Validators.required],
-                fontSize: this.work.subTitle.fontSize,
+                fontSize: this.work.subTitle.fontSize ? this.work.subTitle.fontSize : 15,
                 fontFamily: this.work.subTitle.fontFamily
             }) : this.fb.group({
                 text: ['', Validators.required],
-                fontSize: null,
+                fontSize: 15,
                 fontFamily: null
             }),
             description: this.work ? this.fb.group({
                 text: [this.work.description.text, Validators.required],
-                fontSize: this.work.description.fontSize,
+                fontSize: this.work.description.fontSize ? this.work.description.fontSize : 15,
                 fontFamily: this.work.description.fontFamily
             }) : this.fb.group({
                 text: ['', Validators.required],
-                fontSize: null,
+                fontSize: 15,
                 fontFamily: null
             }),
             imgURL: [this.work ? this.work.img : '', Validators.required],
@@ -162,12 +162,12 @@ export class EditWorkComponent implements OnInit, OnDestroy {
                 type: 'text',
                 title: this.fb.group({
                     text: '',
-                    fontSize: null,
+                    fontSize: 15,
                     fontFamily: null
                 }),
                 description: this.fb.group({
                     text: '',
-                    fontSize: null,
+                    fontSize: 15,
                     fontFamily: null
                 }),
                 author: false,
@@ -195,11 +195,11 @@ export class EditWorkComponent implements OnInit, OnDestroy {
             type.push(this.fb.group({
                 type: 'column',
                 title: this.fb.group({
-                    fontSize: null,
+                    fontSize: 15,
                     fontFamily: null
                 }),
                 description: this.fb.group({
-                    fontSize: null,
+                    fontSize: 15,
                     fontFamily: null
                 }),
                 col1: this.fb.group({
@@ -244,12 +244,12 @@ export class EditWorkComponent implements OnInit, OnDestroy {
 
                         title: this.fb.group({
                             text: w.title.text,
-                            fontSize: w.title.fontSize,
+                            fontSize: w.title.fontSize ? w.title.fontSize : 15,
                             fontFamily: w.title.fontFamily
                         }),
                         description: this.fb.group({
                             text: [w.description.text, Validators.required],
-                            fontSize: w.description.fontSize,
+                            fontSize: w.description.fontSize ? w.description.fontSize : 15,
                             fontFamily: w.description.fontFamily
                         }),
 
@@ -274,11 +274,11 @@ export class EditWorkComponent implements OnInit, OnDestroy {
                     type.push(this.fb.group({
                         type: w.type,
                         title: this.fb.group({
-                            fontSize: w.title.fontSize,
+                            fontSize: w.title.fontSize ? w.title.fontSize : 15,
                             fontFamily: w.title.fontFamily
                         }),
                         description: this.fb.group({
-                            fontSize: w.description.fontSize,
+                            fontSize: w.description.fontSize ? w.description.fontSize : 15,
                             fontFamily: w.description.fontFamily
                         }),
                         col1: this.fb.group({

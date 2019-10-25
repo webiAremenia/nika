@@ -7,6 +7,7 @@ module.exports = {
     getWork: async (req, res) => {
         try {
             let works = await Work.find({});
+
             res.status(200).json(works)
         } catch (e) {
             errors.notFound(res, errors);

@@ -54,6 +54,9 @@
                     <div class="col-6">
                         <label translate>Title</label>
                         <input type="text" placeholder="title" class="form-control" formControlName="text">
+                        <p [style.font-size]=" form.controls.title.value.fontSize + 'px'"
+                           [style.font-family]=" form.controls.title.value.fontFamily"
+                        >{{ form.controls.title.value.text }}</p>
                     </div>
                     <div class="col-6">
                         <div class="row offset-2">
@@ -99,6 +102,9 @@
                     <div class="col-6">
                         <label translate>Subtitle</label>
                         <input type="text" placeholder="title" class="form-control" formControlName="text">
+                        <p [style.font-size]=" form.controls.subTitle.value.fontSize + 'px'"
+                           [style.font-family]=" form.controls.subTitle.value.fontFamily"
+                        >{{ form.controls.subTitle.value.text }}</p>
                     </div>
                     <div class="col-6">
                         <div class="row offset-2">
@@ -148,6 +154,9 @@
                     <div class="col-6"><label translate>Description</label>
                         <textarea class="form-control" placeholder="description" rows="3"
                                   formControlName="text"></textarea>
+                        <p [style.font-size]=" form.controls.description.value.fontSize + 'px'"
+                           [style.font-family]=" form.controls.description.value.fontFamily"
+                        >{{ form.controls.description.value.text }}</p>
 
                     </div>
                     <div class="col-6">

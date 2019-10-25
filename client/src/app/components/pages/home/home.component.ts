@@ -361,14 +361,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     getParams() {
-        // console.log('get params');
         if (this.workService.works) {
             this.slides = this.workService.works;
             this.done = true;
             if (this.location) {
                 this.doneService = true;
             }
-            // console.log('get params if');
             this.initSlider();
             this.getCurrent();
         } else {

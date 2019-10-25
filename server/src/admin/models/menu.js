@@ -6,13 +6,36 @@ const MenuSchema = new Schema({
         type: String,
         required: true
     },
+    // title: {
+    //     type: String,
+    //     required: true
+    // },
+    // description: {
+    //     type: String
+    // },
     title: {
-        type: String,
-        required: true
+        text: {
+            type: String,
+        },
+        fontSize: {
+            type: Number,
+        },
+        fontFamily: {
+            type: String,
+        }
     },
     description: {
-        type: String
+        text: {
+            type: String,
+        },
+        fontSize: {
+            type: Number,
+        },
+        fontFamily: {
+            type: String,
+        }
     },
+
     order: {
         type: Number,
         required: true
