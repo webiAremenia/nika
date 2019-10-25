@@ -23,6 +23,7 @@ export class LogoService {
         .pipe(map(data => {
               this.logo = data.map(logo => {
                 return {
+                  color: logo.bgColor,
                   title: logo.title,
                   image: logo.img,
                 };

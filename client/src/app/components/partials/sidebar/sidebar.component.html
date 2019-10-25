@@ -55,8 +55,11 @@
         </div>
     </div>
 
-    <div class="side-bar-logo h-50" style="background: #000a1d;text-align: center;">
-        <div class="logo-wrapper h-100" *ngIf="done">
+    <div class="side-bar-logo h-50"
+        *ngIf="done"
+        [style.background]="logos[1].color"
+        style="text-align: center;">
+        <div class="logo-wrapper h-100">
             <div *ngIf="logos[1].image; else link" class="h-100">
                 <a [href]="imgLink" target="_blank">
                     <img class="align-self-center" [src]="imageUrl + logos[1].image['image']" alt="logo">

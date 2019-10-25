@@ -57,6 +57,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
         if (window.innerWidth > 992) {
             this.logoService.getImages()
                 .subscribe(data => {
+                    console.log(data);
                     this.logos = data;
                     this.done = true;
                 }, e => console.log(e));
