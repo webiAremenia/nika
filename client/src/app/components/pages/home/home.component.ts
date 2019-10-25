@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     delay = 0;
 
     location: boolean;
+    titlePositionCss: Array<number> = [];
 
     initCurrentTimeOut;
     backToSliderTimeOut;
@@ -489,12 +490,10 @@ export class HomeComponent implements OnInit, OnDestroy {
         let timeOne: number;
         let timeSecond: number;
 
-        if (window.innerWidth > 992) {
-            // timeOne = 1700;
-            timeOne = 1800;
-            // timeSecond = 3470;
-            timeSecond = 4000;
 
+        if (window.innerWidth > 992) {
+            timeOne = 1800;
+            timeSecond = 4000;
         } else if (window.innerWidth > 767 && window.innerWidth < 992) {
             timeOne = 1650;
             timeSecond = 3800;
@@ -508,6 +507,10 @@ export class HomeComponent implements OnInit, OnDestroy {
         document.getElementById('loading-section-3').className += ' loadBackActive';
 
         setTimeout(() => {
+            Array.from(document.getElementsByClassName('desc-wrap-p')).forEach( el => {
+                this.titlePositionCss.push(el.clientHeight);
+            });
+            console.log(this.titlePositionCss);
             document.getElementById('message').className += ' loadLetterActive';
         }, 1200);
 

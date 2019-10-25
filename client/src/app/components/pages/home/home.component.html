@@ -45,10 +45,13 @@
 
                         <div class="slide-text-content">
 
-                            <h2 [style.fontSize]="windowWidth > 992 ? slide.title.fontSize * windowWidth / 1920 + 'px' : '25px'"
+                            <h2 class="text-h2"
+                                [style.transform]=" 'translateY(' + titlePositionCss[index] + 'px' + ')' "
+                                [style.fontSize]="windowWidth > 992 ? slide.title.fontSize * windowWidth / 1920 + 'px' : '25px'"
                                 [style.lineHeight]="58 * windowWidth / 1920 + 'px'"
                                 [style.color]="slide.color"
-                                [style.font-family]="slide.title.fontFamily">{{ slide.title.text }}</h2>
+                                [style.font-family]="slide.title.fontFamily">{{ slide.title.text }}
+                            </h2>
                             <div class="slide-desc">
                                 <div class="desc-wrap">
                                     <p class="desc-wrap-p"
@@ -102,8 +105,11 @@
                             {{ currentSubTitle }}
                         </div>
                         <div class="detail-title" *ngIf="currentTitle"
-                             [style.fontSize]="windowWidth * 50 / 1920 + 'px'"> {{ currentTitle }} </div>
-                        <div class="detail-desc" *ngIf="currentDesc" [style.fontSize]="windowWidth * 18 / 1920 + 'px'">
+                             [style.fontSize]="windowWidth * 50 / 1920 + 'px'">
+                             {{ currentTitle }}
+                            </div>
+                        <div class="detail-desc" *ngIf="currentDesc"
+                            [style.fontSize]="windowWidth * 18 / 1920 + 'px'">
                             {{ currentDesc }}
                         </div>
                         <div class="detail-logo" [style.background]="'url(assets/icons/in-logo.PNG)'"></div>
